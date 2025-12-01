@@ -15,7 +15,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
     const product = await db.product.findUnique({
         where: { slug: params.slug }
     })
-    const title = product?.name || 'IT Services Product'
+    const title = product?.name || 'BacklineIT Product'
     const price = product?.price ? `${product.price.toLocaleString('hu-HU')} Ft` : ''
 
     return new ImageResponse(
@@ -59,7 +59,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
                         border: '1px solid rgba(6, 182, 212, 0.5)',
                     }}
                 >
-                    <div style={{ fontSize: 24, fontWeight: 'bold', color: '#22d3ee' }}>IT Services Shop</div>
+                    <div style={{ fontSize: 24, fontWeight: 'bold', color: '#22d3ee' }}>BacklineIT Shop</div>
                 </div>
 
                 <div

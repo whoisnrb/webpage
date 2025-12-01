@@ -25,28 +25,28 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "IT Services & Automation | Hatékony Digitális Megoldások",
-    template: "%s | IT Services"
+    default: "BacklineIT | Hatékony Digitális Megoldások",
+    template: "%s | BacklineIT"
   },
   description: "Professzionális IT szolgáltatások, egyedi scriptek, webfejlesztés és automatizáció vállalkozásoknak. Spórolj időt és pénzt modern technológiákkal.",
-  keywords: ["IT szolgáltatás", "webfejlesztés", "automatizáció", "python script", "devops", "biztonsági audit"],
-  authors: [{ name: "IT Services Team" }],
-  creator: "IT Services Team",
+  keywords: ["BacklineIT", "IT szolgáltatás", "webfejlesztés", "automatizáció", "python script", "devops", "biztonsági audit"],
+  authors: [{ name: "BacklineIT Team" }],
+  creator: "BacklineIT Team",
   openGraph: {
     type: "website",
     locale: "hu_HU",
-    url: "https://itservices.hu",
-    title: "IT Services & Automation | Hatékony Digitális Megoldások",
+    url: "https://backlineit.hu",
+    title: "BacklineIT | Hatékony Digitális Megoldások",
     description: "Professzionális IT szolgáltatások, egyedi scriptek, webfejlesztés és automatizáció vállalkozásoknak.",
-    siteName: "IT Services",
+    siteName: "BacklineIT",
   },
   twitter: {
     card: "summary_large_image",
-    title: "IT Services & Automation",
+    title: "BacklineIT",
     description: "Professzionális IT szolgáltatások és automatizáció.",
-    creator: "@itservices",
+    creator: "@backlineit",
   },
-  metadataBase: new URL("https://itservices.hu"),
+  metadataBase: new URL("https://backlineit.hu"),
 };
 
 export default async function RootLayout({

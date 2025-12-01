@@ -13,7 +13,7 @@ export const contentType = 'image/png'
 
 export default async function Image({ params }: { params: { slug: string } }) {
     const post = getPostBySlug(params.slug)
-    const title = post?.title || 'IT Services Blog'
+    const title = post?.title || 'BacklineIT Blog'
 
     return new ImageResponse(
         (
@@ -56,7 +56,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
                         border: '1px solid rgba(124, 58, 237, 0.5)',
                     }}
                 >
-                    <div style={{ fontSize: 24, fontWeight: 'bold', color: '#a78bfa' }}>IT Services.hu</div>
+                    <div style={{ fontSize: 24, fontWeight: 'bold', color: '#a78bfa' }}>BacklineIT</div>
                 </div>
 
                 <div

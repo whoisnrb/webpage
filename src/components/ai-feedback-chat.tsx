@@ -29,7 +29,7 @@ export function AiFeedbackChat() {
         {
             id: "1",
             role: "bot",
-            content: "Üdvözlöm! Én Alvin vagyok, az IT Services AI asszisztense. Szeretném kikérni a véleményét szolgáltatásainkról.",
+            content: "Üdvözlöm! Én Alvin vagyok, a BacklineIT AI asszisztense. Szeretném kikérni a véleményét szolgáltatásainkról.",
             type: "text"
         },
         {

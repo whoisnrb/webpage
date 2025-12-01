@@ -31,7 +31,9 @@ export function Header() {
                         <Link href="/" className="flex items-center gap-2">
                             <Code2 className="h-6 w-6 text-primary" />
                             <span className="text-lg font-bold tracking-tight text-primary">
-                                IT Services<span className="text-secondary">.hu</span>
+                                <span className="font-bold text-xl tracking-tight">
+                                    Backline<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">IT</span>
+                                </span>
                             </span>
                         </Link>
                     </div>

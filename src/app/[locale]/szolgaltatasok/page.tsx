@@ -135,7 +135,7 @@ export default function SzolgaltatasokPage() {
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div>
                             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-                                Miért az IT Services?
+                                Miért a BacklineIT?
                             </h2>
                             <p className="text-slate-400 text-lg mb-8 leading-relaxed">
                                 Nem csak kódolunk, hanem üzleti problémákat oldunk meg. Célunk, hogy a technológia ne teher, hanem versenyelőny legyen a vállalkozásod számára.

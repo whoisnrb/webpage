@@ -17,7 +17,7 @@ export default async function DashboardLayout({
             <div className="md:hidden border-b p-4 flex items-center justify-between bg-background">
                 <Link href="/" className="flex items-center gap-2">
                     <Code2 className="h-6 w-6 text-primary" />
-                    <span className="font-bold">IT Services</span>
+                    <span className="font-bold">BacklineIT</span>
                 </Link>
                 <UserNav user={session?.user} />
             </div>

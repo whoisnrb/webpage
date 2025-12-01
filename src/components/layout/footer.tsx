@@ -13,7 +13,9 @@ export function Footer() {
                         <Link href="/" className="flex items-center gap-2 mb-4">
                             <Code2 className="h-6 w-6 text-primary" />
                             <span className="text-lg font-bold tracking-tight text-primary">
-                                IT Services<span className="text-secondary">.hu</span>
+                                <span className="font-bold text-xl tracking-tight">
+                                    Backline<span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">IT</span>
+                                </span>
                             </span>
                         </Link>
                         <p className="text-sm text-muted-foreground mb-6 max-w-xs">
@@ -64,7 +66,7 @@ export function Footer() {
                 </div>
 
                 <div className="mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-                    <p>&copy; {new Date().getFullYear()} IT Services. Minden jog fenntartva.</p>
+                    <p>&copy; {new Date().getFullYear()} BacklineIT. Minden jog fenntartva.</p>
                     <div className="flex gap-6">
                         <Link href="/adatvedelem" className="hover:text-primary">Adatvédelem</Link>
                         <Link href="/aszf" className="hover:text-primary">ÁSZF</Link>

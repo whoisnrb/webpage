@@ -23,7 +23,7 @@ export default async function AdminLayout({
             <aside className="w-64 bg-muted/30 border-r hidden md:flex flex-col">
                 <div className="p-6 border-b">
                     <h1 className="text-xl font-bold tracking-tight">Admin Panel</h1>
-                    <p className="text-xs text-muted-foreground">IT Services</p>
+                    <p className="text-xs text-muted-foreground">BacklineIT</p>
                 </div>
                 <nav className="flex-1 p-4 space-y-2">
                     <Link href="/admin">

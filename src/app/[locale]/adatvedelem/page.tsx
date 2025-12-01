@@ -4,13 +4,13 @@ export default function AdatvedelemPage() {
     return (
         <LegalLayout title="Adatvédelmi Tájékoztató" lastUpdated="2024. január 1.">
             <p className="lead">
-                Az IT Services Kft. elkötelezett az Ön személyes adatainak védelme mellett.
+                Az BacklineIT Kft. elkötelezett az Ön személyes adatainak védelme mellett.
                 Jelen tájékoztató célja, hogy világos és átlátható információt nyújtson arról, hogyan kezeljük adatait a GDPR (Általános Adatvédelmi Rendelet) előírásaival összhangban.
             </p>
 
             <h2>1. Az Adatkezelő</h2>
             <p>
-                Az adatok kezelője az IT Services Kft. (székhely: 1138 Budapest, Váci út 123., email: info@itservices.hu).
+                Az adatok kezelője az BacklineIT Kft. (székhely: 1138 Budapest, Váci út 123., email: info@itservices.hu).
                 Cégünk felelős az Ön által megadott személyes adatok jogszerű, tisztességes és átlátható kezeléséért.
             </p>
 

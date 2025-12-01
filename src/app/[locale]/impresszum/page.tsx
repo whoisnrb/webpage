@@ -15,7 +15,7 @@ export default function ImpresszumPage() {
                     <dl className="space-y-4 text-sm">
                         <div>
                             <dt className="text-muted-foreground mb-1">Cégnév</dt>
-                            <dd className="font-medium text-base">IT Services Kft.</dd>
+                            <dd className="font-medium text-base">BacklineIT Kft.</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">Székhely</dt>

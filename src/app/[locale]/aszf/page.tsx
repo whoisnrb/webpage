@@ -13,7 +13,7 @@ export default function AszfPage() {
                 <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">Cégnév:</dt>
-                        <dd className="font-medium inline md:block ml-2 md:ml-0">IT Services Kft.</dd>
+                        <dd className="font-medium inline md:block ml-2 md:ml-0">BacklineIT Kft.</dd>
                     </div>
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">Székhely:</dt>
@@ -36,7 +36,7 @@ export default function AszfPage() {
 
             <h2>2. Fogalommeghatározások</h2>
             <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Szolgáltató:</strong> Az IT Services Kft., amely a weboldalt üzemelteti és a szolgáltatásokat nyújtja.</li>
+                <li><strong>Szolgáltató:</strong> Az BacklineIT Kft., amely a weboldalt üzemelteti és a szolgáltatásokat nyújtja.</li>
                 <li><strong>Ügyfél:</strong> Bármely természetes vagy jogi személy, aki a Szolgáltató szolgáltatásait igénybe veszi.</li>
                 <li><strong>Weboldal:</strong> Az itservices.hu domain alatt elérhető internetes felület.</li>
                 <li><strong>Szolgáltatás:</strong> A weboldalon keresztül elérhető szoftverfejlesztési, tanácsadási és egyéb informatikai szolgáltatások.</li>

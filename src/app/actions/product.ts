@@ -34,7 +34,13 @@ export async function getProducts(): Promise<ProductDTO[]> {
     const products = await prisma.product.findMany({
         orderBy: { createdAt: 'desc' }
     })
-    return products.map(mapProduct)
+    console.log('Raw products from DB:', JSON.stringify(products, null, 2))
+    try {
+        return products.map(mapProduct)
+    } catch (error) {
+        console.error('Error mapping products:', error)
+        throw error
+    }
 }
 
 export async function getProductBySlug(slug: string): Promise<ProductDTO | null> {
