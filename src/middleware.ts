@@ -28,8 +28,14 @@ export default auth((req) => {
         // For now, we'll keep it simple or rely on session strategy
     }
 
-    if (req.nextUrl.pathname.startsWith('/api')) {
-        return NextResponse.next()
+    // Handle localized API routes (e.g., /hu/api/auth/...) by rewriting to /api/...
+    if (req.nextUrl.pathname.includes('/api/')) {
+        const apiIndex = req.nextUrl.pathname.indexOf('/api/');
+        if (apiIndex > 0) {
+            const newPath = req.nextUrl.pathname.substring(apiIndex);
+            return NextResponse.rewrite(new URL(newPath, req.url));
+        }
+        return NextResponse.next();
     }
 
     return intlMiddleware(req);
