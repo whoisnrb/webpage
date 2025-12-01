@@ -39,8 +39,8 @@ export default async function PurchasesPage() {
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <div className="space-y-1">
                                     <CardTitle className="text-base font-medium">
-                                        {order.amount === 199000 ? 'Starter csomag' :
-                                            order.amount === 449000 ? 'Professional csomag' :
+                                        {order.totalAmount === 199000 ? 'Starter csomag' :
+                                            order.totalAmount === 449000 ? 'Professional csomag' :
                                                 'Egyedi csomag'}
                                     </CardTitle>
                                     <CardDescription>#{order.orderRef} • {new Date(order.createdAt).toLocaleDateString('hu-HU')}</CardDescription>
@@ -52,7 +52,7 @@ export default async function PurchasesPage() {
                                     <div className="flex gap-2">
                                         <Badge variant="secondary">Licenc</Badge>
                                         <span className="text-sm font-medium self-center">
-                                            {new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(order.amount)}
+                                            {new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(order.totalAmount)}
                                         </span>
                                     </div>
                                     <div className="flex gap-2">
