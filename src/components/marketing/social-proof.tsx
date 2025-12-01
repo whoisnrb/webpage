@@ -3,29 +3,37 @@
 import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ShoppingBag, CheckCircle2 } from "lucide-react"
-
-const recentPurchases = [
-    { name: "Gábor", location: "Budapest", product: "Python Automatizáció", time: "2 perce" },
-    { name: "Anna", location: "Debrecen", product: "Webshop Fejlesztés", time: "5 perce" },
-    { name: "Péter", location: "Szeged", product: "Biztonsági Audit", time: "12 perce" },
-    { name: "László", location: "Győr", product: "Rendszerüzemeltetés", time: "25 perce" },
-    { name: "Eszter", location: "Pécs", product: "Egyedi Script", time: "40 perce" },
-]
+import { getRecentPurchases, type RecentPurchase } from "@/app/actions/social-proof"
 
 export function SocialProof() {
+    const [purchases, setPurchases] = React.useState<RecentPurchase[]>([])
     const [visible, setVisible] = React.useState(false)
     const [currentIndex, setCurrentIndex] = React.useState(0)
+    const [isLoaded, setIsLoaded] = React.useState(false)
 
     React.useEffect(() => {
+        const fetchPurchases = async () => {
+            const data = await getRecentPurchases()
+            setPurchases(data)
+            setIsLoaded(true)
+        }
+        fetchPurchases()
+    }, [])
+
+    React.useEffect(() => {
+        if (!isLoaded || purchases.length === 0) return
+
         // Initial delay
         const initialTimeout = setTimeout(() => {
             setVisible(true)
         }, 5000)
 
         return () => clearTimeout(initialTimeout)
-    }, [])
+    }, [isLoaded, purchases.length])
 
     React.useEffect(() => {
+        if (!isLoaded || purchases.length === 0) return
+
         let hideTimeout: NodeJS.Timeout
         let showTimeout: NodeJS.Timeout
 
@@ -38,7 +46,7 @@ export function SocialProof() {
             // Show next after random delay (15-30s)
             const delay = Math.floor(Math.random() * 15000) + 15000
             showTimeout = setTimeout(() => {
-                setCurrentIndex((prev) => (prev + 1) % recentPurchases.length)
+                setCurrentIndex((prev) => (prev + 1) % purchases.length)
                 setVisible(true)
             }, delay)
         }
@@ -47,9 +55,11 @@ export function SocialProof() {
             clearTimeout(hideTimeout)
             clearTimeout(showTimeout)
         }
-    }, [visible])
+    }, [visible, isLoaded, purchases.length])
 
-    const purchase = recentPurchases[currentIndex]
+    if (!isLoaded || purchases.length === 0) return null
+
+    const purchase = purchases[currentIndex]
 
     return (
         <AnimatePresence>
@@ -66,7 +76,7 @@ export function SocialProof() {
                         </div>
                         <div>
                             <p className="text-sm font-medium text-foreground">
-                                {purchase.name} ({purchase.location})
+                                {purchase.name}
                             </p>
                             <p className="text-xs text-muted-foreground">
                                 vásárolt: <span className="text-primary font-medium">{purchase.product}</span>
