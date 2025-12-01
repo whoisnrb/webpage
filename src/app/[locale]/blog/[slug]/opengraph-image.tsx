@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 import { getPostBySlug } from '@/lib/blog'
 
-export const runtime = 'edge'
+
 
 export const alt = 'Blog Post Image'
 export const size = {
