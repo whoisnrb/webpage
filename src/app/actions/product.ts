@@ -45,7 +45,7 @@ export async function getProductBySlug(slug: string): Promise<ProductDTO | null>
     return mapProduct(product)
 }
 
-export async function createProduct(data: Omit<ProductDTO, 'id'>) {
+export async function createProduct(data: Omit<ProductDTO, 'id' | 'updatedAt'>) {
     const { title, ...rest } = data
     await prisma.product.create({
         data: {
