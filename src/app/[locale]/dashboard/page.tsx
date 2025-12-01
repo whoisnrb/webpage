@@ -37,7 +37,16 @@ export default async function DashboardPage() {
             status: 'ACTIVE'
         }
     })
-    const openTickets = 0
+    const openTickets = await prisma.ticket.count({
+        where: {
+            user: {
+                email: session.user.email
+            },
+            status: {
+                in: ['OPEN', 'IN_PROGRESS']
+            }
+        }
+    })
 
     return (
         <div className="space-y-8">
@@ -128,9 +137,11 @@ export default async function DashboardPage() {
                             <Key className="mr-2 h-4 w-4" />
                             Új licenc aktiválása
                         </Button>
-                        <Button className="w-full justify-start" variant="outline">
-                            <Ticket className="mr-2 h-4 w-4" />
-                            Hibajegy nyitása
+                        <Button className="w-full justify-start" variant="outline" asChild>
+                            <Link href="/dashboard/tickets/new">
+                                <Ticket className="mr-2 h-4 w-4" />
+                                Hibajegy nyitása
+                            </Link>
                         </Button>
                         <Button className="w-full justify-start" variant="outline" asChild>
                             <Link href="/arak">

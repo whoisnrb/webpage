@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -36,6 +36,12 @@ export default async function AdminLayout({
                         <Button variant="ghost" className="w-full justify-start">
                             <Users className="mr-2 h-4 w-4" />
                             Leads
+                        </Button>
+                    </Link>
+                    <Link href="/admin/tickets">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <Ticket className="mr-2 h-4 w-4" />
+                            Support Tickets
                         </Button>
                     </Link>
                     <Link href="/admin/products">
