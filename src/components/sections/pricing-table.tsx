@@ -21,8 +21,9 @@ const packages = [
             "3 hónap ingyenes support",
             "Google Analytics integráció"
         ],
-        cta: "Kezdjük el",
-        href: "/checkout?package=starter"
+        cta: "Hamarosan",
+        href: "#",
+        disabled: true
     },
     {
         name: "Professional",
@@ -43,8 +44,9 @@ const packages = [
             "Havi teljesítmény riport",
             "Biztonsági mentések (napi)"
         ],
-        cta: "Ezt választom",
-        href: "/checkout?package=professional"
+        cta: "Hamarosan",
+        href: "#",
+        disabled: true
     },
     {
         name: "Enterprise",
@@ -67,7 +69,8 @@ const packages = [
             "SLA garancia (99.9% uptime)"
         ],
         cta: "Kérj árajánlatot",
-        href: "/ajanlatkeres"
+        href: "/ajanlatkeres",
+        disabled: false
     }
 ]
 
@@ -134,17 +137,27 @@ export function PricingTable() {
                                         ))}
                                     </ul>
 
-                                    <Link href={pkg.href} className="w-full">
+                                    {pkg.disabled ? (
                                         <Button
                                             size="lg"
-                                            className={`w-full ${pkg.popular
-                                                ? 'bg-primary hover:bg-primary/90'
-                                                : 'bg-accent hover:bg-accent/90'
-                                                }`}
+                                            disabled
+                                            className="w-full bg-muted text-muted-foreground cursor-not-allowed"
                                         >
                                             {pkg.cta}
                                         </Button>
-                                    </Link>
+                                    ) : (
+                                        <Link href={pkg.href} className="w-full">
+                                            <Button
+                                                size="lg"
+                                                className={`w-full ${pkg.popular
+                                                    ? 'bg-primary hover:bg-primary/90'
+                                                    : 'bg-accent hover:bg-accent/90'
+                                                    }`}
+                                            >
+                                                {pkg.cta}
+                                            </Button>
+                                        </Link>
+                                    )}
                                 </CardContent>
                             </Card>
                         )

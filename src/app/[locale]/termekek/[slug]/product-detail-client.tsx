@@ -75,8 +75,8 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                     </div>
 
                     <div className="mt-6 pt-6 border-t flex gap-4">
-                        <Button size="lg" className="w-full bg-accent hover:bg-accent/90 text-white" onClick={handleAddToCart}>
-                            <ShoppingCart className="mr-2 h-5 w-5" /> Kosárba
+                        <Button size="lg" className="w-full bg-muted text-muted-foreground cursor-not-allowed" disabled>
+                            <ShoppingCart className="mr-2 h-5 w-5" /> Hamarosan
                         </Button>
                     </div>
                 </div>
