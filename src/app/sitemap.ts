@@ -4,7 +4,12 @@ import { getProducts } from '@/app/actions/product'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://itservices.hu'
-    const products = await getProducts()
+    let products: any[] = []
+    try {
+        products = await getProducts()
+    } catch (error) {
+        console.warn('Could not fetch products for sitemap generation:', error)
+    }
 
     // Static pages
     const routes = [
