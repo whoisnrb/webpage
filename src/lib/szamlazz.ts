@@ -44,11 +44,11 @@ export async function createInvoice(order: any, user: any) {
                 <megnevezes>Szoftver licenc</megnevezes>
                 <mennyiseg>1.0</mennyiseg>
                 <mennyisegiEgyseg>db</mennyisegiEgyseg>
-                <nettoEgysegar>${Math.round(order.amount / 1.27)}</nettoEgysegar>
+                <nettoEgysegar>${Math.round(order.totalAmount / 1.27)}</nettoEgysegar>
                 <afakulcs>27</afakulcs>
-                <nettoErtek>${Math.round(order.amount / 1.27)}</nettoErtek>
-                <afaErtek>${order.amount - Math.round(order.amount / 1.27)}</afaErtek>
-                <bruttoErtek>${order.amount}</bruttoErtek>
+                <nettoErtek>${Math.round(order.totalAmount / 1.27)}</nettoErtek>
+                <afaErtek>${order.totalAmount - Math.round(order.totalAmount / 1.27)}</afaErtek>
+                <bruttoErtek>${order.totalAmount}</bruttoErtek>
             </tetel>
         </tetelek>
     </xmlszamla>`

@@ -30,8 +30,8 @@ export default async function PaymentSuccessPage({ searchParams }: Props) {
             if (order.licenses.length === 0 && order.user) {
                 // 3. Determine license type based on amount
                 let type = 'STARTER'
-                if (order.amount >= 400000) type = 'PRO'
-                if (order.amount === 0) type = 'TRIAL'
+                if (order.totalAmount >= 400000) type = 'PRO'
+                if (order.totalAmount === 0) type = 'TRIAL'
 
                 // 4. Create license
                 const newLicense = await prisma.license.create({
