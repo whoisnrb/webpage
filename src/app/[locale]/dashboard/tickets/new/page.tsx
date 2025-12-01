@@ -8,11 +8,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { useToast } from "@/hooks/use-toast"
 
 export default function NewTicketPage() {
     const router = useRouter()
-    const { toast } = useToast()
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         subject: "",
@@ -35,24 +33,13 @@ export default function NewTicketPage() {
             const data = await response.json()
 
             if (data.success) {
-                toast({
-                    title: "Ticket létrehozva",
-                    description: `Ticket szám: ${data.ticket.ticketNumber}`
-                })
-                router.push(`/dashboard/tickets/${data.ticket.id}`)
+                alert(`✅ Ticket létrehozva: ${data.ticket.ticketNumber}`)
+                router.push(`/dashboard/tickets`)
             } else {
-                toast({
-                    title: "Hiba",
-                    description: data.error || "Nem sikerült létrehozni a ticket-et",
-                    variant: "destructive"
-                })
+                alert(`❌ Hiba: ${data.error || "Nem sikerült létrehozni a ticket-et"}`)
             }
         } catch (error) {
-            toast({
-                title: "Hiba",
-                description: "Hálózati hiba történt",
-                variant: "destructive"
-            })
+            alert('❌ Hálózati hiba történt')
         } finally {
             setLoading(false)
         }
