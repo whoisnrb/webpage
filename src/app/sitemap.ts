@@ -3,7 +3,7 @@ import { blogPosts } from '@/data/blog-posts'
 import { getProducts } from '@/app/actions/product'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://itservices.hu'
+    const baseUrl = 'https://backlineit.hu'
     let products: any[] = []
     try {
         products = await getProducts()
