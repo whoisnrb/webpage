@@ -37,16 +37,23 @@ export default async function DashboardPage() {
             status: 'ACTIVE'
         }
     })
-    const openTickets = await prisma.ticket.count({
-        where: {
-            user: {
-                email: session.user.email
-            },
-            status: {
-                in: ['OPEN', 'IN_PROGRESS']
+
+    // Try to get ticket count, fallback to 0 if table doesn't exist yet
+    let openTickets = 0
+    try {
+        openTickets = await prisma.ticket.count({
+            where: {
+                user: {
+                    email: session.user.email
+                },
+                status: {
+                    in: ['OPEN', 'IN_PROGRESS']
+                }
             }
-        }
-    })
+        })
+    } catch (error) {
+        console.log('Ticket table not available yet')
+    }
 
     return (
         <div className="space-y-8">
