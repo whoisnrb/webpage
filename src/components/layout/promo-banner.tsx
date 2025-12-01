@@ -12,7 +12,7 @@ export function PromoBanner() {
         <div className="bg-primary px-4 py-3 text-white">
             <div className="container mx-auto flex items-center justify-between text-sm font-medium">
                 <p className="text-center flex-1">
-                    🚀 Indulási akció: Használd a <span className="font-bold">START2024</span> kódot 20% kedvezményért!
+                    🚀 Indulási akció: Használd a <span className="font-bold">START2026</span> kódot 20% kedvezményért!
                 </p>
                 <button
                     onClick={() => setIsVisible(false)}
