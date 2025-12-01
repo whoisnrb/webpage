@@ -21,20 +21,7 @@ export function Footer() {
                         <p className="text-sm text-muted-foreground mb-6 max-w-xs">
                             Professzionális informatikai szolgáltatások, scriptek és automatizációk vállalkozások számára. Spórolj időt és pénzt modern megoldásainkkal.
                         </p>
-                        <div className="flex gap-4">
-                            <Link href="#" className="text-muted-foreground hover:text-primary">
-                                <Facebook className="h-5 w-5" />
-                                <span className="sr-only">Facebook</span>
-                            </Link>
-                            <Link href="#" className="text-muted-foreground hover:text-primary">
-                                <Twitter className="h-5 w-5" />
-                                <span className="sr-only">Twitter</span>
-                            </Link>
-                            <Link href="#" className="text-muted-foreground hover:text-primary">
-                                <Linkedin className="h-5 w-5" />
-                                <span className="sr-only">LinkedIn</span>
-                            </Link>
-                        </div>
+
                     </div>
 
                     <div>

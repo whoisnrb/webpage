@@ -79,8 +79,8 @@ export function Header() {
                         <Button variant="ghost" size="sm" asChild>
                             <Link href="/login">Ügyfélportál</Link>
                         </Button>
-                        <Button size="sm" className="bg-accent hover:bg-accent/90 text-white">
-                            Ingyenes konzultáció
+                        <Button size="sm" className="bg-accent hover:bg-accent/90 text-white" asChild>
+                            <Link href="/kapcsolat">Ingyenes konzultáció</Link>
                         </Button>
                         <ThemeCustomizer />
                         <LanguageSwitcher />
@@ -133,8 +133,8 @@ export function Header() {
                                     <Button variant="ghost" asChild className="justify-start">
                                         <Link href="/login">Ügyfélportál</Link>
                                     </Button>
-                                    <Button className="w-full bg-accent hover:bg-accent/90 text-white">
-                                        Ingyenes konzultáció
+                                    <Button className="w-full bg-accent hover:bg-accent/90 text-white" asChild>
+                                        <Link href="/kapcsolat">Ingyenes konzultáció</Link>
                                     </Button>
                                 </div>
                             </div>
