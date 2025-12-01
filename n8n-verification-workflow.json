@@ -1,0 +1,55 @@
+{
+    "name": "Email Verification Workflow",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "verification",
+                "options": {}
+            },
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                460,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "resource": "message",
+                "subject": "Fiók megerősítése - IT Services",
+                "message": "=Szia!\n\nKöszönjük a regisztrációt!\n\nA megerősítő kódod: {{ $json.token }}\n\nÜdvözlettel,\nIT Services Csapat",
+                "additionalFields": {
+                    "toEmail": "={{ $json.email }}"
+                }
+            },
+            "name": "Gmail",
+            "type": "n8n-nodes-base.gmail",
+            "typeVersion": 2,
+            "position": [
+                680,
+                300
+            ],
+            "credentials": {
+                "gmailOAuth2": {
+                    "id": "YOUR_GMAIL_CREDENTIAL_ID",
+                    "name": "Gmail account"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Gmail",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

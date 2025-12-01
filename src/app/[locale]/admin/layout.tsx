@@ -1,0 +1,84 @@
+import { auth } from "@/auth"
+import { redirect } from "next/navigation"
+import { getLocale } from "next-intl/server"
+import { Link } from "@/i18n/routing"
+import { LayoutDashboard, Users, Settings, LogOut, Package } from "lucide-react"
+import { Button } from "@/components/ui/button"
+
+export default async function AdminLayout({
+    children,
+}: {
+    children: React.ReactNode
+}) {
+    const session = await auth()
+
+    if (!session?.user || session.user.role !== "ADMIN") {
+        const locale = await getLocale()
+        redirect(`/${locale}/`)
+    }
+
+    return (
+        <div className="flex min-h-screen">
+            {/* Sidebar */}
+            <aside className="w-64 bg-muted/30 border-r hidden md:flex flex-col">
+                <div className="p-6 border-b">
+                    <h1 className="text-xl font-bold tracking-tight">Admin Panel</h1>
+                    <p className="text-xs text-muted-foreground">IT Services</p>
+                </div>
+                <nav className="flex-1 p-4 space-y-2">
+                    <Link href="/admin">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <LayoutDashboard className="mr-2 h-4 w-4" />
+                            Vezérlőpult
+                        </Button>
+                    </Link>
+                    <Link href="/admin/leads">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <Users className="mr-2 h-4 w-4" />
+                            Leads
+                        </Button>
+                    </Link>
+                    <Link href="/admin/products">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <Package className="mr-2 h-4 w-4" />
+                            Termékek
+                        </Button>
+                    </Link>
+                    <Link href="/dashboard">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <Settings className="mr-2 h-4 w-4" />
+                            Felhasználói fiók
+                        </Button>
+                    </Link>
+                </nav>
+                <div className="p-4 border-t">
+                    <form action={async () => {
+                        "use server"
+                        // Import signOut dynamically or use a client component for logout if needed
+                        // For now, redirecting to api/auth/signout is simplest
+                        // We need to handle locale in server action too, but getLocale works there
+                        // However, redirect in server action might need absolute path or just work
+                        // Let's try simple redirect first, but we need locale
+                        // const locale = await getLocale() // Cannot use await in sync server action if not async
+                        // But this is an async server action
+                        // redirect(`/${locale}/api/auth/signout`)
+                        // Actually api routes are not localized usually?
+                        // If /api/auth/signout is a NextAuth route, it might not be under [locale]
+                        // Let's assume /api is root.
+                        redirect("/api/auth/signout")
+                    }}>
+                        <Button variant="outline" className="w-full justify-start text-destructive hover:text-destructive">
+                            <LogOut className="mr-2 h-4 w-4" />
+                            Kijelentkezés
+                        </Button>
+                    </form>
+                </div>
+            </aside>
+
+            {/* Main Content */}
+            <main className="flex-1 p-8 overflow-y-auto">
+                {children}
+            </main>
+        </div>
+    )
+}

@@ -1,0 +1,70 @@
+{
+    "Hero": {
+        "badge": "New: Automation Starter Pack",
+        "title_1": "Automate Success.",
+        "title_2": "Forget Manual Work.",
+        "description": "Custom scripts, modern websites, and system automation so you can focus on growth. Save time and money with professional IT solutions.",
+        "cta_primary": "Instant Solutions",
+        "cta_secondary": "Free Consultation",
+        "feature_1": "Instant Results",
+        "feature_2": "Code Warranty",
+        "feature_3": "24/7 Monitoring",
+        "stat_label": "Time Saved",
+        "stat_value": "12 hours / week"
+    },
+    "ServicesPreview": {
+        "title_1": "We don't just code.",
+        "title_2": "We solve problems.",
+        "description": "Choose from our services and take your business to the next level.",
+        "items": {
+            "automation": {
+                "title": "Automation",
+                "description": "Get rid of boring, repetitive tasks. Custom scripts that work for you 24/7.",
+                "benefit": "Save 10+ hours/week"
+            },
+            "webdev": {
+                "title": "Web Development",
+                "description": "Not just a website: a customer magnet. Fast, modern, and perfect on mobile.",
+                "benefit": "+40% conversion growth"
+            },
+            "devops": {
+                "title": "DevOps & Cloud",
+                "description": "Stable foundations for your business. Scalable servers, automated backups, and 99.9% uptime.",
+                "benefit": "Zero downtime, peace of mind"
+            },
+            "security": {
+                "title": "Cybersecurity",
+                "description": "Protect your data and your clients. Vulnerability assessment and proactive protection against attacks.",
+                "benefit": "Secure business operations"
+            }
+        }
+    },
+    "HomePage": {
+        "title": "Full-stack IT Services",
+        "subtitle": "in one place",
+        "description": "From planning to implementation and maintenance. Modern technologies, transparent pricing, guaranteed quality.",
+        "cta_prices": "View Pricing",
+        "cta_services": "Services",
+        "services_title": "How can we help?",
+        "services_desc": "Choose from our services or let's create a custom package for your needs",
+        "why_us_title": "Why choose us?",
+        "why_us_desc": "Over 50 successful projects, satisfied clients, and modern technologies",
+        "process_title": "How we work?",
+        "process_desc": "Simple, transparent process for a successful project",
+        "cta_footer_title": "Ready to launch?",
+        "cta_footer_desc": "Book a free consultation and let's discuss your project details. No obligation, just useful advice.",
+        "cta_consultation": "Free Consultation"
+    },
+    "Navigation": {
+        "home": "Home",
+        "services": "Services",
+        "scripts": "Scripts",
+        "web_dev": "Web Development",
+        "products": "Products",
+        "references": "References",
+        "pricing": "Pricing",
+        "blog": "Blog",
+        "contact": "Contact",
+        "client_portal": "Client Portal"
+    }
+}

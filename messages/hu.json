@@ -1,0 +1,70 @@
+{
+    "Hero": {
+        "badge": "Új: Automation Starter Pack",
+        "title_1": "Automatizáld a sikert.",
+        "title_2": "Felejtsd el a manuális munkát.",
+        "description": "Egyedi scriptek, modern weboldalak és rendszerautomatizálás, hogy Te a növekedésre fókuszálhass. Spórolj időt és pénzt profi IT megoldásokkal.",
+        "cta_primary": "Azonnali Megoldások",
+        "cta_secondary": "Ingyenes Konzultáció",
+        "feature_1": "Azonnali eredmények",
+        "feature_2": "Garancia minden kódra",
+        "feature_3": "24/7 Rendszerfelügyelet",
+        "stat_label": "Megtakarított idő",
+        "stat_value": "12 óra / hét"
+    },
+    "ServicesPreview": {
+        "title_1": "Nem csak kódolunk.",
+        "title_2": "Problémákat oldunk meg.",
+        "description": "Válassz a szolgáltatásaink közül, és emeld a vállalkozásodat a következő szintre.",
+        "items": {
+            "automation": {
+                "title": "Automatizáció",
+                "description": "Szabadulj meg az unalmas, ismétlődő feladatoktól. Egyedi scriptek, amik helyetted dolgoznak 24/7.",
+                "benefit": "Spórolj heti 10+ órát"
+            },
+            "webdev": {
+                "title": "Webfejlesztés",
+                "description": "Nem csak egy weboldal: egy vevőmágnes. Gyors, modern és mobilon is tökéletes megjelenés.",
+                "benefit": "+40% konverzió növekedés"
+            },
+            "devops": {
+                "title": "DevOps & Cloud",
+                "description": "Stabil alapok a vállalkozásodnak. Skálázható szerverek, automatikus mentések és 99.9% rendelkezésre állás.",
+                "benefit": "Zéró leállás, nyugodt alvás"
+            },
+            "security": {
+                "title": "Kiberbiztonság",
+                "description": "Védd meg az adataidat és az ügyfeleidet. Sérülékenység vizsgálat és proaktív védelem a támadások ellen.",
+                "benefit": "Biztonságos üzletmenet"
+            }
+        }
+    },
+    "HomePage": {
+        "title": "Teljes körű IT szolgáltatások",
+        "subtitle": "egy helyen",
+        "description": "A tervezéstől a megvalósításig és üzemeltetésig. Modern technológiák, átlátható árazás, garantált minőség.",
+        "cta_prices": "Árak megtekintése",
+        "cta_services": "Szolgáltatások",
+        "services_title": "Miben segíthetünk?",
+        "services_desc": "Válassz a szolgáltatásaink közül, vagy állítsunk össze egyedi csomagot az igényeidhez",
+        "why_us_title": "Miért válassz minket?",
+        "why_us_desc": "Több mint 50 sikeres projekt, elégedett ügyfelek és modern technológiák",
+        "process_title": "Hogyan dolgozunk?",
+        "process_desc": "Egyszerű, átlátható folyamat a sikeres projektért",
+        "cta_footer_title": "Készen állsz az indulásra?",
+        "cta_footer_desc": "Foglalj egy ingyenes konzultációt, és beszéljük át a projekted részleteit. Nincs kötelezettség, csak hasznos tanácsok.",
+        "cta_consultation": "Ingyenes konzultáció"
+    },
+    "Navigation": {
+        "home": "Főoldal",
+        "services": "Szolgáltatások",
+        "scripts": "Scriptek",
+        "web_dev": "Webfejlesztés",
+        "products": "Termékek",
+        "references": "Referenciák",
+        "pricing": "Árak",
+        "blog": "Blog",
+        "contact": "Kapcsolat",
+        "client_portal": "Ügyfélportál"
+    }
+}

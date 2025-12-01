@@ -1,0 +1,96 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "booking",
+                "options": {}
+            },
+            "id": "webhook-node",
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "operation": "append",
+                "sheetId": "YOUR_GOOGLE_SHEET_ID",
+                "range": "A:D",
+                "options": {}
+            },
+            "id": "google-sheets-node",
+            "name": "Save Booking",
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 3,
+            "position": [
+                450,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "resource": "message",
+                "subject": "Új Időpontfoglalás Érkezett",
+                "message": "={{ 'Új foglalás érkezett:\n\nNév: ' + $json.name + '\nEmail: ' + $json.email + '\nDátum: ' + $json.date + '\nTéma: ' + $json.topic + '\nÜzenet: ' + $json.message }}",
+                "toEmail": "YOUR_ADMIN_EMAIL@example.com"
+            },
+            "id": "gmail-admin-node",
+            "name": "Notify Admin",
+            "type": "n8n-nodes-base.gmail",
+            "typeVersion": 2,
+            "position": [
+                650,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "resource": "message",
+                "subject": "Időpontfoglalás Visszaigazolása",
+                "message": "Kedves Ügyfelünk!\n\nMegkaptuk időpontfoglalási igényét. Hamarosan felvesszük Önnel a kapcsolatot a véglegesítés miatt.\n\nÜdvözlettel,\nIT Services Csapat",
+                "toEmail": "={{ $json.email }}"
+            },
+            "id": "gmail-user-node",
+            "name": "Confirm to User",
+            "type": "n8n-nodes-base.gmail",
+            "typeVersion": 2,
+            "position": [
+                650,
+                400
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Save Booking",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Save Booking": {
+            "main": [
+                [
+                    {
+                        "node": "Notify Admin",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Confirm to User",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}
