@@ -28,6 +28,10 @@ export default auth((req) => {
         // For now, we'll keep it simple or rely on session strategy
     }
 
+    if (req.nextUrl.pathname.startsWith('/api')) {
+        return NextResponse.next()
+    }
+
     return intlMiddleware(req);
 })
 
