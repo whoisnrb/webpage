@@ -149,7 +149,6 @@ export function PriceCalculator() {
                                 </span>
                                 <span className="text-muted-foreground">/ hó</span>
                             </div>
-                            <p className="text-xs text-muted-foreground">+ ÁFA</p>
                         </div>
                         <Button className="w-full" size="lg" asChild>
                             <Link href="/ajanlatkeres">

@@ -88,7 +88,6 @@ export function ProductCard({ id, title, description, price, category, slug, ima
                     <div className="text-2xl font-bold text-primary">
                         {new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(price)}
                     </div>
-                    <p className="text-xs text-muted-foreground mt-1">+ ÁFA</p>
                 </CardContent>
 
                 <CardFooter>
