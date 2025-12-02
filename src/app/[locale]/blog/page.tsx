@@ -1,78 +1,70 @@
-import { getAllPosts } from "@/lib/blog"
+import { getBlogPosts } from "@/lib/mdx"
 import { Link } from "@/i18n/routing"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Calendar, User, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { FadeIn, SlideUp } from "@/components/ui/motion-wrapper"
-import { Calendar, Clock, ArrowRight } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 
-import { Metadata } from "next"
-
-export const metadata: Metadata = {
-    title: "Blog & Tudástár | BacklineIT",
-    description: "Szakmai cikkek, tutorialok és hírek a webfejlesztés, automatizáció és IT világából. Tanulj velünk!",
-    keywords: ["IT blog", "webfejlesztés tutorial", "automatizáció tippek", "tech hírek", "BacklineIT blog"]
-}
-
-export default function BlogPage() {
-    const posts = getAllPosts()
+export default async function BlogPage() {
+    const posts = await getBlogPosts()
+    const t = await getTranslations('Blog') // Assuming we'll add translations later, or fallback to keys
 
     return (
-        <div className="min-h-screen py-20">
-            <div className="container mx-auto px-4">
-                <FadeIn>
-                    <div className="text-center mb-16">
-                        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
-                            Blog & Tudástár
-                        </h1>
-                        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                            Hírek, tutorialok és szakmai cikkek a webfejlesztés, automatizáció és IT világából.
-                        </p>
-                    </div>
-                </FadeIn>
+        <div className="container mx-auto px-4 py-16 md:py-24">
+            <div className="text-center mb-16">
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400">
+                    Blog & Tudástár
+                </h1>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                    Hírek, tippek és szakmai cikkek az IT, automatizáció és webfejlesztés világából.
+                </p>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.map((post, index) => (
-                        <SlideUp key={post.slug} delay={index * 0.1}>
-                            <Card className="h-full flex flex-col bg-muted/30 border-muted hover:border-primary/50 transition-colors group">
-                                <CardHeader>
-                                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-2">
-                                        <div className="flex items-center gap-1">
-                                            <Calendar className="h-3 w-3" />
-                                            {post.date}
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                            <Clock className="h-3 w-3" />
-                                            5 perc olvasás
-                                        </div>
-                                    </div>
-                                    <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                                        <Link href={`/blog/${post.slug}`}>
-                                            {post.title}
-                                        </Link>
-                                    </CardTitle>
-                                </CardHeader>
-                                <CardContent className="flex-grow">
-                                    <CardDescription className="text-base">
-                                        {post.excerpt}
-                                    </CardDescription>
-                                </CardContent>
-                                <CardFooter>
-                                    <Button variant="ghost" className="p-0 hover:bg-transparent hover:text-primary group-hover:translate-x-1 transition-transform" asChild>
-                                        <Link href={`/blog/${post.slug}`} className="flex items-center gap-2">
-                                            Olvass tovább <ArrowRight className="h-4 w-4" />
-                                        </Link>
-                                    </Button>
-                                </CardFooter>
-                            </Card>
-                        </SlideUp>
-                    ))}
-
-                    {posts.length === 0 && (
-                        <div className="col-span-full text-center py-20 text-muted-foreground">
-                            <p>Még nincsenek bejegyzések. Nézz vissza később!</p>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {posts.map((post) => (
+                    <Card key={post.slug} className="flex flex-col h-full overflow-hidden hover:shadow-lg transition-all border-muted-foreground/10 group">
+                        <div className="h-48 bg-muted/50 relative overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 group-hover:scale-105 transition-transform duration-500" />
+                            <div className="absolute bottom-4 left-4 flex gap-2">
+                                {post.tags.map(tag => (
+                                    <Badge key={tag} variant="secondary" className="backdrop-blur-sm bg-background/50">
+                                        {tag}
+                                    </Badge>
+                                ))}
+                            </div>
                         </div>
-                    )}
-                </div>
+                        <CardHeader>
+                            <div className="flex items-center gap-4 text-xs text-muted-foreground mb-2">
+                                <div className="flex items-center gap-1">
+                                    <Calendar className="h-3 w-3" />
+                                    {post.date}
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <User className="h-3 w-3" />
+                                    {post.author}
+                                </div>
+                            </div>
+                            <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors">
+                                <Link href={`/blog/${post.slug}`}>
+                                    {post.title}
+                                </Link>
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-1">
+                            <p className="text-muted-foreground line-clamp-3">
+                                {post.description}
+                            </p>
+                        </CardContent>
+                        <CardFooter>
+                            <Button variant="ghost" className="w-full group/btn" asChild>
+                                <Link href={`/blog/${post.slug}`}>
+                                    Olvass tovább <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                                </Link>
+                            </Button>
+                        </CardFooter>
+                    </Card>
+                ))}
             </div>
         </div>
     )

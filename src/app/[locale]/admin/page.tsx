@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Users, ShoppingCart, DollarSign, TrendingUp } from "lucide-react"
 import { prisma } from "@/lib/db"
+import { DashboardCharts } from "@/components/admin/dashboard-charts"
 
 async function getStats() {
     const userCount = await prisma.user.count()
@@ -68,6 +69,7 @@ export default async function AdminPage() {
                     </CardContent>
                 </Card>
             </div>
+            <DashboardCharts />
         </div>
     )
 }
