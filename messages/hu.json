@@ -135,5 +135,11 @@
     },
     "Maintenance": {
         "banner_text": "Jelenleg karbantartás alatt. Csak egyedi ajánlatokat vállalunk."
+    },
+    "Blog": {
+        "title": "Blog & Tudástár",
+        "subtitle": "Hírek, tippek és szakmai cikkek az IT, automatizáció és webfejlesztés világából.",
+        "read_more": "Olvass tovább",
+        "back": "Vissza a blogra"
     }
 }

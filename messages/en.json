@@ -135,5 +135,11 @@
     },
     "Maintenance": {
         "banner_text": "Currently under maintenance. We only accept custom quotes."
+    },
+    "Blog": {
+        "title": "Blog & Knowledge Base",
+        "subtitle": "News, tips, and professional articles from the world of IT, automation, and web development.",
+        "read_more": "Read more",
+        "back": "Back to blog"
     }
 }
