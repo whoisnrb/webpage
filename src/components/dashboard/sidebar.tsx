@@ -2,8 +2,9 @@
 
 import { Link, usePathname } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, ShoppingBag, Key, Ticket, Settings, LogOut } from "lucide-react"
+import { LayoutDashboard, ShoppingBag, Key, Ticket, Settings, LogOut, ShieldAlert } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useSession } from "next-auth/react"
 
 const sidebarItems = [
     { name: "Áttekintés", href: "/dashboard", icon: LayoutDashboard },
@@ -15,6 +16,7 @@ const sidebarItems = [
 
 export function Sidebar() {
     const pathname = usePathname()
+    const { data: session } = useSession()
 
     return (
         <div className="flex h-full flex-col border-r bg-muted/10">
@@ -36,6 +38,22 @@ export function Sidebar() {
                             {item.name}
                         </Link>
                     ))}
+
+                    {session?.user?.role === "ADMIN" && (
+                        <>
+                            <div className="my-4 border-t border-border/50" />
+                            <Link
+                                href="/admin/tickets"
+                                className={cn(
+                                    "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-red-500/10 hover:text-red-500",
+                                    pathname.startsWith("/admin") ? "bg-red-500/10 text-red-500" : "text-muted-foreground"
+                                )}
+                            >
+                                <ShieldAlert className="h-4 w-4" />
+                                Adminisztráció
+                            </Link>
+                        </>
+                    )}
                 </nav>
             </div>
             <div className="p-4 border-t">
