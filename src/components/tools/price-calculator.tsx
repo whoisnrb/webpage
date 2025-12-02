@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { Link } from "@/i18n/routing"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Slider } from "@/components/ui/slider"
 import { Label } from "@/components/ui/label"
@@ -150,8 +151,10 @@ export function PriceCalculator() {
                             </div>
                             <p className="text-xs text-muted-foreground">+ ÁFA</p>
                         </div>
-                        <Button className="w-full" size="lg">
-                            Ajánlatkérés
+                        <Button className="w-full" size="lg" asChild>
+                            <Link href="/ajanlatkeres">
+                                Ajánlatkérés
+                            </Link>
                         </Button>
                     </div>
                 </div>

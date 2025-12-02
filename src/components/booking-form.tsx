@@ -21,6 +21,7 @@ export function BookingForm() {
         name: "",
         email: "",
         topic: "",
+        time: "",
         message: ""
     })
 
@@ -29,7 +30,7 @@ export function BookingForm() {
         setErrorMessage("")
         console.log("Form submitted. Data:", { ...formData, date })
 
-        if (!date || !formData.name || !formData.email || !formData.topic) {
+        if (!date || !formData.name || !formData.email || !formData.topic || !formData.time) {
             console.log("Validation failed")
             setErrorMessage("Kérlek tölts ki minden mezőt és válassz dátumot!")
             return
@@ -57,7 +58,7 @@ export function BookingForm() {
             }
 
             setStatus("success")
-            setFormData({ name: "", email: "", topic: "", message: "" })
+            setFormData({ name: "", email: "", topic: "", time: "", message: "" })
             setDate(undefined)
         } catch (error) {
             console.error("Submission error:", error)
@@ -130,38 +131,60 @@ export function BookingForm() {
                         </SelectContent>
                     </Select>
                 </div>
-                <div className="space-y-2 flex flex-col">
-                    <label className="text-sm font-medium">Dátum</label>
-                    <Popover>
-                        <PopoverTrigger asChild>
-                            <Button
-                                variant={"outline"}
-                                className={cn(
-                                    "w-full pl-3 text-left font-normal",
-                                    !date && "text-muted-foreground"
-                                )}
-                            >
-                                {date ? (
-                                    format(date, "PPP", { locale: hu })
-                                ) : (
-                                    <span>Válassz dátumot</span>
-                                )}
-                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                            <Calendar
-                                mode="single"
-                                selected={date}
-                                onSelect={setDate}
-                                disabled={(date) =>
-                                    date < new Date() || date < new Date("1900-01-01")
-                                }
-                                initialFocus
-                                locale={hu}
-                            />
-                        </PopoverContent>
-                    </Popover>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2 flex flex-col">
+                        <label className="text-sm font-medium">Dátum</label>
+                        <Popover>
+                            <PopoverTrigger asChild>
+                                <Button
+                                    variant={"outline"}
+                                    className={cn(
+                                        "w-full pl-3 text-left font-normal",
+                                        !date && "text-muted-foreground"
+                                    )}
+                                >
+                                    {date ? (
+                                        format(date, "PPP", { locale: hu })
+                                    ) : (
+                                        <span>Válassz dátumot</span>
+                                    )}
+                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar
+                                    mode="single"
+                                    selected={date}
+                                    onSelect={setDate}
+                                    disabled={(date) =>
+                                        date < new Date() || date < new Date("1900-01-01") || date.getDay() === 0 || date.getDay() === 6
+                                    }
+                                    initialFocus
+                                    locale={hu}
+                                />
+                            </PopoverContent>
+                        </Popover>
+                    </div>
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">Időpont</label>
+                        <Select
+                            required
+                            onValueChange={(value) => setFormData(prev => ({ ...prev, time: value }))}
+                            value={formData.time}
+                            disabled={!date}
+                        >
+                            <SelectTrigger>
+                                <SelectValue placeholder="Válassz időpontot" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                {["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"].map((time) => (
+                                    <SelectItem key={time} value={time}>
+                                        {time}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
             </div>
 

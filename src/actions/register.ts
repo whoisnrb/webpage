@@ -37,6 +37,23 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         const verificationToken = await generateVerificationToken(email);
         await sendVerificationEmail(verificationToken.identifier, verificationToken.token);
 
+        // Sync to CRM via n8n
+        try {
+            await fetch("https://n8n.backlineit.hu/webhook/crm-sync", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    type: "new_user",
+                    name,
+                    email,
+                    source: "registration"
+                })
+            });
+        } catch (crmError) {
+            console.error("CRM Sync Error:", crmError);
+            // Don't fail registration if CRM sync fails
+        }
+
         return { success: "Megerősítő email elküldve!" };
     } catch (error) {
         console.error("REGISTRATION ERROR:", error);

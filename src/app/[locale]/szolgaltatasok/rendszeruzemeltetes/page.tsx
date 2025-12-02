@@ -189,7 +189,7 @@ export default function RendszeruzemeltetesPage() {
                     </div>
 
                     <div className="text-center mt-12">
-                        <Link href="/checkout?package=custom">
+                        <Link href="/ajanlatkeres">
                             <Button size="lg" className="bg-accent hover:bg-accent/90">
                                 Egyedi ajánlat kérése
                             </Button>

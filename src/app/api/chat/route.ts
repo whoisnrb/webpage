@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { ALVIN_CONTEXT } from "@/lib/ai-context"
 
 export async function POST(req: NextRequest) {
     try {
@@ -25,7 +26,8 @@ export async function POST(req: NextRequest) {
             },
             body: JSON.stringify({
                 message,
-                history: history.slice(-5) // Send last 5 messages for context
+                history: history.slice(-5), // Send last 5 messages for context
+                context: ALVIN_CONTEXT
             })
         })
 

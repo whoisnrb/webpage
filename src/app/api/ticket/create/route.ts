@@ -81,7 +81,24 @@ export async function POST(req: NextRequest) {
             }
         })
 
-        // TODO: n8n webhook notification to admins (will be added later)
+        // Notify n8n for AI Analysis & Admin Alert
+        try {
+            await fetch("https://n8n.backlineit.hu/webhook/ticket-created", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    ticketId: ticket.id,
+                    ticketNumber: ticket.ticketNumber,
+                    subject: ticket.subject,
+                    description: ticket.description,
+                    userEmail: ticket.user.email,
+                    userName: ticket.user.name
+                })
+            });
+        } catch (webhookError) {
+            console.error("Webhook trigger failed:", webhookError);
+            // Continue execution, don't block user
+        }
 
         return NextResponse.json({
             success: true,

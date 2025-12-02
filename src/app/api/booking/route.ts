@@ -17,7 +17,7 @@ export async function POST(request: Request) {
         }
 
         const body = await request.json()
-        const { name, email, date, topic, message } = body
+        const { name, email, date, topic, time, message } = body
 
         const n8nUrl = "https://n8n.backlineit.hu/webhook/booking"
 
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({ name, email, date, topic, message })
+            body: JSON.stringify({ name, email, date, topic, time, message })
         })
 
         if (!response.ok) {
