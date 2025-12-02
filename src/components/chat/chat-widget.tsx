@@ -63,7 +63,13 @@ export function ChatWidget() {
     }
 
     return (
-        <div className="fixed top-24 right-4 z-50 flex flex-col items-end gap-4">
+        <motion.div
+            drag
+            dragMomentum={false}
+            dragListener={false}
+            dragControls={dragControls}
+            className="fixed top-24 right-4 z-50 flex flex-col items-end gap-4"
+        >
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -71,10 +77,6 @@ export function ChatWidget() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: -20 }}
                         transition={{ duration: 0.2 }}
-                        drag
-                        dragMomentum={false}
-                        dragListener={false}
-                        dragControls={dragControls}
                         className="pointer-events-auto"
                     >
                         <Card className="w-[350px] h-[500px] flex flex-col shadow-xl border-2">
@@ -166,22 +168,24 @@ export function ChatWidget() {
             </AnimatePresence>
 
             {!isOpen && (
-                <Button
-                    size="lg"
-                    className="h-16 w-16 rounded-full shadow-lg p-0 bg-transparent hover:bg-transparent transition-transform hover:scale-110"
-                    onClick={() => setIsOpen(true)}
-                >
-                    <div className="relative h-full w-full rounded-full overflow-hidden border-2 border-primary/50 bg-background">
-                        <Image
-                            src="/alvin-avatar.png"
-                            alt="Alvin"
-                            fill
-                            className="object-cover"
-                            unoptimized
-                        />
-                    </div>
-                </Button>
+                <div onPointerDown={(e) => dragControls.start(e)} className="touch-none">
+                    <Button
+                        size="lg"
+                        className="h-16 w-16 rounded-full shadow-lg p-0 bg-transparent hover:bg-transparent transition-transform hover:scale-110 cursor-move"
+                        onClick={() => setIsOpen(true)}
+                    >
+                        <div className="relative h-full w-full rounded-full overflow-hidden border-2 border-primary/50 bg-background">
+                            <Image
+                                src="/alvin-avatar.png"
+                                alt="Alvin"
+                                fill
+                                className="object-cover"
+                                unoptimized
+                            />
+                        </div>
+                    </Button>
+                </div>
             )}
-        </div>
+        </motion.div>
     )
 }
