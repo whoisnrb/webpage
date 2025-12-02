@@ -8,7 +8,11 @@ import { LoginSchema } from "@/schemas"
 import { getUserByEmail } from "@/data/user"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+    ...authConfig,
+    adapter: PrismaAdapter(prisma),
+    session: { strategy: "jwt" },
     callbacks: {
+        ...authConfig.callbacks,
         async session({ session, token }) {
             if (token.sub && session.user) {
                 session.user.id = token.sub;
@@ -23,7 +27,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         async jwt({ token }) {
             if (!token.sub) return token;
 
-            const existingUser = await getUserByEmail(token.email as string); // Or find by ID if preferred
+            const existingUser = await getUserByEmail(token.email as string);
 
             if (!existingUser) return token;
 
@@ -32,9 +36,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             return token;
         }
     },
-    adapter: PrismaAdapter(prisma),
-    session: { strategy: "jwt" },
-    ...authConfig,
     providers: [
         ...authConfig.providers.filter((provider: any) => provider.id !== "credentials"),
         Credentials({

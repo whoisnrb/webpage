@@ -26,15 +26,6 @@ export default {
         signIn: "/login",
     },
     callbacks: {
-        async session({ session, user, token }) {
-            if (session.user && token?.sub) {
-                session.user.id = token.sub
-            }
-            return session
-        },
-        async jwt({ token }) {
-            return token
-        },
         authorized({ auth, request: nextUrl }) {
             const isLoggedIn = !!auth?.user
             const isOnDashboard = nextUrl.nextUrl.pathname.startsWith('/dashboard')
