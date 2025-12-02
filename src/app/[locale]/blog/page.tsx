@@ -8,16 +8,16 @@ import { getTranslations } from "next-intl/server"
 
 export default async function BlogPage() {
     const posts = await getBlogPosts()
-    const t = await getTranslations('Blog') // Assuming we'll add translations later, or fallback to keys
+    const t = await getTranslations('Blog')
 
     return (
         <div className="container mx-auto px-4 py-16 md:py-24">
             <div className="text-center mb-16">
                 <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400">
-                    Blog & Tudástár
+                    {t('title')}
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                    Hírek, tippek és szakmai cikkek az IT, automatizáció és webfejlesztés világából.
+                    {t('subtitle')}
                 </p>
             </div>
 
@@ -59,7 +59,7 @@ export default async function BlogPage() {
                         <CardFooter>
                             <Button variant="ghost" className="w-full group/btn" asChild>
                                 <Link href={`/blog/${post.slug}`}>
-                                    Olvass tovább <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                                    {t('read_more')} <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                                 </Link>
                             </Button>
                         </CardFooter>
