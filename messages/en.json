@@ -132,5 +132,8 @@
         "sla_level": "SLA Level",
         "estimated_price": "Estimated Monthly Fee",
         "request_quote": "Request Quote"
+    },
+    "Maintenance": {
+        "banner_text": "Currently under maintenance. We only accept custom quotes."
     }
 }

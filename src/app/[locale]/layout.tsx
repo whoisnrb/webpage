@@ -71,6 +71,8 @@ const jsonLd = {
   }
 }
 
+import { MaintenanceBanner } from "@/components/layout/maintenance-banner";
+
 export default async function RootLayout({
   children,
   params
@@ -95,7 +97,9 @@ export default async function RootLayout({
             <NeuralBackground />
             <ScrollProgress />
             <CartProvider>
+              <MaintenanceBanner />
               <PromoBanner />
+
               <Header />
               <PageTransition>
                 {children}

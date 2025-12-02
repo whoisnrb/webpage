@@ -132,5 +132,8 @@
         "sla_level": "SLA Szint",
         "estimated_price": "Becsült havi díj",
         "request_quote": "Ajánlatkérés"
+    },
+    "Maintenance": {
+        "banner_text": "Jelenleg karbantartás alatt. Csak egyedi ajánlatokat vállalunk."
     }
 }
