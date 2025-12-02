@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://backlineit.hu"),
   verification: {
-    google: "google-site-verification-code-placeholder", // TODO: Replace with actual code
+    google: "w5GusFwWrjuwRjB6Et93XNbdps97gw7pOuMeX4a5pbY",
   },
 };
 
