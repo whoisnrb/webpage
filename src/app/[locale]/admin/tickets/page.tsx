@@ -11,10 +11,11 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { TicketStatusBadge } from "@/components/dashboard/TicketStatusBadge"
 import { TicketPriorityBadge } from "@/components/dashboard/TicketPriorityBadge"
 import { Link } from "@/i18n/routing"
+import { Search, Filter } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 interface Ticket {
     id: string
@@ -22,12 +23,15 @@ interface Ticket {
     subject: string
     status: string
     priority: string
-    category: string
     createdAt: string
+    updatedAt: string
     user: {
-        name: string | null
+        name: string
         email: string
     }
+    assignedTo: {
+        name: string
+    } | null
     _count: {
         replies: number
     }
@@ -35,93 +39,86 @@ interface Ticket {
 
 export default function AdminTicketsPage() {
     const [tickets, setTickets] = useState<Ticket[]>([])
+    const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([])
     const [loading, setLoading] = useState(true)
-    const [statusFilter, setStatusFilter] = useState("")
-    const [priorityFilter, setPriorityFilter] = useState("")
-    const [categoryFilter, setCategoryFilter] = useState("")
-    const [searchQuery, setSearchQuery] = useState("")
+    const [search, setSearch] = useState("")
+    const [statusFilter, setStatusFilter] = useState("ALL")
 
     useEffect(() => {
         fetchTickets()
-    }, [statusFilter, priorityFilter, categoryFilter, searchQuery])
+    }, [])
+
+    useEffect(() => {
+        let result = tickets
+
+        if (search) {
+            const lowerSearch = search.toLowerCase()
+            result = result.filter(t =>
+                t.ticketNumber.toLowerCase().includes(lowerSearch) ||
+                t.subject.toLowerCase().includes(lowerSearch) ||
+                t.user.name.toLowerCase().includes(lowerSearch) ||
+                t.user.email.toLowerCase().includes(lowerSearch)
+            )
+        }
+
+        if (statusFilter !== "ALL") {
+            result = result.filter(t => t.status === statusFilter)
+        }
+
+        setFilteredTickets(result)
+    }, [search, statusFilter, tickets])
 
     const fetchTickets = async () => {
-        setLoading(true)
-        const params = new URLSearchParams()
-        if (statusFilter) params.append('status', statusFilter)
-        if (priorityFilter) params.append('priority', priorityFilter)
-        if (categoryFilter) params.append('category', categoryFilter)
-        if (searchQuery) params.append('search', searchQuery)
-
-        const response = await fetch(`/api/admin/ticket/list?${params.toString()}`)
-        const data = await response.json()
-        if (data.success) {
-            setTickets(data.tickets)
+        try {
+            const response = await fetch('/api/admin/ticket/list')
+            const data = await response.json()
+            if (data.success) {
+                setTickets(data.tickets)
+                setFilteredTickets(data.tickets)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     return (
         <div className="space-y-6">
             <div className="flex justify-between items-center">
-                <h1 className="text-3xl font-bold tracking-tight">Support Tickets</h1>
+                <div>
+                    <h2 className="text-3xl font-bold tracking-tight">Ticket Kezelés</h2>
+                    <p className="text-muted-foreground">Összes beérkezett hibajegy és kérés</p>
+                </div>
             </div>
 
             <Card>
                 <CardHeader>
-                    <CardTitle>Szűrők</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <Input
-                            placeholder="Keresés..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                        <Select value={statusFilter} onValueChange={setStatusFilter}>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Státusz" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value=" ">Minden</SelectItem>
-                                <SelectItem value="OPEN">Nyitott</SelectItem>
-                                <SelectItem value="IN_PROGRESS">Folyamatban</SelectItem>
-                                <SelectItem value="WAITING_FOR_CUSTOMER">Ügyfélre vár</SelectItem>
-                                <SelectItem value="RESOLVED">Megoldva</SelectItem>
-                                <SelectItem value="CLOSED">Lezárva</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <Select value={priorityFilter} onValueChange={setPriorityFilter}>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Prioritás" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value=" ">Minden</SelectItem>
-                                <SelectItem value="LOW">Alacsony</SelectItem>
-                                <SelectItem value="MEDIUM">Közepes</SelectItem>
-                                <SelectItem value="HIGH">Magas</SelectItem>
-                                <SelectItem value="URGENT">Sürgős</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                            <SelectTrigger>
-                                <SelectValue placeholder="Kategória" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value=" ">Minden</SelectItem>
-                                <SelectItem value="TECHNICAL">技nikai</SelectItem>
-                                <SelectItem value="BILLING">Számlázás</SelectItem>
-                                <SelectItem value="GENERAL">Általános</SelectItem>
-                                <SelectItem value="BUG_REPORT">Hibajelentés</SelectItem>
-                            </SelectContent>
-                        </Select>
+                    <div className="flex flex-col md:flex-row gap-4 justify-between">
+                        <div className="relative w-full md:w-96">
+                            <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                            <Input
+                                placeholder="Keresés (ID, tárgy, ügyfél)..."
+                                className="pl-8"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                            />
+                        </div>
+                        <div className="w-full md:w-48">
+                            <Select value={statusFilter} onValueChange={setStatusFilter}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Státusz szűrés" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="ALL">Összes státusz</SelectItem>
+                                    <SelectItem value="OPEN">Nyitott</SelectItem>
+                                    <SelectItem value="IN_PROGRESS">Folyamatban</SelectItem>
+                                    <SelectItem value="WAITING_FOR_CUSTOMER">Ügyfélre vár</SelectItem>
+                                    <SelectItem value="CLOSED">Lezárt</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
                     </div>
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle>Összes ticket</CardTitle>
                 </CardHeader>
                 <CardContent>
                     {loading ? (
@@ -131,16 +128,16 @@ export default function AdminTicketsPage() {
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>Ticket#</TableHead>
-                                    <TableHead>Tárgy</TableHead>
                                     <TableHead>Ügyfél</TableHead>
+                                    <TableHead>Tárgy</TableHead>
                                     <TableHead>Státusz</TableHead>
                                     <TableHead>Prioritás</TableHead>
-                                    <TableHead>Válaszok</TableHead>
-                                    <TableHead>Létrehozva</TableHead>
+                                    <TableHead>Felelős</TableHead>
+                                    <TableHead>Frissítve</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {tickets.map((ticket) => (
+                                {filteredTickets.map((ticket) => (
                                     <TableRow key={ticket.id} className="cursor-pointer hover:bg-muted/50">
                                         <TableCell className="font-mono text-xs">
                                             <Link href={`/admin/tickets/${ticket.id}`} className="hover:underline">
@@ -148,15 +145,15 @@ export default function AdminTicketsPage() {
                                             </Link>
                                         </TableCell>
                                         <TableCell>
-                                            <Link href={`/admin/tickets/${ticket.id}`} className="hover:underline">
-                                                {ticket.subject}
-                                            </Link>
-                                        </TableCell>
-                                        <TableCell>
                                             <div className="flex flex-col">
-                                                <span className="font-medium text-sm">{ticket.user.name || 'N/A'}</span>
+                                                <span className="font-medium">{ticket.user.name}</span>
                                                 <span className="text-xs text-muted-foreground">{ticket.user.email}</span>
                                             </div>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Link href={`/admin/tickets/${ticket.id}`} className="hover:underline font-medium">
+                                                {ticket.subject}
+                                            </Link>
                                         </TableCell>
                                         <TableCell>
                                             <TicketStatusBadge status={ticket.status} />
@@ -164,16 +161,22 @@ export default function AdminTicketsPage() {
                                         <TableCell>
                                             <TicketPriorityBadge priority={ticket.priority} />
                                         </TableCell>
-                                        <TableCell>{ticket._count.replies}</TableCell>
+                                        <TableCell>
+                                            {ticket.assignedTo ? (
+                                                <span className="text-sm">{ticket.assignedTo.name}</span>
+                                            ) : (
+                                                <span className="text-xs text-muted-foreground italic">Nincs hozzárendelve</span>
+                                            )}
+                                        </TableCell>
                                         <TableCell className="text-sm">
-                                            {new Date(ticket.createdAt).toLocaleDateString('hu-HU')}
+                                            {new Date(ticket.updatedAt).toLocaleDateString('hu-HU')}
                                         </TableCell>
                                     </TableRow>
                                 ))}
-                                {tickets.length === 0 && (
+                                {filteredTickets.length === 0 && (
                                     <TableRow>
                                         <TableCell colSpan={7} className="text-center py-10 text-muted-foreground">
-                                            Nincs megjeleníthető ticket.
+                                            Nincs a keresésnek megfelelő ticket.
                                         </TableCell>
                                     </TableRow>
                                 )}
