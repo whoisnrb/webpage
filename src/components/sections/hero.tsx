@@ -50,9 +50,11 @@ export function Hero() {
                             </p>
 
                             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
-                                <GlowButton size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white text-lg h-12 px-8 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 hover:scale-105">
-                                    {t('cta_primary')}
-                                </GlowButton>
+                                <Link href="/szolgaltatasok">
+                                    <GlowButton size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white text-lg h-12 px-8 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 hover:scale-105">
+                                        {t('cta_primary')}
+                                    </GlowButton>
+                                </Link>
                                 <Button variant="outline" size="lg" className="w-full sm:w-auto h-12 border-2 hover:bg-accent/50 transition-all duration-300 hover:scale-105" asChild>
                                     <Link href="/kapcsolat">
                                         {t('cta_secondary')} <ArrowRight className="ml-2 h-4 w-4" />
