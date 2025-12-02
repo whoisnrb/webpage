@@ -47,7 +47,29 @@ export const metadata: Metadata = {
     creator: "@backlineit",
   },
   metadataBase: new URL("https://backlineit.hu"),
+  verification: {
+    google: "google-site-verification-code-placeholder", // TODO: Replace with actual code
+  },
 };
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BacklineIT",
+  "url": "https://backlineit.hu",
+  "logo": "https://backlineit.hu/logo.png",
+  "sameAs": [
+    "https://facebook.com/backlineit",
+    "https://linkedin.com/company/backlineit"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+36-30-123-4567",
+    "contactType": "customer service",
+    "areaServed": "HU",
+    "availableLanguage": "Hungarian"
+  }
+}
 
 export default async function RootLayout({
   children,
@@ -66,6 +88,10 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <NeuralBackground />
             <ScrollProgress />
             <CartProvider>

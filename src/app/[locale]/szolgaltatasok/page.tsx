@@ -40,6 +40,14 @@ const services = [
     }
 ]
 
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Szolgáltatások | BacklineIT",
+    description: "Fedezd fel IT szolgáltatásainkat: egyedi szoftverfejlesztés, weboldal készítés, rendszerüzemeltetés és biztonsági audit.",
+    keywords: ["egyedi szoftver", "weboldal készítés", "rendszerüzemeltetés", "IT biztonság", "BacklineIT szolgáltatások"]
+}
+
 export default function SzolgaltatasokPage() {
     return (
         <>

@@ -5,6 +5,14 @@ import { Button } from "@/components/ui/button"
 import { FadeIn, SlideUp } from "@/components/ui/motion-wrapper"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+    title: "Blog & Tudástár | BacklineIT",
+    description: "Szakmai cikkek, tutorialok és hírek a webfejlesztés, automatizáció és IT világából. Tanulj velünk!",
+    keywords: ["IT blog", "webfejlesztés tutorial", "automatizáció tippek", "tech hírek", "BacklineIT blog"]
+}
+
 export default function BlogPage() {
     const posts = getAllPosts()
 

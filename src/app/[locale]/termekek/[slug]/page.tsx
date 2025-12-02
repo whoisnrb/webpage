@@ -8,6 +8,29 @@ interface PageProps {
     params: Promise<{ slug: string }>
 }
 
+import { Metadata } from "next"
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params
+    const product = await getProductBySlug(slug)
+
+    if (!product) {
+        return {
+            title: "Termék nem található",
+        }
+    }
+
+    return {
+        title: product.title,
+        description: product.description,
+        openGraph: {
+            title: product.title,
+            description: product.description,
+            images: [product.image],
+        },
+    }
+}
+
 export default async function ProductDetailPage({ params }: PageProps) {
     const { slug } = await params
     const product = await getProductBySlug(slug)

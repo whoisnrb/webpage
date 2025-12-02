@@ -17,6 +17,31 @@ export async function generateStaticParams() {
     }))
 }
 
+import { Metadata } from "next"
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { slug } = await params
+    const post = getPostBySlug(slug)
+
+    if (!post) {
+        return {
+            title: "Bejegyzés nem található",
+        }
+    }
+
+    return {
+        title: post.title,
+        description: post.excerpt,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            type: "article",
+            publishedTime: post.date, // Assuming date format is compatible or needs parsing
+            authors: ["BacklineIT Team"],
+        },
+    }
+}
+
 export default async function BlogPostPage({ params }: PageProps) {
     const { slug } = await params
     const post = getPostBySlug(slug)
@@ -25,8 +50,28 @@ export default async function BlogPostPage({ params }: PageProps) {
         notFound()
     }
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "description": post.excerpt,
+        "author": {
+            "@type": "Organization",
+            "name": "BacklineIT Team"
+        },
+        "datePublished": post.date, // Ensure this is a valid ISO date string if possible, or leave as is
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://backlineit.hu/blog/${slug}`
+        }
+    }
+
     return (
         <article className="min-h-screen py-20">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <div className="container mx-auto px-4 max-w-3xl">
                 <FadeIn>
                     <div className="mb-8">
