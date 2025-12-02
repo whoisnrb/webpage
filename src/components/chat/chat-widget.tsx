@@ -174,13 +174,14 @@ export function ChatWidget() {
                         className="h-16 w-16 rounded-full shadow-lg p-0 bg-transparent hover:bg-transparent transition-transform hover:scale-110 cursor-move"
                         onClick={() => setIsOpen(true)}
                     >
-                        <div className="relative h-full w-full rounded-full overflow-hidden border-2 border-primary/50 bg-background">
+                        <div className="relative h-full w-full rounded-full overflow-hidden border-2 border-primary/50 bg-background pointer-events-none">
                             <Image
                                 src="/alvin-avatar.png"
                                 alt="Alvin"
                                 fill
                                 className="object-cover"
                                 unoptimized
+                                draggable={false}
                             />
                         </div>
                     </Button>
