@@ -21,8 +21,22 @@ export default function AdatvedelemPage() {
                 <li><strong>Kapcsolattartási adatok:</strong> Név, email cím, telefonszám (pl. kapcsolatfelvételkor vagy regisztrációkor).</li>
                 <li><strong>Számlázási adatok:</strong> Számlázási név, cím, adószám (vásárlás esetén).</li>
                 <li><strong>Technikai adatok:</strong> IP cím, böngésző típusa, eszköz adatok (a weboldal biztonságos működése érdekében).</li>
-                <li><strong>Cookie-k (sütik):</strong> A felhasználói élmény javítása és statisztikai célokból.</li>
+                <li><strong>Cookie-k (sütik):</strong> A felhasználói élmény javítása és statisztikai célokból. Részletes tájékoztatás a Cookie Szabályzatban (lásd lentebb).</li>
             </ul>
+
+            <h2>3. Cookie (Süti) Tájékoztató</h2>
+            <p>
+                Weboldalunk a megfelelő működés, a felhasználói élmény javítása, valamint statisztikai és marketing célokból sütiket (cookie-kat) használ.
+            </p>
+            <ul className="list-disc pl-6 space-y-2 mb-4">
+                <li><strong>Munkamenet sütik (szükséges):</strong> Ezek elengedhetetlenek a weboldal navigációjához és funkcióinak használatához.</li>
+                <li><strong>Statisztikai sütik:</strong> Segítenek megérteni, hogyan használják látogatóink a weboldalt (pl. Google Analytics). Ezek az adatok anonimizáltak.</li>
+                <li><strong>Marketing sütik:</strong> Célzott hirdetések megjelenítésére szolgálnak.</li>
+            </ul>
+            <p>
+                A weboldal első látogatásakor a Cookie Banner segítségével nyilatkozhat a nem szükséges sütik elfogadásáról vagy elutasításáról.
+                Beállításait később bármikor módosíthatja a böngészőjében vagy a weboldal láblécében található beállításoknál.
+            </p>
 
             <h2>3. Az adatkezelés célja és jogalapja</h2>
             <div className="overflow-x-auto my-6">

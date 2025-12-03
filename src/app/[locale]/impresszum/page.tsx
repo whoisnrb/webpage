@@ -14,7 +14,7 @@ export default function ImpresszumPage() {
                     </h2>
                     <dl className="space-y-4 text-sm">
                         <div>
-                            <dt className="text-muted-foreground mb-1">Cégnév</dt>
+                            <dt className="text-muted-foreground mb-1">Cégnév / Vállalkozó neve</dt>
                             <dd className="font-medium text-base">BacklineIT Kft.</dd>
                         </div>
                         <div>
@@ -22,7 +22,11 @@ export default function ImpresszumPage() {
                             <dd className="font-medium">1138 Budapest, Váci út 123.</dd>
                         </div>
                         <div>
-                            <dt className="text-muted-foreground mb-1">Cégjegyzékszám</dt>
+                            <dt className="text-muted-foreground mb-1">Levelezési cím</dt>
+                            <dd className="font-medium">1138 Budapest, Váci út 123.</dd>
+                        </div>
+                        <div>
+                            <dt className="text-muted-foreground mb-1">Cégjegyzékszám / Nyilvántartási szám</dt>
                             <dd className="font-medium">01-09-123456</dd>
                         </div>
                         <div>
@@ -33,16 +37,20 @@ export default function ImpresszumPage() {
                             <dt className="text-muted-foreground mb-1">Képviselő</dt>
                             <dd className="font-medium">Kovács János ügyvezető</dd>
                         </div>
+                        <div>
+                            <dt className="text-muted-foreground mb-1">Tárhelyszolgáltató</dt>
+                            <dd className="font-medium">Vercel Inc. (lásd lentebb)</dd>
+                        </div>
                     </dl>
                 </div>
 
                 <div className="bg-muted/30 p-6 rounded-xl border">
                     <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                        Elérhetőségek
+                        Ügyfélszolgálat és Elérhetőségek
                     </h2>
                     <dl className="space-y-4 text-sm">
                         <div>
-                            <dt className="text-muted-foreground mb-1">Email</dt>
+                            <dt className="text-muted-foreground mb-1">Email (Ügyfélszolgálat)</dt>
                             <dd className="font-medium text-base">
                                 <a href="mailto:info@itservices.hu" className="text-primary hover:underline">info@itservices.hu</a>
                             </dd>
@@ -54,6 +62,10 @@ export default function ImpresszumPage() {
                         <div>
                             <dt className="text-muted-foreground mb-1">Weboldal</dt>
                             <dd className="font-medium">www.itservices.hu</dd>
+                        </div>
+                        <div>
+                            <dt className="text-muted-foreground mb-1">Ügyfélszolgálat rendelkezésre állása</dt>
+                            <dd className="font-medium">Hétfő - Péntek: 09:00 - 17:00</dd>
                         </div>
                     </dl>
                 </div>

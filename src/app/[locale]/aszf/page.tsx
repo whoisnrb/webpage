@@ -72,11 +72,37 @@ export default function AszfPage() {
 
             <h2>6. Elállási jog</h2>
             <p>
-                Fogyasztónak minősülő Ügyfél esetén a 45/2014. (II. 26.) Korm. rendelet alapján 14 napon belüli elállási jog illeti meg.
+                A fogyasztónak minősülő Ügyfél a 45/2014. (II. 26.) Korm. rendelet alapján jogosult a szerződéstől 14 napon belül indokolás nélkül elállni.
+                Az elállási határidő a szolgáltatás nyújtására irányuló szerződés esetén a szerződés megkötésének napjától számított 14 nap.
             </p>
             <p>
-                <strong>Kivételek:</strong> Nem gyakorolható az elállási jog olyan nem előre gyártott termék esetében, amelyet a fogyasztó utasítása alapján vagy kifejezett kérésére állítottak elő (pl. egyedi szoftverfejlesztés),
-                illetve olyan digitális adattartalom tekintetében, amely nem tárgyi adathordozón nyújtanak (pl. letölthető scriptek), ha a Szolgáltató a fogyasztó kifejezett, előzetes beleegyezésével kezdte meg a teljesítést.
+                Ha a fogyasztó elállási jogával élni kíván, elállási szándékát tartalmazó egyértelmű nyilatkozatát köteles eljuttatni a Szolgáltatóhoz (például postán vagy elektronikus úton küldött levél útján) a jelen ÁSZF-ben feltüntetett elérhetőségek egyikére.
+            </p>
+
+            <h3>A fogyasztó elállási jogának elvesztése digitális adattartalom esetén</h3>
+            <p>
+                <strong>FIGYELEM:</strong> A nem tárgyi adathordozón nyújtott digitális adattartalom (pl. szoftverek, scriptek letöltése) tekintetében a fogyasztó elveszíti elállási jogát, amennyiben a Szolgáltató a fogyasztó kifejezett, előzetes beleegyezésével kezdte meg a teljesítést, és a fogyasztó e beleegyezésével egyidejűleg nyilatkozott annak tudomásulvételéről, hogy a teljesítés megkezdését követően elveszíti elállási jogát.
+                <strong>A weboldalon történő vásárlás során a fizetés előtt a fogyasztónak kifejezetten nyilatkoznia kell arról, hogy tudomásul veszi az elállási jog elvesztését a letöltés/hozzáférés megkezdésével.</strong>
+            </p>
+
+            <h2>7. Kellékszavatosság, Termékszavatosság, Jótállás</h2>
+
+            <h3>Kellékszavatosság</h3>
+            <p>
+                Az Ügyfél a Szolgáltató hibás teljesítése esetén a Szolgáltatóval szemben kellékszavatossági igényt érvényesíthet a Polgári Törvénykönyv szabályai szerint.
+                Az Ügyfél kérhet kijavítást vagy kicserélést, kivéve, ha az ezek közül az Ügyfél által választott igény teljesítése lehetetlen vagy a Szolgáltató számára más igénye teljesítéséhez képest aránytalan többletköltséggel járna.
+            </p>
+
+            <h3>Termékszavatosság</h3>
+            <p>
+                Ingó dolog (termék) hibája esetén az Ügyfél – választása szerint – kellékszavatossági vagy termékszavatossági igényt érvényesíthet.
+                Termékszavatossági igényként az Ügyfél kizárólag a hibás termék kijavítását vagy kicserélését kérheti.
+            </p>
+
+            <h3>Jótállás</h3>
+            <p>
+                Hibás teljesítés esetén a Szolgáltató jótállásra köteles, amennyiben azt jogszabály előírja vagy a Szolgáltató önként vállalta.
+                A jótállás időtartama a vonatkozó jogszabályok (pl. 151/2003. (IX. 22.) Korm. rendelet) szerint alakul.
             </p>
 
             <h2>7. Szellemi tulajdonjogok</h2>
