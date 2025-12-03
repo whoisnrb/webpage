@@ -39,8 +39,8 @@ export default function KapcsolatPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold mb-1">Email</h3>
-                                        <p className="text-muted-foreground">hello@antigravity.hu</p>
-                                        <p className="text-muted-foreground">support@antigravity.hu</p>
+                                        <p className="text-muted-foreground">hello@backlineit.hu</p>
+                                        <p className="text-muted-foreground">support@backlineit.hu</p>
                                     </div>
                                 </div>
 
