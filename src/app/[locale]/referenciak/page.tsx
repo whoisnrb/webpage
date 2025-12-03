@@ -6,28 +6,28 @@ import { ArrowRight } from "lucide-react"
 // Mock data for case studies
 const caseStudies = [
     {
-        title: "Webshop Automatizáció",
-        client: "FashionStore Kft.",
-        category: "Automatizáció",
-        description: "Teljes körű raktárkészlet és számlázás szinkronizáció, ami napi 2 óra adminisztrációt spórolt meg.",
-        tags: ["n8n", "WooCommerce", "Számlázz.hu"],
+        title: "Webshop Optimalizálás & Automatizáció",
+        client: "GreenLeaf Bio Kft.",
+        category: "E-kereskedelem",
+        description: "WooCommerce-ről Next.js-re váltás és teljes körű raktárkészlet szinkronizáció, ami 40%-kal növelte a konverziót.",
+        tags: ["Next.js", "n8n", "WooCommerce"],
+        image: "bg-green-500/10"
+    },
+    {
+        title: "Biztonságos Páciens Kezelő Rendszer",
+        client: "Praxis Dr. Kovács",
+        category: "Egészségügy",
+        description: "GDPR-kompatibilis, titkosított páciens adatbázis és időpontfoglaló rendszer privát felhő infrastruktúrán.",
+        tags: ["Private Cloud", "Security", "GDPR"],
         image: "bg-blue-500/10"
     },
     {
-        title: "SaaS Platform Fejlesztés",
-        client: "TechStartup Zrt.",
-        category: "Webfejlesztés",
-        description: "MVP fejlesztés Next.js alapokon, előfizetéses rendszerrel és ügyfélportállal.",
-        tags: ["Next.js", "Stripe", "Supabase"],
-        image: "bg-purple-500/10"
-    },
-    {
-        title: "Infrastruktúra Modernizáció",
-        client: "Logistics Hub",
-        category: "DevOps",
-        description: "Legacy szerverek költöztetése felhőbe, Docker konténerizáció és CI/CD bevezetés.",
-        tags: ["AWS", "Docker", "GitLab CI"],
-        image: "bg-green-500/10"
+        title: "High-Availability Szerver Klaszter",
+        client: "Apex Logistics Zrt.",
+        category: "Logisztika",
+        description: "0-24 órás rendelkezésre állású szerverpark kiépítése nyomkövető rendszerek számára, 99.99% uptime-mal.",
+        tags: ["Linux", "HAProxy", "Monitoring"],
+        image: "bg-orange-500/10"
     }
 ]
 
