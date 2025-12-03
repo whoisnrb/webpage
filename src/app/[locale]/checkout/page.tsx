@@ -16,6 +16,7 @@ export default function CheckoutPage() {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
     const [waiverAccepted, setWaiverAccepted] = useState(false)
+    const [termsAccepted, setTermsAccepted] = useState(false)
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -152,7 +153,11 @@ export default function CheckoutPage() {
                                 </div>
 
                                 <div className="flex items-start space-x-3">
-                                    <Checkbox id="terms" required />
+                                    <Checkbox
+                                        id="terms"
+                                        checked={termsAccepted}
+                                        onCheckedChange={(checked) => setTermsAccepted(checked as boolean)}
+                                    />
                                     <div className="grid gap-1.5 leading-none">
                                         <Label
                                             htmlFor="terms"
@@ -164,7 +169,7 @@ export default function CheckoutPage() {
                                 </div>
                             </div>
 
-                            <Button type="submit" className="w-full" size="lg" disabled={isLoading || !waiverAccepted}>
+                            <Button type="submit" className="w-full" size="lg" disabled={isLoading || !waiverAccepted || !termsAccepted}>
                                 {isLoading ? (
                                     <>
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
