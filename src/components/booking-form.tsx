@@ -12,6 +12,7 @@ import { hu } from "date-fns/locale"
 import { Calendar as CalendarIcon, Loader2, CheckCircle2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import { Turnstile } from "@/components/ui/turnstile"
 
 export function BookingForm() {
     const [date, setDate] = useState<Date>()
@@ -22,7 +23,8 @@ export function BookingForm() {
         email: "",
         topic: "",
         time: "",
-        message: ""
+        message: "",
+        turnstileToken: ""
     })
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -58,7 +60,7 @@ export function BookingForm() {
             }
 
             setStatus("success")
-            setFormData({ name: "", email: "", topic: "", time: "", message: "" })
+            setFormData({ name: "", email: "", topic: "", time: "", message: "", turnstileToken: "" })
             setDate(undefined)
         } catch (error) {
             console.error("Submission error:", error)
@@ -203,6 +205,8 @@ export function BookingForm() {
                     {errorMessage}
                 </div>
             )}
+
+            <Turnstile onVerify={(token) => setFormData(prev => ({ ...prev, turnstileToken: token }))} />
 
             <Button type="submit" className="w-full" disabled={status === "loading"}>
                 {status === "loading" ? (

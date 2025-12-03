@@ -1,4 +1,5 @@
 import { LegalLayout } from "@/components/layout/legal-layout"
+import { DataControls } from "@/components/privacy/data-controls"
 
 export default function AdatvedelemPage() {
     return (
@@ -90,6 +91,14 @@ export default function AdatvedelemPage() {
                 Panaszával a Nemzeti Adatvédelmi és Információszabadság Hatósághoz (NAIH) fordulhat (1055 Budapest, Falk Miksa utca 9-11., www.naih.hu),
                 vagy bírósághoz fordulhat.
             </p>
+
+            <h2>8. Adatkezelési Eszközök</h2>
+            <p>
+                Bejelentkezett felhasználóként itt kezelheti a fiókjához tartozó adatokat.
+            </p>
+            <div className="mt-6 not-prose">
+                <DataControls />
+            </div>
         </LegalLayout>
     )
 }

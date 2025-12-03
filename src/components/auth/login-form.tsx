@@ -13,6 +13,7 @@ import { login } from "@/actions/login";
 import { toast } from "sonner";
 import { Github } from "lucide-react";
 import { signIn } from "next-auth/react";
+import { Turnstile } from "@/components/ui/turnstile";
 
 export const LoginForm = () => {
     const [isPending, startTransition] = useTransition();
@@ -101,6 +102,7 @@ export const LoginForm = () => {
                             </FormItem>
                         )}
                     />
+                    <Turnstile onVerify={(token) => console.log("Turnstile token:", token)} />
                     <Button type="submit" className="w-full" disabled={isPending}>
                         {isPending ? "Bejelentkezés..." : "Bejelentkezés"}
                     </Button>

@@ -17,6 +17,7 @@ import { Toaster } from "sonner";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { PageTransition } from "@/components/ui/page-transition";
 import { SessionProvider } from "@/components/auth/session-provider";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -110,6 +111,7 @@ export default async function RootLayout({
               <SocialProof />
               <CookieBanner />
               <ChatWidget />
+              <Analytics />
               <Toaster position="bottom-right" theme="dark" />
             </CartProvider>
           </SessionProvider>

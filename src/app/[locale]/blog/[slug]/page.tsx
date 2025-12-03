@@ -21,8 +21,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         notFound()
     }
 
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.title,
+        datePublished: post.date,
+        dateModified: post.date, // Assuming no separate modified date for now
+        author: {
+            '@type': 'Person',
+            name: post.author,
+        },
+        // image: post.image, // Add if image is available in post object
+    }
+
     return (
         <article className="container mx-auto px-4 py-16 md:py-24 max-w-3xl">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
             <Button variant="ghost" size="sm" asChild className="mb-8 text-muted-foreground hover:text-primary">
                 <Link href="/blog">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Vissza a blogra

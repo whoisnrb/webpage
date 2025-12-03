@@ -9,6 +9,7 @@ import { CartDrawer } from "@/components/ecommerce/cart-drawer"
 import { Breadcrumbs } from "@/components/layout/breadcrumbs"
 import { ThemeCustomizer } from "@/components/theme/theme-customizer"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
+import { MegaMenu } from "@/components/layout/mega-menu"
 
 const navigation = [
     { name: "Szolgáltatások", href: "/szolgaltatasok" },
@@ -39,17 +40,9 @@ export function Header() {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden md:flex items-center gap-6">
-                        {navigation.map((item) => (
-                            <Link
-                                key={item.name}
-                                href={item.href}
-                                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-                            >
-                                {item.name}
-                            </Link>
-                        ))}
-                    </nav>
+                    <div className="hidden md:flex items-center gap-6">
+                        <MegaMenu />
+                    </div>
 
                     <div className="hidden md:flex items-center gap-4">
                         <Button
