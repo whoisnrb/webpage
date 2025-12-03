@@ -163,7 +163,7 @@ export default function Home() {
                                 {t('cta_footer_desc')}
                             </p>
                             <div className="flex flex-wrap gap-4 justify-center">
-                                <Link href="/checkout?package=consultation">
+                                <Link href="/kapcsolat">
                                     <Button size="lg" variant="secondary" className="text-lg px-8">
                                         {t('cta_consultation')} <ArrowRight className="ml-2 h-5 w-5" />
                                     </Button>
