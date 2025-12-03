@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
 
         const ticket = await prisma.ticket.create({
             data: {
+                ticketNumber: `T-${Date.now()}`, // Simple unique number generation
                 subject,
                 description,
                 priority,
