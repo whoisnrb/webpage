@@ -50,7 +50,7 @@ export default function KapcsolatPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold mb-1">Telefon</h3>
-                                        <p className="text-muted-foreground">+36 30 123 4567</p>
+                                        <p className="text-muted-foreground">Hamarosan</p>
                                         <p className="text-sm text-muted-foreground mt-1">Hétfő - Péntek: 09:00 - 17:00</p>
                                     </div>
                                 </div>
