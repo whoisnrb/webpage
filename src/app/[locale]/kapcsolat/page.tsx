@@ -60,11 +60,10 @@ export default function KapcsolatPage() {
                                         <MapPin className="h-6 w-6 text-primary" />
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold mb-1">Iroda</h3>
+                                        <h3 className="font-semibold mb-1">Székhely</h3>
                                         <p className="text-muted-foreground">
-                                            1117 Budapest,<br />
-                                            Irinyi József utca 4-20.<br />
-                                            (Science Park)
+                                            2141 Csömör,<br />
+                                            Vörösmarty utca 11.
                                         </p>
                                     </div>
                                 </div>
