@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing"
 import { Hero } from "@/components/sections/hero"
 import { ServicesPreview } from "@/components/sections/services-preview"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
+import { SpotlightCard } from "@/components/ui/spotlight-card"
 
 export default function Home() {
     const t = useTranslations('HomePage');
@@ -36,7 +37,7 @@ export default function Home() {
                         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                             <ScaleIn delay={0.1}>
                                 <div className="h-full">
-                                    <Card className="text-center h-full hover:shadow-lg transition-shadow border-primary/20 bg-background/50 backdrop-blur-sm">
+                                    <SpotlightCard className="text-center h-full border-primary/20 backdrop-blur-sm" spotlightColor="rgba(var(--primary), 0.15)">
                                         <CardHeader>
                                             <div className="text-4xl font-bold text-primary mb-2 drop-shadow-md">5+</div>
                                             <CardTitle className="text-xl">Év tapasztalat</CardTitle>
@@ -46,13 +47,13 @@ export default function Home() {
                                                 Több mint 5 éve dolgozunk IT projekteken, startupokkal és vállalatokkal
                                             </p>
                                         </CardContent>
-                                    </Card>
+                                    </SpotlightCard>
                                 </div>
                             </ScaleIn>
 
                             <ScaleIn delay={0.2}>
                                 <div className="h-full">
-                                    <Card className="text-center h-full hover:shadow-lg transition-shadow border-primary/20 bg-background/50 backdrop-blur-sm">
+                                    <SpotlightCard className="text-center h-full border-primary/20 backdrop-blur-sm" spotlightColor="rgba(var(--primary), 0.15)">
                                         <CardHeader>
                                             <div className="text-4xl font-bold text-primary mb-2 drop-shadow-md">50+</div>
                                             <CardTitle className="text-xl">Sikeres projekt</CardTitle>
@@ -62,13 +63,13 @@ export default function Home() {
                                                 Weboldalak, webshopok, automatizációk és egyedi szoftverek
                                             </p>
                                         </CardContent>
-                                    </Card>
+                                    </SpotlightCard>
                                 </div>
                             </ScaleIn>
 
                             <ScaleIn delay={0.3}>
                                 <div className="h-full">
-                                    <Card className="text-center h-full hover:shadow-lg transition-shadow border-primary/20 bg-background/50 backdrop-blur-sm">
+                                    <SpotlightCard className="text-center h-full border-primary/20 backdrop-blur-sm" spotlightColor="rgba(var(--primary), 0.15)">
                                         <CardHeader>
                                             <div className="text-4xl font-bold text-primary mb-2 drop-shadow-md">100%</div>
                                             <CardTitle className="text-xl">Ügyfél elégedettség</CardTitle>
@@ -78,7 +79,7 @@ export default function Home() {
                                                 Minden ügyfelünk elégedett volt a munkánkkal és ajánl minket tovább
                                             </p>
                                         </CardContent>
-                                    </Card>
+                                    </SpotlightCard>
                                 </div>
                             </ScaleIn>
                         </div>
