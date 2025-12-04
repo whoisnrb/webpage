@@ -1,11 +1,11 @@
 export const sendVerificationEmail = async (email: string, token: string) => {
-    const webhookUrl = process.env.N8N_WEBHOOK_URL;
+    const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api";
     console.log("[DEBUG] sendVerificationEmail called");
-    console.log(`[DEBUG] N8N_WEBHOOK_URL present: ${!!webhookUrl}`);
-    console.log(`[DEBUG] N8N_WEBHOOK_URL value: ${webhookUrl}`);
+    console.log(`[DEBUG] N8N_UNIFIED_WEBHOOK_URL present: ${!!webhookUrl}`);
+    console.log(`[DEBUG] N8N_UNIFIED_WEBHOOK_URL value: ${webhookUrl}`);
 
     if (!webhookUrl) {
-        console.warn("N8N_WEBHOOK_URL is not set. Verification email will not be sent.");
+        console.warn("N8N_UNIFIED_WEBHOOK_URL is not set. Verification email will not be sent.");
         console.log(`[DEV] Verification code for ${email}: ${token}`);
         return;
     }
@@ -19,7 +19,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
             body: JSON.stringify({
                 email,
                 token,
-                type: "verification",
+                action: "verification",
             }),
         });
 

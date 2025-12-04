@@ -22,10 +22,10 @@ export interface PurchasePayload {
 }
 
 export async function sendPurchaseNotification(payload: PurchasePayload) {
-    const webhookUrl = process.env.N8N_PURCHASE_WEBHOOK_URL
+    const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api"
 
     if (!webhookUrl) {
-        console.warn("N8N_PURCHASE_WEBHOOK_URL is not set. Purchase notification skipped.")
+        console.warn("N8N_UNIFIED_WEBHOOK_URL is not set. Purchase notification skipped.")
         return { success: false, error: "Configuration missing" }
     }
 
@@ -35,7 +35,10 @@ export async function sendPurchaseNotification(payload: PurchasePayload) {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify({
+                ...payload,
+                action: "purchase"
+            })
         })
 
         if (!response.ok) {
