@@ -83,10 +83,12 @@ export async function POST(req: NextRequest) {
 
         // Notify n8n for AI Analysis & Admin Alert
         try {
-            await fetch("https://n8n.backlineit.hu/webhook/ticket-created", {
+            const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api";
+            await fetch(webhookUrl, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
+                    action: "ticket_created",
                     ticketId: ticket.id,
                     ticketNumber: ticket.ticketNumber,
                     subject: ticket.subject,
