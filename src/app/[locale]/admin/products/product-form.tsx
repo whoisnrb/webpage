@@ -16,6 +16,24 @@ interface ProductFormProps {
 export function ProductForm({ initialData }: ProductFormProps) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
+    const [imagePreview, setImagePreview] = useState<string | null>(initialData?.image || null)
+
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (file) {
+            if (file.size > 800 * 1024) { // 800KB limit
+                toast.error("A kép mérete nem haladhatja meg a 800KB-ot!")
+                e.target.value = "" // Reset input
+                return
+            }
+
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                setImagePreview(reader.result as string)
+            }
+            reader.readAsDataURL(file)
+        }
+    }
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -25,6 +43,14 @@ export function ProductForm({ initialData }: ProductFormProps) {
         const featuresText = formData.get("features") as string
         const features = featuresText.split("\n").filter(line => line.trim() !== "")
 
+        // Use the preview (Base64) as the image source if available, otherwise fallback to the input value (though input is hidden/read-only now)
+        // Actually, we should ensure the hidden input has the value.
+        // Let's just use the imagePreview state for the submission if it's a data URL, 
+        // or rely on the form field if we keep it synced.
+        // Better approach: We will have a hidden input for the actual string value that gets submitted.
+
+        const imageValue = imagePreview || (formData.get("image") as string)
+
         const data = {
             title: formData.get("title") as string,
             description: formData.get("description") as string,
@@ -32,7 +58,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
             price: parseInt(formData.get("price") as string),
             category: formData.get("category") as string,
             slug: formData.get("slug") as string,
-            image: formData.get("image") as string,
+            image: imageValue,
             features: features,
             prices: {
                 personal: parseInt(formData.get("price_personal") as string),
@@ -89,8 +115,39 @@ export function ProductForm({ initialData }: ProductFormProps) {
                 </div>
 
                 <div className="space-y-2">
-                    <Label htmlFor="image">Kép URL</Label>
-                    <Input id="image" name="image" defaultValue={initialData?.image} required />
+                    <Label htmlFor="image">Kép</Label>
+                    <div className="flex flex-col gap-4">
+                        {imagePreview && (
+                            <div className="relative w-full h-48 bg-muted rounded-lg overflow-hidden border">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src={imagePreview}
+                                    alt="Preview"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+                        )}
+                        <div className="flex items-center gap-4">
+                            <Input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                className="cursor-pointer"
+                            />
+                            {/* Hidden input to store the actual value for FormData if needed, 
+                                but we are constructing 'data' object manually in handleSubmit so we don't strictly need it 
+                                if we use state. However, keeping the original input as hidden might be useful 
+                                if we want to support manual URL entry as fallback? 
+                                Let's keep it simple: File upload OR manual URL (if they really want).
+                                Actually, let's just make the original input hidden and controlled by state 
+                                to ensure it works with the form submission logic if we were relying solely on FormData.
+                                But since we construct 'data' manually, we can just use 'imagePreview'.
+                            */}
+                        </div>
+                        <p className="text-xs text-muted-foreground">
+                            Javasolt méret: max 800KB. A kép közvetlenül az adatbázisban lesz tárolva.
+                        </p>
+                    </div>
                 </div>
 
                 <div className="space-y-2">
