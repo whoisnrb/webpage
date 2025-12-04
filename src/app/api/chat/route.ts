@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
         const body = await req.json()
         const { message, history } = body
 
-        const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook-test/api"
+        const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api"
 
         if (!webhookUrl) {
             console.error("N8N_UNIFIED_WEBHOOK_URL is not set")

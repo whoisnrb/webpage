@@ -39,7 +39,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
         // Sync to CRM via n8n
         try {
-            await fetch(process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook-test/api", {
+            await fetch(process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
