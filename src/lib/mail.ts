@@ -1,6 +1,5 @@
 export const sendVerificationEmail = async (email: string, token: string) => {
-    // Forcing test URL for debugging
-    const webhookUrl = "https://n8n.backlineit.hu/webhook-test/api"; // process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api";
+    const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api";
     console.log("[DEBUG] sendVerificationEmail called");
     console.log(`[DEBUG] N8N_UNIFIED_WEBHOOK_URL present: ${!!webhookUrl}`);
     console.log(`[DEBUG] N8N_UNIFIED_WEBHOOK_URL value: ${webhookUrl}`);
