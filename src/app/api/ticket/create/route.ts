@@ -56,8 +56,23 @@ export async function POST(req: NextRequest) {
         }
 
         // Generate unique ticket number
-        const ticketCount = await prisma.ticket.count()
-        const ticketNumber = `TKT-${String(ticketCount + 1).padStart(4, '0')}`
+        const lastTicket = await prisma.ticket.findFirst({
+            orderBy: { ticketNumber: 'desc' },
+            select: { ticketNumber: true }
+        })
+
+        let nextNumber = 1
+        if (lastTicket?.ticketNumber) {
+            const parts = lastTicket.ticketNumber.split('-')
+            if (parts.length === 2) {
+                const num = parseInt(parts[1], 10)
+                if (!isNaN(num)) {
+                    nextNumber = num + 1
+                }
+            }
+        }
+
+        const ticketNumber = `TKT-${String(nextNumber).padStart(4, '0')}`
 
         // Create ticket
         const ticket = await prisma.ticket.create({
@@ -110,7 +125,10 @@ export async function POST(req: NextRequest) {
     } catch (error) {
         console.error("Ticket creation error:", error)
         return NextResponse.json(
-            { error: "Hiba történt a ticket létrehozása során" },
+            {
+                error: "Hiba történt a ticket létrehozása során",
+                details: error instanceof Error ? error.message : String(error)
+            },
             { status: 500 }
         )
     }
