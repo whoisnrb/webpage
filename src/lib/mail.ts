@@ -11,7 +11,9 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     }
 
     try {
-        const response = await fetch(webhookUrl, {
+        // Append token and action to URL query params as a fallback
+        const urlWithParams = `${webhookUrl}?action=verification&token=${token}`;
+        const response = await fetch(urlWithParams, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
