@@ -5,7 +5,7 @@ export async function POST(request: Request) {
         const body = await request.json()
         const { email } = body
 
-        const n8nUrl = "https://n8n.backlineit.hu/webhook/newsletter"
+        const n8nUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook-test/api"
 
         const response = await fetch(n8nUrl, {
             method: "POST",
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify({ email })
+            body: JSON.stringify({ email, action: "newsletter" })
         })
 
         if (!response.ok) {

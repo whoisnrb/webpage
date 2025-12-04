@@ -39,11 +39,11 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
         // Sync to CRM via n8n
         try {
-            await fetch("https://n8n.backlineit.hu/webhook/crm-sync", {
+            await fetch(process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook-test/api", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    type: "new_user",
+                    action: "crm_sync",
                     name,
                     email,
                     source: "registration"
@@ -51,7 +51,6 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
             });
         } catch (crmError) {
             console.error("CRM Sync Error:", crmError);
-            // Don't fail registration if CRM sync fails
         }
 
         return { success: "Megerősítő email elküldve!" };

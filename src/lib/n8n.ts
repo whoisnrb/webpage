@@ -22,7 +22,7 @@ export interface PurchasePayload {
 }
 
 export async function sendPurchaseNotification(payload: PurchasePayload) {
-    const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api"
+    const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook-test/api"
 
     if (!webhookUrl) {
         console.warn("N8N_UNIFIED_WEBHOOK_URL is not set. Purchase notification skipped.")

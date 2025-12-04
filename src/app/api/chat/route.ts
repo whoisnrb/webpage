@@ -6,19 +6,16 @@ export async function POST(req: NextRequest) {
         const body = await req.json()
         const { message, history } = body
 
-        const webhookUrl = process.env.N8N_CHAT_WEBHOOK_URL
-        console.log("[DEBUG] Chat API called");
-        console.log(`[DEBUG] N8N_CHAT_WEBHOOK_URL present: ${!!webhookUrl}`);
+        const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook-test/api"
 
         if (!webhookUrl) {
-            console.error("N8N_CHAT_WEBHOOK_URL is not set")
+            console.error("N8N_UNIFIED_WEBHOOK_URL is not set")
             return NextResponse.json(
                 { reply: "A chat szolgáltatás jelenleg nem elérhető (konfigurációs hiba)." },
                 { status: 503 }
             )
         }
 
-        // Forward to n8n
         const response = await fetch(webhookUrl, {
             method: "POST",
             headers: {
@@ -26,8 +23,9 @@ export async function POST(req: NextRequest) {
             },
             body: JSON.stringify({
                 message,
-                history: history.slice(-5), // Send last 5 messages for context
-                context: ALVIN_CONTEXT
+                history: history.slice(-5),
+                context: ALVIN_CONTEXT,
+                action: "chat"
             })
         })
 
@@ -36,9 +34,6 @@ export async function POST(req: NextRequest) {
         }
 
         const data = await response.json()
-
-        // Expecting n8n to return { output: "AI response text" } or similar
-        // Adjust based on actual n8n workflow response structure
         const reply = data.output || data.text || data.message || "Nem kaptam választ az AI-tól."
 
         return NextResponse.json({ reply })
