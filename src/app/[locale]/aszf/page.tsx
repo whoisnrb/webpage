@@ -13,32 +13,28 @@ export default function AszfPage() {
                 <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2">
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">Cégnév:</dt>
-                        <dd className="font-medium inline md:block ml-2 md:ml-0">BacklineIT Kft.</dd>
+                        <dd className="font-medium inline md:block ml-2 md:ml-0">BacklineIT</dd>
                     </div>
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">Székhely:</dt>
-                        <dd className="font-medium inline md:block ml-2 md:ml-0">1138 Budapest, Váci út 123.</dd>
-                    </div>
-                    <div className="flex justify-between md:block">
-                        <dt className="text-muted-foreground inline md:block">Cégjegyzékszám:</dt>
-                        <dd className="font-medium inline md:block ml-2 md:ml-0">01-09-123456</dd>
+                        <dd className="font-medium inline md:block ml-2 md:ml-0">2141 Csömör, Vörösmarty utca 11.</dd>
                     </div>
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">Adószám:</dt>
-                        <dd className="font-medium inline md:block ml-2 md:ml-0">12345678-2-41</dd>
+                        <dd className="font-medium inline md:block ml-2 md:ml-0">Hamarosan</dd>
                     </div>
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">Email:</dt>
-                        <dd className="font-medium inline md:block ml-2 md:ml-0">info@itservices.hu</dd>
+                        <dd className="font-medium inline md:block ml-2 md:ml-0">support@backlineit.hu</dd>
                     </div>
                 </dl>
             </div>
 
             <h2>2. Fogalommeghatározások</h2>
             <ul className="list-disc pl-6 space-y-2">
-                <li><strong>Szolgáltató:</strong> Az BacklineIT Kft., amely a weboldalt üzemelteti és a szolgáltatásokat nyújtja.</li>
+                <li><strong>Szolgáltató:</strong> A BacklineIT, amely a weboldalt üzemelteti és a szolgáltatásokat nyújtja.</li>
                 <li><strong>Ügyfél:</strong> Bármely természetes vagy jogi személy, aki a Szolgáltató szolgáltatásait igénybe veszi.</li>
-                <li><strong>Weboldal:</strong> Az itservices.hu domain alatt elérhető internetes felület.</li>
+                <li><strong>Weboldal:</strong> A backlineit.hu domain alatt elérhető internetes felület.</li>
                 <li><strong>Szolgáltatás:</strong> A weboldalon keresztül elérhető szoftverfejlesztési, tanácsadási és egyéb informatikai szolgáltatások.</li>
             </ul>
 
@@ -119,7 +115,7 @@ export default function AszfPage() {
 
             <h2>9. Panaszkezelés</h2>
             <p>
-                Az Ügyfél a szolgáltatással kapcsolatos panaszait az <a href="mailto:info@itservices.hu">info@itservices.hu</a> email címen jelezheti.
+                Az Ügyfél a szolgáltatással kapcsolatos panaszait a <a href="mailto:support@backlineit.hu">support@backlineit.hu</a> email címen jelezheti.
                 A Szolgáltató a panaszt 30 napon belül kivizsgálja és írásban megválaszolja.
             </p>
 

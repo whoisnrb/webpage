@@ -15,23 +15,19 @@ export default function ImpresszumPage() {
                     <dl className="space-y-4 text-sm">
                         <div>
                             <dt className="text-muted-foreground mb-1">Cégnév / Vállalkozó neve</dt>
-                            <dd className="font-medium text-base">BacklineIT Kft.</dd>
+                            <dd className="font-medium text-base">BacklineIT</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">Székhely</dt>
-                            <dd className="font-medium">1138 Budapest, Váci út 123.</dd>
+                            <dd className="font-medium">2141 Csömör, Vörösmarty utca 11.</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">Levelezési cím</dt>
-                            <dd className="font-medium">1138 Budapest, Váci út 123.</dd>
-                        </div>
-                        <div>
-                            <dt className="text-muted-foreground mb-1">Cégjegyzékszám / Nyilvántartási szám</dt>
-                            <dd className="font-medium">01-09-123456</dd>
+                            <dd className="font-medium">2141 Csömör, Vörösmarty utca 11.</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">Adószám</dt>
-                            <dd className="font-medium">12345678-2-41</dd>
+                            <dd className="font-medium">Hamarosan</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">Képviselő</dt>
@@ -52,16 +48,16 @@ export default function ImpresszumPage() {
                         <div>
                             <dt className="text-muted-foreground mb-1">Email (Ügyfélszolgálat)</dt>
                             <dd className="font-medium text-base">
-                                <a href="mailto:info@itservices.hu" className="text-primary hover:underline">info@itservices.hu</a>
+                                <a href="mailto:support@backlineit.hu" className="text-primary hover:underline">support@backlineit.hu</a>
                             </dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">Telefon</dt>
-                            <dd className="font-medium">+36 1 234 5678</dd>
+                            <dd className="font-medium">Hamarosan</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">Weboldal</dt>
-                            <dd className="font-medium">www.itservices.hu</dd>
+                            <dd className="font-medium">www.backlineit.hu</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">Ügyfélszolgálat rendelkezésre állása</dt>
