@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/ecommerce/cart-provider";
@@ -29,8 +30,8 @@ export const metadata: Metadata = {
     default: "BacklineIT | Hatékony Digitális Megoldások",
     template: "%s | BacklineIT"
   },
-  description: "Professzionális IT szolgáltatások, egyedi scriptek, webfejlesztés és automatizáció vállalkozásoknak. Spórolj időt és pénzt modern technológiákkal.",
-  keywords: ["BacklineIT", "IT szolgáltatás", "webfejlesztés", "automatizáció", "python script", "devops", "biztonsági audit"],
+  description: "Professzionális IT szolgáltatások, egyedi scriptek, webfejlesztés és automatizáció vállalkozásoknak. Kérjen ajánlatot és növelje hatékonyságát!",
+  keywords: ["BacklineIT", "IT szolgáltatás", "webfejlesztés", "automatizáció", "python script", "devops", "biztonsági audit", "egyedi szoftver"],
   authors: [{ name: "BacklineIT Team" }],
   creator: "BacklineIT Team",
   openGraph: {
@@ -48,6 +49,9 @@ export const metadata: Metadata = {
     creator: "@backlineit",
   },
   metadataBase: new URL("https://backlineit.hu"),
+  alternates: {
+    canonical: '/',
+  },
   verification: {
     google: "w5GusFwWrjuwRjB6Et93XNbdps97gw7pOuMeX4a5pbY",
   },
@@ -89,6 +93,9 @@ export default async function RootLayout({
       <body
         className={`${inter.variable} antialiased`}
       >
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
             <script

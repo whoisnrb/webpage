@@ -1,0 +1,568 @@
+﻿
+> webpage@0.1.0 lint
+> eslint
+
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\check-products.js
+  2:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\create-pending-order.js
+  1:26  error    A `require()` style import is forbidden     @typescript-eslint/no-require-imports
+  2:25  error    A `require()` style import is forbidden     @typescript-eslint/no-require-imports
+  9:11  warning  'order' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\create-test-license.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  2:25  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\list-users.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\promote-admin.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\seed-products.js
+  2:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\simulate-ipn.js
+  1:16  error    A `require()` style import is forbidden      @typescript-eslint/no-require-imports
+  6:7   warning  'amount' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\adatvedelem\page.tsx
+  95:40  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  95:56  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx
+  33:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:33:42
+  31 |     // Mock data for charts (replace with real aggregation in production)
+  32 |     const graphData = [
+> 33 |         { name: "Jan", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  34 |         { name: "Feb", total: Math.floor(Math.random() * 5000) + 1000 },
+  35 |         { name: "M├ír", total: Math.floor(Math.random() * 5000) + 1000 },
+  36 |         { name: "├üpr", total: Math.floor(Math.random() * 5000) + 1000 },                                                    react-hooks/purity
+  34:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:34:42
+  32 |     const graphData = [
+  33 |         { name: "Jan", total: Math.floor(Math.random() * 5000) + 1000 },
+> 34 |         { name: "Feb", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  35 |         { name: "M├ír", total: Math.floor(Math.random() * 5000) + 1000 },
+  36 |         { name: "├üpr", total: Math.floor(Math.random() * 5000) + 1000 },
+  37 |         { name: "M├íj", total: Math.floor(Math.random() * 5000) + 1000 },                                                     react-hooks/purity
+  35:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:35:42
+  33 |         { name: "Jan", total: Math.floor(Math.random() * 5000) + 1000 },
+  34 |         { name: "Feb", total: Math.floor(Math.random() * 5000) + 1000 },
+> 35 |         { name: "M├ír", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  36 |         { name: "├üpr", total: Math.floor(Math.random() * 5000) + 1000 },
+  37 |         { name: "M├íj", total: Math.floor(Math.random() * 5000) + 1000 },
+  38 |         { name: "J├║n", total: Math.floor(Math.random() * 5000) + 1000 },    react-hooks/purity
+  36:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:36:42
+  34 |         { name: "Feb", total: Math.floor(Math.random() * 5000) + 1000 },
+  35 |         { name: "M├ír", total: Math.floor(Math.random() * 5000) + 1000 },
+> 36 |         { name: "├üpr", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  37 |         { name: "M├íj", total: Math.floor(Math.random() * 5000) + 1000 },
+  38 |         { name: "J├║n", total: Math.floor(Math.random() * 5000) + 1000 },
+  39 |         { name: "J├║l", total: Math.floor(Math.random() * 5000) + 1000 },    react-hooks/purity
+  37:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:37:42
+  35 |         { name: "M├ír", total: Math.floor(Math.random() * 5000) + 1000 },
+  36 |         { name: "├üpr", total: Math.floor(Math.random() * 5000) + 1000 },
+> 37 |         { name: "M├íj", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  38 |         { name: "J├║n", total: Math.floor(Math.random() * 5000) + 1000 },
+  39 |         { name: "J├║l", total: Math.floor(Math.random() * 5000) + 1000 },
+  40 |         { name: "Aug", total: Math.floor(Math.random() * 5000) + 1000 },    react-hooks/purity
+  38:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:38:42
+  36 |         { name: "├üpr", total: Math.floor(Math.random() * 5000) + 1000 },
+  37 |         { name: "M├íj", total: Math.floor(Math.random() * 5000) + 1000 },
+> 38 |         { name: "J├║n", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  39 |         { name: "J├║l", total: Math.floor(Math.random() * 5000) + 1000 },
+  40 |         { name: "Aug", total: Math.floor(Math.random() * 5000) + 1000 },
+  41 |         { name: "Szep", total: Math.floor(Math.random() * 5000) + 1000 },   react-hooks/purity
+  39:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:39:42
+  37 |         { name: "M├íj", total: Math.floor(Math.random() * 5000) + 1000 },
+  38 |         { name: "J├║n", total: Math.floor(Math.random() * 5000) + 1000 },
+> 39 |         { name: "J├║l", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  40 |         { name: "Aug", total: Math.floor(Math.random() * 5000) + 1000 },
+  41 |         { name: "Szep", total: Math.floor(Math.random() * 5000) + 1000 },
+  42 |         { name: "Okt", total: Math.floor(Math.random() * 5000) + 1000 },   react-hooks/purity
+  40:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:40:42
+  38 |         { name: "J├║n", total: Math.floor(Math.random() * 5000) + 1000 },
+  39 |         { name: "J├║l", total: Math.floor(Math.random() * 5000) + 1000 },
+> 40 |         { name: "Aug", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  41 |         { name: "Szep", total: Math.floor(Math.random() * 5000) + 1000 },
+  42 |         { name: "Okt", total: Math.floor(Math.random() * 5000) + 1000 },
+  43 |         { name: "Nov", total: Math.floor(Math.random() * 5000) + 1000 },   react-hooks/purity
+  41:43  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:41:43
+  39 |         { name: "J├║l", total: Math.floor(Math.random() * 5000) + 1000 },
+  40 |         { name: "Aug", total: Math.floor(Math.random() * 5000) + 1000 },
+> 41 |         { name: "Szep", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                           ^^^^^^^^^^^^^ Cannot call impure function
+  42 |         { name: "Okt", total: Math.floor(Math.random() * 5000) + 1000 },
+  43 |         { name: "Nov", total: Math.floor(Math.random() * 5000) + 1000 },
+  44 |         { name: "Dec", total: Math.floor(Math.random() * 5000) + 1000 },  react-hooks/purity
+  42:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:42:42
+  40 |         { name: "Aug", total: Math.floor(Math.random() * 5000) + 1000 },
+  41 |         { name: "Szep", total: Math.floor(Math.random() * 5000) + 1000 },
+> 42 |         { name: "Okt", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  43 |         { name: "Nov", total: Math.floor(Math.random() * 5000) + 1000 },
+  44 |         { name: "Dec", total: Math.floor(Math.random() * 5000) + 1000 },
+  45 |     ]                                                                      react-hooks/purity
+  43:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:43:42
+  41 |         { name: "Szep", total: Math.floor(Math.random() * 5000) + 1000 },
+  42 |         { name: "Okt", total: Math.floor(Math.random() * 5000) + 1000 },
+> 43 |         { name: "Nov", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  44 |         { name: "Dec", total: Math.floor(Math.random() * 5000) + 1000 },
+  45 |     ]
+  46 |                                                                                                                                               react-hooks/purity
+  44:42  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\dashboard\page.tsx:44:42
+  42 |         { name: "Okt", total: Math.floor(Math.random() * 5000) + 1000 },
+  43 |         { name: "Nov", total: Math.floor(Math.random() * 5000) + 1000 },
+> 44 |         { name: "Dec", total: Math.floor(Math.random() * 5000) + 1000 },
+     |                                          ^^^^^^^^^^^^^ Cannot call impure function
+  45 |     ]
+  46 |
+  47 |     return (                                                                                                                                                                                                            react-hooks/purity
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\tickets\[id]\page.tsx
+   50:11  warning  'router' is assigned a value but never used                                                                     @typescript-eslint/no-unused-vars
+   69:8   warning  React Hook useEffect has a missing dependency: 'fetchTicket'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  121:18  warning  'error' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+  149:18  warning  'error' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+  176:18  warning  'error' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\admin\tickets\page.tsx
+   4:41  warning  'CardTitle' is defined but never used  @typescript-eslint/no-unused-vars
+  17:18  warning  'Filter' is defined but never used     @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\ajanlatkeres\page.tsx
+   10:66  warning  'Globe' is defined but never used                                @typescript-eslint/no-unused-vars
+  297:55  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  297:76  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\arak\page.tsx
+  1:10  warning  'Header' is defined but never used  @typescript-eslint/no-unused-vars
+  2:10  warning  'Footer' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\blog\[slug]\page.tsx
+  6:37  warning  'Tag' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\dashboard\licenses\page.tsx
+   6:15  warning  'Copy' is defined but never used                                                                                                                                @typescript-eslint/no-unused-vars
+   6:21  warning  'CheckCircle2' is defined but never used                                                                                                                        @typescript-eslint/no-unused-vars
+   6:35  warning  'XCircle' is defined but never used                                                                                                                             @typescript-eslint/no-unused-vars
+   6:44  warning  'AlertCircle' is defined but never used                                                                                                                         @typescript-eslint/no-unused-vars
+  48:33  error    Do not use an `<a>` element to navigate to `/termekek/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  48:33  error    Do not use an `<a>` element to navigate to `/termekek/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  48:33  error    Do not use an `<a>` element to navigate to `/termekek/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  48:33  error    Do not use an `<a>` element to navigate to `/termekek/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  48:33  error    Do not use an `<a>` element to navigate to `/termekek/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+  48:33  error    Do not use an `<a>` element to navigate to `/termekek/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages  @next/next/no-html-link-for-pages
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\dashboard\page.tsx
+  55:14  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\dashboard\tickets\[id]\page.tsx
+    5:41  warning  'CardTitle' is defined but never used                                                                           @typescript-eslint/no-unused-vars
+    5:52  warning  'CardDescription' is defined but never used                                                                     @typescript-eslint/no-unused-vars
+    5:69  warning  'CardFooter' is defined but never used                                                                          @typescript-eslint/no-unused-vars
+   12:34  warning  'AvatarImage' is defined but never used                                                                         @typescript-eslint/no-unused-vars
+   42:11  warning  'router' is assigned a value but never used                                                                     @typescript-eslint/no-unused-vars
+   55:8   warning  React Hook useEffect has a missing dependency: 'fetchTicket'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  115:18  warning  'error' is defined but never used                                                                               @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\dashboard\tickets\new\page.tsx
+  41:18  warning  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\dashboard\tickets\page.tsx
+  41:9  error  Error: Cannot access variable before it is declared
+
+`fetchTickets` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\dashboard\tickets\page.tsx:41:9
+  39 |
+  40 |     useEffect(() => {
+> 41 |         fetchTickets()
+     |         ^^^^^^^^^^^^ `fetchTickets` accessed before it is declared
+  42 |     }, [])
+  43 |
+  44 |     const fetchTickets = async () => {
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\dashboard\tickets\page.tsx:44:5
+  42 |     }, [])
+  43 |
+> 44 |     const fetchTickets = async () => {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 45 |         const response = await fetch('/api/ticket/list')
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 46 |         const data = await response.json()
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 47 |         if (data.success) {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 48 |             setTickets(data.tickets)
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 49 |         }
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 50 |         setLoading(false)
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 51 |     }
+     | ^^^^^^ `fetchTickets` is declared here
+  52 |
+  53 |     return (
+  54 |         <div className="space-y-6">  react-hooks/immutability
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\fiok\page.tsx
+  4:29  warning  'CardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+  4:58  warning  'CardTitle' is defined but never used        @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\kapcsolat\page.tsx
+  1:10  warning  'Button' is defined but never used    @typescript-eslint/no-unused-vars
+  2:10  warning  'Input' is defined but never used     @typescript-eslint/no-unused-vars
+  3:10  warning  'Textarea' is defined but never used  @typescript-eslint/no-unused-vars
+  6:31  warning  'Clock' is defined but never used     @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\karrier\page.tsx
+  2:16  warning  'CardContent' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\layout.tsx
+  29:4  error  Parsing error: Declaration or statement expected
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\page.tsx
+  2:10  warning  'Card' is defined but never used             @typescript-eslint/no-unused-vars
+  2:29  warning  'CardDescription' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\payment\cancel\page.tsx
+  18:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\payment\cancel\page.tsx:18:9
+  16 |     useEffect(() => {
+  17 |         const ref = searchParams.get('orderRef')
+> 18 |         setOrderRef(ref)
+     |         ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  19 |     }, [searchParams])
+  20 |
+  21 |     return (  react-hooks/set-state-in-effect
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\payment\fail\page.tsx
+  18:9  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\payment\fail\page.tsx:18:9
+  16 |     useEffect(() => {
+  17 |         const ref = searchParams.get('orderRef')
+> 18 |         setOrderRef(ref)
+     |         ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  19 |     }, [searchParams])
+  20 |
+  21 |     return (  react-hooks/set-state-in-effect
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\payment\instructions\page.tsx
+  6:30  warning  'ArrowRight' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\payment\success\page.tsx
+   5:29  warning  'Copy' is defined but never used          @typescript-eslint/no-unused-vars
+  18:19  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\rolunk\page.tsx
+  6:10  warning  'Avatar' is defined but never used          @typescript-eslint/no-unused-vars
+  6:18  warning  'AvatarFallback' is defined but never used  @typescript-eslint/no-unused-vars
+  6:34  warning  'AvatarImage' is defined but never used     @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\szolgaltatasok\integraciok\page.tsx
+  2:36  warning  'Lock' is defined but never used  @typescript-eslint/no-unused-vars
+  2:53  warning  'Zap' is defined but never used   @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\termekek\[slug]\page.tsx
+  5:10  warning  'notFound' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\termekek\[slug]\product-detail-client.tsx
+  17:11  warning  'handleAddToCart' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\termekek\product-browser.tsx
+  59:65  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\[locale]\velemeny\page.tsx
+  2:10  warning  'useTranslations' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\actions\product.ts
+  24:24  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  69:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\actions\social-proof.ts
+  32:19  warning  'nameParts' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\api\admin\ticket\list\route.ts
+  5:27  warning  'req' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\api\admin\ticket\update\route.ts
+  27:27  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\api\payment\ipn\route.ts
+    6:10  warning  'sendTransactionEmail' is defined but never used  @typescript-eslint/no-unused-vars
+  122:21  error    Unexpected any. Specify a different type          @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\api\payment\start\route.ts
+  99:21  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\api\ticket\list\route.ts
+  5:27  warning  'req' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\api\user\delete\route.ts
+  37:9  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\api\user\export\route.ts
+  36:17  warning  'password' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\api\webhooks\ticket\route.ts
+  88:29  warning  'pwd' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\app\sitemap.ts
+  7:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\auth.config.ts
+   4:10  warning  'LoginSchema' is defined but never used  @typescript-eslint/no-unused-vars
+  20:29  warning  'credentials' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\auth.ts
+  40:51  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\admin\overview.tsx
+  6:11  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\ai-feedback-chat.tsx
+   7:10  warning  'Textarea' is defined but never used         @typescript-eslint/no-unused-vars
+  10:18  warning  'AvatarFallback' is defined but never used   @typescript-eslint/no-unused-vars
+  10:34  warning  'AvatarImage' is defined but never used      @typescript-eslint/no-unused-vars
+  11:16  warning  'Bot' is defined but never used              @typescript-eslint/no-unused-vars
+  12:18  warning  'AnimatePresence' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\auth\new-verification-form.tsx
+  5:10  warning  'useSearchParams' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\cookie-banner.tsx
+   7:18  warning  'X' is defined but never used              @typescript-eslint/no-unused-vars
+   7:21  warning  'Settings' is defined but never used       @typescript-eslint/no-unused-vars
+  17:5   warning  'DialogTrigger' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\dashboard\license-copy-button.tsx
+  21:18  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\layout\breadcrumbs.tsx
+  10:11  warning  't' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\layout\footer.tsx
+  2:17  warning  'Facebook' is defined but never used  @typescript-eslint/no-unused-vars
+  2:27  warning  'Linkedin' is defined but never used  @typescript-eslint/no-unused-vars
+  2:37  warning  'Twitter' is defined but never used   @typescript-eslint/no-unused-vars
+  3:10  warning  'Button' is defined but never used    @typescript-eslint/no-unused-vars
+  4:10  warning  'Input' is defined but never used     @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\layout\mega-menu.tsx
+  15:17  warning  'Server' is defined but never used         @typescript-eslint/no-unused-vars
+  15:25  warning  'ShoppingCart' is defined but never used   @typescript-eslint/no-unused-vars
+  15:39  warning  'FileText' is defined but never used       @typescript-eslint/no-unused-vars
+  15:49  warning  'Users' is defined but never used          @typescript-eslint/no-unused-vars
+  15:56  warning  'MessageSquare' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\neural-background.tsx
+  23:13  error    'mouse' is never reassigned. Use 'const' instead                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    prefer-const
+  25:9   warning  Compilation Skipped: Inline `class` declarations are not supported
+
+Move class declarations outside of components/hooks.
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\neural-background.tsx:25:9
+  23 |         let mouse = { x: 0, y: 0 }
+  24 |
+> 25 |         class Particle {
+     |         ^^^^^^^^^^^^^^^^
+> 26 |             x: number
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 27 |             y: number
+     ÔÇŽ
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 76 |             }
+     | ^^^^^^^^^^^^^^^^^^^^^
+> 77 |         }
+     | ^^^^^^^^^^ Inline `class` declarations are not supported
+  78 |
+  79 |         const init = () => {
+  80 |             particles.length = 0
+
+  react-hooks/unsupported-syntax
+  59:27  warning  'directionX' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+  60:27  warning  'directionY' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\sections\lead-magnet.tsx
+  60:48  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  60:72  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\theme\theme-customizer.tsx
+  65:17  error  Error: Cannot access variable before it is declared
+
+`applyTheme` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\theme\theme-customizer.tsx:65:17
+  63 |             const theme = themes.find((t) => t.value === savedTheme)
+  64 |             if (theme) {
+> 65 |                 applyTheme(theme)
+     |                 ^^^^^^^^^^ `applyTheme` accessed before it is declared
+  66 |             }
+  67 |         }
+  68 |     }, [])
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\theme\theme-customizer.tsx:70:5
+  68 |     }, [])
+  69 |
+> 70 |     const applyTheme = (theme: typeof themes[0]) => {
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 71 |         const updateTheme = () => {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 72 |             const root = document.documentElement
+     ÔÇŽ
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 86 |         document.startViewTransition(updateTheme)
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 87 |     }
+     | ^^^^^^ `applyTheme` is declared here
+  88 |
+  89 |     if (!mounted) return null
+  90 |  react-hooks/immutability
+  79:9   error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/ban-ts-comment
+  85:9   error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/ban-ts-comment
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\tools\price-calculator.tsx
+   5:16  warning  'CardContent' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-unused-vars
+   5:46  warning  'CardHeader' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+  41:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\tools\price-calculator.tsx:41:9
+  39 |         const total = subtotal * SLA_MULTIPLIERS[slaLevel]
+  40 |
+> 41 |         setEstimatedPrice(Math.round(total / 1000) * 1000) // Round to nearest 1000
+     |         ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  42 |     }, [workstations, servers, slaLevel])
+  43 |
+  44 |     return (  react-hooks/set-state-in-effect
+  42:8   warning  React Hook useEffect has a missing dependency: 'SLA_MULTIPLIERS'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                react-hooks/exhaustive-deps
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\ui\calendar.tsx
+  57:33  warning  'props' is defined but never used  @typescript-eslint/no-unused-vars
+  58:34  warning  'props' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\ui\code-window.tsx
+  32:12  warning  'lineIndex' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  32:23  warning  'setLineIndex' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\ui\input.tsx
+  4:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\ui\textarea.tsx
+  5:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\ui\tilt-card.tsx
+   3:25  warning  'useState' is defined but never used          @typescript-eslint/no-unused-vars
+  17:11  warning  'mouseX' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  18:11  warning  'mouseY' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  31:11  warning  'rotateX' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  32:11  warning  'rotateY' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\components\ui\typewriter.tsx
+  22:12  warning  'isWaiting' is assigned a value but never used                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  25:11  warning  The 'texts' conditional could make the dependencies of useEffect Hook (at line 49) change on every render. Move it inside the useEffect callback. Alternatively, wrap the initialization of 'texts' in its own useMemo() Hook  react-hooks/exhaustive-deps
+  27:11  warning  'rounded' is assigned a value but never used                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\i18n\request.ts
+  9:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\lib\blog.ts
+  49:14  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\lib\simplepay.ts
+   37:20  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   63:47  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   64:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   87:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  143:38  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  151:43  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\src\lib\szamlazz.ts
+  1:44  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  1:55  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\T├Âr├Âk Norbert\.gemini\antigravity\scratch\webpage\verify-license-creation.js
+  1:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+Ôťľ 158 problems (65 errors, 93 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

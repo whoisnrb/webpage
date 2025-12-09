@@ -1,0 +1,16 @@
+# *
+User-agent: *
+Allow: /
+
+# *
+User-agent: *
+Disallow: /dashboard/
+Disallow: /checkout/
+Disallow: /api/
+Disallow: /admin/
+
+# Host
+Host: https://backlineit.hu
+
+# Sitemaps
+Sitemap: https://backlineit.hu/sitemap.xml
