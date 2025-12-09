@@ -17,7 +17,7 @@ export function Hero() {
     return (
         <section className="relative overflow-hidden bg-background pt-16 md:pt-20 lg:pt-32 pb-16 md:pb-24">
             {/* Background Elements */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 pointer-events-none">
                 <FluidBackground />
             </div>
 

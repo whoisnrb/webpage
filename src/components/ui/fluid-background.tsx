@@ -52,8 +52,9 @@ export const FluidBackground = ({
                 context.clearRect(0, 0, width, height);
 
                 // Draw background
-                context.fillStyle = theme === 'dark' ? '#0f172a' : '#ffffff'; // Slate-950 or White
-                context.fillRect(0, 0, width, height);
+                // REMOVED solid fill to prevent washing out the theme background
+                // context.fillStyle = theme === 'dark' ? '#0f172a' : '#ffffff'; 
+                // context.fillRect(0, 0, width, height);
 
                 particles.forEach((p, i) => {
                     p.x += p.vx;
@@ -69,7 +70,7 @@ export const FluidBackground = ({
                     if (theme === 'dark') {
                         // Neon colors for dark mode
                         const color = i % 2 === 0 ? 'rgba(6, 182, 212,' : 'rgba(139, 92, 246,'; // Cyan or Violet
-                        gradient.addColorStop(0, `${color} 0.2)`); // Lighter core
+                        gradient.addColorStop(0, `${color} 0.4)`); // Lighter core
                         gradient.addColorStop(1, `${color} 0)`);
                     } else {
                         // Soft pastels for light mode
