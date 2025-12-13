@@ -470,6 +470,24 @@
         },
         "privacy": "We handle your data confidentially. No spam."
     },
+    "Feedback": {
+        "title": "Share your feedback",
+        "description": "Help us improve! Our AI assistant will collect your feedback and forward it to our team."
+    },
+    "AiFeedback": {
+        "bot": "Bot",
+        "you": "You",
+        "status_online": "Online",
+        "placeholder_text": "Type your message here...",
+        "placeholder_email": "example@email.com",
+        "steps": {
+            "1_intro": "Welcome! I'm Alvin, the AI assistant of BacklineIT. I'd like to ask for your opinion about our services.",
+            "2_ask_name": "How may I address you?",
+            "3_ask_email": "Thank you {name}! At what email address can we reach you if we want to reply?",
+            "4_ask_feedback": "Alright. Please describe your experience in detail, or what we could improve.",
+            "5_thank_you": "Thank you very much! Our AI system is analyzing your feedback. We will notify you of any developments shortly."
+        }
+    },
     "Breadcrumbs": {
         "szolgaltatasok": "Services",
         "webfejlesztes": "Web Development",

@@ -10,6 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Send, Bot, User, Loader2 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 type Message = {
     id: string
@@ -25,25 +26,33 @@ type FormData = {
 }
 
 export function AiFeedbackChat() {
-    const [messages, setMessages] = useState<Message[]>([
-        {
-            id: "1",
-            role: "bot",
-            content: "Üdvözlöm! Én Alvin vagyok, a BacklineIT AI asszisztense. Szeretném kikérni a véleményét szolgáltatásainkról.",
-            type: "text"
-        },
-        {
-            id: "2",
-            role: "bot",
-            content: "Hogy szólíthatom?",
-            type: "input"
-        }
-    ])
+    const t = useTranslations("AiFeedback")
+    const [messages, setMessages] = useState<Message[]>([])
     const [inputValue, setInputValue] = useState("")
     const [formData, setFormData] = useState<FormData>({ name: "", email: "", feedback: "" })
     const [step, setStep] = useState<"name" | "email" | "feedback" | "done">("name")
     const [isTyping, setIsTyping] = useState(false)
     const scrollAreaRef = useRef<HTMLDivElement>(null)
+
+    // Initialize chat with translated welcome message
+    useEffect(() => {
+        if (messages.length === 0) {
+            setMessages([
+                {
+                    id: "1",
+                    role: "bot",
+                    content: t("steps.1_intro"),
+                    type: "text"
+                },
+                {
+                    id: "2",
+                    role: "bot",
+                    content: t("steps.2_ask_name"),
+                    type: "input"
+                }
+            ])
+        }
+    }, [t]) // Depend on t to re-initialize if lang changes (though usually component remounts)
 
     useEffect(() => {
         if (scrollAreaRef.current) {
@@ -75,7 +84,7 @@ export function AiFeedbackChat() {
                 botResponse = {
                     id: Date.now().toString(),
                     role: "bot",
-                    content: `Köszönöm ${userMsg.content}! Milyen email címen érhetjük el, ha válaszolni szeretnénk?`,
+                    content: t("steps.3_ask_email", { name: userMsg.content }),
                     type: "email"
                 }
                 nextStep = "email"
@@ -84,7 +93,7 @@ export function AiFeedbackChat() {
                 botResponse = {
                     id: Date.now().toString(),
                     role: "bot",
-                    content: "Rendben. Kérem, írja le részletesen a tapasztalatait, vagy hogy min javíthatnánk.",
+                    content: t("steps.4_ask_feedback"),
                     type: "textarea"
                 }
                 nextStep = "feedback"
@@ -97,7 +106,7 @@ export function AiFeedbackChat() {
                 botResponse = {
                     id: Date.now().toString(),
                     role: "bot",
-                    content: "Köszönöm szépen! Az AI rendszerünk éppen elemzi a visszajelzését. Hamarosan értesítjük a fejleményekről.",
+                    content: t("steps.5_thank_you"),
                     type: "text"
                 }
                 nextStep = "done"
@@ -146,7 +155,7 @@ export function AiFeedbackChat() {
                         <CardTitle className="text-lg">Alvin</CardTitle>
                         <CardDescription className="flex items-center gap-1">
                             <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-                            Online
+                            {t("status_online")}
                         </CardDescription>
                     </div>
                 </div>
@@ -210,7 +219,7 @@ export function AiFeedbackChat() {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        placeholder={step === "email" ? "pelda@email.hu" : "Írja ide az üzenetét..."}
+                        placeholder={step === "email" ? t("placeholder_email") : t("placeholder_text")}
                         disabled={step === "done" || isTyping}
                         className="flex-1"
                         autoFocus

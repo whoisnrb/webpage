@@ -470,6 +470,24 @@
         },
         "privacy": "Az adataidat bizalmasan kezeljük. Nincs spam."
     },
+    "Feedback": {
+        "title": "Mondja el véleményét",
+        "description": "Segítsen nekünk fejlődni! Az AI asszisztensünk felveszi a visszajelzését és továbbítja a csapatunknak."
+    },
+    "AiFeedback": {
+        "bot": "Bot",
+        "you": "Ön",
+        "status_online": "Online",
+        "placeholder_text": "Írja ide az üzenetét...",
+        "placeholder_email": "pelda@email.hu",
+        "steps": {
+            "1_intro": "Üdvözlöm! Én Alvin vagyok, a BacklineIT AI asszisztense. Szeretném kikérni a véleményét szolgáltatásainkról.",
+            "2_ask_name": "Hogy szólíthatom?",
+            "3_ask_email": "Köszönöm {name}! Milyen email címen érhetjük el, ha válaszolni szeretnénk?",
+            "4_ask_feedback": "Rendben. Kérem, írja le részletesen a tapasztalatait, vagy hogy min javíthatnánk.",
+            "5_thank_you": "Köszönöm szépen! Az AI rendszerünk éppen elemzi a visszajelzését. Hamarosan értesítjük a fejleményekről."
+        }
+    },
     "Breadcrumbs": {
         "szolgaltatasok": "Szolgáltatások",
         "webfejlesztes": "Webfejlesztés",
