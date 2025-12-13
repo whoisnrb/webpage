@@ -92,7 +92,7 @@ export default function AdatvedelemPage() {
             <ul>
                 <li><strong>Hozzáféréshez:</strong> Tájékoztatást kérhet a kezelt adatairól.</li>
                 <li><strong>Helyesbítéshez:</strong> Kérheti pontatlan adatainak javítását.</li>
-                <li><strong>Törléshez ("elfeledtetéshez"):</strong> Kérheti adatai törlését, ha az adatkezelésnek nincs más jogalapja.</li>
+                <li><strong>Törléshez (&quot;elfeledtetéshez&quot;):</strong> Kérheti adatai törlését, ha az adatkezelésnek nincs más jogalapja.</li>
                 <li><strong>Adathordozhatósághoz:</strong> Kérheti adatai átadását tagolt, géppel olvasható formátumban.</li>
                 <li><strong>Tiltakozáshoz:</strong> Tiltakozhat a jogos érdeken alapuló adatkezelés ellen.</li>
             </ul>

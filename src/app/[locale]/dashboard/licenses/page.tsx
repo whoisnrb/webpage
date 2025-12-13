@@ -3,9 +3,10 @@ import { auth } from "@/auth"
 import { prisma } from "@/lib/db"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
-import { Key, Copy, CheckCircle2, XCircle, AlertCircle } from "lucide-react"
+import { Key } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Link } from "@/i18n/routing"
 
 export default async function LicensesPage() {
     const session = await auth()
@@ -45,7 +46,7 @@ export default async function LicensesPage() {
                             <h3 className="text-lg font-semibold">Nincs aktív licenced</h3>
                             <p className="text-muted-foreground mb-4">Még nem vásároltál szoftver licencet.</p>
                             <Button asChild>
-                                <a href="/termekek">Vásárlás</a>
+                                <Link href="/termekek">Vásárlás</Link>
                             </Button>
                         </CardContent>
                     </Card>
@@ -71,8 +72,7 @@ export default async function LicensesPage() {
                                             <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
                                                 {license.key}
                                             </code>
-                                            {/* Client component for copy functionality could be added here, 
-                                                but for now simple selection is fine or we can add a client wrapper later */}
+                                            {/* Client component for copy functionality could be added here */}
                                         </div>
                                     </div>
                                     <div>
@@ -82,9 +82,9 @@ export default async function LicensesPage() {
                                     <div className="flex justify-end">
                                         {license.order && (
                                             <Button variant="outline" size="sm" asChild>
-                                                <a href={`/dashboard/purchases#${license.order.orderRef}`}>
+                                                <Link href={`/dashboard/purchases#${license.order.orderRef}`}>
                                                     Rendelés megtekintése
-                                                </a>
+                                                </Link>
                                             </Button>
                                         )}
                                     </div>

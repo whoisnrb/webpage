@@ -30,18 +30,18 @@ export default async function AdminDashboardPage() {
 
     // Mock data for charts (replace with real aggregation in production)
     const graphData = [
-        { name: "Jan", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Feb", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Már", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Ápr", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Máj", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Jún", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Júl", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Aug", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Szep", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Okt", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Nov", total: Math.floor(Math.random() * 5000) + 1000 },
-        { name: "Dec", total: Math.floor(Math.random() * 5000) + 1000 },
+        { name: "Jan", total: 4500 },
+        { name: "Feb", total: 3200 },
+        { name: "Már", total: 5100 },
+        { name: "Ápr", total: 4800 },
+        { name: "Máj", total: 6000 },
+        { name: "Jún", total: 5500 },
+        { name: "Júl", total: 4900 },
+        { name: "Aug", total: 5200 },
+        { name: "Szep", total: 5800 },
+        { name: "Okt", total: 6100 },
+        { name: "Nov", total: 5900 },
+        { name: "Dec", total: 6300 },
     ]
 
     return (

@@ -57,7 +57,7 @@ export function LeadMagnet() {
                             Kezdd el az automatizálást még ma!
                         </h2>
                         <p className="text-primary-foreground/80 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
-                            Töltsd le ingyenes "Automation Starter Pack" csomagunkat, ami 10 azonnal használható scriptet tartalmaz vállalkozásod felgyorsítására.
+                            Töltsd le ingyenes &quot;Automation Starter Pack&quot; csomagunkat, ami 10 azonnal használható scriptet tartalmaz vállalkozásod felgyorsítására.
                         </p>
                         <ul className="space-y-3 mb-8 text-left inline-block">
                             <li className="flex items-center gap-2">

@@ -294,7 +294,7 @@ export default function QuoteRequestPage() {
 
                                             <div className="flex items-start gap-2 text-sm text-muted-foreground">
                                                 <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
-                                                <p>Az "Ajánlatkérés küldése" gombra kattintva elfogadod az Adatvédelmi tájékoztatónkat.</p>
+                                                <p>Az &quot;Ajánlatkérés küldése&quot; gombra kattintva elfogadod az Adatvédelmi tájékoztatónkat.</p>
                                             </div>
 
                                             <div className="pt-4 flex justify-between">

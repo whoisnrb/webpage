@@ -37,10 +37,6 @@ export default function UserTicketsPage() {
     const [tickets, setTickets] = useState<Ticket[]>([])
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        fetchTickets()
-    }, [])
-
     const fetchTickets = async () => {
         const response = await fetch('/api/ticket/list')
         const data = await response.json()
@@ -49,6 +45,10 @@ export default function UserTicketsPage() {
         }
         setLoading(false)
     }
+
+    useEffect(() => {
+        fetchTickets()
+    }, [])
 
     return (
         <div className="space-y-6">

@@ -98,7 +98,7 @@ export function Hero() {
                                     whileHover={{ rotateY: 5, rotateX: -5, transition: { duration: 0.3 } }}
                                 >
                                     <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-xl blur-2xl opacity-40 animate-pulse"></div>
-                                    <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl backdrop-blur-md bg-black/40/80">
+                                    <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl backdrop-blur-md bg-black/80">
                                         <CodeWindow />
                                     </div>
 

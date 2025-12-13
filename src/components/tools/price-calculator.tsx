@@ -19,9 +19,6 @@ export function PriceCalculator() {
     const [workstations, setWorkstations] = useState([10])
     const [servers, setServers] = useState([1])
     const [slaLevel, setSlaLevel] = useState("basic")
-    const [estimatedPrice, setEstimatedPrice] = useState(0)
-
-    // Pricing Constants (HUF)
     const BASE_FEE = 50000
     const PRICE_PER_WORKSTATION = 5000
     const PRICE_PER_SERVER = 25000
@@ -32,14 +29,11 @@ export function PriceCalculator() {
         enterprise: 2.5
     }
 
-    useEffect(() => {
-        const workstationCost = workstations[0] * PRICE_PER_WORKSTATION
-        const serverCost = servers[0] * PRICE_PER_SERVER
-        const subtotal = BASE_FEE + workstationCost + serverCost
-        const total = subtotal * SLA_MULTIPLIERS[slaLevel]
-
-        setEstimatedPrice(Math.round(total / 1000) * 1000) // Round to nearest 1000
-    }, [workstations, servers, slaLevel])
+    const workstationCost = workstations[0] * PRICE_PER_WORKSTATION
+    const serverCost = servers[0] * PRICE_PER_SERVER
+    const subtotal = BASE_FEE + workstationCost + serverCost
+    const total = subtotal * SLA_MULTIPLIERS[slaLevel]
+    const estimatedPrice = Math.round(total / 1000) * 1000
 
     return (
         <Card className="w-full max-w-4xl mx-auto overflow-hidden border-2 border-primary/10 shadow-xl">

@@ -11,12 +11,7 @@ import { Link } from "@/i18n/routing"
 
 function PaymentCancelContent() {
     const searchParams = useSearchParams()
-    const [orderRef, setOrderRef] = useState<string | null>(null)
-
-    useEffect(() => {
-        const ref = searchParams.get('orderRef')
-        setOrderRef(ref)
-    }, [searchParams])
+    const orderRef = searchParams.get('orderRef')
 
     return (
         <div className="flex min-h-screen flex-col">

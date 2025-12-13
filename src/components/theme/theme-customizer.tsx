@@ -56,6 +56,23 @@ const themes = [
 export function ThemeCustomizer() {
     const [mounted, setMounted] = React.useState(false)
 
+    const applyTheme = (theme: typeof themes[0]) => {
+        const updateTheme = () => {
+            const root = document.documentElement
+            Object.entries(theme.colors).forEach(([key, value]) => {
+                root.style.setProperty(key, value)
+            })
+            localStorage.setItem("theme-color", theme.value)
+        }
+
+        if (!document.startViewTransition) {
+            updateTheme()
+            return
+        }
+
+        document.startViewTransition(updateTheme)
+    }
+
     React.useEffect(() => {
         setMounted(true)
         const savedTheme = localStorage.getItem("theme-color")
@@ -66,25 +83,6 @@ export function ThemeCustomizer() {
             }
         }
     }, [])
-
-    const applyTheme = (theme: typeof themes[0]) => {
-        const updateTheme = () => {
-            const root = document.documentElement
-            Object.entries(theme.colors).forEach(([key, value]) => {
-                root.style.setProperty(key, value)
-            })
-            localStorage.setItem("theme-color", theme.value)
-        }
-
-        // @ts-ignore - View Transition API is new
-        if (!document.startViewTransition) {
-            updateTheme()
-            return
-        }
-
-        // @ts-ignore
-        document.startViewTransition(updateTheme)
-    }
 
     if (!mounted) return null
 
