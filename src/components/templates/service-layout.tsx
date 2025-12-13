@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { CheckCircle2, ArrowRight } from "lucide-react"
 import { ReactNode } from "react"
+import { Link } from "@/i18n/routing"
 
 interface ServiceLayoutProps {
     title: string
@@ -38,11 +39,15 @@ export function ServiceLayout({
                                 {description}
                             </p>
                             <div className="flex gap-4">
-                                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white">
-                                    Kérj árajánlatot
+                                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white" asChild>
+                                    <Link href="/ajanlatkeres">
+                                        Kérj árajánlatot
+                                    </Link>
                                 </Button>
-                                <Button variant="outline" size="lg">
-                                    Demó időpont
+                                <Button variant="outline" size="lg" asChild>
+                                    <Link href="/demo">
+                                        Demó időpont
+                                    </Link>
                                 </Button>
                             </div>
                         </div>
@@ -114,8 +119,10 @@ export function ServiceLayout({
                     <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
                         Kérj ingyenes konzultációt, és beszéljük át a projekted részleteit.
                     </p>
-                    <Button size="lg" variant="secondary" className="text-lg px-8">
-                        Kapcsolatfelvétel <ArrowRight className="ml-2 h-5 w-5" />
+                    <Button size="lg" variant="secondary" className="text-lg px-8" asChild>
+                        <Link href="/demo">
+                            Kapcsolatfelvétel <ArrowRight className="ml-2 h-5 w-5" />
+                        </Link>
                     </Button>
                 </div>
             </section>
