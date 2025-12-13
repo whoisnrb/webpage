@@ -25,6 +25,14 @@ model User {
   tickets         Ticket[]       @relation("UserTickets")
   assignedTickets Ticket[]       @relation("AssignedTickets")
   ticketReplies   TicketReply[]
+
+  // Referral System
+  referralCode    String?        @unique
+  referredBy      String?
+  referrer        User?          @relation("UserReferrals", fields: [referredBy], references: [id])
+  referrals       User[]         @relation("UserReferrals")
+  referralRewards ReferralReward[]
+  managedClicks   ReferralClick[]
 }
 
 model Account {
@@ -156,4 +164,26 @@ model TicketReply {
   createdAt    DateTime @default(now())
   ticket       Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ReferralClick {
+  id           String   @id @default(cuid())
+  referralCode String
+  ipAddress    String?
+  userAgent    String?
+  createdAt    DateTime @default(now())
+  ownerId      String
+  owner        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+model ReferralReward {
+  id           String   @id @default(cuid())
+  amount       Int
+  currency     String   @default("HUF")
+  status       String   @default("PENDING") // PENDING, PAID, CANCELLED
+  recipientId  String
+  recipient    User     @relation(fields: [recipientId], references: [id], onDelete: Cascade)
+  sourceUserId String?  // The user who made the purchase
+  createdAt    DateTime @default(now())
+  paidAt       DateTime?
 }

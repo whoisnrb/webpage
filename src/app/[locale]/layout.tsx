@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleTags } from "@/components/analytics/google-tags";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/ecommerce/cart-provider";
@@ -93,6 +94,7 @@ export default async function RootLayout({
       <body
         className={`${inter.variable} antialiased`}
       >
+        <GoogleTags />
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         )}

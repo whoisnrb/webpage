@@ -574,5 +574,20 @@
     },
     "LanguageSwitcher": {
         "label": "Change Language"
+    },
+    "Affiliate": {
+        "title": "Affiliate Dashboard",
+        "total_earnings": "Total Earnings",
+        "pending": "pending payout",
+        "registered_referrals": "Registered Referrals",
+        "your_referral_link": "Your Referral Link",
+        "recent_referrals": "Recent Referrals",
+        "referrals_description": "Users who registered using your link.",
+        "table_date": "Date",
+        "table_user": "User",
+        "table_status": "Status",
+        "table_reward": "Reward",
+        "no_referrals_yet": "No referrals yet. Share your link to start earning!",
+        "status_registered": "Registered"
     }
 }

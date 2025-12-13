@@ -1,44 +1,35 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Check, Copy } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { useState } from "react";
+import { Button } from "@/components/ui/button"; // Assuming standard UI button exists
+import { Check, Copy } from "lucide-react";
 
-interface CopyButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-    value: string
+interface CopyButtonProps {
+    value: string;
 }
 
-export function CopyButton({
-    value,
-    className,
-    ...props
-}: CopyButtonProps) {
-    const [hasCopied, setHasCopied] = React.useState(false)
+export function CopyButton({ value }: CopyButtonProps) {
+    const [hasCopied, setHasCopied] = useState(false);
 
-    React.useEffect(() => {
-        setTimeout(() => {
-            setHasCopied(false)
-        }, 2000)
-    }, [hasCopied])
+    const onCopy = () => {
+        navigator.clipboard.writeText(value);
+        setHasCopied(true);
+        setTimeout(() => setHasCopied(false), 2000);
+    };
 
     return (
         <Button
             size="icon"
             variant="ghost"
-            className={cn("relative z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50", className)}
-            onClick={() => {
-                navigator.clipboard.writeText(value)
-                setHasCopied(true)
-            }}
-            {...props}
+            className="h-8 w-8 text-muted-foreground hover:bg-transparent hover:text-foreground"
+            onClick={onCopy}
         >
-            <span className="sr-only">Másolás</span>
             {hasCopied ? (
-                <Check className="h-3 w-3" />
+                <Check className="h-4 w-4 text-green-500" />
             ) : (
-                <Copy className="h-3 w-3" />
+                <Copy className="h-4 w-4" />
             )}
+            <span className="sr-only">Copy</span>
         </Button>
-    )
+    );
 }
