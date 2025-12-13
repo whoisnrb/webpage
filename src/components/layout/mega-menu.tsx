@@ -13,31 +13,34 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Code2, Server, ShoppingCart, FileText, Users, MessageSquare } from "lucide-react"
-
-const components: { title: string; href: string; description: string }[] = [
-    {
-        title: "Scriptek",
-        href: "/szolgaltatasok/scriptek",
-        description: "Egyedi fejlesztésű scriptek és bővítmények szerverekhez.",
-    },
-    {
-        title: "Webfejlesztés",
-        href: "/szolgaltatasok/webfejlesztes",
-        description: "Modern, reszponzív weboldalak és webshopok készítése.",
-    },
-    {
-        title: "Rendszerüzemeltetés",
-        href: "/szolgaltatasok/rendszeruzemeltetes",
-        description: "Szerverek karbantartása, monitorozása és biztonsági frissítése.",
-    },
-]
+import { useTranslations } from "next-intl"
 
 export function MegaMenu() {
+    const t = useTranslations("MegaMenu")
+
+    const components: { title: string; href: string; description: string }[] = [
+        {
+            title: t("nav_items.scripts"),
+            href: "/szolgaltatasok/scriptek",
+            description: t("nav_items.scripts_desc"),
+        },
+        {
+            title: t("nav_items.webdev"),
+            href: "/szolgaltatasok/webfejlesztes",
+            description: t("nav_items.webdev_desc"),
+        },
+        {
+            title: t("nav_items.sysadmin"),
+            href: "/szolgaltatasok/rendszeruzemeltetes",
+            description: t("nav_items.sysadmin_desc"),
+        },
+    ]
+
     return (
         <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Szolgáltatások</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>{t("services")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                             <li className="row-span-3">
@@ -48,10 +51,10 @@ export function MegaMenu() {
                                     >
                                         <Code2 className="h-6 w-6" />
                                         <div className="mb-2 mt-4 text-lg font-medium">
-                                            Szolgáltatásaink
+                                            {t("our_services")}
                                         </div>
                                         <p className="text-sm leading-tight text-muted-foreground">
-                                            Fedezd fel teljes kínálatunkat a fejlesztéstől az üzemeltetésig.
+                                            {t("services_desc")}
                                         </p>
                                     </Link>
                                 </NavigationMenuLink>
@@ -69,36 +72,36 @@ export function MegaMenu() {
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Termékek</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>{t("products")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                            <ListItem href="/termekek" title="Összes Termék">
-                                Böngéssz a teljes szoftver és script kínálatunkban.
+                            <ListItem href="/termekek" title={t("all_products")}>
+                                {t("all_products_desc")}
                             </ListItem>
-                            <ListItem href="/termekek?category=scripts" title="Scriptek">
-                                FiveM és egyéb játékszerver scriptek.
+                            <ListItem href="/termekek?category=scripts" title={t("scripts")}>
+                                {t("scripts_desc")}
                             </ListItem>
-                            <ListItem href="/termekek?category=web" title="Webes Megoldások">
-                                Sablonok, pluginok és kész weboldalak.
+                            <ListItem href="/termekek?category=web" title={t("web")}>
+                                {t("web_desc")}
                             </ListItem>
-                            <ListItem href="/arak" title="Árak">
-                                Átlátható csomagajánlatok és egyedi árazás.
+                            <ListItem href="/arak" title={t("prices")}>
+                                {t("prices_desc")}
                             </ListItem>
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>Tudástár</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>{t("knowledge")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                            <ListItem href="/referenciak" title="Referenciák">
-                                Korábbi munkáink és elégedett ügyfeleink.
+                            <ListItem href="/referenciak" title={t("references")}>
+                                {t("references_desc")}
                             </ListItem>
-                            <ListItem href="/blog" title="Blog">
-                                Szakmai cikkek, útmutatók és hírek.
+                            <ListItem href="/blog" title={t("blog")}>
+                                {t("blog_desc")}
                             </ListItem>
-                            <ListItem href="/velemeny" title="Vélemények">
-                                Mit mondanak rólunk az ügyfelek?
+                            <ListItem href="/velemeny" title={t("reviews")}>
+                                {t("reviews_desc")}
                             </ListItem>
                         </ul>
                     </NavigationMenuContent>
@@ -106,7 +109,7 @@ export function MegaMenu() {
                 <NavigationMenuItem>
                     <Link href="/kapcsolat" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Kapcsolat
+                            {t("contact")}
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>

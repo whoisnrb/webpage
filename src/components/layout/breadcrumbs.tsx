@@ -7,34 +7,12 @@ import { useTranslations } from "next-intl"
 
 export function Breadcrumbs() {
     const pathname = usePathname()
-    const t = useTranslations('Navigation')
+    const t = useTranslations('Breadcrumbs')
 
     // Don't show breadcrumbs on home page
     if (pathname === '/') return null
 
     const segments = pathname.split('/').filter(Boolean)
-
-    const getBreadcrumbName = (segment: string) => {
-        // Map common segments to readable names
-        // In a real app, you might fetch product/blog titles here
-        const map: Record<string, string> = {
-            'szolgaltatasok': 'Szolgáltatások',
-            'webfejlesztes': 'Webfejlesztés',
-            'scriptek': 'Egyedi Scriptek',
-            'rendszeruzemeltetes': 'Rendszerüzemeltetés',
-            'biztonsag': 'Kiberbiztonság',
-            'termekek': 'Termékek',
-            'blog': 'Blog',
-            'kapcsolat': 'Kapcsolat',
-            'arak': 'Árak',
-            'referenciak': 'Referenciák',
-            'login': 'Bejelentkezés',
-            'fiok': 'Fiók',
-            'admin': 'Admin',
-            'checkout': 'Pénztár'
-        }
-        return map[segment] || segment
-    }
 
     return (
         <nav className="flex items-center text-sm text-muted-foreground py-4 animate-in fade-in slide-in-from-left-4 duration-500">
@@ -46,7 +24,15 @@ export function Breadcrumbs() {
             {segments.map((segment, index) => {
                 const href = `/${segments.slice(0, index + 1).join('/')}`
                 const isLast = index === segments.length - 1
-                const name = getBreadcrumbName(segment)
+
+                // Try to translate the segment, fallback to capitalizing the segment itself
+                // We use a prefix to avoid collisions with other keys, though here we use a dedicated namespace
+                let name = segment
+                try {
+                    name = t(segment as any)
+                } catch (e) {
+                    name = segment.charAt(0).toUpperCase() + segment.slice(1)
+                }
 
                 return (
                     <div key={href} className="flex items-center">

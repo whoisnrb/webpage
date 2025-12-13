@@ -9,10 +9,10 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useTranslations } from "next-intl"
 
 const themes = [
     {
-        name: "Cyan (Default)",
         value: "cyan",
         colors: {
             "--primary": "oklch(0.70 0.15 200)",
@@ -20,7 +20,6 @@ const themes = [
         },
     },
     {
-        name: "Purple (Neon)",
         value: "purple",
         colors: {
             "--primary": "oklch(0.65 0.25 290)",
@@ -28,7 +27,6 @@ const themes = [
         },
     },
     {
-        name: "Green (Matrix)",
         value: "green",
         colors: {
             "--primary": "oklch(0.70 0.20 140)",
@@ -36,7 +34,6 @@ const themes = [
         },
     },
     {
-        name: "Orange (Cyberpunk)",
         value: "orange",
         colors: {
             "--primary": "oklch(0.70 0.20 40)",
@@ -44,7 +41,6 @@ const themes = [
         },
     },
     {
-        name: "Pink (Synthwave)",
         value: "pink",
         colors: {
             "--primary": "oklch(0.70 0.25 340)",
@@ -55,6 +51,7 @@ const themes = [
 
 export function ThemeCustomizer() {
     const [mounted, setMounted] = React.useState(false)
+    const t = useTranslations("ThemeCustomizer")
 
     const applyTheme = (theme: typeof themes[0]) => {
         const updateTheme = () => {
@@ -91,7 +88,7 @@ export function ThemeCustomizer() {
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="h-9 w-9">
                     <Palette className="h-4 w-4" />
-                    <span className="sr-only">Téma váltása</span>
+                    <span className="sr-only">{t("toggle")}</span>
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -105,7 +102,7 @@ export function ThemeCustomizer() {
                             className="h-4 w-4 rounded-full border"
                             style={{ background: theme.colors["--primary"] }}
                         />
-                        {theme.name}
+                        {t(`themes.${theme.value}`)}
                     </DropdownMenuItem>
                 ))}
             </DropdownMenuContent>

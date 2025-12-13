@@ -6,10 +6,12 @@ import { useCart } from "@/components/ecommerce/cart-provider"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "@/i18n/routing"
+import { useTranslations } from "next-intl"
 
 export function CartDrawer() {
     const [isOpen, setIsOpen] = useState(false)
     const { items, removeItem, total, itemCount } = useCart()
+    const t = useTranslations("Cart")
 
     return (
         <>
@@ -52,8 +54,8 @@ export function CartDrawer() {
                                     <div className="bg-primary/10 p-2 rounded-full">
                                         <ShoppingCart className="h-5 w-5 text-primary" />
                                     </div>
-                                    Kosár tartalma
-                                    <span className="text-sm font-normal text-muted-foreground ml-1">({itemCount} termék)</span>
+                                    {t("title")}
+                                    <span className="text-sm font-normal text-muted-foreground ml-1">({itemCount})</span>
                                 </h2>
                                 <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="hover:bg-muted rounded-full">
                                     <X className="h-5 w-5" />
@@ -64,9 +66,9 @@ export function CartDrawer() {
                                 {items.length === 0 ? (
                                     <div className="flex flex-col items-center justify-center h-full text-muted-foreground space-y-4">
                                         <ShoppingCart className="h-12 w-12 opacity-20" />
-                                        <p>A kosarad üres.</p>
+                                        <p>{t("empty")}</p>
                                         <Button variant="outline" onClick={() => setIsOpen(false)}>
-                                            Vásárlás folytatása
+                                            {t("continue_shopping")}
                                         </Button>
                                     </div>
                                 ) : (
@@ -107,15 +109,15 @@ export function CartDrawer() {
                             {items.length > 0 && (
                                 <div className="p-4 border-t bg-muted/10 space-y-4">
                                     <div className="flex justify-between items-center text-lg font-bold">
-                                        <span>Összesen:</span>
+                                        <span>{t("total")}</span>
                                         <span>{new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(total)}</span>
                                     </div>
                                     <p className="text-xs text-muted-foreground text-center">
-                                        Alanyi adómentes (AAM) - A feltüntetett árak a fizetendő végösszegek.
+                                        {t("vat_disclaimer")}
                                     </p>
                                     <Button className="w-full bg-accent hover:bg-accent/90 text-white" size="lg" asChild>
                                         <Link href="/checkout" onClick={() => setIsOpen(false)}>
-                                            Tovább a pénztárhoz <ArrowRight className="ml-2 h-4 w-4" />
+                                            {t("checkout")} <ArrowRight className="ml-2 h-4 w-4" />
                                         </Link>
                                     </Button>
                                 </div>

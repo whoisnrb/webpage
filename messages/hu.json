@@ -422,5 +422,102 @@
         "description": "Úgy tűnik, olyan helyre tévedtél, ami nem létezik, vagy már áthelyeztük. Ne aggódj, segítünk visszatalálni!",
         "back_home": "Vissza a főoldalra",
         "services": "Szolgáltatások"
+    },
+    "ThemeCustomizer": {
+        "toggle": "Téma váltása",
+        "themes": {
+            "cyan": "Cián (Alapértelmezett)",
+            "purple": "Lila (Neon)",
+            "green": "Zöld (Mátrix)",
+            "orange": "Narancs (Cyberpunk)",
+            "pink": "Rózsaszín (Synthwave)"
+        }
+    },
+    "Breadcrumbs": {
+        "szolgaltatasok": "Szolgáltatások",
+        "webfejlesztes": "Webfejlesztés",
+        "scriptek": "Egyedi Scriptek",
+        "rendszeruzemeltetes": "Rendszerüzemeltetés",
+        "biztonsag": "Kiberbiztonság",
+        "termekek": "Termékek",
+        "blog": "Blog",
+        "kapcsolat": "Kapcsolat",
+        "arak": "Árak",
+        "referenciak": "Referenciák",
+        "login": "Bejelentkezés",
+        "fiok": "Fiók",
+        "admin": "Admin",
+        "checkout": "Pénztár",
+        "adatvedelem": "Adatvédelem",
+        "aszf": "ÁSZF",
+        "impresszum": "Impresszum",
+        "ajanlatkeres": "Ajánlatkérés",
+        "payment": "Fizetés",
+        "success": "Sikeres",
+        "cancel": "Megszakítva",
+        "fail": "Sikertelen"
+    },
+    "CommandMenu": {
+        "search_label": "Keresés",
+        "search_placeholder": "Keresés...",
+        "no_results": "Nincs találat.",
+        "groups": {
+            "pages": "Oldalak",
+            "services": "Szolgáltatások",
+            "other": "Egyéb"
+        },
+        "items": {
+            "home": "Főoldal",
+            "services": "Szolgáltatások",
+            "blog": "Blog",
+            "contact": "Kapcsolat",
+            "webdev": "Webfejlesztés",
+            "scripts": "Egyedi Scriptek",
+            "sysadmin": "Rendszerüzemeltetés",
+            "security": "Kiberbiztonság",
+            "products": "Termékek",
+            "login": "Bejelentkezés"
+        }
+    },
+    "MegaMenu": {
+        "services": "Szolgáltatások",
+        "products": "Termékek",
+        "knowledge": "Tudástár",
+        "contact": "Kapcsolat",
+        "our_services": "Szolgáltatásaink",
+        "services_desc": "Fedezd fel teljes kínálatunkat a fejlesztéstől az üzemeltetésig.",
+        "all_products": "Összes termék",
+        "all_products_desc": "Böngéssz a teljes szoftver és script kínálatunkban.",
+        "scripts": "Scriptek",
+        "scripts_desc": "FiveM és egyéb játékszerver scriptek.",
+        "web": "Webes Megoldások",
+        "web_desc": "Sablonok, pluginok és kész weboldalak.",
+        "prices": "Árak",
+        "prices_desc": "Átlátható csomagajánlatok és egyedi árazás.",
+        "references": "Referenciák",
+        "references_desc": "Korábbi munkáink és elégedett ügyfeleink.",
+        "blog": "Blog",
+        "blog_desc": "Szakmai cikkek, útmutatók és hírek.",
+        "reviews": "Vélemények",
+        "reviews_desc": "Mit mondanak rólunk az ügyfelek?",
+        "nav_items": {
+            "scripts": "Scriptek",
+            "scripts_desc": "Egyedi fejlesztésű scriptek és bővítmények szerverekhez.",
+            "webdev": "Webfejlesztés",
+            "webdev_desc": "Modern, reszponzív weboldalak és webshopok készítése.",
+            "sysadmin": "Rendszerüzemeltetés",
+            "sysadmin_desc": "Szerverek karbantartása, monitorozása és biztonsági frissítése."
+        }
+    },
+    "Cart": {
+        "title": "Kosár tartalma",
+        "empty": "A kosarad üres.",
+        "continue_shopping": "Vásárlás folytatása",
+        "total": "Összesen:",
+        "vat_disclaimer": "Alanyi adómentes (AAM) - A feltüntetett árak a fizetendő végösszegek.",
+        "checkout": "Tovább a pénztárhoz"
+    },
+    "LanguageSwitcher": {
+        "label": "Nyelv váltása"
     }
 }

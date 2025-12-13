@@ -422,5 +422,102 @@
         "description": "It seems you've wandered to a place that doesn't exist or has been moved. Don't worry, we'll help you find your way back!",
         "back_home": "Back to Home",
         "services": "Services"
+    },
+    "ThemeCustomizer": {
+        "toggle": "Toggle Theme",
+        "themes": {
+            "cyan": "Cyan (Default)",
+            "purple": "Purple (Neon)",
+            "green": "Green (Matrix)",
+            "orange": "Orange (Cyberpunk)",
+            "pink": "Pink (Synthwave)"
+        }
+    },
+    "Breadcrumbs": {
+        "szolgaltatasok": "Services",
+        "webfejlesztes": "Web Development",
+        "scriptek": "Custom Scripts",
+        "rendszeruzemeltetes": "System Administration",
+        "biztonsag": "Cybersecurity",
+        "termekek": "Products",
+        "blog": "Blog",
+        "kapcsolat": "Contact",
+        "arak": "Pricing",
+        "referenciak": "References",
+        "login": "Login",
+        "fiok": "Account",
+        "admin": "Admin",
+        "checkout": "Checkout",
+        "adatvedelem": "Privacy Policy",
+        "aszf": "Terms & Conditions",
+        "impresszum": "Imprint",
+        "ajanlatkeres": "Request Quote",
+        "payment": "Payment",
+        "success": "Success",
+        "cancel": "Cancelled",
+        "fail": "Failed"
+    },
+    "CommandMenu": {
+        "search_label": "Search",
+        "search_placeholder": "Search...",
+        "no_results": "No results found.",
+        "groups": {
+            "pages": "Pages",
+            "services": "Services",
+            "other": "Other"
+        },
+        "items": {
+            "home": "Home",
+            "services": "Services",
+            "blog": "Blog",
+            "contact": "Contact",
+            "webdev": "Web Development",
+            "scripts": "Custom Scripts",
+            "sysadmin": "System Administration",
+            "security": "Cybersecurity",
+            "products": "Products",
+            "login": "Login"
+        }
+    },
+    "MegaMenu": {
+        "services": "Services",
+        "products": "Products",
+        "knowledge": "Knowledge Base",
+        "contact": "Contact",
+        "our_services": "Our Services",
+        "services_desc": "Explore our full range from development to operations.",
+        "all_products": "All Products",
+        "all_products_desc": "Browse our full software and script catalog.",
+        "scripts": "Scripts",
+        "scripts_desc": "FiveM and other game server scripts.",
+        "web": "Web Solutions",
+        "web_desc": "Templates, plugins, and ready-made websites.",
+        "prices": "Pricing",
+        "prices_desc": "Transparent packages and custom pricing.",
+        "references": "References",
+        "references_desc": "Our previous work and satisfied clients.",
+        "blog": "Blog",
+        "blog_desc": "Professional articles, guides, and news.",
+        "reviews": "Reviews",
+        "reviews_desc": "What do clients say about us?",
+        "nav_items": {
+            "scripts": "Scripts",
+            "scripts_desc": "Custom scripts and plugins for servers.",
+            "webdev": "Web Development",
+            "webdev_desc": "Modern, responsive websites and webshops.",
+            "sysadmin": "System Administration",
+            "sysadmin_desc": "Server maintenance, monitoring, and security updates."
+        }
+    },
+    "Cart": {
+        "title": "Cart Contents",
+        "empty": "Your cart is empty.",
+        "continue_shopping": "Continue Shopping",
+        "total": "Total:",
+        "vat_disclaimer": "VAT Exempt (AAM) - Prices shown are final.",
+        "checkout": "Proceed to Checkout"
+    },
+    "LanguageSwitcher": {
+        "label": "Change Language"
     }
 }
