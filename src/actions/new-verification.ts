@@ -2,26 +2,28 @@
 
 import { prisma } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
+import { getTranslations } from "next-intl/server";
 
 export const newVerification = async (token: string) => {
+    const t = await getTranslations("Auth.Server");
     const existingToken = await prisma.verificationToken.findFirst({
         where: { token },
     });
 
     if (!existingToken) {
-        return { error: "A kód nem létezik vagy lejárt!" };
+        return { error: t("token_invalid") };
     }
 
     const hasExpired = new Date(existingToken.expires) < new Date();
 
     if (hasExpired) {
-        return { error: "A kód lejárt!" };
+        return { error: t("token_expired") };
     }
 
     const existingUser = await getUserByEmail(existingToken.identifier);
 
     if (!existingUser) {
-        return { error: "A felhasználó nem található!" };
+        return { error: t("user_not_found") };
     }
 
     await prisma.user.update({
@@ -38,5 +40,5 @@ export const newVerification = async (token: string) => {
         },
     });
 
-    return { success: "Email sikeresen megerősítve!" };
+    return { success: t("email_verified") };
 };

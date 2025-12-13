@@ -39,7 +39,7 @@ export function Hero() {
                                 {t('title_1')} <br className="hidden lg:block" />
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-primary to-purple-500 animate-gradient-x bg-[length:200%_auto]">
                                     <Typewriter
-                                        text={[t('title_2'), "Webfejlesztés", "Automatizáció", "Scriptek"]}
+                                        text={[t('title_2'), t('typewriter_1'), t('typewriter_2'), t('typewriter_3')]}
                                         speed={0.1}
                                         waitTime={2000}
                                         cursorClassName="text-primary ml-1"

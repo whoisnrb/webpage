@@ -10,7 +10,10 @@
         "feature_2": "Garancia minden kódra",
         "feature_3": "24/7 Rendszerfelügyelet",
         "stat_label": "Megtakarított idő",
-        "stat_value": "12 óra / hét"
+        "stat_value": "12 óra / hét",
+        "typewriter_1": "Webfejlesztés",
+        "typewriter_2": "Automatizáció",
+        "typewriter_3": "Scriptek"
     },
     "ServicesPreview": {
         "title_1": "Nem csak kódolunk.",
@@ -49,8 +52,22 @@
         "services_desc": "Válassz a szolgáltatásaink közül, vagy állítsunk össze egyedi csomagot az igényeidhez",
         "why_us_title": "Miért válassz minket?",
         "why_us_desc": "Több mint 50 sikeres projekt, elégedett ügyfelek és modern technológiák",
+        "stats_exp_title": "Év tapasztalat",
+        "stats_exp_desc": "Több mint 5 éve dolgozunk IT projekteken, startupokkal és vállalatokkal",
+        "stats_projects_title": "Sikeres projekt",
+        "stats_projects_desc": "Weboldalak, webshopok, automatizációk és egyedi szoftverek",
+        "stats_satisfaction_title": "Ügyfél elégedettség",
+        "stats_satisfaction_desc": "Minden ügyfelünk elégedett volt a munkánkkal és ajánl minket tovább",
         "process_title": "Hogyan dolgozunk?",
         "process_desc": "Egyszerű, átlátható folyamat a sikeres projektért",
+        "process_1_title": "Konzultáció",
+        "process_1_desc": "Ingyenes konzultáció, ahol megbeszéljük az igényeidet",
+        "process_2_title": "Ajánlat",
+        "process_2_desc": "Részletes ajánlat az árral, határidővel és funkcionalitással",
+        "process_3_title": "Fejlesztés",
+        "process_3_desc": "Folyamatos egyeztetés és átlátható fejlesztési folyamat",
+        "process_4_title": "Átadás & Support",
+        "process_4_desc": "Átadás, képzés és folyamatos support a projekt után",
         "cta_footer_title": "Készen állsz az indulásra?",
         "cta_footer_desc": "Foglalj egy ingyenes konzultációt, és beszéljük át a projekted részleteit. Nincs kötelezettség, csak hasznos tanácsok.",
         "cta_consultation": "Ingyenes konzultáció"
@@ -65,7 +82,25 @@
         "pricing": "Árak",
         "blog": "Blog",
         "contact": "Kapcsolat",
-        "client_portal": "Ügyfélportál"
+        "client_portal": "Ügyfélportál",
+        "integrations": "Integrációk & API",
+        "devops": "DevOps & Hosting",
+        "security": "Biztonság & Audit",
+        "about": "Rólunk",
+        "careers": "Karrier",
+        "privacy": "Adatvédelem",
+        "terms": "ÁSZF",
+        "imprint": "Impresszum",
+        "rights_reserved": "Minden jog fenntartva.",
+        "search": "Keresés",
+        "open_menu": "Menü megnyitása",
+        "free_consultation": "Ingyenes konzultáció",
+        "reviews": "Vélemény"
+    },
+    "Footer": {
+        "description": "Professzionális informatikai szolgáltatások, scriptek és automatizációk vállalkozások számára. Spórolj időt és pénzt modern megoldásainkkal.",
+        "company": "Cég",
+        "newsletter": "Hírlevél"
     },
     "Dashboard": {
         "welcome": "Üdvözöljük újra, {name}!",
@@ -141,5 +176,251 @@
         "subtitle": "Hírek, tippek és szakmai cikkek az IT, automatizáció és webfejlesztés világából.",
         "read_more": "Olvass tovább",
         "back": "Vissza a blogra"
+    },
+    "Products": {
+        "title": "Digitális Piactér",
+        "subtitle": "Kész megoldások, scriptek és sablonok, amikkel azonnal gyorsíthatod a vállalkozásodat.",
+        "categories": {
+            "all": "Összes",
+            "wordpress": "WordPress Plugin",
+            "automation": "Automatizáció",
+            "script": "Script",
+            "template": "Template",
+            "ebook": "E-book"
+        },
+        "no_products": "Nem található termék ebben a kategóriában.",
+        "not_found_title": "Nem találod amit keresel?",
+        "not_found_desc": "Egyedi scriptre vagy automatizációra van szükséged? Írd meg az elképzelésedet, és elkészítjük neked!",
+        "request_custom": "Egyedi fejlesztés kérése"
+    },
+    "QuoteRequest": {
+        "title": "Valósítsuk meg az ötleted!",
+        "subtitle": "Töltsd ki az alábbi űrlapot, és mi elkészítjük a személyre szabott ajánlatodat.",
+        "success_title": "Köszönjük a megkeresést!",
+        "success_desc": "Sikeresen megkaptuk az ajánlatkérésedet. Kollégáink hamarosan (általában 24 órán belül) felveszik veled a kapcsolatot a megadott elérhetőségeken.",
+        "back_home": "Vissza a főoldalra",
+        "sidebar": {
+            "title": "Miért válassz minket?",
+            "feature_1_title": "Gyors Megvalósítás",
+            "feature_1_desc": "Hatékony folyamatok, tartott határidők.",
+            "feature_2_title": "Modern Tech",
+            "feature_2_desc": "A legújabb technológiákat használjuk.",
+            "feature_3_title": "Responsive Design",
+            "feature_3_desc": "Minden eszközön tökéletes megjelenés.",
+            "step_1": "Alapadatok",
+            "step_2": "Projekt részletei",
+            "step_3": "Összegzés"
+        },
+        "steps": {
+            "1_title": "Kezdjük az alapokkal",
+            "1_desc": "Add meg az elérhetőségeidet, hogy felvehessük veled a kapcsolatot.",
+            "2_title": "Mesélj a projektről",
+            "2_desc": "Minél több részletet osztasz meg, annál pontosabb ajánlatot tudunk adni.",
+            "3_title": "Ellenőrzés és küldés",
+            "3_desc": "Nézd át az adatokat, és ha minden rendben, küldd el az igényedet."
+        },
+        "form": {
+            "name": "Teljes név *",
+            "email": "Email cím *",
+            "phone": "Telefonszám",
+            "company": "Cégnév (opcionális)",
+            "project_type": "Projekt típusa *",
+            "budget": "Tervezett keretösszeg",
+            "description": "Projekt leírása *",
+            "description_placeholder": "Írd le röviden az elképzelésedet, céljaidat...",
+            "select_type": "Válassz típust",
+            "select_budget": "Válassz keretet",
+            "types": {
+                "web": "Weboldal fejlesztés",
+                "shop": "Webshop készítés",
+                "app": "Egyedi szoftver / App",
+                "marketing": "Online Marketing",
+                "design": "UI/UX Design",
+                "other": "Egyéb"
+            },
+            "budgets": {
+                "small": "500.000 Ft alatt",
+                "medium": "500.000 Ft - 1.500.000 Ft",
+                "large": "1.500.000 Ft - 5.000.000 Ft",
+                "enterprise": "5.000.000 Ft felett"
+            },
+            "privacy_disclaimer": "Az \"Ajánlatkérés küldése\" gombra kattintva elfogadod az Adatvédelmi tájékoztatónkat.",
+            "submit": "Ajánlatkérés küldése",
+            "processing": "Feldolgozás...",
+            "next": "Tovább",
+            "back": "Vissza",
+            "summary_labels": {
+                "name": "Név:",
+                "email": "Email:",
+                "project": "Projekt:",
+                "budget": "Keret:"
+            }
+        }
+    },
+    "Legal": {
+        "Imprint": {
+            "title": "Impresszum",
+            "subtitle": "Az elektronikus kereskedelmi szolgáltatások, valamint az információs társadalommal összefüggő szolgáltatások egyes kérdéseiről szóló 2001. évi CVIII. törvény alapján.",
+            "provider_data": "Szolgáltató adatai",
+            "company_name": "Cégnév / Vállalkozó neve",
+            "seat": "Székhely",
+            "address": "Levelezési cím",
+            "tax_number": "Adószám",
+            "representative": "Képviselő",
+            "representative_name": "Kovács János ügyvezető",
+            "hosting_provider": "Tárhelyszolgáltató",
+            "customer_service": "Ügyfélszolgálat és Elérhetőségek",
+            "email": "Email (Ügyfélszolgálat)",
+            "phone": "Telefon",
+            "website": "Weboldal",
+            "availability": "Ügyfélszolgálat rendelkezésre állása",
+            "availability_time": "Hétfő - Péntek: 09:00 - 17:00",
+            "hosting_title": "Tárhelyszolgáltató",
+            "hosting_desc": "A weboldal üzemeltetését és tárolását az alábbi szolgáltató végzi:",
+            "dispute": "Vitarendezés",
+            "dispute_desc": "Az Európai Bizottság online vitarendezési platformja (ODR) lehetőséget biztosít a fogyasztóknak a jogviták bíróságon kívüli rendezésére."
+        },
+        "Privacy": {
+            "title": "Adatvédelmi Tájékoztató",
+            "lead": "Az BacklineIT Kft. elkötelezett az Ön személyes adatainak védelme mellett. Jelen tájékoztató célja, hogy világos és átlátható információt nyújtson arról, hogyan kezeljük adatait a GDPR (Általános Adatvédelmi Rendelet) előírásaival összhangban.",
+            "controller_title": "1. Az Adatkezelő",
+            "controller_desc": "Az adatok kezelője az BacklineIT Kft. (székhely: 1138 Budapest, Váci út 123., email: info@itservices.hu). Cégünk felelős az Ön által megadott személyes adatok jogszerű, tisztességes és átlátható kezeléséért.",
+            "collected_title": "2. Milyen adatokat gyűjtünk?",
+            "collected_desc": "A szolgáltatásaink igénybevétele során az alábbi adatokat kezelhetjük:",
+            "collected_list": {
+                "contact": "Kapcsolattartási adatok: Név, email cím, telefonszám (pl. kapcsolatfelvételkor vagy regisztrációkor).",
+                "billing": "Számlázási adatok: Számlázási név, cím, adószám (vásárlás esetén).",
+                "technical": "Technikai adatok: IP cím, böngésző típusa, eszköz adatok (a weboldal biztonságos működése érdekében).",
+                "cookies": "Cookie-k (sütik): A felhasználói élmény javítása és statisztikai célokból. Részletes tájékoztatás a Cookie Szabályzatban (lásd lentebb)."
+            },
+            "cookies_title": "3. Cookie (Süti) Tájékoztató",
+            "cookies_desc": "Weboldalunk a megfelelő működés, a felhasználói élmény javítása, valamint statisztikai és marketing célokból sütiket (cookie-kat) használ.",
+            "cookies_list": {
+                "session": "Munkamenet sütik (szükséges): Ezek elengedhetetlenek a weboldal navigációjához és funkcióinak használatához.",
+                "stats": "Statisztikai sütik: Segítenek megérteni, hogyan használják látogatóink a weboldalt (pl. Google Analytics). Ezek az adatok anonimizáltak.",
+                "marketing": "Marketing sütik: Célzott hirdetések megjelenítésére szolgálnak."
+            },
+            "purpose_title": "3. Az adatkezelés célja és jogalapja",
+            "table": {
+                "purpose": "Adatkezelés célja",
+                "legal_basis": "Jogalap",
+                "service": "Szolgáltatás nyújtása, szerződés teljesítése",
+                "service_basis": "Szerződés teljesítése (GDPR 6. cikk (1) b))",
+                "billing": "Számlázás és könyvelés",
+                "billing_basis": "Jogi kötelezettség teljesítése (GDPR 6. cikk (1) c))",
+                "contact": "Kapcsolattartás, ügyfélszolgálat",
+                "contact_basis": "Jogos érdek (GDPR 6. cikk (1) f))",
+                "newsletter": "Hírlevél küldés",
+                "newsletter_basis": "Az Ön hozzájárulása (GDPR 6. cikk (1) a))"
+            },
+            "transfer_title": "4. Adattovábbítás",
+            "transfer_desc": "Adatait harmadik félnek csak a szolgáltatás teljesítése érdekében vagy jogszabályi kötelezettség esetén továbbítjuk. Partnereink (adatfeldolgozók):",
+            "storage_title": "5. Az adatok tárolásának időtartama",
+            "storage_desc": "A személyes adatokat csak addig tároljuk, amíg az adatkezelés célja megvalósul, vagy amíg jogszabály (pl. számviteli törvény) kötelezővé teszi. A számlázási adatokat a törvény értelmében 8 évig őrizzük meg.",
+            "rights_title": "6. Az Ön jogai",
+            "rights_desc": "A GDPR alapján Ön jogosult:",
+            "rights_list": {
+                "access": "Hozzáféréshez: Tájékoztatást kérhet a kezelt adatairól.",
+                "rectification": "Helyesbítéshez: Kérheti pontatlan adatainak javítását.",
+                "erasure": "Törléshez (&quot;elfeledtetéshez&quot;): Kérheti adatai törlését, ha az adatkezelésnek nincs más jogalapja.",
+                "portability": "Adathordozhatósághoz: Kérheti adatai átadását tagolt, géppel olvasható formátumban.",
+                "objection": "Tiltakozáshoz: Tiltakozhat a jogos érdeken alapuló adatkezelés ellen."
+            },
+            "remedy_title": "7. Jogorvoslati lehetőségek",
+            "remedy_desc": "Panaszával a Nemzeti Adatvédelmi és Információszabadság Hatósághoz (NAIH) fordulhat (1055 Budapest, Falk Miksa utca 9-11., www.naih.hu), vagy bírósághoz fordulhat.",
+            "tools_title": "8. Adatkezelési Eszközök",
+            "tools_desc": "Bejelentkezett felhasználóként itt kezelheti a fiókjához tartozó adatokat."
+        },
+        "Terms": {
+            "title": "Általános Szerződési Feltételek",
+            "lead": "Kérjük, figyelmesen olvassa el az alábbi Általános Szerződési Feltételeket (továbbiakban: ÁSZF), mivel a weboldalunk használatával és szolgáltatásaink igénybevételével Ön elfogadja az itt leírtakat.",
+            "provider_title": "1. A Szolgáltató adatai",
+            "definitions_title": "2. Fogalommeghatározások",
+            "definitions_list": {
+                "provider": "Szolgáltató: A BacklineIT, amely a weboldalt üzemelteti és a szolgáltatásokat nyújtja.",
+                "client": "Ügyfél: Bármely természetes vagy jogi személy, aki a Szolgáltató szolgáltatásait igénybe veszi.",
+                "website": "Weboldal: A backlineit.hu domain alatt elérhető internetes felület.",
+                "service": "Szolgáltatás: A weboldalon keresztül elérhető szoftverfejlesztési, tanácsadási és egyéb informatikai szolgáltatások."
+            },
+            "contract_title": "3. A szerződés tárgya és létrejötte",
+            "contract_desc_1": "A jelen ÁSZF hatálya kiterjed a Szolgáltató által nyújtott minden elektronikus kereskedelmi szolgáltatásra. A szerződés a Felek között ráutaló magatartással (a weboldalon történő regisztrációval, megrendelés leadásával) jön létre.",
+            "services_title": "4. Szolgáltatások igénybevétele",
+            "services_desc": "A Szolgáltató a weboldalon részletezett szolgáltatásokat (pl. webfejlesztés, scriptek, rendszerüzemeltetés) nyújtja. A szolgáltatások pontos tartalmát, díjazását és határidejét az egyedi árajánlatok vagy a webshopban feltüntetett termékleírások tartalmazzák.",
+            "payment_title": "5. Fizetési feltételek",
+            "payment_desc": "A szolgáltatások ellenértékét az Ügyfél az alábbi módokon egyenlítheti ki:",
+            "payment_list": {
+                "card": "Bankkártyás fizetés: A SimplePay vagy Stripe rendszerén keresztül.",
+                "transfer": "Banki átutalás: A Szolgáltató által kiállított díjbekérő vagy számla alapján."
+            },
+            "withdrawal_title": "6. Elállási jog",
+            "withdrawal_desc": "A fogyasztónak minősülő Ügyfél a 45/2014. (II. 26.) Korm. rendelet alapján jogosult a szerződéstől 14 napon belül indokolás nélkül elállni. Az elállási határidő a szolgáltatás nyújtására irányuló szerződés esetén a szerződés megkötésének napjától számított 14 nap.",
+            "withdrawal_digital_title": "A fogyasztó elállási jogának elvesztése digitális adattartalom esetén",
+            "withdrawal_digital_desc": "FIGYELEM: A nem tárgyi adathordozón nyújtott digitális adattartalom (pl. szoftverek, scriptek letöltése) tekintetében a fogyasztó elveszíti elállási jogát, amennyiben a Szolgáltató a fogyasztó kifejezett, előzetes beleegyezésével kezdte meg a teljesítést, és a fogyasztó e beleegyezésével egyidejűleg nyilatkozott annak tudomásulvételéről, hogy a teljesítés megkezdését követően elveszíti elállási jogát.",
+            "warranty_title": "7. Kellékszavatosság, Termékszavatosság, Jótállás",
+            "warranty_legal_title": "Kellékszavatosság",
+            "warranty_legal_desc": "Az Ügyfél a Szolgáltató hibás teljesítése esetén a Szolgáltatóval szemben kellékszavatossági igényt érvényesíthet a Polgári Törvénykönyv szabályai szerint.",
+            "warranty_product_title": "Termékszavatosság",
+            "warranty_product_desc": "Ingó dolog (termék) hibája esetén az Ügyfél – választása szerint – kellékszavatossági vagy termékszavatossági igényt érvényesíthet.",
+            "guarantee_title": "Jótállás",
+            "guarantee_desc": "Hibás teljesítés esetén a Szolgáltató jótállásra köteles, amennyiben azt jogszabály előírja vagy a Szolgáltató önként vállalta.",
+            "ip_title": "8. Szellemi tulajdonjogok",
+            "ip_desc": "A weboldal teljes tartalma, beleértve a szövegeket, képeket, grafikákat, logókat és szoftvereket, a Szolgáltató szellemi tulajdonát képezi, és szerzői jogi védelem alatt áll.",
+            "liability_title": "9. Felelősségkorlátozás",
+            "liability_desc": "A Szolgáltató mindent megtesz a weboldal és a szolgáltatások zavartalan működése érdekében, de nem vállal felelősséget az internetes hálózat hibájából, technikai leállásokból vagy vis maior eseményekből eredő károkért.",
+            "complaints_title": "10. Panaszkezelés",
+            "complaints_desc": "Az Ügyfél a szolgáltatással kapcsolatos panaszait a support@backlineit.hu email címen jelezheti.",
+            "closing_title": "11. Záró rendelkezések",
+            "closing_desc": "A jelen ÁSZF-ben nem szabályozott kérdésekben a magyar jogszabályok, különösen a Ptk. rendelkezései az irányadóak."
+        }
+    },
+    "Auth": {
+        "Login": {
+            "title": "Bejelentkezés",
+            "subtitle": "Jelentkezz be a fiókodba",
+            "github": "Bejelentkezés GitHub-bal",
+            "or": "Vagy",
+            "no_account": "Nincs még fiókod?",
+            "register_link": "Regisztráció",
+            "submit": "Bejelentkezés",
+            "processing": "Bejelentkezés..."
+        },
+        "Register": {
+            "title": "Regisztráció",
+            "subtitle": "Hozz létre egy új fiókot",
+            "has_account": "Már van fiókod?",
+            "login_link": "Bejelentkezés",
+            "submit": "Regisztráció",
+            "processing": "Regisztráció...",
+            "validation_error": "Kérlek ellenőrizd a mezőket!",
+            "unexpected_error": "Váratlan hiba történt.",
+            "success": "Sikeres regisztráció!"
+        },
+        "Server": {
+            "invalid_fields": "Érvénytelen mezők!",
+            "invalid_credentials": "Hibás email vagy jelszó!",
+            "generic_error": "Valami hiba történt!",
+            "email_taken": "Az email cím már foglalt!",
+            "verification_sent": "Megerősítő email elküldve!",
+            "registration_error": "Valami hiba történt a regisztráció során!",
+            "token_invalid": "A kód nem létezik vagy lejárt!",
+            "token_expired": "A kód lejárt!",
+            "user_not_found": "A felhasználó nem található!",
+            "email_verified": "Email sikeresen megerősítve!"
+        },
+        "Form": {
+            "name": "Név",
+            "name_placeholder": "Kovács János",
+            "email": "Email",
+            "email_placeholder": "pelda@email.hu",
+            "password": "Jelszó",
+            "password_placeholder": "******"
+        }
+    },
+    "NotFound": {
+        "title": "404",
+        "subtitle": "Hoppá! Ez az oldal elveszett az űrben. 🚀",
+        "description": "Úgy tűnik, olyan helyre tévedtél, ami nem létezik, vagy már áthelyeztük. Ne aggódj, segítünk visszatalálni!",
+        "back_home": "Vissza a főoldalra",
+        "services": "Szolgáltatások"
     }
 }

@@ -14,8 +14,11 @@ import { toast } from "sonner";
 import { Github } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { Turnstile } from "@/components/ui/turnstile";
+import { useTranslations } from "next-intl";
 
 export const LoginForm = () => {
+    const t = useTranslations("Auth.Login");
+    const tForm = useTranslations("Auth.Form");
     const [isPending, startTransition] = useTransition();
 
     const form = useForm<z.infer<typeof LoginSchema>>({
@@ -48,7 +51,7 @@ export const LoginForm = () => {
                 onClick={handleGithubLogin}
             >
                 <Github className="mr-2 h-4 w-4" />
-                Bejelentkezés GitHub-bal
+                {t("github")}
             </Button>
 
             <div className="relative">
@@ -57,7 +60,7 @@ export const LoginForm = () => {
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
                     <span className="bg-transparent px-2 text-muted-foreground">
-                        Vagy
+                        {t("or")}
                     </span>
                 </div>
             </div>
@@ -69,11 +72,11 @@ export const LoginForm = () => {
                         name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Email</FormLabel>
+                                <FormLabel>{tForm("email")}</FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        placeholder="pelda@email.hu"
+                                        placeholder={tForm("email_placeholder")}
                                         type="email"
                                         disabled={isPending}
                                         className="bg-muted/50 border-muted-foreground/20"
@@ -88,11 +91,11 @@ export const LoginForm = () => {
                         name="password"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Jelszó</FormLabel>
+                                <FormLabel>{tForm("password")}</FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
-                                        placeholder="******"
+                                        placeholder={tForm("password_placeholder")}
                                         type="password"
                                         disabled={isPending}
                                         className="bg-muted/50 border-muted-foreground/20"
@@ -104,7 +107,7 @@ export const LoginForm = () => {
                     />
                     <Turnstile onVerify={(token) => console.log("Turnstile token:", token)} />
                     <Button type="submit" className="w-full" disabled={isPending}>
-                        {isPending ? "Bejelentkezés..." : "Bejelentkezés"}
+                        {isPending ? t("processing") : t("submit")}
                     </Button>
                 </form>
             </Form>

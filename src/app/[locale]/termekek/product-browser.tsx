@@ -5,18 +5,27 @@ import { ProductCard } from "@/components/ecommerce/product-card"
 import { Button } from "@/components/ui/button"
 import { ProductDTO } from "@/app/actions/product"
 import { motion, AnimatePresence } from "framer-motion"
-
-const categories = ["Összes", "WordPress Plugin", "Automatizáció", "Script", "Template", "E-book"]
+import { useTranslations } from "next-intl"
 
 interface ProductBrowserProps {
     initialProducts: ProductDTO[]
 }
 
 export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
-    const [activeCategory, setActiveCategory] = useState("Összes")
+    const t = useTranslations("Products")
+    const [activeCategory, setActiveCategory] = useState("all")
+
+    const categories = [
+        { id: "all", label: t("categories.all") },
+        { id: "WordPress Plugin", label: t("categories.wordpress") },
+        { id: "Automatizáció", label: t("categories.automation") },
+        { id: "Script", label: t("categories.script") },
+        { id: "Template", label: t("categories.template") },
+        { id: "E-book", label: t("categories.ebook") }
+    ]
 
     // We use the passed products instead of the static import
-    const filteredProducts = activeCategory === "Összes"
+    const filteredProducts = activeCategory === "all"
         ? initialProducts
         : initialProducts.filter(p => p.category === activeCategory)
 
@@ -27,13 +36,13 @@ export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
                     <div className="flex gap-2 min-w-max justify-center">
                         {categories.map((cat) => (
                             <Button
-                                key={cat}
-                                variant={activeCategory === cat ? "default" : "outline"}
+                                key={cat.id}
+                                variant={activeCategory === cat.id ? "default" : "outline"}
                                 size="sm"
-                                onClick={() => setActiveCategory(cat)}
+                                onClick={() => setActiveCategory(cat.id)}
                                 className="rounded-full transition-all duration-300"
                             >
-                                {cat}
+                                {cat.label}
                             </Button>
                         ))}
                     </div>
@@ -72,17 +81,17 @@ export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
 
                     {filteredProducts.length === 0 && (
                         <div className="text-center py-20 text-muted-foreground">
-                            Nem található termék ebben a kategóriában.
+                            {t('no_products')}
                         </div>
                     )}
 
                     <div className="mt-20 text-center border-t pt-12">
-                        <h3 className="text-2xl font-bold mb-4">Nem találod amit keresel?</h3>
+                        <h3 className="text-2xl font-bold mb-4">{t('not_found_title')}</h3>
                         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-                            Egyedi scriptre vagy automatizációra van szükséged? Írd meg az elképzelésedet, és elkészítjük neked!
+                            {t('not_found_desc')}
                         </p>
                         <Button variant="outline" size="lg" onClick={() => window.location.href = '/ajanlatkeres'}>
-                            Egyedi fejlesztés kérése
+                            {t('request_custom')}
                         </Button>
                     </div>
                 </div>

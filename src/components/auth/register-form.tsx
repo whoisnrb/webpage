@@ -12,10 +12,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { register } from "@/actions/register";
 import { toast } from "sonner";
 import { useRouter } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 export const RegisterForm = () => {
     console.log("RegisterForm component loaded/rendered");
     const router = useRouter();
+    const t = useTranslations("Auth.Register");
+    const tForm = useTranslations("Auth.Form");
     const [isPending, startTransition] = useTransition();
 
     const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -35,17 +38,17 @@ export const RegisterForm = () => {
                     console.log("Server action finished. Response:", data);
                     if (data.error) {
                         console.error("Registration error:", data.error);
-                        toast.error(data.error);
+                        toast.error(data.error); // Server errors might be hardcoded in actions/register.ts, skipping for now unless moving logic to client
                     }
                     if (data.success) {
                         console.log("Registration success!");
-                        toast.success(data.success);
+                        toast.success(t("success"));
                         router.push("/auth/new-verification");
                     }
                 })
                 .catch((err) => {
                     console.error("Unexpected error in client submission:", err);
-                    toast.error("Váratlan hiba történt.");
+                    toast.error(t("unexpected_error"));
                 });
         });
     };
@@ -55,7 +58,7 @@ export const RegisterForm = () => {
             <form
                 onSubmit={form.handleSubmit(onSubmit, (errors) => {
                     console.error("Form validation failed!", errors);
-                    toast.error("Kérlek ellenőrizd a mezőket!");
+                    toast.error(t("validation_error"));
                 })}
                 className="space-y-4"
             >
@@ -64,11 +67,11 @@ export const RegisterForm = () => {
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Név</FormLabel>
+                            <FormLabel>{tForm("name")}</FormLabel>
                             <FormControl>
                                 <Input
                                     {...field}
-                                    placeholder="Kovács János"
+                                    placeholder={tForm("name_placeholder")}
                                     disabled={isPending}
                                     className="bg-muted/50 border-muted-foreground/20"
                                 />
@@ -82,11 +85,11 @@ export const RegisterForm = () => {
                     name="email"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>{tForm("email")}</FormLabel>
                             <FormControl>
                                 <Input
                                     {...field}
-                                    placeholder="pelda@email.hu"
+                                    placeholder={tForm("email_placeholder")}
                                     type="email"
                                     disabled={isPending}
                                     className="bg-muted/50 border-muted-foreground/20"
@@ -101,11 +104,11 @@ export const RegisterForm = () => {
                     name="password"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Jelszó</FormLabel>
+                            <FormLabel>{tForm("password")}</FormLabel>
                             <FormControl>
                                 <Input
                                     {...field}
-                                    placeholder="******"
+                                    placeholder={tForm("password_placeholder")}
                                     type="password"
                                     disabled={isPending}
                                     className="bg-muted/50 border-muted-foreground/20"
@@ -121,7 +124,7 @@ export const RegisterForm = () => {
                     disabled={isPending}
                     onClick={() => console.log("Register button clicked (direct handler)")}
                 >
-                    {isPending ? "Regisztráció..." : "Regisztráció"}
+                    {isPending ? t("processing") : t("submit")}
                 </Button>
             </form>
         </Form>

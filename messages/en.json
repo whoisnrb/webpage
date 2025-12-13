@@ -10,7 +10,10 @@
         "feature_2": "Code Warranty",
         "feature_3": "24/7 Monitoring",
         "stat_label": "Time Saved",
-        "stat_value": "12 hours / week"
+        "stat_value": "12 hours / week",
+        "typewriter_1": "Web Development",
+        "typewriter_2": "Automation",
+        "typewriter_3": "Scripts"
     },
     "ServicesPreview": {
         "title_1": "We don't just code.",
@@ -49,8 +52,22 @@
         "services_desc": "Choose from our services or let's create a custom package for your needs",
         "why_us_title": "Why choose us?",
         "why_us_desc": "Over 50 successful projects, satisfied clients, and modern technologies",
+        "stats_exp_title": "Years Experience",
+        "stats_exp_desc": "Over 5 years of working on IT projects with startups and enterprises",
+        "stats_projects_title": "Successful Projects",
+        "stats_projects_desc": "Websites, webshops, automations, and custom software",
+        "stats_satisfaction_title": "Client Satisfaction",
+        "stats_satisfaction_desc": "All our clients were satisfied with our work and recommend us",
         "process_title": "How we work?",
         "process_desc": "Simple, transparent process for a successful project",
+        "process_1_title": "Consultation",
+        "process_1_desc": "Free consultation to discuss your needs",
+        "process_2_title": "Proposal",
+        "process_2_desc": "Detailed proposal with price, deadline, and functionality",
+        "process_3_title": "Development",
+        "process_3_desc": "Continuous communication and transparent development process",
+        "process_4_title": "Handover & Support",
+        "process_4_desc": "Handover, training, and continuous support after the project",
         "cta_footer_title": "Ready to launch?",
         "cta_footer_desc": "Book a free consultation and let's discuss your project details. No obligation, just useful advice.",
         "cta_consultation": "Free Consultation"
@@ -65,7 +82,25 @@
         "pricing": "Pricing",
         "blog": "Blog",
         "contact": "Contact",
-        "client_portal": "Client Portal"
+        "client_portal": "Client Portal",
+        "integrations": "Integrations & API",
+        "devops": "DevOps & Hosting",
+        "security": "Security & Audit",
+        "about": "About Us",
+        "careers": "Careers",
+        "privacy": "Privacy Policy",
+        "terms": "Terms & Conditions",
+        "imprint": "Imprint",
+        "rights_reserved": "All rights reserved.",
+        "search": "Search",
+        "open_menu": "Open Menu",
+        "free_consultation": "Free Consultation",
+        "reviews": "Reviews"
+    },
+    "Footer": {
+        "description": "Professional IT services, scripts, and automation for businesses. Save time and money with our modern solutions.",
+        "company": "Company",
+        "newsletter": "Newsletter"
     },
     "Dashboard": {
         "welcome": "Welcome back, {name}!",
@@ -141,5 +176,251 @@
         "subtitle": "News, tips, and professional articles from the world of IT, automation, and web development.",
         "read_more": "Read more",
         "back": "Back to blog"
+    },
+    "Products": {
+        "title": "Digital Marketplace",
+        "subtitle": "Ready-made solutions, scripts, and templates to instantly accelerate your business.",
+        "categories": {
+            "all": "All",
+            "wordpress": "WordPress Plugin",
+            "automation": "Automation",
+            "script": "Script",
+            "template": "Template",
+            "ebook": "E-book"
+        },
+        "no_products": "No products found in this category.",
+        "not_found_title": "Can't find what you're looking for?",
+        "not_found_desc": "Need a custom script or automation? Describe your idea, and we'll build it for you!",
+        "request_custom": "Request Custom Development"
+    },
+    "QuoteRequest": {
+        "title": "Let's realize your idea!",
+        "subtitle": "Fill out the form below, and we'll prepare a personalized quote for you.",
+        "success_title": "Thank you for your inquiry!",
+        "success_desc": "We have successfully received your quote request. Our colleagues will contact you shortly (usually within 24 hours).",
+        "back_home": "Back to Home",
+        "sidebar": {
+            "title": "Why choose us?",
+            "feature_1_title": "Fast Implementation",
+            "feature_1_desc": "Efficient processes, met deadlines.",
+            "feature_2_title": "Modern Tech",
+            "feature_2_desc": "We use the latest technologies.",
+            "feature_3_title": "Responsive Design",
+            "feature_3_desc": "Perfect look on every device.",
+            "step_1": "Basic Info",
+            "step_2": "Project Details",
+            "step_3": "Summary"
+        },
+        "steps": {
+            "1_title": "Let's start with the basics",
+            "1_desc": "Provide your contact details so we can reach you.",
+            "2_title": "Tell us about the project",
+            "2_desc": "The more details you share, the accurate quote we can give.",
+            "3_title": "Review and Send",
+            "3_desc": "Review the data, and if everything is correct, send your request."
+        },
+        "form": {
+            "name": "Full Name *",
+            "email": "Email Address *",
+            "phone": "Phone Number",
+            "company": "Company Name (Optional)",
+            "project_type": "Project Type *",
+            "budget": "Planned Budget",
+            "description": "Project Description *",
+            "description_placeholder": "Briefly describe your idea, goals...",
+            "select_type": "Select Type",
+            "select_budget": "Select Budget",
+            "types": {
+                "web": "Website Development",
+                "shop": "Webshop Creation",
+                "app": "Custom Software / App",
+                "marketing": "Online Marketing",
+                "design": "UI/UX Design",
+                "other": "Other"
+            },
+            "budgets": {
+                "small": "Under 500.000 Ft",
+                "medium": "500.000 Ft - 1.500.000 Ft",
+                "large": "1.500.000 Ft - 5.000.000 Ft",
+                "enterprise": "Over 5.000.000 Ft"
+            },
+            "privacy_disclaimer": "By clicking 'Send Quote Request', you accept our Privacy Policy.",
+            "submit": "Send Quote Request",
+            "processing": "Processing...",
+            "next": "Next",
+            "back": "Back",
+            "summary_labels": {
+                "name": "Name:",
+                "email": "Email:",
+                "project": "Project:",
+                "budget": "Budget:"
+            }
+        }
+    },
+    "Legal": {
+        "Imprint": {
+            "title": "Imprint",
+            "subtitle": "According to Act CVIII of 2001 on certain issues of electronic commerce services and information society services.",
+            "provider_data": "Service Provider Data",
+            "company_name": "Company Name",
+            "seat": "Seat",
+            "address": "Mailing Address",
+            "tax_number": "Tax Number",
+            "representative": "Representative",
+            "representative_name": "János Kovács CEO",
+            "hosting_provider": "Hosting Provider",
+            "customer_service": "Customer Service",
+            "email": "Email",
+            "phone": "Phone",
+            "website": "Website",
+            "availability": "Availability",
+            "availability_time": "Monday - Friday: 09:00 - 17:00",
+            "hosting_title": "Hosting Provider",
+            "hosting_desc": "The website is hosted by the following provider:",
+            "dispute": "Dispute Resolution",
+            "dispute_desc": "The European Commission's Online Dispute Resolution (ODR) platform offers consumers the opportunity to resolve disputes out of court."
+        },
+        "Privacy": {
+            "title": "Privacy Policy",
+            "lead": "BacklineIT Kft. is committed to protecting your personal data. This notice aims to provide clear and transparent information on how we handle your data in accordance with GDPR regulations.",
+            "controller_title": "1. The Data Controller",
+            "controller_desc": "The controller of the data is BacklineIT Kft. (Headquarters: 1138 Budapest, Váci út 123., email: info@itservices.hu). Our company is responsible for the lawful, fair, and transparent processing of the personal data you provide.",
+            "collected_title": "2. What data do we collect?",
+            "collected_desc": "We may process the following data when using our services:",
+            "collected_list": {
+                "contact": "Contact Data: Name, email address, phone number (e.g., during contact or registration).",
+                "billing": "Billing Data: Billing name, address, tax number (in case of purchase).",
+                "technical": "Technical Data: IP address, browser type, device data (for secure website operation).",
+                "cookies": "Cookies: For improving user experience and statistical purposes. Detailed information in the Cookie Policy."
+            },
+            "cookies_title": "3. Cookie Policy",
+            "cookies_desc": "Our website uses cookies for proper operation, improving user experience, and statistical and marketing purposes.",
+            "cookies_list": {
+                "session": "Session Cookies: Essential for website navigation and functions.",
+                "stats": "Statistical Cookies: Help understand how visitors use the website (e.g., Google Analytics). These data are anonymized.",
+                "marketing": "Marketing Cookies: Used for displaying targeted advertisements."
+            },
+            "purpose_title": "3. Purpose and Legal Basis of Processing",
+            "table": {
+                "purpose": "Purpose of Processing",
+                "legal_basis": "Legal Basis",
+                "service": "Service provision, contract fulfillment",
+                "service_basis": "Contract fulfillment (GDPR Art. 6(1)(b))",
+                "billing": "Invoicing and accounting",
+                "billing_basis": "Legal obligation fulfillment (GDPR Art. 6(1)(c))",
+                "contact": "Contact, customer service",
+                "contact_basis": "Legitimate interest (GDPR Art. 6(1)(f))",
+                "newsletter": "Newsletter sending",
+                "newsletter_basis": "Your consent (GDPR Art. 6(1)(a))"
+            },
+            "transfer_title": "4. Data Transfer",
+            "transfer_desc": "We only transfer your data to third parties for service fulfillment or legal obligations. Our partners (processors):",
+            "storage_title": "5. Data Storage Duration",
+            "storage_desc": "Personal data is stored only as long as the processing purpose is realized or required by law (e.g., accounting act). Billing data is kept for 8 years by law.",
+            "rights_title": "6. Your Rights",
+            "rights_desc": "Under GDPR, you are entitled to:",
+            "rights_list": {
+                "access": "Access: You can request information about your processed data.",
+                "rectification": "Rectification: You can request correction of inaccurate data.",
+                "erasure": "Erasure ('Right to be forgotten'): You can request deletion of your data if there is no other legal basis for processing.",
+                "portability": "Data Portability: You can request your data in a structured, machine-readable format.",
+                "objection": "Objection: You can object to processing based on legitimate interest."
+            },
+            "remedy_title": "7. Legal Remedies",
+            "remedy_desc": "You can lodge a complaint with the National Authority for Data Protection and Freedom of Information (NAIH) or turn to court.",
+            "tools_title": "8. Data Management Tools",
+            "tools_desc": "As a logged-in user, you can manage your account data here."
+        },
+        "Terms": {
+            "title": "General Terms and Conditions",
+            "lead": "Please read these General Terms and Conditions (GTC) carefully, as by using our website and services, you accept the terms described herein.",
+            "provider_title": "1. Provider Data",
+            "definitions_title": "2. Definitions",
+            "definitions_list": {
+                "provider": "Provider: BacklineIT, operating the website and providing services.",
+                "client": "Client: Any natural or legal person using the Provider's services.",
+                "website": "Website: The internet interface available under the backlineit.hu domain.",
+                "service": "Service: Software development, consulting, and other IT services available through the website."
+            },
+            "contract_title": "3. Subject and Creation of Contract",
+            "contract_desc_1": "These GTC cover all electronic commerce services provided by the Provider. The contract is created by implied conduct (registration on the website, placing an order).",
+            "services_title": "4. Using Services",
+            "services_desc": "The Provider offers services detailed on the website (e.g., web development, scripts, system administration). Exact content, pricing, and deadlines are in individual quotes or webshop product descriptions.",
+            "payment_title": "5. Payment Terms",
+            "payment_desc": "The Client can settle the fees via:",
+            "payment_list": {
+                "card": "Credit Card: Via SimplePay or Stripe system.",
+                "transfer": "Bank Transfer: Based on a pro forma invoice or invoice issued by the Provider."
+            },
+            "withdrawal_title": "6. Right of Withdrawal",
+            "withdrawal_desc": "Clients qualifying as consumers are entitled to withdraw from the contract within 14 days without justification according to Gov. Decree 45/2014. (II. 26.).",
+            "withdrawal_digital_title": "Loss of Withdrawal Right for Digital Content",
+            "withdrawal_digital_desc": "ATTENTION: For digital content not supplied on a tangible medium (e.g. software, script downloads), the consumer loses their right of withdrawal if the Provider began performance with the consumer's express prior consent, and the consumer acknowledged losing their right of withdrawal.",
+            "warranty_title": "7. Warranty and Guarantee",
+            "warranty_legal_title": "Legal Warranty",
+            "warranty_legal_desc": "In case of defective performance by the Provider, the Client can assert a legal warranty claim according to the Civil Code.",
+            "warranty_product_title": "Product Warranty",
+            "warranty_product_desc": "In case of a defect in a movable item (product), the Client can assert a legal warranty or product warranty claim.",
+            "guarantee_title": "Guarantee",
+            "guarantee_desc": "In case of defective performance, the Provider is obliged to provide a guarantee if required by law or voluntarily undertaken.",
+            "ip_title": "8. Intellectual Property Rights",
+            "ip_desc": "The entire content of the website constitutes the intellectual property of the Provider and is protected by copyright.",
+            "liability_title": "9. Limitation of Liability",
+            "liability_desc": "The Provider does its best for the smooth operation of the website but is not liable for damages resulting from internet network errors, technical outages, or force majeure events.",
+            "complaints_title": "10. Complaint Handling",
+            "complaints_desc": "The Client can report complaints regarding the service at support@backlineit.hu.",
+            "closing_title": "11. Closing Provisions",
+            "closing_desc": "Issues not regulated in these GTC are governed by Hungarian laws."
+        }
+    },
+    "Auth": {
+        "Login": {
+            "title": "Login",
+            "subtitle": "Sign in to your account",
+            "github": "Sign in with GitHub",
+            "or": "Or",
+            "no_account": "Don't have an account?",
+            "register_link": "Register",
+            "submit": "Sign In",
+            "processing": "Signing In..."
+        },
+        "Register": {
+            "title": "Register",
+            "subtitle": "Create a new account",
+            "has_account": "Already have an account?",
+            "login_link": "Sign In",
+            "submit": "Register",
+            "processing": "Registering...",
+            "validation_error": "Please check the fields!",
+            "unexpected_error": "An unexpected error occurred.",
+            "success": "Registration successful!"
+        },
+        "Server": {
+            "invalid_fields": "Invalid fields!",
+            "invalid_credentials": "Invalid email or password!",
+            "generic_error": "Something went wrong!",
+            "email_taken": "Email already in use!",
+            "verification_sent": "Verification email sent!",
+            "registration_error": "Something went wrong during registration!",
+            "token_invalid": "Token does not exist or has expired!",
+            "token_expired": "Token has expired!",
+            "user_not_found": "User not found!",
+            "email_verified": "Email successfully verified!"
+        },
+        "Form": {
+            "name": "Name",
+            "name_placeholder": "John Doe",
+            "email": "Email",
+            "email_placeholder": "example@email.com",
+            "password": "Password",
+            "password_placeholder": "******"
+        }
+    },
+    "NotFound": {
+        "title": "404",
+        "subtitle": "Oops! This page is lost in space. 🚀",
+        "description": "It seems you've wandered to a place that doesn't exist or has been moved. Don't worry, we'll help you find your way back!",
+        "back_home": "Back to Home",
+        "services": "Services"
     }
 }

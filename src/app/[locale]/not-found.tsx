@@ -2,8 +2,11 @@ import { Link } from "@/i18n/routing"
 import { Button } from '@/components/ui/button'
 import { FileQuestion, Home, Search } from 'lucide-react'
 import { FadeIn } from "@/components/ui/motion-wrapper"
+import { useTranslations } from "next-intl"
 
 export default function NotFound() {
+    const t = useTranslations("NotFound");
+
     return (
         <div className="min-h-[80vh] flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
             {/* Background decoration */}
@@ -15,28 +18,28 @@ export default function NotFound() {
                 </div>
 
                 <h1 className="text-6xl md:text-8xl font-bold tracking-tighter mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/50">
-                    404
+                    {t("title")}
                 </h1>
 
                 <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-                    Hoppá! Ez az oldal elveszett az űrben. 🚀
+                    {t("subtitle")}
                 </h2>
 
                 <p className="text-lg text-muted-foreground mb-10 max-w-md mx-auto leading-relaxed">
-                    Úgy tűnik, olyan helyre tévedtél, ami nem létezik, vagy már áthelyeztük. Ne aggódj, segítünk visszatalálni!
+                    {t("description")}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button asChild size="lg" className="gap-2">
                         <Link href="/">
                             <Home className="h-4 w-4" />
-                            Vissza a főoldalra
+                            {t("back_home")}
                         </Link>
                     </Button>
                     <Button variant="outline" size="lg" asChild className="gap-2">
                         <Link href="/szolgaltatasok">
                             <Search className="h-4 w-4" />
-                            Szolgáltatások
+                            {t("services")}
                         </Link>
                     </Button>
                 </div>
@@ -44,3 +47,4 @@ export default function NotFound() {
         </div>
     )
 }
+

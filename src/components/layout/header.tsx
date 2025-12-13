@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { Link } from "@/i18n/routing"
+import { useTranslations } from "next-intl"
 import { Menu, X, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
@@ -11,18 +12,21 @@ import { ThemeCustomizer } from "@/components/theme/theme-customizer"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
 import { MegaMenu } from "@/components/layout/mega-menu"
 
-const navigation = [
-    { name: "Szolgáltatások", href: "/szolgaltatasok" },
-    { name: "Scriptek", href: "/szolgaltatasok/scriptek" },
-    { name: "Webfejlesztés", href: "/szolgaltatasok/webfejlesztes" },
-    { name: "Termékek", href: "/termekek" },
-    { name: "Referenciák", href: "/referenciak" },
-    { name: "Árak", href: "/arak" },
-    { name: "Vélemény", href: "/velemeny" },
-]
+
 
 export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+    const t = useTranslations("Navigation")
+
+    const navigation = [
+        { name: t("services"), href: "/szolgaltatasok" },
+        { name: t("scripts"), href: "/szolgaltatasok/scriptek" },
+        { name: t("web_dev"), href: "/szolgaltatasok/webfejlesztes" },
+        { name: t("products"), href: "/termekek" },
+        { name: t("references"), href: "/referenciak" },
+        { name: t("pricing"), href: "/arak" },
+        { name: t("reviews"), href: "/velemeny" },
+    ]
 
     return (
         <>
@@ -51,7 +55,7 @@ export function Header() {
                             onClick={() => window.dispatchEvent(new CustomEvent("toggle-command-menu"))}
                             className="text-muted-foreground hover:text-primary"
                         >
-                            <span className="sr-only">Keresés</span>
+                            <span className="sr-only">{t("search")}</span>
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -70,10 +74,10 @@ export function Header() {
                         </Button>
                         <CartDrawer />
                         <Button variant="ghost" size="sm" asChild>
-                            <Link href="/login">Ügyfélportál</Link>
+                            <Link href="/login">{t("client_portal")}</Link>
                         </Button>
                         <Button size="sm" className="bg-accent hover:bg-accent/90 text-white" asChild>
-                            <Link href="/kapcsolat">Ingyenes konzultáció</Link>
+                            <Link href="/kapcsolat">{t("free_consultation")}</Link>
                         </Button>
                         <ThemeCustomizer />
                         <LanguageSwitcher />
@@ -86,7 +90,7 @@ export function Header() {
                             size="icon"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
-                            <span className="sr-only">Menü megnyitása</span>
+                            <span className="sr-only">{t("open_menu")}</span>
                             {mobileMenuOpen ? (
                                 <X className="h-6 w-6" aria-hidden="true" />
                             ) : (
@@ -124,10 +128,10 @@ export function Header() {
                                         <LanguageSwitcher />
                                     </div>
                                     <Button variant="ghost" asChild className="justify-start">
-                                        <Link href="/login">Ügyfélportál</Link>
+                                        <Link href="/login">{t("client_portal")}</Link>
                                     </Button>
                                     <Button className="w-full bg-accent hover:bg-accent/90 text-white" asChild>
-                                        <Link href="/kapcsolat">Ingyenes konzultáció</Link>
+                                        <Link href="/kapcsolat">{t("free_consultation")}</Link>
                                     </Button>
                                 </div>
                             </div>

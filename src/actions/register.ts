@@ -7,13 +7,15 @@ import { prisma } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
+import { getTranslations } from "next-intl/server";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
     console.log("Register action called with:", values);
+    const t = await getTranslations("Auth.Server");
     const validatedFields = RegisterSchema.safeParse(values);
 
     if (!validatedFields.success) {
-        return { error: "Érvénytelen mezők!" };
+        return { error: t("invalid_fields") };
     }
 
     try {
@@ -23,7 +25,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         const existingUser = await getUserByEmail(email);
 
         if (existingUser) {
-            return { error: "Az email cím már foglalt!" };
+            return { error: t("email_taken") };
         }
 
         await prisma.user.create({
@@ -53,9 +55,9 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
             console.error("CRM Sync Error:", crmError);
         }
 
-        return { success: "Megerősítő email elküldve!" };
+        return { success: t("verification_sent") };
     } catch (error) {
         console.error("REGISTRATION ERROR:", error);
-        return { error: "Valami hiba történt a regisztráció során!" };
+        return { error: t("registration_error") };
     }
 };

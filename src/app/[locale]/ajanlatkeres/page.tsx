@@ -9,8 +9,10 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CheckCircle2, Send, Sparkles, Rocket, Code, Smartphone, Globe } from "lucide-react"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 export default function QuoteRequestPage() {
+    const t = useTranslations("QuoteRequest");
     const [step, setStep] = useState(1)
     const [submitted, setSubmitted] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -61,12 +63,12 @@ export default function QuoteRequestPage() {
                             <div className="h-20 w-20 bg-green-100 rounded-full flex items-center justify-center mx-auto">
                                 <CheckCircle2 className="h-10 w-10 text-green-600" />
                             </div>
-                            <h2 className="text-2xl font-bold text-green-900">Köszönjük a megkeresést!</h2>
+                            <h2 className="text-2xl font-bold text-green-900">{t("success_title")}</h2>
                             <p className="text-green-800">
-                                Sikeresen megkaptuk az ajánlatkérésedet. Kollégáink hamarosan (általában 24 órán belül) felveszik veled a kapcsolatot a megadott elérhetőségeken.
+                                {t("success_desc")}
                             </p>
                             <Button className="w-full bg-green-600 hover:bg-green-700 text-white" onClick={() => window.location.href = '/'}>
-                                Vissza a főoldalra
+                                {t("back_home")}
                             </Button>
                         </CardContent>
                     </Card>
@@ -84,10 +86,10 @@ export default function QuoteRequestPage() {
                         animate={{ opacity: 1, y: 0 }}
                     >
                         <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-600">
-                            Valósítsuk meg az ötleted!
+                            {t("title")}
                         </h1>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                            Töltsd ki az alábbi űrlapot, és mi elkészítjük a személyre szabott ajánlatodat.
+                            {t("subtitle")}
                         </p>
                     </motion.div>
                 </div>
@@ -102,7 +104,7 @@ export default function QuoteRequestPage() {
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2">
                                     <Sparkles className="h-5 w-5" />
-                                    Miért válassz minket?
+                                    {t("sidebar.title")}
                                 </CardTitle>
                             </CardHeader>
                             <CardContent className="space-y-4 relative z-10">
@@ -111,8 +113,8 @@ export default function QuoteRequestPage() {
                                         <Rocket className="h-4 w-4" />
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold">Gyors Megvalósítás</h3>
-                                        <p className="text-sm opacity-90">Hatékony folyamatok, tartott határidők.</p>
+                                        <h3 className="font-semibold">{t("sidebar.feature_1_title")}</h3>
+                                        <p className="text-sm opacity-90">{t("sidebar.feature_1_desc")}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3">
@@ -120,8 +122,8 @@ export default function QuoteRequestPage() {
                                         <Code className="h-4 w-4" />
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold">Modern Tech</h3>
-                                        <p className="text-sm opacity-90">A legújabb technológiákat használjuk.</p>
+                                        <h3 className="font-semibold">{t("sidebar.feature_2_title")}</h3>
+                                        <p className="text-sm opacity-90">{t("sidebar.feature_2_desc")}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-3">
@@ -129,8 +131,8 @@ export default function QuoteRequestPage() {
                                         <Smartphone className="h-4 w-4" />
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold">Responsive Design</h3>
-                                        <p className="text-sm opacity-90">Minden eszközön tökéletes megjelenés.</p>
+                                        <h3 className="font-semibold">{t("sidebar.feature_3_title")}</h3>
+                                        <p className="text-sm opacity-90">{t("sidebar.feature_3_desc")}</p>
                                     </div>
                                 </div>
                             </CardContent>
@@ -139,17 +141,17 @@ export default function QuoteRequestPage() {
                         <div className="hidden md:block">
                             <div className="flex items-center gap-4 mb-4">
                                 <div className={`h-8 w-8 rounded-full flex items-center justify-center font-bold border-2 ${step >= 1 ? 'bg-primary border-primary text-white' : 'border-muted-foreground text-muted-foreground'}`}>1</div>
-                                <span className={step >= 1 ? 'font-medium' : 'text-muted-foreground'}>Alapadatok</span>
+                                <span className={step >= 1 ? 'font-medium' : 'text-muted-foreground'}>{t("sidebar.step_1")}</span>
                             </div>
                             <div className="w-0.5 h-8 bg-muted-foreground/20 ml-4 mb-4"></div>
                             <div className="flex items-center gap-4 mb-4">
                                 <div className={`h-8 w-8 rounded-full flex items-center justify-center font-bold border-2 ${step >= 2 ? 'bg-primary border-primary text-white' : 'border-muted-foreground text-muted-foreground'}`}>2</div>
-                                <span className={step >= 2 ? 'font-medium' : 'text-muted-foreground'}>Projekt részletei</span>
+                                <span className={step >= 2 ? 'font-medium' : 'text-muted-foreground'}>{t("sidebar.step_2")}</span>
                             </div>
                             <div className="w-0.5 h-8 bg-muted-foreground/20 ml-4 mb-4"></div>
                             <div className="flex items-center gap-4">
                                 <div className={`h-8 w-8 rounded-full flex items-center justify-center font-bold border-2 ${step >= 3 ? 'bg-primary border-primary text-white' : 'border-muted-foreground text-muted-foreground'}`}>3</div>
-                                <span className={step >= 3 ? 'font-medium' : 'text-muted-foreground'}>Összegzés</span>
+                                <span className={step >= 3 ? 'font-medium' : 'text-muted-foreground'}>{t("sidebar.step_3")}</span>
                             </div>
                         </div>
                     </div>
@@ -159,14 +161,14 @@ export default function QuoteRequestPage() {
                         <Card className="border-t-4 border-t-primary shadow-lg">
                             <CardHeader>
                                 <CardTitle>
-                                    {step === 1 && "Kezdjük az alapokkal"}
-                                    {step === 2 && "Mesélj a projektről"}
-                                    {step === 3 && "Ellenőrzés és küldés"}
+                                    {step === 1 && t("steps.1_title")}
+                                    {step === 2 && t("steps.2_title")}
+                                    {step === 3 && t("steps.3_title")}
                                 </CardTitle>
                                 <CardDescription>
-                                    {step === 1 && "Add meg az elérhetőségeidet, hogy felvehessük veled a kapcsolatot."}
-                                    {step === 2 && "Minél több részletet osztasz meg, annál pontosabb ajánlatot tudunk adni."}
-                                    {step === 3 && "Nézd át az adatokat, és ha minden rendben, küldd el az igényedet."}
+                                    {step === 1 && t("steps.1_desc")}
+                                    {step === 2 && t("steps.2_desc")}
+                                    {step === 3 && t("steps.3_desc")}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
@@ -179,27 +181,27 @@ export default function QuoteRequestPage() {
                                         >
                                             <div className="grid md:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
-                                                    <Label htmlFor="name">Teljes név *</Label>
+                                                    <Label htmlFor="name">{t("form.name")}</Label>
                                                     <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Kovács János" required />
                                                 </div>
                                                 <div className="space-y-2">
-                                                    <Label htmlFor="email">Email cím *</Label>
+                                                    <Label htmlFor="email">{t("form.email")}</Label>
                                                     <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="janos@ceg.hu" required />
                                                 </div>
                                             </div>
                                             <div className="grid md:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
-                                                    <Label htmlFor="phone">Telefonszám</Label>
+                                                    <Label htmlFor="phone">{t("form.phone")}</Label>
                                                     <Input id="phone" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+36 30 123 4567" />
                                                 </div>
                                                 <div className="space-y-2">
-                                                    <Label htmlFor="company">Cégnév (opcionális)</Label>
+                                                    <Label htmlFor="company">{t("form.company")}</Label>
                                                     <Input id="company" name="company" value={formData.company} onChange={handleInputChange} placeholder="Minta Kft." />
                                                 </div>
                                             </div>
                                             <div className="pt-4 flex justify-end">
                                                 <Button type="button" onClick={nextStep} disabled={!formData.name || !formData.email}>
-                                                    Tovább <ArrowRight className="ml-2 h-4 w-4" />
+                                                    {t("form.next")} <ArrowRight className="ml-2 h-4 w-4" />
                                                 </Button>
                                             </div>
                                         </motion.div>
@@ -212,45 +214,45 @@ export default function QuoteRequestPage() {
                                             className="space-y-4"
                                         >
                                             <div className="space-y-2">
-                                                <Label htmlFor="projectType">Projekt típusa *</Label>
+                                                <Label htmlFor="projectType">{t("form.project_type")}</Label>
                                                 <Select onValueChange={(v) => handleSelectChange("projectType", v)} value={formData.projectType}>
                                                     <SelectTrigger>
-                                                        <SelectValue placeholder="Válassz típust" />
+                                                        <SelectValue placeholder={t("form.select_type")} />
                                                     </SelectTrigger>
                                                     <SelectContent>
-                                                        <SelectItem value="web">Weboldal fejlesztés</SelectItem>
-                                                        <SelectItem value="shop">Webshop készítés</SelectItem>
-                                                        <SelectItem value="app">Egyedi szoftver / App</SelectItem>
-                                                        <SelectItem value="marketing">Online Marketing</SelectItem>
-                                                        <SelectItem value="design">UI/UX Design</SelectItem>
-                                                        <SelectItem value="other">Egyéb</SelectItem>
+                                                        <SelectItem value="web">{t("form.types.web")}</SelectItem>
+                                                        <SelectItem value="shop">{t("form.types.shop")}</SelectItem>
+                                                        <SelectItem value="app">{t("form.types.app")}</SelectItem>
+                                                        <SelectItem value="marketing">{t("form.types.marketing")}</SelectItem>
+                                                        <SelectItem value="design">{t("form.types.design")}</SelectItem>
+                                                        <SelectItem value="other">{t("form.types.other")}</SelectItem>
                                                     </SelectContent>
                                                 </Select>
                                             </div>
 
                                             <div className="space-y-2">
-                                                <Label htmlFor="budget">Tervezett keretösszeg</Label>
+                                                <Label htmlFor="budget">{t("form.budget")}</Label>
                                                 <Select onValueChange={(v) => handleSelectChange("budget", v)} value={formData.budget}>
                                                     <SelectTrigger>
-                                                        <SelectValue placeholder="Válassz keretet" />
+                                                        <SelectValue placeholder={t("form.select_budget")} />
                                                     </SelectTrigger>
                                                     <SelectContent>
-                                                        <SelectItem value="small">500.000 Ft alatt</SelectItem>
-                                                        <SelectItem value="medium">500.000 Ft - 1.500.000 Ft</SelectItem>
-                                                        <SelectItem value="large">1.500.000 Ft - 5.000.000 Ft</SelectItem>
-                                                        <SelectItem value="enterprise">5.000.000 Ft felett</SelectItem>
+                                                        <SelectItem value="small">{t("form.budgets.small")}</SelectItem>
+                                                        <SelectItem value="medium">{t("form.budgets.medium")}</SelectItem>
+                                                        <SelectItem value="large">{t("form.budgets.large")}</SelectItem>
+                                                        <SelectItem value="enterprise">{t("form.budgets.enterprise")}</SelectItem>
                                                     </SelectContent>
                                                 </Select>
                                             </div>
 
                                             <div className="space-y-2">
-                                                <Label htmlFor="description">Projekt leírása *</Label>
+                                                <Label htmlFor="description">{t("form.description")}</Label>
                                                 <Textarea
                                                     id="description"
                                                     name="description"
                                                     value={formData.description}
                                                     onChange={handleInputChange}
-                                                    placeholder="Írd le röviden az elképzelésedet, céljaidat..."
+                                                    placeholder={t("form.description_placeholder")}
                                                     className="min-h-[150px]"
                                                     required
                                                 />
@@ -258,10 +260,10 @@ export default function QuoteRequestPage() {
 
                                             <div className="pt-4 flex justify-between">
                                                 <Button type="button" variant="outline" onClick={prevStep}>
-                                                    Vissza
+                                                    {t("form.back")}
                                                 </Button>
                                                 <Button type="button" onClick={nextStep} disabled={!formData.projectType || !formData.description}>
-                                                    Tovább <ArrowRight className="ml-2 h-4 w-4" />
+                                                    {t("form.next")} <ArrowRight className="ml-2 h-4 w-4" />
                                                 </Button>
                                             </div>
                                         </motion.div>
@@ -275,38 +277,42 @@ export default function QuoteRequestPage() {
                                         >
                                             <div className="bg-muted/50 p-4 rounded-lg space-y-3 text-sm">
                                                 <div className="grid grid-cols-3 gap-2">
-                                                    <span className="text-muted-foreground">Név:</span>
+                                                    <span className="text-muted-foreground">{t("form.summary_labels.name")}</span>
                                                     <span className="col-span-2 font-medium">{formData.name}</span>
                                                 </div>
                                                 <div className="grid grid-cols-3 gap-2">
-                                                    <span className="text-muted-foreground">Email:</span>
+                                                    <span className="text-muted-foreground">{t("form.summary_labels.email")}</span>
                                                     <span className="col-span-2 font-medium">{formData.email}</span>
                                                 </div>
                                                 <div className="grid grid-cols-3 gap-2">
-                                                    <span className="text-muted-foreground">Projekt:</span>
-                                                    <span className="col-span-2 font-medium capitalize">{formData.projectType}</span>
+                                                    <span className="text-muted-foreground">{t("form.summary_labels.project")}</span>
+                                                    <span className="col-span-2 font-medium capitalize">
+                                                        {formData.projectType ? t(`form.types.${formData.projectType}` as any) : ''}
+                                                    </span>
                                                 </div>
                                                 <div className="grid grid-cols-3 gap-2">
-                                                    <span className="text-muted-foreground">Keret:</span>
-                                                    <span className="col-span-2 font-medium capitalize">{formData.budget}</span>
+                                                    <span className="text-muted-foreground">{t("form.summary_labels.budget")}</span>
+                                                    <span className="col-span-2 font-medium capitalize">
+                                                        {formData.budget ? t(`form.budgets.${formData.budget}` as any) : ''}
+                                                    </span>
                                                 </div>
                                             </div>
 
                                             <div className="flex items-start gap-2 text-sm text-muted-foreground">
                                                 <CheckCircle2 className="h-4 w-4 text-primary mt-0.5" />
-                                                <p>Az &quot;Ajánlatkérés küldése&quot; gombra kattintva elfogadod az Adatvédelmi tájékoztatónkat.</p>
+                                                <p>{t("form.privacy_disclaimer")}</p>
                                             </div>
 
                                             <div className="pt-4 flex justify-between">
                                                 <Button type="button" variant="outline" onClick={prevStep}>
-                                                    Vissza
+                                                    {t("form.back")}
                                                 </Button>
                                                 <Button type="submit" className="bg-primary hover:bg-primary/90" disabled={loading}>
                                                     {loading ? (
-                                                        <>Feldolgozás...</>
+                                                        <>{t("form.processing")}</>
                                                     ) : (
                                                         <>
-                                                            Ajánlatkérés küldése <Send className="ml-2 h-4 w-4" />
+                                                            {t("form.submit")} <Send className="ml-2 h-4 w-4" />
                                                         </>
                                                     )}
                                                 </Button>

@@ -40,11 +40,11 @@ export default function Home() {
                                     <SpotlightCard className="text-center h-full border-primary/20 backdrop-blur-sm" spotlightColor="rgba(var(--primary), 0.15)">
                                         <CardHeader>
                                             <div className="text-4xl font-bold text-primary mb-2 drop-shadow-md">5+</div>
-                                            <CardTitle className="text-xl">Év tapasztalat</CardTitle>
+                                            <CardTitle className="text-xl">{t('stats_exp_title')}</CardTitle>
                                         </CardHeader>
                                         <CardContent>
                                             <p className="text-muted-foreground">
-                                                Több mint 5 éve dolgozunk IT projekteken, startupokkal és vállalatokkal
+                                                {t('stats_exp_desc')}
                                             </p>
                                         </CardContent>
                                     </SpotlightCard>
@@ -56,11 +56,11 @@ export default function Home() {
                                     <SpotlightCard className="text-center h-full border-primary/20 backdrop-blur-sm" spotlightColor="rgba(var(--primary), 0.15)">
                                         <CardHeader>
                                             <div className="text-4xl font-bold text-primary mb-2 drop-shadow-md">50+</div>
-                                            <CardTitle className="text-xl">Sikeres projekt</CardTitle>
+                                            <CardTitle className="text-xl">{t('stats_projects_title')}</CardTitle>
                                         </CardHeader>
                                         <CardContent>
                                             <p className="text-muted-foreground">
-                                                Weboldalak, webshopok, automatizációk és egyedi szoftverek
+                                                {t('stats_projects_desc')}
                                             </p>
                                         </CardContent>
                                     </SpotlightCard>
@@ -72,11 +72,11 @@ export default function Home() {
                                     <SpotlightCard className="text-center h-full border-primary/20 backdrop-blur-sm" spotlightColor="rgba(var(--primary), 0.15)">
                                         <CardHeader>
                                             <div className="text-4xl font-bold text-primary mb-2 drop-shadow-md">100%</div>
-                                            <CardTitle className="text-xl">Ügyfél elégedettség</CardTitle>
+                                            <CardTitle className="text-xl">{t('stats_satisfaction_title')}</CardTitle>
                                         </CardHeader>
                                         <CardContent>
                                             <p className="text-muted-foreground">
-                                                Minden ügyfelünk elégedett volt a munkánkkal és ajánl minket tovább
+                                                {t('stats_satisfaction_desc')}
                                             </p>
                                         </CardContent>
                                     </SpotlightCard>
@@ -106,9 +106,9 @@ export default function Home() {
                                     <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                                         <span className="text-2xl font-bold text-primary">1</span>
                                     </div>
-                                    <h3 className="font-semibold mb-2">Konzultáció</h3>
+                                    <h3 className="font-semibold mb-2">{t('process_1_title')}</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Ingyenes konzultáció, ahol megbeszéljük az igényeidet
+                                        {t('process_1_desc')}
                                     </p>
                                 </div>
                             </FadeIn>
@@ -118,9 +118,9 @@ export default function Home() {
                                     <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                                         <span className="text-2xl font-bold text-primary">2</span>
                                     </div>
-                                    <h3 className="font-semibold mb-2">Ajánlat</h3>
+                                    <h3 className="font-semibold mb-2">{t('process_2_title')}</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Részletes ajánlat az árral, határidővel és funkcionalitással
+                                        {t('process_2_desc')}
                                     </p>
                                 </div>
                             </FadeIn>
@@ -130,9 +130,9 @@ export default function Home() {
                                     <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                                         <span className="text-2xl font-bold text-primary">3</span>
                                     </div>
-                                    <h3 className="font-semibold mb-2">Fejlesztés</h3>
+                                    <h3 className="font-semibold mb-2">{t('process_3_title')}</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Folyamatos egyeztetés és átlátható fejlesztési folyamat
+                                        {t('process_3_desc')}
                                     </p>
                                 </div>
                             </FadeIn>
@@ -142,9 +142,9 @@ export default function Home() {
                                     <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                                         <span className="text-2xl font-bold text-primary">4</span>
                                     </div>
-                                    <h3 className="font-semibold mb-2">Átadás & Support</h3>
+                                    <h3 className="font-semibold mb-2">{t('process_4_title')}</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Átadás, képzés és folyamatos support a projekt után
+                                        {t('process_4_desc')}
                                     </p>
                                 </div>
                             </FadeIn>
