@@ -7,7 +7,7 @@ const products = [
         name: "WooCommerce Számlázz.hu Integráció",
         description: "Automatikus számlakiállítás minden rendelés után. Kezeli az előlegszámlákat és a sztornókat is.",
         longDescription: "Ez a bővítmény teljes körű megoldást nyújt a WooCommerce webáruházad és a Számlázz.hu összekötésére. Nem kell többé kézzel számláznod! A rendszer automatikusan figyeli a rendelések állapotát, és a megfelelő státuszváltáskor (pl. Fizetve) kiállítja és elküldi a számlát a vevőnek.",
-        price: 15000,
+        price: 14990,
         category: "WordPress Plugin",
         slug: "woocommerce-szamlazz-hu",
         image: "/images/products/woocommerce-szamlazz.jpg",
@@ -19,16 +19,16 @@ const products = [
             "E-számla és papír alapú számla támogatás"
         ]),
         prices: JSON.stringify({
-            personal: 15000,
-            commercial: 25000,
-            developer: 60000
+            personal: 14990,
+            commercial: 24990,
+            developer: 59990
         })
     },
     {
         name: "n8n Lead Management Workflow",
         description: "Komplex workflow, ami a beérkező leadeket validálja, gazdagítja és beírja a CRM-be.",
         longDescription: "Automatizáld a lead kezelést ezzel a kész n8n workflow-val. A rendszer fogadja az adatokat a weboldaladról, ellenőrzi az email cím valódiságát, kiegészíti a cégadatokat nyilvános adatbázisokból, majd létrehozza a rekordot a CRM-edben (HubSpot, Pipedrive, Salesforce).",
-        price: 25000,
+        price: 24990,
         category: "Automatizáció",
         slug: "n8n-lead-management",
         image: "/images/products/n8n-workflow.jpg",
@@ -40,16 +40,16 @@ const products = [
             "Duplikáció szűrés"
         ]),
         prices: JSON.stringify({
-            personal: 25000,
-            commercial: 45000,
-            developer: 90000
+            personal: 24990,
+            commercial: 44990,
+            developer: 89990
         })
     },
     {
         name: "Python Web Scraper Starter Kit",
         description: "Előre megírt osztályok és függvények webes adatgyűjtéshez. Proxy kezelés, user-agent rotálás.",
         longDescription: "Kezdj el adatot gyűjteni percek alatt. Ez a csomag tartalmazza a leggyakoribb scraping feladatokhoz szükséges kódokat: dinamikus oldalak kezelése (Selenium/Playwright), anti-bot védelem megkerülése, adatok tisztítása és mentése CSV/JSON/Database formátumba.",
-        price: 12000,
+        price: 11990,
         category: "Script",
         slug: "python-web-scraper",
         image: "/images/products/python-scraper.jpg",
@@ -61,16 +61,16 @@ const products = [
             "Adatbázis konnektorok"
         ]),
         prices: JSON.stringify({
-            personal: 12000,
-            commercial: 20000,
-            developer: 45000
+            personal: 11990,
+            commercial: 19990,
+            developer: 44990
         })
     },
     {
         name: "Biztonsági Audit Checklist",
         description: "Részletes PDF és Excel tábla 100+ ellenőrzési ponttal weboldalak biztonsági átvilágításához.",
         longDescription: "Ne hagyd, hogy feltörjék az oldaladat. Ez a lista végigvezet a legfontosabb biztonsági beállításokon, a szerver konfigurációtól a kód szintű sérülékenységekig. Ideális fejlesztőknek és üzemeltetőknek.",
-        price: 5000,
+        price: 4990,
         category: "E-book",
         slug: "security-audit-checklist",
         image: "/images/products/security-audit.jpg",
@@ -82,16 +82,16 @@ const products = [
             "Excel munkalap az auditáláshoz"
         ]),
         prices: JSON.stringify({
-            personal: 5000,
-            commercial: 15000,
-            developer: 25000
+            personal: 4990,
+            commercial: 14990,
+            developer: 24990
         })
     },
     {
         name: "Next.js SaaS Boilerplate",
         description: "Indítsd el a saját szoftver szolgáltatásodat napok alatt. Auth, Stripe, Dashboard előre beállítva.",
         longDescription: "A leggyorsabb út az ötlettől a bevételig. Ez a boilerplate tartalmaz mindent, ami egy modern SaaS-hoz kell: hitelesítés (NextAuth), fizetés (Stripe/SimplePay), adatbázis (Prisma), UI komponensek (shadcn/ui) és admin felület.",
-        price: 45000,
+        price: 44990,
         category: "Template",
         slug: "nextjs-saas-boilerplate",
         image: "/images/products/saas-boilerplate.jpg",
@@ -103,9 +103,9 @@ const products = [
             "Email küldés (Resend)"
         ]),
         prices: JSON.stringify({
-            personal: 45000,
-            commercial: 85000,
-            developer: 150000
+            personal: 44990,
+            commercial: 84990,
+            developer: 149990
         })
     }
 ]

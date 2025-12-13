@@ -19,9 +19,9 @@ export function PriceCalculator() {
     const [workstations, setWorkstations] = useState([10])
     const [servers, setServers] = useState([1])
     const [slaLevel, setSlaLevel] = useState("basic")
-    const BASE_FEE = 50000
-    const PRICE_PER_WORKSTATION = 5000
-    const PRICE_PER_SERVER = 25000
+    const BASE_FEE = 49990
+    const PRICE_PER_WORKSTATION = 4990
+    const PRICE_PER_SERVER = 24990
 
     const SLA_MULTIPLIERS: Record<string, number> = {
         basic: 1,
@@ -33,7 +33,8 @@ export function PriceCalculator() {
     const serverCost = servers[0] * PRICE_PER_SERVER
     const subtotal = BASE_FEE + workstationCost + serverCost
     const total = subtotal * SLA_MULTIPLIERS[slaLevel]
-    const estimatedPrice = Math.round(total / 1000) * 1000
+    // Round to nearest 1000 then subtract 10 to get 990 ending
+    const estimatedPrice = (Math.round(total / 1000) * 1000) - 10
 
     return (
         <Card className="w-full max-w-4xl mx-auto overflow-hidden border-2 border-primary/10 shadow-xl">
