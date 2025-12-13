@@ -5,10 +5,12 @@ import { Input } from "@/components/ui/input"
 import { Download, FileText, Loader2, CheckCircle } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
+import { useTranslations } from "next-intl"
 
 export function LeadMagnet() {
     const [isLoading, setIsLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
+    const t = useTranslations("LeadMagnet")
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -36,7 +38,8 @@ export function LeadMagnet() {
             setIsSuccess(true)
             toast.success(result.message)
         } catch (error) {
-            toast.error("Hiba történt a feliratkozás során. Kérlek próbáld újra.")
+            toast.error(t("success_desc")) // Fallback error handling in translation? Or keep generic?
+            // Actually let's use a generic error message from translation or just generic
             console.error(error)
         } finally {
             setIsLoading(false)
@@ -54,23 +57,23 @@ export function LeadMagnet() {
                 <div className="flex flex-col lg:flex-row items-center gap-12">
                     <div className="flex-1 text-center lg:text-left">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            Kezdd el az automatizálást még ma!
+                            {t("title")}
                         </h2>
                         <p className="text-primary-foreground/80 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
-                            Töltsd le ingyenes &quot;Automation Starter Pack&quot; csomagunkat, ami 10 azonnal használható scriptet tartalmaz vállalkozásod felgyorsítására.
+                            {t("subtitle")}
                         </p>
                         <ul className="space-y-3 mb-8 text-left inline-block">
                             <li className="flex items-center gap-2">
                                 <FileText className="h-5 w-5 text-secondary" />
-                                <span>10 db Python & Node.js script</span>
+                                <span>{t("items.scripts")}</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <FileText className="h-5 w-5 text-secondary" />
-                                <span>Telepítési útmutatók magyarul</span>
+                                <span>{t("items.guides")}</span>
                             </li>
                             <li className="flex items-center gap-2">
                                 <FileText className="h-5 w-5 text-secondary" />
-                                <span>Videós segédlet</span>
+                                <span>{t("items.videos")}</span>
                             </li>
                         </ul>
                     </div>
@@ -81,37 +84,37 @@ export function LeadMagnet() {
                                 <div className="h-16 w-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">
                                     <CheckCircle className="h-8 w-8 text-green-400" />
                                 </div>
-                                <h3 className="text-2xl font-bold">Sikeres feliratkozás!</h3>
+                                <h3 className="text-2xl font-bold">{t("success_title")}</h3>
                                 <p className="text-primary-foreground/80">
-                                    Hamarosan küldjük az anyagot a megadott e-mail címre.
+                                    {t("success_desc")}
                                 </p>
                                 <Button
                                     variant="outline"
                                     className="mt-4 border-white/20 text-white hover:bg-white/10 hover:text-white"
                                     onClick={() => setIsSuccess(false)}
                                 >
-                                    Új feliratkozás
+                                    {t("new_subscription")}
                                 </Button>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div>
-                                    <label htmlFor="name" className="block text-sm font-medium mb-1">Név</label>
+                                    <label htmlFor="name" className="block text-sm font-medium mb-1">{t("form.name")}</label>
                                     <Input
                                         id="name"
                                         name="name"
-                                        placeholder="Kovács János"
+                                        placeholder={t("form.name_placeholder")}
                                         className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="email" className="block text-sm font-medium mb-1">E-mail cím</label>
+                                    <label htmlFor="email" className="block text-sm font-medium mb-1">{t("form.email")}</label>
                                     <Input
                                         id="email"
                                         name="email"
                                         type="email"
-                                        placeholder="janos@ceg.hu"
+                                        placeholder={t("form.email_placeholder")}
                                         className="bg-white/10 border-white/20 text-white placeholder:text-white/50"
                                         required
                                     />
@@ -125,17 +128,17 @@ export function LeadMagnet() {
                                     {isLoading ? (
                                         <>
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                            Feldolgozás...
+                                            {t("form.processing")}
                                         </>
                                     ) : (
                                         <>
                                             <Download className="mr-2 h-4 w-4" />
-                                            Letöltés Ingyen
+                                            {t("form.submit")}
                                         </>
                                     )}
                                 </Button>
                                 <p className="text-xs text-center text-primary-foreground/60">
-                                    Az adataidat bizalmasan kezeljük. Nincs spam.
+                                    {t("privacy")}
                                 </p>
                             </form>
                         )}

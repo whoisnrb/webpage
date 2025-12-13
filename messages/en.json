@@ -433,6 +433,43 @@
             "pink": "Pink (Synthwave)"
         }
     },
+    "Alvin": {
+        "title": "Alvin",
+        "description": "BacklineIT AI Assistant",
+        "welcome": "Hi! I'm Alvin. How can I help you today?",
+        "error": "Sorry, something went wrong. Please try again later.",
+        "placeholder": "Type a message..."
+    },
+    "Newsletter": {
+        "title": "Subscribe",
+        "description": "Subscribe to our newsletter for the latest IT news and tips.",
+        "placeholder": "example@email.com",
+        "button": "Subscribe",
+        "loading": "Subscribing...",
+        "success": "Subscription successful! Thank you.",
+        "error": "An error occurred. Please try again later."
+    },
+    "LeadMagnet": {
+        "title": "Start automating today!",
+        "subtitle": "Download our free \"Automation Starter Pack\" containing 10 ready-to-use scripts to accelerate your business.",
+        "items": {
+            "scripts": "10 Python & Node.js scripts",
+            "guides": "Installation guides",
+            "videos": "Video tutorials"
+        },
+        "success_title": "Subscription successful!",
+        "success_desc": "We will send the materials to your email shortly.",
+        "new_subscription": "New subscription",
+        "form": {
+            "name": "Name",
+            "name_placeholder": "John Doe",
+            "email": "Email",
+            "email_placeholder": "john@company.com",
+            "submit": "Download Free",
+            "processing": "Processing..."
+        },
+        "privacy": "We handle your data confidentially. No spam."
+    },
     "Breadcrumbs": {
         "szolgaltatasok": "Services",
         "webfejlesztes": "Web Development",

@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
-import { ALVIN_CONTEXT } from "@/lib/ai-context"
+import { ALVIN_CONTEXT_HU, ALVIN_CONTEXT_EN } from "@/lib/ai-context"
 
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json()
-        const { message, history } = body
+        const { message, history, locale } = body
 
         const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api"
 
@@ -16,6 +16,11 @@ export async function POST(req: NextRequest) {
             )
         }
 
+        // Select context based on locale
+        // Default to HU if locale is not provided or "en" is not explicitly checked (or logic to default to EN?)
+        // The site default is HU, so we default to HU context.
+        const context = locale === 'en' ? ALVIN_CONTEXT_EN : ALVIN_CONTEXT_HU
+
         const response = await fetch(webhookUrl, {
             method: "POST",
             headers: {
@@ -24,7 +29,7 @@ export async function POST(req: NextRequest) {
             body: JSON.stringify({
                 message,
                 history: history.slice(-5),
-                context: ALVIN_CONTEXT,
+                context: context,
                 action: "chat"
             })
         })

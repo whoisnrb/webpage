@@ -433,6 +433,43 @@
             "pink": "Rózsaszín (Synthwave)"
         }
     },
+    "Alvin": {
+        "title": "Alvin",
+        "description": "BacklineIT AI Asszisztens",
+        "welcome": "Szia! Alvin vagyok. Miben segíthetek ma?",
+        "error": "Bocsánat, hiba történt. Kérlek próbáld újra később.",
+        "placeholder": "Írj egy üzenetet..."
+    },
+    "Newsletter": {
+        "title": "Feliratkozás",
+        "description": "Iratkozz fel hírlevelünkre a legfrissebb IT hírekért és tippekért.",
+        "placeholder": "pelda@email.hu",
+        "button": "Feliratkozás",
+        "loading": "Feliratkozás...",
+        "success": "Sikeres feliratkozás! Köszönjük.",
+        "error": "Hiba történt. Kérlek, próbáld újra később."
+    },
+    "LeadMagnet": {
+        "title": "Kezdd el az automatizálást még ma!",
+        "subtitle": "Töltsd le ingyenes \"Automation Starter Pack\" csomagunkat, ami 10 azonnal használható scriptet tartalmaz vállalkozásod felgyorsítására.",
+        "items": {
+            "scripts": "10 db Python & Node.js script",
+            "guides": "Telepítési útmutatók magyarul",
+            "videos": "Videós segédlet"
+        },
+        "success_title": "Sikeres feliratkozás!",
+        "success_desc": "Hamarosan küldjük az anyagot a megadott e-mail címre.",
+        "new_subscription": "Új feliratkozás",
+        "form": {
+            "name": "Név",
+            "name_placeholder": "Kovács János",
+            "email": "E-mail cím",
+            "email_placeholder": "janos@ceg.hu",
+            "submit": "Letöltés Ingyen",
+            "processing": "Feldolgozás..."
+        },
+        "privacy": "Az adataidat bizalmasan kezeljük. Nincs spam."
+    },
     "Breadcrumbs": {
         "szolgaltatasok": "Szolgáltatások",
         "webfejlesztes": "Webfejlesztés",

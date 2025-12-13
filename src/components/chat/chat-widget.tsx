@@ -9,6 +9,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { X, Send, Bot, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { AnimatePresence, motion, useDragControls } from "framer-motion"
+import { useTranslations, useLocale } from "next-intl"
 
 interface Message {
     role: "user" | "assistant"
@@ -17,9 +18,23 @@ interface Message {
 
 export function ChatWidget() {
     const [isOpen, setIsOpen] = React.useState(false)
-    const [messages, setMessages] = React.useState<Message[]>([
-        { role: "assistant", content: "Szia! Alvin vagyok. Miben segíthetek ma?" }
-    ])
+    const t = useTranslations("Alvin")
+    const locale = useLocale()
+
+    // Initialize messages with translated welcome message
+    // We use a ref to track if it's the initial render to avoid overwriting state
+    // but here simple initialization is fine as t() is stable
+    const [messages, setMessages] = React.useState<Message[]>([])
+
+    // Effect to set initial message, this handles the hydration mismatch check implicitly
+    // or we can just set it if we trust t() is available. 
+    // Better: use useEffect to set initial message to ensure client-side translation matches
+    React.useEffect(() => {
+        if (messages.length === 0) {
+            setMessages([{ role: "assistant", content: t("welcome") }])
+        }
+    }, [t, messages.length])
+
     const [input, setInput] = React.useState("")
     const [isLoading, setIsLoading] = React.useState(false)
     const scrollRef = React.useRef<HTMLDivElement>(null)
@@ -46,7 +61,8 @@ export function ChatWidget() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     message: userMessage,
-                    history: messages
+                    history: messages,
+                    locale: locale
                 })
             })
 
@@ -56,7 +72,7 @@ export function ChatWidget() {
             setMessages(prev => [...prev, { role: "assistant", content: data.reply }])
         } catch (error) {
             console.error(error)
-            setMessages(prev => [...prev, { role: "assistant", content: "Bocsánat, hiba történt. Kérlek próbáld újra később." }])
+            setMessages(prev => [...prev, { role: "assistant", content: t("error") }])
         } finally {
             setIsLoading(false)
         }
@@ -94,7 +110,7 @@ export function ChatWidget() {
                                             unoptimized
                                         />
                                     </div>
-                                    <CardTitle className="text-base">Alvin</CardTitle>
+                                    <CardTitle className="text-base">{t("title")}</CardTitle>
                                 </div>
                                 <Button
                                     variant="ghost"
@@ -151,7 +167,7 @@ export function ChatWidget() {
                             <CardFooter className="p-3 border-t bg-background">
                                 <form onSubmit={handleSubmit} className="flex w-full gap-2">
                                     <Input
-                                        placeholder="Írj egy üzenetet..."
+                                        placeholder={t("placeholder")}
                                         value={input}
                                         onChange={(e) => setInput(e.target.value)}
                                         disabled={isLoading}

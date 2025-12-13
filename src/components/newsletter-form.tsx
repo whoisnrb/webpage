@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Loader2, Mail, CheckCircle2 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 export function NewsletterForm() {
     const [email, setEmail] = useState("")
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+    const t = useTranslations("Newsletter")
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -48,7 +50,7 @@ export function NewsletterForm() {
                         className="flex items-center gap-2 text-green-500 bg-green-500/10 p-3 rounded-lg border border-green-500/20"
                     >
                         <CheckCircle2 className="h-5 w-5" />
-                        <span className="font-medium">Sikeres feliratkozás! Köszönjük.</span>
+                        <span className="font-medium">{t("success")}</span>
                     </motion.div>
                 ) : (
                     <motion.form
@@ -63,7 +65,7 @@ export function NewsletterForm() {
                                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                 <Input
                                     type="email"
-                                    placeholder="pelda@email.hu"
+                                    placeholder={t("placeholder")}
                                     className="pl-9 bg-background/50 border-primary/20 focus:border-primary"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
@@ -75,15 +77,15 @@ export function NewsletterForm() {
                                 {status === "loading" ? (
                                     <Loader2 className="h-4 w-4 animate-spin" />
                                 ) : (
-                                    "Feliratkozás"
+                                    t("button")
                                 )}
                             </Button>
                         </div>
                         {status === "error" && (
-                            <p className="text-xs text-red-500 pl-1">Hiba történt. Kérlek, próbáld újra később.</p>
+                            <p className="text-xs text-red-500 pl-1">{t("error")}</p>
                         )}
                         <p className="text-xs text-muted-foreground pl-1">
-                            Iratkozz fel hírlevelünkre a legfrissebb IT hírekért és tippekért.
+                            {t("description")}
                         </p>
                     </motion.form>
                 )}
