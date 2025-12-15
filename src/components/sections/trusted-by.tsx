@@ -6,63 +6,63 @@ import Image from "next/image"
 const technologies = [
     {
         name: 'Vercel',
-        logo: 'https://assets.vercel.com/image/upload/v1607554385/repositories/vercel/logo.png',
+        logo: 'https://cdn.simpleicons.org/vercel/white',
         category: 'Infrastructure'
     },
     {
         name: 'Next.js',
-        logo: 'https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png',
+        logo: 'https://cdn.simpleicons.org/nextdotjs/white',
         category: 'Framework'
     },
     {
         name: 'Cloudflare',
-        logo: 'https://www.cloudflare.com/img/logo-cloudflare-dark.svg',
+        logo: 'https://cdn.simpleicons.org/cloudflare/F38020',
         category: 'Security & CDN'
     },
     {
-        name: 'Neon',
-        logo: 'https://neon.tech/brand/neon-logo-dark-color.svg',
-        category: 'Database'
+        name: 'PostgreSQL',
+        logo: 'https://cdn.simpleicons.org/postgresql/4169E1',
+        category: 'Database (Neon)'
     },
     {
-        name: 'SimplePay',
-        logo: 'https://simplepay.hu/wp-content/themes/simplepay/images/logo.svg',
+        name: 'Stripe',
+        logo: 'https://cdn.simpleicons.org/stripe/008CDD',
         category: 'Payment (PCI DSS)'
     },
     {
         name: 'GitHub',
-        logo: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+        logo: 'https://cdn.simpleicons.org/github/white',
         category: 'Development'
     },
     {
         name: 'TypeScript',
-        logo: 'https://www.typescriptlang.org/icons/icon-512x512.png',
+        logo: 'https://cdn.simpleicons.org/typescript/3178C6',
         category: 'Language'
     },
     {
         name: 'Prisma',
-        logo: 'https://www.prisma.io/images/favicon-32x32.png',
+        logo: 'https://cdn.simpleicons.org/prisma/2D3748',
         category: 'ORM'
     },
     {
-        name: 'n8n',
-        logo: 'https://n8n.io/favicon.svg',
-        category: 'Automation'
+        name: 'React',
+        logo: 'https://cdn.simpleicons.org/react/61DAFB',
+        category: 'UI Library'
     },
     {
-        name: 'Számlázz.hu',
-        logo: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50"><text x="10" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="%23666">Számlázz.hu</text></svg>',
-        category: 'Invoicing'
-    },
-    {
-        name: 'Sentry',
-        logo: 'https://sentry-brand.storage.googleapis.com/sentry-logo-black.png',
-        category: 'Monitoring'
+        name: 'TailwindCSS',
+        logo: 'https://cdn.simpleicons.org/tailwindcss/06B6D4',
+        category: 'Styling'
     },
     {
         name: 'Google Analytics',
-        logo: 'https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg',
+        logo: 'https://cdn.simpleicons.org/googleanalytics/E37400',
         category: 'Analytics'
+    },
+    {
+        name: 'Google Cloud',
+        logo: 'https://cdn.simpleicons.org/googlecloud/4285F4',
+        category: 'Services'
     }
 ]
 
@@ -85,14 +85,14 @@ export function TrustedBy() {
                     {technologies.map((tech, index) => (
                         <FadeIn key={tech.name} delay={index * 0.05}>
                             <div className="flex flex-col items-center justify-center p-6 rounded-lg hover:bg-muted/50 transition-all duration-300 group">
-                                <div className="relative w-16 h-16 mb-3 grayscale hover:grayscale-0 transition-all duration-300 flex items-center justify-center">
+                                <div className="relative w-20 h-20 mb-3 opacity-80 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                                     <Image
                                         src={tech.logo}
                                         alt={`${tech.name} logo`}
-                                        width={64}
-                                        height={64}
+                                        width={80}
+                                        height={80}
                                         className="object-contain max-w-full max-h-full"
-                                        unoptimized={tech.logo.startsWith('data:')}
+                                        unoptimized
                                     />
                                 </div>
                                 <div className="text-center">
