@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { Hero } from "@/components/sections/hero"
 import { ServicesPreview } from "@/components/sections/services-preview"
+import { TrustedBy } from "@/components/sections/trusted-by"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
 
@@ -19,6 +20,9 @@ export default function Home() {
 
                 {/* Services Grid */}
                 <ServicesPreview />
+
+                {/* Trusted Technologies & Partners */}
+                <TrustedBy />
 
                 {/* Why Choose Us */}
                 <section className="py-16 md:py-24 bg-muted/30">
