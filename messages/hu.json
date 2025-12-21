@@ -175,7 +175,8 @@
         "title": "Blog & Tudástár",
         "subtitle": "Hírek, tippek és szakmai cikkek az IT, automatizáció és webfejlesztés világából.",
         "read_more": "Olvass tovább",
-        "back": "Vissza a blogra"
+        "back": "Vissza a blogra",
+        "back_to_blog": "Vissza a blogra"
     },
     "Products": {
         "title": "Digitális Piactér",
@@ -574,5 +575,290 @@
     },
     "LanguageSwitcher": {
         "label": "Nyelv váltása"
+    },
+    "TrustSignals": {
+        "ssl_title": "SSL Biztonság",
+        "ssl_desc": "Titkosított kapcsolat",
+        "gdpr_title": "GDPR Kompatibilis",
+        "gdpr_desc": "Adatvédelem garantálva",
+        "experts_title": "Minősített Szakértők",
+        "experts_desc": "Ellenőrzött minőség"
+    },
+    "ServicesPage": {
+        "hero_badge": "Professzionális IT Megoldások",
+        "hero_title": "Növeld vállalkozásod hatékonyságát",
+        "hero_title_highlight": "modern technológiákkal",
+        "hero_desc": "Legyen szó egyedi szoftverfejlesztésről, folyamatautomatizálásról vagy stabil üzemeltetésről, mi szakértő partnerként támogatunk a digitális transzformációban.",
+        "cta_quote": "Árajánlat kérése",
+        "cta_services": "Szolgáltatásaink",
+        "list_title": "Szolgáltatásaink",
+        "list_desc": "Átfogó megoldások a tervezéstől a megvalósításig",
+        "items": {
+            "scripts": {
+                "title": "Egyedi Scriptek & Automatizáció",
+                "desc": "Spórolj órákat a munkafolyamataid automatizálásával. Python, Node.js, n8n workflow-ok.",
+                "features": [
+                    "API integrációk",
+                    "Workflow automatizáció",
+                    "Adatszinkronizáció",
+                    "Riport generálás"
+                ]
+            },
+            "webdev": {
+                "title": "Webfejlesztés & Webáruház",
+                "desc": "Modern, gyors és konverzió-fókuszált weboldalak és webshopok (WooCommerce, Next.js).",
+                "features": [
+                    "Reszponzív design",
+                    "E-commerce",
+                    "SEO optimalizálás",
+                    "Headless CMS"
+                ]
+            },
+            "devops": {
+                "title": "Rendszerüzemeltetés & DevOps",
+                "desc": "Stabil szerverháttér, CI/CD pipeline-ok, Docker konténerizáció és felhő megoldások.",
+                "features": [
+                    "CI/CD pipeline",
+                    "Docker & Kubernetes",
+                    "Felhő infrastruktúra",
+                    "Monitoring"
+                ]
+            },
+            "security": {
+                "title": "Biztonság & Audit",
+                "desc": "Weboldal biztonsági átvilágítás, sérülékenység vizsgálat és védelem beállítása.",
+                "features": [
+                    "Biztonsági audit",
+                    "Penetration testing",
+                    "WAF beállítás",
+                    "GDPR compliance"
+                ]
+            }
+        },
+        "item_labels": {
+            "whats_included": "Mit tartalmaz?",
+            "details_and_order": "Részletek és Megrendelés"
+        },
+        "why_us_title": "Miért a BacklineIT?",
+        "why_us_lead": "Nem csak kódolunk, hanem üzleti problémákat oldunk meg. Célunk, hogy a technológia ne teher, hanem versenyelőny legyen a vállalkozásod számára.",
+        "reasons": {
+            "tech": {
+                "title": "Modern Technológia",
+                "desc": "Next.js, React, Node.js, Python - a legmodernebb eszközökkel dolgozunk a gyors és skálázható eredményért."
+            },
+            "security": {
+                "title": "Biztonság és Stabilitás",
+                "desc": "Kiemelt figyelmet fordítunk az adatvédelemre és a rendszerek folyamatos rendelkezésre állására."
+            },
+            "scale": {
+                "title": "Skálázhatóság",
+                "desc": "Olyan rendszereket építünk, amelyek együtt nőnek a vállalkozásoddal, legyen szó 10 vagy 10.000 felhasználóról."
+            }
+        },
+        "stats": {
+            "deadline": "Határidőre",
+            "monitoring": "Monitoring",
+            "projects": "Sikeres Projekt",
+            "rating": "Ügyfél Értékelés"
+        },
+        "cta_bottom_title": "Készen állsz a közös munkára?",
+        "cta_bottom_desc": "Foglalj egy ingyenes, 30 perces konzultációt, ahol átbeszéljük az elképzeléseidet és technikai tanácsokat adunk.",
+        "cta_consultation": "Ingyenes konzultáció",
+        "cta_packages": "Csomagajánlatok"
+    },
+    "PricingPage": {
+        "hero_title": "Átlátható árazás,",
+        "hero_title_highlight": "rejtett költségek nélkül",
+        "hero_desc": "Válaszd ki a vállalkozásodhoz legmegfelelőbb csomagot, vagy állítsunk össze egyedi megoldást az igényeidhez.",
+        "features": {
+            "no_hidden_fees": "Nincs rejtett költség",
+            "free_consultation": "Ingyenes konzultáció",
+            "money_back": "Pénzvisszafizetési garancia"
+        },
+        "comparison_title": "Részletes összehasonlítás",
+        "comparison_desc": "Nézd meg pontosan, mit tartalmaz az egyes csomagok",
+        "table": {
+            "service": "Szolgáltatás",
+            "starter": "Starter",
+            "pro": "Professional",
+            "enterprise": "Enterprise",
+            "rows": {
+                "webdev": "Weboldal fejlesztés",
+                "responsive": "Reszponzív design",
+                "seo": "SEO optimalizálás",
+                "shop": "Webáruház",
+                "automation": "Automatizációk",
+                "security": "Biztonsági audit",
+                "devops": "DevOps & CI/CD",
+                "hosting": "Hosting",
+                "support": "Support időtartam",
+                "monitoring": "24/7 Monitoring",
+                "engineer": "Dedikált mérnök"
+            },
+            "values": {
+                "basic": "Alap",
+                "advanced": "Haladó",
+                "full": "Teljes körű",
+                "months": "hónap",
+                "year_shared": "1 év shared",
+                "year_vps": "1 év VPS",
+                "dedicated": "Dedikált"
+            }
+        },
+        "cta_title": "Készen állsz az indulásra?",
+        "cta_desc": "Foglalj egy ingyenes konzultációt, és beszéljük át a projekted részleteit. Nincs kötelezettség, csak hasznos tanácsok.",
+        "cta_consultation": "Ingyenes konzultáció",
+        "cta_services": "Szolgáltatások áttekintése",
+        "PricingTable": {
+            "title": "Válaszd ki a neked megfelelő csomagot",
+            "desc": "Átlátható árazás, rejtett költségek nélkül. Minden csomag tartalmazza a sikeres induláshoz szükséges eszközöket.",
+            "packages": {
+                "starter": {
+                    "name": "Starter",
+                    "description": "Tökéletes kisvállalkozásoknak és induló projekteknek",
+                    "price_note": "egyszeri díj",
+                    "features": [
+                        "Modern landing page vagy bemutatkozó weboldal",
+                        "Reszponzív design (mobil, tablet, desktop)",
+                        "SEO alapbeállítások",
+                        "Kapcsolati űrlap",
+                        "1 év ingyenes hosting (shared)",
+                        "SSL tanúsítvány",
+                        "3 hónap ingyenes support",
+                        "Google Analytics integráció"
+                    ],
+                    "cta": "Hamarosan"
+                },
+                "pro": {
+                    "name": "Professional",
+                    "description": "Növekvő vállalkozásoknak komplex igényekkel",
+                    "price_note": "egyszeri díj + 15.000 Ft/hó support",
+                    "features": [
+                        "Minden a Starter csomagból",
+                        "Webáruház (WooCommerce/Shopify)",
+                        "Egyedi funkciók és automatizációk",
+                        "Biztonsági audit és keményítés",
+                        "WAF és DDoS védelem beállítás",
+                        "VPS hosting 1 évre",
+                        "CI/CD pipeline (automatikus deploy)",
+                        "6 hónap priority support",
+                        "Havi teljesítmény riport",
+                        "Biztonsági mentések (napi)"
+                    ],
+                    "cta": "Hamarosan"
+                },
+                "enterprise": {
+                    "name": "Enterprise",
+                    "description": "Nagyvállalatok és komplex projektekhez",
+                    "price": "Egyedi",
+                    "price_note": "árajánlat alapján",
+                    "features": [
+                        "Minden a Professional csomagból",
+                        "Teljes körű egyedi fejlesztés",
+                        "Headless CMS (Next.js + Strapi/Ghost)",
+                        "Microservices architektúra",
+                        "Kubernetes cluster menedzsment",
+                        "Dedikált DevOps mérnök",
+                        "24/7 monitoring és support",
+                        "Penetration testing",
+                        "GDPR compliance tanácsadás",
+                        "Dedikált szerver infrastruktúra",
+                        "SLA garancia (99.9% uptime)"
+                    ],
+                    "cta": "Kérj árajánlatot"
+                }
+            },
+            "popular_tag": "Legnépszerűbb",
+            "bottom_text": "Nem találod a megfelelő csomagot? Állítsunk össze egyedi megoldást!",
+            "bottom_cta": "Egyedi ajánlatot kérek"
+        },
+        "FAQ": {
+            "title": "Gyakran Ismételt Kérdések",
+            "desc": "Minden, amit tudnod kell az árazásról és a szolgáltatásokról",
+            "items": {
+                "0": {
+                    "question": "Mennyi idő alatt készül el a projekt?",
+                    "answer": "A Starter csomag általában 2-3 hét, a Professional 4-6 hét, az Enterprise projektek pedig 8-12 hét alatt készülnek el. A pontos időkeretet a projekt komplexitása határozza meg, amit az első konzultáción egyeztetünk."
+                },
+                "1": {
+                    "question": "Milyen fizetési lehetőségek vannak?",
+                    "answer": "Elfogadunk banki átutalást, kártyás fizetést és részletfizetést is. A projekt díjának 50%-át előlegként kérjük, a maradék 50% pedig átadáskor esedékes. Enterprise ügyfeleinknek egyedi fizetési konstrukciókat is kínálunk."
+                },
+                "2": {
+                    "question": "Mit tartalmaz a support csomag?",
+                    "answer": "A support csomag tartalmazza a technikai segítségnyújtást, hibajavításokat, kisebb módosításokat, biztonsági frissítéseket és havi teljesítmény riportot. A Professional csomagnál 6 hónap, az Enterprise-nál 12 hónap support jár automatikusan."
+                },
+                "3": {
+                    "question": "Saját domain és hosting szükséges?",
+                    "answer": "Nem feltétlenül. A Starter csomagban 1 év shared hosting már benne van. Ha van saját hostingod, azt is használhatjuk. Segítünk a domain regisztrációban és a hosting kiválasztásában is."
+                },
+                "4": {
+                    "question": "Tudok később bővíteni a csomagot?",
+                    "answer": "Természetesen! Bármikor bővítheted a szolgáltatásokat. Ha például Starter csomaggal indulsz, később hozzáadhatsz webshop funkciót, automatizációkat vagy DevOps szolgáltatásokat."
+                },
+                "5": {
+                    "question": "Mi történik, ha nem vagyok elégedett?",
+                    "answer": "Minden projektnél van egy jóváhagyási folyamat. A design és a fejlesztés közben folyamatosan egyeztetünk, így biztosítjuk, hogy pontosan azt kapd, amit elképzeltél. Ha mégis probléma merülne fel, közösen megoldjuk."
+                },
+                "6": {
+                    "question": "Milyen technológiákat használtok?",
+                    "answer": "Modern, jövőálló technológiákat használunk: Next.js, React, Tailwind CSS, WordPress, WooCommerce, Node.js, Python, Docker, AWS/DigitalOcean. Mindig a projekthez legmegfelelőbb stack-et választjuk."
+                },
+                "7": {
+                    "question": "Kaptok GDPR-kompatibilis megoldást?",
+                    "answer": "Igen, minden weboldalunk GDPR-kompatibilis. Cookie consent banner, adatvédelmi nyilatkozat, adatkezelési tájékoztató mind-mind benne van. Enterprise csomagnál teljes GDPR audit is jár."
+                }
+            },
+            "bottom_text": "Nem találod a választ a kérdésedre?",
+            "contact_text": "Írj nekünk →"
+        }
+    },
+    "PriceCalculator": {
+        "title": "Árkalkulátor",
+        "description": "Becsüld meg havi rendszerüzemeltetési költségeidet.",
+        "workstations_label": "Munkaállomások száma",
+        "servers_label": "Szerverek száma",
+        "sla_label": "Szolgáltatási Szint (SLA)",
+        "sla_placeholder": "Válassz szintet",
+        "sla_basic": "Basic (Hétköznap 9-17)",
+        "sla_pro": "Pro (Hétköznap 8-20 + Hétvégi ügyelet)",
+        "sla_enterprise": "Enterprise (24/7)",
+        "package_includes": "A csomag tartalma:",
+        "feature_support": "Korlátlan távoli segítségnyújtás",
+        "feature_monitoring": "Proaktív rendszerfelügyelet",
+        "feature_antivirus": "Vírusvédelem menedzselése",
+        "feature_maintenance": "Havi rendszerességű karbantartás",
+        "feature_availability": "Kiemelt rendelkezésre állás",
+        "estimated_price": "Becsült havidíj",
+        "per_month": "/ hó",
+        "request_quote": "Ajánlatkérés",
+        "unit_count": "db"
+    },
+    "LegalLayout": {
+        "back_home": "Vissza a főoldalra",
+        "documents": "Dokumentumok",
+        "terms": "Általános Szerződési Feltételek",
+        "privacy": "Adatvédelmi Tájékoztató",
+        "imprint": "Impresszum",
+        "help_title": "Segítségre van szükséged?",
+        "help_desc": "Ha kérdésed van a dokumentumokkal kapcsolatban, keress minket bizalommal.",
+        "contact_button": "Kapcsolatfelvétel",
+        "last_updated": "Utolsó frissítés:",
+        "print": "Nyomtatás"
+    },
+    "Affiliate": {
+        "title": "Partner Program",
+        "total_earnings": "Teljes Bevétel",
+        "pending": "kifizetés alatt",
+        "registered_referrals": "Regisztrált ajánlások",
+        "your_referral_link": "A Te ajánlói limited",
+        "recent_referrals": "Legutóbbi ajánlások",
+        "referrals_description": "Felhasználók, akik a te limiteddel regisztráltak.",
+        "table_date": "Dátum",
+        "table_user": "Felhasználó",
+        "table_status": "Státusz",
+        "table_reward": "Jutalék",
+        "no_referrals_yet": "Még nincs ajánlásod. Oszd meg a limitedet, hogy elkezdhess keresni!",
+        "status_registered": "Regisztrált"
     }
 }

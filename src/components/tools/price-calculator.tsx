@@ -14,8 +14,10 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import { CheckCircle2, Server, Monitor, ShieldCheck } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export function PriceCalculator() {
+    const t = useTranslations('PriceCalculator')
     const [workstations, setWorkstations] = useState([10])
     const [servers, setServers] = useState([1])
     const [slaLevel, setSlaLevel] = useState("basic")
@@ -41,9 +43,9 @@ export function PriceCalculator() {
             <div className="grid md:grid-cols-2">
                 <div className="p-6 md:p-8 space-y-8">
                     <div>
-                        <CardTitle className="text-2xl mb-2">Árkalkulátor</CardTitle>
+                        <CardTitle className="text-2xl mb-2">{t('title')}</CardTitle>
                         <CardDescription>
-                            Becsüld meg havi rendszerüzemeltetési költségeidet.
+                            {t('description')}
                         </CardDescription>
                     </div>
 
@@ -53,9 +55,9 @@ export function PriceCalculator() {
                             <div className="flex justify-between items-center">
                                 <Label className="flex items-center gap-2">
                                     <Monitor className="h-4 w-4 text-primary" />
-                                    Munkaállomások száma
+                                    {t('workstations_label')}
                                 </Label>
-                                <span className="font-bold text-lg">{workstations[0]} db</span>
+                                <span className="font-bold text-lg">{workstations[0]} {t('unit_count')}</span>
                             </div>
                             <Slider
                                 value={workstations}
@@ -72,9 +74,9 @@ export function PriceCalculator() {
                             <div className="flex justify-between items-center">
                                 <Label className="flex items-center gap-2">
                                     <Server className="h-4 w-4 text-primary" />
-                                    Szerverek száma
+                                    {t('servers_label')}
                                 </Label>
-                                <span className="font-bold text-lg">{servers[0]} db</span>
+                                <span className="font-bold text-lg">{servers[0]} {t('unit_count')}</span>
                             </div>
                             <Slider
                                 value={servers}
@@ -90,16 +92,16 @@ export function PriceCalculator() {
                         <div className="space-y-4">
                             <Label className="flex items-center gap-2">
                                 <ShieldCheck className="h-4 w-4 text-primary" />
-                                Szolgáltatási Szint (SLA)
+                                {t('sla_label')}
                             </Label>
                             <Select value={slaLevel} onValueChange={setSlaLevel}>
                                 <SelectTrigger>
-                                    <SelectValue placeholder="Válassz szintet" />
+                                    <SelectValue placeholder={t('sla_placeholder')} />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="basic">Basic (Hétköznap 9-17)</SelectItem>
-                                    <SelectItem value="pro">Pro (Hétköznap 8-20 + Hétvégi ügyelet)</SelectItem>
-                                    <SelectItem value="enterprise">Enterprise (24/7)</SelectItem>
+                                    <SelectItem value="basic">{t('sla_basic')}</SelectItem>
+                                    <SelectItem value="pro">{t('sla_pro')}</SelectItem>
+                                    <SelectItem value="enterprise">{t('sla_enterprise')}</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -108,28 +110,28 @@ export function PriceCalculator() {
 
                 <div className="bg-muted/50 p-6 md:p-8 flex flex-col justify-between border-l">
                     <div className="space-y-6">
-                        <h3 className="font-semibold text-lg">A csomag tartalma:</h3>
+                        <h3 className="font-semibold text-lg">{t('package_includes')}</h3>
                         <ul className="space-y-3">
                             <li className="flex items-start gap-2 text-sm text-muted-foreground">
                                 <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0" />
-                                <span>Korlátlan távoli segítségnyújtás</span>
+                                <span>{t('feature_support')}</span>
                             </li>
                             <li className="flex items-start gap-2 text-sm text-muted-foreground">
                                 <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0" />
-                                <span>Proaktív rendszerfelügyelet</span>
+                                <span>{t('feature_monitoring')}</span>
                             </li>
                             <li className="flex items-start gap-2 text-sm text-muted-foreground">
                                 <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0" />
-                                <span>Vírusvédelem menedzselése</span>
+                                <span>{t('feature_antivirus')}</span>
                             </li>
                             <li className="flex items-start gap-2 text-sm text-muted-foreground">
                                 <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0" />
-                                <span>Havi rendszerességű karbantartás</span>
+                                <span>{t('feature_maintenance')}</span>
                             </li>
                             {slaLevel !== 'basic' && (
                                 <li className="flex items-start gap-2 text-sm text-muted-foreground">
                                     <CheckCircle2 className="h-5 w-5 text-green-500 shrink-0" />
-                                    <span>Kiemelt rendelkezésre állás</span>
+                                    <span>{t('feature_availability')}</span>
                                 </li>
                             )}
                         </ul>
@@ -137,17 +139,17 @@ export function PriceCalculator() {
 
                     <div className="mt-8 space-y-4">
                         <div className="space-y-1">
-                            <p className="text-sm text-muted-foreground">Becsült havidíj</p>
+                            <p className="text-sm text-muted-foreground">{t('estimated_price')}</p>
                             <div className="flex items-baseline gap-1">
                                 <span className="text-4xl font-bold text-primary">
                                     {new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(estimatedPrice)}
                                 </span>
-                                <span className="text-muted-foreground">/ hó</span>
+                                <span className="text-muted-foreground">{t('per_month')}</span>
                             </div>
                         </div>
                         <Button className="w-full" size="lg" asChild>
                             <Link href="/ajanlatkeres">
-                                Ajánlatkérés
+                                {t('request_quote')}
                             </Link>
                         </Button>
                     </div>

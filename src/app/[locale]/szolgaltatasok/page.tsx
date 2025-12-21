@@ -1,78 +1,102 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Code2, Server, Shield, ShoppingCart, ArrowRight, CheckCircle2 } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { Badge } from "@/components/ui/badge"
+import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 
-const services = [
-    {
-        title: "Egyedi Scriptek & Automatizáció",
-        description: "Spórolj órákat a munkafolyamataid automatizálásával. Python, Node.js, n8n workflow-ok.",
-        icon: Code2,
-        href: "/szolgaltatasok/scriptek",
-        pricing: "50.000 Ft-tól",
-        features: ["API integrációk", "Workflow automatizáció", "Adatszinkronizáció", "Riport generálás"]
-    },
-    {
-        title: "Webfejlesztés & Webáruház",
-        description: "Modern, gyors és konverzió-fókuszált weboldalak és webshopok (WooCommerce, Next.js).",
-        icon: ShoppingCart,
-        href: "/szolgaltatasok/webfejlesztes",
-        pricing: "150.000 Ft-tól",
-        features: ["Reszponzív design", "E-commerce", "SEO optimalizálás", "Headless CMS"]
-    },
-    {
-        title: "Rendszerüzemeltetés & DevOps",
-        description: "Stabil szerverháttér, CI/CD pipeline-ok, Docker konténerizáció és felhő megoldások.",
-        icon: Server,
-        href: "/szolgaltatasok/rendszeruzemeltetes",
-        pricing: "Egyedi árazás",
-        features: ["CI/CD pipeline", "Docker & Kubernetes", "Felhő infrastruktúra", "Monitoring"]
-    },
-    {
-        title: "Biztonság & Audit",
-        description: "Weboldal biztonsági átvilágítás, sérülékenység vizsgálat és védelem beállítása.",
-        icon: Shield,
-        href: "/szolgaltatasok/biztonsag",
-        pricing: "80.000 Ft-tól",
-        features: ["Biztonsági audit", "Penetration testing", "WAF beállítás", "GDPR compliance"]
-    }
-]
+// Metadata generation for multilingual support
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslations({ locale, namespace: 'ServicesPage' });
 
-import { Metadata } from "next"
-
-export const metadata: Metadata = {
-    title: "Szolgáltatások | BacklineIT",
-    description: "Fedezd fel IT szolgáltatásainkat: egyedi szoftverfejlesztés, weboldal készítés, rendszerüzemeltetés és biztonsági audit.",
-    keywords: ["egyedi szoftver", "weboldal készítés", "rendszerüzemeltetés", "IT biztonság", "BacklineIT szolgáltatások"]
+    return {
+        title: t('hero_badge') + " | BacklineIT", // Or a specific metadata title key
+        description: t('hero_desc'),
+    };
 }
 
 export default function SzolgaltatasokPage() {
+    const t = useTranslations('ServicesPage')
+
+    const services = [
+        {
+            title: t('items.scripts.title'),
+            description: t('items.scripts.desc'),
+            icon: Code2,
+            href: "/szolgaltatasok/scriptek",
+            pricing: "50.000 Ft-tól", // This could also be translated if needed, or currency reformatted
+            features: [
+                t('items.scripts.features.0'),
+                t('items.scripts.features.1'),
+                t('items.scripts.features.2'),
+                t('items.scripts.features.3')
+            ]
+        },
+        {
+            title: t('items.webdev.title'),
+            description: t('items.webdev.desc'),
+            icon: ShoppingCart,
+            href: "/szolgaltatasok/webfejlesztes",
+            pricing: "150.000 Ft-tól",
+            features: [
+                t('items.webdev.features.0'),
+                t('items.webdev.features.1'),
+                t('items.webdev.features.2'),
+                t('items.webdev.features.3')
+            ]
+        },
+        {
+            title: t('items.devops.title'),
+            description: t('items.devops.desc'),
+            icon: Server,
+            href: "/szolgaltatasok/rendszeruzemeltetes",
+            pricing: "Egyedi árazás", // Should be t('pricing_custom') maybe? I'll leave as is for now or check my json
+            features: [
+                t('items.devops.features.0'),
+                t('items.devops.features.1'),
+                t('items.devops.features.2'),
+                t('items.devops.features.3')
+            ]
+        },
+        {
+            title: t('items.security.title'),
+            description: t('items.security.desc'),
+            icon: Shield,
+            href: "/szolgaltatasok/biztonsag",
+            pricing: "80.000 Ft-tól",
+            features: [
+                t('items.security.features.0'),
+                t('items.security.features.1'),
+                t('items.security.features.2'),
+                t('items.security.features.3')
+            ]
+        }
+    ]
+
     return (
         <>
             {/* Hero Section */}
             <section className="relative overflow-hidden bg-muted/30 py-20 md:py-32">
                 <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-800/50" />
                 <div className="container relative mx-auto px-4 text-center">
-                    <Badge className="mb-4" variant="secondary">Professzionális IT Megoldások</Badge>
+                    <Badge className="mb-4" variant="secondary">{t('hero_badge')}</Badge>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-                        Növeld vállalkozásod hatékonyságát<br />
-                        <span className="text-primary">modern technológiákkal</span>
+                        {t('hero_title')}<br />
+                        <span className="text-primary">{t('hero_title_highlight')}</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
-                        Legyen szó egyedi szoftverfejlesztésről, folyamatautomatizálásról vagy stabil üzemeltetésről,
-                        mi szakértő partnerként támogatunk a digitális transzformációban.
+                        {t('hero_desc')}
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                         <Link href="/arak">
                             <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8 text-lg">
-                                Árajánlat kérése
+                                {t('cta_quote')}
                             </Button>
                         </Link>
                         <Link href="#szolgaltatasok">
                             <Button size="lg" variant="outline" className="h-12 px-8 text-lg">
-                                Szolgáltatásaink
+                                {t('cta_services')}
                             </Button>
                         </Link>
                     </div>
@@ -84,10 +108,10 @@ export default function SzolgaltatasokPage() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            Szolgáltatásaink
+                            {t('list_title')}
                         </h2>
                         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                            Átfogó megoldások a tervezéstől a megvalósításig
+                            {t('list_desc')}
                         </p>
                     </div>
 
@@ -112,7 +136,7 @@ export default function SzolgaltatasokPage() {
                                     </CardHeader>
                                     <CardContent className="flex-1 flex flex-col">
                                         <div className="flex-1">
-                                            <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider text-muted-foreground">Mit tartalmaz?</h4>
+                                            <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider text-muted-foreground">{t('item_labels.whats_included')}</h4>
                                             <ul className="space-y-3 mb-8">
                                                 {service.features.map((feature, idx) => (
                                                     <li key={idx} className="flex items-start gap-3 text-sm">
@@ -125,7 +149,7 @@ export default function SzolgaltatasokPage() {
 
                                         <Link href={service.href} className="mt-auto">
                                             <Button className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" variant="outline">
-                                                Részletek és Megrendelés <ArrowRight className="ml-2 h-4 w-4" />
+                                                {t('item_labels.details_and_order')} <ArrowRight className="ml-2 h-4 w-4" />
                                             </Button>
                                         </Link>
                                     </CardContent>
@@ -143,10 +167,10 @@ export default function SzolgaltatasokPage() {
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div>
                             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-                                Miért a BacklineIT?
+                                {t('why_us_title')}
                             </h2>
                             <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                                Nem csak kódolunk, hanem üzleti problémákat oldunk meg. Célunk, hogy a technológia ne teher, hanem versenyelőny legyen a vállalkozásod számára.
+                                {t('why_us_lead')}
                             </p>
 
                             <div className="space-y-6">
@@ -155,8 +179,8 @@ export default function SzolgaltatasokPage() {
                                         <Code2 className="h-6 w-6 text-blue-400" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl mb-1">Modern Technológia</h3>
-                                        <p className="text-slate-400">Next.js, React, Node.js, Python - a legmodernebb eszközökkel dolgozunk a gyors és skálázható eredményért.</p>
+                                        <h3 className="font-bold text-xl mb-1">{t('reasons.tech.title')}</h3>
+                                        <p className="text-slate-400">{t('reasons.tech.desc')}</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
@@ -164,8 +188,8 @@ export default function SzolgaltatasokPage() {
                                         <Shield className="h-6 w-6 text-green-400" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl mb-1">Biztonság és Stabilitás</h3>
-                                        <p className="text-slate-400">Kiemelt figyelmet fordítunk az adatvédelemre és a rendszerek folyamatos rendelkezésre állására.</p>
+                                        <h3 className="font-bold text-xl mb-1">{t('reasons.security.title')}</h3>
+                                        <p className="text-slate-400">{t('reasons.security.desc')}</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4">
@@ -173,8 +197,8 @@ export default function SzolgaltatasokPage() {
                                         <Server className="h-6 w-6 text-purple-400" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl mb-1">Skálázhatóság</h3>
-                                        <p className="text-slate-400">Olyan rendszereket építünk, amelyek együtt nőnek a vállalkozásoddal, legyen szó 10 vagy 10.000 felhasználóról.</p>
+                                        <h3 className="font-bold text-xl mb-1">{t('reasons.scale.title')}</h3>
+                                        <p className="text-slate-400">{t('reasons.scale.desc')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -185,19 +209,19 @@ export default function SzolgaltatasokPage() {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="bg-slate-800/50 p-6 rounded-xl text-center">
                                         <div className="text-4xl font-bold text-blue-400 mb-2">100%</div>
-                                        <div className="text-sm text-slate-400">Határidőre</div>
+                                        <div className="text-sm text-slate-400">{t('stats.deadline')}</div>
                                     </div>
                                     <div className="bg-slate-800/50 p-6 rounded-xl text-center">
                                         <div className="text-4xl font-bold text-purple-400 mb-2">24/7</div>
-                                        <div className="text-sm text-slate-400">Monitoring</div>
+                                        <div className="text-sm text-slate-400">{t('stats.monitoring')}</div>
                                     </div>
                                     <div className="bg-slate-800/50 p-6 rounded-xl text-center">
                                         <div className="text-4xl font-bold text-green-400 mb-2">50+</div>
-                                        <div className="text-sm text-slate-400">Sikeres Projekt</div>
+                                        <div className="text-sm text-slate-400">{t('stats.projects')}</div>
                                     </div>
                                     <div className="bg-slate-800/50 p-6 rounded-xl text-center">
                                         <div className="text-4xl font-bold text-yellow-400 mb-2">5.0</div>
-                                        <div className="text-sm text-slate-400">Ügyfél Értékelés</div>
+                                        <div className="text-sm text-slate-400">{t('stats.rating')}</div>
                                     </div>
                                 </div>
                             </div>
@@ -213,20 +237,20 @@ export default function SzolgaltatasokPage() {
                         <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid-pattern.svg')] opacity-10" />
                         <div className="relative z-10 max-w-3xl mx-auto">
                             <h2 className="text-3xl md:text-5xl font-bold mb-6">
-                                Készen állsz a közös munkára?
+                                {t('cta_bottom_title')}
                             </h2>
                             <p className="text-xl text-primary-foreground/90 mb-10">
-                                Foglalj egy ingyenes, 30 perces konzultációt, ahol átbeszéljük az elképzeléseidet és technikai tanácsokat adunk.
+                                {t('cta_bottom_desc')}
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <Link href="/kapcsolat">
                                     <Button size="lg" variant="secondary" className="h-14 px-8 text-lg w-full sm:w-auto">
-                                        Ingyenes konzultáció
+                                        {t('cta_consultation')}
                                     </Button>
                                 </Link>
                                 <Link href="/arak">
                                     <Button size="lg" variant="outline" className="h-14 px-8 text-lg w-full sm:w-auto border-primary-foreground/30 hover:bg-primary-foreground/10 text-primary-foreground">
-                                        Csomagajánlatok
+                                        {t('cta_packages')}
                                     </Button>
                                 </Link>
                             </div>

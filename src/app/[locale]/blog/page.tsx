@@ -1,13 +1,31 @@
-import { getBlogPosts } from "@/lib/mdx"
+
+import { getBlogPosts } from "@/app/actions/blog"
 import { Link } from "@/i18n/routing"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, User, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { getTranslations } from "next-intl/server"
+import { format } from "date-fns"
+
+// Define a type since we can't fully rely on Prisma types being generated in this environment
+type BlogPost = {
+    id: string
+    title: string
+    slug: string
+    excerpt: string
+    content: string
+    author: string
+    createdAt: Date
+    tags: string[]
+    published: boolean
+    featured: boolean
+}
 
 export default async function BlogPage() {
-    const posts = await getBlogPosts()
+    // Cast to any first to avoid TS errors if prisma types aren't recognized
+    const allPosts = await getBlogPosts() as unknown as BlogPost[]
+    const posts = allPosts.filter(p => p.published)
     const t = await getTranslations('Blog')
 
     return (
@@ -23,11 +41,11 @@ export default async function BlogPage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post) => (
-                    <Card key={post.slug} className="flex flex-col h-full overflow-hidden hover:shadow-lg transition-all border-muted-foreground/10 group">
+                    <Card key={post.id} className="flex flex-col h-full overflow-hidden hover:shadow-lg transition-all border-muted-foreground/10 group">
                         <div className="h-48 bg-muted/50 relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 group-hover:scale-105 transition-transform duration-500" />
                             <div className="absolute bottom-4 left-4 flex gap-2">
-                                {post.tags.map(tag => (
+                                {post.tags.map((tag: string) => (
                                     <Badge key={tag} variant="secondary" className="backdrop-blur-sm bg-background/50">
                                         {tag}
                                     </Badge>
@@ -38,7 +56,7 @@ export default async function BlogPage() {
                             <div className="flex items-center gap-4 text-xs text-muted-foreground mb-2">
                                 <div className="flex items-center gap-1">
                                     <Calendar className="h-3 w-3" />
-                                    {post.date}
+                                    {format(new Date(post.createdAt), 'yyyy. MM. dd.')}
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <User className="h-3 w-3" />
@@ -53,7 +71,7 @@ export default async function BlogPage() {
                         </CardHeader>
                         <CardContent className="flex-1">
                             <p className="text-muted-foreground line-clamp-3">
-                                {post.description}
+                                {post.excerpt}
                             </p>
                         </CardContent>
                         <CardFooter>

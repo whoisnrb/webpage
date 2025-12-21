@@ -81,47 +81,185 @@ export function Hero() {
                     </div>
 
                     {/* Hero Visual / Illustration */}
-                    <div className="flex-1 w-full max-w-lg lg:max-w-none perspective-1000 h-[500px] relative">
-                        <div className="absolute inset-0 z-0">
-                            {/* Abstract 3D Scene - Replace URL with your own Spline scene if available */}
-                            {/* Currently using a placeholder cube scene or falling back to CodeWindow if Spline fails/is preferred */}
-                            <div className="w-full h-full relative">
-                                <div className="absolute pointer-events-none inset-0 z-10 bg-gradient-to-t from-background via-transparent to-transparent" />
-                                {/* Example Spline Scene - using a generic tech abstract one */}
-                                {/* <SplineScene scene="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode" className="w-full h-full" /> */}
-                                {/* Fallback to existing CodeWindow but enhanced */}
+                    <div className="flex-1 w-full max-w-lg lg:max-w-none h-[500px] relative">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="relative w-full h-full"
+                        >
+                            {/* Glowing Background */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 rounded-3xl blur-3xl opacity-60 animate-pulse"></div>
+
+                            {/* Main Container */}
+                            <div className="relative w-full h-full flex items-center justify-center">
+
+                                {/* Central Dashboard Card */}
                                 <motion.div
-                                    initial={{ opacity: 0, scale: 0.95, rotateY: 10 }}
-                                    animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
-                                    className="relative z-20 pt-10"
-                                    whileHover={{ rotateY: 5, rotateX: -5, transition: { duration: 0.3 } }}
+                                    initial={{ y: 50, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.4, duration: 0.6, type: "spring" }}
+                                    className="relative z-10 w-80 h-80 bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-2xl p-6"
+                                    whileHover={{ scale: 1.02, rotateY: 2 }}
                                 >
-                                    <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-xl blur-2xl opacity-40 animate-pulse"></div>
-                                    <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl backdrop-blur-md bg-black/80">
-                                        <CodeWindow />
+                                    {/* Header */}
+                                    <div className="flex items-center justify-between mb-6">
+                                        <div className="flex items-center gap-2">
+                                            <div className="h-3 w-3 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.6)]"></div>
+                                            <div className="h-3 w-3 rounded-full bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.6)]"></div>
+                                            <div className="h-3 w-3 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.6)]"></div>
+                                        </div>
+                                        <div className="text-xs font-mono text-muted-foreground">automation.live</div>
                                     </div>
 
-                                    {/* Floating Badge */}
-                                    <motion.div
-                                        initial={{ y: 20, opacity: 0 }}
-                                        animate={{ y: 0, opacity: 1 }}
-                                        transition={{ delay: 1.5, duration: 0.5 }}
-                                        className="absolute -bottom-6 -right-6 bg-card/60 border border-white/10 p-4 rounded-xl shadow-2xl hidden md:block backdrop-blur-xl"
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <div className="h-10 w-10 rounded-full bg-green-500/20 flex items-center justify-center shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-                                                <CheckCircle2 className="h-6 w-6 text-green-500" />
+                                    {/* Content */}
+                                    <div className="space-y-4">
+                                        <div className="flex items-center justify-between p-3 bg-primary/10 rounded-lg border border-primary/20">
+                                            <div className="flex items-center gap-3">
+                                                <div className="h-10 w-10 rounded-lg bg-primary/20 flex items-center justify-center">
+                                                    <Zap className="h-5 w-5 text-primary" />
+                                                </div>
+                                                <div>
+                                                    <div className="text-sm font-medium">Active Tasks</div>
+                                                    <div className="text-xs text-muted-foreground">Running</div>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <div className="text-sm font-medium text-muted-foreground">{t('stat_label')}</div>
-                                                <div className="text-lg font-bold text-foreground">{t('stat_value')}</div>
+                                            <div className="text-2xl font-bold text-primary">247</div>
+                                        </div>
+
+                                        <div className="grid grid-cols-2 gap-3">
+                                            <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/20">
+                                                <div className="text-xs text-muted-foreground mb-1">Success Rate</div>
+                                                <div className="text-xl font-bold text-green-500">99.8%</div>
+                                            </div>
+                                            <div className="p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                                                <div className="text-xs text-muted-foreground mb-1">Response Time</div>
+                                                <div className="text-xl font-bold text-blue-500">12ms</div>
                                             </div>
                                         </div>
-                                    </motion.div>
+
+                                        {/* Progress Bars */}
+                                        <div className="space-y-2">
+                                            <div className="flex items-center justify-between text-xs">
+                                                <span>CPU Usage</span>
+                                                <span className="text-muted-foreground">45%</span>
+                                            </div>
+                                            <div className="h-2 bg-muted rounded-full overflow-hidden">
+                                                <motion.div
+                                                    className="h-full bg-gradient-to-r from-primary to-secondary"
+                                                    initial={{ width: "0%" }}
+                                                    animate={{ width: "45%" }}
+                                                    transition={{ delay: 0.8, duration: 1.2 }}
+                                                />
+                                            </div>
+
+                                            <div className="flex items-center justify-between text-xs">
+                                                <span>Memory</span>
+                                                <span className="text-muted-foreground">67%</span>
+                                            </div>
+                                            <div className="h-2 bg-muted rounded-full overflow-hidden">
+                                                <motion.div
+                                                    className="h-full bg-gradient-to-r from-accent to-primary"
+                                                    initial={{ width: "0%" }}
+                                                    animate={{ width: "67%" }}
+                                                    transition={{ delay: 1, duration: 1.2 }}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        {/* Status Indicator */}
+                                        <div className="flex items-center gap-2 p-2 bg-green-500/10 rounded-lg border border-green-500/20">
+                                            <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
+                                            <span className="text-xs font-medium text-green-500">All Systems Operational</span>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Floating Card 1 - Top Left */}
+                                <motion.div
+                                    initial={{ x: -100, y: -50, opacity: 0 }}
+                                    animate={{
+                                        x: 0,
+                                        y: [0, -10, 0],
+                                        opacity: 1
+                                    }}
+                                    transition={{
+                                        x: { delay: 0.6, duration: 0.8, type: "spring" },
+                                        opacity: { delay: 0.6, duration: 0.8 },
+                                        y: { duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.6 }
+                                    }}
+                                    className="absolute top-0 left-0 z-20 bg-card/80 backdrop-blur-xl border border-white/20 rounded-xl p-4 shadow-xl"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className="h-10 w-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                                            <CheckCircle2 className="h-5 w-5 text-purple-500" />
+                                        </div>
+                                        <div>
+                                            <div className="text-xs text-muted-foreground">Deployment</div>
+                                            <div className="text-sm font-bold text-purple-500">Completed</div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Floating Card 2 - Bottom Right */}
+                                <motion.div
+                                    initial={{ x: 100, y: 50, opacity: 0 }}
+                                    animate={{
+                                        x: 0,
+                                        y: [0, 10, 0],
+                                        opacity: 1
+                                    }}
+                                    transition={{
+                                        x: { delay: 0.8, duration: 0.8, type: "spring" },
+                                        opacity: { delay: 0.8, duration: 0.8 },
+                                        y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }
+                                    }}
+                                    className="absolute bottom-0 right-0 z-20 bg-card/80 backdrop-blur-xl border border-white/20 rounded-xl p-4 shadow-xl"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className="h-10 w-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                                            <ShieldCheck className="h-5 w-5 text-cyan-500" />
+                                        </div>
+                                        <div>
+                                            <div className="text-xs text-muted-foreground">Security</div>
+                                            <div className="text-sm font-bold text-cyan-500">Protected</div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Floating Card 3 - Top Right */}
+                                <motion.div
+                                    initial={{ x: 100, y: -50, opacity: 0 }}
+                                    animate={{
+                                        x: [0, 10, 0],
+                                        y: [0, -5, 0],
+                                        opacity: 1
+                                    }}
+                                    transition={{
+                                        x: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 },
+                                        y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 },
+                                        opacity: { delay: 1, duration: 0.8 }
+                                    }}
+                                    className="absolute top-20 right-0 z-20 bg-card/80 backdrop-blur-xl border border-white/20 rounded-xl p-3 shadow-xl"
+                                >
+                                    <div className="text-center">
+                                        <div className="text-2xl font-bold text-yellow-500">24/7</div>
+                                        <div className="text-xs text-muted-foreground">Monitoring</div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Orbiting Dots */}
+                                <motion.div
+                                    className="absolute top-1/2 left-1/2 w-96 h-96 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                >
+                                    <div className="absolute top-0 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-primary shadow-[0_0_15px_rgba(6,182,212,0.8)]"></div>
+                                    <div className="absolute bottom-0 left-1/2 h-2 w-2 -translate-x-1/2 rounded-full bg-secondary shadow-[0_0_10px_rgba(139,92,246,0.8)]"></div>
+                                    <div className="absolute top-1/2 right-0 h-2 w-2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_10px_rgba(34,197,94,0.8)]"></div>
                                 </motion.div>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
 
                 </div>

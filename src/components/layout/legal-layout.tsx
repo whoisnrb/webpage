@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Printer, ArrowLeft, FileText, Shield, Info } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 interface LegalLayoutProps {
     children: React.ReactNode
@@ -13,12 +14,13 @@ interface LegalLayoutProps {
 }
 
 export function LegalLayout({ children, title, lastUpdated }: LegalLayoutProps) {
+    const t = useTranslations('LegalLayout')
     const pathname = usePathname()
 
     const links = [
-        { href: "/aszf", label: "Általános Szerződési Feltételek", icon: FileText },
-        { href: "/adatvedelem", label: "Adatvédelmi Tájékoztató", icon: Shield },
-        { href: "/impresszum", label: "Impresszum", icon: Info },
+        { href: "/aszf", label: t('terms'), icon: FileText },
+        { href: "/adatvedelem", label: t('privacy'), icon: Shield },
+        { href: "/impresszum", label: t('imprint'), icon: Info },
     ]
 
     const handlePrint = () => {
@@ -37,7 +39,7 @@ export function LegalLayout({ children, title, lastUpdated }: LegalLayoutProps) 
                     className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8 transition-colors"
                 >
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    Vissza a főoldalra
+                    {t('back_home')}
                 </Link>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -45,7 +47,7 @@ export function LegalLayout({ children, title, lastUpdated }: LegalLayoutProps) 
                     <aside className="lg:col-span-3 space-y-6">
                         <div className="sticky top-24 space-y-6">
                             <div className="bg-card rounded-xl border shadow-sm p-4">
-                                <h3 className="font-semibold mb-4 px-2">Dokumentumok</h3>
+                                <h3 className="font-semibold mb-4 px-2">{t('documents')}</h3>
                                 <nav className="space-y-1">
                                     {links.map((link) => {
                                         const Icon = link.icon
@@ -71,12 +73,12 @@ export function LegalLayout({ children, title, lastUpdated }: LegalLayoutProps) 
                             </div>
 
                             <div className="bg-card rounded-xl border shadow-sm p-4">
-                                <h3 className="font-semibold mb-2 px-2 text-sm">Segítségre van szükséged?</h3>
+                                <h3 className="font-semibold mb-2 px-2 text-sm">{t('help_title')}</h3>
                                 <p className="text-xs text-muted-foreground px-2 mb-4">
-                                    Ha kérdésed van a dokumentumokkal kapcsolatban, keress minket bizalommal.
+                                    {t('help_desc')}
                                 </p>
                                 <Button variant="outline" className="w-full" asChild>
-                                    <Link href="/kapcsolat">Kapcsolatfelvétel</Link>
+                                    <Link href="/kapcsolat">{t('contact_button')}</Link>
                                 </Button>
                             </div>
                         </div>
@@ -91,13 +93,13 @@ export function LegalLayout({ children, title, lastUpdated }: LegalLayoutProps) 
                                     <h1 className="text-3xl font-bold tracking-tight mb-2">{title}</h1>
                                     {lastUpdated && (
                                         <p className="text-sm text-muted-foreground">
-                                            Utolsó frissítés: <span className="font-medium text-foreground">{lastUpdated}</span>
+                                            {t('last_updated')} <span className="font-medium text-foreground">{lastUpdated}</span>
                                         </p>
                                     )}
                                 </div>
                                 <Button variant="outline" size="sm" onClick={handlePrint} className="shrink-0 gap-2">
                                     <Printer className="h-4 w-4" />
-                                    Nyomtatás
+                                    {t('print')}
                                 </Button>
                             </div>
 

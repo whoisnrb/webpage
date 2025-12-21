@@ -2,54 +2,56 @@
 
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
-
-const faqs = [
-    {
-        question: "Mennyi idő alatt készül el a projekt?",
-        answer: "A Starter csomag általában 2-3 hét, a Professional 4-6 hét, az Enterprise projektek pedig 8-12 hét alatt készülnek el. A pontos időkeretet a projekt komplexitása határozza meg, amit az első konzultáción egyeztetünk."
-    },
-    {
-        question: "Milyen fizetési lehetőségek vannak?",
-        answer: "Elfogadunk banki átutalást, kártyás fizetést és részletfizetést is. A projekt díjának 50%-át előlegként kérjük, a maradék 50% pedig átadáskor esedékes. Enterprise ügyfeleinknek egyedi fizetési konstrukciókat is kínálunk."
-    },
-    {
-        question: "Mit tartalmaz a support csomag?",
-        answer: "A support csomag tartalmazza a technikai segítségnyújtást, hibajavításokat, kisebb módosításokat, biztonsági frissítéseket és havi teljesítmény riportot. A Professional csomagnál 6 hónap, az Enterprise-nál 12 hónap support jár automatikusan."
-    },
-    {
-        question: "Saját domain és hosting szükséges?",
-        answer: "Nem feltétlenül. A Starter csomagban 1 év shared hosting már benne van. Ha van saját hostingod, azt is használhatjuk. Segítünk a domain regisztrációban és a hosting kiválasztásában is."
-    },
-    {
-        question: "Tudok később bővíteni a csomagot?",
-        answer: "Természetesen! Bármikor bővítheted a szolgáltatásokat. Ha például Starter csomaggal indulsz, később hozzáadhatsz webshop funkciót, automatizációkat vagy DevOps szolgáltatásokat."
-    },
-    {
-        question: "Mi történik, ha nem vagyok elégedett?",
-        answer: "Minden projektnél van egy jóváhagyási folyamat. A design és a fejlesztés közben folyamatosan egyeztetünk, így biztosítjuk, hogy pontosan azt kapd, amit elképzeltél. Ha mégis probléma merülne fel, közösen megoldjuk."
-    },
-    {
-        question: "Milyen technológiákat használtok?",
-        answer: "Modern, jövőálló technológiákat használunk: Next.js, React, Tailwind CSS, WordPress, WooCommerce, Node.js, Python, Docker, AWS/DigitalOcean. Mindig a projekthez legmegfelelőbb stack-et választjuk."
-    },
-    {
-        question: "Kaptok GDPR-kompatibilis megoldást?",
-        answer: "Igen, minden weboldalunk GDPR-kompatibilis. Cookie consent banner, adatvédelmi nyilatkozat, adatkezelési tájékoztató mind-mind benne van. Enterprise csomagnál teljes GDPR audit is jár."
-    }
-]
+import { useTranslations } from "next-intl"
 
 export function PricingFAQ() {
+    const t = useTranslations('PricingPage.FAQ')
     const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+    const faqs = [
+        {
+            question: t('items.0.question'),
+            answer: t('items.0.answer')
+        },
+        {
+            question: t('items.1.question'),
+            answer: t('items.1.answer')
+        },
+        {
+            question: t('items.2.question'),
+            answer: t('items.2.answer')
+        },
+        {
+            question: t('items.3.question'),
+            answer: t('items.3.answer')
+        },
+        {
+            question: t('items.4.question'),
+            answer: t('items.4.answer')
+        },
+        {
+            question: t('items.5.question'),
+            answer: t('items.5.answer')
+        },
+        {
+            question: t('items.6.question'),
+            answer: t('items.6.answer')
+        },
+        {
+            question: t('items.7.question'),
+            answer: t('items.7.answer')
+        }
+    ]
 
     return (
         <section className="py-16 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                        Gyakran Ismételt Kérdések
+                        {t('title')}
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        Minden, amit tudnod kell az árazásról és a szolgáltatásokról
+                        {t('desc')}
                     </p>
                 </div>
 
@@ -83,13 +85,13 @@ export function PricingFAQ() {
 
                 <div className="mt-12 text-center">
                     <p className="text-muted-foreground mb-4">
-                        Nem találod a választ a kérdésedre?
+                        {t('bottom_text')}
                     </p>
                     <a
                         href="mailto:info@example.com"
                         className="text-primary hover:underline font-semibold"
                     >
-                        Írj nekünk →
+                        {t('contact_text')}
                     </a>
                 </div>
             </div>

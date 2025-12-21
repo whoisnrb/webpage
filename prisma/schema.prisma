@@ -187,3 +187,18 @@ model ReferralReward {
   createdAt    DateTime @default(now())
   paidAt       DateTime?
 }
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String   @db.Text
+  coverImage  String?
+  author      String   @default("BacklineIT Team")
+  tags        String[]
+  published   Boolean  @default(false)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

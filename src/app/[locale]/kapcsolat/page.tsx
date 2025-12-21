@@ -5,6 +5,7 @@ import { BookingForm } from "@/components/booking-form"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, MapPin, Phone, Clock } from "lucide-react"
 import { FadeIn, SlideUp } from "@/components/ui/motion-wrapper"
+import { TrustSignals } from "@/components/ui/trust-signals"
 
 export default function KapcsolatPage() {
     return (
@@ -67,6 +68,10 @@ export default function KapcsolatPage() {
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div className="pt-6 border-t">
+                                <TrustSignals variant="default" orientation="vertical" />
                             </div>
                         </SlideUp>
 

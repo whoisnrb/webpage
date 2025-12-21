@@ -175,7 +175,8 @@
         "title": "Blog & Knowledge Base",
         "subtitle": "News, tips, and professional articles from the world of IT, automation, and web development.",
         "read_more": "Read more",
-        "back": "Back to blog"
+        "back": "Back to blog",
+        "back_to_blog": "Back to blog"
     },
     "Products": {
         "title": "Digital Marketplace",
@@ -574,6 +575,276 @@
     },
     "LanguageSwitcher": {
         "label": "Change Language"
+    },
+    "TrustSignals": {
+        "ssl_title": "SSL Security",
+        "ssl_desc": "Encrypted connection",
+        "gdpr_title": "GDPR Compliant",
+        "gdpr_desc": "Data protection guaranteed",
+        "experts_title": "Certified Experts",
+        "experts_desc": "Verified quality"
+    },
+    "ServicesPage": {
+        "hero_badge": "Professional IT Solutions",
+        "hero_title": "Boost your business efficiency with",
+        "hero_title_highlight": "modern technologies",
+        "hero_desc": "Whether it's custom software development, process automation, or stable operations, we support you as an expert partner in digital transformation.",
+        "cta_quote": "Request a Quote",
+        "cta_services": "Our Services",
+        "list_title": "Our Services",
+        "list_desc": "Comprehensive solutions from planning to implementation",
+        "items": {
+            "scripts": {
+                "title": "Custom Scripts & Automation",
+                "desc": "Save hours by automating your workflows. Python, Node.js, n8n workflows.",
+                "features": [
+                    "API integrations",
+                    "Workflow automation",
+                    "Data synchronization",
+                    "Report generation"
+                ]
+            },
+            "webdev": {
+                "title": "Web Development & E-commerce",
+                "desc": "Modern, fast, and conversion-focused websites and webshops (WooCommerce, Next.js).",
+                "features": [
+                    "Responsive design",
+                    "E-commerce",
+                    "SEO optimization",
+                    "Headless CMS"
+                ]
+            },
+            "devops": {
+                "title": "System Administration & DevOps",
+                "desc": "Stable server background, CI/CD pipelines, Docker containerization, and cloud solutions.",
+                "features": [
+                    "CI/CD pipeline",
+                    "Docker & Kubernetes",
+                    "Cloud infrastructure",
+                    "Monitoring"
+                ]
+            },
+            "security": {
+                "title": "Security & Audit",
+                "desc": "Website security screening, vulnerability assessment, and protection setup.",
+                "features": [
+                    "Security audit",
+                    "Penetration testing",
+                    "WAF setup",
+                    "GDPR compliance"
+                ]
+            }
+        },
+        "item_labels": {
+            "whats_included": "What's included?",
+            "details_and_order": "Details and Order"
+        },
+        "why_us_title": "Why BacklineIT?",
+        "why_us_lead": "We don't just code, we solve business problems. Our goal is to make technology a competitive advantage for your business, not a burden.",
+        "reasons": {
+            "tech": {
+                "title": "Modern Technology",
+                "desc": "Next.js, React, Node.js, Python - we work with the most modern tools for fast and scalable results."
+            },
+            "security": {
+                "title": "Security and Stability",
+                "desc": "We pay special attention to data protection and continuous system availability."
+            },
+            "scale": {
+                "title": "Scalability",
+                "desc": "We build systems that grow with your business, whether it's 10 or 10,000 users."
+            }
+        },
+        "stats": {
+            "deadline": "On Deadline",
+            "monitoring": "Monitoring",
+            "projects": "Successful Projects",
+            "rating": "Client Rating"
+        },
+        "cta_bottom_title": "Ready to work together?",
+        "cta_bottom_desc": "Book a free 30-minute consultation where we discuss your ideas and give technical advice.",
+        "cta_consultation": "Free Consultation",
+        "cta_packages": "Package Deals"
+    },
+    "PricingPage": {
+        "hero_title": "Transparent pricing,",
+        "hero_title_highlight": "no hidden fees",
+        "hero_desc": "Choose the package that best suits your business, or let's create a custom solution for your needs.",
+        "features": {
+            "no_hidden_fees": "No hidden fees",
+            "free_consultation": "Free consultation",
+            "money_back": "Money-back guarantee"
+        },
+        "comparison_title": "Detailed Comparison",
+        "comparison_desc": "See exactly what each package includes",
+        "table": {
+            "service": "Service",
+            "starter": "Starter",
+            "pro": "Professional",
+            "enterprise": "Enterprise",
+            "rows": {
+                "webdev": "Website Development",
+                "responsive": "Responsive Design",
+                "seo": "SEO Optimization",
+                "shop": "Webshop",
+                "automation": "Automations",
+                "security": "Security Audit",
+                "devops": "DevOps & CI/CD",
+                "hosting": "Hosting",
+                "support": "Support Duration",
+                "monitoring": "24/7 Monitoring",
+                "engineer": "Dedicated Engineer"
+            },
+            "values": {
+                "basic": "Basic",
+                "advanced": "Advanced",
+                "full": "Full",
+                "months": "months",
+                "year_shared": "1 year shared",
+                "year_vps": "1 year VPS",
+                "dedicated": "Dedicated"
+            }
+        },
+        "cta_title": "Ready to launch?",
+        "cta_desc": "Book a free consultation and let's discuss your project details. No obligation, just useful advice.",
+        "cta_consultation": "Free Consultation",
+        "cta_services": "Overview Services",
+        "PricingTable": {
+            "title": "Choose the right package for you",
+            "desc": "Transparent pricing, no hidden costs. Every package includes the tools needed for a successful launch.",
+            "packages": {
+                "starter": {
+                    "name": "Starter",
+                    "description": "Perfect for small businesses and startup projects",
+                    "price_note": "one-time fee",
+                    "features": [
+                        "Modern landing page or introduction website",
+                        "Responsive design (mobile, tablet, desktop)",
+                        "SEO basics setup",
+                        "Contact form",
+                        "1 year free hosting (shared)",
+                        "SSL certificate",
+                        "3 months free support",
+                        "Google Analytics integration"
+                    ],
+                    "cta": "Coming Soon"
+                },
+                "pro": {
+                    "name": "Professional",
+                    "description": "For growing businesses with complex needs",
+                    "price_note": "one-time fee + 15,000 HUF/mo support",
+                    "features": [
+                        "Everything in Starter package",
+                        "Webshop (WooCommerce/Shopify)",
+                        "Custom functions and automations",
+                        "Security audit and hardening",
+                        "WAF and DDoS protection setup",
+                        "VPS hosting for 1 year",
+                        "CI/CD pipeline (automatic deploy)",
+                        "6 months priority support",
+                        "Monthly performance report",
+                        "Daily backups"
+                    ],
+                    "cta": "Coming Soon"
+                },
+                "enterprise": {
+                    "name": "Enterprise",
+                    "description": "For large companies and complex projects",
+                    "price": "Custom",
+                    "price_note": "based on quote",
+                    "features": [
+                        "Everything in Professional package",
+                        "Full custom development",
+                        "Headless CMS (Next.js + Strapi/Ghost)",
+                        "Microservices architecture",
+                        "Kubernetes cluster management",
+                        "Dedicated DevOps engineer",
+                        "24/7 monitoring and support",
+                        "Penetration testing",
+                        "GDPR compliance consulting",
+                        "Dedicated server infrastructure",
+                        "SLA guarantee (99.9% uptime)"
+                    ],
+                    "cta": "Request Quote"
+                }
+            },
+            "popular_tag": "Most Popular",
+            "bottom_text": "Can't find the right package? Let's create a custom solution!",
+            "bottom_cta": "Request Custom Quote"
+        },
+        "FAQ": {
+            "title": "Frequently Asked Questions",
+            "desc": "Everything you need to know about pricing and services",
+            "items": {
+                "0": {
+                    "question": "How long does the project take?",
+                    "answer": "Starter packages usually take 2-3 weeks, Professional 4-6 weeks, and Enterprise projects 8-12 weeks. The exact timeframe is determined by project complexity, discussed during the first consultation."
+                },
+                "1": {
+                    "question": "What payment options are available?",
+                    "answer": "We accept bank transfer, card payment, and installment plans. We ask for 50% of the project fee as a deposit, with the remaining 50% due upon handover. We also offer custom payment structures for Enterprise clients."
+                },
+                "2": {
+                    "question": "What does the support package include?",
+                    "answer": "The support package includes technical assistance, bug fixes, minor modifications, security updates, and monthly performance reports. Professional packages come with 6 months, Enterprise with 12 months support automatically."
+                },
+                "3": {
+                    "question": "Do I need my own domain and hosting?",
+                    "answer": "Not necessarily. The Starter package includes 1 year of shared hosting. If you have your own hosting, we can use that too. We also help with domain registration and hosting selection."
+                },
+                "4": {
+                    "question": "Can I upgrade the package later?",
+                    "answer": "Absolutely! You can upgrade services at any time. For example, if you start with a Starter package, you can add webshop functions, automations, or DevOps services later."
+                },
+                "5": {
+                    "question": "What happens if I'm not satisfied?",
+                    "answer": "Every project has an approval process. We continuously consult during design and development to ensure you get exactly what you imagined. If any issue arises, we solve it together."
+                },
+                "6": {
+                    "question": "What technologies do you use?",
+                    "answer": "We use modern, future-proof technologies: Next.js, React, Tailwind CSS, WordPress, WooCommerce, Node.js, Python, Docker, AWS/DigitalOcean. We always choose the most suitable stack for the project."
+                },
+                "7": {
+                    "question": "Do I get a GDPR-compliant solution?",
+                    "answer": "Yes, all our websites are GDPR-compliant. Cookie consent banner, privacy policy, data management notice are all included. Enterprise packages also come with a full GDPR audit."
+                }
+            },
+            "bottom_text": "Can't find the answer to your question?",
+            "contact_text": "Write to us →"
+        }
+    },
+    "PriceCalculator": {
+        "title": "Price Calculator",
+        "description": "Estimate your monthly system administration costs.",
+        "workstations_label": "Number of Workstations",
+        "servers_label": "Number of Servers",
+        "sla_label": "Service Level (SLA)",
+        "sla_placeholder": "Select level",
+        "sla_basic": "Basic (Weekdays 9-17)",
+        "sla_pro": "Pro (Weekdays 8-20 + Weekend standby)",
+        "sla_enterprise": "Enterprise (24/7)",
+        "package_includes": "Package includes:",
+        "feature_support": "Unlimited remote support",
+        "feature_monitoring": "Proactive system monitoring",
+        "feature_antivirus": "Antivirus management",
+        "feature_maintenance": "Monthly maintenance",
+        "feature_availability": "Priority availability",
+        "estimated_price": "Estimated monthly fee",
+        "per_month": "/ month",
+        "request_quote": "Request Quote",
+        "unit_count": "pcs"
+    },
+    "LegalLayout": {
+        "back_home": "Back to home",
+        "documents": "Documents",
+        "terms": "Terms & Conditions",
+        "privacy": "Privacy Policy",
+        "imprint": "Imprint",
+        "help_title": "Need help?",
+        "help_desc": "If you have any questions about the documents, feel free to contact us.",
+        "contact_button": "Contact Us",
+        "last_updated": "Last updated:",
+        "print": "Print"
     },
     "Affiliate": {
         "title": "Affiliate Dashboard",

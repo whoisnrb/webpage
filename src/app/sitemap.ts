@@ -1,14 +1,23 @@
 import { MetadataRoute } from 'next'
-import { blogPosts } from '@/data/blog-posts'
+import { getBlogPosts } from '@/app/actions/blog'
 import { getProducts } from '@/app/actions/product'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://backlineit.hu'
     let products: any[] = []
+    let posts: any[] = []
+
     try {
         products = await getProducts()
     } catch (error) {
         console.warn('Could not fetch products for sitemap generation:', error)
+    }
+
+    try {
+        // We cast to any[] because explicit types might not be available without prisma generate
+        posts = await getBlogPosts() as any[]
+    } catch (error) {
+        console.warn('Could not fetch blog posts for sitemap generation:', error)
     }
 
     // Static pages
@@ -30,9 +39,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: route === '' ? 1 : 0.8,
     }))
 
-    const blogRoutes = blogPosts.map((post) => ({
+    const blogRoutes = posts.filter(post => post.published).map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: new Date(), // In a real app, use post.date or updated date
+        lastModified: post.updatedAt ? new Date(post.updatedAt) : new Date(post.createdAt),
         changeFrequency: 'monthly' as const,
         priority: 0.6,
     }))

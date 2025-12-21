@@ -4,6 +4,7 @@ import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Code2 } from "lucide-react"
 import { NewsletterForm } from "@/components/newsletter-form"
+import { TrustSignals } from "@/components/ui/trust-signals"
 
 export function Footer() {
     const tStats = useTranslations("Footer")
@@ -25,6 +26,8 @@ export function Footer() {
                         <p className="text-sm text-muted-foreground mb-6 max-w-xs">
                             {tStats("description")}
                         </p>
+
+                        <TrustSignals variant="minimal" orientation="vertical" className="mt-6" />
 
                     </div>
 
