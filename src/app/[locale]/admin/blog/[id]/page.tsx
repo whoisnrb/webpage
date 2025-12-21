@@ -15,6 +15,12 @@ export default async function EditBlogPostPage({ params }: { params: Promise<{ i
         notFound()
     }
 
+    // Transform null to undefined for coverImage to match BlogPostData type
+    const postData = {
+        ...post,
+        coverImage: post.coverImage ?? undefined
+    }
+
     return (
         <div className="space-y-6">
             <div className="flex items-center gap-4">
@@ -36,7 +42,7 @@ export default async function EditBlogPostPage({ params }: { params: Promise<{ i
                     <CardTitle>Szerkesztés</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <BlogPostForm initialData={post} />
+                    <BlogPostForm initialData={postData} />
                 </CardContent>
             </Card>
         </div>
