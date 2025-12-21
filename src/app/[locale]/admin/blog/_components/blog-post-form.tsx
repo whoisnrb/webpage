@@ -28,10 +28,10 @@ const formSchema = z.object({
     slug: z.string().min(2, "A slug minimum 2 karakter legyen").regex(/^[a-z0-9-]+$/, "Csak kisbetűk, számok és kötőjelek lehetnek"),
     excerpt: z.string().min(10, "A kivonat minimum 10 karakter legyen"),
     content: z.string().min(20, "A tartalom minimum 20 karakter legyen"),
-    author: z.string().default("BacklineIT Team"),
-    published: z.boolean().default(false),
-    featured: z.boolean().default(false),
-    tags: z.string().default(""), // Comma separated string for input
+    author: z.string().min(1),
+    published: z.boolean(),
+    featured: z.boolean(),
+    tags: z.string(), // Comma separated string for input
 })
 
 type FormValues = z.infer<typeof formSchema>
@@ -46,14 +46,14 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
 
     // Ensure we handle potentially undefined values from initialData by providing defaults
     const defaultValues: FormValues = {
-        title: initialData?.title || "",
-        slug: initialData?.slug || "",
-        excerpt: initialData?.excerpt || "",
-        content: initialData?.content || "",
-        author: initialData?.author || "BacklineIT Team",
-        published: initialData?.published || false,
-        featured: initialData?.featured || false,
-        tags: initialData?.tags?.join(", ") || "",
+        title: initialData?.title ?? "",
+        slug: initialData?.slug ?? "",
+        excerpt: initialData?.excerpt ?? "",
+        content: initialData?.content ?? "",
+        author: initialData?.author ?? "BacklineIT Team",
+        published: initialData?.published ?? false,
+        featured: initialData?.featured ?? false,
+        tags: initialData?.tags?.join(", ") ?? "",
     }
 
     const form = useForm<FormValues>({
