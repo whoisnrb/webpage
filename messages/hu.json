@@ -858,5 +858,12 @@
         "description": "Váratlan hiba lépett fel a rendszerünkben. Már dolgozunk a megoldáson.",
         "retry": "Próbálja újra",
         "back_home": "Vissza a főoldalra"
+    },
+    "QuickView": {
+        "add_to_cart": "Kosárba",
+        "request_quote": "Ajánlatkérés",
+        "details": "Részletek",
+        "price_note": "bruttó ár",
+        "quick_view": "Gyorsnézet"
     }
 }

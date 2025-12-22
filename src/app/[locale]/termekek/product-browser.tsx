@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { ProductDTO } from "@/app/actions/product"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTranslations } from "next-intl"
+import { QuickViewModal } from "@/components/ui/quick-view-modal"
 
 interface ProductBrowserProps {
     initialProducts: ProductDTO[]
@@ -14,6 +15,8 @@ interface ProductBrowserProps {
 export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
     const t = useTranslations("Products")
     const [activeCategory, setActiveCategory] = useState("all")
+    const [quickViewData, setQuickViewData] = useState<any | null>(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
 
     const categories = [
         { id: "all", label: t("categories.all") },
@@ -73,6 +76,13 @@ export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
                                         category={product.category}
                                         slug={product.slug}
                                         image={product.image}
+                                        onQuickView={() => {
+                                            setQuickViewData({
+                                                ...product,
+                                                type: 'product'
+                                            })
+                                            setIsModalOpen(true)
+                                        }}
                                     />
                                 </motion.div>
                             ))}
@@ -96,6 +106,12 @@ export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
                     </div>
                 </div>
             </section>
+            {/* Quick View Modal */}
+            <QuickViewModal
+                isOpen={isModalOpen}
+                onOpenChange={setIsModalOpen}
+                data={quickViewData}
+            />
         </>
     )
 }

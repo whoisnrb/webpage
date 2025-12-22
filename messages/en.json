@@ -858,5 +858,12 @@
         "description": "An unexpected error occurred in our system. We are already working on a solution.",
         "retry": "Try again",
         "back_home": "Back to Home"
+    },
+    "QuickView": {
+        "add_to_cart": "Add to Cart",
+        "request_quote": "Request Quote",
+        "details": "Details",
+        "price_note": "gross price",
+        "quick_view": "Quick View"
     }
 }

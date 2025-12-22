@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import { useCart } from "@/components/ecommerce/cart-provider"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 interface ProductCardProps {
     id: string
@@ -16,10 +17,12 @@ interface ProductCardProps {
     category: string
     slug: string
     image?: string
+    onQuickView?: () => void
 }
 
-export function ProductCard({ id, title, description, price, category, slug, image }: ProductCardProps) {
+export function ProductCard({ id, title, description, price, category, slug, image, onQuickView }: ProductCardProps) {
     const { addItem } = useCart()
+    const t = useTranslations()
 
     const handleAddToCart = () => {
         addItem({
@@ -68,9 +71,20 @@ export function ProductCard({ id, title, description, price, category, slug, ima
 
                     {/* Overlay Actions */}
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
-                        <Button size="sm" variant="secondary" asChild className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                onQuickView?.()
+                            }}
+                            className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+                        >
+                            <Eye className="mr-2 h-4 w-4" /> {t('QuickView.quick_view')}
+                        </Button>
+                        <Button size="sm" variant="outline" asChild className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75 border-white text-white hover:bg-white/20">
                             <Link href={`/termekek/${slug}`}>
-                                <Eye className="mr-2 h-4 w-4" /> Részletek
+                                {t('QuickView.details')}
                             </Link>
                         </Button>
                     </div>
