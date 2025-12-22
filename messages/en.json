@@ -160,14 +160,6 @@
         "success": "Booking Successful!",
         "success_message": "We will contact you shortly."
     },
-    "PriceCalculator": {
-        "title": "Price Calculator",
-        "workstations": "Number of Workstations",
-        "servers": "Number of Servers",
-        "sla_level": "SLA Level",
-        "estimated_price": "Estimated Monthly Fee",
-        "request_quote": "Request Quote"
-    },
     "Maintenance": {
         "banner_text": "Currently under maintenance. We only accept custom quotes."
     },
@@ -860,5 +852,11 @@
         "table_reward": "Reward",
         "no_referrals_yet": "No referrals yet. Share your link to start earning!",
         "status_registered": "Registered"
+    },
+    "Error": {
+        "title": "Oops! Something went wrong",
+        "description": "An unexpected error occurred in our system. We are already working on a solution.",
+        "retry": "Try again",
+        "back_home": "Back to Home"
     }
 }

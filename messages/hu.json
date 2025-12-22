@@ -160,14 +160,6 @@
         "success": "Sikeres foglalás!",
         "success_message": "Hamarosan felvesszük veled a kapcsolatot."
     },
-    "PriceCalculator": {
-        "title": "Árkalkulátor",
-        "workstations": "Munkaállomások száma",
-        "servers": "Szerverek száma",
-        "sla_level": "SLA Szint",
-        "estimated_price": "Becsült havi díj",
-        "request_quote": "Ajánlatkérés"
-    },
     "Maintenance": {
         "banner_text": "Jelenleg karbantartás alatt. Csak egyedi ajánlatokat vállalunk."
     },
@@ -860,5 +852,11 @@
         "table_reward": "Jutalék",
         "no_referrals_yet": "Még nincs ajánlásod. Oszd meg a limitedet, hogy elkezdhess keresni!",
         "status_registered": "Regisztrált"
+    },
+    "Error": {
+        "title": "Hoppá! Valami hiba történt",
+        "description": "Váratlan hiba lépett fel a rendszerünkben. Már dolgozunk a megoldáson.",
+        "retry": "Próbálja újra",
+        "back_home": "Vissza a főoldalra"
     }
 }

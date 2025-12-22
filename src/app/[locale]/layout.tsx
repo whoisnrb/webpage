@@ -52,6 +52,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://backlineit.hu"),
   alternates: {
     canonical: '/',
+    languages: {
+      'hu': '/hu',
+      'en': '/en',
+    },
   },
   verification: {
     google: "w5GusFwWrjuwRjB6Et93XNbdps97gw7pOuMeX4a5pbY",
