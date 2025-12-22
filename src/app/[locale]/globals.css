@@ -122,6 +122,12 @@
   --radius-lg: var(--radius);
 
   --radius-xl: calc(var(--radius) + 4px);
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
 }
 
 body {
