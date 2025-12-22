@@ -10,6 +10,7 @@ import { CartDrawer } from "@/components/ecommerce/cart-drawer"
 import { Breadcrumbs } from "@/components/layout/breadcrumbs"
 import { ThemeCustomizer } from "@/components/theme/theme-customizer"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
+import { CurrencySwitcher } from "@/components/layout/currency-switcher"
 import { MegaMenu } from "@/components/layout/mega-menu"
 
 
@@ -80,6 +81,7 @@ export function Header() {
                             <Link href="/kapcsolat">{t("free_consultation")}</Link>
                         </Button>
                         <ThemeCustomizer />
+                        <CurrencySwitcher />
                         <LanguageSwitcher />
                     </div>
 

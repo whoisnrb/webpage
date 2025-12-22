@@ -14,6 +14,7 @@ import { ShoppingCart, ArrowRight, CheckCircle2 } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useCart } from "@/components/ecommerce/cart-provider"
 import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
 
 interface QuickViewModalProps {
     isOpen: boolean
@@ -104,9 +105,7 @@ export function QuickViewModal({ isOpen, onOpenChange, data }: QuickViewModalPro
                         <div className="mt-auto pt-6 border-t border-primary/10">
                             {data.price ? (
                                 <div className="flex items-center justify-between mb-6">
-                                    <div className="text-2xl font-bold text-primary">
-                                        {new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(data.price)}
-                                    </div>
+                                    <PriceDisplay amount={data.price} className="text-2xl" />
                                     <span className="text-xs text-muted-foreground">{t('QuickView.price_note')}</span>
                                 </div>
                             ) : null}

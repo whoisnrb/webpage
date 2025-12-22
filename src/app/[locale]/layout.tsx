@@ -4,6 +4,7 @@ import { GoogleTags } from "@/components/analytics/google-tags";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/ecommerce/cart-provider";
+import { CurrencyProvider } from "@/components/currency-provider";
 import { NeuralBackground } from "@/components/neural-background";
 import { CommandMenu } from "@/components/layout/command-menu";
 import { BackToTop } from "@/components/layout/back-to-top";
@@ -20,6 +21,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 import { PageTransition } from "@/components/ui/page-transition";
 import { SessionProvider } from "@/components/auth/session-provider";
 import { Analytics } from "@vercel/analytics/react";
+import { SWRegistration } from "@/components/sw-registration";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -98,6 +100,7 @@ export default async function RootLayout({
       <body
         className={`${inter.variable} antialiased`}
       >
+        <SWRegistration />
         <GoogleTags />
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
@@ -110,23 +113,25 @@ export default async function RootLayout({
             />
             <NeuralBackground />
             <ScrollProgress />
-            <CartProvider>
-              <MaintenanceBanner />
-              <PromoBanner />
+            <CurrencyProvider>
+              <CartProvider>
+                <MaintenanceBanner />
+                <PromoBanner />
 
-              <Header />
-              <PageTransition>
-                {children}
-              </PageTransition>
-              <Footer />
-              <CommandMenu />
-              <BackToTop />
-              <SocialProof />
-              <CookieBanner />
-              <ChatWidget />
-              <Analytics />
-              <Toaster position="bottom-right" theme="dark" />
-            </CartProvider>
+                <Header />
+                <PageTransition>
+                  {children}
+                </PageTransition>
+                <Footer />
+                <CommandMenu />
+                <BackToTop />
+                <SocialProof />
+                <CookieBanner />
+                <ChatWidget />
+                <Analytics />
+                <Toaster position="bottom-right" theme="dark" />
+              </CartProvider>
+            </CurrencyProvider>
           </SessionProvider>
         </NextIntlClientProvider>
       </body>

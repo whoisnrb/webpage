@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { useCart } from "@/components/ecommerce/cart-provider"
 import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
 
 interface ProductCardProps {
     id: string
@@ -99,9 +100,7 @@ export function ProductCard({ id, title, description, price, category, slug, ima
                 </CardHeader>
 
                 <CardContent className="flex-1">
-                    <div className="text-2xl font-bold text-primary">
-                        {new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(price)}
-                    </div>
+                    <PriceDisplay amount={price} className="text-2xl" />
                 </CardContent>
 
                 <CardFooter>

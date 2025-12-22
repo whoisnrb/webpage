@@ -7,6 +7,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
 
 export function CartDrawer() {
     const [isOpen, setIsOpen] = useState(false)
@@ -89,7 +90,7 @@ export function CartDrawer() {
                                                 <p className="text-xs text-muted-foreground capitalize">{item.license} licenc</p>
                                                 <div className="flex justify-between items-center mt-2">
                                                     <div className="text-sm font-bold">
-                                                        {new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(item.price)}
+                                                        <PriceDisplay amount={item.price} />
                                                     </div>
                                                     <Button
                                                         variant="ghost"
@@ -110,7 +111,7 @@ export function CartDrawer() {
                                 <div className="p-4 border-t bg-muted/10 space-y-4">
                                     <div className="flex justify-between items-center text-lg font-bold">
                                         <span>{t("total")}</span>
-                                        <span>{new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(total)}</span>
+                                        <PriceDisplay amount={total} className="text-xl" />
                                     </div>
                                     <p className="text-xs text-muted-foreground text-center">
                                         {t("vat_disclaimer")}
