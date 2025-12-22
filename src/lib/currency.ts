@@ -7,6 +7,8 @@ export interface Currency {
     label: string;
 }
 
+// Default baseline rates (HUF is 1.0)
+// In production, these are replaced by live data from the API in CurrencyProvider
 export const CURRENCIES: Record<CurrencyCode, Currency> = {
     HUF: { code: 'HUF', symbol: 'Ft', rate: 1, label: 'Forint' },
     EUR: { code: 'EUR', symbol: '€', rate: 0.0025, label: 'Euro' },

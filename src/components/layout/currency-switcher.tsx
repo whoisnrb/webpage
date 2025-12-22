@@ -54,9 +54,9 @@ export function CurrencySwitcher() {
                 ))}
 
                 <DropdownMenuSeparator className="my-2 opacity-50" />
-                <div className="px-2 py-1.5 flex items-center gap-2 text-[10px] text-muted-foreground bg-muted/20 rounded-md">
-                    <HelpCircle size={12} />
-                    <span>Real-time conversion estimated</span>
+                <div className="px-2 py-1.5 flex items-center gap-2 text-[10px] text-emerald-500 bg-emerald-500/10 rounded-md">
+                    <Globe size={12} className="animate-pulse" />
+                    <span className="font-medium">Live rates updated hourly</span>
                 </div>
             </DropdownMenuContent>
         </DropdownMenu>
