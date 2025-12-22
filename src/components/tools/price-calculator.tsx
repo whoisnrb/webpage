@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select"
 import { CheckCircle2, Server, Monitor, ShieldCheck } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
 
 export function PriceCalculator() {
     const t = useTranslations('PriceCalculator')
@@ -141,9 +142,7 @@ export function PriceCalculator() {
                         <div className="space-y-1">
                             <p className="text-sm text-muted-foreground">{t('estimated_price')}</p>
                             <div className="flex items-baseline gap-1">
-                                <span className="text-4xl font-bold text-primary">
-                                    {new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(estimatedPrice)}
-                                </span>
+                                <PriceDisplay amount={estimatedPrice} className="text-4xl text-primary" />
                                 <span className="text-muted-foreground">{t('per_month')}</span>
                             </div>
                         </div>

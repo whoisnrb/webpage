@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle2, Sparkles, Zap, Crown } from "lucide-react"
+import { Crown, CheckCircle2, Sparkles, Zap } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
 
 export function PricingTable() {
     const t = useTranslations('PricingPage.PricingTable')
@@ -12,7 +13,7 @@ export function PricingTable() {
             key: "starter",
             name: t('packages.starter.name'),
             description: t('packages.starter.description'),
-            price: "199.000",
+            price: 199000,
             priceNote: t('packages.starter.price_note'),
             icon: Sparkles,
             popular: false,
@@ -34,7 +35,7 @@ export function PricingTable() {
             key: "pro",
             name: t('packages.pro.name'),
             description: t('packages.pro.description'),
-            price: "449.000",
+            price: 449000,
             priceNote: t('packages.pro.price_note'),
             icon: Zap,
             popular: true,
@@ -120,14 +121,10 @@ export function PricingTable() {
 
                                     <div className="mt-6">
                                         <div className="flex items-baseline justify-center gap-2">
-                                            {!isCustomPrice && (
-                                                <span className="text-4xl font-bold">{pkg.price}</span>
-                                            )}
-                                            {isCustomPrice && (
+                                            {typeof pkg.price === 'number' ? (
+                                                <PriceDisplay amount={pkg.price} className="text-4xl" />
+                                            ) : (
                                                 <span className="text-3xl font-bold">{pkg.price}</span>
-                                            )}
-                                            {!isCustomPrice && (
-                                                <span className="text-muted-foreground">Ft</span>
                                             )}
                                         </div>
                                         <p className="text-sm text-muted-foreground mt-1">{pkg.priceNote}</p>
