@@ -8,6 +8,7 @@ import { ServicesPreview } from "@/components/sections/services-preview"
 import { TrustedBy } from "@/components/sections/trusted-by"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
+import { ROICalculator } from "@/components/marketing/roi-calculator"
 
 export default function Home() {
     const t = useTranslations('HomePage');
@@ -23,6 +24,9 @@ export default function Home() {
 
                 {/* Trusted Technologies & Partners */}
                 <TrustedBy />
+
+                {/* ROI Calculator */}
+                <ROICalculator />
 
                 {/* Why Choose Us */}
                 <section className="py-16 md:py-24 bg-muted/30">
