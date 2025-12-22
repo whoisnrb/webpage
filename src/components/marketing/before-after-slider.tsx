@@ -1,11 +1,11 @@
 "use client"
 
 import * as React from "react"
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
-import { MousePointer2, Sparkles } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { MousePointer2, Sparkles, ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 export function BeforeAfterSlider() {
     const t = useTranslations("BeforeAfter")
@@ -26,7 +26,7 @@ export function BeforeAfterSlider() {
     const onTouchMove = (e: React.TouchEvent) => handleMove(e.touches[0].clientX)
 
     return (
-        <section className="py-24 relative overflow-hidden bg-transparent">
+        <section className="py-24 relative overflow-hidden bg-muted/20 border-y border-white/5">
             <div className="container mx-auto px-4 relative z-10">
                 <div className="text-center mb-16">
                     <motion.div
@@ -42,9 +42,11 @@ export function BeforeAfterSlider() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-6xl font-black mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground via-foreground/80 to-foreground/50"
+                        className="text-4xl md:text-6xl font-black mb-6 tracking-tight"
                     >
-                        {t('title')}
+                        <span className="bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/70">
+                            {t('title')}
+                        </span>
                     </motion.h2>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
                         {t('subtitle')}
@@ -53,7 +55,7 @@ export function BeforeAfterSlider() {
 
                 <div
                     ref={containerRef}
-                    className="relative max-w-5xl mx-auto aspect-[16/9] rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] cursor-ew-resize group select-none bg-card/20 backdrop-blur-sm"
+                    className="relative max-w-5xl mx-auto aspect-[16/9] rounded-3xl overflow-hidden border border-white/10 shadow-2xl cursor-ew-resize group select-none bg-card/40 backdrop-blur-xl"
                     onMouseMove={onMouseMove}
                     onTouchMove={onTouchMove}
                     onMouseDown={() => setIsResizing(true)}
@@ -62,33 +64,38 @@ export function BeforeAfterSlider() {
                 >
                     {/* After Image (Modern) - Background */}
                     <div className="absolute inset-0">
-                        <img
+                        <Image
                             src="/images/after-website.png"
-                            alt="After Redesign"
-                            className="w-full h-full object-cover"
-                            loading="eager"
+                            alt="Modern Website Design"
+                            fill
+                            className="object-cover"
+                            priority
+                            sizes="(max-width: 1280px) 100vw, 1280px"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                        <div className="absolute top-6 right-6">
-                            <div className="bg-primary/90 text-primary-foreground backdrop-blur-md px-4 py-2 rounded-xl font-black text-sm shadow-xl border border-white/20">
+                        <div className="absolute inset-0 bg-black/20" />
+                        <div className="absolute top-6 right-6 z-30">
+                            <div className="bg-primary text-primary-foreground px-4 py-2 rounded-xl font-black text-sm shadow-xl border border-white/20">
                                 {t('after')}
                             </div>
                         </div>
                     </div>
 
-                    {/* Before Image (Old) - Clipalble */}
+                    {/* Before Image (Old) - Clippable */}
                     <div
                         className="absolute inset-0 z-10"
                         style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
                     >
-                        <img
+                        <Image
                             src="/images/before-website.png"
-                            alt="Before Redesign"
-                            className="w-full h-full object-cover grayscale brightness-75"
-                            loading="eager"
+                            alt="Old Website Design"
+                            fill
+                            className="object-cover"
+                            priority
+                            sizes="(max-width: 1280px) 100vw, 1280px"
                         />
-                        <div className="absolute top-6 left-6">
-                            <div className="bg-black/60 text-white backdrop-blur-md px-4 py-2 rounded-xl font-black text-sm shadow-xl border border-white/10">
+                        <div className="absolute inset-0 bg-black/40" />
+                        <div className="absolute top-6 left-6 z-30">
+                            <div className="bg-white/10 text-white backdrop-blur-md px-4 py-2 rounded-xl font-black text-sm shadow-xl border border-white/10">
                                 {t('before')}
                             </div>
                         </div>
@@ -96,10 +103,10 @@ export function BeforeAfterSlider() {
 
                     {/* Slider Line / Handle */}
                     <div
-                        className="absolute inset-y-0 z-20 w-[2px] bg-white/50 backdrop-blur-sm shadow-[0_0_20px_rgba(255,255,255,0.5)] cursor-ew-resize"
+                        className="absolute inset-y-0 z-20 w-[2px] bg-white shadow-[0_0_15px_rgba(255,255,255,0.5)] cursor-ew-resize"
                         style={{ left: `${sliderPos}%` }}
                     >
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(var(--primary),0.5)] border-4 border-primary/20 transition-transform group-active:scale-90 z-30">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-primary/20 transition-transform group-active:scale-90 z-20">
                             <div className="flex gap-1">
                                 <motion.div
                                     animate={{ x: [-2, 2, -2] }}
@@ -115,23 +122,25 @@ export function BeforeAfterSlider() {
                         </div>
                     </div>
 
-                    {/* Decorative Overlay for interaction hint */}
+                    {/* Interaction Hint */}
                     <AnimatePresence>
                         {sliderPos === 50 && !isResizing && (
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none bg-black/20"
+                                className="absolute inset-0 z-40 flex items-center justify-center pointer-events-none bg-black/20"
                             >
                                 <div className="flex flex-col items-center gap-4">
                                     <motion.div
-                                        animate={{ x: [-20, 20, -20] }}
-                                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                        animate={{ x: [-30, 30, -30] }}
+                                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                                     >
-                                        <MousePointer2 className="h-12 w-12 text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]" />
+                                        <MousePointer2 className="h-12 w-12 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]" />
                                     </motion.div>
-                                    <span className="text-white font-bold tracking-widest text-sm uppercase bg-black/40 px-4 py-1 rounded-full backdrop-blur-sm">Slide to Compare</span>
+                                    <span className="text-white font-black tracking-widest text-xs uppercase bg-black/60 px-6 py-2 rounded-full backdrop-blur-md border border-white/10">
+                                        Slide to Compare
+                                    </span>
                                 </div>
                             </motion.div>
                         )}
@@ -139,7 +148,7 @@ export function BeforeAfterSlider() {
                 </div>
 
                 {/* Benefits / Metrics below */}
-                <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+                <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto relative z-20">
                     {[
                         { label: "Betöltési idő", value: "8.4s", newValue: "1.2s", color: "text-cyan-400" },
                         { label: "Konverzió", value: "1.2%", newValue: "4.8%", color: "text-purple-400" },
@@ -151,7 +160,7 @@ export function BeforeAfterSlider() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: i * 0.1 }}
-                            className="bg-card/30 backdrop-blur-xl border border-white/5 p-6 rounded-2xl text-center shadow-xl hover:bg-card/50 transition-colors group"
+                            className="bg-card/40 backdrop-blur-xl border border-white/5 p-6 rounded-2xl text-center shadow-xl hover:bg-card/60 transition-colors group"
                         >
                             <div className="text-[10px] text-muted-foreground uppercase tracking-[0.2em] mb-3 font-black opacity-60">{m.label}</div>
                             <div className="flex items-center justify-center gap-3">
@@ -164,24 +173,5 @@ export function BeforeAfterSlider() {
                 </div>
             </div>
         </section>
-    )
-}
-
-function ArrowRight({ size, className }: { size: number, className?: string }) {
-    return (
-        <svg
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-        >
-            <path d="M5 12h14" />
-            <path d="m12 5 7 7-7 7" />
-        </svg>
     )
 }
