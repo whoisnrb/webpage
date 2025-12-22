@@ -24,31 +24,6 @@
         "right_cta": "Browse Products",
         "middle_text": "OR"
     },
-    "ROICalculator": {
-        "title": "Calculate Your ROI",
-        "subtitle": "See how much you can save with automation or how much your revenue can grow with a modern website.",
-        "tabs": {
-            "automation": "Automation",
-            "webdev": "Web Development"
-        },
-        "automation": {
-            "hours_label": "Weekly manual work (hours)",
-            "rate_label": "Hourly rate ($)",
-            "period_label": "Period (months)",
-            "result_title": "Estimated Savings",
-            "disclaimer": "*Calculations are based on estimates and may vary based on individual processes."
-        },
-        "webdev": {
-            "traffic_label": "Monthly visitors",
-            "conv_label": "Current conversion (%)",
-            "aov_label": "Average order value ($)",
-            "result_title": "Estimated Revenue Growth",
-            "disclaimer": "*A modern website improves conversion by 20-50% on average."
-        },
-        "currency": "$",
-        "year": "year",
-        "month": "month"
-    },
     "ServicesPreview": {
         "title_1": "We don't just code.",
         "title_2": "We solve problems.",

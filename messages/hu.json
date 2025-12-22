@@ -24,31 +24,6 @@
         "right_cta": "Termékpaletta",
         "middle_text": "OR"
     },
-    "ROICalculator": {
-        "title": "Számold ki a megtérülést",
-        "subtitle": "Nézd meg, mennyit spórolhatsz az automatizációval vagy mennyit nőhet a bevételed egy modern weboldallal.",
-        "tabs": {
-            "automation": "Automatizáció",
-            "webdev": "Webfejlesztés"
-        },
-        "automation": {
-            "hours_label": "Heti manuális munka (óra)",
-            "rate_label": "Óradíj (Ft)",
-            "period_label": "Időszak (hónap)",
-            "result_title": "Becsült megtakarítás",
-            "disclaimer": "*A számítás becslésen alapul, az egyedi folyamatoktól függően változhat."
-        },
-        "webdev": {
-            "traffic_label": "Havi látogatószám",
-            "conv_label": "Jelenlegi konverzió (%)",
-            "aov_label": "Átlagos kosárérték (Ft)",
-            "result_title": "Becsült bevételnövekedés",
-            "disclaimer": "*Egy modern weboldal átlagosan 20-50%-kal javítja a konverziót."
-        },
-        "currency": "Ft",
-        "year": "év",
-        "month": "hónap"
-    },
     "ServicesPreview": {
         "title_1": "Nem csak kódolunk.",
         "title_2": "Problémákat oldunk meg.",
