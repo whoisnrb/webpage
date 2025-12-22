@@ -15,6 +15,15 @@
         "typewriter_2": "Automatizáció",
         "typewriter_3": "Scriptek"
     },
+    "SplitHero": {
+        "left_title": "Egyedi Megoldások",
+        "left_desc": "Profi IT szolgáltatások, fejlesztés és üzemeltetés a Te igényeidre szabva.",
+        "left_cta": "Szolgáltatások",
+        "right_title": "Kész Termékek",
+        "right_desc": "Azonnal bevethető scriptek, sablonok és szoftverek a gyors induláshoz.",
+        "right_cta": "Termékpaletta",
+        "middle_text": "OR"
+    },
     "ServicesPreview": {
         "title_1": "Nem csak kódolunk.",
         "title_2": "Problémákat oldunk meg.",

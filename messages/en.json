@@ -15,6 +15,15 @@
         "typewriter_2": "Automation",
         "typewriter_3": "Scripts"
     },
+    "SplitHero": {
+        "left_title": "Custom Solutions",
+        "left_desc": "Professional IT services, development, and hosting tailored to your needs.",
+        "left_cta": "View Services",
+        "right_title": "Ready Products",
+        "right_desc": "Instantly deployable scripts, templates, and software for a fast start.",
+        "right_cta": "Browse Products",
+        "middle_text": "OR"
+    },
     "ServicesPreview": {
         "title_1": "We don't just code.",
         "title_2": "We solve problems.",

@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { Link } from "@/i18n/routing"
-import { Hero } from "@/components/sections/hero"
+import { SplitHero } from "@/components/sections/split-hero"
 import { ServicesPreview } from "@/components/sections/services-preview"
 import { TrustedBy } from "@/components/sections/trusted-by"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
@@ -16,7 +16,7 @@ export default function Home() {
         <div className="flex min-h-screen flex-col">
             <main className="flex-1">
                 {/* Hero Section */}
-                <Hero />
+                <SplitHero />
 
                 {/* Services Grid */}
                 <ServicesPreview />
