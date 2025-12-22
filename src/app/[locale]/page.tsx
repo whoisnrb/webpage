@@ -8,6 +8,7 @@ import { ServicesPreview } from "@/components/sections/services-preview"
 import { TrustedBy } from "@/components/sections/trusted-by"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
+import { BeforeAfterSlider } from "@/components/marketing/before-after-slider"
 
 export default function Home() {
     const t = useTranslations('HomePage');
@@ -23,6 +24,9 @@ export default function Home() {
 
                 {/* Trusted Technologies & Partners */}
                 <TrustedBy />
+
+                {/* Before/After Redesign Slider */}
+                <BeforeAfterSlider />
 
                 {/* Why Choose Us */}
                 <section className="py-16 md:py-24 bg-muted/30">
