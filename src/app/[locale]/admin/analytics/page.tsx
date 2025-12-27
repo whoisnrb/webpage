@@ -7,9 +7,7 @@ export default async function AnalyticsPage() {
     const events = await prisma.analyticsEvent.findMany({
         orderBy: { createdAt: 'desc' },
         take: 50,
-        include: {
-            // user: { select: { name: true, email: true } } // User relation not defined in schema yet, using raw ID for now
-        }
+
     })
 
     const totalEvents = await prisma.analyticsEvent.count()
