@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { SplitHero } from "@/components/sections/split-hero"
 import { ServicesPreview } from "@/components/sections/services-preview"
-import { MetricsSection } from "@/components/sections/metrics-section"
+
 import { TrustedBy } from "@/components/sections/trusted-by"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
@@ -16,8 +16,7 @@ export default function Home() {
     return (
         <div className="flex min-h-screen flex-col">
             <main className="flex-1">
-                {/* Metrics Section */}
-                <MetricsSection />
+
 
                 {/* Hero Section */}
                 <SplitHero />
