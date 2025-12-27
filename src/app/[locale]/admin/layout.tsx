@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -48,6 +48,30 @@ export default async function AdminLayout({
                         <Button variant="ghost" className="w-full justify-start">
                             <Package className="mr-2 h-4 w-4" />
                             Termékek
+                        </Button>
+                    </Link>
+                    <Link href="/admin/audit-logs">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <Activity className="mr-2 h-4 w-4" />
+                            Audit Log
+                        </Button>
+                    </Link>
+                    <Link href="/admin/cron-jobs">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <Clock className="mr-2 h-4 w-4" />
+                            Cron Jobs
+                        </Button>
+                    </Link>
+                    <Link href="/admin/features">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <ToggleLeft className="mr-2 h-4 w-4" />
+                            Feature Flags
+                        </Button>
+                    </Link>
+                    <Link href="/admin/analytics">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <BarChart3 className="mr-2 h-4 w-4" />
+                            Analytics
                         </Button>
                     </Link>
                     <Link href="/dashboard">

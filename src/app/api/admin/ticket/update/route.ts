@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import { auth } from "@/auth"
 import { prisma } from "@/lib/db"
+import { logAdminAction } from "@/lib/audit"
 
 export async function POST(req: NextRequest) {
     try {
@@ -43,6 +44,14 @@ export async function POST(req: NextRequest) {
                     }
                 }
             }
+        })
+
+        // Log the action
+        await logAdminAction({
+            action: "UPDATE",
+            entity: "Ticket",
+            entityId: ticket.id,
+            details: updateData
         })
 
         return NextResponse.json({

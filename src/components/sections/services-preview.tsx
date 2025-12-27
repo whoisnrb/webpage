@@ -11,6 +11,7 @@ import { QuickViewModal } from "@/components/ui/quick-view-modal"
 
 export function ServicesPreview() {
     const t = useTranslations('ServicesPreview')
+    const tQuickView = useTranslations('QuickView')
     const [selectedService, setSelectedService] = useState<any | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -121,7 +122,7 @@ export function ServicesPreview() {
                                 <div className="p-6 pt-0 mt-auto">
                                     <Button asChild className="w-full">
                                         <Link href={service.href}>
-                                            {t('QuickView.details')}
+                                            {tQuickView('details')}
                                         </Link>
                                     </Button>
                                 </div>

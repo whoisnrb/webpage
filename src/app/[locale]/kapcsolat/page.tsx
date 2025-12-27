@@ -6,16 +6,19 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Mail, MapPin, Phone, Clock } from "lucide-react"
 import { FadeIn, SlideUp } from "@/components/ui/motion-wrapper"
 import { TrustSignals } from "@/components/ui/trust-signals"
+import { useTranslations } from "next-intl"
 
-export default function KapcsolatPage() {
+export default function ContactPage() {
+    const t = useTranslations('Contact')
+
     return (
         <div className="min-h-screen flex flex-col">
             <section className="bg-muted/30 py-16 border-b">
                 <div className="container mx-auto px-4 text-center">
                     <FadeIn>
-                        <h1 className="text-4xl font-bold tracking-tight mb-4">Lépj velünk kapcsolatba</h1>
+                        <h1 className="text-4xl font-bold tracking-tight mb-4">{t('title')}</h1>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                            Kérdésed van? Árajánlatot szeretnél? Írj nekünk, és hamarosan válaszolunk!
+                            {t('subtitle')}
                         </p>
                     </FadeIn>
                 </div>
@@ -27,9 +30,9 @@ export default function KapcsolatPage() {
                         {/* Contact Info */}
                         <SlideUp className="space-y-8">
                             <div>
-                                <h2 className="text-2xl font-bold mb-6">Elérhetőségeink</h2>
+                                <h2 className="text-2xl font-bold mb-6">{t('info_title')}</h2>
                                 <p className="text-muted-foreground mb-8">
-                                    Keress minket bizalommal bármelyik csatornán. Ügyfélszolgálatunk munkanapokon 9:00 és 17:00 között áll rendelkezésedre.
+                                    {t('info_desc')}
                                 </p>
                             </div>
 
@@ -50,9 +53,9 @@ export default function KapcsolatPage() {
                                         <Phone className="h-6 w-6 text-primary" />
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold mb-1">Telefon</h3>
-                                        <p className="text-muted-foreground">Hamarosan</p>
-                                        <p className="text-sm text-muted-foreground mt-1">Hétfő - Péntek: 09:00 - 17:00</p>
+                                        <h3 className="font-semibold mb-1">{t('phone_label')}</h3>
+                                        <p className="text-muted-foreground">{t('phone_soon')}</p>
+                                        <p className="text-sm text-muted-foreground mt-1">{t('phone_hours')}</p>
                                     </div>
                                 </div>
 
@@ -61,7 +64,7 @@ export default function KapcsolatPage() {
                                         <MapPin className="h-6 w-6 text-primary" />
                                     </div>
                                     <div>
-                                        <h3 className="font-semibold mb-1">Székhely</h3>
+                                        <h3 className="font-semibold mb-1">{t('address_label')}</h3>
                                         <p className="text-muted-foreground">
                                             2141 Csömör,<br />
                                             Vörösmarty utca 11.
@@ -79,7 +82,7 @@ export default function KapcsolatPage() {
                         <SlideUp delay={0.2}>
                             <Card>
                                 <CardContent className="p-6 md:p-8">
-                                    <h2 className="text-2xl font-bold mb-6">Időpontfoglalás & Üzenet</h2>
+                                    <h2 className="text-2xl font-bold mb-6">{t('booking_title')}</h2>
                                     <BookingForm />
                                 </CardContent>
                             </Card>

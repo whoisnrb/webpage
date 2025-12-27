@@ -125,9 +125,12 @@ export function Header() {
                                     ))}
                                 </nav>
                                 <div className="flex flex-col gap-2 pt-4 border-t">
-                                    <div className="flex justify-between items-center">
-                                        <ThemeCustomizer />
-                                        <LanguageSwitcher />
+                                    <div className="flex justify-between items-center px-2">
+                                        <div className="flex items-center gap-4">
+                                            <ThemeCustomizer />
+                                            <LanguageSwitcher />
+                                        </div>
+                                        <CurrencySwitcher />
                                     </div>
                                     <Button variant="ghost" asChild className="justify-start">
                                         <Link href="/login">{t("client_portal")}</Link>

@@ -158,8 +158,8 @@ body {
 }
 
 .dark {
-  --background: oklch(0.10 0.02 260);
-  /* Deep space blue-black */
+  --background: oklch(0.10 0.02 260 / 85%);
+  /* Semi-transparent deep space blue-black */
   --foreground: oklch(0.98 0.01 240);
   /* Cool white */
   --card: oklch(0.15 0.03 260);

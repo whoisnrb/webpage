@@ -33,6 +33,7 @@ model User {
   referrals       User[]         @relation("UserReferrals")
   referralRewards ReferralReward[]
   managedClicks   ReferralClick[]
+  auditLogs       AuditLog[]
 }
 
 model Account {
@@ -197,8 +198,96 @@ model BlogPost {
   coverImage  String?
   author      String   @default("BacklineIT Team")
   tags        String[]
-  published   Boolean  @default(false)
-  featured    Boolean  @default(false)
+  published   Boolean    @default(false)
+  featured    Boolean    @default(false)
+  seriesId    String?
+  series      BlogSeries? @relation(fields: [seriesId], references: [id])
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Metric {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       Int      @default(0)
+  label       String
+  icon        String?
+  active      Boolean  @default(true)
+  updatedAt   DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  entity    String
+  entityId  String?
+  details   String?  @db.Text
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([entity])
+}
+
+model CronJob {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  description String?
+  schedule    String
+  endpoint    String
+  apiKey      String?
+  enabled     Boolean      @default(true)
+  lastRun     DateTime?
+  status      String       @default("IDLE")
+  logs        CronJobLog[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model CronJobLog {
+  id        String   @id @default(cuid())
+  jobId     String
+  job       CronJob  @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  status    String
+  output    String?  @db.Text
+  duration  Int?
+  createdAt DateTime @default(now())
+
+  @@index([jobId])
+}
+
+model FeatureFlag {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  description String?
+  enabled     Boolean  @default(false)
+  percentage  Int      @default(100)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model BlogSeries {
+  id          String     @id @default(cuid())
+  title       String
+  slug        String     @unique
+  description String     @db.Text
+  coverImage  String?
+  posts       BlogPost[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  name      String
+  category  String   @default("general")
+  properties Json?
+  userId    String?
+  createdAt DateTime @default(now())
+
+  @@index([name])
+  @@index([userId])
 }

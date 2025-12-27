@@ -22,7 +22,10 @@
         "right_title": "Ready Products",
         "right_desc": "Instantly deployable scripts, templates, and software for a fast start.",
         "right_cta": "Browse Products",
-        "middle_text": "OR"
+        "middle_text": "OR",
+        "stat_projects_label": "Successful Projects",
+        "stat_satisfaction_label": "Client Satisfaction",
+        "ready_to_ship": "Ready to ship:"
     },
     "ServicesPreview": {
         "title_1": "We don't just code.",
@@ -80,6 +83,40 @@
         "cta_footer_title": "Ready to launch?",
         "cta_footer_desc": "Book a free consultation and let's discuss your project details. No obligation, just useful advice.",
         "cta_consultation": "Free Consultation"
+    },
+    "Contact": {
+        "title": "Get in Touch",
+        "subtitle": "Have a question? Need a quote? Write to us and we'll respond soon!",
+        "info_title": "Contact Information",
+        "info_desc": "Feel free to reach out via any channel. Our customer service is available on workdays between 9:00 and 17:00.",
+        "phone_label": "Phone",
+        "phone_soon": "Coming Soon",
+        "phone_hours": "Monday - Friday: 09:00 - 17:00",
+        "address_label": "Headquarters",
+        "booking_title": "Booking & Message"
+    },
+    "Checkout": {
+        "title": "Checkout",
+        "empty_cart": "Your cart is empty",
+        "back_to_home": "Back to Home",
+        "summary_title": "Order Summary",
+        "billing_title": "Billing Details",
+        "total_label": "Total:",
+        "vat_included": "Prices include VAT (where applicable).",
+        "name_label": "Full Name / Company Name",
+        "name_placeholder": "John Doe",
+        "email_label": "Email Address",
+        "email_placeholder": "john@example.com",
+        "waiver_label": "I acknowledge that by starting the performance (downloading or making digital content available), I lose my 14-day right of withdrawal.",
+        "waiver_subtext": "You must accept this statement to proceed as you are purchasing digital products.",
+        "terms_label": "I accept the General Terms and Conditions and the Privacy Policy.",
+        "checkout_loading": "Initiating payment...",
+        "pay_with_simplepay": "Pay with SimplePay",
+        "secure_payment_desc": "Secure payment via SimplePay system.",
+        "error_waiver": "You must accept the waiver statement to proceed.",
+        "error_empty": "Your cart is empty.",
+        "error_payment": "An error occurred while initiating payment: ",
+        "error_generic": "An unexpected error occurred."
     },
     "Navigation": {
         "home": "Home",

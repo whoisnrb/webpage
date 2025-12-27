@@ -6,8 +6,8 @@ import { Calendar, User, ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import { Badge } from "@/components/ui/badge"
-import { format } from "date-fns"
 import { getTranslations } from "next-intl/server"
+import { SmartDate } from "@/components/ui/smart-date"
 
 type Props = {
     params: Promise<{ slug: string; locale: string }>
@@ -88,7 +88,7 @@ export default async function BlogPostPage({ params }: Props) {
                         </div>
                         <div className="flex items-center gap-2">
                             <Calendar className="h-4 w-4" />
-                            {format(new Date(post.createdAt), 'yyyy. MM. dd.')}
+                            <SmartDate date={post.createdAt} formatStr="PPP" />
                         </div>
                     </div>
                 </div>

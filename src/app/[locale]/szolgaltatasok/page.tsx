@@ -5,6 +5,7 @@ import { Link } from "@/i18n/routing"
 import { Badge } from "@/components/ui/badge"
 import { useTranslations } from "next-intl"
 import { getTranslations } from "next-intl/server"
+import { PriceDisplay } from "@/components/price-display"
 
 // Metadata generation for multilingual support
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
@@ -25,7 +26,7 @@ export default function SzolgaltatasokPage() {
             description: t('items.scripts.desc'),
             icon: Code2,
             href: "/szolgaltatasok/scriptek",
-            pricing: "50.000 Ft-tól", // This could also be translated if needed, or currency reformatted
+            pricing: 50000,
             features: [
                 t('items.scripts.features.0'),
                 t('items.scripts.features.1'),
@@ -38,7 +39,7 @@ export default function SzolgaltatasokPage() {
             description: t('items.webdev.desc'),
             icon: ShoppingCart,
             href: "/szolgaltatasok/webfejlesztes",
-            pricing: "150.000 Ft-tól",
+            pricing: 150000,
             features: [
                 t('items.webdev.features.0'),
                 t('items.webdev.features.1'),
@@ -51,7 +52,7 @@ export default function SzolgaltatasokPage() {
             description: t('items.devops.desc'),
             icon: Server,
             href: "/szolgaltatasok/rendszeruzemeltetes",
-            pricing: "Egyedi árazás", // Should be t('pricing_custom') maybe? I'll leave as is for now or check my json
+            pricing: 0, // 0 indicates request quote
             features: [
                 t('items.devops.features.0'),
                 t('items.devops.features.1'),
@@ -64,7 +65,7 @@ export default function SzolgaltatasokPage() {
             description: t('items.security.desc'),
             icon: Shield,
             href: "/szolgaltatasok/biztonsag",
-            pricing: "80.000 Ft-tól",
+            pricing: 80000,
             features: [
                 t('items.security.features.0'),
                 t('items.security.features.1'),
@@ -126,7 +127,14 @@ export default function SzolgaltatasokPage() {
                                                 <Icon className="h-7 w-7" />
                                             </div>
                                             <Badge variant="outline" className="text-primary border-primary/20">
-                                                {service.pricing}
+                                                {service.pricing > 0 ? (
+                                                    <div className="flex items-center gap-1">
+                                                        <PriceDisplay amount={service.pricing} className="font-bold" />
+                                                        <span className="text-[10px] opacity-70">-tól</span>
+                                                    </div>
+                                                ) : (
+                                                    "Egyedi árazás"
+                                                )}
                                             </Badge>
                                         </div>
                                         <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
