@@ -64,12 +64,21 @@ export async function POST(request: NextRequest) {
                 }
 
                 // 4. Generate Invoice & Send Webhook Notification
-                if (order.user) {
-                    // Create Invoice (Keep this as is for now, or move to n8n too if desired later)
-                    const invoiceResult = await createInvoice(order, order.user)
-                    if (!invoiceResult.success) {
-                        console.error("Invoice generation failed:", invoiceResult.error)
-                    }
+               
+                 
+if (order.user) {
+  const invoiceUser = {
+    ...order.user,
+    name: order.user.name ?? order.user.email ?? "Ismeretlen ügyfél",
+  }
+
+  const invoiceResult = await createInvoice(order, invoiceUser)
+
+  if (!invoiceResult.success) {
+    console.error("Invoice generation failed:", invoiceResult.error)
+  }
+}
+
 
                     // Prepare payload for n8n
                     const { sendPurchaseNotification } = await import('@/lib/n8n')
