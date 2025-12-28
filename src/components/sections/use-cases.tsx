@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { LucideIcon } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 interface UseCase {
     title: string
@@ -16,19 +17,24 @@ interface UseCasesProps {
 }
 
 export function UseCases({
-    title = "Használati esetek",
-    description = "Nézd meg, hogyan segíthetünk a vállalkozásodnak",
+    title,
+    description,
     cases
 }: UseCasesProps) {
+    const t = useTranslations("Common")
+
+    const displayTitle = title || t("use_cases_title")
+    const displayDescription = description || t("use_cases_description")
+
     return (
         <section className="py-16 md:py-24 bg-muted/30">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                        {title}
+                        {displayTitle}
                     </h2>
                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                        {description}
+                        {displayDescription}
                     </p>
                 </div>
 
@@ -48,7 +54,7 @@ export function UseCases({
                                 </CardHeader>
                                 <CardContent className="space-y-4">
                                     <div>
-                                        <p className="text-sm font-semibold text-muted-foreground mb-1">Példa:</p>
+                                        <p className="text-sm font-semibold text-muted-foreground mb-1">{t("example")}</p>
                                         <p className="text-sm italic">{useCase.example}</p>
                                     </div>
                                     <div className="pt-4 border-t">

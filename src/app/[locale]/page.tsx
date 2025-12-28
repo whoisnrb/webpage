@@ -12,6 +12,7 @@ import { SpotlightCard } from "@/components/ui/spotlight-card"
 
 export default function Home() {
     const t = useTranslations('HomePage');
+    const tST = useTranslations('ServiceTemplate');
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -183,7 +184,7 @@ export default function Home() {
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
                                 </span>
-                                <span className="text-sm font-medium text-white/90">Ingyenes konzultáció elérhető</span>
+                                <span className="text-sm font-medium text-white/90">{tST('free_consultation_available')}</span>
                             </div>
 
                             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white tracking-tight">
@@ -223,19 +224,19 @@ export default function Home() {
                                     <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
-                                    <span>Nincs rejtett költség</span>
+                                    <span>{tST('no_hidden_costs')}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
-                                    <span>100% elégedettségi garancia</span>
+                                    <span>{tST('satisfaction_guarantee')}</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                     </svg>
-                                    <span>Válasz 24 órán belül</span>
+                                    <span>{tST('fast_response')}</span>
                                 </div>
                             </div>
                         </ScaleIn>

@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { CheckCircle2, ArrowRight } from "lucide-react"
 import { ReactNode } from "react"
 import { Link } from "@/i18n/routing"
+import { useTranslations } from "next-intl"
 
 interface ServiceLayoutProps {
     title: string
@@ -24,6 +25,8 @@ export function ServiceLayout({
     pricing,
     children,
 }: ServiceLayoutProps) {
+    const t = useTranslations("ServiceTemplate")
+
     return (
         <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
@@ -41,12 +44,12 @@ export function ServiceLayout({
                             <div className="flex gap-4">
                                 <Button size="lg" className="bg-accent hover:bg-accent/90 text-white" asChild>
                                     <Link href="/ajanlatkeres">
-                                        Kérj árajánlatot
+                                        {t("get_quote")}
                                     </Link>
                                 </Button>
                                 <Button variant="outline" size="lg" asChild>
                                     <Link href="/demo">
-                                        Időpont kérés
+                                        {t("request_appointment")}
                                     </Link>
                                 </Button>
                             </div>
@@ -64,7 +67,7 @@ export function ServiceLayout({
                 <div className="container mx-auto px-4">
                     <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
                         <div>
-                            <h2 className="text-3xl font-bold mb-6">Miért van erre szükséged?</h2>
+                            <h2 className="text-3xl font-bold mb-6">{t("why_need_this")}</h2>
                             <div className="space-y-8">
                                 {benefits.map((benefit, index) => (
                                     <div key={index} className="flex gap-4">
@@ -80,7 +83,7 @@ export function ServiceLayout({
                             </div>
                         </div>
                         <div className="bg-card border rounded-2xl p-8 shadow-sm">
-                            <h3 className="text-2xl font-bold mb-6">Mit tartalmaz a csomag?</h3>
+                            <h3 className="text-2xl font-bold mb-6">{t("whats_included")}</h3>
                             <ul className="space-y-4 mb-8">
                                 {features.map((feature, index) => (
                                     <li key={index} className="flex items-center gap-3">
@@ -91,7 +94,7 @@ export function ServiceLayout({
                             </ul>
 
                             <div className="border-t pt-6">
-                                <h4 className="font-semibold mb-4">Technológiák:</h4>
+                                <h4 className="font-semibold mb-4">{t("technologies")}</h4>
                                 <div className="flex flex-wrap gap-2">
                                     {techStack.map((tech, index) => (
                                         <span key={index} className="px-3 py-1 bg-muted rounded-full text-sm font-medium">
@@ -103,7 +106,7 @@ export function ServiceLayout({
 
                             {pricing && (
                                 <div className="mt-8 pt-6 border-t">
-                                    <p className="text-sm text-muted-foreground mb-1">Irányár</p>
+                                    <p className="text-sm text-muted-foreground mb-1">{t("starting_price")}</p>
                                     <div className="text-3xl font-bold text-primary">{pricing}</div>
                                 </div>
                             )}
@@ -135,14 +138,14 @@ export function ServiceLayout({
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
                         </span>
-                        <span className="text-sm font-medium text-white/90">Ingyenes konzultáció elérhető</span>
+                        <span className="text-sm font-medium text-white/90">{t("free_consultation_available")}</span>
                     </div>
 
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white tracking-tight">
-                        Készen állsz a kezdésre?
+                        {t("ready_to_start")}
                     </h2>
                     <p className="text-xl md:text-2xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed">
-                        Kérj ingyenes konzultációt, és beszéljük át a projekted részleteit. Nincs kötelezettség, csak hasznos tanácsok.
+                        {t("cta_description")}
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -150,7 +153,7 @@ export function ServiceLayout({
                         <Button size="lg" className="group relative h-14 px-10 text-lg font-bold bg-white text-slate-900 hover:bg-white hover:scale-105 transition-all duration-300 shadow-2xl shadow-white/20" asChild>
                             <Link href="/kapcsolat">
                                 <span className="relative z-10 flex items-center">
-                                    Ingyenes konzultáció
+                                    {t("free_consultation")}
                                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </span>
                             </Link>
@@ -160,7 +163,7 @@ export function ServiceLayout({
                         <Button size="lg" className="group relative h-14 px-10 text-lg font-bold bg-transparent border-2 border-amber-400/80 text-amber-300 hover:bg-amber-400/20 hover:border-amber-300 hover:text-amber-200 transition-all duration-300 shadow-lg shadow-amber-500/10" asChild>
                             <Link href="/arak">
                                 <span className="flex items-center">
-                                    Árak megtekintése
+                                    {t("view_pricing")}
                                     <svg className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -175,19 +178,19 @@ export function ServiceLayout({
                             <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>Nincs rejtett költség</span>
+                            <span>{t("no_hidden_costs")}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>100% elégedettségi garancia</span>
+                            <span>{t("satisfaction_guarantee")}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>Válasz 24 órán belül</span>
+                            <span>{t("fast_response")}</span>
                         </div>
                     </div>
                 </div>

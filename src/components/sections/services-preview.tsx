@@ -23,10 +23,10 @@ export function ServicesPreview() {
             icon: Code,
             href: "/szolgaltatasok/scriptek",
             features: [
-                "Egyedi Python/Bash scriptek",
-                "API integrációk (n8n, Make)",
-                "Adatmentési automatizmusok",
-                "Folyamatoptimalizálás"
+                t('items.automation.features.0'),
+                t('items.automation.features.1'),
+                t('items.automation.features.2'),
+                t('items.automation.features.3')
             ]
         },
         {
@@ -36,10 +36,10 @@ export function ServicesPreview() {
             icon: ShoppingCart,
             href: "/szolgaltatasok/webfejlesztes",
             features: [
-                "Modern Next.js weboldalak",
-                "WooCommerce & Shopify",
-                "UI/UX tervezés",
-                "SEO optimalizáció"
+                t('items.webdev.features.0'),
+                t('items.webdev.features.1'),
+                t('items.webdev.features.2'),
+                t('items.webdev.features.3')
             ]
         },
         {
@@ -49,10 +49,10 @@ export function ServicesPreview() {
             icon: Server,
             href: "/szolgaltatasok/rendszeruzemeltetes",
             features: [
-                "Cloud infrastruktúra (AWS, GC)",
-                "Linux szerver felügyelet",
-                "Docker & Kubernetes",
-                "24/7 Monitoring"
+                t('items.devops.features.0'),
+                t('items.devops.features.1'),
+                t('items.devops.features.2'),
+                t('items.devops.features.3')
             ]
         },
         {
@@ -62,10 +62,10 @@ export function ServicesPreview() {
             icon: Shield,
             href: "/szolgaltatasok/biztonsag",
             features: [
-                "Sérülékenység vizsgálat",
-                "Webes tűzfal (WAF) setup",
-                "Pénzügyi adatok védelme",
-                "Biztonsági mentési stratégia"
+                t('items.security.features.0'),
+                t('items.security.features.1'),
+                t('items.security.features.2'),
+                t('items.security.features.3')
             ]
         },
     ]

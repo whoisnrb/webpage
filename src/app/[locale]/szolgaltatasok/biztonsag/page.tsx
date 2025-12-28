@@ -4,91 +4,97 @@ import { Shield, Lock, Eye, FileSearch, Server, AlertTriangle } from "lucide-rea
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
-
-const useCases = [
-    {
-        title: "Biztonsági Audit",
-        description: "Meglévő rendszerek átvilágítása és sérülékenységek feltárása.",
-        icon: FileSearch,
-        example: "Weboldal, szerver és adatbázis beállítások ellenőrzése. Részletes jelentés a hibákról és javítási javaslatok.",
-        roi: "Feltört oldal kockázatának minimalizálása"
-    },
-    {
-        title: "Behatolás Tesztelés (Pentest)",
-        description: "Szimulált támadások a rendszer gyenge pontjainak megtalálására.",
-        icon: AlertTriangle,
-        example: "Etikus hacker támadás a webshop ellen, SQL Injection, XSS és egyéb hibák keresése.",
-        roi: "Valós biztonsági szint felmérése"
-    },
-    {
-        title: "Szerver Keményítés",
-        description: "Szerverek beállítása a maximális biztonság érdekében.",
-        icon: Server,
-        example: "Felesleges portok lezárása, SSH védelem, Tűzfal konfigurálás, Fail2Ban telepítés.",
-        roi: "Automatizált támadások kivédése"
-    },
-    {
-        title: "GDPR Megfelelőség",
-        description: "Adatvédelmi előírások technikai megvalósítása.",
-        icon: Lock,
-        example: "Adatbázis titkosítás, naplózás beállítása, adattörlési folyamatok automatizálása.",
-        roi: "Bírságok elkerülése"
-    },
-    {
-        title: "Malware Eltávolítás",
-        description: "Feltört weboldalak megtisztítása és helyreállítása.",
-        icon: Shield,
-        example: "Vírusos WordPress oldal tisztítása, hátsó kapuk (backdoor) keresése és lezárása.",
-        roi: "Üzletmenet helyreállítása"
-    },
-    {
-        title: "WAF Beállítás",
-        description: "Web Application Firewall védelmi vonal kiépítése.",
-        icon: Eye,
-        example: "Cloudflare vagy ModSecurity beállítása a rosszindulatú forgalom szűrésére.",
-        roi: "DDoS és bot támadások elleni védelem"
-    }
-]
+import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
 
 export default function BiztonsagPage() {
+    const t = useTranslations("Services.Security")
+
+    const useCases = [
+        {
+            title: t("use_cases_items.0.title"),
+            description: t("use_cases_items.0.description"),
+            icon: FileSearch,
+            example: t("use_cases_items.0.example"),
+            roi: t("use_cases_items.0.roi")
+        },
+        {
+            title: t("use_cases_items.1.title"),
+            description: t("use_cases_items.1.description"),
+            icon: AlertTriangle,
+            example: t("use_cases_items.1.example"),
+            roi: t("use_cases_items.1.roi")
+        },
+        {
+            title: t("use_cases_items.2.title"),
+            description: t("use_cases_items.2.description"),
+            icon: Server,
+            example: t("use_cases_items.2.example"),
+            roi: t("use_cases_items.2.roi")
+        },
+        {
+            title: t("use_cases_items.3.title"),
+            description: t("use_cases_items.3.description"),
+            icon: Lock,
+            example: t("use_cases_items.3.example"),
+            roi: t("use_cases_items.3.roi")
+        },
+        {
+            title: t("use_cases_items.4.title"),
+            description: t("use_cases_items.4.description"),
+            icon: Shield,
+            example: t("use_cases_items.4.example"),
+            roi: t("use_cases_items.4.roi")
+        },
+        {
+            title: t("use_cases_items.5.title"),
+            description: t("use_cases_items.5.description"),
+            icon: Eye,
+            example: t("use_cases_items.5.example"),
+            roi: t("use_cases_items.5.roi")
+        }
+    ]
+
     return (
         <div className="flex flex-col min-h-screen">
             <ServiceLayout
-                title="Biztonság & Audit"
-                description="Védd meg vállalkozásodat és ügyfeleid adatait. Professzionális biztonsági átvilágítás és védelem kiépítése weboldalakhoz és szerverekhez."
+                title={t("title")}
+                description={t("description")}
                 icon={<Shield className="h-8 w-8" />}
                 features={[
-                    "Weboldal biztonsági audit",
-                    "Sérülékenység vizsgálat (Vulnerability Scanning)",
-                    "Szerver hardening (biztonsági keményítés)",
-                    "Tűzfal és WAF beállítás",
-                    "Malware keresés és eltávolítás",
-                    "GDPR technikai megfelelőség",
-                    "SSL/TLS konfiguráció ellenőrzés",
-                    "Biztonsági mentési stratégia"
+                    t("hero_features.0"),
+                    t("hero_features.1"),
+                    t("hero_features.2"),
+                    t("hero_features.3"),
+                    t("hero_features.4"),
+                    t("hero_features.5"),
+                    t("hero_features.6"),
+                    t("hero_features.7")
                 ]}
                 benefits={[
                     {
-                        title: "Nyugalom",
-                        description: "Tudhatod, hogy a rendszereid védve vannak a leggyakoribb támadások ellen."
+                        title: t("hero_benefits.0.title"),
+                        description: t("hero_benefits.0.description")
                     },
                     {
-                        title: "Bizalom",
-                        description: "Az ügyfeleid jobban bíznak egy biztonságos, auditált weboldalban."
+                        title: t("hero_benefits.1.title"),
+                        description: t("hero_benefits.1.description")
                     },
                     {
-                        title: "Megtakarítás",
-                        description: "Egy sikeres támadás helyreállítása sokkal többe kerül, mint a megelőzés."
+                        title: t("hero_benefits.2.title"),
+                        description: t("hero_benefits.2.description")
                     }
                 ]}
                 techStack={["Kali Linux", "Nmap", "Wireshark", "Metasploit", "Cloudflare", "ModSecurity", "Fail2Ban", "OpenVAS"]}
-                pricing="80.000 Ft-tól"
+                pricing={t.rich('item_labels.pricing_from_format', {
+                    price: () => <PriceDisplay amount={80000} />
+                }) as any}
             />
 
             {/* Use Cases */}
             <UseCases
-                title="Szolgáltatásaink"
-                description="Így tesszük biztonságosabbá a rendszereidet"
+                title={t("use_cases_title")}
+                description={t("use_cases_desc")}
                 cases={useCases}
             />
 
@@ -97,35 +103,37 @@ export default function BiztonsagPage() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            Audit Csomagok
+                            {t("pricing_title")}
                         </h2>
                         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                            Egyszeri biztonsági átvilágítási csomagok
+                            {t("pricing_desc")}
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                         <Card className="border-2">
                             <CardHeader>
-                                <CardTitle className="text-2xl">Alap Audit</CardTitle>
+                                <CardTitle className="text-2xl">{t("plans.base.name")}</CardTitle>
                                 <CardDescription className="text-base">
-                                    Kisebb weboldalak, blogok ellenőrzése
+                                    {t("plans.base.desc")}
                                 </CardDescription>
                                 <div className="pt-4">
-                                    <div className="text-3xl font-bold">80.000 Ft</div>
-                                    <p className="text-sm text-muted-foreground">egyszeri díj</p>
+                                    <div className="text-3xl font-bold">
+                                        <PriceDisplay amount={80000} />
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{t("plans.base.sub")}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
-                                    <li>• Automatizált sérülékenység vizsgálat</li>
-                                    <li>• SSL/TLS ellenőrzés</li>
-                                    <li>• Alapvető szerver beállítások</li>
-                                    <li>• WordPress/CMS plugin ellenőrzés</li>
-                                    <li>• Rövid összefoglaló jelentés</li>
+                                    <li>• {t("plans.base.features.0")}</li>
+                                    <li>• {t("plans.base.features.1")}</li>
+                                    <li>• {t("plans.base.features.2")}</li>
+                                    <li>• {t("plans.base.features.3")}</li>
+                                    <li>• {t("plans.base.features.4")}</li>
                                 </ul>
                                 <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Időtartam: 2-3 munkanap
+                                    {t("plans.base.duration_label")}
                                 </p>
                             </CardContent>
                         </Card>
@@ -133,54 +141,56 @@ export default function BiztonsagPage() {
                         <Card className="border-2 border-primary shadow-lg">
                             <CardHeader>
                                 <div className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full mb-2">
-                                    Népszerű
+                                    {t("plans.detailed.badge")}
                                 </div>
-                                <CardTitle className="text-2xl">Részletes Audit</CardTitle>
+                                <CardTitle className="text-2xl">{t("plans.detailed.name")}</CardTitle>
                                 <CardDescription className="text-base">
-                                    Webshopok, üzleti oldalak átvilágítása
+                                    {t("plans.detailed.desc")}
                                 </CardDescription>
                                 <div className="pt-4">
-                                    <div className="text-3xl font-bold">180.000 Ft</div>
-                                    <p className="text-sm text-muted-foreground">egyszeri díj</p>
+                                    <div className="text-3xl font-bold">
+                                        <PriceDisplay amount={150000} />
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{t("plans.detailed.sub")}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
-                                    <li>• Minden az Alap csomagból</li>
-                                    <li>• Manuális tesztelés (Pentest alapok)</li>
-                                    <li>• Adatbázis jogosultságok ellenőrzése</li>
-                                    <li>• Tűzfal szabályok vizsgálata</li>
-                                    <li>• Részletes technikai jelentés</li>
-                                    <li>• 1 óra konzultáció a javításokról</li>
+                                    <li>• {t("plans.detailed.features.0")}</li>
+                                    <li>• {t("plans.detailed.features.1")}</li>
+                                    <li>• {t("plans.detailed.features.2")}</li>
+                                    <li>• {t("plans.detailed.features.3")}</li>
+                                    <li>• {t("plans.detailed.features.4")}</li>
+                                    <li>• {t("plans.detailed.features.5")}</li>
                                 </ul>
                                 <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Időtartam: 1 hét
+                                    {t("plans.detailed.duration_label")}
                                 </p>
                             </CardContent>
                         </Card>
 
                         <Card className="border-2">
                             <CardHeader>
-                                <CardTitle className="text-2xl">Komplex Védelem</CardTitle>
+                                <CardTitle className="text-2xl">{t("plans.complex.name")}</CardTitle>
                                 <CardDescription className="text-base">
-                                    Egyedi rendszerek, nagy kockázat
+                                    {t("plans.complex.desc")}
                                 </CardDescription>
                                 <div className="pt-4">
-                                    <div className="text-3xl font-bold">Egyedi</div>
-                                    <p className="text-sm text-muted-foreground">árajánlat alapján</p>
+                                    <div className="text-3xl font-bold">{t("plans.complex.price_label")}</div>
+                                    <p className="text-sm text-muted-foreground">{t("plans.complex.price_sub")}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
-                                    <li>• Teljes körű Penetration Testing</li>
-                                    <li>• Forráskód elemzés</li>
-                                    <li>• Social Engineering teszt</li>
-                                    <li>• Védelmi rendszerek (WAF) kiépítése</li>
-                                    <li>• Incidens kezelési terv készítése</li>
-                                    <li>• Oktatás a munkatársaknak</li>
+                                    <li>• {t("plans.complex.features.0")}</li>
+                                    <li>• {t("plans.complex.features.1")}</li>
+                                    <li>• {t("plans.complex.features.2")}</li>
+                                    <li>• {t("plans.complex.features.3")}</li>
+                                    <li>• {t("plans.complex.features.4")}</li>
+                                    <li>• {t("plans.complex.features.5")}</li>
                                 </ul>
                                 <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Időtartam: 2-4 hét
+                                    {t("plans.complex.duration_label")}
                                 </p>
                             </CardContent>
                         </Card>
@@ -189,7 +199,7 @@ export default function BiztonsagPage() {
                     <div className="text-center mt-12">
                         <Link href="/checkout?package=custom">
                             <Button size="lg" className="bg-accent hover:bg-accent/90">
-                                Biztonsági audit kérése
+                                {t("cta_request_audit")}
                             </Button>
                         </Link>
                     </div>

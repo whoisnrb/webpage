@@ -1,72 +1,75 @@
 import { ServiceLayout } from "@/components/templates/service-layout"
-import { Network, Database, Globe, Lock, RefreshCw, Zap } from "lucide-react"
+import { Network, Database, Globe, RefreshCw } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function IntegraciokPage() {
+    const t = useTranslations("Services.Integrations")
+
     return (
         <ServiceLayout
-            title="Integrációk & API"
-            description="Kössük össze rendszereidet! Automatizált adatmozgatás, egyedi API fejlesztés és rendszerintegráció a hatékonyabb működésért."
+            title={t("title")}
+            description={t("description")}
             icon={<Network className="h-8 w-8" />}
             features={[
-                "Egyedi API fejlesztés (REST, GraphQL)",
-                "Webshop és ERP összekötés",
-                "CRM rendszer integrációk",
-                "Fizetési kapu implementáció (Stripe, SimplePay)",
-                "Adatmigráció és szinkronizáció",
-                "Legacy rendszerek modernizálása"
+                t("hero_features.0"),
+                t("hero_features.1"),
+                t("hero_features.2"),
+                t("hero_features.3"),
+                t("hero_features.4"),
+                t("hero_features.5")
             ]}
             benefits={[
                 {
-                    title: "Automatizált folyamatok",
-                    description: "Nincs több manuális adatbevitel. A rendszereid automatikusan kommunikálnak egymással."
+                    title: t("hero_benefits.0.title"),
+                    description: t("hero_benefits.0.description")
                 },
                 {
-                    title: "Valós idejű adatok",
-                    description: "Minden rendszerben mindig az aktuális adatok látszanak, késleltetés nélkül."
+                    title: t("hero_benefits.1.title"),
+                    description: t("hero_benefits.1.description")
                 },
                 {
-                    title: "Kevesebb hiba",
-                    description: "Az emberi hibák kiküszöbölése az automatizált adatátvitel révén."
+                    title: t("hero_benefits.2.title"),
+                    description: t("hero_benefits.2.description")
                 },
                 {
-                    title: "Skálázhatóság",
-                    description: "Rendszereid képesek lesznek kezelni a növekvő forgalmat és adatmennyiséget."
+                    title: t("hero_benefits.3.title"),
+                    description: t("hero_benefits.3.description")
                 }
             ]}
             techStack={[
                 "Node.js", "Python", "GraphQL", "REST", "Redis", "RabbitMQ", "PostgreSQL", "Docker"
             ]}
-            pricing="Egyedi árazás"
+            pricing={t("pricing_label")}
         >
             <section className="py-16 bg-muted/30">
                 <div className="container mx-auto px-4">
-                    <h2 className="text-3xl font-bold mb-12 text-center">Gyakori Integrációs Forgatókönyvek</h2>
+                    <h2 className="text-3xl font-bold mb-12 text-center">{t("scenarios_title")}</h2>
                     <div className="grid md:grid-cols-3 gap-8">
                         <div className="bg-card p-6 rounded-xl border shadow-sm">
                             <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                                 <Globe className="h-6 w-6 text-primary" />
                             </div>
-                            <h3 className="text-xl font-semibold mb-3">Webshop ↔ Számlázó</h3>
+                            <h3 className="text-xl font-semibold mb-3">{t("scenarios.0.title")}</h3>
                             <p className="text-muted-foreground">
-                                Automatikus számlakiállítás rendeléskor. Összekötjük WooCommerce vagy Shopify boltodat a Számlázz.hu vagy Billingo fiókoddal.
+                                {t("scenarios.0.description")}
                             </p>
                         </div>
                         <div className="bg-card p-6 rounded-xl border shadow-sm">
                             <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                                 <Database className="h-6 w-6 text-primary" />
                             </div>
-                            <h3 className="text-xl font-semibold mb-3">CRM ↔ Marketing</h3>
+                            <h3 className="text-xl font-semibold mb-3">{t("scenarios.1.title")}</h3>
                             <p className="text-muted-foreground">
-                                Ügyféladatok szinkronizálása a CRM rendszered (pl. HubSpot, Salesforce) és a hírlevélküldőd (pl. Mailchimp) között.
+                                {t("scenarios.1.description")}
                             </p>
                         </div>
                         <div className="bg-card p-6 rounded-xl border shadow-sm">
                             <div className="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                                 <RefreshCw className="h-6 w-6 text-primary" />
                             </div>
-                            <h3 className="text-xl font-semibold mb-3">ERP ↔ Készletkezelő</h3>
+                            <h3 className="text-xl font-semibold mb-3">{t("scenarios.2.title")}</h3>
                             <p className="text-muted-foreground">
-                                Valós idejű készletfrissítés minden értékesítési csatornán. Ha eladsz valamit a boltban, a webshopon is frissül a készlet.
+                                {t("scenarios.2.description")}
                             </p>
                         </div>
                     </div>

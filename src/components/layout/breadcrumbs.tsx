@@ -18,7 +18,7 @@ export function Breadcrumbs() {
         <nav className="flex items-center text-sm text-muted-foreground py-4 animate-in fade-in slide-in-from-left-4 duration-500">
             <Link href="/" className="flex items-center hover:text-primary transition-colors">
                 <Home className="h-4 w-4" />
-                <span className="sr-only">Főoldal</span>
+                <span className="sr-only">{t('home')}</span>
             </Link>
 
             {segments.map((segment, index) => {

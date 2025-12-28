@@ -13,19 +13,285 @@
         "stat_value": "12 hours / week",
         "typewriter_1": "Web Development",
         "typewriter_2": "Automation",
-        "typewriter_3": "Scripts"
+        "typewriter_3": "Scripts",
+        "visual": {
+            "active_tasks": "Active Tasks",
+            "running": "Running",
+            "success_rate": "Success Rate",
+            "response_time": "Response Time",
+            "cpu_usage": "CPU Usage",
+            "memory": "Memory",
+            "systems_operational": "All Systems Operational",
+            "deployment": "Deployment",
+            "completed": "Completed",
+            "security": "Security",
+            "protected": "Protected",
+            "monitoring": "Monitoring"
+        }
+    },
+    "AboutPage": {
+        "hero_title": "Obsessed with technology,",
+        "hero_title_highlight": "committed to business success",
+        "hero_desc": "Our goal is to help businesses grow and increase efficiency with modern digital solutions.",
+        "mission_title": "Our Mission",
+        "mission_desc_1": "We believe that automation and modern software development are not just the privilege of large corporations. We work to make these tools affordable for the SME sector as well.",
+        "mission_desc_2": "We don't just write code, we solve problems. We approach every project with a business mindset, looking for solutions that bring the fastest return on investment.",
+        "values": {
+            "results": {
+                "title": "Result Orientation",
+                "desc": "We strive for measurable business results."
+            },
+            "client": {
+                "title": "Client Centricity",
+                "desc": "We believe in long-term partnerships."
+            },
+            "innovation": {
+                "title": "Innovation",
+                "desc": "We are constantly learning and evolving."
+            },
+            "teamwork": {
+                "title": "Teamwork",
+                "desc": "Together we are capable of more."
+            }
+        },
+        "team_title": "Meet the Team",
+        "team_members": {
+            "peter": {
+                "name": "Peter Kovacs",
+                "role": "Lead Developer & CEO",
+                "bio": "10+ years experience in full-stack development. Believer in clean code and scalable architectures."
+            },
+            "anna": {
+                "name": "Anna Nagy",
+                "role": "UI/UX Designer",
+                "bio": "Passionate about designing user-friendly and aesthetic interfaces. Pixel-perfect mindset."
+            },
+            "gabor": {
+                "name": "Gabor Szabo",
+                "role": "DevOps Engineer",
+                "bio": "Expert in CI/CD processes and cloud-based infrastructures. Automates everything possible."
+            }
+        },
+        "cta_badge": "Partnership for success",
+        "cta_title": "Let's work",
+        "cta_title_highlight": "together!",
+        "cta_desc": "Ready to take your business to the next level? Let's get in touch and discuss how we can help!",
+        "cta_contact": "Contact Us",
+        "cta_quote": "Request a Quote",
+        "trust_signals": {
+            "partner": "Trusted partner",
+            "personal": "Personal connection",
+            "fast": "Fast response time"
+        }
+    },
+    "References": {
+        "badge": "Success Stories",
+        "title": "Case Studies",
+        "description": "See how we've helped other businesses grow, automate, and become more efficient with modern IT solutions.",
+        "view_details": "View Details",
+        "back_to_references": "Back to Case Studies",
+        "challenge": "Challenge",
+        "solution": "Solution",
+        "result": "Result",
+        "key_results": "Key Results",
+        "metrics": {
+            "conversion_growth": "Conversion Growth",
+            "faster_loading": "Faster Loading",
+            "automated": "Automated",
+            "no_data_loss": "No Data Loss"
+        },
+        "upsell": {
+            "title": "Struggling with a similar problem?",
+            "description": "Check out our services that can help take your business to success."
+        },
+        "cta": {
+            "badge": "Growing Together",
+            "title_1": "You could be the next ",
+            "title_highlight": "success story",
+            "description": "Don't fall behind in the digital race. Request a quote today and let's start working together!",
+            "button_quote": "Request a Quote Now",
+            "button_contact": "Contact Us",
+            "stats": {
+                "projects": "Successful Projects",
+                "satisfied": "Satisfied Clients",
+                "rating": "Rating"
+            },
+            "trust": {
+                "quality": "Guaranteed quality",
+                "response": "Fast response time",
+                "team": "Dedicated team"
+            }
+        },
+        "items": {
+            "webshop": {
+                "title": "Webshop Optimization & Automation",
+                "client": "GreenLeaf Bio Ltd.",
+                "category": "E-commerce",
+                "description": "Switching from WooCommerce to Next.js and full inventory synchronization, increasing conversion by 40%.",
+                "challenge": "GreenLeaf Bio Ltd.'s old WooCommerce shop was slow, and stock often didn't match reality, leading to customer complaints. Manual order processing was time-consuming.",
+                "solution": "We developed a modern, lightning-fast Next.js-based frontend while keeping WooCommerce as the backend. We introduced n8n-based automation for real-time stock sync and automated invoicing.",
+                "result": "Page load speed dropped from 3 seconds to 0.8 seconds. Manual administration decreased by 80%, and conversion rate rose by 40% in the first 3 months."
+            },
+            "patient": {
+                "title": "Secure Patient Management System",
+                "client": "Dr. Kovács Praxis",
+                "category": "Healthcare",
+                "description": "GDPR-compliant, encrypted patient database and booking system on private cloud infrastructure.",
+                "challenge": "The praxis's paper-based records and phone bookings became unsustainable. Maximum protection of sensitive health data and GDPR compliance were top priorities.",
+                "solution": "We built a custom web app with an encrypted database running in a private cloud. We implemented 2FA and audit logging for all access.",
+                "result": "Reception workload decreased by 60% thanks to online booking. Data security is guaranteed, and the system complies with all current regulations."
+            },
+            "server": {
+                "title": "High-Availability Server Cluster",
+                "client": "Apex Logistics Inc.",
+                "category": "Logistics",
+                "description": "0-24 hour server park setup for tracking systems with 99.99% uptime.",
+                "challenge": "Apex Logistics' tracking system often crashed under load, which was critical for freight. Outages caused significant financial loss.",
+                "solution": "We built a multi-node Kubernetes cluster with autoscaling and HAProxy load balancer. We installed Prometheus and Grafana-based monitoring for proactive troubleshooting.",
+                "result": "System availability reached 99.99%. During peak load, the system scales automatically, so there's no slowdown or downtime."
+            }
+        }
+    },
+    "Careers": {
+        "title": "Join the Team!",
+        "description": "We are looking for talents who want to shape the future of digital solutions with us.",
+        "benefits_title": "What we offer?",
+        "benefits": {
+            "tech": {
+                "title": "Modern Tech Stack",
+                "desc": "We work with the latest technologies (Next.js, TypeScript, AWS)."
+            },
+            "growth": {
+                "title": "Professional Growth",
+                "desc": "We support learning, conferences, and training."
+            },
+            "flexible": {
+                "title": "Flexible Hours",
+                "desc": "We believe in work-life balance. Home office opportunity."
+            },
+            "atmosphere": {
+                "title": "Great Atmosphere",
+                "desc": "Friendly vibe, team events, and great coffee."
+            }
+        },
+        "open_positions": "Open Positions",
+        "coming_soon": "Coming Soon",
+        "apply": "Apply",
+        "positions": {
+            "senior_fullstack": "Senior Full Stack Developer",
+            "devops": "DevOps Engineer",
+            "junior_python": "Junior Python Developer"
+        },
+        "location": {
+            "remote": "Remote",
+            "hybrid": "Hybrid",
+            "office": "Office"
+        },
+        "job_type": {
+            "full_time": "Full-time",
+            "intern": "Intern"
+        },
+        "spontaneous": {
+            "title": "Didn't find a matching position?",
+            "description": "Submit your resume to our database, and we'll notify you if a suitable opportunity opens up.",
+            "cta": "Spontaneous Application"
+        },
+        "application": {
+            "success": {
+                "title": "Thank you for your application!",
+                "description": "We have received your CV and will contact you soon if a suitable position opens up.",
+                "button": "Back to Careers page"
+            },
+            "back_link": "Back to Careers page",
+            "badge": "Join us",
+            "title": "Spontaneous Application",
+            "description": "Didn't find a suitable position? No problem! Send your CV and we'll notify you as soon as a matching opportunity opens up.",
+            "form": {
+                "name": "Full Name *",
+                "name_placeholder": "e.g. John Doe",
+                "email": "Email Address *",
+                "email_placeholder": "example@email.com",
+                "phone": "Phone Number",
+                "phone_placeholder": "+36 20 123 4567",
+                "linkedin": "LinkedIn Profile",
+                "linkedin_placeholder": "https://linkedin.com/in/...",
+                "areas_label": "In which area would you like to work?",
+                "areas": {
+                    "frontend": "Frontend development",
+                    "backend": "Backend development",
+                    "devops": "DevOps / Infrastructure",
+                    "design": "UI/UX Design",
+                    "pm": "Project management",
+                    "other": "Other"
+                },
+                "cv_label": "Upload CV *",
+                "cv_drop": "Drag the file here or click to upload",
+                "cv_hint": "PDF, DOC, DOCX (max. 5MB)",
+                "motivation_label": "Cover Letter / Message",
+                "motivation_placeholder": "Tell us about yourself, your experiences and why you want to work with us...",
+                "submit": "Submit Application",
+                "terms_prefix": "By applying, you accept our ",
+                "terms_link": "Privacy Policy",
+                "terms_suffix": "."
+            },
+            "trust": {
+                "gdpr": "GDPR compliant",
+                "confidential": "Confidential data handling",
+                "feedback": "Fast feedback"
+            }
+        }
+    },
+    "Admin": {
+        "dashboard": {
+            "title": "Dashboard",
+            "subtitle": "Overview of the system status.",
+            "total_users": "Total Users",
+            "active_leads": "Active Leads",
+            "orders": "Orders",
+            "revenue": "Revenue",
+            "growth_monthly": "{value}% in the last month",
+            "growth_hourly": "{value} in the last hour"
+        }
+    },
+    "AdminAnalytics": {
+        "total_events": "Total Events",
+        "recorded_interactions": "Recorded interactions",
+        "top_events": "Top Events",
+        "top_events_desc": "Most common user interactions",
+        "recent_events": "Recent Events",
+        "recent_events_desc": "Real-time log",
+        "table": {
+            "event": "Event",
+            "category": "Category",
+            "time": "Time"
+        }
+    },
+    "Common": {
+        "example": "Example:",
+        "use_cases_title": "Use Cases",
+        "use_cases_description": "See how we can help your business",
+        "hours": "hours",
+        "save": "Save",
+        "cancel": "Cancel",
+        "close": "Close"
     },
     "SplitHero": {
-        "left_title": "Custom Solutions",
+        "left_title_1": "CUSTOM",
+        "left_title_2": "SOLUTIONS",
         "left_desc": "Professional IT services, development, and hosting tailored to your needs.",
         "left_cta": "View Services",
-        "right_title": "Ready Products",
+        "right_title_1": "PREMIUM",
+        "right_title_2": "PRODUCTS",
         "right_desc": "Instantly deployable scripts, templates, and software for a fast start.",
         "right_cta": "Browse Products",
         "middle_text": "OR",
         "stat_projects_label": "Successful Projects",
         "stat_satisfaction_label": "Client Satisfaction",
-        "ready_to_ship": "Ready to ship:"
+        "ready_to_ship": "Ready to ship:",
+        "badge_scripts": "Scripts",
+        "badge_plugins": "Plugins",
+        "badge_ebooks": "E-books",
+        "choose_path": "Choose Your Path"
     },
     "ServicesPreview": {
         "title_1": "We don't just code.",
@@ -35,22 +301,46 @@
             "automation": {
                 "title": "Automation",
                 "description": "Get rid of boring, repetitive tasks. Custom scripts that work for you 24/7.",
-                "benefit": "Save 10+ hours/week"
+                "benefit": "Save 10+ hours/week",
+                "features": {
+                    "0": "Custom Python/Bash scripts",
+                    "1": "API integrations (n8n, Make)",
+                    "2": "Data backup automations",
+                    "3": "Process optimization"
+                }
             },
             "webdev": {
                 "title": "Web Development",
                 "description": "Not just a website: a customer magnet. Fast, modern, and perfect on mobile.",
-                "benefit": "+40% conversion growth"
+                "benefit": "+40% conversion growth",
+                "features": {
+                    "0": "Modern Next.js websites",
+                    "1": "WooCommerce & Shopify",
+                    "2": "UI/UX design",
+                    "3": "SEO optimization"
+                }
             },
             "devops": {
                 "title": "DevOps & Cloud",
                 "description": "Stable foundations for your business. Scalable servers, automated backups, and 99.9% uptime.",
-                "benefit": "Zero downtime, peace of mind"
+                "benefit": "Zero downtime, peace of mind",
+                "features": {
+                    "0": "Cloud infrastructure (AWS, GC)",
+                    "1": "Linux server management",
+                    "2": "Docker & Kubernetes",
+                    "3": "24/7 Monitoring"
+                }
             },
             "security": {
                 "title": "Cybersecurity",
                 "description": "Protect your data and your clients. Vulnerability assessment and proactive protection against attacks.",
-                "benefit": "Secure business operations"
+                "benefit": "Secure business operations",
+                "features": {
+                    "0": "Vulnerability assessment",
+                    "1": "Web Application Firewall (WAF) setup",
+                    "2": "Financial data protection",
+                    "3": "Backup strategy"
+                }
             }
         }
     },
@@ -84,6 +374,11 @@
         "cta_footer_desc": "Book a free consultation and let's discuss your project details. No obligation, just useful advice.",
         "cta_consultation": "Free Consultation"
     },
+    "TrustedBy": {
+        "title": "Trusted Technologies and Partners",
+        "subtitle": "We work with industry-leading technologies and secure platforms",
+        "security_badge": "PCI DSS Compliant | GDPR Compatible | Enterprise Security"
+    },
     "Contact": {
         "title": "Get in Touch",
         "subtitle": "Have a question? Need a quote? Write to us and we'll respond soon!",
@@ -93,6 +388,9 @@
         "phone_soon": "Coming Soon",
         "phone_hours": "Monday - Friday: 09:00 - 17:00",
         "address_label": "Headquarters",
+        "address": "2141 Csömör, Vörösmarty utca 11.",
+        "email_hello": "hello@backlineit.hu",
+        "email_support": "support@backlineit.hu",
         "booking_title": "Booking & Message"
     },
     "Checkout": {
@@ -109,7 +407,7 @@
         "email_placeholder": "john@example.com",
         "waiver_label": "I acknowledge that by starting the performance (downloading or making digital content available), I lose my 14-day right of withdrawal.",
         "waiver_subtext": "You must accept this statement to proceed as you are purchasing digital products.",
-        "terms_label": "I accept the General Terms and Conditions and the Privacy Policy.",
+        "terms_label": "I accept the <link1>General Terms and Conditions</link1> and the <link2>Privacy Policy</link2>.",
         "checkout_loading": "Initiating payment...",
         "pay_with_simplepay": "Pay with SimplePay",
         "secure_payment_desc": "Secure payment via SimplePay system.",
@@ -149,6 +447,16 @@
         "newsletter": "Newsletter"
     },
     "Dashboard": {
+        "title": "My Account",
+        "logout": "Logout",
+        "orders_title": "Order History",
+        "orders_empty": "You haven't purchased anything yet. Browse our <link>products</link>!",
+        "license_key": "License key:",
+        "download_invoice": "Download invoice",
+        "status_paid": "Paid",
+        "status_pending": "Pending",
+        "status_cancelled": "Cancelled",
+        "quantity": "{count} pcs",
         "welcome": "Welcome back, {name}!",
         "welcome_subtitle": "Here you can review your purchases, manage licenses, and get help from our support team.",
         "overview": "Overview",
@@ -195,16 +503,32 @@
         "priority_urgent": "Urgent"
     },
     "Booking": {
-        "title": "Book an Appointment",
+        "title": "Booking",
         "select_date": "Select Date",
         "select_time": "Select Time",
         "name": "Name",
+        "name_placeholder": "Full Name",
         "email": "Email Address",
+        "email_placeholder": "example@email.com",
         "topic": "Topic",
-        "message": "Message",
-        "submit": "Book Now",
-        "success": "Booking Successful!",
-        "success_message": "We will contact you shortly."
+        "topic_placeholder": "Select Topic",
+        "topics": {
+            "consultation": "General Consultation",
+            "development": "Custom Development",
+            "automation": "Automation",
+            "audit": "Security Audit"
+        },
+        "date": "Date",
+        "time": "Time",
+        "message": "Message (Optional)",
+        "message_placeholder": "Brief description of the project...",
+        "submit": "Request Appointment",
+        "submitting": "Submitting...",
+        "success_title": "Booking Sent!",
+        "success_message": "Thank you for reaching out. We will contact you soon at the provided contact details.",
+        "new_booking": "New Booking",
+        "error_fill_all": "Please fill in all fields and select a date!",
+        "error_generic": "An error occurred during submission"
     },
     "Maintenance": {
         "banner_text": "Currently under maintenance. We only accept custom quotes."
@@ -260,9 +584,13 @@
         },
         "form": {
             "name": "Full Name *",
+            "name_placeholder": "John Doe",
             "email": "Email Address *",
+            "email_placeholder": "john@company.com",
             "phone": "Phone Number",
+            "phone_placeholder": "+36 30 123 4567",
             "company": "Company Name (Optional)",
+            "company_placeholder": "Example Ltd.",
             "project_type": "Project Type *",
             "budget": "Planned Budget",
             "description": "Project Description *",
@@ -528,6 +856,7 @@
         }
     },
     "Breadcrumbs": {
+        "home": "Home",
         "szolgaltatasok": "Services",
         "integraciok": "Integrations & API",
         "webfejlesztes": "Web Development",
@@ -678,7 +1007,12 @@
         },
         "item_labels": {
             "whats_included": "What's included?",
-            "details_and_order": "Details and Order"
+            "details_and_order": "Details and Order",
+            "pricing_from": "from",
+            "pricing_custom": "Custom pricing",
+            "pricing_from_format": "from {price}",
+            "pricing_plus_format": "{price}+",
+            "pricing_per_month": "/ mo"
         },
         "why_us_title": "Why BacklineIT?",
         "why_us_lead": "We don't just code, we solve business problems. Our goal is to make technology a competitive advantage for your business, not a burden.",
@@ -750,6 +1084,10 @@
         "cta_desc": "Book a free consultation and let's discuss your project details. No obligation, just useful advice.",
         "cta_consultation": "Free Consultation",
         "cta_services": "Overview Services",
+        "satisfaction_guarantee": "100% Satisfaction Guarantee",
+        "secure_payment": "Secure payment",
+        "fast_response": "Fast response time",
+        "flexible_payment": "Flexible payment options",
         "PricingTable": {
             "title": "Choose the right package for you",
             "desc": "Transparent pricing, no hidden costs. Every package includes the tools needed for a successful launch.",
@@ -913,7 +1251,37 @@
         "request_quote": "Request Quote",
         "details": "Details",
         "price_note": "gross price",
-        "quick_view": "Quick View"
+        "quick_view": "Quick View",
+        "product": "Product",
+        "service": "Service"
+    },
+    "Metadata": {
+        "title": "BacklineIT | Efficient Digital Solutions",
+        "description": "Professional IT services, custom scripts, web development, and automation for businesses. Request a quote and increase your efficiency!"
+    },
+    "PromoBanner": {
+        "text": "🚀 Launch Promo: Use code START2026 for 20% off!",
+        "close": "Close"
+    },
+    "SocialProof": {
+        "purchased": "purchased:"
+    },
+    "CookieBanner": {
+        "title": "We use cookies 🍪",
+        "description": "We use cookies to ensure the site's functionality and to improve your user experience.",
+        "settings": "Settings",
+        "decline": "Decline",
+        "accept": "Accept",
+        "settings_title": "Cookie Settings",
+        "settings_description": "Here you can customize which cookies you allow.",
+        "essential_title": "Essential cookies",
+        "essential_description": "These are vital for the operation of the site.",
+        "analytics_title": "Analytics",
+        "analytics_description": "These help us understand how visitors use the site.",
+        "marketing_title": "Marketing",
+        "marketing_description": "For showing relevant advertisements.",
+        "cancel": "Cancel",
+        "save": "Save"
     },
     "CTA": {
         "satisfaction_guarantee": "100% Satisfaction Guarantee",
@@ -948,7 +1316,10 @@
         "rating": "Rating",
         "years_experience": "Years of experience",
         "satisfaction": "Satisfaction",
-        "response_time": "Response time"
+        "response_time": "Response time",
+        "ssl_security": "SSL Security",
+        "gdpr_compliant": "GDPR Compliant",
+        "no_hidden_costs": "No Hidden Costs"
     },
     "ProductDetail": {
         "detailed_description": "Detailed description",
@@ -1002,5 +1373,626 @@
         "design": "UI/UX Design",
         "pm": "Project management",
         "other": "Other"
+    },
+    "ServiceTemplate": {
+        "get_quote": "Get a Quote",
+        "request_appointment": "Request Appointment",
+        "why_need_this": "Why do you need this?",
+        "whats_included": "What's included in the package?",
+        "technologies": "Technologies:",
+        "starting_price": "Starting Price",
+        "free_consultation_available": "Free consultation available",
+        "ready_to_start": "Ready to start?",
+        "cta_description": "Book a free consultation and let's discuss your project details. No obligation, just useful advice.",
+        "free_consultation": "Free Consultation",
+        "view_pricing": "View Pricing",
+        "no_hidden_costs": "No hidden costs",
+        "satisfaction_guarantee": "100% satisfaction guarantee",
+        "fast_response": "Response within 24 hours"
+    },
+    "Services": {
+        "SysAdmin": {
+            "title": "System Administration & DevOps",
+            "description": "Stable server background and automated processes. So you can focus on development and business, not the servers.",
+            "hero_features": [
+                "CI/CD pipeline building (GitHub Actions, GitLab CI)",
+                "Docker containerization and Kubernetes",
+                "Cloud infrastructure (AWS, DigitalOcean, Hetzner)",
+                "Server monitoring and alerting (Prometheus, Grafana)",
+                "Automated backups",
+                "Load balancing and scaling",
+                "Log management (ELK Stack)",
+                "Infrastructure design and optimization"
+            ],
+            "hero_benefits": [
+                {
+                    "title": "Stability",
+                    "description": "99.9% availability and fast troubleshooting. We prevent trouble before it happens."
+                },
+                {
+                    "title": "Faster Development",
+                    "description": "With automated deploy processes, developers can work faster without worrying about servers."
+                },
+                {
+                    "title": "Cost Effectiveness",
+                    "description": "Reduced operating costs through optimized infrastructure and automated tasks."
+                },
+                {
+                    "title": "Security",
+                    "description": "Regular security updates, backups, and monitoring for maximum data protection."
+                }
+            ],
+            "use_cases_badge": "Use Cases",
+            "use_cases_title": "What can it be used for?",
+            "use_cases_desc": "Concrete examples where our DevOps solutions create value",
+            "use_cases_items": [
+                {
+                    "title": "CI/CD Pipeline",
+                    "description": "Automated testing and deployment on every code change.",
+                    "example": "GitHub push -> Automatic test run -> Build -> Deploy to production server without downtime.",
+                    "roi": "Faster development, zero failed deploys"
+                },
+                {
+                    "title": "Cloud Migration",
+                    "description": "Moving traditional servers to modern cloud infrastructure.",
+                    "example": "Moving old VPS to AWS, setting up auto-scaling to handle traffic spikes.",
+                    "roi": "Scalability, cost efficiency"
+                },
+                {
+                    "title": "Server Monitoring",
+                    "description": "24/7 supervision and immediate alerting in case of error.",
+                    "example": "Monitoring CPU, RAM, Storage. SMS alert if response time increase or service stops.",
+                    "roi": "99.9% availability"
+                },
+                {
+                    "title": "Data Backup",
+                    "description": "Automated, encrypted backups to external locations.",
+                    "example": "Daily database and file backup to S3, with 30-day retention. Monthly restore test.",
+                    "roi": "Data loss protection"
+                },
+                {
+                    "title": "Load Balancing",
+                    "description": "Traffic distribution between multiple servers for stability.",
+                    "example": "Configuring Nginx load balancer for 3 web servers. If one fails, others take over.",
+                    "roi": "No downtime even with high traffic"
+                },
+                {
+                    "title": "Infrastructure as Code (IaC)",
+                    "description": "Managing servers and networks as code (Terraform, Ansible).",
+                    "example": "Setting up entire environment with one command. Reproducible, version-controlled infra.",
+                    "roi": "Fast environment creation, documentation"
+                }
+            ],
+            "pricing_badge": "Transparent Pricing",
+            "pricing_title": "Our Prices",
+            "pricing_desc": "Choose the package that best fits your business",
+            "pricing_example_label": "Example:",
+            "pricing_reaction_time": "Reaction Time",
+            "pricing_select_plan": "Choose Plan",
+            "pricing_contact_us": "Contact Us",
+            "pricing_help_text": "Not sure which package is right? We help you decide!",
+            "pricing_consultation_cta": "Free Consultation",
+            "cost_title": "How much does it cost?",
+            "cost_desc": "Use our price calculator to estimate expected costs. For an exact quote, please contact us.",
+            "plans": {
+                "starter": {
+                    "name": "Basic",
+                    "desc": "For smaller websites and applications",
+                    "features": [
+                        "Monthly system updates",
+                        "Availability monitoring",
+                        "Daily backups",
+                        "1 hour troubleshooting / month"
+                    ]
+                },
+                "pro": {
+                    "name": "Pro",
+                    "desc": "For business-critical applications",
+                    "badge": "MOST POPULAR",
+                    "features": [
+                        "Weekly system updates",
+                        "24/7 Monitoring and Alerting",
+                        "Real-time backups",
+                        "4 hours troubleshooting / month",
+                        "CI/CD maintenance"
+                    ]
+                },
+                "enterprise": {
+                    "name": "Enterprise",
+                    "desc": "For high-traffic systems",
+                    "price_label": "Custom",
+                    "price_sub": "by agreement",
+                    "features": [
+                        "Dedicated DevOps engineer",
+                        "SLA guarantee",
+                        "High Availability design",
+                        "Unlimited incident handling"
+                    ]
+                }
+            }
+        },
+        "WebDev": {
+            "title": "Web Development & E-commerce",
+            "description": "Modern, fast, and conversion-focused websites and webshops. Not just beautiful, but they also generate revenue.",
+            "hero_features": [
+                "Custom website design and development",
+                "WooCommerce / Shopify webshop creation",
+                "Headless CMS solutions (Next.js + Strapi/Ghost)",
+                "Responsive, mobile-first design",
+                "SEO optimization from the ground up",
+                "Fast loading speed (Core Web Vitals)",
+                "E-commerce integration (payment, shipping)",
+                "Admin interface and content management"
+            ],
+            "hero_benefits": [
+                {
+                    "title": "Higher Conversion",
+                    "description": "Fast and user-friendly sites turn more visitors into customers. Our clients experience 30-50% conversion growth on average."
+                },
+                {
+                    "title": "Ease of Use",
+                    "description": "You get an admin interface that you can easily edit yourself. No programming knowledge required to update content."
+                },
+                {
+                    "title": "Future-proof Technology",
+                    "description": "We use a modern stack that will stand the test of time. Next.js, React, Tailwind CSS - the future of the web."
+                }
+            ],
+            "project_types_title": "What types of projects do we build?",
+            "project_types_desc": "Choose the website type that best fits your business",
+            "project_types_items": [
+                {
+                    "title": "Landing Page",
+                    "description": "Conversion-focused single-page website for products or services",
+                    "example": "Startup landing page with lead generation",
+                    "roi": "Average 3-5% conversion rate"
+                },
+                {
+                    "title": "E-commerce / Webshop",
+                    "description": "Full-scale online store with payment and inventory management integration",
+                    "example": "WooCommerce shop with 500+ products, Stripe payment",
+                    "roi": "Average 2-4% conversion rate"
+                },
+                {
+                    "title": "SaaS Platform",
+                    "description": "Software-as-a-Service platform with subscription model",
+                    "example": "Project management tool for teams, monthly subscription",
+                    "roi": "Scalable revenue, low operating cost"
+                },
+                {
+                    "title": "Corporate Website",
+                    "description": "Professional introduction page for companies with multiple subpages",
+                    "example": "Law firm website with services, references, and blog",
+                    "roi": "Increases company credibility and accessibility"
+                },
+                {
+                    "title": "Mobile Application",
+                    "description": "Progressive Web App (PWA) or native mobile application",
+                    "example": "Restaurant ordering app for iOS and Android",
+                    "roi": "Better customer experience, push notifications"
+                },
+                {
+                    "title": "Custom Web App",
+                    "description": "Complex web application with customized features",
+                    "example": "Internal CRM system for managing sales processes",
+                    "roi": "More efficient workflows, data-driven decisions"
+                }
+            ],
+            "pricing_title": "Pricing Packages",
+            "pricing_desc": "Every project is unique, but here are the starting prices",
+            "pricing_view_all": "View All Packages",
+            "plans": [
+                {
+                    "name": "Introduction",
+                    "badge": "Landing Page",
+                    "desc": "Single-page or smaller websites",
+                    "price": "150,000",
+                    "sub": "one-time fee",
+                    "features": [
+                        "1-5 subpages",
+                        "Responsive design",
+                        "Contact form",
+                        "Basic SEO settings",
+                        "1 year hosting",
+                        "3 months support",
+                        "2-3 weeks turnaround time"
+                    ],
+                    "ideal": "Ideal for: small businesses, freelancers"
+                },
+                {
+                    "name": "Webshop",
+                    "badge": "E-commerce",
+                    "popular": "MOST POPULAR",
+                    "desc": "Full-scale webshop solution",
+                    "price": "350,000",
+                    "sub": "one-time fee",
+                    "features": [
+                        "WooCommerce / Shopify",
+                        "Payment integration (Stripe, PayPal)",
+                        "Product categories, filters",
+                        "Cart and checkout process",
+                        "Inventory management",
+                        "SEO optimization",
+                        "6 months support",
+                        "4-6 weeks turnaround time"
+                    ],
+                    "ideal": "Ideal for: online retailers, product sellers"
+                },
+                {
+                    "name": "Custom",
+                    "badge": "Custom",
+                    "desc": "Complex web applications",
+                    "price": "600,000+",
+                    "sub": "custom pricing",
+                    "features": [
+                        "Headless CMS (Next.js)",
+                        "Custom features",
+                        "User authentication",
+                        "Dashboard and admin panel",
+                        "API integration",
+                        "Full SEO",
+                        "12 months support",
+                        "8-12 weeks turnaround time"
+                    ],
+                    "ideal": "Ideal for: SaaS startups, large enterprises"
+                }
+            ],
+            "portfolio_title": "Example Projects",
+            "portfolio_desc": "Take a look at the websites we have already built",
+            "portfolio_conversion": "Conversion:",
+            "portfolio_revenue": "Monthly Traffic:",
+            "portfolio_traffic": "Organic Traffic:",
+            "portfolio_efficiency": "Efficiency Increase:",
+            "portfolio_active_users": "Active Users:",
+            "portfolio_daily_orders": "Daily Orders:",
+            "portfolio_items": [
+                {
+                    "badge": "Landing Page",
+                    "title": "Tech Startup Landing",
+                    "desc": "SaaS product showcase page with lead generation"
+                },
+                {
+                    "badge": "E-commerce",
+                    "title": "Fashion Webshop",
+                    "desc": "Clothing online store with 800+ products"
+                },
+                {
+                    "badge": "Corporate",
+                    "title": "Law Firm",
+                    "desc": "Professional introductory site with a blog"
+                },
+                {
+                    "badge": "SaaS",
+                    "title": "Project Management Tool",
+                    "desc": "Task management platform built for teams"
+                },
+                {
+                    "badge": "PWA",
+                    "title": "Restaurant Ordering App",
+                    "desc": "Progressive Web App for food ordering"
+                },
+                {
+                    "badge": "Custom",
+                    "title": "Internal CRM System",
+                    "desc": "For managing sales processes"
+                }
+            ],
+            "tech_title": "Technologies We Use",
+            "tech_desc": "Modern, future-proof stack for best performance"
+        },
+        "Scripts": {
+            "title": "Custom Scripts & Automation",
+            "description": "Automate boring, repetitive tasks. Save time and reduce manual errors with custom scripts and workflows.",
+            "hero_features": [
+                "n8n workflow design and implementation",
+                "Custom Python / Node.js scripts",
+                "Database synchronization",
+                "API integrations (CRM, Billing, Webshop)",
+                "Scheduled tasks (Cron jobs)",
+                "Automatic report generation",
+                "Email automation",
+                "Webhook integration"
+            ],
+            "hero_benefits": [
+                {
+                    "title": "Time Savings",
+                    "description": "Tasks that took hours now run automatically in seconds. Our clients save an average of 20-30 hours per month."
+                },
+                {
+                    "title": "Error-free Operation",
+                    "description": "Automation doesn't get tired and doesn't make typos. 95% fewer human errors."
+                },
+                {
+                    "title": "Scalability",
+                    "description": "Your systems will be able to handle growing traffic without human intervention."
+                }
+            ],
+            "use_cases_title": "What can you use it for?",
+            "use_cases_desc": "Real-world examples of how automation can help your business",
+            "use_cases_items": [
+                {
+                    "title": "Email Automation",
+                    "description": "Automatic email sending for events, reminders, or marketing campaigns.",
+                    "example": "Automatic welcome email series upon new customer registration, followed by weekly newsletters with personalized content.",
+                    "roi": "~15 hours/month saved"
+                },
+                {
+                    "title": "Data Synchronization",
+                    "description": "Automatic synchronization of data between different systems.",
+                    "example": "Automatic transfer of WooCommerce orders to the billing system and CRM.",
+                    "roi": "~20 hours/month saved + 95% fewer errors"
+                },
+                {
+                    "title": "Report Generation",
+                    "description": "Automatic reports created and sent at specified intervals.",
+                    "example": "Automatic generation of weekly sales reports in Excel with charts, sent via email.",
+                    "roi": "~10 hours/month saved"
+                },
+                {
+                    "title": "Calendar Integration",
+                    "description": "Automatic appointment booking, reminders, and calendar synchronization.",
+                    "example": "Automatic Google Calendar entry upon customer booking + SMS reminder 24 hours before.",
+                    "roi": "~8 hours/month saved + better customer experience"
+                },
+                {
+                    "title": "Website Monitoring",
+                    "description": "Automatic tracking of website availability, performance, and changes.",
+                    "example": "Hourly check if the webshop is available. Immediate SMS and email notification in case of downtime.",
+                    "roi": "99.9% uptime + fast response"
+                },
+                {
+                    "title": "Data Processing",
+                    "description": "Automatic processing, cleaning, and transformation of large amounts of data.",
+                    "example": "Daily update of 1000+ product prices and inventory based on supplier CSV, automatic upload to the webshop.",
+                    "roi": "~30 hours/month saved"
+                }
+            ],
+            "pricing_title": "Pricing Models",
+            "pricing_desc": "Choose the pricing that fits your project's complexity",
+            "plans": {
+                "simple": {
+                    "name": "Simple",
+                    "desc": "Small automations with 1-2 integrations",
+                    "price": "50,000",
+                    "sub": "one-time fee",
+                    "features": [
+                        "1-2 API integrations",
+                        "Simple logic",
+                        "Basic error checking",
+                        "1 month support",
+                        "Documentation"
+                    ],
+                    "example": "E.g.: Email sending upon form submission"
+                },
+                "medium": {
+                    "name": "Medium",
+                    "desc": "Complex workflows with multiple integrations",
+                    "popular": "MOST POPULAR",
+                    "price": "120,000",
+                    "sub": "one-time fee",
+                    "features": [
+                        "3-5 API integrations",
+                        "Complex business logic",
+                        "Advanced error checking",
+                        "Database operations",
+                        "3 months support",
+                        "Detailed documentation"
+                    ],
+                    "example": "E.g.: Order → Invoice → CRM → Email"
+                },
+                "complex": {
+                    "name": "Complex",
+                    "desc": "Enterprise-level automation",
+                    "price": "250,000+",
+                    "sub": "custom pricing",
+                    "features": [
+                        "6+ API integrations",
+                        "Microservices architecture",
+                        "AI/ML integration",
+                        "Real-time processing",
+                        "6 months support",
+                        "Full documentation + training"
+                    ],
+                    "example": "E.g.: Full customer management system"
+                }
+            },
+            "portfolio_title": "Example Projects",
+            "portfolio_desc": "Take a look at the automations we have already built",
+            "portfolio_items": [
+                {
+                    "title": "E-commerce Automation",
+                    "desc": "Webshop + Billing + Warehouse Sync",
+                    "content": "Automatic order processing: new order → invoice generation (Billingo) → inventory update → customer notification via email → CRM entry.",
+                    "metric_label": "Savings:",
+                    "metric_value": "~25 hours/month"
+                },
+                {
+                    "title": "Marketing Automation",
+                    "desc": "Lead nurturing and follow-up",
+                    "content": "New lead → welcome email → 3-day email series → if no response, notify sales rep → if response, meeting booking link.",
+                    "metric_label": "Conversion Boost:",
+                    "metric_value": "+35%"
+                },
+                {
+                    "title": "Data Collection & Reporting",
+                    "desc": "Automatic Weekly Reports",
+                    "content": "Weekly data collection from Google Analytics, Facebook Ads, Google Ads → Excel report generation with charts → sent via email to management.",
+                    "metric_label": "Savings:",
+                    "metric_value": "~12 hours/month"
+                },
+                {
+                    "title": "Customer Support Automation",
+                    "desc": "Ticket System Integration",
+                    "content": "Email received → automatic ticket creation → categorization with AI → assigned to the appropriate staff → automatic response to customer.",
+                    "metric_label": "Response Time Reduction:",
+                    "metric_value": "-60%"
+                }
+            ],
+            "pricing_view_all": "View All Packages"
+        },
+        "Security": {
+            "title": "Security & Audit",
+            "description": "Protect your business and your customers' data. Professional security auditing and protection for websites and servers.",
+            "hero_features": [
+                "Website security audit",
+                "Vulnerability scanning",
+                "Server hardening",
+                "Firewall and WAF setup",
+                "Malware scanning and removal",
+                "GDPR technical compliance",
+                "SSL/TLS configuration check",
+                "Backup strategy"
+            ],
+            "hero_benefits": [
+                {
+                    "title": "Peace of Mind",
+                    "description": "Know that your systems are protected against the most common attacks."
+                },
+                {
+                    "title": "Trust",
+                    "description": "Your customers trust a secure, audited website more."
+                },
+                {
+                    "title": "Savings",
+                    "description": "Recovering from a successful attack costs much more than prevention."
+                }
+            ],
+            "use_cases_title": "Our Services",
+            "use_cases_desc": "How we make your systems more secure",
+            "use_cases_items": [
+                {
+                    "title": "Security Audit",
+                    "description": "Scanning existing systems and identifying vulnerabilities.",
+                    "example": "Checking website, server, and database settings. Detailed report on errors and suggested fixes.",
+                    "roi": "Minimize risk of hacked sites"
+                },
+                {
+                    "title": "Penetration Testing (Pentest)",
+                    "description": "Simulated attacks to find weak points in the system.",
+                    "example": "Ethical hacker attack against the webshop, searching for SQL Injection, XSS, and other bugs.",
+                    "roi": "Assessment of real security levels"
+                },
+                {
+                    "title": "Server Hardening",
+                    "description": "Configuring servers for maximum security.",
+                    "example": "Closing unnecessary ports, SSH protection, Firewall configuration, Fail2Ban installation.",
+                    "roi": "Defense against automated attacks"
+                },
+                {
+                    "title": "GDPR Compliance",
+                    "description": "Technical implementation of data protection regulations.",
+                    "example": "Database encryption, logging setup, automated data deletion processes.",
+                    "roi": "Avoidance of fines"
+                },
+                {
+                    "title": "Malware Removal",
+                    "description": "Cleaning and restoring hacked websites.",
+                    "example": "Cleaning infected WordPress sites, searching for and closing backdoors.",
+                    "roi": "Business continuity restoration"
+                },
+                {
+                    "title": "WAF Setup",
+                    "description": "Building a Web Application Firewall defense line.",
+                    "example": "Configuring Cloudflare or ModSecurity to filter malicious traffic.",
+                    "roi": "Protection against DDoS and bot attacks"
+                }
+            ],
+            "pricing_title": "Audit Packages",
+            "pricing_desc": "One-time security audit packages",
+            "plans": {
+                "base": {
+                    "name": "Basic Audit",
+                    "desc": "Check for smaller websites and blogs",
+                    "price": "80,000",
+                    "sub": "one-time fee",
+                    "features": [
+                        "Automated vulnerability scanning",
+                        "SSL/TLS check",
+                        "Basic server settings",
+                        "WordPress/CMS plugin check",
+                        "Short summary report"
+                    ],
+                    "duration_label": "Duration: 2-3 business days"
+                },
+                "detailed": {
+                    "name": "Detailed Audit",
+                    "badge": "Popular",
+                    "desc": "Audit for webshops and business sites",
+                    "price": "180,000",
+                    "sub": "one-time fee",
+                    "features": [
+                        "Everything in the Basic package",
+                        "Manual testing (Pentest basics)",
+                        "Database permission check",
+                        "Firewall rule inspection",
+                        "Detailed technical report",
+                        "1 hour consultation on fixes"
+                    ],
+                    "duration_label": "Duration: 1 week"
+                },
+                "complex": {
+                    "name": "Complex Protection",
+                    "desc": "Custom systems, high risk",
+                    "price_label": "Custom",
+                    "price_sub": "based on quote",
+                    "features": [
+                        "Full Penetration Testing",
+                        "Source code analysis",
+                        "Social Engineering test",
+                        "Defense systems (WAF) implementation",
+                        "Incident response planning",
+                        "Employee training"
+                    ],
+                    "duration_label": "Duration: 2-4 weeks"
+                }
+            },
+            "cta_request_audit": "Request security audit"
+        },
+        "Integrations": {
+            "title": "Integrations & API",
+            "description": "Let's connect your systems! Automated data movement, custom API development, and system integration for more efficient operation.",
+            "hero_features": [
+                "Custom API development (REST, GraphQL)",
+                "Webshop and ERP connection",
+                "CRM system integrations",
+                "Payment gateway implementation (Stripe, SimplePay)",
+                "Data migration and synchronization",
+                "Legacy system modernization"
+            ],
+            "hero_benefits": [
+                {
+                    "title": "Automated Processes",
+                    "description": "No more manual data entry. Your systems communicate with each other automatically."
+                },
+                {
+                    "title": "Real-time Data",
+                    "description": "Current data is always visible in every system, without delay."
+                },
+                {
+                    "title": "Fewer Errors",
+                    "description": "Elimination of human errors through automated data transfer."
+                },
+                {
+                    "title": "Scalability",
+                    "description": "Your systems will be able to handle growing traffic and data volume."
+                }
+            ],
+            "scenarios_title": "Common Integration Scenarios",
+            "scenarios": [
+                {
+                    "title": "Webshop ↔ Billing",
+                    "description": "Automatic invoice issuance upon ordering. We connect your WooCommerce or Shopify store with your Számlázz.hu or Billingo account."
+                },
+                {
+                    "title": "CRM ↔ Marketing",
+                    "description": "Synchronize customer data between your CRM system (e.g., HubSpot, Salesforce) and your newsletter service (e.g., Mailchimp)."
+                },
+                {
+                    "title": "ERP ↔ Inventory Management",
+                    "description": "Real-time inventory updates across all sales channels. If you sell something in the store, the inventory updates on the webshop too."
+                }
+            ],
+            "pricing_label": "Custom pricing"
+        }
     }
 }

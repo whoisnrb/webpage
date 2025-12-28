@@ -94,9 +94,9 @@ export function SplitHero() {
                         </motion.div>
 
                         <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-[0.9] lg:leading-[0.85]">
-                            <span className="block opacity-70 group-hover/left:opacity-100 transition-opacity">CUSTOM</span>
+                            <span className="block opacity-70 group-hover/left:opacity-100 transition-opacity">{t('left_title_1')}</span>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-primary/80 animate-gradient-x bg-[length:200%_auto] block">
-                                SOLUTIONS
+                                {t('left_title_2')}
                             </span>
                         </h2>
 
@@ -117,12 +117,12 @@ export function SplitHero() {
                         <div className="mt-12 flex gap-8 items-center opacity-0 group-hover/left:opacity-100 transition-all duration-700 translate-y-4 group-hover/left:translate-y-0">
                             <div>
                                 <div className="text-2xl font-bold text-primary">50+</div>
-                                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Successful Projects</div>
+                                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{t('stat_projects_label')}</div>
                             </div>
                             <div className="w-[1px] h-8 bg-border" />
                             <div>
                                 <div className="text-2xl font-bold text-primary">100%</div>
-                                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">Client Satisfaction</div>
+                                <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{t('stat_satisfaction_label')}</div>
                             </div>
                         </div>
                     </motion.div>
@@ -196,9 +196,9 @@ export function SplitHero() {
                         </motion.div>
 
                         <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-[0.9] lg:leading-[0.85]">
-                            <span className="block opacity-70 group-hover/right:opacity-100 transition-opacity">PREMIUM</span>
+                            <span className="block opacity-70 group-hover/right:opacity-100 transition-opacity">{t('right_title_1')}</span>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-orange-400 to-accent/80 animate-gradient-x bg-[length:200%_auto] block">
-                                PRODUCTS
+                                {t('right_title_2')}
                             </span>
                         </h2>
 
@@ -217,10 +217,10 @@ export function SplitHero() {
 
                         {/* Product Highlights snippet */}
                         <div className="mt-12 flex gap-4 items-center opacity-0 group-hover/right:opacity-100 transition-all duration-700 translate-y-4 group-hover/right:translate-y-0">
-                            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Ready to ship:</span>
-                            <Badge variant="outline" className="bg-orange-500/20 border-orange-400/40 text-orange-300">Scriptek</Badge>
-                            <Badge variant="outline" className="bg-orange-500/20 border-orange-400/40 text-orange-300">Plugins</Badge>
-                            <Badge variant="outline" className="bg-orange-500/20 border-orange-400/40 text-orange-300">E-books</Badge>
+                            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">{t('ready_to_ship')}</span>
+                            <Badge variant="outline" className="bg-orange-500/20 border-orange-400/40 text-orange-300">{t('badge_scripts')}</Badge>
+                            <Badge variant="outline" className="bg-orange-500/20 border-orange-400/40 text-orange-300">{t('badge_plugins')}</Badge>
+                            <Badge variant="outline" className="bg-orange-500/20 border-orange-400/40 text-orange-300">{t('badge_ebooks')}</Badge>
                         </div>
                     </motion.div>
                 </div>
@@ -230,7 +230,7 @@ export function SplitHero() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:hidden z-50 pointer-events-none">
                 <div className="bg-background/80 backdrop-blur-xl border border-primary/20 rounded-full px-4 py-1 flex items-center gap-2 shadow-2xl">
                     <MousePointer2 className="h-3 w-3 text-primary animate-bounce" />
-                    <span className="text-[10px] font-bold uppercase tracking-tighter">Choose Your Path</span>
+                    <span className="text-[10px] font-bold uppercase tracking-tighter">{t('choose_path')}</span>
                 </div>
             </div>
 

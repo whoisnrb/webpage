@@ -12,7 +12,7 @@ import { SocialProof } from "@/components/marketing/social-proof";
 import { CookieBanner } from "@/components/cookie-banner";
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { PromoBanner } from "@/components/layout/promo-banner";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -28,41 +28,46 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "BacklineIT | Hatékony Digitális Megoldások",
-    template: "%s | BacklineIT"
-  },
-  description: "Professzionális IT szolgáltatások, egyedi scriptek, webfejlesztés és automatizáció vállalkozásoknak. Kérjen ajánlatot és növelje hatékonyságát!",
-  keywords: ["BacklineIT", "IT szolgáltatás", "webfejlesztés", "automatizáció", "python script", "devops", "biztonsági audit", "egyedi szoftver"],
-  authors: [{ name: "BacklineIT Team" }],
-  creator: "BacklineIT Team",
-  openGraph: {
-    type: "website",
-    locale: "hu_HU",
-    url: "https://backlineit.hu",
-    title: "BacklineIT | Hatékony Digitális Megoldások",
-    description: "Professzionális IT szolgáltatások, egyedi scriptek, webfejlesztés és automatizáció vállalkozásoknak.",
-    siteName: "BacklineIT",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "BacklineIT",
-    description: "Professzionális IT szolgáltatások és automatizáció.",
-    creator: "@backlineit",
-  },
-  metadataBase: new URL("https://backlineit.hu"),
-  alternates: {
-    canonical: '/',
-    languages: {
-      'hu': '/hu',
-      'en': '/en',
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
+
+  return {
+    title: {
+      default: t('title'),
+      template: "%s | BacklineIT"
     },
-  },
-  verification: {
-    google: "w5GusFwWrjuwRjB6Et93XNbdps97gw7pOuMeX4a5pbY",
-  },
-};
+    description: t('description'),
+    keywords: ["BacklineIT", "IT szolgáltatás", "webfejlesztes", "automatizacio", "python script", "devops", "biztonsagi audit", "egyedi szoftver"],
+    authors: [{ name: "BacklineIT Team" }],
+    creator: "BacklineIT Team",
+    openGraph: {
+      type: "website",
+      locale: locale === 'hu' ? 'hu_HU' : 'en_US',
+      url: "https://backlineit.hu",
+      title: t('title'),
+      description: t('description'),
+      siteName: "BacklineIT",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "BacklineIT",
+      description: t('description'),
+      creator: "@backlineit",
+    },
+    metadataBase: new URL("https://backlineit.hu"),
+    alternates: {
+      canonical: '/',
+      languages: {
+        'hu': '/hu',
+        'en': '/en',
+      },
+    },
+    verification: {
+      google: "w5GusFwWrjuwRjB6Et93XNbdps97gw7pOuMeX4a5pbY",
+    },
+  };
+}
 
 const jsonLd = {
   "@context": "https://schema.org",

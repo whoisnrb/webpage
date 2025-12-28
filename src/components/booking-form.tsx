@@ -8,13 +8,18 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { format } from "date-fns"
-import { hu } from "date-fns/locale"
+import { hu, enUS } from "date-fns/locale"
 import { Calendar as CalendarIcon, Loader2, CheckCircle2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import { Turnstile } from "@/components/ui/turnstile"
+import { useTranslations, useLocale } from "next-intl"
 
 export function BookingForm() {
+    const t = useTranslations('Booking')
+    const locale = useLocale()
+    const dateLocale = locale === 'hu' ? hu : enUS
+
     const [date, setDate] = useState<Date>()
     const [errorMessage, setErrorMessage] = useState("")
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
@@ -34,7 +39,7 @@ export function BookingForm() {
 
         if (!date || !formData.name || !formData.email || !formData.topic || !formData.time) {
             console.log("Validation failed")
-            setErrorMessage("Kérlek tölts ki minden mezőt és válassz dátumot!")
+            setErrorMessage(t('error_fill_all'))
             return
         }
 
@@ -65,7 +70,7 @@ export function BookingForm() {
         } catch (error) {
             console.error("Submission error:", error)
             setStatus("error")
-            setErrorMessage(error instanceof Error ? error.message : "Hiba történt a küldés során")
+            setErrorMessage(error instanceof Error ? error.message : t('error_generic'))
         }
     }
 
@@ -79,12 +84,12 @@ export function BookingForm() {
                 <div className="h-16 w-16 bg-green-500/10 rounded-full flex items-center justify-center">
                     <CheckCircle2 className="h-8 w-8 text-green-500" />
                 </div>
-                <h3 className="text-xl font-semibold">Foglalás elküldve!</h3>
+                <h3 className="text-xl font-semibold">{t('success_title')}</h3>
                 <p className="text-muted-foreground">
-                    Köszönjük a megkeresést. Hamarosan felvesszük Önnel a kapcsolatot a megadott elérhetőségeken.
+                    {t('success_message')}
                 </p>
                 <Button onClick={() => setStatus("idle")} variant="outline">
-                    Új foglalás
+                    {t('new_booking')}
                 </Button>
             </motion.div>
         )
@@ -94,20 +99,20 @@ export function BookingForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                    <label className="text-sm font-medium">Név</label>
+                    <label className="text-sm font-medium">{t('name')}</label>
                     <Input
                         required
-                        placeholder="Teljes név"
+                        placeholder={t('name_placeholder')}
                         value={formData.name}
                         onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                     />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium">Email</label>
+                    <label className="text-sm font-medium">{t('email')}</label>
                     <Input
                         required
                         type="email"
-                        placeholder="pelda@email.hu"
+                        placeholder={t('email_placeholder')}
                         value={formData.email}
                         onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                     />
@@ -116,26 +121,26 @@ export function BookingForm() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                    <label className="text-sm font-medium">Téma</label>
+                    <label className="text-sm font-medium">{t('topic')}</label>
                     <Select
                         required
                         onValueChange={(value) => setFormData(prev => ({ ...prev, topic: value }))}
                         value={formData.topic}
                     >
                         <SelectTrigger>
-                            <SelectValue placeholder="Válassz témát" />
+                            <SelectValue placeholder={t('topic_placeholder')} />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="consultation">Általános konzultáció</SelectItem>
-                            <SelectItem value="development">Egyedi fejlesztés</SelectItem>
-                            <SelectItem value="automation">Automatizálás</SelectItem>
-                            <SelectItem value="audit">Biztonsági audit</SelectItem>
+                            <SelectItem value="consultation">{t('topics.consultation')}</SelectItem>
+                            <SelectItem value="development">{t('topics.development')}</SelectItem>
+                            <SelectItem value="automation">{t('topics.automation')}</SelectItem>
+                            <SelectItem value="audit">{t('topics.audit')}</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2 flex flex-col">
-                        <label className="text-sm font-medium">Dátum</label>
+                        <label className="text-sm font-medium">{t('date')}</label>
                         <Popover>
                             <PopoverTrigger asChild>
                                 <Button
@@ -146,9 +151,9 @@ export function BookingForm() {
                                     )}
                                 >
                                     {date ? (
-                                        format(date, "PPP", { locale: hu })
+                                        format(date, "PPP", { locale: dateLocale })
                                     ) : (
-                                        <span>Válassz dátumot</span>
+                                        <span>{t('select_date')}</span>
                                     )}
                                     <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                 </Button>
@@ -162,13 +167,13 @@ export function BookingForm() {
                                         date < new Date() || date < new Date("1900-01-01") || date.getDay() === 0 || date.getDay() === 6
                                     }
                                     initialFocus
-                                    locale={hu}
+                                    locale={dateLocale}
                                 />
                             </PopoverContent>
                         </Popover>
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium">Időpont</label>
+                        <label className="text-sm font-medium">{t('time')}</label>
                         <Select
                             required
                             onValueChange={(value) => setFormData(prev => ({ ...prev, time: value }))}
@@ -176,7 +181,7 @@ export function BookingForm() {
                             disabled={!date}
                         >
                             <SelectTrigger>
-                                <SelectValue placeholder="Válassz időpontot" />
+                                <SelectValue placeholder={t('select_time')} />
                             </SelectTrigger>
                             <SelectContent>
                                 {["09:00", "10:00", "11:00", "13:00", "14:00", "15:00", "16:00"].map((time) => (
@@ -191,9 +196,9 @@ export function BookingForm() {
             </div>
 
             <div className="space-y-2">
-                <label className="text-sm font-medium">Üzenet (Opcionális)</label>
+                <label className="text-sm font-medium">{t('message')}</label>
                 <Textarea
-                    placeholder="Rövid leírás a projektről..."
+                    placeholder={t('message_placeholder')}
                     className="min-h-[100px]"
                     value={formData.message}
                     onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
@@ -212,10 +217,10 @@ export function BookingForm() {
                 {status === "loading" ? (
                     <>
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Küldés folyamatban...
+                        {t('submitting')}
                     </>
                 ) : (
-                    "Időpont kérése"
+                    t('submit')
                 )}
             </Button>
         </form>

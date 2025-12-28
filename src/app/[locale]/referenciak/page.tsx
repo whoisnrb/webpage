@@ -4,17 +4,44 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { caseStudies } from "@/lib/case-studies-data"
+import { useTranslations } from "next-intl"
 
 export default function ReferenciakPage() {
+    const t = useTranslations('References')
+
+    const studies = [
+        {
+            ...caseStudies[0],
+            title: t('items.webshop.title'),
+            client: t('items.webshop.client'),
+            category: t('items.webshop.category'),
+            description: t('items.webshop.description'),
+        },
+        {
+            ...caseStudies[1],
+            title: t('items.patient.title'),
+            client: t('items.patient.client'),
+            category: t('items.patient.category'),
+            description: t('items.patient.description'),
+        },
+        {
+            ...caseStudies[2],
+            title: t('items.server.title'),
+            client: t('items.server.client'),
+            category: t('items.server.category'),
+            description: t('items.server.description'),
+        },
+    ]
+
     return (
         <div className="min-h-screen flex flex-col">
             <section className="bg-muted/30 py-20 md:py-32 border-b relative overflow-hidden">
                 <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-800/50" />
                 <div className="container relative mx-auto px-4 text-center">
-                    <Badge className="mb-4" variant="outline">Sikertörténetek</Badge>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">Esettanulmányok</h1>
+                    <Badge className="mb-4" variant="outline">{t('badge')}</Badge>
+                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">{t('title')}</h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Nézd meg, hogyan segítettünk más vállalkozásoknak növekedni, automatizálni és hatékonyabbá válni modern IT megoldásokkal.
+                        {t('description')}
                     </p>
                 </div>
             </section>
@@ -22,7 +49,7 @@ export default function ReferenciakPage() {
             <section className="py-20 md:py-32">
                 <div className="container mx-auto px-4">
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {caseStudies.map((study, index) => (
+                        {studies.map((study, index) => (
                             <Link href={`/referenciak/${study.slug}`} key={index} className="group h-full">
                                 <Card className="flex flex-col h-full overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 cursor-pointer">
                                     <div className={`h-56 w-full ${study.image} flex items-center justify-center relative overflow-hidden`}>
@@ -51,7 +78,7 @@ export default function ReferenciakPage() {
                                             ))}
                                         </div>
                                         <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                                            Részletek megtekintése <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                            {t('view_details')} <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                         </Button>
                                     </CardContent>
                                 </Card>
@@ -90,18 +117,18 @@ export default function ReferenciakPage() {
                                     {/* Badge */}
                                     <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-5 py-2 mb-8">
                                         <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                                        <span className="text-sm font-semibold text-emerald-300">Együtt növekedünk</span>
+                                        <span className="text-sm font-semibold text-emerald-300">{t('cta.badge')}</span>
                                     </div>
 
                                     {/* Headline */}
                                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
-                                        Te lehetsz a következő{" "}
+                                        {t('cta.title_1')}
                                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-400">
-                                            sikersztori
+                                            {t('cta.title_highlight')}
                                         </span>
                                     </h2>
                                     <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-                                        Ne maradj le a digitális versenyben. Kérj ajánlatot még ma, és kezdjük el a közös munkát!
+                                        {t('cta.description')}
                                     </p>
 
                                     {/* CTA Buttons */}
@@ -112,7 +139,7 @@ export default function ReferenciakPage() {
                                                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-gradient-x bg-[length:200%_auto]" />
                                                 <div className="absolute inset-0 shadow-[0_0_40px_rgba(6,182,212,0.4)] group-hover:shadow-[0_0_60px_rgba(6,182,212,0.6)] transition-shadow duration-300" />
                                                 <span className="relative flex items-center text-slate-900 font-bold">
-                                                    Kérj ajánlatot most
+                                                    {t('cta.button_quote')}
                                                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
                                                 </span>
                                             </Button>
@@ -122,7 +149,7 @@ export default function ReferenciakPage() {
                                                 <div className="absolute inset-0 rounded-md border-2 border-slate-600 group-hover:border-cyan-500/50 transition-colors duration-300" />
                                                 <div className="absolute inset-0 bg-white/5 group-hover:bg-cyan-500/10 transition-colors duration-300" />
                                                 <span className="relative flex items-center text-white">
-                                                    Kapcsolatfelvétel
+                                                    {t('cta.button_contact')}
                                                 </span>
                                             </Button>
                                         </Link>
@@ -132,15 +159,15 @@ export default function ReferenciakPage() {
                                     <div className="grid grid-cols-3 gap-6 pt-10 border-t border-slate-800">
                                         <div className="text-center">
                                             <div className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 mb-2">50+</div>
-                                            <div className="text-sm text-slate-500">Sikeres Projekt</div>
+                                            <div className="text-sm text-slate-500">{t('cta.stats.projects')}</div>
                                         </div>
                                         <div className="text-center">
                                             <div className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 mb-2">100%</div>
-                                            <div className="text-sm text-slate-500">Elégedett Ügyfél</div>
+                                            <div className="text-sm text-slate-500">{t('cta.stats.satisfied')}</div>
                                         </div>
                                         <div className="text-center">
                                             <div className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400 mb-2">5.0★</div>
-                                            <div className="text-sm text-slate-500">Értékelés</div>
+                                            <div className="text-sm text-slate-500">{t('cta.stats.rating')}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -156,19 +183,19 @@ export default function ReferenciakPage() {
                                 <svg className="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
-                                <span>Garantált minőség</span>
+                                <span>{t('cta.trust.quality')}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <svg className="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span>Gyors válaszidő</span>
+                                <span>{t('cta.trust.response')}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <svg className="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
-                                <span>Dedikált csapat</span>
+                                <span>{t('cta.trust.team')}</span>
                             </div>
                         </div>
                     </div>

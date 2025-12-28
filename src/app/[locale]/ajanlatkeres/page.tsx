@@ -182,21 +182,21 @@ export default function QuoteRequestPage() {
                                             <div className="grid md:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
                                                     <Label htmlFor="name">{t("form.name")}</Label>
-                                                    <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Kovács János" required />
+                                                    <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder={t("form.name_placeholder")} required />
                                                 </div>
                                                 <div className="space-y-2">
                                                     <Label htmlFor="email">{t("form.email")}</Label>
-                                                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="janos@ceg.hu" required />
+                                                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder={t("form.email_placeholder")} required />
                                                 </div>
                                             </div>
                                             <div className="grid md:grid-cols-2 gap-4">
                                                 <div className="space-y-2">
                                                     <Label htmlFor="phone">{t("form.phone")}</Label>
-                                                    <Input id="phone" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+36 30 123 4567" />
+                                                    <Input id="phone" name="phone" value={formData.phone} onChange={handleInputChange} placeholder={t("form.phone_placeholder")} />
                                                 </div>
                                                 <div className="space-y-2">
                                                     <Label htmlFor="company">{t("form.company")}</Label>
-                                                    <Input id="company" name="company" value={formData.company} onChange={handleInputChange} placeholder="Minta Kft." />
+                                                    <Input id="company" name="company" value={formData.company} onChange={handleInputChange} placeholder={t("form.company_placeholder")} />
                                                 </div>
                                             </div>
                                             <div className="pt-4 flex justify-end">

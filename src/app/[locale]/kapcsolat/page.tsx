@@ -43,8 +43,8 @@ export default function ContactPage() {
                                     </div>
                                     <div>
                                         <h3 className="font-semibold mb-1">Email</h3>
-                                        <p className="text-muted-foreground">hello@backlineit.hu</p>
-                                        <p className="text-muted-foreground">support@backlineit.hu</p>
+                                        <p className="text-muted-foreground">{t('email_hello')}</p>
+                                        <p className="text-muted-foreground">{t('email_support')}</p>
                                     </div>
                                 </div>
 
@@ -66,8 +66,7 @@ export default function ContactPage() {
                                     <div>
                                         <h3 className="font-semibold mb-1">{t('address_label')}</h3>
                                         <p className="text-muted-foreground">
-                                            2141 Csömör,<br />
-                                            Vörösmarty utca 11.
+                                            {t('address')}
                                         </p>
                                     </div>
                                 </div>

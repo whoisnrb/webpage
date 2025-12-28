@@ -5,89 +5,96 @@ import { Server, Cloud, Shield, Activity, GitBranch, Database } from "lucide-rea
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
+import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
 
-const useCases = [
-    {
-        title: "CI/CD Pipeline",
-        description: "Automatizált tesztelés és élesítés minden kódmódosításnál.",
-        icon: GitBranch,
-        example: "GitHub push -> Automatikus teszt futtatás -> Build -> Deploy éles szerverre leállás nélkül.",
-        roi: "Gyorsabb fejlesztés, 0 hibás deploy"
-    },
-    {
-        title: "Felhő Migráció",
-        description: "Hagyományos szerverek költöztetése modern felhő infrastruktúrába.",
-        icon: Cloud,
-        example: "Régi VPS költöztetése AWS-be, auto-scaling beállítása a forgalmi csúcsok kezelésére.",
-        roi: "Skálázhatóság, költséghatékonyság"
-    },
-    {
-        title: "Szerver Monitoring",
-        description: "24/7 felügyelet és azonnali riasztás hiba esetén.",
-        icon: Activity,
-        example: "CPU, RAM, Tárhely figyelése. Ha a válaszidő megnő, vagy leáll a szolgáltatás, SMS riasztás.",
-        roi: "99.9% rendelkezésre állás"
-    },
-    {
-        title: "Biztonsági Mentés",
-        description: "Automatizált, titkosított mentések külső helyszínre.",
-        icon: Database,
-        example: "Napi adatbázis és fájl mentés S3-ba, 30 napos visszakereshetőséggel. Havi visszaállítás teszt.",
-        roi: "Adatvesztés elleni védelem"
-    },
-    {
-        title: "Load Balancing",
-        description: "Forgalom elosztása több szerver között a stabilitásért.",
-        icon: Server,
-        example: "Nginx load balancer beállítása 3 web szerver elé. Ha egy kiesik, a többi átveszi a terhelést.",
-        roi: "Nincs leállás nagy forgalomnál sem"
-    },
-    {
-        title: "Infrastruktúra Kódként (IaC)",
-        description: "Szerverek és hálózatok kezelése kódként (Terraform, Ansible).",
-        icon: Shield,
-        example: "Teljes környezet felhúzása egy parancssal. Reprodukálható, verziókezelt infrastruktúra.",
-        roi: "Gyors környezet létrehozás, dokumentáltság"
-    }
-]
+
 
 export default function RendszeruzemeltetesPage() {
+    const t = useTranslations("Services.SysAdmin")
+    const tCommon = useTranslations("Common")
+    const tServices = useTranslations("ServicesPage")
+
+    const useCases = [
+        {
+            title: t("use_cases_items.0.title"),
+            description: t("use_cases_items.0.description"),
+            icon: GitBranch,
+            example: t("use_cases_items.0.example"),
+            roi: t("use_cases_items.0.roi")
+        },
+        {
+            title: t("use_cases_items.1.title"),
+            description: t("use_cases_items.1.description"),
+            icon: Cloud,
+            example: t("use_cases_items.1.example"),
+            roi: t("use_cases_items.1.roi")
+        },
+        {
+            title: t("use_cases_items.2.title"),
+            description: t("use_cases_items.2.description"),
+            icon: Activity,
+            example: t("use_cases_items.2.example"),
+            roi: t("use_cases_items.2.roi")
+        },
+        {
+            title: t("use_cases_items.3.title"),
+            description: t("use_cases_items.3.description"),
+            icon: Database,
+            example: t("use_cases_items.3.example"),
+            roi: t("use_cases_items.3.roi")
+        },
+        {
+            title: t("use_cases_items.4.title"),
+            description: t("use_cases_items.4.description"),
+            icon: Server,
+            example: t("use_cases_items.4.example"),
+            roi: t("use_cases_items.4.roi")
+        },
+        {
+            title: t("use_cases_items.5.title"),
+            description: t("use_cases_items.5.description"),
+            icon: Shield,
+            example: t("use_cases_items.5.example"),
+            roi: t("use_cases_items.5.roi")
+        }
+    ]
     return (
         <div className="flex flex-col min-h-screen">
             <ServiceLayout
-                title="Rendszerüzemeltetés & DevOps"
-                description="Stabil szerverháttér és automatizált folyamatok. Hogy te a fejlesztésre és az üzletre koncentrálhass, ne a szerverekre."
+                title={t("title")}
+                description={t("description")}
                 icon={<Server className="h-8 w-8" />}
                 features={[
-                    "CI/CD pipeline építés (GitHub Actions, GitLab CI)",
-                    "Docker konténerizáció és Kubernetes",
-                    "Felhő infrastruktúra (AWS, DigitalOcean, Hetzner)",
-                    "Szerver monitoring és riasztás (Prometheus, Grafana)",
-                    "Automatikus biztonsági mentések",
-                    "Load balancing és skálázás",
-                    "Log menedzsment (ELK Stack)",
-                    "Infrastruktúra tervezés és optimalizálás"
+                    t("hero_features.0"),
+                    t("hero_features.1"),
+                    t("hero_features.2"),
+                    t("hero_features.3"),
+                    t("hero_features.4"),
+                    t("hero_features.5"),
+                    t("hero_features.6"),
+                    t("hero_features.7")
                 ]}
                 benefits={[
                     {
-                        title: "Stabilitás",
-                        description: "99.9%-os rendelkezésre állás és gyors hibaelhárítás. Megelőzzük a bajt, mielőtt bekövetkezne."
+                        title: t("hero_benefits.0.title"),
+                        description: t("hero_benefits.0.description")
                     },
                     {
-                        title: "Gyorsabb fejlesztés",
-                        description: "Az automatizált deploy folyamatokkal a fejlesztők gyorsabban tudnak dolgozni, nem kell a szerverekkel bajlódniuk."
+                        title: t("hero_benefits.1.title"),
+                        description: t("hero_benefits.1.description")
                     },
                     {
-                        title: "Költséghatékonyság",
-                        description: "Optimalizált infrastruktúrával és automatizált feladatokkal csökkentjük az üzemeltetési költségeket."
+                        title: t("hero_benefits.2.title"),
+                        description: t("hero_benefits.2.description")
                     },
                     {
-                        title: "Biztonság",
-                        description: "Rendszeres biztonsági frissítések, mentések és monitoring a maximális adatvédelem érdekében."
+                        title: t("hero_benefits.3.title"),
+                        description: t("hero_benefits.3.description")
                     }
                 ]}
                 techStack={["Docker", "Kubernetes", "AWS", "Linux", "Nginx", "Terraform", "Ansible", "GitHub Actions"]}
-                pricing="Egyedi árazás"
+                pricing={t("plans.enterprise.price_label")}
             />
 
             {/* Use Cases Section - Premium Dark Design */}
@@ -110,11 +117,11 @@ export default function RendszeruzemeltetesPage() {
                     <div className="text-center mb-16">
                         <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-4 py-2 mb-6">
                             <Activity className="h-4 w-4 text-cyan-400" />
-                            <span className="text-sm font-medium text-cyan-300">Felhasználási területek</span>
+                            <span className="text-sm font-medium text-cyan-300">{t("use_cases_badge")}</span>
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Mire használható?</h2>
+                        <h2 className="text-4xl md:text-5xl font-black text-white mb-4">{t("use_cases_title")}</h2>
                         <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                            Konkrét példák, ahol a DevOps megoldásaink értéket teremtenek
+                            {t("use_cases_desc")}
                         </p>
                     </div>
 
@@ -136,7 +143,7 @@ export default function RendszeruzemeltetesPage() {
 
                                     {/* Example box */}
                                     <div className="bg-slate-800/50 rounded-lg p-4 mb-4 border border-slate-700/50">
-                                        <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">Példa:</p>
+                                        <p className="text-xs text-slate-500 uppercase tracking-wider mb-2">{t("pricing_example_label")}</p>
                                         <p className="text-sm text-slate-300">{useCase.example}</p>
                                     </div>
 
@@ -171,11 +178,11 @@ export default function RendszeruzemeltetesPage() {
                             <svg className="h-4 w-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <span className="text-sm font-medium text-amber-300">Átlátható árazás</span>
+                            <span className="text-sm font-medium text-amber-300">{t("pricing_badge")}</span>
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Áraink</h2>
+                        <h2 className="text-4xl md:text-5xl font-black text-white mb-4">{t("pricing_title")}</h2>
                         <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                            Válaszd ki a vállalkozásodhoz legjobban illő csomagot
+                            {t("pricing_desc")}
                         </p>
                     </div>
 
@@ -186,43 +193,42 @@ export default function RendszeruzemeltetesPage() {
                             <div className="absolute -inset-[1px] bg-gradient-to-b from-slate-700/50 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 h-full">
                                 <div className="mb-6">
-                                    <h3 className="text-2xl font-bold text-white mb-2">Alap</h3>
-                                    <p className="text-slate-400 text-sm">Kisebb weboldalakhoz és alkalmazásokhoz</p>
+                                    <h3 className="text-2xl font-bold text-white mb-2">{t("plans.starter.name")}</h3>
+                                    <p className="text-slate-400 text-sm">{t("plans.starter.desc")}</p>
                                 </div>
                                 <div className="mb-8">
-                                    <span className="text-5xl font-black text-white">50.000</span>
-                                    <span className="text-xl text-slate-400 ml-1">Ft</span>
-                                    <span className="text-slate-500 text-sm ml-1">/ hó</span>
+                                    <PriceDisplay amount={50000} className="text-5xl font-black text-white" />
+                                    <span className="text-slate-500 text-sm ml-1">{tServices("item_labels.pricing_per_month")}</span>
                                 </div>
                                 <ul className="space-y-4 mb-8">
                                     <li className="flex items-center gap-3 text-slate-300">
                                         <div className="h-5 w-5 rounded-full bg-cyan-500/20 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm">Havi rendszerfrissítés</span>
+                                        <span className="text-sm">{t("plans.starter.features.0")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-slate-300">
                                         <div className="h-5 w-5 rounded-full bg-cyan-500/20 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm">Rendelkezésre állás figyelés</span>
+                                        <span className="text-sm">{t("plans.starter.features.1")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-slate-300">
                                         <div className="h-5 w-5 rounded-full bg-cyan-500/20 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm">Napi biztonsági mentés</span>
+                                        <span className="text-sm">{t("plans.starter.features.2")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-slate-300">
                                         <div className="h-5 w-5 rounded-full bg-cyan-500/20 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm">1 óra hibaelhárítás / hó</span>
+                                        <span className="text-sm">{t("plans.starter.features.3")}</span>
                                     </li>
                                 </ul>
-                                <div className="text-xs text-slate-500 mb-6">Reakcióidő: 24 óra</div>
+                                <div className="text-xs text-slate-500 mb-6">{t("pricing_reaction_time")}: 24 {tCommon("hours")}</div>
                                 <Button className="w-full h-12 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700" asChild>
-                                    <Link href="/ajanlatkeres">Csomag választása</Link>
+                                    <Link href="/ajanlatkeres">{t("pricing_select_plan")}</Link>
                                 </Button>
                             </div>
                         </div>
@@ -234,53 +240,52 @@ export default function RendszeruzemeltetesPage() {
                                 {/* Popular badge */}
                                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                                     <div className="bg-gradient-to-r from-cyan-500 to-violet-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg">
-                                        ⭐ LEGNÉPSZERŰBB
+                                        ⭐ {t("plans.pro.badge")}
                                     </div>
                                 </div>
                                 <div className="mb-6 mt-2">
-                                    <h3 className="text-2xl font-bold text-white mb-2">Pro</h3>
-                                    <p className="text-slate-400 text-sm">Üzleti kritikus alkalmazásokhoz</p>
+                                    <h3 className="text-2xl font-bold text-white mb-2">{t("plans.pro.name")}</h3>
+                                    <p className="text-slate-400 text-sm">{t("plans.pro.desc")}</p>
                                 </div>
                                 <div className="mb-8">
-                                    <span className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">100.000</span>
-                                    <span className="text-xl text-slate-400 ml-1">Ft</span>
-                                    <span className="text-slate-500 text-sm ml-1">/ hó</span>
+                                    <PriceDisplay amount={100000} className="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400" />
+                                    <span className="text-slate-500 text-sm ml-1">{tServices("item_labels.pricing_per_month")}</span>
                                 </div>
                                 <ul className="space-y-4 mb-8">
                                     <li className="flex items-center gap-3 text-white">
                                         <div className="h-5 w-5 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm font-medium">Heti rendszerfrissítés</span>
+                                        <span className="text-sm font-medium">{t("plans.pro.features.0")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-white">
                                         <div className="h-5 w-5 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm font-medium">24/7 Monitoring és Riasztás</span>
+                                        <span className="text-sm font-medium">{t("plans.pro.features.1")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-white">
                                         <div className="h-5 w-5 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm font-medium">Valós idejű biztonsági mentés</span>
+                                        <span className="text-sm font-medium">{t("plans.pro.features.2")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-white">
                                         <div className="h-5 w-5 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm font-medium">4 óra hibaelhárítás / hó</span>
+                                        <span className="text-sm font-medium">{t("plans.pro.features.3")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-white">
                                         <div className="h-5 w-5 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm font-medium">CI/CD karbantartás</span>
+                                        <span className="text-sm font-medium">{t("plans.pro.features.4")}</span>
                                     </li>
                                 </ul>
-                                <div className="text-xs text-cyan-400 mb-6 font-medium">⚡ Reakcióidő: 4 óra</div>
+                                <div className="text-xs text-cyan-400 mb-6 font-medium">⚡ {t("pricing_reaction_time")}: 4 {tCommon("hours")}</div>
                                 <Button className="w-full h-12 bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white font-bold shadow-lg shadow-cyan-500/25" asChild>
-                                    <Link href="/ajanlatkeres">Csomag választása</Link>
+                                    <Link href="/ajanlatkeres">{t("pricing_select_plan")}</Link>
                                 </Button>
                             </div>
                         </div>
@@ -290,42 +295,42 @@ export default function RendszeruzemeltetesPage() {
                             <div className="absolute -inset-[1px] bg-gradient-to-b from-amber-500/30 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             <div className="relative bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-3xl p-8 h-full">
                                 <div className="mb-6">
-                                    <h3 className="text-2xl font-bold text-white mb-2">Enterprise</h3>
-                                    <p className="text-slate-400 text-sm">Nagy forgalmú rendszerekhez</p>
+                                    <h3 className="text-2xl font-bold text-white mb-2">{t("plans.enterprise.name")}</h3>
+                                    <p className="text-slate-400 text-sm">{t("plans.enterprise.desc")}</p>
                                 </div>
                                 <div className="mb-8">
-                                    <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">Egyedi</span>
-                                    <p className="text-slate-500 text-sm mt-1">megállapodás szerint</p>
+                                    <span className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">{t("plans.enterprise.price_label")}</span>
+                                    <p className="text-slate-500 text-sm mt-1">{t("plans.enterprise.price_sub")}</p>
                                 </div>
                                 <ul className="space-y-4 mb-8">
                                     <li className="flex items-center gap-3 text-slate-300">
                                         <div className="h-5 w-5 rounded-full bg-amber-500/20 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm">Dedikált DevOps mérnök</span>
+                                        <span className="text-sm">{t("plans.enterprise.features.0")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-slate-300">
                                         <div className="h-5 w-5 rounded-full bg-amber-500/20 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm">SLA garancia</span>
+                                        <span className="text-sm">{t("plans.enterprise.features.1")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-slate-300">
                                         <div className="h-5 w-5 rounded-full bg-amber-500/20 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm">High Availability tervezés</span>
+                                        <span className="text-sm">{t("plans.enterprise.features.2")}</span>
                                     </li>
                                     <li className="flex items-center gap-3 text-slate-300">
                                         <div className="h-5 w-5 rounded-full bg-amber-500/20 flex items-center justify-center">
                                             <svg className="h-3 w-3 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                                         </div>
-                                        <span className="text-sm">Korlátlan incidens kezelés</span>
+                                        <span className="text-sm">{t("plans.enterprise.features.3")}</span>
                                     </li>
                                 </ul>
-                                <div className="text-xs text-amber-400 mb-6 font-medium">🔥 Reakcióidő: 1 óra</div>
+                                <div className="text-xs text-amber-400 mb-6 font-medium">🔥 {t("pricing_reaction_time")}: 1 {tCommon("hours")}</div>
                                 <Button className="w-full h-12 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-bold shadow-lg shadow-amber-500/25" asChild>
-                                    <Link href="/kapcsolat">Kapcsolatfelvétel</Link>
+                                    <Link href="/kapcsolat">{t("pricing_contact_us")}</Link>
                                 </Button>
                             </div>
                         </div>
@@ -333,10 +338,10 @@ export default function RendszeruzemeltetesPage() {
 
                     {/* Bottom CTA */}
                     <div className="text-center mt-16">
-                        <p className="text-slate-400 mb-6">Nem tudod melyik csomag a megfelelő? Segítünk dönteni!</p>
+                        <p className="text-slate-400 mb-6">{t("pricing_help_text")}</p>
                         <Link href="/kapcsolat">
                             <Button size="lg" variant="outline" className="border-slate-600 text-white hover:bg-slate-800">
-                                Ingyenes konzultáció
+                                {t("pricing_consultation_cta")}
                             </Button>
                         </Link>
                     </div>
@@ -352,10 +357,9 @@ export default function RendszeruzemeltetesPage() {
 
                 <div className="container relative mx-auto px-4">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold mb-4">Mennyibe kerül?</h2>
+                        <h2 className="text-3xl font-bold mb-4">{t("cost_title")}</h2>
                         <p className="text-muted-foreground max-w-2xl mx-auto">
-                            Használja árkalkulátorunkat a várható költségek becsléséhez.
-                            A pontos árajánlathoz kérjük, vegye fel velünk a kapcsolatot.
+                            {t("cost_desc")}
                         </p>
                     </div>
                     <PriceCalculator />

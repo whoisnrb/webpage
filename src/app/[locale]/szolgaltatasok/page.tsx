@@ -20,6 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function SzolgaltatasokPage() {
     const t = useTranslations('ServicesPage')
+    const tCTA = useTranslations('CTA')
+    const tStats = useTranslations('Stats')
 
     const services = [
         {
@@ -131,10 +133,10 @@ export default function SzolgaltatasokPage() {
                                                 {service.pricing > 0 ? (
                                                     <div className="flex items-center gap-1">
                                                         <PriceDisplay amount={service.pricing} className="font-bold" />
-                                                        <span className="text-[10px] opacity-70">-tól</span>
+                                                        <span className="text-[10px] opacity-70">{t('item_labels.pricing_from')}</span>
                                                     </div>
                                                 ) : (
-                                                    "Egyedi árazás"
+                                                    t('item_labels.pricing_custom')
                                                 )}
                                             </Badge>
                                         </div>
@@ -293,9 +295,9 @@ export default function SzolgaltatasokPage() {
                                                 <div className="w-3 h-3 bg-cyan-400 rounded-full" />
                                                 <div className="absolute inset-0 w-3 h-3 bg-cyan-400 rounded-full animate-ping" />
                                             </div>
-                                            <span className="text-sm font-semibold text-cyan-300 tracking-wide uppercase">Szabad Kapacitás</span>
+                                            <span className="text-sm font-semibold text-cyan-300 tracking-wide uppercase">{tCTA('available_capacity')}</span>
                                             <div className="w-px h-4 bg-cyan-500/30" />
-                                            <span className="text-sm text-cyan-400/80">2 projekt hely</span>
+                                            <span className="text-sm text-cyan-400/80">2 {tCTA('project_slots')}</span>
                                         </div>
                                     </div>
 
@@ -305,7 +307,7 @@ export default function SzolgaltatasokPage() {
                                             {t('cta_bottom_title')}
                                         </span>
                                         <span className="block text-2xl md:text-3xl font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
-                                            Építsük együtt a jövőd
+                                            {tCTA('build_future')}
                                         </span>
                                     </h2>
 
@@ -351,19 +353,19 @@ export default function SzolgaltatasokPage() {
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/5">
                                         <div className="text-center group/stat">
                                             <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 to-cyan-500 mb-2 group-hover/stat:scale-110 transition-transform">50+</div>
-                                            <div className="text-sm text-slate-500 uppercase tracking-wider">Sikeres Projekt</div>
+                                            <div className="text-sm text-slate-500 uppercase tracking-wider">{tStats('successful_projects')}</div>
                                         </div>
                                         <div className="text-center group/stat">
                                             <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-violet-300 to-violet-500 mb-2 group-hover/stat:scale-110 transition-transform">100%</div>
-                                            <div className="text-sm text-slate-500 uppercase tracking-wider">Elégedettség</div>
+                                            <div className="text-sm text-slate-500 uppercase tracking-wider">{tStats('satisfaction')}</div>
                                         </div>
                                         <div className="text-center group/stat">
                                             <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 to-cyan-500 mb-2 group-hover/stat:scale-110 transition-transform">&lt;24h</div>
-                                            <div className="text-sm text-slate-500 uppercase tracking-wider">Válaszidő</div>
+                                            <div className="text-sm text-slate-500 uppercase tracking-wider">{tStats('response_time')}</div>
                                         </div>
                                         <div className="text-center group/stat">
                                             <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-violet-300 to-violet-500 mb-2 group-hover/stat:scale-110 transition-transform">5.0★</div>
-                                            <div className="text-sm text-slate-500 uppercase tracking-wider">Értékelés</div>
+                                            <div className="text-sm text-slate-500 uppercase tracking-wider">{tStats('rating')}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -379,19 +381,19 @@ export default function SzolgaltatasokPage() {
                                 <svg className="h-4 w-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                 </svg>
-                                <span>SSL Biztonság</span>
+                                <span>{tStats('ssl_security')}</span>
                             </div>
                             <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm rounded-full px-4 py-2">
                                 <svg className="h-4 w-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                 </svg>
-                                <span>GDPR Kompatibilis</span>
+                                <span>{tStats('gdpr_compliant')}</span>
                             </div>
                             <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm rounded-full px-4 py-2">
                                 <svg className="h-4 w-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                 </svg>
-                                <span>Nincs Rejtett Költség</span>
+                                <span>{tStats('no_hidden_costs')}</span>
                             </div>
                         </div>
                     </div>

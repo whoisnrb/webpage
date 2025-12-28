@@ -120,8 +120,8 @@ export function Hero() {
                                                     <Zap className="h-5 w-5 text-primary" />
                                                 </div>
                                                 <div>
-                                                    <div className="text-sm font-medium">Active Tasks</div>
-                                                    <div className="text-xs text-muted-foreground">Running</div>
+                                                    <div className="text-sm font-medium">{t('visual.active_tasks')}</div>
+                                                    <div className="text-xs text-muted-foreground">{t('visual.running')}</div>
                                                 </div>
                                             </div>
                                             <div className="text-2xl font-bold text-primary">247</div>
@@ -129,11 +129,11 @@ export function Hero() {
 
                                         <div className="grid grid-cols-2 gap-3">
                                             <div className="p-3 bg-green-500/10 rounded-lg border border-green-500/20">
-                                                <div className="text-xs text-muted-foreground mb-1">Success Rate</div>
+                                                <div className="text-xs text-muted-foreground mb-1">{t('visual.success_rate')}</div>
                                                 <div className="text-xl font-bold text-green-500">99.8%</div>
                                             </div>
                                             <div className="p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
-                                                <div className="text-xs text-muted-foreground mb-1">Response Time</div>
+                                                <div className="text-xs text-muted-foreground mb-1">{t('visual.response_time')}</div>
                                                 <div className="text-xl font-bold text-blue-500">12ms</div>
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@ export function Hero() {
                                         {/* Progress Bars */}
                                         <div className="space-y-2">
                                             <div className="flex items-center justify-between text-xs">
-                                                <span>CPU Usage</span>
+                                                <span>{t('visual.cpu_usage')}</span>
                                                 <span className="text-muted-foreground">45%</span>
                                             </div>
                                             <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -154,7 +154,7 @@ export function Hero() {
                                             </div>
 
                                             <div className="flex items-center justify-between text-xs">
-                                                <span>Memory</span>
+                                                <span>{t('visual.memory')}</span>
                                                 <span className="text-muted-foreground">67%</span>
                                             </div>
                                             <div className="h-2 bg-muted rounded-full overflow-hidden">
@@ -170,7 +170,7 @@ export function Hero() {
                                         {/* Status Indicator */}
                                         <div className="flex items-center gap-2 p-2 bg-green-500/10 rounded-lg border border-green-500/20">
                                             <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]"></div>
-                                            <span className="text-xs font-medium text-green-500">All Systems Operational</span>
+                                            <span className="text-xs font-medium text-green-500">{t('visual.systems_operational')}</span>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -195,8 +195,8 @@ export function Hero() {
                                             <CheckCircle2 className="h-5 w-5 text-purple-500" />
                                         </div>
                                         <div>
-                                            <div className="text-xs text-muted-foreground">Deployment</div>
-                                            <div className="text-sm font-bold text-purple-500">Completed</div>
+                                            <div className="text-xs text-muted-foreground">{t('visual.deployment')}</div>
+                                            <div className="text-sm font-bold text-purple-500">{t('visual.completed')}</div>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -221,8 +221,8 @@ export function Hero() {
                                             <ShieldCheck className="h-5 w-5 text-cyan-500" />
                                         </div>
                                         <div>
-                                            <div className="text-xs text-muted-foreground">Security</div>
-                                            <div className="text-sm font-bold text-cyan-500">Protected</div>
+                                            <div className="text-xs text-muted-foreground">{t('visual.security')}</div>
+                                            <div className="text-sm font-bold text-cyan-500">{t('visual.protected')}</div>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -244,7 +244,7 @@ export function Hero() {
                                 >
                                     <div className="text-center">
                                         <div className="text-2xl font-bold text-yellow-500">24/7</div>
-                                        <div className="text-xs text-muted-foreground">Monitoring</div>
+                                        <div className="text-xs text-muted-foreground">{t('visual.monitoring')}</div>
                                     </div>
                                 </motion.div>
 

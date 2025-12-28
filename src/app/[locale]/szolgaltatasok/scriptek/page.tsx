@@ -4,91 +4,97 @@ import { Code2, Database, Mail, Calendar, FileText, Zap } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
-
-const useCases = [
-    {
-        title: "E-mail automatizáció",
-        description: "Automatikus e-mail küldés eseményekre, emlékeztetőkre, vagy marketing kampányokra.",
-        icon: Mail,
-        example: "Új ügyfél regisztrációkor automatikus üdvözlő e-mail sorozat, majd heti hírlevél személyre szabott tartalommal.",
-        roi: "~15 óra/hó megtakarítás"
-    },
-    {
-        title: "Adatszinkronizáció",
-        description: "Különböző rendszerek közötti adatok automatikus szinkronizálása.",
-        icon: Database,
-        example: "WooCommerce rendelések automatikus átvezetése a számlázó rendszerbe és a CRM-be.",
-        roi: "~20 óra/hó megtakarítás + 95% kevesebb hiba"
-    },
-    {
-        title: "Riport generálás",
-        description: "Automatikus riportok készítése és kiküldése megadott időközönként.",
-        icon: FileText,
-        example: "Heti értékesítési riport automatikus generálása Excel-ben, grafikonokkal és kiküldés e-mailben.",
-        roi: "~10 óra/hó megtakarítás"
-    },
-    {
-        title: "Naptár integráció",
-        description: "Automatikus időpontfoglalás, emlékeztetők és naptár szinkronizáció.",
-        icon: Calendar,
-        example: "Ügyfél foglaláskor automatikus Google Calendar bejegyzés + SMS emlékeztető 24 órával előtte.",
-        roi: "~8 óra/hó megtakarítás + jobb ügyfélélmény"
-    },
-    {
-        title: "Weboldal monitoring",
-        description: "Weboldal elérhetőség, teljesítmény és változások automatikus figyelése.",
-        icon: Zap,
-        example: "Óránkénti ellenőrzés, hogy a webshop elérhető-e. Leállás esetén azonnali értesítés SMS-ben és e-mailben.",
-        roi: "99.9% uptime + gyors reagálás"
-    },
-    {
-        title: "Adatfeldolgozás",
-        description: "Nagy mennyiségű adat automatikus feldolgozása, tisztítása, átalakítása.",
-        icon: Database,
-        example: "Napi 1000+ termék ár és készlet frissítése beszállítói CSV alapján, automatikus feltöltés a webshopba.",
-        roi: "~30 óra/hó megtakarítás"
-    }
-]
+import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
 
 export default function ScriptekPage() {
+    const t = useTranslations("Services.Scripts")
+
+    const useCases = [
+        {
+            title: t("use_cases_items.0.title"),
+            description: t("use_cases_items.0.description"),
+            icon: Mail,
+            example: t("use_cases_items.0.example"),
+            roi: t("use_cases_items.0.roi")
+        },
+        {
+            title: t("use_cases_items.1.title"),
+            description: t("use_cases_items.1.description"),
+            icon: Database,
+            example: t("use_cases_items.1.example"),
+            roi: t("use_cases_items.1.roi")
+        },
+        {
+            title: t("use_cases_items.2.title"),
+            description: t("use_cases_items.2.description"),
+            icon: FileText,
+            example: t("use_cases_items.2.example"),
+            roi: t("use_cases_items.2.roi")
+        },
+        {
+            title: t("use_cases_items.3.title"),
+            description: t("use_cases_items.3.description"),
+            icon: Calendar,
+            example: t("use_cases_items.3.example"),
+            roi: t("use_cases_items.3.roi")
+        },
+        {
+            title: t("use_cases_items.4.title"),
+            description: t("use_cases_items.4.description"),
+            icon: Zap,
+            example: t("use_cases_items.4.example"),
+            roi: t("use_cases_items.4.roi")
+        },
+        {
+            title: t("use_cases_items.5.title"),
+            description: t("use_cases_items.5.description"),
+            icon: Database,
+            example: t("use_cases_items.5.example"),
+            roi: t("use_cases_items.5.roi")
+        }
+    ]
+
     return (
         <div className="flex flex-col min-h-screen">
             <ServiceLayout
-                title="Egyedi Scriptek & Automatizáció"
-                description="Automatizáld az unalmas, ismétlődő feladatokat. Spórolj időt és csökkentsd a hibalehetőségeket egyedi scriptekkel és workflow-kkal."
+                title={t("title")}
+                description={t("description")}
                 icon={<Code2 className="h-8 w-8" />}
                 features={[
-                    "n8n workflow tervezés és implementálás",
-                    "Egyedi Python / Node.js scriptek",
-                    "Adatbázis szinkronizáció",
-                    "API integrációk (CRM, Számlázó, Webshop)",
-                    "Időzített feladatok (Cron jobs)",
-                    "Automatikus riport generálás",
-                    "E-mail automatizáció",
-                    "Webhook integráció"
+                    t("hero_features.0"),
+                    t("hero_features.1"),
+                    t("hero_features.2"),
+                    t("hero_features.3"),
+                    t("hero_features.4"),
+                    t("hero_features.5"),
+                    t("hero_features.6"),
+                    t("hero_features.7")
                 ]}
                 benefits={[
                     {
-                        title: "Időmegtakarítás",
-                        description: "Ami eddig órákig tartott, most másodpercek alatt fut le automatikusan. Ügyfeleink átlagosan 20-30 óra/hó munkaidőt takarítanak meg."
+                        title: t("hero_benefits.0.title"),
+                        description: t("hero_benefits.0.description")
                     },
                     {
-                        title: "Hibamentesség",
-                        description: "Az automatizáció nem fárad el és nem vét elgépelési hibákat. 95%-kal kevesebb emberi hiba."
+                        title: t("hero_benefits.1.title"),
+                        description: t("hero_benefits.1.description")
                     },
                     {
-                        title: "Skálázhatóság",
-                        description: "A rendszereid képesek lesznek kezelni a növekvő forgalmat emberi beavatkozás nélkül."
+                        title: t("hero_benefits.2.title"),
+                        description: t("hero_benefits.2.description")
                     }
                 ]}
                 techStack={["Python", "Node.js", "n8n", "Docker", "REST API", "GraphQL", "Zapier", "Make"]}
-                pricing="50.000 Ft-tól"
+                pricing={t.rich('item_labels.pricing_from_format', {
+                    price: () => <PriceDisplay amount={50000} />
+                }) as any}
             />
 
             {/* Use Cases */}
             <UseCases
-                title="Mire használhatod?"
-                description="Valós példák arra, hogyan segíthetnek az automatizációk a vállalkozásodnak"
+                title={t("use_cases_title")}
+                description={t("use_cases_desc")}
                 cases={useCases}
             />
 
@@ -97,35 +103,37 @@ export default function ScriptekPage() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            Árazási modellek
+                            {t("pricing_title")}
                         </h2>
                         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                            Válaszd ki a projekted komplexitásának megfelelő árazást
+                            {t("pricing_desc")}
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                         <Card className="border-2">
                             <CardHeader>
-                                <CardTitle className="text-2xl">Egyszerű</CardTitle>
+                                <CardTitle className="text-2xl">{t("plans.simple.name")}</CardTitle>
                                 <CardDescription className="text-base">
-                                    Kisebb automatizációk, 1-2 integrációval
+                                    {t("plans.simple.desc")}
                                 </CardDescription>
                                 <div className="pt-4">
-                                    <div className="text-3xl font-bold">50.000 Ft</div>
-                                    <p className="text-sm text-muted-foreground">egyszeri díj</p>
+                                    <div className="text-3xl font-bold">
+                                        <PriceDisplay amount={50000} />
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{t("plans.simple.sub")}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
-                                    <li>• 1-2 API integráció</li>
-                                    <li>• Egyszerű logika</li>
-                                    <li>• Alapvető hibaellenőrzés</li>
-                                    <li>• 1 hónap support</li>
-                                    <li>• Dokumentáció</li>
+                                    <li>• {t("plans.simple.features.0")}</li>
+                                    <li>• {t("plans.simple.features.1")}</li>
+                                    <li>• {t("plans.simple.features.2")}</li>
+                                    <li>• {t("plans.simple.features.3")}</li>
+                                    <li>• {t("plans.simple.features.4")}</li>
                                 </ul>
                                 <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Pl: E-mail küldés űrlap kitöltéskor
+                                    {t("plans.simple.example")}
                                 </p>
                             </CardContent>
                         </Card>
@@ -133,54 +141,60 @@ export default function ScriptekPage() {
                         <Card className="border-2 border-primary shadow-lg">
                             <CardHeader>
                                 <div className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full mb-2">
-                                    Legnépszerűbb
+                                    {t("plans.medium.popular")}
                                 </div>
-                                <CardTitle className="text-2xl">Közepes</CardTitle>
+                                <CardTitle className="text-2xl">{t("plans.medium.name")}</CardTitle>
                                 <CardDescription className="text-base">
-                                    Komplex workflow-k, több integrációval
+                                    {t("plans.medium.desc")}
                                 </CardDescription>
                                 <div className="pt-4">
-                                    <div className="text-3xl font-bold">120.000 Ft</div>
-                                    <p className="text-sm text-muted-foreground">egyszeri díj</p>
+                                    <div className="text-3xl font-bold">
+                                        <PriceDisplay amount={150000} />
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{t("plans.medium.sub")}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
-                                    <li>• 3-5 API integráció</li>
-                                    <li>• Komplex üzleti logika</li>
-                                    <li>• Fejlett hibaellenőrzés</li>
-                                    <li>• Adatbázis műveletek</li>
-                                    <li>• 3 hónap support</li>
-                                    <li>• Részletes dokumentáció</li>
+                                    <li>• {t("plans.medium.features.0")}</li>
+                                    <li>• {t("plans.medium.features.1")}</li>
+                                    <li>• {t("plans.medium.features.2")}</li>
+                                    <li>• {t("plans.medium.features.3")}</li>
+                                    <li>• {t("plans.medium.features.4")}</li>
+                                    <li>• {t("plans.medium.features.5")}</li>
                                 </ul>
                                 <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Pl: Rendelés → Számla → CRM → E-mail
+                                    {t("plans.medium.example")}
                                 </p>
                             </CardContent>
                         </Card>
 
                         <Card className="border-2">
                             <CardHeader>
-                                <CardTitle className="text-2xl">Komplex</CardTitle>
+                                <CardTitle className="text-2xl">{t("plans.complex.name")}</CardTitle>
                                 <CardDescription className="text-base">
-                                    Nagyvállalati szintű automatizáció
+                                    {t("plans.complex.desc")}
                                 </CardDescription>
                                 <div className="pt-4">
-                                    <div className="text-3xl font-bold">250.000 Ft+</div>
-                                    <p className="text-sm text-muted-foreground">egyedi árazás</p>
+                                    <div className="text-3xl font-bold">
+                                        {t.rich('item_labels.pricing_plus_format', {
+                                            price: () => <PriceDisplay amount={300000} />
+                                        })}
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{t("plans.complex.sub")}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
-                                    <li>• 6+ API integráció</li>
-                                    <li>• Microservices architektúra</li>
-                                    <li>• AI/ML integráció</li>
-                                    <li>• Valós idejű feldolgozás</li>
-                                    <li>• 6 hónap support</li>
-                                    <li>• Teljes dokumentáció + képzés</li>
+                                    <li>• {t("plans.complex.features.0")}</li>
+                                    <li>• {t("plans.complex.features.1")}</li>
+                                    <li>• {t("plans.complex.features.2")}</li>
+                                    <li>• {t("plans.complex.features.3")}</li>
+                                    <li>• {t("plans.complex.features.4")}</li>
+                                    <li>• {t("plans.complex.features.5")}</li>
                                 </ul>
                                 <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Pl: Teljes ügyfélkezelési rendszer
+                                    {t("plans.complex.example")}
                                 </p>
                             </CardContent>
                         </Card>
@@ -189,7 +203,7 @@ export default function ScriptekPage() {
                     <div className="text-center mt-12">
                         <Link href="/arak">
                             <Button size="lg" className="bg-accent hover:bg-accent/90">
-                                Összes csomag megtekintése
+                                {t("pricing_view_all")}
                             </Button>
                         </Link>
                     </div>
@@ -201,79 +215,74 @@ export default function ScriptekPage() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            Példa projektek
+                            {t("portfolio_title")}
                         </h2>
                         <p className="text-muted-foreground text-lg">
-                            Nézd meg, milyen automatizációkat készítettünk már
+                            {t("portfolio_desc")}
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                         <Card>
                             <CardHeader>
-                                <CardTitle>E-commerce automatizáció</CardTitle>
-                                <CardDescription>Webshop + Számlázó + Raktár szinkronizáció</CardDescription>
+                                <CardTitle>{t("portfolio_items.0.title")}</CardTitle>
+                                <CardDescription>{t("portfolio_items.0.desc")}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-sm text-muted-foreground mb-4">
-                                    Automatikus rendelésfeldolgozás: új rendelés → számla generálás (Billingo) →
-                                    készlet frissítés → ügyfél értesítés e-mailben → CRM bejegyzés.
+                                    {t("portfolio_items.0.content")}
                                 </p>
                                 <div className="flex items-center justify-between pt-4 border-t">
-                                    <span className="text-sm font-semibold">Megtakarítás:</span>
-                                    <span className="text-sm text-primary">~25 óra/hó</span>
+                                    <span className="text-sm font-semibold">{t("portfolio_items.0.metric_label")}</span>
+                                    <span className="text-sm text-primary">{t("portfolio_items.0.metric_value")}</span>
                                 </div>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle>Marketing automatizáció</CardTitle>
-                                <CardDescription>Lead nurturing és követés</CardDescription>
+                                <CardTitle>{t("portfolio_items.1.title")}</CardTitle>
+                                <CardDescription>{t("portfolio_items.1.desc")}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-sm text-muted-foreground mb-4">
-                                    Új lead → üdvözlő e-mail → 3 napos e-mail sorozat →
-                                    ha nem reagál, értesítés az értékesítőnek → ha reagál, időpont foglalás link.
+                                    {t("portfolio_items.1.content")}
                                 </p>
                                 <div className="flex items-center justify-between pt-4 border-t">
-                                    <span className="text-sm font-semibold">Konverzió növekedés:</span>
-                                    <span className="text-sm text-primary">+35%</span>
+                                    <span className="text-sm font-semibold">{t("portfolio_items.1.metric_label")}</span>
+                                    <span className="text-sm text-primary">{t("portfolio_items.1.metric_value")}</span>
                                 </div>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle>Adatgyűjtés és riportolás</CardTitle>
-                                <CardDescription>Automatikus heti riportok</CardDescription>
+                                <CardTitle>{t("portfolio_items.2.title")}</CardTitle>
+                                <CardDescription>{t("portfolio_items.2.desc")}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-sm text-muted-foreground mb-4">
-                                    Heti adatgyűjtés Google Analytics, Facebook Ads, Google Ads-ből →
-                                    Excel riport generálás grafikonokkal → kiküldés e-mailben a vezetőségnek.
+                                    {t("portfolio_items.2.content")}
                                 </p>
                                 <div className="flex items-center justify-between pt-4 border-t">
-                                    <span className="text-sm font-semibold">Megtakarítás:</span>
-                                    <span className="text-sm text-primary">~12 óra/hó</span>
+                                    <span className="text-sm font-semibold">{t("portfolio_items.2.metric_label")}</span>
+                                    <span className="text-sm text-primary">{t("portfolio_items.2.metric_value")}</span>
                                 </div>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle>Ügyfélszolgálat automatizáció</CardTitle>
-                                <CardDescription>Ticket rendszer integráció</CardDescription>
+                                <CardTitle>{t("portfolio_items.3.title")}</CardTitle>
+                                <CardDescription>{t("portfolio_items.3.desc")}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-sm text-muted-foreground mb-4">
-                                    E-mail beérkezik → automatikus ticket létrehozás →
-                                    kategorizálás AI-val → hozzárendelés a megfelelő munkatárshoz →
-                                    automatikus válasz az ügyfélnek.
+                                    {t("portfolio_items.3.content")}
                                 </p>
                                 <div className="flex items-center justify-between pt-4 border-t">
-                                    <span className="text-sm font-semibold">Válaszidő csökkenés:</span>
-                                    <span className="text-sm text-primary">-60%</span>
+                                    <span className="text-sm font-semibold">{t("portfolio_items.3.metric_label")}</span>
+                                    <span className="text-sm text-primary">{t("portfolio_items.3.metric_value")}</span>
                                 </div>
                             </CardContent>
                         </Card>

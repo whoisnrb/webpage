@@ -3,7 +3,10 @@
 import { useState } from "react"
 import { X } from "lucide-react"
 
+import { useTranslations } from "next-intl"
+
 export function PromoBanner() {
+    const t = useTranslations('PromoBanner')
     const [isVisible, setIsVisible] = useState(true)
 
     if (!isVisible) return null
@@ -12,12 +15,12 @@ export function PromoBanner() {
         <div className="bg-primary px-4 py-3 text-white">
             <div className="container mx-auto flex items-center justify-between text-sm font-medium">
                 <p className="text-center flex-1">
-                    🚀 Indulási akció: Használd a <span className="font-bold">START2026</span> kódot 20% kedvezményért!
+                    {t('text')}
                 </p>
                 <button
                     onClick={() => setIsVisible(false)}
                     className="text-white/80 hover:text-white transition-colors"
-                    aria-label="Bezárás"
+                    aria-label={t('close')}
                 >
                     <X className="h-4 w-4" />
                 </button>

@@ -7,18 +7,20 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Link } from "@/i18n/routing"
 import { ArrowLeft, Upload, CheckCircle2, Sparkles, Briefcase, Code2, Server } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function SpontanJelentkezesPage() {
+    const t = useTranslations('Careers.application')
     const [submitted, setSubmitted] = useState(false)
     const [selectedAreas, setSelectedAreas] = useState<string[]>([])
 
     const areas = [
-        { id: "frontend", label: "Frontend fejlesztés", icon: Code2 },
-        { id: "backend", label: "Backend fejlesztés", icon: Server },
-        { id: "devops", label: "DevOps / Infrastruktúra", icon: Server },
-        { id: "design", label: "UI/UX Design", icon: Sparkles },
-        { id: "pm", label: "Projekt menedzsment", icon: Briefcase },
-        { id: "other", label: "Egyéb", icon: Sparkles },
+        { id: "frontend", label: t('form.areas.frontend'), icon: Code2 },
+        { id: "backend", label: t('form.areas.backend'), icon: Server },
+        { id: "devops", label: t('form.areas.devops'), icon: Server },
+        { id: "design", label: t('form.areas.design'), icon: Sparkles },
+        { id: "pm", label: t('form.areas.pm'), icon: Briefcase },
+        { id: "other", label: t('form.areas.other'), icon: Sparkles },
     ]
 
     const toggleArea = (id: string) => {
@@ -51,15 +53,14 @@ export default function SpontanJelentkezesPage() {
                                 <CheckCircle2 className="h-10 w-10 text-green-400" />
                             </div>
                             <h1 className="text-4xl md:text-5xl font-black text-white mb-6">
-                                Köszönjük jelentkezésedet!
+                                {t('success.title')}
                             </h1>
                             <p className="text-xl text-slate-400 mb-10">
-                                Megkaptuk az önéletrajzodat és hamarosan felvesszük veled a kapcsolatot,
-                                ha nyílik megfelelő pozíció.
+                                {t('success.description')}
                             </p>
                             <Link href="/karrier">
                                 <Button size="lg" className="bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white font-bold">
-                                    Vissza a Karrier oldalra
+                                    {t('success.button')}
                                 </Button>
                             </Link>
                         </div>
@@ -86,20 +87,19 @@ export default function SpontanJelentkezesPage() {
                     {/* Back link */}
                     <Link href="/karrier" className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors mb-8">
                         <ArrowLeft className="h-4 w-4" />
-                        <span>Vissza a Karrier oldalra</span>
+                        <span>{t('back_link')}</span>
                     </Link>
 
                     <div className="text-center mb-12">
                         <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full px-4 py-2 mb-6">
                             <Sparkles className="h-4 w-4 text-cyan-400" />
-                            <span className="text-sm font-medium text-cyan-300">Csatlakozz hozzánk</span>
+                            <span className="text-sm font-medium text-cyan-300">{t('badge')}</span>
                         </div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
-                            Spontán jelentkezés
+                            {t('title')}
                         </h1>
                         <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-                            Nem találtál megfelelő pozíciót? Semmi gond! Küldd el az önéletrajzodat,
-                            és értesítünk, amint nyílik hozzád illő lehetőség.
+                            {t('description')}
                         </p>
                     </div>
                 </div>
@@ -119,21 +119,21 @@ export default function SpontanJelentkezesPage() {
                                     {/* Personal info */}
                                     <div className="grid md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <Label htmlFor="name" className="text-slate-300">Teljes név *</Label>
+                                            <Label htmlFor="name" className="text-slate-300">{t('form.name')}</Label>
                                             <Input
                                                 id="name"
                                                 required
-                                                placeholder="Pl. Kovács János"
+                                                placeholder={t('form.name_placeholder')}
                                                 className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 h-12"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <Label htmlFor="email" className="text-slate-300">Email cím *</Label>
+                                            <Label htmlFor="email" className="text-slate-300">{t('form.email')}</Label>
                                             <Input
                                                 id="email"
                                                 type="email"
                                                 required
-                                                placeholder="pelda@email.com"
+                                                placeholder={t('form.email_placeholder')}
                                                 className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 h-12"
                                             />
                                         </div>
@@ -141,20 +141,20 @@ export default function SpontanJelentkezesPage() {
 
                                     <div className="grid md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <Label htmlFor="phone" className="text-slate-300">Telefonszám</Label>
+                                            <Label htmlFor="phone" className="text-slate-300">{t('form.phone')}</Label>
                                             <Input
                                                 id="phone"
                                                 type="tel"
-                                                placeholder="+36 20 123 4567"
+                                                placeholder={t('form.phone_placeholder')}
                                                 className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 h-12"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <Label htmlFor="linkedin" className="text-slate-300">LinkedIn profil</Label>
+                                            <Label htmlFor="linkedin" className="text-slate-300">{t('form.linkedin')}</Label>
                                             <Input
                                                 id="linkedin"
                                                 type="url"
-                                                placeholder="https://linkedin.com/in/..."
+                                                placeholder={t('form.linkedin_placeholder')}
                                                 className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 h-12"
                                             />
                                         </div>
@@ -162,7 +162,7 @@ export default function SpontanJelentkezesPage() {
 
                                     {/* Areas of interest */}
                                     <div className="space-y-4">
-                                        <Label className="text-slate-300">Milyen területen dolgoznál szívesen?</Label>
+                                        <Label className="text-slate-300">{t('form.areas_label')}</Label>
                                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                                             {areas.map((area) => (
                                                 <button
@@ -170,8 +170,8 @@ export default function SpontanJelentkezesPage() {
                                                     type="button"
                                                     onClick={() => toggleArea(area.id)}
                                                     className={`flex items-center gap-3 p-4 rounded-xl border transition-all duration-300 ${selectedAreas.includes(area.id)
-                                                            ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300'
-                                                            : 'bg-slate-800/50 border-slate-700 text-slate-400 hover:border-slate-600'
+                                                        ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-300'
+                                                        : 'bg-slate-800/50 border-slate-700 text-slate-400 hover:border-slate-600'
                                                         }`}
                                                 >
                                                     <area.icon className="h-5 w-5 shrink-0" />
@@ -183,7 +183,7 @@ export default function SpontanJelentkezesPage() {
 
                                     {/* CV Upload */}
                                     <div className="space-y-2">
-                                        <Label htmlFor="cv" className="text-slate-300">Önéletrajz feltöltése *</Label>
+                                        <Label htmlFor="cv" className="text-slate-300">{t('form.cv_label')}</Label>
                                         <div className="relative">
                                             <input
                                                 id="cv"
@@ -197,8 +197,8 @@ export default function SpontanJelentkezesPage() {
                                                     <Upload className="h-6 w-6 text-cyan-400" />
                                                 </div>
                                                 <div className="text-left">
-                                                    <p className="text-slate-300 font-medium">Húzd ide a fájlt vagy kattints a feltöltéshez</p>
-                                                    <p className="text-sm text-slate-500">PDF, DOC, DOCX (max. 5MB)</p>
+                                                    <p className="text-slate-300 font-medium">{t('form.cv_drop')}</p>
+                                                    <p className="text-sm text-slate-500">{t('form.cv_hint')}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,11 +206,11 @@ export default function SpontanJelentkezesPage() {
 
                                     {/* Motivation */}
                                     <div className="space-y-2">
-                                        <Label htmlFor="motivation" className="text-slate-300">Motivációs levél / Üzenet</Label>
+                                        <Label htmlFor="motivation" className="text-slate-300">{t('form.motivation_label')}</Label>
                                         <Textarea
                                             id="motivation"
                                             rows={5}
-                                            placeholder="Mesélj magadról, tapasztalataidról és arról, hogy miért szeretnél nálunk dolgozni..."
+                                            placeholder={t('form.motivation_placeholder')}
                                             className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 resize-none"
                                         />
                                     </div>
@@ -222,11 +222,12 @@ export default function SpontanJelentkezesPage() {
                                             size="lg"
                                             className="w-full h-14 text-lg font-bold bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white shadow-lg shadow-cyan-500/25"
                                         >
-                                            Jelentkezés elküldése
+                                            {t('form.submit')}
                                         </Button>
                                         <p className="text-center text-sm text-slate-500 mt-4">
-                                            A jelentkezéssel elfogadod az {" "}
-                                            <Link href="/adatvedelem" className="text-cyan-400 hover:underline">Adatkezelési tájékoztatónkat</Link>.
+                                            {t('form.terms_prefix')}
+                                            <Link href="/adatvedelem" className="text-cyan-400 hover:underline">{t('form.terms_link')}</Link>
+                                            {t('form.terms_suffix')}
                                         </p>
                                     </div>
                                 </form>
@@ -237,15 +238,15 @@ export default function SpontanJelentkezesPage() {
                         <div className="flex flex-wrap justify-center gap-6 mt-12 text-slate-500 text-sm">
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="h-4 w-4 text-green-400" />
-                                <span>GDPR kompatibilis</span>
+                                <span>{t('trust.gdpr')}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="h-4 w-4 text-green-400" />
-                                <span>Bizalmas adatkezelés</span>
+                                <span>{t('trust.confidential')}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="h-4 w-4 text-green-400" />
-                                <span>Gyors visszajelzés</span>
+                                <span>{t('trust.feedback')}</span>
                             </div>
                         </div>
                     </div>

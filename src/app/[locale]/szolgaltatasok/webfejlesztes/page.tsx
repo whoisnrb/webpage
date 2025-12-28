@@ -5,91 +5,97 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Link } from "@/i18n/routing"
-
-const projectTypes = [
-    {
-        title: "Landing Page",
-        description: "Konverzió-fókuszált egyoldalas weboldal termékekhez vagy szolgáltatásokhoz",
-        icon: Globe,
-        example: "Startup bemutatkozó oldal lead generálással",
-        roi: "Átlagosan 3-5% konverziós ráta"
-    },
-    {
-        title: "E-commerce / Webshop",
-        description: "Teljes körű online áruház fizetési és raktárkezelési integrációval",
-        icon: ShoppingCart,
-        example: "WooCommerce webshop 500+ termékkel, Stripe fizetéssel",
-        roi: "Átlagosan 2-4% konverziós ráta"
-    },
-    {
-        title: "SaaS Platform",
-        description: "Szoftver-mint-szolgáltatás platform előfizetéses modellel",
-        icon: Rocket,
-        example: "Projektmenedzsment tool csapatoknak, havi előfizetéssel",
-        roi: "Skálázható bevétel, alacsony működési költség"
-    },
-    {
-        title: "Vállalati Weboldal",
-        description: "Professzionális bemutatkozó oldal cégeknek, több aloldallal",
-        icon: Building2,
-        example: "Ügyvédi iroda weboldala szolgáltatásokkal, referenciákkal, blog-gal",
-        roi: "Növeli a cég hitelességét és elérhetőségét"
-    },
-    {
-        title: "Mobilalkalmazás",
-        description: "Progressive Web App (PWA) vagy natív mobil alkalmazás",
-        icon: Smartphone,
-        example: "Étterem rendelési app iOS és Android platformra",
-        roi: "Jobb ügyfélélmény, push értesítések"
-    },
-    {
-        title: "Egyedi Webalkalmazás",
-        description: "Testreszabott funkciókkal rendelkező komplex webalkalmazás",
-        icon: Zap,
-        example: "Belső CRM rendszer értékesítési folyamatok kezelésére",
-        roi: "Hatékonyabb munkafolyamatok, adatvezérelt döntések"
-    }
-]
+import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
 
 export default function WebfejlesztesPage() {
+    const t = useTranslations("Services.WebDev")
+
+    const projectTypes = [
+        {
+            title: t("project_types_items.0.title"),
+            description: t("project_types_items.0.description"),
+            icon: Globe,
+            example: t("project_types_items.0.example"),
+            roi: t("project_types_items.0.roi")
+        },
+        {
+            title: t("project_types_items.1.title"),
+            description: t("project_types_items.1.description"),
+            icon: ShoppingCart,
+            example: t("project_types_items.1.example"),
+            roi: t("project_types_items.1.roi")
+        },
+        {
+            title: t("project_types_items.2.title"),
+            description: t("project_types_items.2.description"),
+            icon: Rocket,
+            example: t("project_types_items.2.example"),
+            roi: t("project_types_items.2.roi")
+        },
+        {
+            title: t("project_types_items.3.title"),
+            description: t("project_types_items.3.description"),
+            icon: Building2,
+            example: t("project_types_items.3.example"),
+            roi: t("project_types_items.3.roi")
+        },
+        {
+            title: t("project_types_items.4.title"),
+            description: t("project_types_items.4.description"),
+            icon: Smartphone,
+            example: t("project_types_items.4.example"),
+            roi: t("project_types_items.4.roi")
+        },
+        {
+            title: t("project_types_items.5.title"),
+            description: t("project_types_items.5.description"),
+            icon: Zap,
+            example: t("project_types_items.5.example"),
+            roi: t("project_types_items.5.roi")
+        }
+    ]
+
     return (
         <div className="flex flex-col min-h-screen">
             <ServiceLayout
-                title="Webfejlesztés & Webáruház"
-                description="Modern, gyors és konverzió-fókuszált weboldalak és webshopok. Nem csak szépek, de pénzt is termelnek."
+                title={t("title")}
+                description={t("description")}
                 icon={<ShoppingCart className="h-8 w-8" />}
                 features={[
-                    "Egyedi weboldal tervezés és fejlesztés",
-                    "WooCommerce / Shopify webáruház készítés",
-                    "Headless CMS megoldások (Next.js + Strapi/Ghost)",
-                    "Reszponzív, mobil-first design",
-                    "SEO optimalizálás alapoktól",
-                    "Gyors betöltési sebesség (Core Web Vitals)",
-                    "E-commerce integráció (fizetés, szállítás)",
-                    "Admin felület és tartalomkezelés"
+                    t("hero_features.0"),
+                    t("hero_features.1"),
+                    t("hero_features.2"),
+                    t("hero_features.3"),
+                    t("hero_features.4"),
+                    t("hero_features.5"),
+                    t("hero_features.6"),
+                    t("hero_features.7")
                 ]}
                 benefits={[
                     {
-                        title: "Magasabb konverzió",
-                        description: "A gyors és felhasználóbarát oldalak több látogatóból csinálnak vásárlót. Ügyfeleink átlagosan 30-50% konverzió növekedést tapasztalnak."
+                        title: t("hero_benefits.0.title"),
+                        description: t("hero_benefits.0.description")
                     },
                     {
-                        title: "Könnyű kezelhetőség",
-                        description: "Olyan admin felületet kapsz, amit te is könnyen tudsz szerkeszteni. Nincs szükség programozói tudásra a tartalom frissítéséhez."
+                        title: t("hero_benefits.1.title"),
+                        description: t("hero_benefits.1.description")
                     },
                     {
-                        title: "Jövőálló technológia",
-                        description: "Modern stack-et használunk, ami évek múlva is megállja a helyét. Next.js, React, Tailwind CSS - a web jövője."
+                        title: t("hero_benefits.2.title"),
+                        description: t("hero_benefits.2.description")
                     }
                 ]}
                 techStack={["Next.js", "React", "Tailwind CSS", "WordPress", "WooCommerce", "PostgreSQL", "Stripe", "Vercel"]}
-                pricing="150.000 Ft-tól"
+                pricing={t.rich('item_labels.pricing_from_format', {
+                    price: () => <PriceDisplay amount={150000} />
+                }) as any}
             />
 
             {/* Project Types */}
             <UseCases
-                title="Milyen típusú projekteket készítünk?"
-                description="Válaszd ki a vállalkozásodhoz legmegfelelőbb weboldal típust"
+                title={t("project_types_title")}
+                description={t("project_types_desc")}
                 cases={projectTypes}
             />
 
@@ -98,38 +104,40 @@ export default function WebfejlesztesPage() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            Árazási csomagok
+                            {t("pricing_title")}
                         </h2>
                         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                            Minden projekt egyedi, de itt vannak az irányárak
+                            {t("pricing_desc")}
                         </p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                         <Card className="border-2">
                             <CardHeader>
-                                <Badge className="w-fit mb-2">Landing Page</Badge>
-                                <CardTitle className="text-2xl">Bemutatkozó</CardTitle>
+                                <Badge className="w-fit mb-2">{t("plans.0.badge")}</Badge>
+                                <CardTitle className="text-2xl">{t("plans.0.name")}</CardTitle>
                                 <CardDescription className="text-base">
-                                    Egyoldalas vagy kisebb weboldalak
+                                    {t("plans.0.desc")}
                                 </CardDescription>
                                 <div className="pt-4">
-                                    <div className="text-3xl font-bold">150.000 Ft</div>
-                                    <p className="text-sm text-muted-foreground">egyszeri díj</p>
+                                    <div className="text-3xl font-bold">
+                                        <PriceDisplay amount={150000} />
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{t("plans.0.sub")}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
-                                    <li>• 1-5 aloldal</li>
-                                    <li>• Reszponzív design</li>
-                                    <li>• Kapcsolati űrlap</li>
-                                    <li>• SEO alapbeállítások</li>
-                                    <li>• 1 év hosting</li>
-                                    <li>• 3 hónap support</li>
-                                    <li>• 2-3 hét átfutási idő</li>
+                                    <li>• {t("plans.0.features.0")}</li>
+                                    <li>• {t("plans.0.features.1")}</li>
+                                    <li>• {t("plans.0.features.2")}</li>
+                                    <li>• {t("plans.0.features.3")}</li>
+                                    <li>• {t("plans.0.features.4")}</li>
+                                    <li>• {t("plans.0.features.5")}</li>
+                                    <li>• {t("plans.0.features.6")}</li>
                                 </ul>
                                 <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Ideális: kisvállalkozások, freelancerek
+                                    {t("plans.0.ideal")}
                                 </p>
                             </CardContent>
                         </Card>
@@ -137,60 +145,66 @@ export default function WebfejlesztesPage() {
                         <Card className="border-2 border-primary shadow-lg">
                             <CardHeader>
                                 <div className="inline-block px-3 py-1 bg-primary text-primary-foreground text-xs font-semibold rounded-full mb-2">
-                                    Legnépszerűbb
+                                    {t("plans.1.popular")}
                                 </div>
-                                <Badge className="w-fit mb-2">E-commerce</Badge>
-                                <CardTitle className="text-2xl">Webáruház</CardTitle>
+                                <Badge className="w-fit mb-2">{t("plans.1.badge")}</Badge>
+                                <CardTitle className="text-2xl">{t("plans.1.name")}</CardTitle>
                                 <CardDescription className="text-base">
-                                    Teljes körű webshop megoldás
+                                    {t("plans.1.desc")}
                                 </CardDescription>
                                 <div className="pt-4">
-                                    <div className="text-3xl font-bold">350.000 Ft</div>
-                                    <p className="text-sm text-muted-foreground">egyszeri díj</p>
+                                    <div className="text-3xl font-bold">
+                                        <PriceDisplay amount={350000} />
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{t("plans.1.sub")}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
-                                    <li>• WooCommerce / Shopify</li>
-                                    <li>• Fizetési integráció (Stripe, PayPal)</li>
-                                    <li>• Termékkategóriák, szűrők</li>
-                                    <li>• Kosár és checkout folyamat</li>
-                                    <li>• Készletkezelés</li>
-                                    <li>• SEO optimalizálás</li>
-                                    <li>• 6 hónap support</li>
-                                    <li>• 4-6 hét átfutási idő</li>
+                                    <li>• {t("plans.1.features.0")}</li>
+                                    <li>• {t("plans.1.features.1")}</li>
+                                    <li>• {t("plans.1.features.2")}</li>
+                                    <li>• {t("plans.1.features.3")}</li>
+                                    <li>• {t("plans.1.features.4")}</li>
+                                    <li>• {t("plans.1.features.5")}</li>
+                                    <li>• {t("plans.1.features.6")}</li>
+                                    <li>• {t("plans.1.features.7")}</li>
                                 </ul>
                                 <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Ideális: online kereskedők, termékértékesítők
+                                    {t("plans.1.ideal")}
                                 </p>
                             </CardContent>
                         </Card>
 
                         <Card className="border-2">
                             <CardHeader>
-                                <Badge className="w-fit mb-2">Custom</Badge>
-                                <CardTitle className="text-2xl">Egyedi</CardTitle>
+                                <Badge className="w-fit mb-2">{t("plans.2.badge")}</Badge>
+                                <CardTitle className="text-2xl">{t("plans.2.name")}</CardTitle>
                                 <CardDescription className="text-base">
-                                    Komplex webalkalmazások
+                                    {t("plans.2.desc")}
                                 </CardDescription>
                                 <div className="pt-4">
-                                    <div className="text-3xl font-bold">600.000 Ft+</div>
-                                    <p className="text-sm text-muted-foreground">egyedi árazás</p>
+                                    <div className="text-3xl font-bold">
+                                        {t.rich('item_labels.pricing_plus_format', {
+                                            price: () => <PriceDisplay amount={600000} />
+                                        })}
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{t("plans.2.sub")}</p>
                                 </div>
                             </CardHeader>
                             <CardContent>
                                 <ul className="space-y-2 text-sm">
-                                    <li>• Headless CMS (Next.js)</li>
-                                    <li>• Egyedi funkciók</li>
-                                    <li>• User authentication</li>
-                                    <li>• Dashboard és admin panel</li>
-                                    <li>• API integráció</li>
-                                    <li>• Teljes körű SEO</li>
-                                    <li>• 12 hónap support</li>
-                                    <li>• 8-12 hét átfutási idő</li>
+                                    <li>• {t("plans.2.features.0")}</li>
+                                    <li>• {t("plans.2.features.1")}</li>
+                                    <li>• {t("plans.2.features.2")}</li>
+                                    <li>• {t("plans.2.features.3")}</li>
+                                    <li>• {t("plans.2.features.4")}</li>
+                                    <li>• {t("plans.2.features.5")}</li>
+                                    <li>• {t("plans.2.features.6")}</li>
+                                    <li>• {t("plans.2.features.7")}</li>
                                 </ul>
                                 <p className="text-xs text-muted-foreground mt-4 italic">
-                                    Ideális: SaaS startupok, nagyvállalatok
+                                    {t("plans.2.ideal")}
                                 </p>
                             </CardContent>
                         </Card>
@@ -199,7 +213,7 @@ export default function WebfejlesztesPage() {
                     <div className="text-center mt-12">
                         <Link href="/arak">
                             <Button size="lg" className="bg-accent hover:bg-accent/90">
-                                Összes csomag megtekintése
+                                {t("pricing_view_all")}
                             </Button>
                         </Link>
                     </div>
@@ -211,10 +225,10 @@ export default function WebfejlesztesPage() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            Példa projektek
+                            {t("portfolio_title")}
                         </h2>
                         <p className="text-muted-foreground text-lg">
-                            Nézd meg, milyen weboldalakat készítettünk már
+                            {t("portfolio_desc")}
                         </p>
                     </div>
 
@@ -225,12 +239,12 @@ export default function WebfejlesztesPage() {
                             </div>
                             <CardHeader>
                                 <div className="flex items-center justify-between mb-2">
-                                    <Badge>Landing Page</Badge>
+                                    <Badge>{t("portfolio_items.0.badge")}</Badge>
                                     <span className="text-xs text-muted-foreground">2024</span>
                                 </div>
-                                <CardTitle>Tech Startup Landing</CardTitle>
+                                <CardTitle>{t("portfolio_items.0.title")}</CardTitle>
                                 <CardDescription>
-                                    SaaS termék bemutató oldal lead generálással
+                                    {t("portfolio_items.0.desc")}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
@@ -240,7 +254,7 @@ export default function WebfejlesztesPage() {
                                     <Badge variant="outline">Framer Motion</Badge>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
-                                    <span className="text-muted-foreground">Konverzió:</span>
+                                    <span className="text-muted-foreground">{t("portfolio_conversion")}</span>
                                     <span className="font-semibold text-primary">4.2%</span>
                                 </div>
                             </CardContent>
@@ -252,12 +266,12 @@ export default function WebfejlesztesPage() {
                             </div>
                             <CardHeader>
                                 <div className="flex items-center justify-between mb-2">
-                                    <Badge>E-commerce</Badge>
+                                    <Badge>{t("portfolio_items.1.badge")}</Badge>
                                     <span className="text-xs text-muted-foreground">2024</span>
                                 </div>
-                                <CardTitle>Fashion Webshop</CardTitle>
+                                <CardTitle>{t("portfolio_items.1.title")}</CardTitle>
                                 <CardDescription>
-                                    Ruházati webáruház 800+ termékkel
+                                    {t("portfolio_items.1.desc")}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
@@ -267,8 +281,10 @@ export default function WebfejlesztesPage() {
                                     <Badge variant="outline">WordPress</Badge>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
-                                    <span className="text-muted-foreground">Havi forgalom:</span>
-                                    <span className="font-semibold text-primary">2.5M Ft</span>
+                                    <span className="text-muted-foreground">{t("portfolio_revenue")}</span>
+                                    <span className="font-semibold text-primary">
+                                        <PriceDisplay amount={2500000} />
+                                    </span>
                                 </div>
                             </CardContent>
                         </Card>
@@ -279,12 +295,12 @@ export default function WebfejlesztesPage() {
                             </div>
                             <CardHeader>
                                 <div className="flex items-center justify-between mb-2">
-                                    <Badge>Corporate</Badge>
+                                    <Badge>{t("portfolio_items.2.badge")}</Badge>
                                     <span className="text-xs text-muted-foreground">2023</span>
                                 </div>
-                                <CardTitle>Ügyvédi Iroda</CardTitle>
+                                <CardTitle>{t("portfolio_items.2.title")}</CardTitle>
                                 <CardDescription>
-                                    Professzionális bemutatkozó oldal blog-gal
+                                    {t("portfolio_items.2.desc")}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
@@ -294,7 +310,7 @@ export default function WebfejlesztesPage() {
                                     <Badge variant="outline">SEO</Badge>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
-                                    <span className="text-muted-foreground">Organikus forgalom:</span>
+                                    <span className="text-muted-foreground">{t("portfolio_traffic")}</span>
                                     <span className="font-semibold text-primary">+150%</span>
                                 </div>
                             </CardContent>
@@ -306,12 +322,12 @@ export default function WebfejlesztesPage() {
                             </div>
                             <CardHeader>
                                 <div className="flex items-center justify-between mb-2">
-                                    <Badge>SaaS</Badge>
+                                    <Badge>{t("portfolio_items.3.badge")}</Badge>
                                     <span className="text-xs text-muted-foreground">2024</span>
                                 </div>
-                                <CardTitle>Projektmenedzsment Tool</CardTitle>
+                                <CardTitle>{t("portfolio_items.3.title")}</CardTitle>
                                 <CardDescription>
-                                    Csapatoknak készült feladatkezelő platform
+                                    {t("portfolio_items.3.desc")}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
@@ -321,7 +337,7 @@ export default function WebfejlesztesPage() {
                                     <Badge variant="outline">Stripe</Badge>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
-                                    <span className="text-muted-foreground">Aktív felhasználók:</span>
+                                    <span className="text-muted-foreground">{t("portfolio_active_users")}</span>
                                     <span className="font-semibold text-primary">500+</span>
                                 </div>
                             </CardContent>
@@ -333,12 +349,12 @@ export default function WebfejlesztesPage() {
                             </div>
                             <CardHeader>
                                 <div className="flex items-center justify-between mb-2">
-                                    <Badge>PWA</Badge>
+                                    <Badge>{t("portfolio_items.4.badge")}</Badge>
                                     <span className="text-xs text-muted-foreground">2024</span>
                                 </div>
-                                <CardTitle>Étterem Rendelési App</CardTitle>
+                                <CardTitle>{t("portfolio_items.4.title")}</CardTitle>
                                 <CardDescription>
-                                    Progressive Web App ételrendeléshez
+                                    {t("portfolio_items.4.desc")}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
@@ -348,7 +364,7 @@ export default function WebfejlesztesPage() {
                                     <Badge variant="outline">Firebase</Badge>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
-                                    <span className="text-muted-foreground">Napi rendelések:</span>
+                                    <span className="text-muted-foreground">{t("portfolio_daily_orders")}</span>
                                     <span className="font-semibold text-primary">150+</span>
                                 </div>
                             </CardContent>
@@ -360,12 +376,12 @@ export default function WebfejlesztesPage() {
                             </div>
                             <CardHeader>
                                 <div className="flex items-center justify-between mb-2">
-                                    <Badge>Custom</Badge>
+                                    <Badge>{t("portfolio_items.5.badge")}</Badge>
                                     <span className="text-xs text-muted-foreground">2023</span>
                                 </div>
-                                <CardTitle>Belső CRM Rendszer</CardTitle>
+                                <CardTitle>{t("portfolio_items.5.title")}</CardTitle>
                                 <CardDescription>
-                                    Értékesítési folyamatok kezelésére
+                                    {t("portfolio_items.5.desc")}
                                 </CardDescription>
                             </CardHeader>
                             <CardContent>
@@ -375,7 +391,7 @@ export default function WebfejlesztesPage() {
                                     <Badge variant="outline">API</Badge>
                                 </div>
                                 <div className="flex items-center justify-between text-sm">
-                                    <span className="text-muted-foreground">Hatékonyság növekedés:</span>
+                                    <span className="text-muted-foreground">{t("portfolio_efficiency")}</span>
                                     <span className="font-semibold text-primary">+40%</span>
                                 </div>
                             </CardContent>
@@ -389,10 +405,10 @@ export default function WebfejlesztesPage() {
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            Technológiák, amiket használunk
+                            {t("tech_title")}
                         </h2>
                         <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                            Modern, jövőálló stack a legjobb teljesítményért
+                            {t("tech_desc")}
                         </p>
                     </div>
 

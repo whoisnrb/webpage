@@ -4,8 +4,10 @@ import * as React from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ShoppingBag, CheckCircle2 } from "lucide-react"
 import { getRecentPurchases, type RecentPurchase } from "@/app/actions/social-proof"
+import { useTranslations } from "next-intl"
 
 export function SocialProof() {
+    const t = useTranslations('SocialProof')
     const [purchases, setPurchases] = React.useState<RecentPurchase[]>([])
     const [visible, setVisible] = React.useState(false)
     const [currentIndex, setCurrentIndex] = React.useState(0)
@@ -79,7 +81,7 @@ export function SocialProof() {
                                 {purchase.name}
                             </p>
                             <p className="text-xs text-muted-foreground">
-                                vásárolt: <span className="text-primary font-medium">{purchase.product}</span>
+                                {t('purchased')} <span className="text-primary font-medium">{purchase.product}</span>
                             </p>
                             <div className="flex items-center gap-1 mt-1">
                                 <CheckCircle2 className="h-3 w-3 text-green-500" />

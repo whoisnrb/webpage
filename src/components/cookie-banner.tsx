@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
@@ -24,6 +25,7 @@ type Consent = {
 }
 
 export function CookieBanner() {
+    const t = useTranslations('CookieBanner')
     const [isVisible, setIsVisible] = useState(false)
     const [showSettings, setShowSettings] = useState(false)
     const [consent, setConsent] = useState<Consent>({
@@ -78,22 +80,22 @@ export function CookieBanner() {
                                     <Cookie className="h-5 w-5 text-primary" />
                                 </div>
                                 <div className="flex-1 space-y-2">
-                                    <h3 className="font-semibold leading-none tracking-tight">Sütiket használunk 🍪</h3>
+                                    <h3 className="font-semibold leading-none tracking-tight">{t('title')}</h3>
                                     <p className="text-sm text-muted-foreground">
-                                        Az oldal működéséhez és a felhasználói élmény javításához sütiket használunk.
+                                        {t('description')}
                                     </p>
                                 </div>
                             </div>
                             <div className="flex flex-col gap-2 mt-4">
                                 <div className="flex gap-2 justify-end">
                                     <Button variant="outline" size="sm" onClick={() => setShowSettings(true)}>
-                                        Beállítások
+                                        {t('settings')}
                                     </Button>
                                     <Button variant="outline" size="sm" onClick={handleDeclineAll}>
-                                        Elutasít
+                                        {t('decline')}
                                     </Button>
                                     <Button size="sm" onClick={handleAcceptAll}>
-                                        Elfogad
+                                        {t('accept')}
                                     </Button>
                                 </div>
                             </div>
@@ -105,23 +107,23 @@ export function CookieBanner() {
             <Dialog open={showSettings} onOpenChange={setShowSettings}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Süti beállítások</DialogTitle>
+                        <DialogTitle>{t('settings_title')}</DialogTitle>
                         <DialogDescription>
-                            Itt testreszabhatod, hogy milyen sütiket engedélyezel.
+                            {t('settings_description')}
                         </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4 py-4">
                         <div className="flex items-center justify-between space-x-2">
                             <div className="flex flex-col gap-1">
-                                <Label htmlFor="essential" className="font-medium">Szükséges sütik</Label>
-                                <span className="text-xs text-muted-foreground">Az oldal működéséhez elengedhetetlenek.</span>
+                                <Label htmlFor="essential" className="font-medium">{t('essential_title')}</Label>
+                                <span className="text-xs text-muted-foreground">{t('essential_description')}</span>
                             </div>
                             <Switch id="essential" checked={true} disabled />
                         </div>
                         <div className="flex items-center justify-between space-x-2">
                             <div className="flex flex-col gap-1">
-                                <Label htmlFor="analytics" className="font-medium">Analitika</Label>
-                                <span className="text-xs text-muted-foreground">Segítenek megérteni, hogyan használják a látogatók az oldalt.</span>
+                                <Label htmlFor="analytics" className="font-medium">{t('analytics_title')}</Label>
+                                <span className="text-xs text-muted-foreground">{t('analytics_description')}</span>
                             </div>
                             <Switch
                                 id="analytics"
@@ -131,8 +133,8 @@ export function CookieBanner() {
                         </div>
                         <div className="flex items-center justify-between space-x-2">
                             <div className="flex flex-col gap-1">
-                                <Label htmlFor="marketing" className="font-medium">Marketing</Label>
-                                <span className="text-xs text-muted-foreground">Releváns hirdetések megjelenítéséhez.</span>
+                                <Label htmlFor="marketing" className="font-medium">{t('marketing_title')}</Label>
+                                <span className="text-xs text-muted-foreground">{t('marketing_description')}</span>
                             </div>
                             <Switch
                                 id="marketing"
@@ -142,8 +144,8 @@ export function CookieBanner() {
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button variant="outline" onClick={() => setShowSettings(false)}>Mégse</Button>
-                        <Button onClick={handleSaveSettings}>Mentés</Button>
+                        <Button variant="outline" onClick={() => setShowSettings(false)}>{t('cancel')}</Button>
+                        <Button onClick={handleSaveSettings}>{t('save')}</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

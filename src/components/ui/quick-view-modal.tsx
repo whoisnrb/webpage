@@ -65,7 +65,7 @@ export function QuickViewModal({ isOpen, onOpenChange, data }: QuickViewModalPro
                             />
                         ) : (
                             <div className="p-12 text-center">
-                                <Badge variant="secondary" className="mb-4">{data.category || data.type}</Badge>
+                                <Badge variant="secondary" className="mb-4">{data.category || t('QuickView.' + data.type)}</Badge>
                                 <div className="text-muted-foreground/20 font-bold text-4xl uppercase tracking-tighter">
                                     {data.title}
                                 </div>
@@ -79,7 +79,7 @@ export function QuickViewModal({ isOpen, onOpenChange, data }: QuickViewModalPro
                         <DialogHeader className="text-left mb-4">
                             <div className="flex items-center gap-2 mb-2">
                                 <Badge variant="outline" className="text-primary border-primary/20 bg-primary/5 capitalize">
-                                    {data.category || data.type}
+                                    {data.category || t('QuickView.' + data.type)}
                                 </Badge>
                             </div>
                             <DialogTitle className="text-2xl md:text-3xl font-bold tracking-tight">

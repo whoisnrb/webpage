@@ -2,12 +2,14 @@ import { prisma } from "@/lib/db"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
 import { BarChart3, Users, MousePointer2 } from "lucide-react"
+import { getTranslations } from "next-intl/server"
 
-export default async function AnalyticsPage() {
+export default async function AnalyticsPage({ params: { locale } }: { params: { locale: string } }) {
+    const t = await getTranslations('AdminAnalytics')
+
     const events = await prisma.analyticsEvent.findMany({
         orderBy: { createdAt: 'desc' },
         take: 50,
-
     })
 
     const totalEvents = await prisma.analyticsEvent.count()
@@ -24,12 +26,12 @@ export default async function AnalyticsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Összes Esemény</CardTitle>
+                        <CardTitle className="text-sm font-medium">{t('total_events')}</CardTitle>
                         <BarChart3 className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">{totalEvents}</div>
-                        <p className="text-xs text-muted-foreground">Rögzített interakciók</p>
+                        <p className="text-xs text-muted-foreground">{t('recorded_interactions')}</p>
                     </CardContent>
                 </Card>
             </div>
@@ -37,8 +39,8 @@ export default async function AnalyticsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <Card className="col-span-1">
                     <CardHeader>
-                        <CardTitle>Top Események</CardTitle>
-                        <CardDescription>Leggyakoribb felhasználói interakciók</CardDescription>
+                        <CardTitle>{t('top_events')}</CardTitle>
+                        <CardDescription>{t('top_events_desc')}</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-4">
@@ -57,16 +59,16 @@ export default async function AnalyticsPage() {
 
                 <Card className="col-span-1">
                     <CardHeader>
-                        <CardTitle>Legutóbbi Események</CardTitle>
-                        <CardDescription>Valós idejű napló</CardDescription>
+                        <CardTitle>{t('recent_events')}</CardTitle>
+                        <CardDescription>{t('recent_events_desc')}</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Table>
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>Esemény</TableHead>
-                                    <TableHead>Kategória</TableHead>
-                                    <TableHead>Időpont</TableHead>
+                                    <TableHead>{t('table.event')}</TableHead>
+                                    <TableHead>{t('table.category')}</TableHead>
+                                    <TableHead>{t('table.time')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -75,7 +77,7 @@ export default async function AnalyticsPage() {
                                         <TableCell className="font-medium">{evt.name}</TableCell>
                                         <TableCell>{evt.category}</TableCell>
                                         <TableCell className="text-xs text-muted-foreground">
-                                            {new Date(evt.createdAt).toLocaleString('hu-HU')}
+                                            {new Date(evt.createdAt).toLocaleString(locale === 'hu' ? 'hu-HU' : 'en-US')}
                                         </TableCell>
                                     </TableRow>
                                 ))}

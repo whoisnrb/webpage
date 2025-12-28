@@ -3,30 +3,32 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Users, Target, Heart, Rocket, Code, Database, Layout } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
-const team = [
-    {
-        name: "Kovács Péter",
-        role: "Lead Developer & CEO",
-        bio: "10+ év tapasztalat full-stack fejlesztésben. A tiszta kód és a skálázható architektúrák híve.",
-        icon: Code
-    },
-    {
-        name: "Nagy Anna",
-        role: "UI/UX Designer",
-        bio: "Szenvedélye a felhasználóbarát és esztétikus felületek tervezése. Pixel-perfect szemléletmód.",
-        icon: Layout
-    },
-    {
-        name: "Szabó Gábor",
-        role: "DevOps Engineer",
-        bio: "A CI/CD folyamatok és a felhő alapú infrastruktúrák szakértője. Mindent automatizál, amit lehet.",
-        icon: Database
-    }
-]
+import { useTranslations } from "next-intl"
 
 export default function RolunkPage() {
+    const t = useTranslations('AboutPage')
+
+    const team = [
+        {
+            name: t('team_members.peter.name'),
+            role: t('team_members.peter.role'),
+            bio: t('team_members.peter.bio'),
+            icon: Code
+        },
+        {
+            name: t('team_members.anna.name'),
+            role: t('team_members.anna.role'),
+            bio: t('team_members.anna.bio'),
+            icon: Layout
+        },
+        {
+            name: t('team_members.gabor.name'),
+            role: t('team_members.gabor.role'),
+            bio: t('team_members.gabor.bio'),
+            icon: Database
+        }
+    ]
+
     return (
         <div className="min-h-screen flex flex-col">
             {/* Hero */}
@@ -34,11 +36,11 @@ export default function RolunkPage() {
                 <div className="container mx-auto px-4 text-center">
                     <FadeIn>
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-                            A technológia megszállottjai,<br />
-                            <span className="text-primary">az üzleti siker elkötelezettjei</span>
+                            {t('hero_title')}<br />
+                            <span className="text-primary">{t('hero_title_highlight')}</span>
                         </h1>
                         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                            Célunk, hogy modern digitális megoldásokkal segítsük a vállalkozásokat a növekedésben és a hatékonyság növelésében.
+                            {t('hero_desc')}
                         </p>
                     </FadeIn>
                 </div>
@@ -50,12 +52,12 @@ export default function RolunkPage() {
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <SlideUp>
                             <div>
-                                <h2 className="text-3xl font-bold mb-6">Küldetésünk</h2>
+                                <h2 className="text-3xl font-bold mb-6">{t('mission_title')}</h2>
                                 <p className="text-lg text-muted-foreground mb-6">
-                                    Hiszünk abban, hogy az automatizáció és a modern szoftverfejlesztés nem csak a nagyvállalatok kiváltsága. Azért dolgozunk, hogy ezeket az eszközöket elérhetővé tegyük a KKV szektor számára is.
+                                    {t('mission_desc_1')}
                                 </p>
                                 <p className="text-lg text-muted-foreground">
-                                    Nem csak kódot írunk, hanem problémákat oldunk meg. Minden projektünket üzleti szemlélettel közelítjük meg, keresve a leggyorsabb megtérülést hozó megoldásokat.
+                                    {t('mission_desc_2')}
                                 </p>
                             </div>
                         </SlideUp>
@@ -64,8 +66,8 @@ export default function RolunkPage() {
                                 <Card className="bg-primary/5 border-none h-full">
                                     <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
                                         <Target className="h-10 w-10 text-primary mb-4" />
-                                        <h3 className="font-semibold mb-2">Eredményorientáltság</h3>
-                                        <p className="text-sm text-muted-foreground">Mérhető üzleti eredményekre törekszünk.</p>
+                                        <h3 className="font-semibold mb-2">{t('values.results.title')}</h3>
+                                        <p className="text-sm text-muted-foreground">{t('values.results.desc')}</p>
                                     </CardContent>
                                 </Card>
                             </ScaleIn>
@@ -73,8 +75,8 @@ export default function RolunkPage() {
                                 <Card className="bg-primary/5 border-none h-full">
                                     <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
                                         <Heart className="h-10 w-10 text-primary mb-4" />
-                                        <h3 className="font-semibold mb-2">Ügyfélközpontúság</h3>
-                                        <p className="text-sm text-muted-foreground">Hosszú távú partnerségekben hiszünk.</p>
+                                        <h3 className="font-semibold mb-2">{t('values.client.title')}</h3>
+                                        <p className="text-sm text-muted-foreground">{t('values.client.desc')}</p>
                                     </CardContent>
                                 </Card>
                             </ScaleIn>
@@ -82,8 +84,8 @@ export default function RolunkPage() {
                                 <Card className="bg-primary/5 border-none h-full">
                                     <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
                                         <Rocket className="h-10 w-10 text-primary mb-4" />
-                                        <h3 className="font-semibold mb-2">Innováció</h3>
-                                        <p className="text-sm text-muted-foreground">Folyamatosan tanulunk és fejlődünk.</p>
+                                        <h3 className="font-semibold mb-2">{t('values.innovation.title')}</h3>
+                                        <p className="text-sm text-muted-foreground">{t('values.innovation.desc')}</p>
                                     </CardContent>
                                 </Card>
                             </ScaleIn>
@@ -91,8 +93,8 @@ export default function RolunkPage() {
                                 <Card className="bg-primary/5 border-none h-full">
                                     <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
                                         <Users className="h-10 w-10 text-primary mb-4" />
-                                        <h3 className="font-semibold mb-2">Csapatmunka</h3>
-                                        <p className="text-sm text-muted-foreground">Együtt többre vagyunk képesek.</p>
+                                        <h3 className="font-semibold mb-2">{t('values.teamwork.title')}</h3>
+                                        <p className="text-sm text-muted-foreground">{t('values.teamwork.desc')}</p>
                                     </CardContent>
                                 </Card>
                             </ScaleIn>
@@ -105,7 +107,7 @@ export default function RolunkPage() {
             <section className="py-16 md:py-24 bg-muted/30">
                 <div className="container mx-auto px-4 text-center">
                     <SlideUp>
-                        <h2 className="text-3xl font-bold mb-12">Ismerd meg a csapatot</h2>
+                        <h2 className="text-3xl font-bold mb-12">{t('team_title')}</h2>
                     </SlideUp>
                     <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                         {team.map((member, i) => (
@@ -151,19 +153,18 @@ export default function RolunkPage() {
                                     {/* Badge */}
                                     <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/20 rounded-full px-5 py-2 mb-8">
                                         <Users className="h-4 w-4 text-violet-400" />
-                                        <span className="text-sm font-semibold text-violet-300">Partnerség a sikerért</span>
+                                        <span className="text-sm font-semibold text-violet-300">{t('cta_badge')}</span>
                                     </div>
 
                                     {/* Headline */}
                                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
-                                        Dolgozzunk{" "}
+                                        {t('cta_title')}{" "}
                                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
-                                            együtt!
+                                            {t('cta_title_highlight')}
                                         </span>
                                     </h2>
                                     <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-                                        Készen állsz arra, hogy a következő szintre emeld vállalkozásodat?
-                                        Vegyük fel a kapcsolatot és beszéljük meg, hogyan segíthetünk!
+                                        {t('cta_desc')}
                                     </p>
 
                                     {/* CTA Buttons */}
@@ -174,7 +175,7 @@ export default function RolunkPage() {
                                                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-violet-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-gradient-x bg-[length:200%_auto]" />
                                                 <div className="absolute inset-0 shadow-[0_0_40px_rgba(139,92,246,0.4)] group-hover:shadow-[0_0_60px_rgba(139,92,246,0.6)] transition-shadow duration-300" />
                                                 <span className="relative flex items-center text-white font-bold">
-                                                    Kapcsolatfelvétel
+                                                    {t('cta_contact')}
                                                     <svg className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                                     </svg>
@@ -186,7 +187,7 @@ export default function RolunkPage() {
                                                 <div className="absolute inset-0 rounded-md border-2 border-slate-600 group-hover:border-violet-500/50 transition-colors duration-300" />
                                                 <div className="absolute inset-0 bg-white/5 group-hover:bg-violet-500/10 transition-colors duration-300" />
                                                 <span className="relative text-white">
-                                                    Ajánlatkérés
+                                                    {t('cta_quote')}
                                                 </span>
                                             </Button>
                                         </Link>
@@ -196,19 +197,19 @@ export default function RolunkPage() {
                                     <div className="grid grid-cols-4 gap-6 pt-10 border-t border-slate-800">
                                         <div className="text-center">
                                             <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 mb-1">10+</div>
-                                            <div className="text-xs text-slate-500">Év tapasztalat</div>
+                                            <div className="text-xs text-slate-500">{useTranslations('HomePage')('stats_exp_title')}</div>
                                         </div>
                                         <div className="text-center">
                                             <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 mb-1">50+</div>
-                                            <div className="text-xs text-slate-500">Projekt</div>
+                                            <div className="text-xs text-slate-500">{useTranslations('HomePage')('stats_projects_title')}</div>
                                         </div>
                                         <div className="text-center">
                                             <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 mb-1">100%</div>
-                                            <div className="text-xs text-slate-500">Elégedettség</div>
+                                            <div className="text-xs text-slate-500">{useTranslations('HomePage')('stats_satisfaction_title')}</div>
                                         </div>
                                         <div className="text-center">
                                             <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 mb-1">24h</div>
-                                            <div className="text-xs text-slate-500">Válaszidő</div>
+                                            <div className="text-xs text-slate-500">{useTranslations('ServiceTemplate')('fast_response')}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -224,19 +225,19 @@ export default function RolunkPage() {
                                 <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
-                                <span>Megbízható partner</span>
+                                <span>{t('trust_signals.partner')}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                 </svg>
-                                <span>Személyes kapcsolat</span>
+                                <span>{t('trust_signals.personal')}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
-                                <span>Gyors reakcióidő</span>
+                                <span>{t('trust_signals.fast')}</span>
                             </div>
                         </div>
                     </div>

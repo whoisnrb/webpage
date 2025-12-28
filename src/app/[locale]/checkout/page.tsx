@@ -10,8 +10,12 @@ import { Card } from "@/components/ui/card"
 import { Loader2, ShieldCheck } from "lucide-react"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import { useTranslations } from "next-intl"
+import { PriceDisplay } from "@/components/price-display"
+import { Link } from "@/i18n/routing"
 
 export default function CheckoutPage() {
+    const t = useTranslations('Checkout')
     const { items, total } = useCart()
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
@@ -26,12 +30,12 @@ export default function CheckoutPage() {
         e.preventDefault()
 
         if (!waiverAccepted) {
-            toast.error("A vásárlás folytatásához el kell fogadnia a lemondó nyilatkozatot.")
+            toast.error(t('error_waiver'))
             return
         }
 
         if (items.length === 0) {
-            toast.error("A kosara üres.")
+            toast.error(t('error_empty'))
             return
         }
 
@@ -55,10 +59,10 @@ export default function CheckoutPage() {
             if (data.success && data.paymentUrl) {
                 window.location.href = data.paymentUrl
             } else {
-                toast.error("Hiba történt a fizetés indításakor: " + (data.error || "Ismeretlen hiba"))
+                toast.error(t('error_payment') + (data.error || "Ismeretlen hiba"))
             }
         } catch (error) {
-            toast.error("Váratlan hiba történt.")
+            toast.error(t('error_generic'))
             console.error(error)
         } finally {
             setIsLoading(false)
@@ -68,37 +72,37 @@ export default function CheckoutPage() {
     if (items.length === 0) {
         return (
             <div className="container mx-auto px-4 py-12 text-center">
-                <h1 className="text-2xl font-bold mb-4">A kosara üres</h1>
-                <Button onClick={() => router.push("/")}>Vissza a főoldalra</Button>
+                <h1 className="text-2xl font-bold mb-4">{t('empty_cart')}</h1>
+                <Button onClick={() => router.push("/")}>{t('back_to_home')}</Button>
             </div>
         )
     }
 
     return (
         <div className="container mx-auto px-4 py-12 md:py-16">
-            <h1 className="text-3xl font-bold mb-8 text-center">Pénztár</h1>
+            <h1 className="text-3xl font-bold mb-8 text-center">{t('title')}</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
                 {/* Order Summary */}
                 <div className="space-y-6">
                     <Card className="p-6 bg-muted/30">
-                        <h2 className="text-xl font-semibold mb-4">Rendelés összesítése</h2>
+                        <h2 className="text-xl font-semibold mb-4">{t('summary_title')}</h2>
                         <div className="space-y-4">
                             {items.map((item) => (
                                 <div key={`${item.id}-${item.license}`} className="flex justify-between items-center border-b pb-4 last:border-0 last:pb-0">
                                     <div>
                                         <p className="font-medium">{item.name}</p>
-                                        <p className="text-sm text-muted-foreground capitalize">{item.license} licenc</p>
+                                        <p className="text-sm text-muted-foreground capitalize">{item.license} license</p>
                                     </div>
-                                    <p className="font-medium">{item.price.toLocaleString()} Ft</p>
+                                    <PriceDisplay amount={item.price} className="font-medium" />
                                 </div>
                             ))}
                             <div className="pt-4 border-t flex justify-between items-center text-lg font-bold">
-                                <span>Összesen:</span>
-                                <span>{total.toLocaleString()} Ft</span>
+                                <span>{t('total_label')}</span>
+                                <PriceDisplay amount={total} />
                             </div>
                             <p className="text-xs text-muted-foreground mt-2">
-                                Az árak tartalmazzák az ÁFA-t (ha alkalmazandó).
+                                {t('vat_included')}
                             </p>
                         </div>
                     </Card>
@@ -107,27 +111,27 @@ export default function CheckoutPage() {
                 {/* Checkout Form */}
                 <div className="space-y-6">
                     <Card className="p-6">
-                        <h2 className="text-xl font-semibold mb-6">Számlázási adatok</h2>
+                        <h2 className="text-xl font-semibold mb-6">{t('billing_title')}</h2>
                         <form onSubmit={handlePayment} className="space-y-6">
                             <div className="space-y-2">
-                                <Label htmlFor="name">Teljes név / Cégnév</Label>
+                                <Label htmlFor="name">{t('name_label')}</Label>
                                 <Input
                                     id="name"
                                     required
                                     value={formData.name}
                                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    placeholder="Kovács János"
+                                    placeholder={t('name_placeholder')}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="email">Email cím</Label>
+                                <Label htmlFor="email">{t('email_label')}</Label>
                                 <Input
                                     id="email"
                                     type="email"
                                     required
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    placeholder="janos@example.com"
+                                    placeholder={t('email_placeholder')}
                                 />
                             </div>
 
@@ -144,10 +148,10 @@ export default function CheckoutPage() {
                                             htmlFor="waiver"
                                             className="text-sm font-medium leading-normal cursor-pointer"
                                         >
-                                            Tudomásul veszem, hogy a teljesítés megkezdésével (a digitális tartalom letöltésével vagy hozzáférhetővé tételével) elveszítem a 14 napos elállási jogomat.
+                                            {t('waiver_label')}
                                         </Label>
                                         <p className="text-xs text-muted-foreground">
-                                            A vásárlás folytatásához el kell fogadnia ezt a nyilatkozatot, mivel digitális terméket vásárol.
+                                            {t('waiver_subtext')}
                                         </p>
                                     </div>
                                 </div>
@@ -163,7 +167,10 @@ export default function CheckoutPage() {
                                             htmlFor="terms"
                                             className="text-sm font-medium leading-none cursor-pointer"
                                         >
-                                            Elfogadom az <a href="/aszf" target="_blank" className="text-primary hover:underline">Általános Szerződési Feltételeket</a> és az <a href="/adatvedelem" target="_blank" className="text-primary hover:underline">Adatkezelési Tájékoztatót</a>.
+                                            {t.rich('terms_label', {
+                                                link1: (chunks) => <Link href="/aszf" target="_blank" className="text-primary hover:underline">{chunks}</Link>,
+                                                link2: (chunks) => <Link href="/adatvedelem" target="_blank" className="text-primary hover:underline">{chunks}</Link>
+                                            })}
                                         </Label>
                                     </div>
                                 </div>
@@ -173,19 +180,19 @@ export default function CheckoutPage() {
                                 {isLoading ? (
                                     <>
                                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                        Fizetés indítása...
+                                        {t('checkout_loading')}
                                     </>
                                 ) : (
                                     <>
                                         <ShieldCheck className="mr-2 h-4 w-4" />
-                                        Fizetés SimplePay-vel
+                                        {t('pay_with_simplepay')}
                                     </>
                                 )}
                             </Button>
 
                             <div className="flex justify-center gap-4 mt-4 opacity-70 grayscale hover:grayscale-0 transition-all">
                                 {/* SimplePay logo placeholder or text */}
-                                <span className="text-xs text-muted-foreground">Biztonságos fizetés SimplePay rendszeren keresztül.</span>
+                                <span className="text-xs text-muted-foreground">{t('secure_payment_desc')}</span>
                             </div>
                         </form>
                     </Card>
