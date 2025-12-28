@@ -34,7 +34,7 @@ export interface SimplePayResponse {
     total: number
     paymentUrl?: string
     errorCodes?: number[]
-    [key: string]: any
+    [key: string]: unknown
 }
 
 export class SimplePay {
@@ -60,8 +60,8 @@ export class SimplePay {
     /**
      * Generál hash-t a SimplePay kommunikációhoz
      */
-    private generateHash(data: Record<string, any>): string {
-        const orderedData: Record<string, any> = {}
+    private generateHash(data: Record<string, unknown>): string {
+        const orderedData: Record<string, unknown> = {}
         Object.keys(data)
             .sort()
             .forEach(key => {
@@ -84,7 +84,7 @@ export class SimplePay {
     async startPayment(paymentData: PaymentData): Promise<SimplePayResponse> {
         const salt = crypto.randomBytes(16).toString('hex')
 
-        const requestData: Record<string, any> = {
+        const requestData: Record<string, unknown> = {
             salt: salt,
             merchant: this.config.merchantId,
             orderRef: paymentData.orderRef,
@@ -140,7 +140,7 @@ export class SimplePay {
     /**
      * Validálja az IPN (Instant Payment Notification) callback-et
      */
-    validateIPN(data: Record<string, any>, receivedSignature: string): boolean {
+    validateIPN(data: Record<string, unknown>, receivedSignature: string): boolean {
         const calculatedSignature = this.generateHash(data)
         return calculatedSignature === receivedSignature
     }
@@ -148,7 +148,7 @@ export class SimplePay {
     /**
      * Visszaigazolás küldése SimplePay-nek IPN után
      */
-    async confirmIPN(data: Record<string, any>): Promise<boolean> {
+    async confirmIPN(data: Record<string, unknown>): Promise<boolean> {
         try {
             const response = await fetch(`${this.baseUrl}/confirm`, {
                 method: 'POST',

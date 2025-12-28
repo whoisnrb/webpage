@@ -46,7 +46,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
             content,
             ...(data as { title: string; date: string; excerpt: string; coverImage?: string }),
         }
-    } catch (e) {
+    } catch {
         return null
     }
 }

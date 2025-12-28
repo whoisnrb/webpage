@@ -119,7 +119,7 @@ export default function KarrierPage() {
                     <p className="text-muted-foreground mb-8">
                         Küldd el önéletrajzodat az adatbázisunkba, és értesítünk, ha nyílik megfelelő lehetőség.
                     </p>
-                    <Link href="mailto:karrier@backlineit.hu">
+                    <Link href="/karrier/jelentkezes">
                         <Button variant="outline" size="lg">
                             Spontán jelentkezés
                         </Button>

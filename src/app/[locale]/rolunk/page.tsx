@@ -126,20 +126,120 @@ export default function RolunkPage() {
                 </div>
             </section>
 
-            {/* CTA */}
-            <section className="py-16 bg-primary text-primary-foreground text-center">
-                <div className="container mx-auto px-4">
-                    <ScaleIn>
-                        <h2 className="text-3xl font-bold mb-6">Dolgozzunk együtt!</h2>
-                        <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-                            Készen állsz arra, hogy a következő szintre emeld vállalkozásodat?
-                        </p>
-                        <Link href="/kapcsolat">
-                            <Button size="lg" variant="secondary" className="text-lg px-8">
-                                Kapcsolatfelvétel
-                            </Button>
-                        </Link>
-                    </ScaleIn>
+            {/* CTA Section - Premium Dark Design */}
+            <section className="relative py-24 md:py-36 overflow-hidden">
+                {/* Dark gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
+
+                {/* Dot pattern */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(6,182,212,0.08)_1px,_transparent_0)] bg-[length:32px_32px]" />
+
+                {/* Animated glow orbs */}
+                <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
+
+                <div className="container relative z-10 mx-auto px-4">
+                    <div className="max-w-4xl mx-auto">
+                        {/* Holographic card */}
+                        <div className="relative">
+                            <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-violet-500 to-cyan-500 rounded-3xl opacity-40 blur-sm animate-gradient-x bg-[length:200%_auto]" />
+                            <div className="relative bg-slate-900/95 backdrop-blur-2xl rounded-3xl p-10 md:p-16 border border-white/5">
+                                {/* Top accent */}
+                                <div className="absolute top-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+
+                                <div className="text-center">
+                                    {/* Badge */}
+                                    <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/20 rounded-full px-5 py-2 mb-8">
+                                        <Users className="h-4 w-4 text-violet-400" />
+                                        <span className="text-sm font-semibold text-violet-300">Partnerség a sikerért</span>
+                                    </div>
+
+                                    {/* Headline */}
+                                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6">
+                                        Dolgozzunk{" "}
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
+                                            együtt!
+                                        </span>
+                                    </h2>
+                                    <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                                        Készen állsz arra, hogy a következő szintre emeld vállalkozásodat?
+                                        Vegyük fel a kapcsolatot és beszéljük meg, hogyan segíthetünk!
+                                    </p>
+
+                                    {/* CTA Buttons */}
+                                    <div className="flex flex-col sm:flex-row gap-5 justify-center mb-12">
+                                        <Link href="/kapcsolat">
+                                            <Button size="lg" className="group relative h-16 px-12 text-lg font-bold overflow-hidden border-0 w-full sm:w-auto">
+                                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-violet-500 animate-gradient-x bg-[length:200%_auto]" />
+                                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-violet-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-gradient-x bg-[length:200%_auto]" />
+                                                <div className="absolute inset-0 shadow-[0_0_40px_rgba(139,92,246,0.4)] group-hover:shadow-[0_0_60px_rgba(139,92,246,0.6)] transition-shadow duration-300" />
+                                                <span className="relative flex items-center text-white font-bold">
+                                                    Kapcsolatfelvétel
+                                                    <svg className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                                    </svg>
+                                                </span>
+                                            </Button>
+                                        </Link>
+                                        <Link href="/ajanlatkeres">
+                                            <Button size="lg" className="group relative h-16 px-12 text-lg font-bold bg-transparent overflow-hidden w-full sm:w-auto">
+                                                <div className="absolute inset-0 rounded-md border-2 border-slate-600 group-hover:border-violet-500/50 transition-colors duration-300" />
+                                                <div className="absolute inset-0 bg-white/5 group-hover:bg-violet-500/10 transition-colors duration-300" />
+                                                <span className="relative text-white">
+                                                    Ajánlatkérés
+                                                </span>
+                                            </Button>
+                                        </Link>
+                                    </div>
+
+                                    {/* Stats */}
+                                    <div className="grid grid-cols-4 gap-6 pt-10 border-t border-slate-800">
+                                        <div className="text-center">
+                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 mb-1">10+</div>
+                                            <div className="text-xs text-slate-500">Év tapasztalat</div>
+                                        </div>
+                                        <div className="text-center">
+                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 mb-1">50+</div>
+                                            <div className="text-xs text-slate-500">Projekt</div>
+                                        </div>
+                                        <div className="text-center">
+                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 mb-1">100%</div>
+                                            <div className="text-xs text-slate-500">Elégedettség</div>
+                                        </div>
+                                        <div className="text-center">
+                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 mb-1">24h</div>
+                                            <div className="text-xs text-slate-500">Válaszidő</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Bottom accent */}
+                                <div className="absolute bottom-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent" />
+                            </div>
+                        </div>
+
+                        {/* Trust badges */}
+                        <div className="flex flex-wrap justify-center gap-8 mt-12 text-slate-500 text-sm">
+                            <div className="flex items-center gap-2">
+                                <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                </svg>
+                                <span>Megbízható partner</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                </svg>
+                                <span>Személyes kapcsolat</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <svg className="h-5 w-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                <span>Gyors reakcióidő</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

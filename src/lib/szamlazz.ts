@@ -1,4 +1,14 @@
-export async function createInvoice(order: any, user: any) {
+interface InvoiceOrder {
+    orderRef: string;
+    totalAmount: number;
+}
+
+interface InvoiceUser {
+    name: string;
+    email: string;
+}
+
+export async function createInvoice(order: InvoiceOrder, user: InvoiceUser) {
     const agentUrl = "https://www.szamlazz.hu/szamla/"
 
     // Generate XML payload

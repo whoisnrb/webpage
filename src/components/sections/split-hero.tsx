@@ -218,9 +218,9 @@ export function SplitHero() {
                         {/* Product Highlights snippet */}
                         <div className="mt-12 flex gap-4 items-center opacity-0 group-hover/right:opacity-100 transition-all duration-700 translate-y-4 group-hover/right:translate-y-0">
                             <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Ready to ship:</span>
-                            <Badge variant="outline" className="bg-accent/5 border-accent/20 text-accent">Scriptek</Badge>
-                            <Badge variant="outline" className="bg-accent/5 border-accent/20 text-accent">Plugins</Badge>
-                            <Badge variant="outline" className="bg-accent/5 border-accent/20 text-accent">E-books</Badge>
+                            <Badge variant="outline" className="bg-orange-500/20 border-orange-400/40 text-orange-300">Scriptek</Badge>
+                            <Badge variant="outline" className="bg-orange-500/20 border-orange-400/40 text-orange-300">Plugins</Badge>
+                            <Badge variant="outline" className="bg-orange-500/20 border-orange-400/40 text-orange-300">E-books</Badge>
                         </div>
                     </motion.div>
                 </div>

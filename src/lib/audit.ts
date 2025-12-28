@@ -8,7 +8,7 @@ interface LogActionParams {
     action: ActionType
     entity: string
     entityId?: string
-    details?: any
+    details?: unknown
 }
 
 export async function logAdminAction({ action, entity, entityId, details }: LogActionParams) {

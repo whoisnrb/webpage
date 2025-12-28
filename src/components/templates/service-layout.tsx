@@ -46,7 +46,7 @@ export function ServiceLayout({
                                 </Button>
                                 <Button variant="outline" size="lg" asChild>
                                     <Link href="/demo">
-                                        Demó időpont
+                                        Időpont kérés
                                     </Link>
                                 </Button>
                             </div>
@@ -113,17 +113,83 @@ export function ServiceLayout({
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 bg-primary text-primary-foreground">
-                <div className="container mx-auto px-4 text-center">
-                    <h2 className="text-3xl font-bold mb-6">Készen állsz a kezdésre?</h2>
-                    <p className="text-xl text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-                        Kérj ingyenes konzultációt, és beszéljük át a projekted részleteit.
+            <section className="relative py-20 md:py-32 overflow-hidden">
+                {/* Premium gradient background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-primary/90 to-slate-900" />
+
+                {/* Animated mesh gradient overlay */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-purple-500/20 via-transparent to-transparent" />
+
+                {/* Dot pattern */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(255,255,255,0.07)_1px,_transparent_0)] bg-[length:24px_24px]" />
+
+                {/* Floating glow orbs */}
+                <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+
+                <div className="container relative z-10 mx-auto px-4 text-center">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-8">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+                        </span>
+                        <span className="text-sm font-medium text-white/90">Ingyenes konzultáció elérhető</span>
+                    </div>
+
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white tracking-tight">
+                        Készen állsz a kezdésre?
+                    </h2>
+                    <p className="text-xl md:text-2xl text-white/80 mb-12 max-w-3xl mx-auto leading-relaxed">
+                        Kérj ingyenes konzultációt, és beszéljük át a projekted részleteit. Nincs kötelezettség, csak hasznos tanácsok.
                     </p>
-                    <Button size="lg" variant="secondary" className="text-lg px-8" asChild>
-                        <Link href="/demo">
-                            Kapcsolatfelvétel <ArrowRight className="ml-2 h-5 w-5" />
-                        </Link>
-                    </Button>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        {/* Primary CTA Button */}
+                        <Button size="lg" className="group relative h-14 px-10 text-lg font-bold bg-white text-slate-900 hover:bg-white hover:scale-105 transition-all duration-300 shadow-2xl shadow-white/20" asChild>
+                            <Link href="/kapcsolat">
+                                <span className="relative z-10 flex items-center">
+                                    Ingyenes konzultáció
+                                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                </span>
+                            </Link>
+                        </Button>
+
+                        {/* Secondary CTA Button - Árak megtekintése */}
+                        <Button size="lg" className="group relative h-14 px-10 text-lg font-bold bg-transparent border-2 border-amber-400/80 text-amber-300 hover:bg-amber-400/20 hover:border-amber-300 hover:text-amber-200 transition-all duration-300 shadow-lg shadow-amber-500/10" asChild>
+                            <Link href="/arak">
+                                <span className="flex items-center">
+                                    Árak megtekintése
+                                    <svg className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </span>
+                            </Link>
+                        </Button>
+                    </div>
+
+                    {/* Trust indicators */}
+                    <div className="mt-12 flex flex-wrap justify-center gap-8 text-white/60 text-sm">
+                        <div className="flex items-center gap-2">
+                            <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Nincs rejtett költség</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>100% elégedettségi garancia</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span>Válasz 24 órán belül</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
