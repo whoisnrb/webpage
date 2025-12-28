@@ -64,11 +64,12 @@ export async function POST(request: NextRequest) {
 
         // 4. Generate Invoice
         if (order.user) {
-          const invoiceUser = {
-            ...order.user,
-            // InvoiceUser name: string -> Prisma name: string | null
-            name: order.user.name ?? order.user.email ?? "Ismeretlen ügyfél",
-          }
+         const invoiceUser = {
+  ...order.user,
+  name: order.user.name ?? order.user.email ?? "Ismeretlen ügyfél",
+  email: order.user.email ?? "",
+}
+
 
           const invoiceResult = await createInvoice(order, invoiceUser)
           if (!invoiceResult.success) {
