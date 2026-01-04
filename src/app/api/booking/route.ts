@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { rateLimit } from "@/lib/rate-limit"
 import { headers } from "next/headers"
+import { processBooking } from "@/lib/n8n/actions"
 
 export async function POST(request: Request) {
     try {
@@ -17,37 +18,18 @@ export async function POST(request: Request) {
         }
 
         const body = await request.json()
-        const { name, email, date, topic, time, message } = body
 
-        const n8nUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api"
+        // Directly call the internal processing logic
+        const result = await processBooking({ ...body, action: 'booking' })
 
-        const response = await fetch(n8nUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({ name, email, date, topic, time, message, action: "booking" })
-        })
+        return NextResponse.json(result)
 
-        if (!response.ok) {
-            const errorText = await response.text()
-            console.error("n8n returned error:", response.status, response.statusText, errorText)
-            return NextResponse.json({
-                success: false,
-                error: `n8n error: ${response.status} ${response.statusText}`,
-                details: errorText
-            }, { status: 500 })
-        }
-
-        return NextResponse.json({ success: true })
-
-    } catch (error) {
-        console.error("Booking proxy error:", error)
+    } catch (error: any) {
+        console.error("Booking local error:", error)
         return NextResponse.json({
             success: false,
-            error: "Internal Server Error",
-            details: error instanceof Error ? error.message : String(error)
+            error: error.message || "Internal Server Error",
+            details: error.response?.data || "No extra details"
         }, { status: 500 })
     }
 }

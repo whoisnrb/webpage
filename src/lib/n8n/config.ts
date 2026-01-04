@@ -15,6 +15,7 @@ export type WebhookAction =
     | 'chat'
     | 'crm_sync'
     | 'incoming_email'
+    | 'ticket_created'
     | 'ticket';
 
 export interface WebhookBody {

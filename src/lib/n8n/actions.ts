@@ -73,17 +73,17 @@ export async function processNewsletter(body: WebhookBody) {
 }
 
 export async function processBooking(body: WebhookBody) {
-    const { name, email, date, topic, message } = body;
+    const { name, email, date, topic, time, message } = body;
 
     // 1. Save to Sheet
-    await appendToSheet(GOOGLE_SHEET_IDS.BOOKING, [name || '', email || '', date || '', topic || '', message || '']);
+    await appendToSheet(GOOGLE_SHEET_IDS.BOOKING, [name || '', email || '', date || '', time || '', topic || '', message || '']);
 
     // 2. Notify Admin
     const adminEmail = process.env.ADMIN_EMAIL || 'whoisnrb@gmail.com';
     await sendEmail(
         adminEmail,
         'Új Időpontfoglalás Érkezett',
-        `Új foglalás érkezett:<br><br>Név: ${name}<br>Email: ${email}<br>Dátum: ${date}<br>Téma: ${topic}<br>Üzenet: ${message}`
+        `Új foglalás érkezett:<br><br>Név: ${name}<br>Email: ${email}<br>Időpont: ${date} ${time || ''}<br>Téma: ${topic}<br>Üzenet: ${message}`
     );
 
     // 3. Confirm to User
@@ -91,7 +91,7 @@ export async function processBooking(body: WebhookBody) {
         await sendEmail(
             email,
             'Időpontfoglalás Visszaigazolása',
-            `Kedves Ügyfelünk!<br><br>Megkaptuk időpontfoglalási igényét. Hamarosan felvesszük Önnel a kapcsolatot a véglegesítés miatt.<br><br>Üdvözlettel,<br>IT Services Csapat`
+            `Kedves Ügyfelünk!<br><br>Megkaptuk időpontfoglalási igényét (${date} ${time || ''}). Hamarosan felvesszük Önnel a kapcsolatot a véglegesítés miatt.<br><br>Üdvözlettel,<br>IT Services Csapat`
         );
     }
 
@@ -113,8 +113,20 @@ export async function processTicket(body: WebhookBody) {
 }
 
 export async function processChat(body: WebhookBody) {
-    const { message } = body;
-    const response = await generateAIResponse(message || '', SYSTEM_PROMPTS.CHAT_ALVIN);
+    const { message, systemPrompt, history } = body;
+
+    // Construct prompt with history if available
+    let fullPrompt = message || '';
+    if (history && Array.isArray(history)) {
+        const historyText = history.map(h => `${h.role === 'user' ? 'User' : 'Assistant'}: ${h.content}`).join('\n');
+        fullPrompt = `History:\n${historyText}\n\nUser: ${message}`;
+    }
+
+    const response = await generateAIResponse(
+        fullPrompt,
+        systemPrompt || 'You are Alvin, the AI assistant of BacklineIT. Help specifically with IT services, automation and development questions.'
+    );
+
     return { output: response };
 }
 

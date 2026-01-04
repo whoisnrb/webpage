@@ -96,24 +96,20 @@ export async function POST(req: NextRequest) {
             }
         })
 
-        // Notify n8n for AI Analysis & Admin Alert
+        // Notify internal action for Admin Alert
         try {
-            const webhookUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api";
-            await fetch(webhookUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    action: "ticket_created",
-                    ticketId: ticket.id,
-                    ticketNumber: ticket.ticketNumber,
-                    subject: ticket.subject,
-                    description: ticket.description,
-                    userEmail: ticket.user.email,
-                    userName: ticket.user.name
-                })
+            const { processTicket } = await import("@/lib/n8n/actions")
+            await processTicket({
+                action: "ticket_created",
+                ticketId: ticket.id,
+                ticketNumber: ticket.ticketNumber,
+                subject: ticket.subject,
+                description: ticket.description,
+                userEmail: ticket.user.email || undefined,
+                userName: ticket.user.name || undefined
             });
         } catch (webhookError) {
-            console.error("Webhook trigger failed:", webhookError);
+            console.error("Internal processTicket trigger failed:", webhookError);
             // Continue execution, don't block user
         }
 
