@@ -70,7 +70,7 @@ const technologies = [
 export function TrustedBy() {
     const t = useTranslations('TrustedBy')
     return (
-        <section className="py-16 md:py-20 bg-muted/20 border-y">
+        <section className="py-16 md:py-20 bg-transparent">
             <div className="container mx-auto px-4">
                 <FadeIn>
                     <div className="text-center mb-12">

@@ -33,7 +33,7 @@ export function SplitHero() {
     const [hoverSide, setHoverSide] = React.useState<'left' | 'right' | null>(null)
 
     return (
-        <section className="relative w-full h-[700px] md:h-screen min-h-[600px] overflow-hidden bg-background">
+        <section className="relative w-full h-[700px] md:h-screen min-h-[600px] overflow-hidden bg-transparent">
 
             {/* Ambient Background Glow */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
