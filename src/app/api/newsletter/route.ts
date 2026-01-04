@@ -6,12 +6,17 @@ export async function POST(request: Request) {
         const body = await request.json()
         const { email } = body
 
-        await processNewsletter({ email, action: 'newsletter' })
+        const result = await processNewsletter({ email, action: 'newsletter' })
 
-        return NextResponse.json({ success: true })
+        return NextResponse.json(result)
 
-    } catch (error) {
+    } catch (error: any) {
         console.error("Newsletter error:", error)
-        return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 })
+        // Visszaküldjük a pontos hibát, hogy lássuk mi történik
+        return NextResponse.json({ 
+            success: false, 
+            error: error.message,
+            details: error.response?.data || "No extra details"
+        }, { status: 500 })
     }
 }
