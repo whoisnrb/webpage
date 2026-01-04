@@ -1,12 +1,12 @@
 ﻿import { NextRequest, NextResponse } from 'next/server';
 import { WebhookBody } from '@/lib/n8n/config';
-import { 
-    processFeedback, 
-    processNewsletter, 
-    processBooking, 
-    processTicket, 
-    processChat, 
-    processPurchase 
+import {
+    processFeedback,
+    processNewsletter,
+    processBooking,
+    processTicket,
+    processChat,
+    processPurchase
 } from '@/lib/n8n/actions';
 
 export async function POST(req: NextRequest) {
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         console.log('[Unified Webhook] JSON Body:', JSON.stringify(body, null, 2));
         const { action } = body;
 
-        console.log(\[Unified Webhook] Received action: \\);
+        console.log(`[Unified Webhook] Received action: ${action}`);
 
         switch (action) {
             case 'feedback':
@@ -37,8 +37,8 @@ export async function POST(req: NextRequest) {
                 const purchaseResult = await processPurchase(body);
                 return NextResponse.json(purchaseResult);
             default:
-                console.error(\[Unified Webhook] Unknown action: \\);
-                return NextResponse.json({ error: \Unknown action: \\ }, { status: 400 });
+                console.error(`[Unified Webhook] Unknown action: ${action}`);
+                return NextResponse.json({ error: `Unknown action: ${action}` }, { status: 400 });
         }
 
     } catch (error: any) {
