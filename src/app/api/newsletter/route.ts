@@ -5,7 +5,8 @@ export async function POST(request: Request) {
         const body = await request.json()
         const { email } = body
 
-        const n8nUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || "https://n8n.backlineit.hu/webhook/api"
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+        const n8nUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || `${baseUrl}/api/unified`;
 
         const response = await fetch(n8nUrl, {
             method: "POST",
