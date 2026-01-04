@@ -1,31 +1,17 @@
-import { NextResponse } from "next/server"
+﻿import { NextResponse } from "next/server"
+import { processNewsletter } from "@/lib/n8n/actions"
 
 export async function POST(request: Request) {
     try {
         const body = await request.json()
         const { email } = body
 
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-        const n8nUrl = process.env.N8N_UNIFIED_WEBHOOK_URL || `${baseUrl}/api/unified`;
-
-        const response = await fetch(n8nUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({ email, action: "newsletter" })
-        })
-
-        if (!response.ok) {
-            console.error("n8n returned error:", response.status, response.statusText)
-            return NextResponse.json({ success: false, error: "Failed to subscribe" }, { status: 500 })
-        }
+        await processNewsletter({ email, action: 'newsletter' })
 
         return NextResponse.json({ success: true })
 
     } catch (error) {
-        console.error("Newsletter proxy error:", error)
+        console.error("Newsletter error:", error)
         return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 })
     }
 }
