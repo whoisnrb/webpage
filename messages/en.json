@@ -254,23 +254,21 @@
         }
     },
     "CRM": {
-        "title": "Customer CRM",
-        "subtitle": "Manage leads and business processes.",
+        "title": "Customer Relationship Management (CRM)",
+        "subtitle": "Manage all leads and customers in one place",
         "leads_title": "Leads",
-        "company": "Company Name",
+        "company": "Company",
         "contact_person": "Contact Person",
-        "email": "Email Address",
+        "email": "Email",
         "status": "Status",
-        "source": "Source",
         "last_contact": "Last Contact",
-        "notes": "Notes",
-        "status_lead": "Lead",
-        "status_proposal": "Proposal",
-        "status_active": "Active",
-        "status_inactive": "Inactive",
-        "edit_lead": "Edit Lead",
+        "save": "Save",
         "save_success": "Saved successfully",
-        "save_error": "Error saving"
+        "save_error": "Error saving",
+        "edit_lead": "Edit Lead",
+        "notes": "Notes",
+        "no_leads_title": "No leads found",
+        "no_leads_desc": "There are currently no leads in the system. New leads will appear here automatically when they fill out forms on the website."
     },
     "Finance": {
         "title": "Financial Dashboard",

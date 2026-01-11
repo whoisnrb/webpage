@@ -31,7 +31,8 @@ import {
 } from "@/components/ui/select";
 import { updateLead, deleteLead } from "@/app/actions/crm";
 import { toast } from "sonner";
-import { Edit2, Trash2, Calendar } from "lucide-react";
+import { Edit2, Trash2, Calendar, Users } from "lucide-react";
+import { EmptyState } from "@/components/ui/empty-state";
 
 interface Lead {
     id: string;
@@ -81,6 +82,16 @@ export function LeadManagement({ initialLeads }: { initialLeads: Lead[] }) {
             default: return "outline";
         }
     };
+
+    if (leads.length === 0) {
+        return (
+            <EmptyState
+                icon={Users}
+                title={t("no_leads_title")}
+                description={t("no_leads_desc")}
+            />
+        );
+    }
 
     return (
         <div className="space-y-4">
