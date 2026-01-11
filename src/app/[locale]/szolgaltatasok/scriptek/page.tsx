@@ -125,7 +125,7 @@ export default function ScriptekPage() {
                 ]}
                 techStack={["Python", "Node.js", "n8n", "Docker", "REST API", "GraphQL", "Zapier", "Make"]}
                 pricing={tServices.rich('item_labels.pricing_from_format', {
-                    price: () => <PriceDisplay amount={50000} />
+                    price: () => <PriceDisplay amount={100000} />
                 }) as any}
             >
                 <UseCases

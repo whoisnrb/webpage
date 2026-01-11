@@ -124,7 +124,7 @@ export default function BiztonsagPage() {
                 ]}
                 techStack={["Kali Linux", "Nmap", "Wireshark", "Metasploit", "Cloudflare", "ModSecurity", "Fail2Ban", "OpenVAS"]}
                 pricing={tServices.rich('item_labels.pricing_from_format', {
-                    price: () => <PriceDisplay amount={80000} />
+                    price: () => <PriceDisplay amount={125000} />
                 }) as any}
             >
                 <UseCases

@@ -163,7 +163,7 @@ export default function WebfejlesztesPage() {
                 ]}
                 techStack={["Next.js", "React", "Tailwind CSS", "WordPress", "WooCommerce", "PostgreSQL", "Stripe", "Vercel"]}
                 pricing={tServices.rich('item_labels.pricing_from_format', {
-                    price: () => <PriceDisplay amount={150000} />
+                    price: () => <PriceDisplay amount={250000} />
                 }) as any}
             >
                 {/* Individual Page Content as Children */}

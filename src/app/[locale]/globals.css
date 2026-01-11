@@ -108,3 +108,131 @@ h6 {
   letter-spacing: -0.05em;
   font-weight: 900;
 }
+
+/* ========================================
+   DESIGN SYSTEM IMPROVEMENTS (P1-P2)
+   ======================================== */
+
+/* Improved text opacity values for better readability */
+.text-white\/40 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.text-white\/70 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.text-white\/50 {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Improved card backgrounds for better visibility */
+.bg-white\/\[0\.02\] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.bg-white\/\[0\.03\] {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Consistent transitions */
+.transition-all {
+  transition-duration: 500ms;
+}
+
+.transition-colors {
+  transition-duration: 300ms;
+}
+
+/* Improved hover states */
+.hover\:bg-white\/\[0\.1\]:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Improved focus states for accessibility (P2) */
+*:focus-visible {
+  outline: 2px solid rgb(6 182 212);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Better touch targets for mobile (P1) */
+@media (max-width: 768px) {
+
+  button,
+  a[role="button"],
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduced motion support for accessibility (P2) */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Improved loading states (P2) */
+.skeleton {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 100%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Better error states (P2) */
+.error-shake {
+  animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes shake {
+
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
