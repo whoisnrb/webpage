@@ -65,7 +65,7 @@ export default function BiztonsagPage() {
         {
             name: t("plans.base.name"),
             desc: t("plans.base.desc"),
-            price: 80000,
+            price: 125000,
             priceFrom: true,
             sub: t("plans.base.sub"),
             features: [0, 1, 2, 3, 4].map(i => t(`plans.base.features.${i}`)),
@@ -74,7 +74,7 @@ export default function BiztonsagPage() {
         {
             name: t("plans.detailed.name"),
             desc: t("plans.detailed.desc"),
-            price: 150000,
+            price: 325000,
             priceFrom: true,
             sub: t("plans.detailed.sub"),
             badge: t("plans.detailed.badge"),

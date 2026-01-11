@@ -65,7 +65,7 @@ export default function ScriptekPage() {
         {
             name: t("plans.simple.name"),
             desc: t("plans.simple.desc"),
-            price: 50000,
+            price: 100000,
             priceFrom: true,
             sub: t("plans.simple.sub"),
             features: [0, 1, 2, 3, 4].map(i => t(`plans.simple.features.${i}`)),
@@ -74,7 +74,7 @@ export default function ScriptekPage() {
         {
             name: t("plans.medium.name"),
             desc: t("plans.medium.desc"),
-            price: 150000,
+            price: 275000,
             priceFrom: true,
             sub: t("plans.medium.sub"),
             popular: true,
@@ -84,7 +84,7 @@ export default function ScriptekPage() {
         {
             name: t("plans.complex.name"),
             desc: t("plans.complex.desc"),
-            price: 300000,
+            price: 750000,
             priceFrom: true,
             sub: t("plans.complex.sub"),
             pricePlus: true,

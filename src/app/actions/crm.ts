@@ -58,10 +58,7 @@ export async function createLead(data: {
 }) {
     try {
         const lead = await prisma.lead.create({
-            data: {
-                ...data,
-                status: data.status || "LEAD",
-            },
+            data,
         });
         revalidatePath("/[locale]/admin/crm", "page");
         return { success: true, lead };

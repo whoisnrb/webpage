@@ -65,7 +65,7 @@ export default function WebfejlesztesPage() {
         {
             name: t("plans.0.name"),
             desc: t("plans.0.desc"),
-            price: 150000,
+            price: 250000,
             priceFrom: true,
             sub: t("plans.0.sub"),
             badge: t("plans.0.badge"),
@@ -76,7 +76,7 @@ export default function WebfejlesztesPage() {
         {
             name: t("plans.1.name"),
             desc: t("plans.1.desc"),
-            price: 350000,
+            price: 650000,
             priceFrom: true,
             sub: t("plans.1.sub"),
             badge: t("plans.1.badge"),
@@ -88,7 +88,7 @@ export default function WebfejlesztesPage() {
         {
             name: t("plans.2.name"),
             desc: t("plans.2.desc"),
-            price: 600000,
+            price: 1500000,
             sub: t("plans.2.sub"),
             badge: t("plans.2.badge"),
             features: [0, 1, 2, 3, 4, 5, 6, 7].map(i => t(`plans.2.features.${i}`)),
