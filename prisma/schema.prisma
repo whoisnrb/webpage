@@ -113,11 +113,42 @@ model License {
 }
 
 model Lead {
-  id        String   @id @default(cuid())
-  name      String?
-  email     String   @unique
-  source    String   @default("lead-magnet")
-  createdAt DateTime @default(now())
+  id              String   @id @default(cuid())
+  name            String?
+  companyName     String?
+  email           String   @unique
+  source          String   @default("lead-magnet")
+  status          String   @default("LEAD") // LEAD / AJÁNLAT / AKTÍV / INAKTÍV
+  lastContactedAt DateTime?
+  notes           String?  @db.Text
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  type        String   @default("INCOME") // INCOME, EXPENSE
+  category    String   // AD, SUBSCRIPTION, SALE, SALARY, TAX, OTHER
+  amount      Float
+  currency    String   @default("HUF")
+  taxAmount   Float    @default(0)
+  date        DateTime @default(now())
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model FinancialSubscription {
+  id              String   @id @default(cuid())
+  name            String
+  provider        String?
+  amount          Float
+  currency        String   @default("HUF")
+  billingCycle    String   @default("MONTHLY") // MONTHLY, YEARLY
+  nextBillingDate DateTime?
+  status          String   @default("ACTIVE") // ACTIVE, CANCELLED, EXPIRED
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Product {

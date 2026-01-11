@@ -40,20 +40,20 @@ export function MegaMenu() {
         <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>{t("services")}</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("services")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                        <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 rounded-[1.5rem] shadow-3xl">
                             <li className="row-span-3">
                                 <NavigationMenuLink asChild>
                                     <Link
-                                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                                        className="flex h-full w-full select-none flex-col justify-end rounded-2xl bg-gradient-to-br from-primary/20 via-primary/5 to-transparent p-6 no-underline outline-none focus:shadow-md border border-white/5 group"
                                         href="/szolgaltatasok"
                                     >
-                                        <Code2 className="h-6 w-6" />
-                                        <div className="mb-2 mt-4 text-lg font-medium">
+                                        <Code2 className="h-8 w-8 text-primary group-hover:scale-110 transition-transform duration-500" />
+                                        <div className="mb-2 mt-4 text-xl font-black tracking-tighter text-white">
                                             {t("our_services")}
                                         </div>
-                                        <p className="text-sm leading-tight text-muted-foreground">
+                                        <p className="text-sm leading-tight text-white/40 font-medium">
                                             {t("services_desc")}
                                         </p>
                                     </Link>
@@ -64,6 +64,7 @@ export function MegaMenu() {
                                     key={component.title}
                                     title={component.title}
                                     href={component.href}
+                                    className="hover:bg-white/5 transition-all rounded-xl"
                                 >
                                     {component.description}
                                 </ListItem>
@@ -72,35 +73,35 @@ export function MegaMenu() {
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>{t("products")}</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("products")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                            <ListItem href="/termekek" title={t("all_products")}>
+                        <ul className="grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 rounded-[1.5rem] shadow-3xl">
+                            <ListItem href="/termekek" title={t("all_products")} className="hover:bg-white/5 rounded-xl">
                                 {t("all_products_desc")}
                             </ListItem>
-                            <ListItem href="/termekek?category=scripts" title={t("scripts")}>
+                            <ListItem href="/termekek?category=scripts" title={t("scripts")} className="hover:bg-white/5 rounded-xl">
                                 {t("scripts_desc")}
                             </ListItem>
-                            <ListItem href="/termekek?category=web" title={t("web")}>
+                            <ListItem href="/termekek?category=web" title={t("web")} className="hover:bg-white/5 rounded-xl">
                                 {t("web_desc")}
                             </ListItem>
-                            <ListItem href="/arak" title={t("prices")}>
+                            <ListItem href="/arak" title={t("prices")} className="hover:bg-white/5 rounded-xl">
                                 {t("prices_desc")}
                             </ListItem>
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger>{t("knowledge")}</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("knowledge")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                            <ListItem href="/referenciak" title={t("references")}>
+                        <ul className="grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 rounded-[1.5rem] shadow-3xl">
+                            <ListItem href="/referenciak" title={t("references")} className="hover:bg-white/5 rounded-xl">
                                 {t("references_desc")}
                             </ListItem>
-                            <ListItem href="/blog" title={t("blog")}>
+                            <ListItem href="/blog" title={t("blog")} className="hover:bg-white/5 rounded-xl">
                                 {t("blog_desc")}
                             </ListItem>
-                            <ListItem href="/velemeny" title={t("reviews")}>
+                            <ListItem href="/velemeny" title={t("reviews")} className="hover:bg-white/5 rounded-xl">
                                 {t("reviews_desc")}
                             </ListItem>
                         </ul>
@@ -108,7 +109,7 @@ export function MegaMenu() {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <NavigationMenuLink asChild>
-                        <Link href="/kapcsolat" className={navigationMenuTriggerStyle()}>
+                        <Link href="/kapcsolat" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold")}>
                             {t("contact")}
                         </Link>
                     </NavigationMenuLink>
@@ -128,13 +129,13 @@ const ListItem = React.forwardRef<
                 <a
                     ref={ref}
                     className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all hover:bg-white/5 group",
                         className
                     )}
                     {...props}
                 >
-                    <div className="text-sm font-medium leading-none">{title}</div>
-                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                    <div className="text-sm font-black leading-none text-white/80 group-hover:text-primary transition-colors">{title}</div>
+                    <p className="line-clamp-2 text-sm leading-snug text-white/40 group-hover:text-white/60 transition-colors font-medium">
                         {children}
                     </p>
                 </a>

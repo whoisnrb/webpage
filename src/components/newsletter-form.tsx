@@ -25,12 +25,15 @@ export function NewsletterForm() {
                 body: JSON.stringify({ email })
             })
 
-            if (!response.ok) throw new Error("Failed to subscribe")
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                console.error("Newsletter submission failed:", errorData);
+                throw new Error("Failed to subscribe");
+            }
 
             setStatus("success")
             setEmail("")
 
-            // Reset status after 3 seconds
             setTimeout(() => setStatus("idle"), 3000)
         } catch (error) {
             console.error(error)
@@ -40,40 +43,37 @@ export function NewsletterForm() {
     }
 
     return (
-        <div className="w-full max-w-sm">
+        <div className="w-full">
             <AnimatePresence mode="wait">
                 {status === "success" ? (
                     <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        className="flex items-center gap-2 text-green-500 bg-green-500/10 p-3 rounded-lg border border-green-500/20"
-                    >
-                        <CheckCircle2 className="h-5 w-5" />
-                        <span className="font-medium">{t("success")}</span>
-                    </motion.div>
-                ) : (
-                    <motion.form
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onSubmit={handleSubmit}
-                        className="flex flex-col gap-2"
+                        className="flex items-center gap-2 text-emerald-500 text-sm font-medium"
                     >
+                        <CheckCircle2 className="h-4 w-4" />
+                        <span>{t("success")}</span>
+                    </motion.div>
+                ) : (
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
                         <div className="flex gap-2">
                             <div className="relative flex-1">
-                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/40" />
                                 <Input
                                     type="email"
                                     placeholder={t("placeholder")}
-                                    className="pl-9 bg-background/50 border-primary/20 focus:border-primary"
+                                    className="h-11 pl-9 bg-transparent border-white/20 focus:border-primary rounded-lg text-white text-sm"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     disabled={status === "loading"}
                                     required
                                 />
                             </div>
-                            <Button type="submit" disabled={status === "loading"}>
+                            <Button
+                                type="submit"
+                                disabled={status === "loading"}
+                                className="h-11 px-6 bg-cyan-400 hover:bg-cyan-500 text-black font-bold rounded-lg transition-colors"
+                            >
                                 {status === "loading" ? (
                                     <Loader2 className="h-4 w-4 animate-spin" />
                                 ) : (
@@ -81,13 +81,13 @@ export function NewsletterForm() {
                                 )}
                             </Button>
                         </div>
-                        {status === "error" && (
-                            <p className="text-xs text-red-500 pl-1">{t("error")}</p>
-                        )}
-                        <p className="text-xs text-muted-foreground pl-1">
+                        <p className="text-[11px] text-white/40 leading-tight">
                             {t("description")}
                         </p>
-                    </motion.form>
+                        {status === "error" && (
+                            <p className="text-[11px] text-red-400">{t("error")}</p>
+                        )}
+                    </form>
                 )}
             </AnimatePresence>
         </div>

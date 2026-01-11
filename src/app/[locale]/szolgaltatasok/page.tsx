@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { useTranslations } from "next-intl"
 import { getTranslations } from "next-intl/server"
 import { PriceDisplay } from "@/components/price-display"
+import { ServicesHero } from "@/components/sections/services-hero"
 
 // Metadata generation for multilingual support
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -81,31 +82,14 @@ export default function SzolgaltatasokPage() {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative overflow-hidden bg-muted/30 py-20 md:py-32">
-                <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-800/50" />
-                <div className="container relative mx-auto px-4 text-center">
-                    <Badge className="mb-4" variant="secondary">{t('hero_badge')}</Badge>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-                        {t('hero_title')}<br />
-                        <span className="text-primary">{t('hero_title_highlight')}</span>
-                    </h1>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-10">
-                        {t('hero_desc')}
-                    </p>
-                    <div className="flex flex-wrap gap-4 justify-center">
-                        <Link href="/arak">
-                            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white h-12 px-8 text-lg">
-                                {t('cta_quote')}
-                            </Button>
-                        </Link>
-                        <Link href="#szolgaltatasok">
-                            <Button size="lg" variant="outline" className="h-12 px-8 text-lg">
-                                {t('cta_services')}
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <ServicesHero
+                badge={t('hero_badge')}
+                title={t('hero_title')}
+                titleHighlight={t('hero_title_highlight')}
+                description={t('hero_desc')}
+                ctaQuote={t('cta_quote')}
+                ctaServices={t('cta_services')}
+            />
 
             {/* Services Grid */}
             <section id="szolgaltatasok" className="py-20 md:py-32">
