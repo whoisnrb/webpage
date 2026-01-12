@@ -1,6 +1,6 @@
 {
     "Hero": {
-        "badge": "Új: Automation Starter Pack",
+        "badge": "Ăšj: Automation Starter Pack",
         "title_1": "Automatizáld a sikert.",
         "title_2": "Felejtsd el a manuális munkát.",
         "description": "Egyedi scriptek, modern weboldalak és rendszerautomatizálás, hogy Te a növekedésre fókuszálhass. Spórolj időt és pénzt profi IT megoldásokkal.",
@@ -42,7 +42,7 @@
                 "desc": "Mérhető üzleti eredményekre törekszünk."
             },
             "client": {
-                "title": "Ügyfélközpontúság",
+                "title": "ügyfélközpontúság",
                 "desc": "Hosszú távú partnerségekben hiszünk."
             },
             "innovation": {
@@ -113,7 +113,7 @@
             "button_contact": "Kapcsolatfelvétel",
             "stats": {
                 "projects": "Sikeres Projekt",
-                "satisfied": "Elégedett Ügyfél",
+                "satisfied": "Elégedett ügyfél",
                 "rating": "Értékelés"
             },
             "trust": {
@@ -227,7 +227,7 @@
                 "cv_label": "Önéletrajz feltöltése *",
                 "cv_drop": "Húzd ide a fájlt vagy kattints a feltöltéshez",
                 "cv_hint": "PDF, DOC, DOCX (max. 5MB)",
-                "motivation_label": "Motivációs levél / Üzenet",
+                "motivation_label": "Motivációs levél / özenet",
                 "motivation_placeholder": "Mesélj magadról, tapasztalataidról és arról, hogy miért szeretnél nálunk dolgozni...",
                 "submit": "Jelentkezés elküldése",
                 "terms_prefix": "A jelentkezéssel elfogadod az ",
@@ -254,7 +254,7 @@
         }
     },
     "CRM": {
-        "title": "Ügyfélkezelés (CRM)",
+        "title": "ügyfélkezelés (CRM)",
         "subtitle": "Kezeld az összes leadet és ügyfelet egy helyen",
         "leads_title": "Érdeklődők",
         "company": "Cég",
@@ -268,7 +268,7 @@
         "edit_lead": "Lead szerkesztése",
         "notes": "Jegyzetek",
         "no_leads_title": "Nincsenek érdeklődők",
-        "no_leads_desc": "Jelenleg nincsenek érdeklődők a rendszerben. Új érdeklődők automatikusan megjelennek itt, ha kitöltik a weboldal űrlapjait."
+        "no_leads_desc": "Jelenleg nincsenek érdeklődők a rendszerben. Ăšj érdeklődők automatikusan megjelennek itt, ha kitöltik a weboldal űrlapjait."
     },
     "Finance": {
         "title": "Pénzügyi Dashboard",
@@ -279,8 +279,8 @@
         "net_profit": "Nettó Profit",
         "subscriptions": "Előfizetések",
         "transactions": "Tranzakciók",
-        "add_transaction": "Új tranzakció",
-        "add_subscription": "Új előfizetés",
+        "add_transaction": "Ăšj tranzakció",
+        "add_subscription": "Ăšj előfizetés",
         "type": "Típus",
         "category": "Kategória",
         "amount": "Összeg",
@@ -325,7 +325,7 @@
         "right_cta": "Termékpaletta",
         "middle_text": "OR",
         "stat_projects_label": "Sikeres Projekt",
-        "stat_satisfaction_label": "Ügyfél Elégedettség",
+        "stat_satisfaction_label": "ügyfél Elégedettség",
         "ready_to_ship": "Azonnal elérhető:",
         "badge_scripts": "Scriptek",
         "badge_plugins": "Pluginok",
@@ -397,7 +397,7 @@
         "stats_exp_desc": "Több mint 5 éve dolgozunk IT projekteken, startupokkal és vállalatokkal",
         "stats_projects_title": "Sikeres projekt",
         "stats_projects_desc": "Weboldalak, webshopok, automatizációk és egyedi szoftverek",
-        "stats_satisfaction_title": "Ügyfél elégedettség",
+        "stats_satisfaction_title": "ügyfél elégedettség",
         "stats_satisfaction_desc": "Minden ügyfelünk elégedett volt a munkánkkal és ajánl minket tovább",
         "process_title": "Hogyan dolgozunk?",
         "process_desc": "Egyszerű, átlátható folyamat a sikeres projektért",
@@ -422,7 +422,7 @@
         "title": "Lépj velünk kapcsolatba",
         "subtitle": "Kérdésed van? Árajánlatot szeretnél? Írj nekünk, és hamarosan válaszolunk!",
         "info_title": "Elérhetőségeink",
-        "info_desc": "Keress minket bizalommal bármelyik csatornán. Ügyfélszolgálatunk munkanapokon 9:00 és 17:00 között áll rendelkezésedre.",
+        "info_desc": "Keress minket bizalommal bármelyik csatornán. ügyfélszolgálatunk munkanapokon 9:00 és 17:00 között áll rendelkezésedre.",
         "phone_label": "Telefon",
         "phone_soon": "Hamarosan",
         "phone_hours": "Hétfő - Péntek: 09:00 - 17:00",
@@ -430,7 +430,7 @@
         "address": "2141 Csömör, Vörösmarty utca 11.",
         "email_hello": "hello@backlineit.hu",
         "email_support": "support@backlineit.hu",
-        "booking_title": "Időpontfoglalás & Üzenet"
+        "booking_title": "Időpontfoglalás & özenet"
     },
     "Checkout": {
         "title": "Pénztár",
@@ -465,7 +465,7 @@
         "pricing": "Árak",
         "blog": "Blog",
         "contact": "Kapcsolat",
-        "client_portal": "Ügyfélportál",
+        "client_portal": "ügyfélportál",
         "integrations": "Integrációk & API",
         "devops": "DevOps & Hosting",
         "security": "Biztonság & Audit",
@@ -489,7 +489,7 @@
             "gdpr": "GDPR Kompatibilis",
             "experts": "Minősített Szakértők"
         },
-        "rights": "© {year} BacklineIT. Minden jog fenntartva."
+        "rights": "Â© {year} BacklineIT. Minden jog fenntartva."
     },
     "Dashboard": {
         "title": "Fiókom",
@@ -502,7 +502,7 @@
         "status_pending": "Függőben",
         "status_cancelled": "Megszakítva",
         "quantity": "{count} db",
-        "welcome": "Üdvözöljük újra, {name}!",
+        "welcome": "ödvözöljük újra, {name}!",
         "welcome_subtitle": "Itt áttekintheted a vásárlásaidat, kezelheted a licenceidet és segítséget kérhetsz a support csapattól.",
         "overview": "Áttekintés",
         "total_purchases": "Összes Vásárlás",
@@ -520,13 +520,13 @@
         "open_ticket": "Hibajegy nyitása",
         "need_help": "Segítségre van szükséged?",
         "activate_license": "Licenc aktiválása",
-        "redeem_key": "Új kulcs beváltása",
+        "redeem_key": "Ăšj kulcs beváltása",
         "browse_shop": "Böngészés a boltban",
-        "buy_new_services": "Új szolgáltatások vásárlása"
+        "buy_new_services": "Ăšj szolgáltatások vásárlása"
     },
     "Tickets": {
         "title": "Hibajegyek",
-        "create_new": "Új hibajegy",
+        "create_new": "Ăšj hibajegy",
         "no_tickets": "Még nincs nyitott hibajegyed.",
         "subject": "Tárgy",
         "status": "Státusz",
@@ -565,13 +565,13 @@
         },
         "date": "Dátum",
         "time": "Időpont",
-        "message": "Üzenet (Opcionális)",
+        "message": "özenet (Opcionális)",
         "message_placeholder": "Rövid leírás a projektről...",
         "submit": "Időpont kérése",
         "submitting": "Küldés folyamatban...",
         "success_title": "Foglalás elküldve!",
         "success_message": "Köszönjük a megkeresést. Hamarosan felvesszük Önnel a kapcsolatot a megadott elérhetőségeken.",
-        "new_booking": "Új foglalás",
+        "new_booking": "Ăšj foglalás",
         "error_fill_all": "Kérlek tölts ki minden mezőt és válassz dátumot!",
         "error_generic": "Hiba történt a küldés során"
     },
@@ -596,7 +596,7 @@
             "automation_desc": "Ismerd meg, hogyan válthatod ki a manuális folyamatokat intelligens botokkal és workflow-kkal.",
             "webdev": "Webfejlesztés",
             "webdev_desc": "Modern technológiák (Next.js, React, Node.js) és a legjobb kódolási gyakorlatok tárháza.",
-            "business": "Üzleti Hatékonyság",
+            "business": "özleti Hatékonyság",
             "business_desc": "Stratégiák és eszközök, amikkel több időt szabadíthatsz fel az üzletépítésre.",
             "security": "Biztonság",
             "security_desc": "Hogyan védd meg digitális értékeidet és ügyfeleid adatait a legújabb fenyegetések ellen."
@@ -722,11 +722,11 @@
             "representative": "Képviselő",
             "representative_name": "Kovács János ügyvezető",
             "hosting_provider": "Tárhelyszolgáltató",
-            "customer_service": "Ügyfélszolgálat és Elérhetőségek",
-            "email": "Email (Ügyfélszolgálat)",
+            "customer_service": "ügyfélszolgálat és Elérhetőségek",
+            "email": "Email (ügyfélszolgálat)",
             "phone": "Telefon",
             "website": "Weboldal",
-            "availability": "Ügyfélszolgálat rendelkezésre állása",
+            "availability": "ügyfélszolgálat rendelkezésre állása",
             "availability_time": "Hétfő - Péntek: 09:00 - 17:00",
             "hosting_title": "Tárhelyszolgáltató",
             "hosting_desc": "A weboldal üzemeltetését és tárolását az alábbi szolgáltató végzi:",
@@ -791,7 +791,7 @@
             "definitions_title": "2. Fogalommeghatározások",
             "definitions_list": {
                 "provider": "Szolgáltató: A BacklineIT, amely a weboldalt üzemelteti és a szolgáltatásokat nyújtja.",
-                "client": "Ügyfél: Bármely természetes vagy jogi személy, aki a Szolgáltató szolgáltatásait igénybe veszi.",
+                "client": "ügyfél: Bármely természetes vagy jogi személy, aki a Szolgáltató szolgáltatásait igénybe veszi.",
                 "website": "Weboldal: A backlineit.hu domain alatt elérhető internetes felület.",
                 "service": "Szolgáltatás: A weboldalon keresztül elérhető szoftverfejlesztési, tanácsadási és egyéb informatikai szolgáltatások."
             },
@@ -800,20 +800,20 @@
             "services_title": "4. Szolgáltatások igénybevétele",
             "services_desc": "A Szolgáltató a weboldalon részletezett szolgáltatásokat (pl. webfejlesztés, scriptek, rendszerüzemeltetés) nyújtja. A szolgáltatások pontos tartalmát, díjazását és határidejét az egyedi árajánlatok vagy a webshopban feltüntetett termékleírások tartalmazzák.",
             "payment_title": "5. Fizetési feltételek",
-            "payment_desc": "A szolgáltatások ellenértékét az Ügyfél az alábbi módokon egyenlítheti ki:",
+            "payment_desc": "A szolgáltatások ellenértékét az ügyfél az alábbi módokon egyenlítheti ki:",
             "payment_list": {
                 "card": "Bankkártyás fizetés: A SimplePay vagy Stripe rendszerén keresztül.",
                 "transfer": "Banki átutalás: A Szolgáltató által kiállított díjbekérő vagy számla alapján."
             },
             "withdrawal_title": "6. Elállási jog",
-            "withdrawal_desc": "A fogyasztónak minősülő Ügyfél a 45/2014. (II. 26.) Korm. rendelet alapján jogosult a szerződéstől 14 napon belül indokolás nélkül elállni. Az elállási határidő a szolgáltatás nyújtására irányuló szerződés esetén a szerződés megkötésének napjától számított 14 nap.",
+            "withdrawal_desc": "A fogyasztónak minősülő ügyfél a 45/2014. (II. 26.) Korm. rendelet alapján jogosult a szerződéstől 14 napon belül indokolás nélkül elállni. Az elállási határidő a szolgáltatás nyújtására irányuló szerződés esetén a szerződés megkötésének napjától számított 14 nap.",
             "withdrawal_digital_title": "A fogyasztó elállási jogának elvesztése digitális adattartalom esetén",
             "withdrawal_digital_desc": "FIGYELEM: A nem tárgyi adathordozón nyújtott digitális adattartalom (pl. szoftverek, scriptek letöltése) tekintetében a fogyasztó elveszíti elállási jogát, amennyiben a Szolgáltató a fogyasztó kifejezett, előzetes beleegyezésével kezdte meg a teljesítést, és a fogyasztó e beleegyezésével egyidejűleg nyilatkozott annak tudomásulvételéről, hogy a teljesítés megkezdését követően elveszíti elállási jogát.",
             "warranty_title": "7. Kellékszavatosság, Termékszavatosság, Jótállás",
             "warranty_legal_title": "Kellékszavatosság",
-            "warranty_legal_desc": "Az Ügyfél a Szolgáltató hibás teljesítése esetén a Szolgáltatóval szemben kellékszavatossági igényt érvényesíthet a Polgári Törvénykönyv szabályai szerint.",
+            "warranty_legal_desc": "Az ügyfél a Szolgáltató hibás teljesítése esetén a Szolgáltatóval szemben kellékszavatossági igényt érvényesíthet a Polgári Törvénykönyv szabályai szerint.",
             "warranty_product_title": "Termékszavatosság",
-            "warranty_product_desc": "Ingó dolog (termék) hibája esetén az Ügyfél – választása szerint – kellékszavatossági vagy termékszavatossági igényt érvényesíthet.",
+            "warranty_product_desc": "Ingó dolog (termék) hibája esetén az ügyfél â€“ választása szerint â€“ kellékszavatossági vagy termékszavatossági igényt érvényesíthet.",
             "guarantee_title": "Jótállás",
             "guarantee_desc": "Hibás teljesítés esetén a Szolgáltató jótállásra köteles, amennyiben azt jogszabály előírja vagy a Szolgáltató önként vállalta.",
             "ip_title": "8. Szellemi tulajdonjogok",
@@ -821,7 +821,7 @@
             "liability_title": "9. Felelősségkorlátozás",
             "liability_desc": "A Szolgáltató mindent megtesz a weboldal és a szolgáltatások zavartalan működése érdekében, de nem vállal felelősséget az internetes hálózat hibájából, technikai leállásokból vagy vis maior eseményekből eredő károkért.",
             "complaints_title": "10. Panaszkezelés",
-            "complaints_desc": "Az Ügyfél a szolgáltatással kapcsolatos panaszait a support@backlineit.hu email címen jelezheti.",
+            "complaints_desc": "Az ügyfél a szolgáltatással kapcsolatos panaszait a support@backlineit.hu email címen jelezheti.",
             "closing_title": "11. Záró rendelkezések",
             "closing_desc": "A jelen ÁSZF-ben nem szabályozott kérdésekben a magyar jogszabályok, különösen a Ptk. rendelkezései az irányadóak."
         }
@@ -871,8 +871,8 @@
     },
     "NotFound": {
         "title": "404",
-        "subtitle": "Hoppá! Ez az oldal elveszett az űrben. 🚀",
-        "description": "Úgy tűnik, olyan helyre tévedtél, ami nem létezik, vagy már áthelyeztük. Ne aggódj, segítünk visszatalálni!",
+        "subtitle": "Hoppá! Ez az oldal elveszett az űrben. đźš€",
+        "description": "Ăšgy tűnik, olyan helyre tévedtél, ami nem létezik, vagy már áthelyeztük. Ne aggódj, segítünk visszatalálni!",
         "back_home": "Vissza a főoldalra",
         "services": "Szolgáltatások"
     },
@@ -912,7 +912,7 @@
         },
         "success_title": "Sikeres feliratkozás!",
         "success_desc": "Hamarosan küldjük az anyagot a megadott e-mail címre.",
-        "new_subscription": "Új feliratkozás",
+        "new_subscription": "Ăšj feliratkozás",
         "form": {
             "name": "Név",
             "name_placeholder": "Kovács János",
@@ -925,7 +925,16 @@
     },
     "Feedback": {
         "title": "Mondja el véleményét",
-        "description": "Segítsen nekünk fejlődni! Az AI asszisztensünk felveszi a visszajelzését és továbbítja a csapatunknak."
+        "description": "Segítsen nekünk fejlődni! Az AI asszisztensünk felveszi a visszajelzését és továbbítja a csapatunknak.",
+        "reviews_title": "Mit mondanak rólunk?",
+        "reviews_desc": "Valós ügyfélvélemények korábbi projektjeinkről.",
+        "stats": {
+            "happy_clients": "Elégedett ügyfél",
+            "avg_rating": "Átlagos Értékelés",
+            "total_reviews": "Összes vélemény"
+        },
+        "title_badge": "Visszajelzések",
+        "reviews_empty_state": "Hamarosan itt olvashatja mások véleményét is!"
     },
     "AiFeedback": {
         "bot": "Bot",
@@ -943,35 +952,38 @@
     },
     "Breadcrumbs": {
         "home": "Kezdőlap",
+        "blog": "Blog",
+        "series": "Sorozatok",
+        "kapcsolat": "Kapcsolat",
+        "arak": "Árak",
+        "velemeny": "Vélemény",
+        "Velemeny": "Vélemény",
+        "szolgaltatasok": "Szolgáltatások",
+        "termekek": "Termékek",
+        "referenciak": "Referenciák",
+        "karrier": "Karrier",
+        "adatvedelem": "Adatvédelem",
+        "aszf": "ÁFSZ",
+        "impresszum": "Impresszum",
         "lp": "Iparágak",
         "ecommerce": "E-kereskedelem",
         "saas": "SaaS & Startupok",
         "healthcare": "Egészségügy",
-        "szolgaltatasok": "Szolgáltatások",
         "integraciok": "Integrációk & API",
         "webfejlesztes": "Webfejlesztés",
         "scriptek": "Egyedi Scriptek",
         "rendszeruzemeltetes": "Rendszerüzemeltetés",
         "biztonsag": "Kiberbiztonság",
-        "termekek": "Termékek",
-        "kapcsolat": "Kapcsolat",
-        "arak": "Árak",
-        "referenciak": "Referenciák",
-        "blog": "Blog",
         "login": "Bejelentkezés",
         "fiok": "Fiók",
         "admin": "Adminisztráció",
         "dashboard": "Vezérlőpult",
         "checkout": "Pénztár",
-        "adatvedelem": "Adatvédelem",
-        "aszf": "ÁSZF",
-        "impresszum": "Impresszum",
         "ajanlatkeres": "Ajánlatkérés",
         "payment": "Fizetés",
         "success": "Sikeres",
         "cancel": "Megszakítva",
         "fail": "Sikertelen",
-        "karrier": "Karrier",
         "jelentkezes": "Spontán jelentkezés"
     },
     "CommandMenu": {
@@ -1128,7 +1140,7 @@
             "deadline": "Határidőre",
             "monitoring": "Monitoring",
             "projects": "Sikeres Projekt",
-            "rating": "Ügyfél Értékelés"
+            "rating": "ügyfél Értékelés"
         },
         "cta_bottom_title": "Készen állsz a közös munkára?",
         "cta_bottom_desc": "Foglalj egy ingyenes, 30 perces konzultációt, ahol átbeszéljük az elképzeléseidet és technikai tanácsokat adunk.",
@@ -1283,7 +1295,7 @@
                 }
             },
             "bottom_text": "Nem találod a választ a kérdésedre?",
-            "contact_text": "Írj nekünk →"
+            "contact_text": "Írj nekünk â†’"
         }
     },
     "PriceCalculator": {
@@ -1354,14 +1366,14 @@
         "description": "Professzionális IT szolgáltatások, egyedi scriptek, webfejlesztés és automatizáció vállalkozásoknak. Kérjen ajánlatot és növelje hatékonyságát!"
     },
     "PromoBanner": {
-        "text": "🚀 Indulási akció: Használd a START2026 kódot 20% kedvezményért!",
+        "text": "đźš€ Indulási akció: Használd a START2026 kódot 20% kedvezményért!",
         "close": "Bezárás"
     },
     "SocialProof": {
         "purchased": "vásárolt:"
     },
     "CookieBanner": {
-        "title": "Sütiket használunk 🍪",
+        "title": "Sütiket használunk đźŤŞ",
         "description": "Az oldal működéséhez és a felhasználói élmény javításához sütiket használunk.",
         "settings": "Beállítások",
         "decline": "Elutasít",
@@ -1406,7 +1418,7 @@
     },
     "Stats": {
         "successful_projects": "Sikeres Projekt",
-        "satisfied_clients": "Elégedett Ügyfél",
+        "satisfied_clients": "Elégedett ügyfél",
         "rating": "Értékelés",
         "years_experience": "Év tapasztalat",
         "satisfaction": "Elégedettség",
@@ -1453,7 +1465,7 @@
         "cv_upload": "Önéletrajz feltöltése",
         "cv_upload_hint": "Húzd ide a fájlt vagy kattints a feltöltéshez",
         "cv_formats": "PDF, DOC, DOCX (max. 5MB)",
-        "motivation": "Motivációs levél / Üzenet",
+        "motivation": "Motivációs levél / özenet",
         "motivation_placeholder": "Mesélj magadról, tapasztalataidról és arról, hogy miért szeretnél nálunk dolgozni...",
         "submit": "Jelentkezés elküldése",
         "privacy_note": "A jelentkezéssel elfogadod az",
@@ -1585,7 +1597,7 @@
                 },
                 "pro": {
                     "name": "Pro",
-                    "desc": "Üzleti kritikus alkalmazásokhoz",
+                    "desc": "özleti kritikus alkalmazásokhoz",
                     "badge": "LEGNÉPSZERŰBB",
                     "features": [
                         "Heti rendszerfrissítés",
@@ -1625,7 +1637,7 @@
             "hero_benefits": [
                 {
                     "title": "Magasabb konverzió",
-                    "description": "A gyors és felhasználóbarát oldalak több látogatóból csinálnak vásárlót. Ügyfeleink átlagosan 30-50% konverzió növekedést tapasztalnak."
+                    "description": "A gyors és felhasználóbarát oldalak több látogatóból csinálnak vásárlót. ögyfeleink átlagosan 30-50% konverzió növekedést tapasztalnak."
                 },
                 {
                     "title": "Könnyű kezelhetőség",
@@ -1660,7 +1672,7 @@
                 {
                     "title": "Vállalati Weboldal",
                     "description": "Professzionális bemutatkozó oldal cégeknek, több aloldallal",
-                    "example": "Ügyvédi iroda weboldala szolgáltatásokkal, referenciákkal, blog-gal",
+                    "example": "ögyvédi iroda weboldala szolgáltatásokkal, referenciákkal, blog-gal",
                     "roi": "Növeli a cég hitelességét és elérhetőségét"
                 },
                 {
@@ -1756,7 +1768,7 @@
                 },
                 {
                     "badge": "Vállalati",
-                    "title": "Ügyvédi Iroda",
+                    "title": "ögyvédi Iroda",
                     "desc": "Professzionális bemutatkozó oldal blog-gal"
                 },
                 {
@@ -1794,7 +1806,7 @@
             "hero_benefits": [
                 {
                     "title": "Időmegtakarítás",
-                    "description": "Ami eddig órákig tartott, most másodpercek alatt fut le automatikusan. Ügyfeleink átlagosan 20-30 óra/hó munkaidőt takarítanak meg."
+                    "description": "Ami eddig órákig tartott, most másodpercek alatt fut le automatikusan. ögyfeleink átlagosan 20-30 óra/hó munkaidőt takarítanak meg."
                 },
                 {
                     "title": "Hibamentesség",
@@ -1811,7 +1823,7 @@
                 {
                     "title": "E-mail automatizáció",
                     "description": "Automatikus e-mail küldés eseményekre, emlékeztetőkre, vagy marketing kampányokra.",
-                    "example": "Új ügyfél regisztrációkor automatikus üdvözlő e-mail sorozat, majd heti hírlevél személyre szabott tartalommal.",
+                    "example": "Ăšj ügyfél regisztrációkor automatikus üdvözlő e-mail sorozat, majd heti hírlevél személyre szabott tartalommal.",
                     "roi": "~15 óra/hó megtakarítás"
                 },
                 {
@@ -1829,13 +1841,13 @@
                 {
                     "title": "Naptár integráció",
                     "description": "Automatikus időpontfoglalás, emlékeztetők és naptár szinkronizáció.",
-                    "example": "Ügyfél foglaláskor automatikus Google Calendar bejegyzés + SMS emlékeztető 24 órával előtte.",
+                    "example": "ügyfél foglaláskor automatikus Google Calendar bejegyzés + SMS emlékeztető 24 órával előtte.",
                     "roi": "~8 óra/hó megtakarítás + jobb ügyfélélmény"
                 },
                 {
                     "title": "Weboldal monitoring",
                     "description": "Weboldal elérhetőség, teljesítmény és változások automatikus figyelése.",
-                    "example": "Óránkénti ellenőrzés, hogy a webshop elérhető-e. Leállás esetén azonnali értesítés SMS-ben és e-mailben.",
+                    "example": "Ă“ránkénti ellenőrzés, hogy a webshop elérhető-e. Leállás esetén azonnali értesítés SMS-ben és e-mailben.",
                     "roi": "99.9% uptime + gyors reagálás"
                 },
                 {
@@ -1876,7 +1888,7 @@
                         "3 hónap support",
                         "Részletes dokumentáció"
                     ],
-                    "example": "Pl: Rendelés → Számla → CRM → E-mail"
+                    "example": "Pl: Rendelés â†’ Számla â†’ CRM â†’ E-mail"
                 },
                 "complex": {
                     "name": "Komplex",
@@ -1900,28 +1912,28 @@
                 {
                     "title": "E-commerce automatizáció",
                     "desc": "Webshop + Számlázó + Raktár szinkronizáció",
-                    "content": "Automatikus rendelésfeldolgozás: új rendelés → számla generálás (Billingo) → készlet frissítés → ügyfél értesítés e-mailben → CRM bejegyzés.",
+                    "content": "Automatikus rendelésfeldolgozás: új rendelés â†’ számla generálás (Billingo) â†’ készlet frissítés â†’ ügyfél értesítés e-mailben â†’ CRM bejegyzés.",
                     "metric_label": "Megtakarítás:",
                     "metric_value": "~25 óra/hó"
                 },
                 {
                     "title": "Marketing automatizáció",
                     "desc": "Lead nurturing és követés",
-                    "content": "Új lead → üdvözlő e-mail → 3 napos e-mail sorozat → ha nem reagál, értesítés az értékesítőnek → ha reagál, időpont foglalás link.",
+                    "content": "Ăšj lead â†’ üdvözlő e-mail â†’ 3 napos e-mail sorozat â†’ ha nem reagál, értesítés az értékesítőnek â†’ ha reagál, időpont foglalás link.",
                     "metric_label": "Konverzió növekedés:",
                     "metric_value": "+35%"
                 },
                 {
                     "title": "Adatgyűjtés és riportolás",
                     "desc": "Automatikus heti riportok",
-                    "content": "Heti adatgyűjtés Google Analytics, Facebook Ads, Google Ads-ből → Excel riport generálás grafikonokkal → kiküldés e-mailben a vezetőségnek.",
+                    "content": "Heti adatgyűjtés Google Analytics, Facebook Ads, Google Ads-ből â†’ Excel riport generálás grafikonokkal â†’ kiküldés e-mailben a vezetőségnek.",
                     "metric_label": "Megtakarítás:",
                     "metric_value": "~12 óra/hó"
                 },
                 {
-                    "title": "Ügyfélszolgálat automatizáció",
+                    "title": "ügyfélszolgálat automatizáció",
                     "desc": "Ticket rendszer integráció",
-                    "content": "E-mail beérkezik → automatikus ticket létrehozás → kategorizálás AI-val → hozzárendelés a megfelelő munkatárshoz → automatikus válasz az ügyfélnek.",
+                    "content": "E-mail beérkezik â†’ automatikus ticket létrehozás â†’ kategorizálás AI-val â†’ hozzárendelés a megfelelő munkatárshoz â†’ automatikus válasz az ügyfélnek.",
                     "metric_label": "Válaszidő csökkenés:",
                     "metric_value": "-60%"
                 }
@@ -1986,7 +1998,7 @@
                     "title": "Malware Eltávolítás",
                     "description": "Feltört weboldalak megtisztítása és helyreállítása.",
                     "example": "Vírusos WordPress oldal tisztítása, hátsó kapuk (backdoor) keresése és lezárása.",
-                    "roi": "Üzletmenet helyreállítása"
+                    "roi": "özletmenet helyreállítása"
                 },
                 {
                     "title": "WAF Beállítás",
@@ -2078,15 +2090,15 @@
             "scenarios_title": "Gyakori Integrációs Forgatókönyvek",
             "scenarios": [
                 {
-                    "title": "Webshop ↔ Számlázó",
+                    "title": "Webshop â†” Számlázó",
                     "description": "Automatikus számlakiállítás rendeléskor. Összekötjük WooCommerce vagy Shopify boltodat a Számlázz.hu vagy Billingo fiókoddal."
                 },
                 {
-                    "title": "CRM ↔ Marketing",
-                    "description": "Ügyféladatok szinkronizálása a CRM rendszered (pl. HubSpot, Salesforce) és a hírlevélküldőd (pl. Mailchimp) között."
+                    "title": "CRM â†” Marketing",
+                    "description": "ügyféladatok szinkronizálása a CRM rendszered (pl. HubSpot, Salesforce) és a hírlevélküldőd (pl. Mailchimp) között."
                 },
                 {
-                    "title": "ERP ↔ Készletkezelő",
+                    "title": "ERP â†” Készletkezelő",
                     "description": "Valós idejű készletfrissítés minden értékesítési csatornán. Ha eladsz valamit a boltban, a webshopon is frissül a készlet."
                 }
             ],

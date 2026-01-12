@@ -1,19 +1,34 @@
 import { AiFeedbackChat } from "@/components/ai-feedback-chat"
+import { ReviewSection } from "@/components/sections/review-section"
+import { Breadcrumbs } from "@/components/layout/breadcrumbs"
+import { getApprovedReviews } from "@/app/actions/feedback"
 import { useTranslations } from "next-intl"
 
-export default function FeedbackPage() {
+export default async function FeedbackPage() {
     const t = useTranslations("Feedback")
+    const reviews = await getApprovedReviews()
 
     return (
-        <div className="min-h-screen pt-24 pb-16 flex flex-col items-center justify-center bg-muted/10">
-            <div className="container px-4 mx-auto text-center mb-8">
-                <h1 className="text-3xl md:text-4xl font-bold mb-4">{t("title")}</h1>
-                <p className="text-muted-foreground max-w-xl mx-auto">
-                    {t("description")}
-                </p>
-            </div>
-            <div className="w-full max-w-md px-4">
-                <AiFeedbackChat />
+        <div className="min-h-screen pt-24 pb-16 bg-muted/5">
+            <div className="container px-4 mx-auto">
+                <Breadcrumbs />
+
+                <div className="text-center mb-12 mt-8">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+                        {t("title")}
+                    </h1>
+                    <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                        {t("description")}
+                    </p>
+                </div>
+
+                <div className="flex flex-col items-center gap-16">
+                    <div className="w-full max-w-md">
+                        <AiFeedbackChat />
+                    </div>
+
+                    <ReviewSection reviews={reviews} />
+                </div>
             </div>
         </div>
     )

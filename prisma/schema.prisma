@@ -327,3 +327,13 @@ model AnalyticsEvent {
   @@index([name])
   @@index([userId])
 }
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?
+  rating    Int      @default(5)
+  content   String   @db.Text
+  locale    String   @default("hu")
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

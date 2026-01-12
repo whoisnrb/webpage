@@ -2,8 +2,12 @@ import { WebhookBody, GOOGLE_SHEET_IDS } from './config';
 import { appendToSheet, sendEmail, generateAIResponse, analyzeSentiment } from './services';
 
 const SYSTEM_PROMPTS = {
-    POSITIVE_RESPONSE: `You are a customer support representative for an AI Automation Agency known as It services.hu specialized in helping SME implement AI Agents and AI Automation solutions. Write a friendly response to the customer feedback below. Format as HTML email and sign from Marc at It services.hu. Return only HTML code.`,
-    APOLOGY_RESPONSE: `You are a customer support representative for an AI Automation Agency known as It services.hu. Write a friendly and concise response to the following customer feedback. The email should thank the client for their feedback, acknowledge their concerns, and inform that this has been escalated to our management. Offer to extend their current automation package with one additional AI Agent integration at no extra charge. Format as HTML email and sign from Marc at It services.hu. Return only HTML code.`,
+    POSITIVE_RESPONSE: (locale: string) => locale === 'hu' ?
+        `Te egy ügyfélszolgálati munkatárs vagy az It services.hu-nál, ami egy MI automatizációs ügynökség. Írj egy barátságos választ az alábbi visszajelzésre magyarul. Formázd HTML e-mailként és írd alá Marc névében az It services.hu-tól. Csak a HTML kódot add vissza.` :
+        `You are a customer support representative for an AI Automation Agency known as It services.hu specialized in helping SME implement AI Agents and AI Automation solutions. Write a friendly response to the customer feedback below. Format as HTML email and sign from Marc at It services.hu. Return only HTML code.`,
+    APOLOGY_RESPONSE: (locale: string) => locale === 'hu' ?
+        `Te egy ügyfélszolgálati munkatárs vagy az It services.hu-nál. Írj egy barátságos és rövid választ az alábbi visszajelzésre magyarul. Az e-mailben köszönd meg a visszajelzést, ismerd el a problémát, és tájékoztasd az ügyfelet, hogy továbbítottuk a vezetőségnek. Ajánld fel, hogy egy extra MI ágens integrációval bővítjük a jelenlegi csomagjukat díjmentesen. Formázd HTML e-mailként és írd alá Marc névében az It services.hu-tól. Csak a HTML kódot add vissza.` :
+        `You are a customer support representative for an AI Automation Agency known as It services.hu. Write a friendly and concise response to the following customer feedback. The email should thank the client for their feedback, acknowledge their concerns, and inform that this has been escalated to our management. Offer to extend their current automation package with one additional AI Agent integration at no extra charge. Format as HTML email and sign from Marc at It services.hu. Return only HTML code.`,
     SUGGEST_IMPROVEMENTS: `You are a customer support representative for an AI Automation Agency known as It services.hu. A client just submitted feedback about our services. Please provide a concise suggestion on what It services.hu can do to address their concerns and improve client satisfaction in the future.`,
     CHAT_ALVIN: `Te Alvin vagy, a BacklineIT automatizációs és rendszerüzemeltetési szakértő AI asszisztense.
 Célod: Segíteni a látogatóknak eligazodni a szolgáltatások között, és megválaszolni a technikai vagy üzleti kérdéseiket.
@@ -11,27 +15,48 @@ Stílusod: Professzionális, de barátságos, segítőkész és lényegretörő.
 Ha nem tudod a választ, javasold a "Kapcsolat" menüpontot.`
 };
 
+import { prisma } from "@/lib/db";
+
 export async function processFeedback(body: WebhookBody) {
-    const { email, name, feedback } = body;
+    const { email, name, feedback, locale = 'hu' } = body;
     if (!email || !feedback) throw new Error('Missing email or feedback');
 
     const sentiment = await analyzeSentiment(feedback);
     console.log(`[Feedback] Sentiment determined: ${sentiment}`);
 
+    // Save to Database
+    try {
+        await prisma.review.create({
+            data: {
+                name: name || 'Anonymous',
+                email: email,
+                content: feedback,
+                rating: sentiment === 'Positive' ? 5 : 3,
+                locale: locale,
+                approved: false // Require manual approval
+            }
+        });
+        console.log(`[Feedback] Saved to database as Review`);
+    } catch (dbError) {
+        console.error(`[Feedback] Error saving to database:`, dbError);
+    }
+
     if (sentiment === 'Positive') {
         // 1. Add to Sheet
         await appendToSheet(GOOGLE_SHEET_IDS.POSITIVE_FEEDBACK, [name || '', email, feedback]);
 
+        const subject = locale === 'hu' ? 'Köszönjük értékes visszajelzését' : 'Thank you for your valuable feedback';
         // 2. Generate Response
         const aiResponse = await generateAIResponse(
             `Customer Name: ${name}\nFeedback: ${feedback}`,
-            SYSTEM_PROMPTS.POSITIVE_RESPONSE
+            SYSTEM_PROMPTS.POSITIVE_RESPONSE(locale)
         );
 
         // 3. Send Email
-        await sendEmail(email, 'Thank you for your valuable feedback', aiResponse);
+        await sendEmail(email, subject, aiResponse);
 
     } else {
+        // ... (remaining negative logic stays same)
         // Negative
         // 1. Suggest Improvements (Internal)
         const suggestion = await generateAIResponse(
@@ -42,14 +67,15 @@ export async function processFeedback(body: WebhookBody) {
         // 2. Add to Sheet (with suggestion)
         await appendToSheet(GOOGLE_SHEET_IDS.NEGATIVE_FEEDBACK, [name || '', email, feedback, suggestion]);
 
+        const apologySubject = locale === 'hu' ? 'Sajnáljuk a kellemetlenséget - íme a megoldásunk' : "We're sorry - here's how we'll fix this";
         // 3. Generate Apology Email
         const apologyEmail = await generateAIResponse(
             `Customer Name: ${name}\nFeedback: ${feedback}`,
-            SYSTEM_PROMPTS.APOLOGY_RESPONSE
+            SYSTEM_PROMPTS.APOLOGY_RESPONSE(locale)
         );
 
         // 4. Send Email
-        await sendEmail(email, "We're sorry - here's how we'll fix this", apologyEmail);
+        await sendEmail(email, apologySubject, apologyEmail);
     }
 
     return { success: true, sentiment };

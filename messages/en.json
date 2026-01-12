@@ -489,7 +489,7 @@
             "gdpr": "GDPR Compliant",
             "experts": "Certified Experts"
         },
-        "rights": "© {year} BacklineIT. All rights reserved."
+        "rights": "Â© {year} BacklineIT. All rights reserved."
     },
     "Dashboard": {
         "title": "My Account",
@@ -871,7 +871,7 @@
     },
     "NotFound": {
         "title": "404",
-        "subtitle": "Oops! This page is lost in space. 🚀",
+        "subtitle": "Oops! This page is lost in space. đźš€",
         "description": "It seems you've wandered to a place that doesn't exist or has been moved. Don't worry, we'll help you find your way back!",
         "back_home": "Back to Home",
         "services": "Services"
@@ -925,7 +925,16 @@
     },
     "Feedback": {
         "title": "Share your feedback",
-        "description": "Help us improve! Our AI assistant will collect your feedback and forward it to our team."
+        "description": "Help us improve! Our AI assistant will collect your feedback and forward it to our team.",
+        "reviews_title": "What people say about us",
+        "reviews_desc": "Real stories from our awesome clients.",
+        "stats": {
+            "happy_clients": "Happy Clients",
+            "avg_rating": "Average Rating",
+            "total_reviews": "Total Reviews"
+        },
+        "title_badge": "Wall of Love",
+        "reviews_empty_state": "Soon, your review could be here too!"
     },
     "AiFeedback": {
         "bot": "Bot",
@@ -943,30 +952,42 @@
     },
     "Breadcrumbs": {
         "home": "Home",
+        "blog": "Blog",
+        "series": "Series",
+        "contact": "Contact",
+        "pricing": "Pricing",
+        "arak": "Pricing",
+        "velemeny": "Reviews",
+        "Velemeny": "Reviews",
+        "services": "Services",
         "szolgaltatasok": "Services",
+        "products": "Products",
+        "termekek": "Products",
+        "references": "References",
+        "referenciak": "References",
+        "careers": "Careers",
+        "karrier": "Careers",
+        "privacy": "Privacy",
+        "adatvedelem": "Privacy Policy",
+        "terms": "Terms",
+        "aszf": "Terms & Conditions",
+        "imprint": "Imprint",
+        "impresszum": "Imprint",
+        "kapcsolat": "Contact",
         "integraciok": "Integrations & API",
         "webfejlesztes": "Web Development",
         "scriptek": "Custom Scripts",
         "rendszeruzemeltetes": "System Administration",
         "biztonsag": "Cybersecurity",
-        "termekek": "Products",
-        "blog": "Blog",
-        "kapcsolat": "Contact",
-        "arak": "Pricing",
-        "referenciak": "References",
         "login": "Login",
         "fiok": "Account",
         "admin": "Admin",
         "checkout": "Checkout",
-        "adatvedelem": "Privacy Policy",
-        "aszf": "Terms & Conditions",
-        "impresszum": "Imprint",
         "ajanlatkeres": "Request Quote",
         "payment": "Payment",
         "success": "Success",
         "cancel": "Cancelled",
         "fail": "Failed",
-        "karrier": "Career",
         "jelentkezes": "Open Application"
     },
     "CommandMenu": {
@@ -1279,7 +1300,7 @@
                 }
             },
             "bottom_text": "Can't find the answer to your question?",
-            "contact_text": "Write to us →"
+            "contact_text": "Write to us â†’"
         }
     },
     "PriceCalculator": {
@@ -1350,14 +1371,14 @@
         "description": "Professional IT services, custom scripts, web development, and automation for businesses. Request a quote and increase your efficiency!"
     },
     "PromoBanner": {
-        "text": "🚀 Launch Promo: Use code START2026 for 20% off!",
+        "text": "đźš€ Launch Promo: Use code START2026 for 20% off!",
         "close": "Close"
     },
     "SocialProof": {
         "purchased": "purchased:"
     },
     "CookieBanner": {
-        "title": "We use cookies 🍪",
+        "title": "We use cookies đźŤŞ",
         "description": "We use cookies to ensure the site's functionality and to improve your user experience.",
         "settings": "Settings",
         "decline": "Decline",
@@ -1872,7 +1893,7 @@
                         "3 months support",
                         "Detailed documentation"
                     ],
-                    "example": "E.g.: Order → Invoice → CRM → Email"
+                    "example": "E.g.: Order â†’ Invoice â†’ CRM â†’ Email"
                 },
                 "complex": {
                     "name": "Complex",
@@ -1896,28 +1917,28 @@
                 {
                     "title": "E-commerce Automation",
                     "desc": "Webshop + Billing + Warehouse Sync",
-                    "content": "Automatic order processing: new order → invoice generation (Billingo) → inventory update → customer notification via email → CRM entry.",
+                    "content": "Automatic order processing: new order â†’ invoice generation (Billingo) â†’ inventory update â†’ customer notification via email â†’ CRM entry.",
                     "metric_label": "Savings:",
                     "metric_value": "~25 hours/month"
                 },
                 {
                     "title": "Marketing Automation",
                     "desc": "Lead nurturing and follow-up",
-                    "content": "New lead → welcome email → 3-day email series → if no response, notify sales rep → if response, meeting booking link.",
+                    "content": "New lead â†’ welcome email â†’ 3-day email series â†’ if no response, notify sales rep â†’ if response, meeting booking link.",
                     "metric_label": "Conversion Boost:",
                     "metric_value": "+35%"
                 },
                 {
                     "title": "Data Collection & Reporting",
                     "desc": "Automatic Weekly Reports",
-                    "content": "Weekly data collection from Google Analytics, Facebook Ads, Google Ads → Excel report generation with charts → sent via email to management.",
+                    "content": "Weekly data collection from Google Analytics, Facebook Ads, Google Ads â†’ Excel report generation with charts â†’ sent via email to management.",
                     "metric_label": "Savings:",
                     "metric_value": "~12 hours/month"
                 },
                 {
                     "title": "Customer Support Automation",
                     "desc": "Ticket System Integration",
-                    "content": "Email received → automatic ticket creation → categorization with AI → assigned to the appropriate staff → automatic response to customer.",
+                    "content": "Email received â†’ automatic ticket creation â†’ categorization with AI â†’ assigned to the appropriate staff â†’ automatic response to customer.",
                     "metric_label": "Response Time Reduction:",
                     "metric_value": "-60%"
                 }
@@ -2074,7 +2095,7 @@
             "scenarios_title": "Common Integration Scenarios",
             "scenarios": [
                 {
-                    "title": "Webshop ↔ Billing",
+                    "title": "Webshop â†” Billing",
                     "description": "Automatic invoice issuance upon ordering. We connect your WooCommerce or Shopify store with your Számlázz.hu or Billingo account."
                 },
                 {

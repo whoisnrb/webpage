@@ -45,7 +45,7 @@ This checklist contains all the distinct pages found in the project structure. U
 - [ ] **Product Details** (`/termekek/[slug]`)
 - [ ] **Blog Post** (`/blog/[slug]`)
 - [ ] **Landing Pages**
-    - [ ] **Automation Starter** (`/lp/automation-starter`)
+- [ ] **Automation Starter** (`/lp/automation-starter`)
 
 ---
 
