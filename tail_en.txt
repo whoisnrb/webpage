@@ -1,0 +1,100 @@
+﻿                    "example": "Cleaning infected WordPress sites, searching for and closing backdoors.",
+                    "roi": "Business continuity restoration"
+                },
+                {
+                    "title": "WAF Setup",
+                    "description": "Building a Web Application Firewall defense line.",
+                    "example": "Configuring Cloudflare or ModSecurity to filter malicious traffic.",
+                    "roi": "Protection against DDoS and bot attacks"
+                }
+            ],
+            "pricing_title": "Audit Packages",
+            "pricing_desc": "One-time security audit packages",
+            "plans": {
+                "base": {
+                    "name": "Basic Audit",
+                    "desc": "Check for smaller websites and blogs",
+                    "price": "80,000",
+                    "sub": "one-time fee",
+                    "features": [
+                        "Automated vulnerability scanning",
+                        "SSL/TLS check",
+                        "Basic server settings",
+                        "WordPress/CMS plugin check",
+                        "Short summary report"
+                    ],
+                    "duration_label": "Duration: 2-3 business days"
+                },
+                "detailed": {
+                    "name": "Detailed Audit",
+                    "badge": "Popular",
+                    "desc": "Audit for webshops and business sites",
+                    "price": "180,000",
+                    "sub": "one-time fee",
+                    "features": [
+                        "Everything in the Basic package",
+                        "Manual testing (Pentest basics)",
+                        "Database permission check",
+                        "Firewall rule inspection",
+                        "Detailed technical report",
+                        "1 hour consultation on fixes"
+                    ],
+                    "duration_label": "Duration: 1 week"
+                },
+                "complex": {
+                    "name": "Complex Protection",
+                    "desc": "Custom systems, high risk",
+                    "price_label": "Custom",
+                    "price_sub": "based on quote",
+                    "features": [
+                        "Full Penetration Testing",
+                        "Source code analysis",
+                        "Social Engineering test",
+                        "Defense systems (WAF) implementation",
+                        "Incident response planning",
+                        "Employee training"
+                    ],
+                    "duration_label": "Duration: 2-4 weeks"
+                }
+            },
+            "cta_request_audit": "Request security audit"
+        },
+        "Integrations": {
+            "title": "Integrations & API",
+            "description": "Let's connect your systems! Automated data movement, custom API development, and system integration for more efficient operation.",
+            "hero_features": [
+                "Custom API development (REST, GraphQL)",
+                "Webshop and ERP connection",
+                "CRM system integrations",
+                "Payment gateway implementation (Stripe, SimplePay)",
+                "Data migration and synchronization",
+                "Legacy system modernization"
+            ],
+            "hero_benefits": [
+                {
+                    "title": "Automated Processes",
+                    "description": "No more manual data entry. Your systems communicate with each other automatically."
+                },
+                {
+                    "title": "Real-time Data",
+                    "description": "Current data is always visible in every system, without delay."
+                },
+                {
+                    "title": "Fewer Errors",
+                    "description": "Elimination of human errors through automated data transfer."
+                },
+                {
+                    "title": "Scalability",
+                    "description": "Your systems will be able to handle growing traffic and data volume."
+                }
+            ],
+            "scenarios_title": "Common Integration Scenarios",
+            "scenarios": [
+                {
+                    "title": "Webshop â†” Billing",
+                    "description": "Automatic invoice issuance upon ordering. We connect your WooCommerce or Shopify store with your SzĂˇmlĂˇzz.hu or Billingo account."
+                },
+                {
+                    "title": "CRM â†” Marketing",
+    }
+}

@@ -13,7 +13,7 @@ export default function ContactPage() {
 
     return (
         <div className="min-h-screen flex flex-col">
-            <section className="bg-muted/30 py-16 border-b">
+            <section className="py-16">
                 <div className="container mx-auto px-4 text-center">
                     <FadeIn>
                         <h1 className="text-4xl font-bold tracking-tight mb-4">{t('title')}</h1>

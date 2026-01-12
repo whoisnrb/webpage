@@ -2,10 +2,11 @@ import { AiFeedbackChat } from "@/components/ai-feedback-chat"
 import { ReviewSection } from "@/components/sections/review-section"
 import { Breadcrumbs } from "@/components/layout/breadcrumbs"
 import { getApprovedReviews } from "@/app/actions/feedback"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 
-export default async function FeedbackPage() {
-    const t = useTranslations("Feedback")
+export default async function FeedbackPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
+    const t = await getTranslations({ locale, namespace: "Feedback" })
     const reviews = await getApprovedReviews()
 
     return (
@@ -14,7 +15,7 @@ export default async function FeedbackPage() {
                 <Breadcrumbs />
 
                 <div className="text-center mb-12 mt-8">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-violet-400">
                         {t("title")}
                     </h1>
                     <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
@@ -27,7 +28,7 @@ export default async function FeedbackPage() {
                         <AiFeedbackChat />
                     </div>
 
-                    <ReviewSection reviews={reviews} />
+                    <ReviewSection reviews={reviews || []} />
                 </div>
             </div>
         </div>

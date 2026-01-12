@@ -4,13 +4,14 @@ import { processFeedback } from "@/lib/n8n/actions"
 export async function POST(request: Request) {
     try {
         const body = await request.json()
-        const { name, email, feedback } = body
+        const { name, email, feedback, locale } = body
 
-        await processFeedback({ 
-            name, 
-            email, 
-            feedback, 
-            action: 'feedback' 
+        await processFeedback({
+            name,
+            email,
+            feedback,
+            locale,
+            action: 'feedback'
         })
 
         return NextResponse.json({ success: true })

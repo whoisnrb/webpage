@@ -33,5 +33,6 @@ export interface WebhookBody {
     userEmail?: string;
     products?: any[]; // For purchase
     history?: any[]; // For chat
+    locale?: string;
     [key: string]: any;
 }

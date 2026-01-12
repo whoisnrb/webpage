@@ -1,0 +1,100 @@
+﻿            ],
+            "pricing_title": "Audit Csomagok",
+            "pricing_desc": "Egyszeri biztonsĂˇgi ĂˇtvilĂˇgĂ­tĂˇsi csomagok",
+            "plans": {
+                "base": {
+                    "name": "Alap Audit",
+                    "desc": "Kisebb weboldalak, blogok ellenĹ‘rzĂ©se",
+                    "price": "80.000",
+                    "sub": "egyszeri dĂ­j",
+                    "features": [
+                        "AutomatizĂˇlt sĂ©rĂĽlĂ©kenysĂ©g vizsgĂˇlat",
+                        "SSL/TLS ellenĹ‘rzĂ©s",
+                        "AlapvetĹ‘ szerver beĂˇllĂ­tĂˇsok",
+                        "WordPress/CMS plugin ellenĹ‘rzĂ©s",
+                        "RĂ¶vid Ă¶sszefoglalĂł jelentĂ©s"
+                    ],
+                    "duration_label": "IdĹ‘tartam: 2-3 munkanap"
+                },
+                "detailed": {
+                    "name": "RĂ©szletes Audit",
+                    "badge": "NĂ©pszerĹ±",
+                    "desc": "Webshopok, ĂĽzleti oldalak ĂˇtvilĂˇgĂ­tĂˇsa",
+                    "price": "180.000",
+                    "sub": "egyszeri dĂ­j",
+                    "features": [
+                        "Minden az Alap csomagbĂłl",
+                        "ManuĂˇlis tesztelĂ©s (Pentest alapok)",
+                        "AdatbĂˇzis jogosultsĂˇgok ellenĹ‘rzĂ©se",
+                        "TĹ±zfal szabĂˇlyok vizsgĂˇlata",
+                        "RĂ©szletes technikai jelentĂ©s",
+                        "1 Ăłra konzultĂˇciĂł a javĂ­tĂˇsokrĂłl"
+                    ],
+                    "duration_label": "IdĹ‘tartam: 1 hĂ©t"
+                },
+                "complex": {
+                    "name": "Komplex VĂ©delem",
+                    "desc": "Egyedi rendszerek, nagy kockĂˇzat",
+                    "price_label": "Egyedi",
+                    "price_sub": "ĂˇrajĂˇnlat alapjĂˇn",
+                    "features": [
+                        "Teljes kĂ¶rĹ± Penetration Testing",
+                        "ForrĂˇskĂłd elemzĂ©s",
+                        "Social Engineering teszt",
+                        "VĂ©delmi rendszerek (WAF) kiĂ©pĂ­tĂ©se",
+                        "Incidens kezelĂ©si terv kĂ©szĂ­tĂ©se",
+                        "OktatĂˇs a munkatĂˇrsaknak"
+                    ],
+                    "duration_label": "IdĹ‘tartam: 2-4 hĂ©t"
+                }
+            },
+            "cta_request_audit": "BiztonsĂˇgi audit kĂ©rĂ©se"
+        },
+        "Integrations": {
+            "title": "IntegrĂˇciĂłk & API",
+            "description": "KĂ¶ssĂĽk Ă¶ssze rendszereidet! AutomatizĂˇlt adatmozgatĂˇs, egyedi API fejlesztĂ©s Ă©s rendszerintegrĂˇciĂł a hatĂ©konyabb mĹ±kĂ¶dĂ©sĂ©rt.",
+            "hero_features": [
+                "Egyedi API fejlesztĂ©s (REST, GraphQL)",
+                "Webshop Ă©s ERP Ă¶sszekĂ¶tĂ©s",
+                "CRM rendszer integrĂˇciĂłk",
+                "FizetĂ©si kapu implementĂˇciĂł (Stripe, SimplePay)",
+                "AdatmigrĂˇciĂł Ă©s szinkronizĂˇciĂł",
+                "Legacy rendszerek modernizĂˇlĂˇsa"
+            ],
+            "hero_benefits": [
+                {
+                    "title": "AutomatizĂˇlt folyamatok",
+                    "description": "Nincs tĂ¶bb manuĂˇlis adatbevitel. A rendszereid automatikusan kommunikĂˇlnak egymĂˇssal."
+                },
+                {
+                    "title": "ValĂłs idejĹ± adatok",
+                    "description": "Minden rendszerben mindig az aktuĂˇlis adatok lĂˇtszanak, kĂ©sleltetĂ©s nĂ©lkĂĽl."
+                },
+                {
+                    "title": "Kevesebb hiba",
+                    "description": "Az emberi hibĂˇk kikĂĽszĂ¶bĂ¶lĂ©se az automatizĂˇlt adatĂˇtvitel rĂ©vĂ©n."
+                },
+                {
+                    "title": "SkĂˇlĂˇzhatĂłsĂˇg",
+                    "description": "Rendszereid kĂ©pesek lesznek kezelni a nĂ¶vekvĹ‘ forgalmat Ă©s adatmennyisĂ©get."
+                }
+            ],
+            "scenarios_title": "Gyakori IntegrĂˇciĂłs ForgatĂłkĂ¶nyvek",
+            "scenarios": [
+                {
+                    "title": "Webshop â†” SzĂˇmlĂˇzĂł",
+                    "description": "Automatikus szĂˇmlakiĂˇllĂ­tĂˇs rendelĂ©skor. Ă–sszekĂ¶tjĂĽk WooCommerce vagy Shopify boltodat a SzĂˇmlĂˇzz.hu vagy Billingo fiĂłkoddal."
+                },
+                {
+                    "title": "CRM â†” Marketing",
+                    "description": "ĂśgyfĂ©ladatok szinkronizĂˇlĂˇsa a CRM rendszered (pl. HubSpot, Salesforce) Ă©s a hĂ­rlevĂ©lkĂĽldĹ‘d (pl. Mailchimp) kĂ¶zĂ¶tt."
+                },
+                {
+                    "title": "ERP â†” KĂ©szletkezelĹ‘",
+                    "description": "ValĂłs idejĹ± kĂ©szletfrissĂ­tĂ©s minden Ă©rtĂ©kesĂ­tĂ©si csatornĂˇn. Ha eladsz valamit a boltban, a webshopon is frissĂĽl a kĂ©szlet."
+                }
+            ],
+            "pricing_label": "Egyedi ĂˇrazĂˇs"
+        }
+    }
+}

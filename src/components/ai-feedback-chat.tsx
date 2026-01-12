@@ -10,7 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Send, Bot, User, Loader2 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 
 type Message = {
     id: string
@@ -23,10 +23,12 @@ type FormData = {
     name: string
     email: string
     feedback: string
+    locale?: string
 }
 
 export function AiFeedbackChat() {
     const t = useTranslations("AiFeedback")
+    const locale = useLocale()
     const [messages, setMessages] = useState<Message[]>([])
     const [inputValue, setInputValue] = useState("")
     const [formData, setFormData] = useState<FormData>({ name: "", email: "", feedback: "" })
@@ -101,7 +103,7 @@ export function AiFeedbackChat() {
                 setFormData(prev => ({ ...prev, feedback: userMsg.content }))
 
                 // Here we would send data to n8n
-                await sendToN8n({ ...formData, feedback: userMsg.content })
+                await sendToN8n({ ...formData, feedback: userMsg.content, locale })
 
                 botResponse = {
                     id: Date.now().toString(),

@@ -88,8 +88,10 @@ export function PricingFAQ() {
                         {t('bottom_text')}
                     </p>
                     <a
-                        href="mailto:info@example.com"
-                        className="text-primary hover:underline font-semibold"
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@backlineit.hu"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-6 py-2 border-2 border-primary/50 rounded-lg text-primary hover:bg-primary/10 transition-colors font-semibold group"
                     >
                         {t('contact_text')}
                     </a>
