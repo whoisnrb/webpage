@@ -13,7 +13,11 @@ export async function getApprovedReviews() {
                 createdAt: 'desc'
             }
         })
-        return reviews
+        // Serialize dates for Client Components
+        return reviews.map(review => ({
+            ...review,
+            createdAt: review.createdAt.toISOString()
+        }))
     } catch (error) {
         console.error("Failed to fetch reviews:", error)
         return []

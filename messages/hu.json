@@ -1,4215 +1,2108 @@
 {
-
     "Hero": {
-
-        "badge": "Ăšj: Automation Starter Pack",
-
+        "badge": "Új: Automation Starter Pack",
         "title_1": "Automatizáld a sikert.",
-
         "title_2": "Felejtsd el a manuális munkát.",
-
         "description": "Egyedi scriptek, modern weboldalak és rendszerautomatizálás, hogy Te a növekedésre fókuszálhass. Spórolj időt és pénzt profi IT megoldásokkal.",
-
         "cta_primary": "Azonnali Megoldások",
-
         "cta_secondary": "Ingyenes Konzultáció",
-
         "feature_1": "Azonnali eredmények",
-
         "feature_2": "Garancia minden kódra",
-
         "feature_3": "24/7 Rendszerfelügyelet",
-
         "stat_label": "Megtakarított idő",
-
         "stat_value": "12 óra / hét",
-
         "typewriter_1": "Webfejlesztés",
-
         "typewriter_2": "Automatizáció",
-
         "typewriter_3": "Scriptek",
-
         "visual": {
-
             "active_tasks": "Aktív feladatok",
-
             "running": "Fut",
-
             "success_rate": "Sikerességi arány",
-
             "response_time": "Válaszidő",
-
             "cpu_usage": "CPU használat",
-
             "memory": "Memória",
-
             "systems_operational": "Minden rendszer üzemel",
-
             "deployment": "Telepítés",
-
             "completed": "Befejezve",
-
             "security": "Biztonság",
-
             "protected": "Védett",
-
             "monitoring": "Monitorozás"
-
         }
-
     },
-
     "AboutPage": {
-
         "hero_title": "A technológia megszállottjai,",
-
         "hero_title_highlight": "az üzleti siker elkötelezettjei",
-
         "hero_desc": "Célunk, hogy modern digitális megoldásokkal segítsük a vállalkozásokat a növekedésben és a hatékonyság növelésében.",
-
         "mission_title": "Küldetésünk",
-
         "mission_desc_1": "Hiszünk abban, hogy az automatizáció és a modern szoftverfejlesztés nem csak a nagyvállalatok kiváltsága. Azért dolgozunk, hogy ezeket az eszközöket elérhetővé tegyük a KKV szektor számára is.",
-
         "mission_desc_2": "Nem csak kódot írunk, hanem problémákat oldunk meg. Minden projektünket üzleti szemlélettel közelítjük meg, keresve a leggyorsabb megtérülést hozó megoldásokat.",
-
         "values": {
-
             "results": {
-
                 "title": "Eredményorientáltság",
-
                 "desc": "Mérhető üzleti eredményekre törekszünk."
-
             },
-
             "client": {
-
                 "title": "ügyfélközpontúság",
-
                 "desc": "Hosszú távú partnerségekben hiszünk."
-
             },
-
             "innovation": {
-
                 "title": "Innováció",
-
                 "desc": "Folyamatosan tanulunk és fejlődünk."
-
             },
-
             "teamwork": {
-
                 "title": "Csapatmunka",
-
                 "desc": "Együtt többre vagyunk képesek."
-
             }
-
         },
-
         "team_title": "Ismerd meg a csapatot",
-
         "team_members": {
-
             "peter": {
-
                 "name": "Kovács Péter",
-
                 "role": "Lead Developer & CEO",
-
                 "bio": "10+ év tapasztalat full-stack fejlesztésben. A tiszta kód és a skálázható architektúrák híve."
-
             },
-
             "anna": {
-
                 "name": "Nagy Anna",
-
                 "role": "UI/UX Designer",
-
                 "bio": "Szenvedélye a felhasználóbarát és esztétikus felületek tervezése. Pixel-perfect szemléletmód."
-
             },
-
             "gabor": {
-
                 "name": "Szabó Gábor",
-
                 "role": "DevOps Engineer",
-
                 "bio": "A CI/CD folyamatok és a felhő alapú infrastruktúrák szakértője. Mindent automatizál, amit lehet."
-
             }
-
         },
-
         "cta_badge": "Partnerség a sikerért",
-
         "cta_title": "Dolgozzunk",
-
         "cta_title_highlight": "együtt!",
-
         "cta_desc": "Készen állsz arra, hogy a következő szintre emeld vállalkozásodat? Vegyük fel a kapcsolatot és beszéljük meg, hogyan segíthetünk!",
-
         "cta_contact": "Kapcsolatfelvétel",
-
         "cta_quote": "Ajánlatkérés",
-
         "trust_signals": {
-
             "partner": "Megbízható partner",
-
             "personal": "Személyes kapcsolat",
-
             "fast": "Gyors reakcióidő"
-
         }
-
     },
-
     "References": {
-
         "badge": "Sikertörténetek",
-
         "title": "Esettanulmányok",
-
         "description": "Nézd meg, hogyan segítettünk más vállalkozásoknak növekedni, automatizálni és hatékonyabbá válni modern IT megoldásokkal.",
-
         "view_details": "Részletek megtekintése",
-
         "back_to_references": "Vissza az esettanulmányokhoz",
-
         "challenge": "Kihívás",
-
         "solution": "Megoldás",
-
         "result": "Eredmény",
-
         "key_results": "Főbb Eredmények",
-
         "metrics": {
-
             "conversion_growth": "Konverzió Növekedés",
-
             "faster_loading": "Gyorsabb Betöltés",
-
             "automated": "Automatizált",
-
             "no_data_loss": "Adatvesztés"
-
         },
-
         "upsell": {
-
             "title": "Hasonló problémával küzdesz?",
-
             "description": "Nézd meg szolgáltatásainkat, melyekkel a te cégedet is sikerre vihetjük."
-
         },
-
         "cta": {
-
             "badge": "Együtt növekedünk",
-
             "title_1": "Te lehetsz a következő ",
-
             "title_highlight": "sikersztori",
-
             "description": "Ne maradj le a digitális versenyben. Kérj ajánlatot még ma, és kezdjük el a közös munkát!",
-
             "button_quote": "Kérj ajánlatot most",
-
             "button_contact": "Kapcsolatfelvétel",
-
             "stats": {
-
                 "projects": "Sikeres Projekt",
-
                 "satisfied": "Elégedett ügyfél",
-
                 "rating": "Értékelés"
-
             },
-
             "trust": {
-
                 "quality": "Garantált minőség",
-
                 "response": "Gyors válaszidő",
-
                 "team": "Dedikált csapat"
-
             }
-
         },
-
         "items": {
-
             "webshop": {
-
                 "title": "Webshop Optimalizálás & Automatizáció",
-
                 "client": "GreenLeaf Bio Kft.",
-
                 "category": "E-kereskedelem",
-
                 "description": "WooCommerce-ről Next.js-re váltás és teljes körű raktárkészlet szinkronizáció, ami 40%-kal növelte a konverziót.",
-
                 "challenge": "A GreenLeaf Bio Kft. régi WooCommerce webshopja lassú volt, és a raktárkészlet gyakran nem egyezett a valósággal, ami vásárlói panaszokhoz vezetett. A manuális rendelésfeldolgozás sok időt vett igénybe.",
-
                 "solution": "Egy modern, villámgyors Next.js alapú frontendet fejlesztettünk, miközben a WooCommerce-t megtartottuk backendnek. Bevezettünk egy n8n alapú automatizációt, ami valós időben szinkronizálja a készleteket és automatikusan számláz.",
-
                 "result": "Az oldal betöltési sebessége 3 másodpercről 0.8 másodpercre csökkent. A manuális adminisztráció 80%-kal csökkent, a konverziós ráta pedig 40%-kal emelkedett az első 3 hónapban."
-
             },
-
             "patient": {
-
                 "title": "Biztonságos Páciens Kezelő Rendszer",
-
                 "client": "Praxis Dr. Kovács",
-
                 "category": "Egészségügy",
-
                 "description": "GDPR-kompatibilis, titkosított páciens adatbázis és időpontfoglaló rendszer privát felhő infrastruktúrán.",
-
                 "challenge": "A praxis papír alapú nyilvántartása és telefonos időpontfoglalása tarthatatlanná vált. Kiemelt fontosságú volt az érzékeny egészségügyi adatok maximális védelme és a GDPR megfelelés.",
-
                 "solution": "Egy egyedi, titkosított adatbázissal rendelkező webalkalmazást készítettünk, amely privát felhőben fut. Kétfaktoros hitelesítést (2FA) és audit naplózást vezettünk be minden hozzáféréshez.",
-
                 "result": "A recepció terhelése 60%-kal csökkent az online időpontfoglalásnak köszönhetően. Az adatok biztonsága garantált, és a rendszer megfelel minden hatályos jogszabálynak."
-
             },
-
             "server": {
-
                 "title": "High-Availability Szerver Klaszter",
-
                 "client": "Apex Logistics Zrt.",
-
                 "category": "Logisztika",
-
                 "description": "0-24 órás rendelkezésre állású szerverpark kiépítése nyomkövető rendszerek számára, 99.99% uptime-mal.",
-
                 "challenge": "Az Apex Logistics nyomkövető rendszere gyakran leállt terhelés alatt, ami kritikus volt a szállítmányozás szempontjából. A kiesések jelentős anyagi kárt okoztak.",
-
                 "solution": "Több csomópontos Kubernetes klasztert építettünk ki automatikus skálázással és HAProxy load balancerrel. Prometheus és Grafana alapú monitoring rendszert telepítettünk a proaktív hibaelhárítás érdekében.",
-
                 "result": "A rendszer rendelkezésre állása elérte a 99.99%-ot. A terheléses időszakokban a rendszer automatikusan skálázódik, így nincs lassulás vagy leállás."
-
             }
-
         }
-
     },
-
     "Careers": {
-
         "title": "Csatlakozz a csapathoz!",
-
         "description": "Keressük azokat a tehetségeket, akik velünk együtt szeretnék formálni a jövő digitális megoldásait.",
-
         "benefits_title": "Mit kínálunk?",
-
         "benefits": {
-
             "tech": {
-
                 "title": "Modern Tech Stack",
-
                 "desc": "A legújabb technológiákkal dolgozunk (Next.js, TypeScript, AWS)."
-
             },
-
             "growth": {
-
                 "title": "Szakmai Fejlődés",
-
                 "desc": "Támogatjuk a tanulást, konferenciákat és képzéseket."
-
             },
-
             "flexible": {
-
                 "title": "Rugalmas Munkaidő",
-
                 "desc": "Hiszünk a work-life balance-ban. Home office lehetőség."
-
             },
-
             "atmosphere": {
-
                 "title": "Jó Hangulat",
-
                 "desc": "Barátságos légkör, közös programok és finom kávé."
-
             }
-
         },
-
         "open_positions": "Nyitott Pozíciók",
-
         "coming_soon": "Hamarosan",
-
         "apply": "Jelentkezés",
-
         "positions": {
-
             "senior_fullstack": "Senior Full Stack Fejlesztő",
-
             "devops": "DevOps Engineer",
-
             "junior_python": "Junior Python Fejlesztő"
-
         },
-
         "location": {
-
             "remote": "Remote",
-
             "hybrid": "Hybrid",
-
             "office": "Iroda"
-
         },
-
         "job_type": {
-
             "full_time": "Teljes munkaidő",
-
             "intern": "Gyakornok"
-
         },
-
         "spontaneous": {
-
             "title": "Nem találtál hozzád illő pozíciót?",
-
             "description": "Küldd el önéletrajzodat az adatbázisunkba, és értesítünk, ha nyílik megfelelő lehetőség.",
-
             "cta": "Spontán jelentkezés"
-
         },
-
         "application": {
-
             "success": {
-
                 "title": "Köszönjük jelentkezésedet!",
-
                 "description": "Megkaptuk az önéletrajzodat és hamarosan felvesszük veled a kapcsolatot, ha nyílik megfelelő pozíció.",
-
                 "button": "Vissza a Karrier oldalra"
-
             },
-
             "back_link": "Vissza a Karrier oldalra",
-
             "badge": "Csatlakozz hozzánk",
-
             "title": "Spontán jelentkezés",
-
             "description": "Nem találtál megfelelő pozíciót? Semmi gond! Küldd el az önéletrajzodat, és értesítünk, amint nyílik hozzád illő lehetőség.",
-
             "form": {
-
                 "name": "Teljes név *",
-
                 "name_placeholder": "Pl. Kovács János",
-
                 "email": "Email cím *",
-
                 "email_placeholder": "pelda@email.com",
-
                 "phone": "Telefonszám",
-
                 "phone_placeholder": "+36 20 123 4567",
-
                 "linkedin": "LinkedIn profil",
-
                 "linkedin_placeholder": "https://linkedin.com/in/...",
-
                 "areas_label": "Milyen területen dolgoznál szívesen?",
-
                 "areas": {
-
                     "frontend": "Frontend fejlesztés",
-
                     "backend": "Backend fejlesztés",
-
                     "devops": "DevOps / Infrastruktúra",
-
                     "design": "UI/UX Design",
-
                     "pm": "Projekt menedzsment",
-
                     "other": "Egyéb"
-
                 },
-
                 "cv_label": "Önéletrajz feltöltése *",
-
                 "cv_drop": "Húzd ide a fájlt vagy kattints a feltöltéshez",
-
                 "cv_hint": "PDF, DOC, DOCX (max. 5MB)",
-
                 "motivation_label": "Motivációs levél / özenet",
-
                 "motivation_placeholder": "Mesélj magadról, tapasztalataidról és arról, hogy miért szeretnél nálunk dolgozni...",
-
                 "submit": "Jelentkezés elküldése",
-
                 "terms_prefix": "A jelentkezéssel elfogadod az ",
-
                 "terms_link": "Adatkezelési tájékoztatónkat",
-
                 "terms_suffix": "."
-
             },
-
             "trust": {
-
                 "gdpr": "GDPR kompatibilis",
-
                 "confidential": "Bizalmas adatkezelés",
-
                 "feedback": "Gyors visszajelzés"
-
             }
-
         }
-
     },
-
     "Admin": {
-
         "dashboard": {
-
             "title": "Vezérlőpult",
-
             "subtitle": "Áttekintés a rendszer állapotáról.",
-
             "total_users": "Összes Felhasználó",
-
             "active_leads": "Aktív Lead-ek",
-
             "orders": "Rendelések",
-
             "revenue": "Bevétel",
-
             "growth_monthly": "{value}% az elmúlt hónapban",
-
             "growth_hourly": "{value} az elmúlt órában"
-
         }
-
     },
-
     "CRM": {
-
         "title": "ügyfélkezelés (CRM)",
-
         "subtitle": "Kezeld az összes leadet és ügyfelet egy helyen",
-
         "leads_title": "Érdeklődők",
-
         "company": "Cég",
-
         "contact_person": "Kapcsolattartó",
-
         "email": "Email",
-
         "status": "Státusz",
-
         "last_contact": "Utolsó kapcsolat",
-
         "save": "Mentés",
-
         "save_success": "Sikeres mentés",
-
         "save_error": "Hiba történt a mentéskor",
-
         "edit_lead": "Lead szerkesztése",
-
         "notes": "Jegyzetek",
-
         "no_leads_title": "Nincsenek érdeklődők",
-
-        "no_leads_desc": "Jelenleg nincsenek érdeklődők a rendszerben. Ăšj érdeklődők automatikusan megjelennek itt, ha kitöltik a weboldal űrlapjait."
-
+        "no_leads_desc": "Jelenleg nincsenek érdeklődők a rendszerben. Új érdeklődők automatikusan megjelennek itt, ha kitöltik a weboldal űrlapjait."
     },
-
     "Finance": {
-
         "title": "Pénzügyi Dashboard",
-
         "subtitle": "Bevételek, kiadások és adók követése.",
-
         "revenue": "Bevétel",
-
         "expense": "Kiadás",
-
         "tax": "Adó",
-
         "net_profit": "Nettó Profit",
-
         "subscriptions": "Előfizetések",
-
         "transactions": "Tranzakciók",
-
-        "add_transaction": "Ăšj tranzakció",
-
-        "add_subscription": "Ăšj előfizetés",
-
+        "add_transaction": "Új tranzakció",
+        "add_subscription": "Új előfizetés",
         "type": "Típus",
-
         "category": "Kategória",
-
         "amount": "Összeg",
-
         "date": "Dátum",
-
         "description": "Leírás",
-
         "billing_cycle": "Számlázási ciklus",
-
         "next_billing": "Következő fizetés",
-
         "income": "Bevétel",
-
         "expenses": "Kiadás"
-
     },
-
     "AdminAnalytics": {
-
         "total_events": "Összes Esemény",
-
         "recorded_interactions": "Rögzített interakciók",
-
         "top_events": "Top Események",
-
         "top_events_desc": "Leggyakoribb felhasználói interakciók",
-
         "recent_events": "Legutóbbi Események",
-
         "recent_events_desc": "Valós idejű napló",
-
         "table": {
-
             "event": "Esemény",
-
             "category": "Kategória",
-
             "time": "Időpont"
-
         }
-
     },
-
     "Common": {
-
         "example": "Példa:",
-
         "use_cases_title": "Használati esetek",
-
         "use_cases_description": "Nézd meg, hogyan segíthetünk a vállalkozásodnak",
-
         "use_cases_badge": "Használati esetek",
-
         "hours": "óra",
-
         "save": "Mentés",
-
         "cancel": "Mégse",
-
         "close": "Bezárás"
-
     },
-
     "SplitHero": {
-
         "left_title_1": "EGYEDI",
-
         "left_title_2": "MEGOLDÁSOK",
-
         "left_desc": "Profi IT szolgáltatások, fejlesztés és üzemeltetés a Te igényeidre szabva.",
-
         "left_cta": "Szolgáltatások",
-
         "right_title_1": "PRÉMIUM",
-
         "right_title_2": "TERMÉKEK",
-
         "right_desc": "Azonnal bevethető scriptek, sablonok és szoftverek a gyors induláshoz.",
-
         "right_cta": "Termékpaletta",
-
         "middle_text": "OR",
-
         "stat_projects_label": "Sikeres Projekt",
-
         "stat_satisfaction_label": "ügyfél Elégedettség",
-
         "ready_to_ship": "Azonnal elérhető:",
-
         "badge_scripts": "Scriptek",
-
         "badge_plugins": "Pluginok",
-
         "badge_ebooks": "E-bookok",
-
         "choose_path": "Válassz utat"
-
     },
-
     "ServicesPreview": {
-
         "title_1": "Nem csak kódolunk.",
-
         "title_2": "Problémákat oldunk meg.",
-
         "description": "Válassz a szolgáltatásaink közül, és emeld a vállalkozásodat a következő szintre.",
-
         "items": {
-
             "automation": {
-
                 "title": "Automatizáció",
-
                 "description": "Szabadulj meg az unalmas, ismétlődő feladatoktól. Egyedi scriptek, amik helyetted dolgoznak 24/7.",
-
                 "benefit": "Spórolj heti 10+ órát",
-
                 "features": {
-
                     "0": "Egyedi Python/Bash scriptek",
-
                     "1": "API integrációk (n8n, Make)",
-
                     "2": "Adatmentési automatizmusok",
-
                     "3": "Folyamatoptimalizálás"
-
                 }
-
             },
-
             "webdev": {
-
                 "title": "Webfejlesztés",
-
                 "description": "Nem csak egy weboldal: egy vevőmágnes. Gyors, modern és mobilon is tökéletes megjelenés.",
-
                 "benefit": "+40% konverzió növekedés",
-
                 "features": {
-
                     "0": "Modern Next.js weboldalak",
-
                     "1": "WooCommerce & Shopify",
-
                     "2": "UI/UX tervezés",
-
                     "3": "SEO optimalizáció"
-
                 }
-
             },
-
             "devops": {
-
                 "title": "DevOps & Cloud",
-
                 "description": "Stabil alapok a vállalkozásodnak. Skálázható szerverek, automatikus mentések és 99.9% rendelkezésre állás.",
-
                 "benefit": "Zéró leállás, nyugodt alvás",
-
                 "features": {
-
                     "0": "Cloud infrastruktúra (AWS, GC)",
-
                     "1": "Linux szerver felügyelet",
-
                     "2": "Docker & Kubernetes",
-
                     "3": "24/7 Monitoring"
-
                 }
-
             },
-
             "security": {
-
                 "title": "Kiberbiztonság",
-
                 "description": "Védd meg az adataidat és az ügyfeleidet. Sérülékenység vizsgálat és proaktív védelem a támadások ellen.",
-
                 "benefit": "Biztonságos üzletmenet",
-
                 "features": {
-
                     "0": "Sérülékenység vizsgálat",
-
                     "1": "Webes tűzfal (WAF) setup",
-
                     "2": "Pénzügyi adatok védelme",
-
                     "3": "Biztonsági mentési stratégia"
-
                 }
-
             }
-
         }
-
     },
-
     "HomePage": {
-
         "title": "Teljes körű IT szolgáltatások",
-
         "subtitle": "egy helyen",
-
         "description": "A tervezéstől a megvalósításig és üzemeltetésig. Modern technológiák, átlátható árazás, garantált minőség.",
-
         "cta_prices": "Árak megtekintése",
-
         "cta_services": "Szolgáltatások",
-
         "services_title": "Miben segíthetünk?",
-
         "services_desc": "Válassz a szolgáltatásaink közül, vagy állítsunk össze egyedi csomagot az igényeidhez",
-
         "why_us_title": "Miért válassz minket?",
-
         "why_us_desc": "Több mint 50 sikeres projekt, elégedett ügyfelek és modern technológiák",
-
         "stats_exp_title": "Év tapasztalat",
-
         "stats_exp_desc": "Több mint 5 éve dolgozunk IT projekteken, startupokkal és vállalatokkal",
-
         "stats_projects_title": "Sikeres projekt",
-
         "stats_projects_desc": "Weboldalak, webshopok, automatizációk és egyedi szoftverek",
-
         "stats_satisfaction_title": "ügyfél elégedettség",
-
         "stats_satisfaction_desc": "Minden ügyfelünk elégedett volt a munkánkkal és ajánl minket tovább",
-
         "process_title": "Hogyan dolgozunk?",
-
         "process_desc": "Egyszerű, átlátható folyamat a sikeres projektért",
-
         "process_1_title": "Konzultáció",
-
         "process_1_desc": "Ingyenes konzultáció, ahol megbeszéljük az igényeidet",
-
         "process_2_title": "Ajánlat",
-
         "process_2_desc": "Részletes ajánlat az árral, határidővel és funkcionalitással",
-
         "process_3_title": "Fejlesztés",
-
         "process_3_desc": "Folyamatos egyeztetés és átlátható fejlesztési folyamat",
-
         "process_4_title": "Átadás & Support",
-
         "process_4_desc": "Átadás, képzés és folyamatos support a projekt után",
-
         "cta_footer_title": "Készen állsz az indulásra?",
-
         "cta_footer_desc": "Foglalj egy ingyenes konzultációt, és beszéljük át a projekted részleteit. Nincs kötelezettség, csak hasznos tanácsok.",
-
         "cta_consultation": "Ingyenes konzultáció"
-
     },
-
     "TrustedBy": {
-
         "title": "Megbízható Technológiák és Partnerek",
-
         "subtitle": "Az iparág vezető technológiáival és biztonságos platformjaival dolgozunk",
-
         "security_badge": "PCI DSS Megfelelő | GDPR Kompatibilis | Enterprise Biztonság"
-
     },
-
     "Contact": {
-
         "title": "Lépj velünk kapcsolatba",
-
         "subtitle": "Kérdésed van? Árajánlatot szeretnél? Írj nekünk, és hamarosan válaszolunk!",
-
         "info_title": "Elérhetőségeink",
-
         "info_desc": "Keress minket bizalommal bármelyik csatornán. ügyfélszolgálatunk munkanapokon 9:00 és 17:00 között áll rendelkezésedre.",
-
         "phone_label": "Telefon",
-
         "phone_soon": "Hamarosan",
-
         "phone_hours": "Hétfő - Péntek: 09:00 - 17:00",
-
         "address_label": "Székhely",
-
         "address": "2141 Csömör, Vörösmarty utca 11.",
-
         "email_hello": "hello@backlineit.hu",
-
         "email_support": "support@backlineit.hu",
-
         "booking_title": "Időpontfoglalás & özenet"
-
     },
-
     "Checkout": {
-
         "title": "Pénztár",
-
         "empty_cart": "A kosara üres",
-
         "back_to_home": "Vissza a főoldalra",
-
         "summary_title": "Rendelés összesítése",
-
         "billing_title": "Számlázási adatok",
-
         "total_label": "Összesen:",
-
         "vat_included": "Az árak tartalmazzák az ÁFA-t (ha alkalmazandó).",
-
         "name_label": "Teljes név / Cégnév",
-
         "name_placeholder": "Kovács János",
-
         "email_label": "Email cím",
-
         "email_placeholder": "janos@example.com",
-
         "waiver_label": "Tudomásul veszem, hogy a teljesítés megkezdésével (a digitális tartalom letöltésével vagy hozzáférhetővé tételével) elveszítem a 14 napos elállási jogomat.",
-
         "waiver_subtext": "A vásárlás folytatásához el kell fogadnia ezt a nyilatkozatot, mivel digitális terméket vásárol.",
-
         "terms_label": "Elfogadom az <link1>Általános Szerződési Feltételeket</link1> és az <link2>Adatkezelési Tájékoztatót</link2>.",
-
         "checkout_loading": "Fizetés indítása...",
-
         "pay_with_simplepay": "Fizetés SimplePay-vel",
-
         "secure_payment_desc": "Biztonságos fizetés SimplePay rendszeren keresztül.",
-
         "error_waiver": "A vásárlás folytatásához el kell fogadnia a lemondó nyilatkozatot.",
-
         "error_empty": "A kosara üres.",
-
         "error_payment": "Hiba történt a fizetés indításakor: ",
-
         "error_generic": "Váratlan hiba történt."
-
     },
-
     "Navigation": {
-
         "home": "Főoldal",
-
         "services": "Szolgáltatások",
-
         "scripts": "Scriptek",
-
         "web_dev": "Webfejlesztés",
-
         "products": "Termékek",
-
         "references": "Referenciák",
-
         "pricing": "Árak",
-
         "blog": "Blog",
-
         "contact": "Kapcsolat",
-
         "client_portal": "ügyfélportál",
-
         "integrations": "Integrációk & API",
-
         "devops": "DevOps & Hosting",
-
         "security": "Biztonság & Audit",
-
         "about": "Rólunk",
-
         "careers": "Karrier",
-
         "privacy": "Adatvédelem",
-
         "terms": "ÁSZF",
-
         "imprint": "Impresszum",
-
         "rights_reserved": "Minden jog fenntartva.",
-
         "search": "Keresés",
-
         "open_menu": "Menü megnyitása",
-
         "free_consultation": "Ingyenes konzultáció",
-
         "reviews": "Vélemény"
-
     },
-
     "Footer": {
-
         "description": "Professzionális informatikai szolgáltatások, scriptek és automatizációk vállalkozások számára. Spórolj időt és pénzt modern megoldásainkkal.",
-
         "company": "Cég",
-
         "newsletter": "Hírlevél",
-
         "signals": {
-
             "ssl": "SSL Biztonság",
-
             "gdpr": "GDPR Kompatibilis",
-
             "experts": "Minősített Szakértők"
-
         },
-
         "rights": "Â© {year} BacklineIT. Minden jog fenntartva."
-
     },
-
     "Dashboard": {
-
         "title": "Fiókom",
-
         "logout": "Kijelentkezés",
-
         "orders_title": "Korábbi Rendelések",
-
         "orders_empty": "Még nem vásároltál semmit. Nézz körül a <link>termékeink</link> között!",
-
         "license_key": "Licenckulcs:",
-
         "download_invoice": "Számla letöltése",
-
         "status_paid": "Fizetve",
-
         "status_pending": "Függőben",
-
         "status_cancelled": "Megszakítva",
-
         "quantity": "{count} db",
-
         "welcome": "ödvözöljük újra, {name}!",
-
         "welcome_subtitle": "Itt áttekintheted a vásárlásaidat, kezelheted a licenceidet és segítséget kérhetsz a support csapattól.",
-
         "overview": "Áttekintés",
-
         "total_purchases": "Összes Vásárlás",
-
         "total_value": "{amount} értékben",
-
         "active_licenses": "Aktív Licencek",
-
         "expiring_soon": "{count} hamarosan lejár",
-
         "open_tickets": "Nyitott Jegyek",
-
         "waiting_for_reply": "Válaszra vár",
-
         "recent_purchases": "Legutóbbi Vásárlások",
-
         "view_all": "Összes megtekintése",
-
         "no_purchases": "Még nem történt vásárlás.",
-
         "go_to_shop": "Irány a bolt",
-
         "order": "Rendelés #{id}",
-
         "quick_actions": "Gyors Műveletek",
-
         "open_ticket": "Hibajegy nyitása",
-
         "need_help": "Segítségre van szükséged?",
-
         "activate_license": "Licenc aktiválása",
-
-        "redeem_key": "Ăšj kulcs beváltása",
-
+        "redeem_key": "Új kulcs beváltása",
         "browse_shop": "Böngészés a boltban",
-
-        "buy_new_services": "Ăšj szolgáltatások vásárlása"
-
+        "buy_new_services": "Új szolgáltatások vásárlása"
     },
-
     "Tickets": {
-
         "title": "Hibajegyek",
-
-        "create_new": "Ăšj hibajegy",
-
+        "create_new": "Új hibajegy",
         "no_tickets": "Még nincs nyitott hibajegyed.",
-
         "subject": "Tárgy",
-
         "status": "Státusz",
-
         "last_update": "Utolsó frissítés",
-
         "priority": "Prioritás",
-
         "description": "Leírás",
-
         "category": "Kategória",
-
         "submit": "Beküldés",
-
         "cancel": "Mégse",
-
         "reply": "Válasz",
-
         "send_reply": "Válasz küldése",
-
         "status_open": "Nyitott",
-
         "status_in_progress": "Folyamatban",
-
         "status_resolved": "Megoldva",
-
         "status_closed": "Lezárt",
-
         "priority_low": "Alacsony",
-
         "priority_medium": "Közepes",
-
         "priority_high": "Magas",
-
         "priority_urgent": "Sürgős"
-
     },
-
     "Booking": {
-
         "title": "Időpontfoglalás",
-
         "select_date": "Válassz dátumot",
-
         "select_time": "Válassz időpontot",
-
         "name": "Név",
-
         "name_placeholder": "Teljes név",
-
         "email": "Email cím",
-
         "email_placeholder": "pelda@email.hu",
-
         "topic": "Téma",
-
         "topic_placeholder": "Válassz témát",
-
         "topics": {
-
             "consultation": "Általános konzultáció",
-
             "development": "Egyedi fejlesztés",
-
             "automation": "Automatizálás",
-
             "audit": "Biztonsági audit"
-
         },
-
         "date": "Dátum",
-
         "time": "Időpont",
-
         "message": "özenet (Opcionális)",
-
         "message_placeholder": "Rövid leírás a projektről...",
-
         "submit": "Időpont kérése",
-
         "submitting": "Küldés folyamatban...",
-
         "success_title": "Foglalás elküldve!",
-
         "success_message": "Köszönjük a megkeresést. Hamarosan felvesszük Önnel a kapcsolatot a megadott elérhetőségeken.",
-
-        "new_booking": "Ăšj foglalás",
-
+        "new_booking": "Új foglalás",
         "error_fill_all": "Kérlek tölts ki minden mezőt és válassz dátumot!",
-
         "error_generic": "Hiba történt a küldés során"
-
     },
-
     "Maintenance": {
-
         "banner_text": "Jelenleg karbantartás alatt. Csak egyedi ajánlatokat vállalunk."
-
     },
-
     "Blog": {
-
         "title": "Blog & Tudástár",
-
         "subtitle": "Szakmai cikkek, esettanulmányok és praktikus tippek a digitalizáció világából.",
-
         "hero_badge": "Tudásbázis",
-
         "topics_title": "Témaköreink",
-
         "series_title": "Tematikus Sorozatok",
-
         "recent_posts": "Legfrissebb Bejegyzések",
-
         "chapters": "fejezet",
-
         "view_series": "Sorozat megtekintése",
-
         "no_posts": "Hamarosan új tartalmakkal érkezünk...",
-
         "read_more": "Olvass tovább",
-
         "back": "Vissza a blogra",
-
         "back_to_blog": "Vissza a blogra",
-
         "categories": {
-
             "automation": "Automatizáció",
-
             "automation_desc": "Ismerd meg, hogyan válthatod ki a manuális folyamatokat intelligens botokkal és workflow-kkal.",
-
             "webdev": "Webfejlesztés",
-
             "webdev_desc": "Modern technológiák (Next.js, React, Node.js) és a legjobb kódolási gyakorlatok tárháza.",
-
             "business": "özleti Hatékonyság",
-
             "business_desc": "Stratégiák és eszközök, amikkel több időt szabadíthatsz fel az üzletépítésre.",
-
             "security": "Biztonság",
-
             "security_desc": "Hogyan védd meg digitális értékeidet és ügyfeleid adatait a legújabb fenyegetések ellen."
-
         }
-
     },
-
     "Products": {
-
         "title": "Digitális Piactér",
-
         "subtitle": "Kész megoldások, scriptek és sablonok, amikkel azonnal gyorsíthatod a vállalkozásodat.",
-
         "categories": {
-
             "all": "Összes",
-
             "wordpress": "WordPress Plugin",
-
             "automation": "Automatizáció",
-
             "script": "Script",
-
             "template": "Template",
-
             "ebook": "E-book"
-
         },
-
         "no_products": "Nem található termék ebben a kategóriában.",
-
         "not_found_title": "Nem találod amit keresel?",
-
         "not_found_desc": "Egyedi scriptre vagy automatizációra van szükséged? Írd meg az elképzelésedet, és elkészítjük neked!",
-
         "request_custom": "Egyedi fejlesztés kérése",
-
         "woocommerce-szamlazz-hu": {
-
             "title": "WooCommerce Számlázz.hu Integráció",
-
             "description": "Automatikus számlakiállítás minden rendelés után. Kezeli az előlegszámlákat és a sztornókat is."
-
         },
-
         "n8n-lead-management": {
-
             "title": "n8n Lead Management Workflow",
-
             "description": "Komplex workflow, ami a beérkező leadeket validálja, gazdagítja és beírja a CRM-be."
-
         },
-
         "python-web-scraper": {
-
             "title": "Python Web Scraper Starter Kit",
-
             "description": "Előre megírt osztályok és függvények webes adatgyűjtéshez. Proxy kezelés, user-agent rotálás."
-
         },
-
         "security-audit-checklist": {
-
             "title": "Biztonsági Audit Checklist",
-
             "description": "Részletes PDF és Excel tábla 100+ ellenőrzési ponttal weboldalak biztonsági átvilágításához."
-
         },
-
         "nextjs-saas-boilerplate": {
-
             "title": "Next.js SaaS Boilerplate",
-
             "description": "Indítsd el a saját szoftver szolgáltatásodat napok alatt. Auth, Stripe, Dashboard előre beállítva."
-
         },
-
         "it-maintenance-dashboard": {
-
             "title": "IT Karbantartási & Leltár Dashboard",
-
             "description": "Előre elkészített Excel dashboard KKV-knak IT eszközök, szerverek, licencek és karbantartások nyomon követésére."
-
         }
-
     },
-
     "QuoteRequest": {
-
         "title": "Valósítsuk meg az ötleted!",
-
         "subtitle": "Töltsd ki az alábbi űrlapot, és mi elkészítjük a személyre szabott ajánlatodat.",
-
         "success_title": "Köszönjük a megkeresést!",
-
         "success_desc": "Sikeresen megkaptuk az ajánlatkérésedet. Kollégáink hamarosan (általában 24 órán belül) felveszik veled a kapcsolatot a megadott elérhetőségeken.",
-
         "back_home": "Vissza a főoldalra",
-
         "sidebar": {
-
             "title": "Miért válassz minket?",
-
             "feature_1_title": "Gyors Megvalósítás",
-
             "feature_1_desc": "Hatékony folyamatok, tartott határidők.",
-
             "feature_2_title": "Modern Tech",
-
             "feature_2_desc": "A legújabb technológiákat használjuk.",
-
             "feature_3_title": "Responsive Design",
-
             "feature_3_desc": "Minden eszközön tökéletes megjelenés.",
-
             "step_1": "Alapadatok",
-
             "step_2": "Projekt részletei",
-
             "step_3": "Összegzés"
-
         },
-
         "steps": {
-
             "1_title": "Kezdjük az alapokkal",
-
             "1_desc": "Add meg az elérhetőségeidet, hogy felvehessük veled a kapcsolatot.",
-
             "2_title": "Mesélj a projektről",
-
             "2_desc": "Minél több részletet osztasz meg, annál pontosabb ajánlatot tudunk adni.",
-
             "3_title": "Ellenőrzés és küldés",
-
             "3_desc": "Nézd át az adatokat, és ha minden rendben, küldd el az igényedet."
-
         },
-
         "form": {
-
             "name": "Teljes név *",
-
             "name_placeholder": "Kovács János",
-
             "email": "Email cím *",
-
             "email_placeholder": "janos@ceg.hu",
-
             "phone": "Telefonszám",
-
             "phone_placeholder": "+36 30 123 4567",
-
             "company": "Cégnév (opcionális)",
-
             "company_placeholder": "Minta Kft.",
-
             "project_type": "Projekt típusa *",
-
             "budget": "Tervezett keretösszeg",
-
             "description": "Projekt leírása *",
-
             "description_placeholder": "Írd le röviden az elképzelésedet, céljaidat...",
-
             "select_type": "Válassz típust",
-
             "select_budget": "Válassz keretet",
-
             "types": {
-
                 "web": "Weboldal fejlesztés",
-
                 "shop": "Webshop készítés",
-
                 "app": "Egyedi szoftver / App",
-
                 "marketing": "Online Marketing",
-
                 "design": "UI/UX Design",
-
                 "other": "Egyéb"
-
             },
-
             "budgets": {
-
                 "small": "500.000 Ft alatt",
-
                 "medium": "500.000 Ft - 1.500.000 Ft",
-
                 "large": "1.500.000 Ft - 5.000.000 Ft",
-
                 "enterprise": "5.000.000 Ft felett"
-
             },
-
             "privacy_disclaimer": "Az \"Ajánlatkérés küldése\" gombra kattintva elfogadod az Adatvédelmi tájékoztatónkat.",
-
             "submit": "Ajánlatkérés küldése",
-
             "processing": "Feldolgozás...",
-
             "next": "Tovább",
-
             "back": "Vissza",
-
             "summary_labels": {
-
                 "name": "Név:",
-
                 "email": "Email:",
-
                 "project": "Projekt:",
-
                 "budget": "Keret:"
-
             }
-
         }
-
     },
-
     "Legal": {
-
         "Imprint": {
-
             "title": "Impresszum",
-
             "subtitle": "Az elektronikus kereskedelmi szolgáltatások, valamint az információs társadalommal összefüggő szolgáltatások egyes kérdéseiről szóló 2001. évi CVIII. törvény alapján.",
-
             "provider_data": "Szolgáltató adatai",
-
             "company_name": "Cégnév / Vállalkozó neve",
-
             "seat": "Székhely",
-
             "address": "Levelezési cím",
-
             "tax_number": "Adószám",
-
             "representative": "Képviselő",
-
             "representative_name": "Kovács János ügyvezető",
-
             "hosting_provider": "Tárhelyszolgáltató",
-
             "customer_service": "ügyfélszolgálat és Elérhetőségek",
-
             "email": "Email (ügyfélszolgálat)",
-
             "phone": "Telefon",
-
             "website": "Weboldal",
-
             "availability": "ügyfélszolgálat rendelkezésre állása",
-
             "availability_time": "Hétfő - Péntek: 09:00 - 17:00",
-
             "hosting_title": "Tárhelyszolgáltató",
-
             "hosting_desc": "A weboldal üzemeltetését és tárolását az alábbi szolgáltató végzi:",
-
             "dispute": "Vitarendezés",
-
             "dispute_desc": "Az Európai Bizottság online vitarendezési platformja (ODR) lehetőséget biztosít a fogyasztóknak a jogviták bíróságon kívüli rendezésére."
-
         },
-
         "Privacy": {
-
             "title": "Adatvédelmi Tájékoztató",
-
             "lead": "Az BacklineIT Kft. elkötelezett az Ön személyes adatainak védelme mellett. Jelen tájékoztató célja, hogy világos és átlátható információt nyújtson arról, hogyan kezeljük adatait a GDPR (Általános Adatvédelmi Rendelet) előírásaival összhangban.",
-
             "controller_title": "1. Az Adatkezelő",
-
             "controller_desc": "Az adatok kezelője az BacklineIT Kft. (székhely: 1138 Budapest, Váci út 123., email: info@itservices.hu). Cégünk felelős az Ön által megadott személyes adatok jogszerű, tisztességes és átlátható kezeléséért.",
-
             "collected_title": "2. Milyen adatokat gyűjtünk?",
-
             "collected_desc": "A szolgáltatásaink igénybevétele során az alábbi adatokat kezelhetjük:",
-
             "collected_list": {
-
                 "contact": "Kapcsolattartási adatok: Név, email cím, telefonszám (pl. kapcsolatfelvételkor vagy regisztrációkor).",
-
                 "billing": "Számlázási adatok: Számlázási név, cím, adószám (vásárlás esetén).",
-
                 "technical": "Technikai adatok: IP cím, böngésző típusa, eszköz adatok (a weboldal biztonságos működése érdekében).",
-
                 "cookies": "Cookie-k (sütik): A felhasználói élmény javítása és statisztikai célokból. Részletes tájékoztatás a Cookie Szabályzatban (lásd lentebb)."
-
             },
-
             "cookies_title": "3. Cookie (Süti) Tájékoztató",
-
             "cookies_desc": "Weboldalunk a megfelelő működés, a felhasználói élmény javítása, valamint statisztikai és marketing célokból sütiket (cookie-kat) használ.",
-
             "cookies_list": {
-
                 "session": "Munkamenet sütik (szükséges): Ezek elengedhetetlenek a weboldal navigációjához és funkcióinak használatához.",
-
                 "stats": "Statisztikai sütik: Segítenek megérteni, hogyan használják látogatóink a weboldalt (pl. Google Analytics). Ezek az adatok anonimizáltak.",
-
                 "marketing": "Marketing sütik: Célzott hirdetések megjelenítésére szolgálnak."
-
             },
-
             "purpose_title": "3. Az adatkezelés célja és jogalapja",
-
             "table": {
-
                 "purpose": "Adatkezelés célja",
-
                 "legal_basis": "Jogalap",
-
                 "service": "Szolgáltatás nyújtása, szerződés teljesítése",
-
                 "service_basis": "Szerződés teljesítése (GDPR 6. cikk (1) b))",
-
                 "billing": "Számlázás és könyvelés",
-
                 "billing_basis": "Jogi kötelezettség teljesítése (GDPR 6. cikk (1) c))",
-
                 "contact": "Kapcsolattartás, ügyfélszolgálat",
-
                 "contact_basis": "Jogos érdek (GDPR 6. cikk (1) f))",
-
                 "newsletter": "Hírlevél küldés",
-
                 "newsletter_basis": "Az Ön hozzájárulása (GDPR 6. cikk (1) a))"
-
             },
-
             "transfer_title": "4. Adattovábbítás",
-
             "transfer_desc": "Adatait harmadik félnek csak a szolgáltatás teljesítése érdekében vagy jogszabályi kötelezettség esetén továbbítjuk. Partnereink (adatfeldolgozók):",
-
             "storage_title": "5. Az adatok tárolásának időtartama",
-
             "storage_desc": "A személyes adatokat csak addig tároljuk, amíg az adatkezelés célja megvalósul, vagy amíg jogszabály (pl. számviteli törvény) kötelezővé teszi. A számlázási adatokat a törvény értelmében 8 évig őrizzük meg.",
-
             "rights_title": "6. Az Ön jogai",
-
             "rights_desc": "A GDPR alapján Ön jogosult:",
-
             "rights_list": {
-
                 "access": "Hozzáféréshez: Tájékoztatást kérhet a kezelt adatairól.",
-
                 "rectification": "Helyesbítéshez: Kérheti pontatlan adatainak javítását.",
-
                 "erasure": "Törléshez (&quot;elfeledtetéshez&quot;): Kérheti adatai törlését, ha az adatkezelésnek nincs más jogalapja.",
-
                 "portability": "Adathordozhatósághoz: Kérheti adatai átadását tagolt, géppel olvasható formátumban.",
-
                 "objection": "Tiltakozáshoz: Tiltakozhat a jogos érdeken alapuló adatkezelés ellen."
-
             },
-
             "remedy_title": "7. Jogorvoslati lehetőségek",
-
             "remedy_desc": "Panaszával a Nemzeti Adatvédelmi és Információszabadság Hatósághoz (NAIH) fordulhat (1055 Budapest, Falk Miksa utca 9-11., www.naih.hu), vagy bírósághoz fordulhat.",
-
             "tools_title": "8. Adatkezelési Eszközök",
-
             "tools_desc": "Bejelentkezett felhasználóként itt kezelheti a fiókjához tartozó adatokat."
-
         },
-
         "Terms": {
-
             "title": "Általános Szerződési Feltételek",
-
             "lead": "Kérjük, figyelmesen olvassa el az alábbi Általános Szerződési Feltételeket (továbbiakban: ÁSZF), mivel a weboldalunk használatával és szolgáltatásaink igénybevételével Ön elfogadja az itt leírtakat.",
-
             "provider_title": "1. A Szolgáltató adatai",
-
             "definitions_title": "2. Fogalommeghatározások",
-
             "definitions_list": {
-
                 "provider": "Szolgáltató: A BacklineIT, amely a weboldalt üzemelteti és a szolgáltatásokat nyújtja.",
-
                 "client": "ügyfél: Bármely természetes vagy jogi személy, aki a Szolgáltató szolgáltatásait igénybe veszi.",
-
                 "website": "Weboldal: A backlineit.hu domain alatt elérhető internetes felület.",
-
                 "service": "Szolgáltatás: A weboldalon keresztül elérhető szoftverfejlesztési, tanácsadási és egyéb informatikai szolgáltatások."
-
             },
-
             "contract_title": "3. A szerződés tárgya és létrejötte",
-
             "contract_desc_1": "A jelen ÁSZF hatálya kiterjed a Szolgáltató által nyújtott minden elektronikus kereskedelmi szolgáltatásra. A szerződés a Felek között ráutaló magatartással (a weboldalon történő regisztrációval, megrendelés leadásával) jön létre.",
-
             "services_title": "4. Szolgáltatások igénybevétele",
-
             "services_desc": "A Szolgáltató a weboldalon részletezett szolgáltatásokat (pl. webfejlesztés, scriptek, rendszerüzemeltetés) nyújtja. A szolgáltatások pontos tartalmát, díjazását és határidejét az egyedi árajánlatok vagy a webshopban feltüntetett termékleírások tartalmazzák.",
-
             "payment_title": "5. Fizetési feltételek",
-
             "payment_desc": "A szolgáltatások ellenértékét az ügyfél az alábbi módokon egyenlítheti ki:",
-
             "payment_list": {
-
                 "card": "Bankkártyás fizetés: A SimplePay vagy Stripe rendszerén keresztül.",
-
                 "transfer": "Banki átutalás: A Szolgáltató által kiállított díjbekérő vagy számla alapján."
-
             },
-
             "withdrawal_title": "6. Elállási jog",
-
             "withdrawal_desc": "A fogyasztónak minősülő ügyfél a 45/2014. (II. 26.) Korm. rendelet alapján jogosult a szerződéstől 14 napon belül indokolás nélkül elállni. Az elállási határidő a szolgáltatás nyújtására irányuló szerződés esetén a szerződés megkötésének napjától számított 14 nap.",
-
             "withdrawal_digital_title": "A fogyasztó elállási jogának elvesztése digitális adattartalom esetén",
-
             "withdrawal_digital_desc": "FIGYELEM: A nem tárgyi adathordozón nyújtott digitális adattartalom (pl. szoftverek, scriptek letöltése) tekintetében a fogyasztó elveszíti elállási jogát, amennyiben a Szolgáltató a fogyasztó kifejezett, előzetes beleegyezésével kezdte meg a teljesítést, és a fogyasztó e beleegyezésével egyidejűleg nyilatkozott annak tudomásulvételéről, hogy a teljesítés megkezdését követően elveszíti elállási jogát.",
-
             "warranty_title": "7. Kellékszavatosság, Termékszavatosság, Jótállás",
-
             "warranty_legal_title": "Kellékszavatosság",
-
             "warranty_legal_desc": "Az ügyfél a Szolgáltató hibás teljesítése esetén a Szolgáltatóval szemben kellékszavatossági igényt érvényesíthet a Polgári Törvénykönyv szabályai szerint.",
-
             "warranty_product_title": "Termékszavatosság",
-
             "warranty_product_desc": "Ingó dolog (termék) hibája esetén az ügyfél â€“ választása szerint â€“ kellékszavatossági vagy termékszavatossági igényt érvényesíthet.",
-
             "guarantee_title": "Jótállás",
-
             "guarantee_desc": "Hibás teljesítés esetén a Szolgáltató jótállásra köteles, amennyiben azt jogszabály előírja vagy a Szolgáltató önként vállalta.",
-
             "ip_title": "8. Szellemi tulajdonjogok",
-
             "ip_desc": "A weboldal teljes tartalma, beleértve a szövegeket, képeket, grafikákat, logókat és szoftvereket, a Szolgáltató szellemi tulajdonát képezi, és szerzői jogi védelem alatt áll.",
-
             "liability_title": "9. Felelősségkorlátozás",
-
             "liability_desc": "A Szolgáltató mindent megtesz a weboldal és a szolgáltatások zavartalan működése érdekében, de nem vállal felelősséget az internetes hálózat hibájából, technikai leállásokból vagy vis maior eseményekből eredő károkért.",
-
             "complaints_title": "10. Panaszkezelés",
-
             "complaints_desc": "Az ügyfél a szolgáltatással kapcsolatos panaszait a support@backlineit.hu email címen jelezheti.",
-
             "closing_title": "11. Záró rendelkezések",
-
             "closing_desc": "A jelen ÁSZF-ben nem szabályozott kérdésekben a magyar jogszabályok, különösen a Ptk. rendelkezései az irányadóak."
-
         }
-
     },
-
     "Auth": {
-
         "Login": {
-
             "title": "Bejelentkezés",
-
             "subtitle": "Jelentkezz be a fiókodba",
-
             "github": "Bejelentkezés GitHub-bal",
-
             "or": "Vagy",
-
             "no_account": "Nincs még fiókod?",
-
             "register_link": "Regisztráció",
-
             "submit": "Bejelentkezés",
-
             "processing": "Bejelentkezés..."
-
         },
-
         "Register": {
-
             "title": "Regisztráció",
-
             "subtitle": "Hozz létre egy új fiókot",
-
             "has_account": "Már van fiókod?",
-
             "login_link": "Bejelentkezés",
-
             "submit": "Regisztráció",
-
             "processing": "Regisztráció...",
-
             "validation_error": "Kérlek ellenőrizd a mezőket!",
-
             "unexpected_error": "Váratlan hiba történt.",
-
             "success": "Sikeres regisztráció!"
-
         },
-
         "Server": {
-
             "invalid_fields": "Érvénytelen mezők!",
-
             "invalid_credentials": "Hibás email vagy jelszó!",
-
             "generic_error": "Valami hiba történt!",
-
             "email_taken": "Az email cím már foglalt!",
-
             "verification_sent": "Megerősítő email elküldve!",
-
             "registration_error": "Valami hiba történt a regisztráció során!",
-
             "token_invalid": "A kód nem létezik vagy lejárt!",
-
             "token_expired": "A kód lejárt!",
-
             "user_not_found": "A felhasználó nem található!",
-
             "email_verified": "Email sikeresen megerősítve!"
-
         },
-
         "Form": {
-
             "name": "Név",
-
             "name_placeholder": "Kovács János",
-
             "email": "Email",
-
             "email_placeholder": "pelda@email.hu",
-
             "password": "Jelszó",
-
             "password_placeholder": "******"
-
         }
-
     },
-
     "NotFound": {
-
         "title": "404",
-
-        "subtitle": "Hoppá! Ez az oldal elveszett az űrben. đźš€",
-
-        "description": "Ăšgy tűnik, olyan helyre tévedtél, ami nem létezik, vagy már áthelyeztük. Ne aggódj, segítünk visszatalálni!",
-
+        "subtitle": "Hoppá! Ez az oldal elveszett az űrben. 🚀",
+        "description": "Úgy tűnik, olyan helyre tévedtél, ami nem létezik, vagy már áthelyeztük. Ne aggódj, segítünk visszatalálni!",
         "back_home": "Vissza a főoldalra",
-
         "services": "Szolgáltatások"
-
     },
-
     "ThemeCustomizer": {
-
         "toggle": "Téma váltása",
-
         "themes": {
-
             "cyan": "Cián (Alapértelmezett)",
-
             "purple": "Lila (Neon)",
-
             "green": "Zöld (Mátrix)",
-
             "orange": "Narancs (Cyberpunk)",
-
             "pink": "Rózsaszín (Synthwave)"
-
         }
-
     },
-
     "Alvin": {
-
         "title": "Alvin",
-
         "description": "BacklineIT AI Asszisztens",
-
         "welcome": "Szia! Alvin vagyok. Miben segíthetek ma?",
-
         "error": "Bocsánat, hiba történt. Kérlek próbáld újra később.",
-
         "placeholder": "Írj egy üzenetet..."
-
     },
-
     "Newsletter": {
-
         "title": "Feliratkozás",
-
         "description": "Iratkozz fel hírlevelünkre a legfrissebb IT hírekért és tippekért.",
-
         "placeholder": "pelda@email.hu",
-
         "button": "Feliratkozás",
-
         "loading": "Feliratkozás...",
-
         "success": "Sikeres feliratkozás! Köszönjük.",
-
         "error": "Hiba történt. Kérlek, próbáld újra később."
-
     },
-
     "LeadMagnet": {
-
         "title": "Kezdd el az automatizálást még ma!",
-
         "subtitle": "Töltsd le ingyenes \"Automation Starter Pack\" csomagunkat, ami 10 azonnal használható scriptet tartalmaz vállalkozásod felgyorsítására.",
-
         "items": {
-
             "scripts": "10 db Python & Node.js script",
-
             "guides": "Telepítési útmutatók magyarul",
-
             "videos": "Videós segédlet"
-
         },
-
         "success_title": "Sikeres feliratkozás!",
-
         "success_desc": "Hamarosan küldjük az anyagot a megadott e-mail címre.",
-
-        "new_subscription": "Ăšj feliratkozás",
-
+        "new_subscription": "Új feliratkozás",
         "form": {
-
             "name": "Név",
-
             "name_placeholder": "Kovács János",
-
             "email": "E-mail cím",
-
             "email_placeholder": "janos@ceg.hu",
-
             "submit": "Letöltés Ingyen",
-
             "processing": "Feldolgozás..."
-
         },
-
         "privacy": "Az adataidat bizalmasan kezeljük. Nincs spam."
-
     },
-
     "Feedback": {
-
         "title": "Mondja el véleményét",
-
         "description": "Segítsen nekünk fejlődni! Az AI asszisztensünk felveszi a visszajelzését és továbbítja a csapatunknak.",
-
         "reviews_title": "Mit mondanak rólunk?",
-
         "reviews_desc": "Valós ügyfélvélemények korábbi projektjeinkről.",
-
         "stats": {
-
             "happy_clients": "Elégedett ügyfél",
-
             "avg_rating": "Átlagos Értékelés",
-
             "total_reviews": "Összes vélemény"
-
         },
-
         "title_badge": "Visszajelzések",
-
         "reviews_empty_state": "Hamarosan itt olvashatja mások véleményét is!"
-
     },
-
     "AiFeedback": {
-
         "bot": "Bot",
-
         "you": "Ön",
-
         "status_online": "Online",
-
         "placeholder_text": "Írja ide az üzenetét...",
-
         "placeholder_email": "pelda@email.hu",
-
         "steps": {
-
             "1_intro": "Üdvözlöm! Én Alvin vagyok, a BacklineIT AI asszisztense. Szeretném kikérni a véleményét szolgáltatásainkról.",
-
             "2_ask_name": "Hogy szólíthatom?",
-
             "3_ask_email": "Köszönöm {name}! Milyen email címen érhetjük el, ha válaszolni szeretnénk?",
-
             "4_ask_feedback": "Rendben. Kérem, írja le részletesen a tapasztalatait, vagy hogy min javíthatnánk.",
-
             "5_thank_you": "Köszönöm szépen! Az AI rendszerünk éppen elemzi a visszajelzését. Hamarosan értesítjük a fejleményekről."
-
         }
-
     },
-
     "Breadcrumbs": {
-
         "home": "Kezdőlap",
-
         "blog": "Blog",
-
         "series": "Sorozatok",
-
         "kapcsolat": "Kapcsolat",
-
         "arak": "Árak",
-
         "velemeny": "Vélemény",
-
         "Velemeny": "Vélemény",
-
         "szolgaltatasok": "Szolgáltatások",
-
         "termekek": "Termékek",
-
         "referenciak": "Referenciák",
-
         "karrier": "Karrier",
-
         "adatvedelem": "Adatvédelem",
-
         "aszf": "ÁFSZ",
-
         "impresszum": "Impresszum",
-
         "lp": "Iparágak",
-
         "ecommerce": "E-kereskedelem",
-
         "saas": "SaaS & Startupok",
-
         "healthcare": "Egészségügy",
-
         "integraciok": "Integrációk & API",
-
         "webfejlesztes": "Webfejlesztés",
-
         "scriptek": "Egyedi Scriptek",
-
         "rendszeruzemeltetes": "Rendszerüzemeltetés",
-
         "biztonsag": "Kiberbiztonság",
-
         "login": "Bejelentkezés",
-
         "fiok": "Fiók",
-
         "admin": "Adminisztráció",
-
         "dashboard": "Vezérlőpult",
-
         "checkout": "Pénztár",
-
         "ajanlatkeres": "Ajánlatkérés",
-
         "payment": "Fizetés",
-
         "success": "Sikeres",
-
         "cancel": "Megszakítva",
-
         "fail": "Sikertelen",
-
         "jelentkezes": "Spontán jelentkezés"
-
     },
-
     "CommandMenu": {
-
         "search_label": "Keresés",
-
         "search_placeholder": "Keresés...",
-
         "no_results": "Nincs találat.",
-
         "groups": {
-
             "pages": "Oldalak",
-
             "services": "Szolgáltatások",
-
             "other": "Egyéb"
-
         },
-
         "items": {
-
             "home": "Főoldal",
-
             "services": "Szolgáltatások",
-
             "blog": "Blog",
-
             "contact": "Kapcsolat",
-
             "webdev": "Webfejlesztés",
-
             "scripts": "Egyedi Scriptek",
-
             "sysadmin": "Rendszerüzemeltetés",
-
             "security": "Kiberbiztonság",
-
             "products": "Termékek",
-
             "login": "Bejelentkezés"
-
         }
-
     },
-
     "MegaMenu": {
-
         "services": "Szolgáltatások",
-
         "products": "Termékek",
-
         "knowledge": "Tudástár",
-
         "contact": "Kapcsolat",
-
         "our_services": "Szolgáltatásaink",
-
         "services_desc": "Fedezd fel teljes kínálatunkat a fejlesztéstől az üzemeltetésig.",
-
         "all_products": "Összes termék",
-
         "all_products_desc": "Böngéssz a teljes szoftver és script kínálatunkban.",
-
         "scripts": "Scriptek",
-
         "scripts_desc": "FiveM és egyéb játékszerver scriptek.",
-
         "web": "Webes Megoldások",
-
         "web_desc": "Sablonok, pluginok és kész weboldalak.",
-
         "prices": "Árak",
-
         "prices_desc": "Átlátható csomagajánlatok és egyedi árazás.",
-
         "references": "Referenciák",
-
         "references_desc": "Korábbi munkáink és elégedett ügyfeleink.",
-
         "blog": "Blog",
-
         "blog_desc": "Szakmai cikkek, útmutatók és hírek.",
-
         "reviews": "Vélemények",
-
         "reviews_desc": "Mit mondanak rólunk az ügyfelek?",
-
         "nav_items": {
-
             "scripts": "Scriptek",
-
             "scripts_desc": "Egyedi fejlesztésű scriptek és bővítmények szerverekhez.",
-
             "webdev": "Webfejlesztés",
-
             "webdev_desc": "Modern, reszponzív weboldalak és webshopok készítése.",
-
             "sysadmin": "Rendszerüzemeltetés",
-
             "sysadmin_desc": "Szerverek karbantartása, monitorozása és biztonsági frissítése."
-
         }
-
     },
-
     "Cart": {
-
         "title": "Kosár tartalma",
-
         "empty": "A kosarad üres.",
-
         "continue_shopping": "Vásárlás folytatása",
-
         "total": "Összesen:",
-
         "vat_disclaimer": "Alanyi adómentes (AAM) - A feltüntetett árak a fizetendő végösszegek.",
-
         "checkout": "Tovább a pénztárhoz"
-
     },
-
     "LanguageSwitcher": {
-
         "label": "Nyelv váltása"
-
     },
-
     "TrustSignals": {
-
         "ssl_title": "SSL Biztonság",
-
         "ssl_desc": "Titkosított kapcsolat",
-
         "gdpr_title": "GDPR Kompatibilis",
-
         "gdpr_desc": "Adatvédelem garantálva",
-
         "experts_title": "Minősített Szakértők",
-
         "experts_desc": "Ellenőrzött minőség"
-
     },
-
     "ServicesPage": {
-
         "hero_badge": "Professzionális IT Megoldások",
-
         "hero_title": "Növeld vállalkozásod hatékonyságát",
-
         "hero_title_highlight": "modern technológiákkal",
-
         "hero_desc": "Legyen szó egyedi szoftverfejlesztésről, folyamatautomatizálásról vagy stabil üzemeltetésről, mi szakértő partnerként támogatunk a digitális transzformációban.",
-
         "pricing_badge": "Árazás és Csomagok",
-
         "pricing_example_label": "Példa:",
-
         "cta_quote": "Árajánlat kérése",
-
         "cta_services": "Szolgáltatásaink",
-
         "list_title": "Szolgáltatásaink",
-
         "list_desc": "Átfogó megoldások a tervezéstől a megvalósításig",
-
         "items": {
-
             "scripts": {
-
                 "title": "Egyedi Scriptek & Automatizáció",
-
                 "desc": "Spórolj órákat a munkafolyamataid automatizálásával. Python, Node.js, n8n workflow-ok.",
-
                 "features": [
-
                     "API integrációk",
-
                     "Workflow automatizáció",
-
                     "Adatszinkronizáció",
-
                     "Riport generálás"
-
                 ]
-
             },
-
             "webdev": {
-
                 "title": "Webfejlesztés & Webáruház",
-
                 "desc": "Modern, gyors és konverzió-fókuszált weboldalak és webshopok (WooCommerce, Next.js).",
-
                 "features": [
-
                     "Reszponzív design",
-
                     "E-commerce",
-
                     "SEO optimalizálás",
-
                     "Headless CMS"
-
                 ]
-
             },
-
             "devops": {
-
                 "title": "Rendszerüzemeltetés & DevOps",
-
                 "desc": "Stabil szerverháttér, CI/CD pipeline-ok, Docker konténerizáció és felhő megoldások.",
-
                 "features": [
-
                     "CI/CD pipeline",
-
                     "Docker & Kubernetes",
-
                     "Felhő infrastruktúra",
-
                     "Monitoring"
-
                 ]
-
             },
-
             "security": {
-
                 "title": "Biztonság & Audit",
-
                 "desc": "Weboldal biztonsági átvilágítás, sérülékenység vizsgálat és védelem beállítása.",
-
                 "features": [
-
                     "Biztonsági audit",
-
                     "Penetration testing",
-
                     "WAF beállítás",
-
                     "GDPR compliance"
-
                 ]
-
             }
-
         },
-
         "item_labels": {
-
             "whats_included": "Mit tartalmaz?",
-
             "details_and_order": "Részletek és Megrendelés",
-
             "pricing_from": "-tól",
-
             "pricing_custom": "Egyedi árazás",
-
             "pricing_from_format": "{price}-tól",
-
             "pricing_plus_format": "{price}+",
-
             "pricing_per_month": "/ hó",
-
             "starting_price": "Irányár"
-
         },
-
         "why_us_title": "Miért a BacklineIT?",
-
         "why_us_lead": "Nem csak kódolunk, hanem üzleti problémákat oldunk meg. Célunk, hogy a technológia ne teher, hanem versenyelőny legyen a vállalkozásod számára.",
-
         "reasons": {
-
             "tech": {
-
                 "title": "Modern Technológia",
-
                 "desc": "Next.js, React, Node.js, Python - a legmodernebb eszközökkel dolgozunk a gyors és skálázható eredményért."
-
             },
-
             "security": {
-
                 "title": "Biztonság és Stabilitás",
-
                 "desc": "Kiemelt figyelmet fordítunk az adatvédelemre és a rendszerek folyamatos rendelkezésre állására."
-
             },
-
             "scale": {
-
                 "title": "Skálázhatóság",
-
                 "desc": "Olyan rendszereket építünk, amelyek együtt nőnek a vállalkozásoddal, legyen szó 10 vagy 10.000 felhasználóról."
-
             }
-
         },
-
         "stats": {
-
             "deadline": "Határidőre",
-
             "monitoring": "Monitoring",
-
             "projects": "Sikeres Projekt",
-
             "rating": "ügyfél Értékelés"
-
         },
-
         "cta_bottom_title": "Készen állsz a közös munkára?",
-
         "cta_bottom_desc": "Foglalj egy ingyenes, 30 perces konzultációt, ahol átbeszéljük az elképzeléseidet és technikai tanácsokat adunk.",
-
         "cta_consultation": "Ingyenes konzultáció",
-
         "cta_packages": "Csomagajánlatok"
-
     },
-
     "PricingPage": {
-
         "hero_title": "Átlátható árazás,",
-
         "hero_title_highlight": "rejtett költségek nélkül",
-
         "hero_desc": "Válaszd ki a vállalkozásodhoz legmegfelelőbb csomagot, vagy állítsunk össze egyedi megoldást az igényeidhez.",
-
         "features": {
-
             "no_hidden_fees": "Nincs rejtett költség",
-
             "free_consultation": "Ingyenes konzultáció",
-
             "money_back": "Pénzvisszafizetési garancia"
-
         },
-
         "comparison_title": "Részletes összehasonlítás",
-
         "comparison_desc": "Nézd meg pontosan, mit tartalmaz az egyes csomagok",
-
         "table": {
-
             "service": "Szolgáltatás",
-
             "starter": "Starter",
-
             "pro": "Professional",
-
             "enterprise": "Enterprise",
-
             "rows": {
-
                 "webdev": "Weboldal fejlesztés",
-
                 "responsive": "Reszponzív design",
-
                 "seo": "SEO optimalizálás",
-
                 "shop": "Webáruház",
-
                 "automation": "Automatizációk",
-
                 "security": "Biztonsági audit",
-
                 "devops": "DevOps & CI/CD",
-
                 "hosting": "Hosting",
-
                 "support": "Support időtartam",
-
                 "monitoring": "24/7 Monitoring",
-
                 "engineer": "Dedikált mérnök"
-
             },
-
             "values": {
-
                 "basic": "Alap",
-
                 "advanced": "Haladó",
-
                 "full": "Teljes körű",
-
                 "months": "hónap",
-
                 "year_shared": "1 év shared",
-
                 "year_vps": "1 év VPS",
-
                 "dedicated": "Dedikált"
-
             }
-
         },
-
         "cta_title": "Készen állsz az indulásra?",
-
         "cta_desc": "Foglalj egy ingyenes konzultációt, és beszéljük át a projekted részleteit. Nincs kötelezettség, csak hasznos tanácsok.",
-
         "cta_consultation": "Ingyenes konzultáció",
-
         "cta_services": "Szolgáltatások áttekintése",
-
         "satisfaction_guarantee": "100% Elégedettségi Garancia",
-
         "secure_payment": "Biztonságos fizetés",
-
         "fast_response": "Gyors válaszidő",
-
         "flexible_payment": "Rugalmas fizetési opciók",
-
         "PricingTable": {
-
             "title": "Válaszd ki a neked megfelelő csomagot",
-
             "desc": "Átlátható árazás, rejtett költségek nélkül. Minden csomag tartalmazza a sikeres induláshoz szükséges eszközöket.",
-
             "packages": {
-
                 "starter": {
-
                     "name": "Starter",
-
                     "description": "Tökéletes kisvállalkozásoknak és induló projekteknek",
-
                     "price_note": "egyszeri díj",
-
                     "features": [
-
                         "Modern landing page vagy bemutatkozó weboldal",
-
                         "Reszponzív design (mobil, tablet, desktop)",
-
                         "SEO alapbeállítások",
-
                         "Kapcsolati űrlap",
-
                         "1 év ingyenes hosting (shared)",
-
                         "SSL tanúsítvány",
-
                         "3 hónap ingyenes support",
-
                         "Google Analytics integráció"
-
                     ],
-
                     "cta": "Hamarosan"
-
                 },
-
                 "pro": {
-
                     "name": "Professional",
-
                     "description": "Növekvő vállalkozásoknak komplex igényekkel",
-
                     "price_note": "egyszeri díj + 15.000 Ft/hó support",
-
                     "features": [
-
                         "Minden a Starter csomagból",
-
                         "Webáruház (WooCommerce/Shopify)",
-
                         "Egyedi funkciók és automatizációk",
-
                         "Biztonsági audit és keményítés",
-
                         "WAF és DDoS védelem beállítás",
-
                         "VPS hosting 1 évre",
-
                         "CI/CD pipeline (automatikus deploy)",
-
                         "6 hónap priority support",
-
                         "Havi teljesítmény riport",
-
                         "Biztonsági mentések (napi)"
-
                     ],
-
                     "cta": "Hamarosan"
-
                 },
-
                 "enterprise": {
-
                     "name": "Enterprise",
-
                     "description": "Nagyvállalatok és komplex projektekhez",
-
                     "price": "Egyedi",
-
                     "price_note": "árajánlat alapján",
-
                     "features": [
-
                         "Minden a Professional csomagból",
-
                         "Teljes körű egyedi fejlesztés",
-
                         "Headless CMS (Next.js + Strapi/Ghost)",
-
                         "Microservices architektúra",
-
                         "Kubernetes cluster menedzsment",
-
                         "Dedikált DevOps mérnök",
-
                         "24/7 monitoring és support",
-
                         "Penetration testing",
-
                         "GDPR compliance tanácsadás",
-
                         "Dedikált szerver infrastruktúra",
-
                         "SLA garancia (99.9% uptime)"
-
                     ],
-
                     "cta": "Kérj árajánlatot"
-
                 }
-
             },
-
             "popular_tag": "Legnépszerűbb",
-
             "bottom_text": "Nem találod a megfelelő csomagot? Állítsunk össze egyedi megoldást!",
-
             "bottom_cta": "Egyedi ajánlatot kérek"
-
         },
-
         "FAQ": {
-
             "title": "Gyakran Ismételt Kérdések",
-
             "desc": "Minden, amit tudnod kell az árazásról és a szolgáltatásokról",
-
             "items": {
-
                 "0": {
-
                     "question": "Mennyi idő alatt készül el a projekt?",
-
                     "answer": "A Starter csomag általában 2-3 hét, a Professional 4-6 hét, az Enterprise projektek pedig 8-12 hét alatt készülnek el. A pontos időkeretet a projekt komplexitása határozza meg, amit az első konzultáción egyeztetünk."
-
                 },
-
                 "1": {
-
                     "question": "Milyen fizetési lehetőségek vannak?",
-
                     "answer": "Elfogadunk banki átutalást, kártyás fizetést és részletfizetést is. A projekt díjának 50%-át előlegként kérjük, a maradék 50% pedig átadáskor esedékes. Enterprise ügyfeleinknek egyedi fizetési konstrukciókat is kínálunk."
-
                 },
-
                 "2": {
-
                     "question": "Mit tartalmaz a support csomag?",
-
                     "answer": "A support csomag tartalmazza a technikai segítségnyújtást, hibajavításokat, kisebb módosításokat, biztonsági frissítéseket és havi teljesítmény riportot. A Professional csomagnál 6 hónap, az Enterprise-nál 12 hónap support jár automatikusan."
-
                 },
-
                 "3": {
-
                     "question": "Saját domain és hosting szükséges?",
-
                     "answer": "Nem feltétlenül. A Starter csomagban 1 év shared hosting már benne van. Ha van saját hostingod, azt is használhatjuk. Segítünk a domain regisztrációban és a hosting kiválasztásában is."
-
                 },
-
                 "4": {
-
                     "question": "Tudok később bővíteni a csomagot?",
-
                     "answer": "Természetesen! Bármikor bővítheted a szolgáltatásokat. Ha például Starter csomaggal indulsz, később hozzáadhatsz webshop funkciót, automatizációkat vagy DevOps szolgáltatásokat."
-
                 },
-
                 "5": {
-
                     "question": "Mi történik, ha nem vagyok elégedett?",
-
                     "answer": "Minden projektnél van egy jóváhagyási folyamat. A design és a fejlesztés közben folyamatosan egyeztetünk, így biztosítjuk, hogy pontosan azt kapd, amit elképzeltél. Ha mégis probléma merülne fel, közösen megoldjuk."
-
                 },
-
                 "6": {
-
                     "question": "Milyen technológiákat használtok?",
-
                     "answer": "Modern, jövőálló technológiákat használunk: Next.js, React, Tailwind CSS, WordPress, WooCommerce, Node.js, Python, Docker, AWS/DigitalOcean. Mindig a projekthez legmegfelelőbb stack-et választjuk."
-
                 },
-
                 "7": {
-
                     "question": "Kaptok GDPR-kompatibilis megoldást?",
-
                     "answer": "Igen, minden weboldalunk GDPR-kompatibilis. Cookie consent banner, adatvédelmi nyilatkozat, adatkezelési tájékoztató mind-mind benne van. Enterprise csomagnál teljes GDPR audit is jár."
-
                 }
-
             },
-
             "bottom_text": "Nem találod a választ a kérdésedre?",
-
-            "contact_text": "Írj nekünk â†’"
-
+            "contact_text": "Írj nekünk →"
         }
-
     },
-
     "PriceCalculator": {
-
         "title": "Árkalkulátor",
-
         "description": "Becsüld meg havi rendszerüzemeltetési költségeidet.",
-
         "workstations_label": "Munkaállomások száma",
-
         "servers_label": "Szerverek száma",
-
         "sla_label": "Szolgáltatási Szint (SLA)",
-
         "sla_placeholder": "Válassz szintet",
-
         "sla_basic": "Basic (Hétköznap 9-17)",
-
         "sla_pro": "Pro (Hétköznap 8-20 + Hétvégi ügyelet)",
-
         "sla_enterprise": "Enterprise (24/7)",
-
         "package_includes": "A csomag tartalma:",
-
         "feature_support": "Korlátlan távoli segítségnyújtás",
-
         "feature_monitoring": "Proaktív rendszerfelügyelet",
-
         "feature_antivirus": "Vírusvédelem menedzselése",
-
         "feature_maintenance": "Havi rendszerességű karbantartás",
-
         "feature_availability": "Kiemelt rendelkezésre állás",
-
         "estimated_price": "Becsült havidíj",
-
         "per_month": "/ hó",
-
         "request_quote": "Ajánlatkérés",
-
         "unit_count": "db"
-
     },
-
     "LegalLayout": {
-
         "back_home": "Vissza a főoldalra",
-
         "documents": "Dokumentumok",
-
         "terms": "Általános Szerződési Feltételek",
-
         "privacy": "Adatvédelmi Tájékoztató",
-
         "imprint": "Impresszum",
-
         "help_title": "Segítségre van szükséged?",
-
         "help_desc": "Ha kérdésed van a dokumentumokkal kapcsolatban, keress minket bizalommal.",
-
         "contact_button": "Kapcsolatfelvétel",
-
         "last_updated": "Utolsó frissítés:",
-
         "print": "Nyomtatás"
-
     },
-
     "Affiliate": {
-
         "title": "Partner Program",
-
         "total_earnings": "Teljes Bevétel",
-
         "pending": "kifizetés alatt",
-
         "registered_referrals": "Regisztrált ajánlások",
-
         "your_referral_link": "A Te ajánlói limited",
-
         "recent_referrals": "Legutóbbi ajánlások",
-
         "referrals_description": "Felhasználók, akik a te limiteddel regisztráltak.",
-
         "table_date": "Dátum",
-
         "table_user": "Felhasználó",
-
         "table_status": "Státusz",
-
         "table_reward": "Jutalék",
-
         "no_referrals_yet": "Még nincs ajánlásod. Oszd meg a limitedet, hogy elkezdhess keresni!",
-
         "status_registered": "Regisztrált"
-
     },
-
     "Error": {
-
         "title": "Hoppá! Valami hiba történt",
-
         "description": "Váratlan hiba lépett fel a rendszerünkben. Már dolgozunk a megoldáson.",
-
         "retry": "Próbálja újra",
-
         "back_home": "Vissza a főoldalra"
-
     },
-
     "QuickView": {
-
         "add_to_cart": "Kosárba",
-
         "request_quote": "Ajánlatkérés",
-
         "details": "Részletek",
-
         "price_note": "bruttó ár",
-
         "quick_view": "Gyorsnézet",
-
         "product": "Termék",
-
         "service": "Szolgáltatás"
-
     },
-
     "Metadata": {
-
         "title": "BacklineIT | Hatékony Digitális Megoldások",
-
         "description": "Professzionális IT szolgáltatások, egyedi scriptek, webfejlesztés és automatizáció vállalkozásoknak. Kérjen ajánlatot és növelje hatékonyságát!"
-
     },
-
     "PromoBanner": {
-
-        "text": "đźš€ Indulási akció: Használd a START2026 kódot 20% kedvezményért!",
-
+        "text": "🚀 Indulási akció: Használd a START2026 kódot 20% kedvezményért!",
         "close": "Bezárás"
-
     },
-
     "SocialProof": {
-
         "purchased": "vásárolt:"
-
     },
-
     "CookieBanner": {
-
         "title": "Sütiket használunk đźŤŞ",
-
         "description": "Az oldal működéséhez és a felhasználói élmény javításához sütiket használunk.",
-
         "settings": "Beállítások",
-
         "decline": "Elutasít",
-
         "accept": "Elfogad",
-
         "settings_title": "Süti beállítások",
-
         "settings_description": "Itt testreszabhatod, hogy milyen sütiket engedélyezel.",
-
         "essential_title": "Szükséges sütik",
-
         "essential_description": "Az oldal működéséhez elengedhetetlenek.",
-
         "analytics_title": "Analitika",
-
         "analytics_description": "Segítenek megérteni, hogyan használják a látogatók az oldalt.",
-
         "marketing_title": "Marketing",
-
         "marketing_description": "Releváns hirdetések megjelenítéséhez.",
-
         "cancel": "Mégse",
-
         "save": "Mentés"
-
     },
-
     "CTA": {
-
         "satisfaction_guarantee": "100% Elégedettségi Garancia",
-
         "secure_payment": "Biztonságos fizetés",
-
         "fast_response": "Gyors válaszidő",
-
         "flexible_payment": "Rugalmas fizetési opciók",
-
         "free_consultation": "Ingyenes konzultáció",
-
         "free_consultation_available": "Ingyenes konzultáció elérhető",
-
         "contact": "Kapcsolatfelvétel",
-
         "request_quote": "Kérj ajánlatot most",
-
         "view_prices": "Árak megtekintése",
-
         "select_package": "Csomag választása",
-
         "available_capacity": "Szabad Kapacitás",
-
         "project_slots": "projekt hely",
-
         "build_future": "Építsük együtt a jövőd",
-
         "next_success_story": "Te lehetsz a következő sikersztori",
-
         "dont_miss_competition": "Ne maradj le a digitális versenyben. Kérj ajánlatot még ma, és kezdjük el a közös munkát!",
-
         "work_together": "Dolgozzunk együtt!",
-
         "ready_to_level_up": "Készen állsz arra, hogy a következő szintre emeld vállalkozásodat?",
-
         "lets_discuss": "Vegyük fel a kapcsolatot és beszéljük meg, hogyan segíthetünk!",
-
         "partnership_for_success": "Partnerség a sikerért",
-
         "growing_together": "Együtt növekedünk",
-
         "guaranteed_quality": "Garantált minőség",
-
         "dedicated_team": "Dedikált csapat",
-
         "reliable_partner": "Megbízható partner",
-
         "personal_connection": "Személyes kapcsolat",
-
         "fast_reaction": "Gyors reakcióidő"
-
     },
-
     "Stats": {
-
         "successful_projects": "Sikeres Projekt",
-
         "satisfied_clients": "Elégedett ügyfél",
-
         "rating": "Értékelés",
-
         "years_experience": "Év tapasztalat",
-
         "satisfaction": "Elégedettség",
-
         "response_time": "Válaszidő",
-
         "ssl_security": "SSL Biztonság",
-
         "gdpr_compliant": "GDPR Kompatibilis",
-
         "no_hidden_costs": "Nincs Rejtett Költség"
-
     },
-
     "ProductDetail": {
-
         "detailed_description": "Részletes leírás",
-
         "features_list": "Funkciók listája",
-
         "product_info": "Termék információ",
-
         "secure_code": "Biztonságos kód",
-
         "regular_updates": "Rendszeres frissítések",
-
         "technical_support": "Technikai támogatás",
-
         "documentation": "Dokumentáció"
-
     },
-
     "SystemAdminPage": {
-
         "use_cases_title": "Mire használható?",
-
         "use_cases_badge": "Felhasználási területek",
-
         "pricing_title": "Áraink",
-
         "pricing_badge": "Csomagok",
-
         "basic": "Alap",
-
         "pro": "Pro",
-
         "enterprise": "Enterprise",
-
         "most_popular": "LEGNÉPSZERŰBB",
-
         "custom": "Egyedi",
-
         "response_time": "Reakcióidő",
-
         "per_month": "/hó",
-
         "consultation_cta": "Még nem biztos melyik csomag illik hozzád? Kérj egy ingyenes konzultációt!"
-
     },
-
     "CareerApplication": {
-
         "title": "Spontán jelentkezés",
-
         "subtitle": "Nem találtál megfelelő pozíciót? Semmi gond! Küldd el az önéletrajzodat, és értesítünk, amint nyílik hozzád illő lehetőség.",
-
         "join_us": "Csatlakozz hozzánk",
-
         "thank_you_title": "Köszönjük jelentkezésedet!",
-
         "thank_you_desc": "Megkaptuk az önéletrajzodat és hamarosan felvesszük veled a kapcsolatot, ha nyílik megfelelő pozíció.",
-
         "back_to_career": "Vissza a Karrier oldalra",
-
         "full_name": "Teljes név",
-
         "email": "Email cím",
-
         "phone": "Telefonszám",
-
         "linkedin": "LinkedIn profil",
-
         "areas_label": "Milyen területen dolgoznál szívesen?",
-
         "cv_upload": "Önéletrajz feltöltése",
-
         "cv_upload_hint": "Húzd ide a fájlt vagy kattints a feltöltéshez",
-
         "cv_formats": "PDF, DOC, DOCX (max. 5MB)",
-
         "motivation": "Motivációs levél / özenet",
-
         "motivation_placeholder": "Mesélj magadról, tapasztalataidról és arról, hogy miért szeretnél nálunk dolgozni...",
-
         "submit": "Jelentkezés elküldése",
-
         "privacy_note": "A jelentkezéssel elfogadod az",
-
         "privacy_policy": "Adatkezelési tájékoztatónkat",
-
         "gdpr_compliant": "GDPR kompatibilis",
-
         "confidential": "Bizalmas adatkezelés",
-
         "quick_response": "Gyors visszajelzés",
-
         "frontend": "Frontend fejlesztés",
-
         "backend": "Backend fejlesztés",
-
         "devops": "DevOps / Infrastruktúra",
-
         "design": "UI/UX Design",
-
         "pm": "Projekt menedzsment",
-
         "other": "Egyéb"
-
     },
-
     "ServiceTemplate": {
-
         "premium_service": "PRÉMIUM SZOLGÁLTATÁS",
-
         "get_quote": "Kérj árajánlatot",
-
         "view_references": "Referenciák",
-
         "request_appointment": "Időpont kérés",
-
         "why_need_this": "Miért van erre szükséged?",
-
         "with_backlineit": "a BacklineIT-vel?",
-
         "whats_included": "Mit tartalmaz a csomag?",
-
         "technologies": "Technológiák:",
-
         "starting_price": "Irányár",
-
         "free_consultation_available": "Ingyenes konzultáció elérhető",
-
         "ready_to_start": "Készen állsz a kezdésre?",
-
         "let_us_build": "Építsük fel a jövőt!",
-
         "cta_description": "Kérj ingyenes konzultációt, és beszéljük át a projekted részleteit. Nincs kötelezettség, csak hasznos tanácsok.",
-
         "free_consultation": "Ingyenes konzultáció",
-
         "view_pricing": "Árak megtekintése",
-
         "no_hidden_costs": "Nincs rejtett költség",
-
         "satisfaction_guarantee": "100% elégedettségi garancia",
-
         "fast_response": "Válasz 24 órán belül"
-
     },
-
     "Services": {
-
         "SysAdmin": {
-
             "title": "Rendszerüzemeltetés & DevOps",
-
             "description": "Stabil szerverháttér és automatizált folyamatok. Hogy te a fejlesztésre és az üzletre koncentrálhass, ne a szerverekre.",
-
             "hero_features": [
-
                 "CI/CD pipeline építés (GitHub Actions, GitLab CI)",
-
                 "Docker konténerizáció és Kubernetes",
-
                 "Felhő infrastruktúra (AWS, DigitalOcean, Hetzner)",
-
                 "Szerver monitoring és riasztás (Prometheus, Grafana)",
-
                 "Automatikus biztonsági mentések",
-
                 "Load balancing és skálázás",
-
                 "Log menedzsment (ELK Stack)",
-
                 "Infrastruktúra tervezés és optimalizálás"
-
             ],
-
             "hero_benefits": [
-
                 {
-
                     "title": "Stabilitás",
-
                     "description": "99.9%-os rendelkezésre állás és gyors hibaelhárítás. Megelőzzük a bajt, mielőtt bekövetkezne."
-
                 },
-
                 {
-
                     "title": "Gyorsabb fejlesztés",
-
                     "description": "Az automatizált deploy folyamatokkal a fejlesztők gyorsabban tudnak dolgozni, nem kell a szerverekkel bajlódniuk."
-
                 },
-
                 {
-
                     "title": "Költséghatékonyság",
-
                     "description": "Optimalizált infrastruktúrával és automatizált feladatokkal csökkentjük az üzemeltetési költségeket."
-
                 },
-
                 {
-
                     "title": "Biztonság",
-
                     "description": "Rendszeres biztonsági frissítések, mentések és monitoring a maximális adatvédelem érdekében."
-
                 }
-
             ],
-
             "use_cases_badge": "Felhasználási területek",
-
             "use_cases_title": "Mire használható?",
-
             "use_cases_desc": "Konkrét példák, ahol a DevOps megoldásaink értéket teremtenek",
-
             "use_cases_items": [
-
                 {
-
                     "title": "CI/CD Pipeline",
-
                     "description": "Automatizált tesztelés és élesítés minden kódmódosításnál.",
-
                     "example": "GitHub push -> Automatikus teszt futtatás -> Build -> Deploy éles szerverre leállás nélkül.",
-
                     "roi": "Gyorsabb fejlesztés, 0 hibás deploy"
-
                 },
-
                 {
-
                     "title": "Felhő Migráció",
-
                     "description": "Hagyományos szerverek költöztetése modern felhő infrastruktúrába.",
-
                     "example": "Régi VPS költöztetése AWS-be, auto-scaling beállítása a forgalmi csúcsok kezelésére.",
-
                     "roi": "Skálázhatóság, költséghatékonyság"
-
                 },
-
                 {
-
                     "title": "Szerver Monitoring",
-
                     "description": "24/7 felügyelet és azonnali riasztás hiba esetén.",
-
                     "example": "CPU, RAM, Tárhely figyelése. Ha a válaszidő megnő, vagy leáll a szolgáltatás, SMS riasztás.",
-
                     "roi": "99.9% rendelkezésre állás"
-
                 },
-
                 {
-
                     "title": "Biztonsági Mentés",
-
                     "description": "Automatizált, titkosított mentések külső helyszínre.",
-
                     "example": "Napi adatbázis és fájl mentés S3-ba, 30 napos visszakereshetőséggel. Havi visszaállítás teszt.",
-
                     "roi": "Adatvesztés elleni védelem"
-
                 },
-
                 {
-
                     "title": "Load Balancing",
-
                     "description": "Forgalom elosztása több szerver között a stabilitásért.",
-
                     "example": "Nginx load balancer beállítása 3 web szerver elé. Ha egy kiesik, a többi átveszi a terhelést.",
-
                     "roi": "Nincs leállás nagy forgalomnál sem"
-
                 },
-
                 {
-
                     "title": "Infrastruktúra Kódként (IaC)",
-
                     "description": "Szerverek és hálózatok kezelése kódként (Terraform, Ansible).",
-
                     "example": "Teljes környezet felhúzása egy parancssal. Reprodukálható, verziókezelt infrastruktúra.",
-
                     "roi": "Gyors környezet létrehozás, dokumentáltság"
-
                 }
-
             ],
-
             "pricing_badge": "Átlátható árazás",
-
             "pricing_title": "Áraink",
-
             "pricing_desc": "Válaszd ki a vállalkozásodhoz legjobban illő csomagot",
-
             "pricing_example_label": "Példa:",
-
             "pricing_reaction_time": "Reakcióidő",
-
             "pricing_select_plan": "Csomag választása",
-
             "pricing_contact_us": "Kapcsolatfelvétel",
-
             "pricing_help_text": "Nem tudod melyik csomag a megfelelő? Segítünk dönteni!",
-
             "pricing_consultation_cta": "Ingyenes konzultáció",
-
             "cost_title": "Mennyibe kerül?",
-
             "cost_desc": "Használja árkalkulátorunkat a várható költségek becsléséhez. A pontos árajánlathoz kérjük, vegye fel velünk a kapcsolatot.",
-
             "plans": {
-
                 "starter": {
-
                     "name": "Alap",
-
                     "desc": "Kisebb weboldalakhoz és alkalmazásokhoz",
-
                     "features": [
-
                         "Havi rendszerfrissítés",
-
                         "Rendelkezésre állás figyelés",
-
                         "Napi biztonsági mentés",
-
                         "1 óra hibaelhárítás / hó"
-
                     ]
-
                 },
-
                 "pro": {
-
                     "name": "Pro",
-
                     "desc": "özleti kritikus alkalmazásokhoz",
-
                     "badge": "LEGNÉPSZERŰBB",
-
                     "features": [
-
                         "Heti rendszerfrissítés",
-
                         "24/7 Monitoring és Riasztás",
-
                         "Valós idejű biztonsági mentés",
-
                         "4 óra hibaelhárítás / hó",
-
                         "CI/CD karbantartás"
-
                     ]
-
                 },
-
                 "enterprise": {
-
                     "name": "Enterprise",
-
                     "desc": "Nagy forgalmú rendszerekhez",
-
                     "price_label": "Egyedi",
-
                     "price_sub": "megállapodás szerint",
-
                     "features": [
-
                         "Dedikált DevOps mérnök",
-
                         "SLA garancia",
-
                         "High Availability tervezés",
-
                         "Korlátlan incidens kezelés"
-
                     ]
-
                 }
-
             }
-
         },
-
         "WebDev": {
-
             "title": "Webfejlesztés & Webáruház",
-
             "description": "Modern, gyors és konverzió-fókuszált weboldalak és webshopok. Nem csak szépek, de pénzt is termelnek.",
-
             "hero_features": [
-
                 "Egyedi weboldal tervezés és fejlesztés",
-
                 "WooCommerce / Shopify webáruház készítés",
-
                 "Headless CMS megoldások (Next.js + Strapi/Ghost)",
-
                 "Reszponzív, mobil-first design",
-
                 "SEO optimalizálás alapoktól",
-
                 "Gyors betöltési sebesség (Core Web Vitals)",
-
                 "E-commerce integráció (fizetés, szállítás)",
-
                 "Admin felület és tartalomkezelés"
-
             ],
-
             "hero_benefits": [
-
                 {
-
                     "title": "Magasabb konverzió",
-
                     "description": "A gyors és felhasználóbarát oldalak több látogatóból csinálnak vásárlót. ögyfeleink átlagosan 30-50% konverzió növekedést tapasztalnak."
-
                 },
-
                 {
-
                     "title": "Könnyű kezelhetőség",
-
                     "description": "Olyan admin felületet kapsz, amit te is könnyen tudsz szerkeszteni. Nincs szükség programozói tudásra a tartalom frissítéséhez."
-
                 },
-
                 {
-
                     "title": "Jövőálló technológia",
-
                     "description": "Modern stack-et használunk, ami évek múlva is megállja a helyét. Next.js, React, Tailwind CSS - a web jövője."
-
                 }
-
             ],
-
             "project_types_title": "Milyen típusú projekteket készítünk?",
-
             "project_types_desc": "Válaszd ki a vállalkozásodhoz legmegfelelőbb weboldal típust",
-
             "project_types_items": [
-
                 {
-
                     "title": "Landing Page",
-
                     "description": "Konverzió-fókuszált egyoldalas weboldal termékekhez vagy szolgáltatásokhoz",
-
                     "example": "Startup bemutatkozó oldal lead generálással",
-
                     "roi": "Átlagosan 3-5% konverziós ráta"
-
                 },
-
                 {
-
                     "title": "E-commerce / Webshop",
-
                     "description": "Teljes körű online áruház fizetési és raktárkezelési integrációval",
-
                     "example": "WooCommerce webshop 500+ termékkel, Stripe fizetéssel",
-
                     "roi": "Átlagosan 2-4% konverziós ráta"
-
                 },
-
                 {
-
                     "title": "SaaS Platform",
-
                     "description": "Szoftver-mint-szolgáltatás platform előfizetéses modellel",
-
                     "example": "Projektmenedzsment tool csapatoknak, havi előfizetéssel",
-
                     "roi": "Skálázható bevétel, alacsony működési költség"
-
                 },
-
                 {
-
                     "title": "Vállalati Weboldal",
-
                     "description": "Professzionális bemutatkozó oldal cégeknek, több aloldallal",
-
                     "example": "ügyvédi iroda weboldala szolgáltatásokkal, referenciákkal, blog-gal",
-
                     "roi": "Növeli a cég hitelességét és elérhetőségét"
-
                 },
-
                 {
-
                     "title": "Mobilalkalmazás",
-
                     "description": "Progressive Web App (PWA) vagy natív mobil alkalmazás",
-
                     "example": "Étterem rendelési app iOS és Android platformra",
-
                     "roi": "Jobb ügyfélélmény, push értesítések"
-
                 },
-
                 {
-
                     "title": "Egyedi Webalkalmazás",
-
                     "description": "Testreszabott funkciókkal rendelkező komplex webalkalmazás",
-
                     "example": "Belső CRM rendszer értékesítési folyamatok kezelésére",
-
                     "roi": "Hatékonyabb munkafolyamatok, adatvezérelt döntések"
-
                 }
-
             ],
-
             "pricing_title": "Árazási csomagok",
-
             "pricing_desc": "Minden projekt egyedi, de itt vannak az irányárak",
-
             "pricing_view_all": "Összes csomag megtekintése",
-
             "plans": [
-
                 {
-
                     "name": "Bemutatkozó",
-
                     "badge": "Landing Page",
-
                     "desc": "Egyoldalas vagy kisebb weboldalak",
-
                     "price": "150.000",
-
                     "sub": "egyszeri díj",
-
                     "features": [
-
                         "1-5 aloldal",
-
                         "Reszponzív design",
-
                         "Kapcsolati űrlap",
-
                         "SEO alapbeállítások",
-
                         "1 év hosting",
-
                         "3 hónap support",
-
                         "2-3 hét átfutási idő"
-
                     ],
-
                     "ideal": "Ideális: kisvállalkozások, freelancerek"
-
                 },
-
                 {
-
                     "name": "Webáruház",
-
                     "badge": "E-commerce",
-
                     "popular": "Legnépszerűbb",
-
                     "desc": "Teljes körű webshop megoldás",
-
                     "price": "350.000",
-
                     "sub": "egyszeri díj",
-
                     "features": [
-
                         "WooCommerce / Shopify",
-
                         "Fizetési integráció (Stripe, PayPal)",
-
                         "Termékkategóriák, szűrők",
-
                         "Kosár és checkout folyamat",
-
                         "Készletkezelés",
-
                         "SEO optimalizálás",
-
                         "6 hónap support",
-
                         "4-6 hét átfutási idő"
-
                     ],
-
                     "ideal": "Ideális: online kereskedők, termékértékesítők"
-
                 },
-
                 {
-
                     "name": "Egyedi",
-
                     "badge": "Custom",
-
                     "desc": "Komplex webalkalmazások",
-
                     "price": "600.000",
-
                     "sub": "egyedi árazás",
-
                     "features": [
-
                         "Headless CMS (Next.js)",
-
                         "Egyedi funkciók",
-
                         "User authentication",
-
                         "Dashboard és admin panel",
-
                         "API integráció",
-
                         "Teljes körű SEO",
-
                         "12 hónap support",
-
                         "8-12 hét átfutási idő"
-
                     ],
-
                     "ideal": "Ideális: SaaS startupok, nagyvállalatok"
-
                 }
-
             ],
-
             "portfolio_title": "Példa projektek",
-
             "portfolio_desc": "Nézd meg, milyen weboldalakat készítettünk már",
-
             "portfolio_conversion": "Konverzió:",
-
             "portfolio_revenue": "Havi forgalom:",
-
             "portfolio_traffic": "Organikus forgalom:",
-
             "portfolio_efficiency": "Hatékonyság növekedés:",
-
             "portfolio_active_users": "Aktív felhasználók:",
-
             "portfolio_daily_orders": "Napi rendelések:",
-
             "portfolio_items": [
-
                 {
-
                     "badge": "Landing Page",
-
                     "title": "Tech Startup Landing",
-
                     "desc": "SaaS termék bemutató oldal lead generálással"
-
                 },
-
                 {
-
                     "badge": "Webáruház",
-
                     "title": "Fashion Webshop",
-
                     "desc": "Ruházati webáruház 800+ termékkel"
-
                 },
-
                 {
-
                     "badge": "Vállalati",
-
                     "title": "ügyvédi Iroda",
-
                     "desc": "Professzionális bemutatkozó oldal blog-gal"
-
                 },
-
                 {
-
                     "badge": "SaaS",
-
                     "title": "Projektmenedzsment Tool",
-
                     "desc": "Csapatoknak készült feladatkezelő platform"
-
                 },
-
                 {
-
                     "badge": "PWA",
-
                     "title": "Étterem Rendelési App",
-
                     "desc": "Progressive Web App ételrendeléshez"
-
                 },
-
                 {
-
                     "badge": "Egyedi",
-
                     "title": "Belső CRM Rendszer",
-
                     "desc": "Értékesítési folyamatok kezelésére"
-
                 }
-
             ],
-
             "tech_title": "Technológiák, amiket használunk",
-
             "tech_desc": "Modern, jövőálló stack a legjobb teljesítményért"
-
         },
-
         "Scripts": {
-
             "title": "Egyedi Scriptek & Automatizáció",
-
             "description": "Automatizáld az unalmas, ismétlődő feladatokat. Spórolj időt és csökkentsd a hibalehetőségeket egyedi scriptekkel és workflow-kkal.",
-
             "hero_features": [
-
                 "n8n workflow tervezés és implementálás",
-
                 "Egyedi Python / Node.js scriptek",
-
                 "Adatbázis szinkronizáció",
-
                 "API integrációk (CRM, Számlázó, Webshop)",
-
                 "Időzített feladatok (Cron jobs)",
-
                 "Automatikus riport generálás",
-
                 "E-mail automatizáció",
-
                 "Webhook integráció"
-
             ],
-
             "hero_benefits": [
-
                 {
-
                     "title": "Időmegtakarítás",
-
                     "description": "Ami eddig órákig tartott, most másodpercek alatt fut le automatikusan. ögyfeleink átlagosan 20-30 óra/hó munkaidőt takarítanak meg."
-
                 },
-
                 {
-
                     "title": "Hibamentesség",
-
                     "description": "Az automatizáció nem fárad el és nem vét elgépelési hibákat. 95%-kal kevesebb emberi hiba."
-
                 },
-
                 {
-
                     "title": "Skálázhatóság",
-
                     "description": "A rendszereid képesek lesznek kezelni a növekvő forgalmat emberi beavatkozás nélkül."
-
                 }
-
             ],
-
             "use_cases_title": "Mire használhatod?",
-
             "use_cases_desc": "Valós példák arra, hogyan segíthetnek az automatizációk a vállalkozásodnak",
-
             "use_cases_items": [
-
                 {
-
                     "title": "E-mail automatizáció",
-
                     "description": "Automatikus e-mail küldés eseményekre, emlékeztetőkre, vagy marketing kampányokra.",
-
-                    "example": "Ăšj ügyfél regisztrációkor automatikus üdvözlő e-mail sorozat, majd heti hírlevél személyre szabott tartalommal.",
-
+                    "example": "Új ügyfél regisztrációkor automatikus üdvözlő e-mail sorozat, majd heti hírlevél személyre szabott tartalommal.",
                     "roi": "~15 óra/hó megtakarítás"
-
                 },
-
                 {
-
                     "title": "Adatszinkronizáció",
-
                     "description": "Különböző rendszerek közötti adatok automatikus szinkronizálása.",
-
                     "example": "WooCommerce rendelések automatikus átvezetése a számlázó rendszerbe és a CRM-be.",
-
                     "roi": "~20 óra/hó megtakarítás + 95% kevesebb hiba"
-
                 },
-
                 {
-
                     "title": "Riport generálás",
-
                     "description": "Automatikus riportok készítése és kiküldése megadott időközönként.",
-
                     "example": "Heti értékesítési riport automatikus generálása Excel-ben, grafikonokkal és kiküldés e-mailben.",
-
                     "roi": "~10 óra/hó megtakarítás"
-
                 },
-
                 {
-
                     "title": "Naptár integráció",
-
                     "description": "Automatikus időpontfoglalás, emlékeztetők és naptár szinkronizáció.",
-
                     "example": "ügyfél foglaláskor automatikus Google Calendar bejegyzés + SMS emlékeztető 24 órával előtte.",
-
                     "roi": "~8 óra/hó megtakarítás + jobb ügyfélélmény"
-
                 },
-
                 {
-
                     "title": "Weboldal monitoring",
-
                     "description": "Weboldal elérhetőség, teljesítmény és változások automatikus figyelése.",
-
                     "example": "Ă“ránkénti ellenőrzés, hogy a webshop elérhető-e. Leállás esetén azonnali értesítés SMS-ben és e-mailben.",
-
                     "roi": "99.9% uptime + gyors reagálás"
-
                 },
-
                 {
-
                     "title": "Adatfeldolgozás",
-
                     "description": "Nagy mennyiségű adat automatikus feldolgozása, tisztítása, átalakítása.",
-
                     "example": "Napi 1000+ termék ár és készlet frissítése beszállítói CSV alapján, automatikus feltöltés a webshopba.",
-
                     "roi": "~30 óra/hó megtakarítás"
-
                 }
-
             ],
-
             "pricing_title": "Árazási modellek",
-
             "pricing_desc": "Válaszd ki a projekted komplexitásának megfelelő árazást",
-
             "plans": {
-
                 "simple": {
-
                     "name": "Egyszerű",
-
                     "desc": "Kisebb automatizációk, 1-2 integrációval",
-
                     "price": "50.000",
-
                     "sub": "egyszeri díj",
-
                     "features": [
-
                         "1-2 API integráció",
-
                         "Egyszerű logika",
-
                         "Alapvető hibaellenőrzés",
-
                         "1 hónap support",
-
                         "Dokumentáció"
-
                     ],
-
                     "example": "Pl: E-mail küldés űrlap kitöltéskor"
-
                 },
-
                 "medium": {
-
                     "name": "Közepes",
-
                     "desc": "Komplex workflow-k, több integrációval",
-
                     "popular": "Legnépszerűbb",
-
                     "price": "120.000",
-
                     "sub": "egyszeri díj",
-
                     "features": [
-
                         "3-5 API integráció",
-
                         "Komplex üzleti logika",
-
                         "Fejlett hibaellenőrzés",
-
                         "Adatbázis műveletek",
-
                         "3 hónap support",
-
                         "Részletes dokumentáció"
-
                     ],
-
-                    "example": "Pl: Rendelés â†’ Számla â†’ CRM â†’ E-mail"
-
+                    "example": "Pl: Rendelés → Számla → CRM → E-mail"
                 },
-
                 "complex": {
-
                     "name": "Komplex",
-
                     "desc": "Nagyvállalati szintű automatizáció",
-
                     "price": "250.000",
-
                     "sub": "egyedi árazás",
-
                     "features": [
-
                         "6+ API integráció",
-
                         "Microservices architektúra",
-
                         "AI/ML integráció",
-
                         "Valós idejű feldolgozás",
-
                         "6 hónap support",
-
                         "Teljes dokumentáció + képzés"
-
                     ],
-
                     "example": "Pl: Teljes ügyfélkezelési rendszer"
-
                 }
-
             },
-
             "portfolio_title": "Példa projektek",
-
             "portfolio_desc": "Nézd meg, milyen automatizációkat készítettünk már",
-
             "portfolio_items": [
-
                 {
-
                     "title": "E-commerce automatizáció",
-
                     "desc": "Webshop + Számlázó + Raktár szinkronizáció",
-
-                    "content": "Automatikus rendelésfeldolgozás: új rendelés â†’ számla generálás (Billingo) â†’ készlet frissítés â†’ ügyfél értesítés e-mailben â†’ CRM bejegyzés.",
-
+                    "content": "Automatikus rendelésfeldolgozás: új rendelés → számla generálás (Billingo) → készlet frissítés → ügyfél értesítés e-mailben → CRM bejegyzés.",
                     "metric_label": "Megtakarítás:",
-
                     "metric_value": "~25 óra/hó"
-
                 },
-
                 {
-
                     "title": "Marketing automatizáció",
-
                     "desc": "Lead nurturing és követés",
-
-                    "content": "Ăšj lead â†’ üdvözlő e-mail â†’ 3 napos e-mail sorozat â†’ ha nem reagál, értesítés az értékesítőnek â†’ ha reagál, időpont foglalás link.",
-
+                    "content": "Új lead → üdvözlő e-mail → 3 napos e-mail sorozat → ha nem reagál, értesítés az értékesítőnek → ha reagál, időpont foglalás link.",
                     "metric_label": "Konverzió növekedés:",
-
                     "metric_value": "+35%"
-
                 },
-
                 {
-
                     "title": "Adatgyűjtés és riportolás",
-
                     "desc": "Automatikus heti riportok",
-
-                    "content": "Heti adatgyűjtés Google Analytics, Facebook Ads, Google Ads-ből â†’ Excel riport generálás grafikonokkal â†’ kiküldés e-mailben a vezetőségnek.",
-
+                    "content": "Heti adatgyűjtés Google Analytics, Facebook Ads, Google Ads-ből → Excel riport generálás grafikonokkal → kiküldés e-mailben a vezetőségnek.",
                     "metric_label": "Megtakarítás:",
-
                     "metric_value": "~12 óra/hó"
-
                 },
-
                 {
-
                     "title": "ügyfélszolgálat automatizáció",
-
                     "desc": "Ticket rendszer integráció",
-
-                    "content": "E-mail beérkezik â†’ automatikus ticket létrehozás â†’ kategorizálás AI-val â†’ hozzárendelés a megfelelő munkatárshoz â†’ automatikus válasz az ügyfélnek.",
-
+                    "content": "E-mail beérkezik → automatikus ticket létrehozás → kategorizálás AI-val → hozzárendelés a megfelelő munkatárshoz → automatikus válasz az ügyfélnek.",
                     "metric_label": "Válaszidő csökkenés:",
-
                     "metric_value": "-60%"
-
                 }
-
             ],
-
             "pricing_view_all": "Összes csomag megtekintése"
-
         },
-
         "Security": {
-
             "title": "Biztonság & Audit",
-
             "description": "Védd meg vállalkozásodat és ügyfeleid adatait. Professzionális biztonsági átvilágítás és védelem kiépítése weboldalakhoz és szerverekhez.",
-
             "hero_features": [
-
                 "Weboldal biztonsági audit",
-
                 "Sérülékenység vizsgálat (Vulnerability Scanning)",
-
                 "Szerver hardening (biztonsági keményítés)",
-
                 "Tűzfal és WAF beállítás",
-
                 "Malware keresés és eltávolítás",
-
                 "GDPR technikai megfelelőség",
-
                 "SSL/TLS konfiguráció ellenőrzés",
-
                 "Biztonsági mentési stratégia"
-
             ],
-
             "hero_benefits": [
-
                 {
-
                     "title": "Nyugalom",
-
                     "description": "Tudhatod, hogy a rendszereid védve vannak a leggyakoribb támadások ellen."
-
                 },
-
                 {
-
                     "title": "Bizalom",
-
                     "description": "Az ügyfeleid jobban bíznak egy biztonságos, auditált weboldalban."
-
                 },
-
                 {
-
                     "title": "Megtakarítás",
-
                     "description": "Egy sikeres támadás helyreállítása sokkal többe kerül, mint a megelőzés."
-
                 }
-
             ],
-
             "use_cases_title": "Szolgáltatásaink",
-
             "use_cases_desc": "Így tesszük biztonságosabbá a rendszereidet",
-
             "use_cases_items": [
-
                 {
-
                     "title": "Biztonsági Audit",
-
                     "description": "Meglévő rendszerek átvilágítása és sérülékenységek feltárása.",
-
                     "example": "Weboldal, szerver és adatbázis beállítások ellenőrzése. Részletes jelentés a hibákról és javítási javaslatok.",
-
                     "roi": "Feltört oldal kockázatának minimalizálása"
-
                 },
-
                 {
-
                     "title": "Behatolás Tesztelés (Pentest)",
-
                     "description": "Szimulált támadások a rendszer gyenge pontjainak megtalálására.",
-
                     "example": "Etikus hacker támadás a webshop ellen, SQL Injection, XSS and egyéb hibák keresése.",
-
                     "roi": "Valós biztonsági szint felmérése"
-
                 },
-
                 {
-
                     "title": "Szerver Keményítés",
-
                     "description": "Szerverek beállítása a maximális biztonság érdekében.",
-
                     "example": "Felesleges portok lezárása, SSH védelem, Tűzfal konfigurálás, Fail2Ban telepítés.",
-
                     "roi": "Automatizált támadások kivédése"
-
                 },
-
                 {
-
                     "title": "GDPR Megfelelőség",
-
                     "description": "Adatvédelmi előírások technikai megvalósítása.",
-
                     "example": "Adatbázis titkosítás, naplózás beállítása, adattörlési folyamatok automatizálása.",
-
                     "roi": "Bírságok elkerülése"
-
                 },
-
                 {
-
                     "title": "Malware Eltávolítás",
-
                     "description": "Feltört weboldalak megtisztítása és helyreállítása.",
-
                     "example": "Vírusos WordPress oldal tisztítása, hátsó kapuk (backdoor) keresése és lezárása.",
-
                     "roi": "özletmenet helyreállítása"
-
                 },
-
                 {
-
                     "title": "WAF Beállítás",
-
                     "description": "Web Application Firewall védelmi vonal kiépítése.",
-
                     "example": "Cloudflare vagy ModSecurity beállítása a rosszindulatú forgalom szűrésére.",
-
                     "roi": "DDoS és bot támadások elleni védelem"
-
                 }
-
             ],
-
             "pricing_title": "Audit Csomagok",
-
             "pricing_desc": "Egyszeri biztonsági átvilágítási csomagok",
-
             "plans": {
-
                 "base": {
-
                     "name": "Alap Audit",
-
                     "desc": "Kisebb weboldalak, blogok ellenőrzése",
-
                     "price": "80.000",
-
                     "sub": "egyszeri díj",
-
                     "features": [
-
                         "Automatizált sérülékenység vizsgálat",
-
                         "SSL/TLS ellenőrzés",
-
                         "Alapvető szerver beállítások",
-
                         "WordPress/CMS plugin ellenőrzés",
-
                         "Rövid összefoglaló jelentés"
-
                     ],
-
                     "duration_label": "Időtartam: 2-3 munkanap"
-
                 },
-
                 "detailed": {
-
                     "name": "Részletes Audit",
-
                     "badge": "Népszerű",
-
                     "desc": "Webshopok, üzleti oldalak átvilágítása",
-
                     "price": "180.000",
-
                     "sub": "egyszeri díj",
-
                     "features": [
-
                         "Minden az Alap csomagból",
-
                         "Manuális tesztelés (Pentest alapok)",
-
                         "Adatbázis jogosultságok ellenőrzése",
-
                         "Tűzfal szabályok vizsgálata",
-
                         "Részletes technikai jelentés",
-
                         "1 óra konzultáció a javításokról"
-
                     ],
-
                     "duration_label": "Időtartam: 1 hét"
-
                 },
-
                 "complex": {
-
                     "name": "Komplex Védelem",
-
                     "desc": "Egyedi rendszerek, nagy kockázat",
-
                     "price_label": "Egyedi",
-
                     "price_sub": "árajánlat alapján",
-
                     "features": [
-
                         "Teljes körű Penetration Testing",
-
                         "Forráskód elemzés",
-
                         "Social Engineering teszt",
-
                         "Védelmi rendszerek (WAF) kiépítése",
-
                         "Incidens kezelési terv készítése",
-
                         "Oktatás a munkatársaknak"
-
                     ],
-
                     "duration_label": "Időtartam: 2-4 hét"
-
                 }
-
             },
-
             "cta_request_audit": "Biztonsági audit kérése"
-
         },
-
         "Integrations": {
-
             "title": "Integrációk & API",
-
             "description": "Kössük össze rendszereidet! Automatizált adatmozgatás, egyedi API fejlesztés és rendszerintegráció a hatékonyabb működésért.",
-
             "hero_features": [
-
                 "Egyedi API fejlesztés (REST, GraphQL)",
-
                 "Webshop és ERP összekötés",
-
                 "CRM rendszer integrációk",
-
                 "Fizetési kapu implementáció (Stripe, SimplePay)",
-
                 "Adatmigráció és szinkronizáció",
-
                 "Legacy rendszerek modernizálása"
-
             ],
-
             "hero_benefits": [
-
                 {
-
                     "title": "Automatizált folyamatok",
-
                     "description": "Nincs több manuális adatbevitel. A rendszereid automatikusan kommunikálnak egymással."
-
                 },
-
                 {
-
                     "title": "Valós idejű adatok",
-
                     "description": "Minden rendszerben mindig az aktuális adatok látszanak, késleltetés nélkül."
-
                 },
-
                 {
-
                     "title": "Kevesebb hiba",
-
                     "description": "Az emberi hibák kiküszöbölése az automatizált adatátvitel révén."
-
                 },
-
                 {
-
                     "title": "Skálázhatóság",
-
                     "description": "Rendszereid képesek lesznek kezelni a növekvő forgalmat és adatmennyiséget."
-
                 }
-
             ],
-
             "scenarios_title": "Gyakori Integrációs Forgatókönyvek",
-
             "scenarios": [
-
                 {
-
                     "title": "Webshop â†” Számlázó",
-
                     "description": "Automatikus számlakiállítás rendeléskor. Összekötjük WooCommerce vagy Shopify boltodat a Számlázz.hu vagy Billingo fiókoddal."
-
                 },
-
                 {
-
                     "title": "CRM â†” Marketing",
-
                     "description": "ügyféladatok szinkronizálása a CRM rendszered (pl. HubSpot, Salesforce) és a hírlevélküldőd (pl. Mailchimp) között."
-
                 },
-
                 {
-
                     "title": "ERP â†” Készletkezelő",
-
                     "description": "Valós idejű készletfrissítés minden értékesítési csatornán. Ha eladsz valamit a boltban, a webshopon is frissül a készlet."
-
                 }
-
             ],
-
             "pricing_label": "Egyedi árazás"
-
         }
-
     }
-
 }

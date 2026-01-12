@@ -11,7 +11,7 @@ type Review = {
     name: string
     content: string
     rating: number
-    createdAt: Date
+    createdAt: string | Date
 }
 
 export function ReviewSection({ reviews }: { reviews: Review[] }) {
