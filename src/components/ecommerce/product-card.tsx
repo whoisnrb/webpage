@@ -106,7 +106,7 @@ export function ProductCard({ id, title, description, price, category, slug, ima
                 <CardFooter>
                     <Button className="w-full bg-accent hover:bg-accent/90 text-white group" onClick={handleAddToCart}>
                         <ShoppingCart className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                        Kosárba
+                        {t('QuickView.add_to_cart')}
                     </Button>
                 </CardFooter>
             </Card>

@@ -34,221 +34,67 @@
 
 ### 🎨 **P1 - Magas Prioritás (KÉSZ)**
 
-#### 1. Színek és Kontrasztok Javítása ✅
-**Probléma:** `text-white/40` túl halvány volt (40% opacity)
-**Megoldás:**
-```css
-.text-white\/40 {
-  color: rgba(255, 255, 255, 0.7) !important; /* 40% → 70% */
-}
+#### 1. Design System Javítások ✅
+- **Readability**: Text opacity 40% → 70%.
+- **Visibility**: Card background 2% → 5%.
+- **Transitions**: Egységes 500ms animációk.
+- **Mobile**: Touch targets növelése.
 
-.text-white\/70 {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.text-white\/50 {
-  color: rgba(255, 255, 255, 0.5);
-}
-```
-
-#### 2. Háttér Átlátszóság Javítása ✅
-**Probléma:** `bg-white/[0.02]` túl átlátszó, alig látszott
-**Megoldás:**
-```css
-.bg-white\/\[0\.02\] {
-  background-color: rgba(255, 255, 255, 0.05) !important; /* 2% → 5% */
-}
-
-.bg-white\/\[0\.03\] {
-  background-color: rgba(255, 255, 255, 0.05);
-}
-```
-
-#### 3. Transition Időzítések Egységesítése ✅
-```css
-.transition-all {
-  transition-duration: 500ms; /* Egységes 500ms */
-}
-
-.transition-colors {
-  transition-duration: 300ms; /* Gyorsabb hover effektekhez */
-}
-```
-
-#### 4. Hover States Javítása ✅
-```css
-.hover\:bg-white\/\[0\.1\]:hover {
-  background-color: rgba(255, 255, 255, 0.08); /* Jobb láthatóság */
-}
-```
-
-#### 5. Mobile Touch Targets ✅
-```css
-@media (max-width: 768px) {
-  button,
-  a[role="button"],
-  [role="button"] {
-    min-height: 44px; /* Apple HIG minimum */
-    min-width: 44px;
-  }
-}
-```
+#### 2. Services SEO Optimalizálás ✅
+- **Webfejlesztés**: `generateMetadata` implementálva (Server Component).
+- **Scriptek**: `generateMetadata` implementálva (Server Component).
+- Strukturális átalakítás: Client oldali logika kiszervezve külön komponensekbe.
 
 ---
 
 ### ♿ **P2 - Közepes Prioritás (KÉSZ)**
 
-#### 1. Accessibility - Focus States ✅
-```css
-*:focus-visible {
-  outline: 2px solid rgb(6 182 212); /* Primary color */
-  outline-offset: 2px;
-  border-radius: 0.25rem;
-}
-```
-
-#### 2. Reduced Motion Support ✅
-```css
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  html {
-    scroll-behavior: auto;
-  }
-}
-```
-
-#### 3. Loading States (Skeleton) ✅
-```css
-.skeleton {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-}
-```
-
-#### 4. Error States (Shake Animation) ✅
-```css
-.error-shake {
-  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-}
-```
-
-#### 5. Smooth Scroll ✅
-```css
-html {
-  scroll-behavior: smooth;
-}
-```
+#### 1. Accessibility & UX ✅
+- **Focus States**: WCAG 2.1 AA megfelelés.
+- **Reduced Motion**: Támogatás beépítve.
+- **Loading States**: Skeleton animáció.
+- **Error States**: Shake animáció.
 
 ---
 
-## 📊 HATÁS ÉS EREDMÉNYEK
+### 🔨 **P3 - Kiegészítő Feladatok (RÉSZBEN KÉSZ)**
 
-### Readability Improvements
-- **Text Contrast**: 40% → 70% opacity = **75% jobb olvashatóság**
-- **Card Visibility**: 2% → 5% opacity = **150% jobb láthatóság**
+#### 1. Empty States ✅
+- **Komponens**: Új `EmptyState` UI elem létrehozva.
+- **Integráció**: CRM (Lead Management) oldalra bekötve.
+- **Fordítások**: Magyar és Angol szövegek hozzáadva.
 
-### Accessibility Improvements
-- ✅ WCAG 2.1 AA megfelelés (focus states)
-- ✅ Reduced motion support (vestibular disorders)
-- ✅ Touch target minimum 44x44px (Apple HIG, Android Material)
+#### 2. Maradék SEO (Folyamatban)
+- [ ] Biztonság oldal metadata
+- [ ] Rendszerüzemeltetés oldal metadata
 
-### User Experience
-- ✅ Smooth scroll behavior
-- ✅ Consistent transition timings
-- ✅ Better hover feedback
-- ✅ Loading states (skeleton)
-- ✅ Error feedback (shake animation)
+#### 3. Performance (Tervezve)
+- [ ] Háttér optimalizálás
 
 ---
 
-## 🚧 KÖVETKEZŐ LÉPÉSEK (P3 - Alacsony Prioritás)
+## � FÁJL VÁLTOZÁSOK LISTÁJA
 
-### Még nem implementált feladatok:
+### Új Fájlok
+1. `src/components/ui/empty-state.tsx`
+2. `src/components/templates/service-pages/web-development.tsx`
+3. `src/components/templates/service-pages/scripts.tsx`
 
-1. **Empty States** (P3)
-   - Admin CRM üres állapot
-   - Termék lista üres állapot
-   - Illusztrációk hozzáadása
-
-2. **Performance Optimalizálás** (P3)
-   - Neural Network Background throttling mobilon
-   - Image lazy loading
-   - Code splitting optimization
-
-3. **SEO Audit** (P3)
-   - Meta descriptions ellenőrzése
-   - Open Graph tags minden oldalon
-   - Structured data (Schema.org)
-
-4. **A/B Testing Setup** (P3)
-   - Feature flags integráció
-   - Analytics events tracking
-   - Conversion tracking
+### Módosított Fájlok
+4. `src/app/[locale]/szolgaltatasok/webfejlesztes/page.tsx` (Refaktor + SEO)
+5. `src/app/[locale]/szolgaltatasok/scriptek/page.tsx` (Refaktor + SEO)
+6. `src/components/admin/crm/lead-management.tsx`
+7. `messages/hu.json` & `en.json`
+8. `src/app/[locale]/globals.css`
 
 ---
 
-## 📁 MÓDOSÍTOTT FÁJLOK
+## 🚀 KÖVETKEZŐ LÉPÉSEK
 
-### Árazás frissítések:
-1. `src/app/[locale]/szolgaltatasok/webfejlesztes/page.tsx`
-2. `src/app/[locale]/szolgaltatasok/scriptek/page.tsx`
-3. `src/app/[locale]/szolgaltatasok/biztonsag/page.tsx`
-4. `src/app/[locale]/szolgaltatasok/rendszeruzemeltetes/page.tsx`
-
-### Design System:
-5. `src/app/[locale]/globals.css` - **131 új sor hozzáadva**
-
-### Bug Fixes:
-6. `src/app/actions/crm.ts` - Duplikált status mező javítva
-
-### Dokumentáció:
-7. `WEBSITE_AUDIT_REPORT.md` - Teljes audit jelentés
-8. `P1-P3-IMPLEMENTATION-SUMMARY.md` - Ez a fájl
-
----
-
-## 🎯 COMMIT HISTORY
-
-```bash
-commit 8395bd7 - P1-P2 improvements: Update hero pricing, improve text readability, add accessibility features
-commit efe9abe - Update pricing to realistic 2026 market values and fix lint errors
-commit 93431bb - Refine service pages: unified background and pricing display fixes
-```
-
----
-
-## ✨ ÖSSZEGZÉS
-
-**Elkészült:**
-- ✅ P0 (Kritikus): 100% - Árak + Lint errors
-- ✅ P1 (Magas): 100% - UI/UX javítások
-- ✅ P2 (Közepes): 100% - Accessibility + Loading states
-- ⏳ P3 (Alacsony): 0% - Még nem kezdtük el
-
-**Következő lépés:**
-- Tesztelés lokálisan (`npm run dev`)
-- Ellenőrzés, hogy minden jól működik
-- Deploy Vercelre amikor készen állsz
-
-**Becsült fejlesztési idő:**
-- P0-P2: ~2 óra ✅ KÉSZ
-- P3: ~4-6 óra (opcionális)
-
----
+1. **Szerver Újraindítása**: A változtatások érvényesítéséhez állítsd le (`Ctrl+C`), majd indítsd újra az `npm run dev` parancsot.
+2. **Ellenőrzés**:
+   - Nézd meg a `/szolgaltatasok/webfejlesztes` oldalt (SEO cím a böngészőfülön).
+   - Nézd meg az `/admin/crm` oldalt (Ha nincs lead, látnod kell az új Empty State-et).
 
 **Készítette:** Antigravity AI  
-**Dátum:** 2026-01-11  
-**Verzió:** 1.0
+**Frissítve:** 2026-01-11 16:15

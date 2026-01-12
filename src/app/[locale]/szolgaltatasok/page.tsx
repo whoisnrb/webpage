@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Code2, Server, Shield, ShoppingCart, ArrowRight, CheckCircle2 } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { Badge } from "@/components/ui/badge"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { getTranslations } from "next-intl/server"
 import { PriceDisplay } from "@/components/price-display"
 import { ServicesHero } from "@/components/sections/services-hero"
@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function SzolgaltatasokPage() {
     const t = useTranslations('ServicesPage')
+    const locale = useLocale()
     const tCTA = useTranslations('CTA')
     const tStats = useTranslations('Stats')
 
@@ -116,8 +117,17 @@ export default function SzolgaltatasokPage() {
                                             <Badge variant="outline" className="text-primary border-primary/20">
                                                 {service.pricing > 0 ? (
                                                     <div className="flex items-center gap-1">
-                                                        <PriceDisplay amount={service.pricing} className="font-bold" />
-                                                        <span className="text-[10px] opacity-70">{t('item_labels.pricing_from')}</span>
+                                                        {locale === 'hu' ? (
+                                                            <>
+                                                                <PriceDisplay amount={service.pricing} className="font-bold" />
+                                                                <span className="text-[10px] opacity-70">{t('item_labels.pricing_from')}</span>
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <span className="text-[10px] opacity-70">{t('item_labels.pricing_from')}</span>
+                                                                <PriceDisplay amount={service.pricing} className="font-bold" />
+                                                            </>
+                                                        )}
                                                     </div>
                                                 ) : (
                                                     t('item_labels.pricing_custom')

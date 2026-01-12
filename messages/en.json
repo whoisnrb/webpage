@@ -483,7 +483,13 @@
     "Footer": {
         "description": "Professional IT services, scripts, and automation for businesses. Save time and money with our modern solutions.",
         "company": "Company",
-        "newsletter": "Newsletter"
+        "newsletter": "Newsletter",
+        "signals": {
+            "ssl": "SSL Security",
+            "gdpr": "GDPR Compliant",
+            "experts": "Certified Experts"
+        },
+        "rights": "© {year} BacklineIT. All rights reserved."
     },
     "Dashboard": {
         "title": "My Account",
@@ -574,10 +580,27 @@
     },
     "Blog": {
         "title": "Blog & Knowledge Base",
-        "subtitle": "News, tips, and professional articles from the world of IT, automation, and web development.",
+        "subtitle": "Professional articles, case studies, and practical tips from the world of digitalization.",
+        "hero_badge": "Knowledge Base",
+        "topics_title": "Our Topics",
+        "series_title": "Curated Series",
+        "recent_posts": "Latest Articles",
+        "chapters": "chapters",
+        "view_series": "View Series",
+        "no_posts": "Stay tuned for upcoming content...",
         "read_more": "Read more",
         "back": "Back to blog",
-        "back_to_blog": "Back to blog"
+        "back_to_blog": "Back to blog",
+        "categories": {
+            "automation": "Automation",
+            "automation_desc": "Discover how to replace manual processes with intelligent bots and workflows.",
+            "webdev": "Web Development",
+            "webdev_desc": "A repository of modern technologies (Next.js, React, Node.js) and coding best practices.",
+            "business": "Business Efficiency",
+            "business_desc": "Strategies and tools to free up more time for building your business.",
+            "security": "Security",
+            "security_desc": "How to protect your digital assets and customer data against the latest threats."
+        }
     },
     "Products": {
         "title": "Digital Marketplace",
@@ -593,7 +616,31 @@
         "no_products": "No products found in this category.",
         "not_found_title": "Can't find what you're looking for?",
         "not_found_desc": "Need a custom script or automation? Describe your idea, and we'll build it for you!",
-        "request_custom": "Request Custom Development"
+        "request_custom": "Request Custom Development",
+        "woocommerce-szamlazz-hu": {
+            "title": "WooCommerce Számlázz.hu Integration",
+            "description": "Automatic invoicing after every order. Handles advance invoices and cancellations too."
+        },
+        "n8n-lead-management": {
+            "title": "n8n Lead Management Workflow",
+            "description": "Complex workflow that validates, enriches, and enters incoming leads into CRM."
+        },
+        "python-web-scraper": {
+            "title": "Python Web Scraper Starter Kit",
+            "description": "Pre-written classes and functions for web scraping. Proxy handling, user-agent rotation."
+        },
+        "security-audit-checklist": {
+            "title": "Security Audit Checklist",
+            "description": "Detailed PDF and Excel sheet with 100+ checkpoints for website security auditing."
+        },
+        "nextjs-saas-boilerplate": {
+            "title": "Next.js SaaS Boilerplate",
+            "description": "Launch your own software service in days. Auth, Stripe, Dashboard pre-configured."
+        },
+        "it-maintenance-dashboard": {
+            "title": "IT Maintenance Dashboard",
+            "description": "Pre-made Excel dashboard for SMEs to track IT assets, servers, licenses and maintenance tasks."
+        }
     },
     "QuoteRequest": {
         "title": "Let's realize your idea!",

@@ -223,9 +223,12 @@ model ReferralReward {
 model BlogPost {
   id          String   @id @default(cuid())
   title       String
+  titleEn     String?
   slug        String   @unique
   excerpt     String
+  excerptEn   String?
   content     String   @db.Text
+  contentEn   String?  @db.Text
   coverImage  String?
   author      String   @default("BacklineIT Team")
   tags        String[]
@@ -303,8 +306,10 @@ model FeatureFlag {
 model BlogSeries {
   id          String     @id @default(cuid())
   title       String
+  titleEn     String?
   slug        String     @unique
   description String     @db.Text
+  descriptionEn String?  @db.Text
   coverImage  String?
   posts       BlogPost[]
   createdAt   DateTime   @default(now())

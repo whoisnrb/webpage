@@ -483,7 +483,13 @@
     "Footer": {
         "description": "Professzionális informatikai szolgáltatások, scriptek és automatizációk vállalkozások számára. Spórolj időt és pénzt modern megoldásainkkal.",
         "company": "Cég",
-        "newsletter": "Hírlevél"
+        "newsletter": "Hírlevél",
+        "signals": {
+            "ssl": "SSL Biztonság",
+            "gdpr": "GDPR Kompatibilis",
+            "experts": "Minősített Szakértők"
+        },
+        "rights": "© {year} BacklineIT. Minden jog fenntartva."
     },
     "Dashboard": {
         "title": "Fiókom",
@@ -574,10 +580,27 @@
     },
     "Blog": {
         "title": "Blog & Tudástár",
-        "subtitle": "Hírek, tippek és szakmai cikkek az IT, automatizáció és webfejlesztés világából.",
+        "subtitle": "Szakmai cikkek, esettanulmányok és praktikus tippek a digitalizáció világából.",
+        "hero_badge": "Tudásbázis",
+        "topics_title": "Témaköreink",
+        "series_title": "Tematikus Sorozatok",
+        "recent_posts": "Legfrissebb Bejegyzések",
+        "chapters": "fejezet",
+        "view_series": "Sorozat megtekintése",
+        "no_posts": "Hamarosan új tartalmakkal érkezünk...",
         "read_more": "Olvass tovább",
         "back": "Vissza a blogra",
-        "back_to_blog": "Vissza a blogra"
+        "back_to_blog": "Vissza a blogra",
+        "categories": {
+            "automation": "Automatizáció",
+            "automation_desc": "Ismerd meg, hogyan válthatod ki a manuális folyamatokat intelligens botokkal és workflow-kkal.",
+            "webdev": "Webfejlesztés",
+            "webdev_desc": "Modern technológiák (Next.js, React, Node.js) és a legjobb kódolási gyakorlatok tárháza.",
+            "business": "Üzleti Hatékonyság",
+            "business_desc": "Stratégiák és eszközök, amikkel több időt szabadíthatsz fel az üzletépítésre.",
+            "security": "Biztonság",
+            "security_desc": "Hogyan védd meg digitális értékeidet és ügyfeleid adatait a legújabb fenyegetések ellen."
+        }
     },
     "Products": {
         "title": "Digitális Piactér",
@@ -593,7 +616,31 @@
         "no_products": "Nem található termék ebben a kategóriában.",
         "not_found_title": "Nem találod amit keresel?",
         "not_found_desc": "Egyedi scriptre vagy automatizációra van szükséged? Írd meg az elképzelésedet, és elkészítjük neked!",
-        "request_custom": "Egyedi fejlesztés kérése"
+        "request_custom": "Egyedi fejlesztés kérése",
+        "woocommerce-szamlazz-hu": {
+            "title": "WooCommerce Számlázz.hu Integráció",
+            "description": "Automatikus számlakiállítás minden rendelés után. Kezeli az előlegszámlákat és a sztornókat is."
+        },
+        "n8n-lead-management": {
+            "title": "n8n Lead Management Workflow",
+            "description": "Komplex workflow, ami a beérkező leadeket validálja, gazdagítja és beírja a CRM-be."
+        },
+        "python-web-scraper": {
+            "title": "Python Web Scraper Starter Kit",
+            "description": "Előre megírt osztályok és függvények webes adatgyűjtéshez. Proxy kezelés, user-agent rotálás."
+        },
+        "security-audit-checklist": {
+            "title": "Biztonsági Audit Checklist",
+            "description": "Részletes PDF és Excel tábla 100+ ellenőrzési ponttal weboldalak biztonsági átvilágításához."
+        },
+        "nextjs-saas-boilerplate": {
+            "title": "Next.js SaaS Boilerplate",
+            "description": "Indítsd el a saját szoftver szolgáltatásodat napok alatt. Auth, Stripe, Dashboard előre beállítva."
+        },
+        "it-maintenance-dashboard": {
+            "title": "IT Karbantartási & Leltár Dashboard",
+            "description": "Előre elkészített Excel dashboard KKV-knak IT eszközök, szerverek, licencek és karbantartások nyomon követésére."
+        }
     },
     "QuoteRequest": {
         "title": "Valósítsuk meg az ötleted!",

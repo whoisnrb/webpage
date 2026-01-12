@@ -42,7 +42,7 @@ export default async function EditBlogPostPage({ params }: { params: Promise<{ i
                     <CardTitle>Szerkesztés</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <BlogPostForm initialData={postData} />
+                    <BlogPostForm initialData={postData as any} />
                 </CardContent>
             </Card>
         </div>

@@ -30,16 +30,22 @@ export default function RolunkPage() {
     ]
 
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 -z-20" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(255,255,255,0.03)_1px,_transparent_0)] bg-[length:32px_32px] -z-20" />
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10 animate-pulse" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[120px] -z-10 animate-pulse" style={{ animationDelay: '2s' }} />
+
             {/* Hero */}
-            <section className="bg-muted/30 py-16 md:py-24 border-b">
+            <section className="pt-24 pb-16 md:pt-32 md:pb-24">
                 <div className="container mx-auto px-4 text-center">
                     <FadeIn>
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
                             {t('hero_title')}<br />
-                            <span className="text-primary">{t('hero_title_highlight')}</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-violet-500">{t('hero_title_highlight')}</span>
                         </h1>
-                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                        <p className="text-xl text-muted-foreground/80 max-w-3xl mx-auto">
                             {t('hero_desc')}
                         </p>
                     </FadeIn>
@@ -53,48 +59,48 @@ export default function RolunkPage() {
                         <SlideUp>
                             <div>
                                 <h2 className="text-3xl font-bold mb-6">{t('mission_title')}</h2>
-                                <p className="text-lg text-muted-foreground mb-6">
+                                <p className="text-lg text-muted-foreground/80 mb-6">
                                     {t('mission_desc_1')}
                                 </p>
-                                <p className="text-lg text-muted-foreground">
+                                <p className="text-lg text-muted-foreground/80">
                                     {t('mission_desc_2')}
                                 </p>
                             </div>
                         </SlideUp>
                         <div className="grid grid-cols-2 gap-6">
                             <ScaleIn delay={0.1}>
-                                <Card className="bg-primary/5 border-none h-full">
+                                <Card className="bg-white/5 border-white/10 backdrop-blur-sm h-full hover:bg-white/10 transition-colors">
                                     <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
                                         <Target className="h-10 w-10 text-primary mb-4" />
                                         <h3 className="font-semibold mb-2">{t('values.results.title')}</h3>
-                                        <p className="text-sm text-muted-foreground">{t('values.results.desc')}</p>
+                                        <p className="text-sm text-muted-foreground/80">{t('values.results.desc')}</p>
                                     </CardContent>
                                 </Card>
                             </ScaleIn>
                             <ScaleIn delay={0.2}>
-                                <Card className="bg-primary/5 border-none h-full">
+                                <Card className="bg-white/5 border-white/10 backdrop-blur-sm h-full hover:bg-white/10 transition-colors">
                                     <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
                                         <Heart className="h-10 w-10 text-primary mb-4" />
                                         <h3 className="font-semibold mb-2">{t('values.client.title')}</h3>
-                                        <p className="text-sm text-muted-foreground">{t('values.client.desc')}</p>
+                                        <p className="text-sm text-muted-foreground/80">{t('values.client.desc')}</p>
                                     </CardContent>
                                 </Card>
                             </ScaleIn>
                             <ScaleIn delay={0.3}>
-                                <Card className="bg-primary/5 border-none h-full">
+                                <Card className="bg-white/5 border-white/10 backdrop-blur-sm h-full hover:bg-white/10 transition-colors">
                                     <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
                                         <Rocket className="h-10 w-10 text-primary mb-4" />
                                         <h3 className="font-semibold mb-2">{t('values.innovation.title')}</h3>
-                                        <p className="text-sm text-muted-foreground">{t('values.innovation.desc')}</p>
+                                        <p className="text-sm text-muted-foreground/80">{t('values.innovation.desc')}</p>
                                     </CardContent>
                                 </Card>
                             </ScaleIn>
                             <ScaleIn delay={0.4}>
-                                <Card className="bg-primary/5 border-none h-full">
+                                <Card className="bg-white/5 border-white/10 backdrop-blur-sm h-full hover:bg-white/10 transition-colors">
                                     <CardContent className="p-6 flex flex-col items-center text-center h-full justify-center">
                                         <Users className="h-10 w-10 text-primary mb-4" />
                                         <h3 className="font-semibold mb-2">{t('values.teamwork.title')}</h3>
-                                        <p className="text-sm text-muted-foreground">{t('values.teamwork.desc')}</p>
+                                        <p className="text-sm text-muted-foreground/80">{t('values.teamwork.desc')}</p>
                                     </CardContent>
                                 </Card>
                             </ScaleIn>
@@ -104,7 +110,7 @@ export default function RolunkPage() {
             </section>
 
             {/* Team */}
-            <section className="py-16 md:py-24 bg-muted/30">
+            <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4 text-center">
                     <SlideUp>
                         <h2 className="text-3xl font-bold mb-12">{t('team_title')}</h2>
@@ -112,13 +118,13 @@ export default function RolunkPage() {
                     <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                         {team.map((member, i) => (
                             <ScaleIn key={i} delay={i * 0.1}>
-                                <div className="bg-background rounded-xl p-6 border shadow-sm hover:shadow-md transition-shadow h-full flex flex-col items-center">
-                                    <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary">
+                                <div className="bg-white/5 border-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl hover:bg-white/10 transition-all h-full flex flex-col items-center group">
+                                    <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform">
                                         <member.icon className="h-10 w-10" />
                                     </div>
                                     <h3 className="font-semibold text-lg">{member.name}</h3>
                                     <p className="text-primary text-sm mb-4 font-medium">{member.role}</p>
-                                    <p className="text-muted-foreground text-sm">
+                                    <p className="text-muted-foreground/80 text-sm">
                                         {member.bio}
                                     </p>
                                 </div>
@@ -130,22 +136,12 @@ export default function RolunkPage() {
 
             {/* CTA Section - Premium Dark Design */}
             <section className="relative py-24 md:py-36 overflow-hidden">
-                {/* Dark gradient background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950" />
-
-                {/* Dot pattern */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(6,182,212,0.08)_1px,_transparent_0)] bg-[length:32px_32px]" />
-
-                {/* Animated glow orbs */}
-                <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
-
                 <div className="container relative z-10 mx-auto px-4">
                     <div className="max-w-4xl mx-auto">
                         {/* Holographic card */}
                         <div className="relative">
                             <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-violet-500 to-cyan-500 rounded-3xl opacity-40 blur-sm animate-gradient-x bg-[length:200%_auto]" />
-                            <div className="relative bg-slate-900/95 backdrop-blur-2xl rounded-3xl p-10 md:p-16 border border-white/5">
+                            <div className="relative bg-black/60 backdrop-blur-2xl rounded-3xl p-10 md:p-16 border border-white/5 shadow-2xl">
                                 {/* Top accent */}
                                 <div className="absolute top-0 left-10 right-10 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
 

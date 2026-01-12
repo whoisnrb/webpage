@@ -59,33 +59,42 @@ export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
                         className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
                     >
                         <AnimatePresence mode="popLayout">
-                            {filteredProducts.map((product) => (
-                                <motion.div
-                                    key={product.id}
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <ProductCard
-                                        id={product.id}
-                                        title={product.title}
-                                        description={product.description}
-                                        price={product.price}
-                                        category={product.category}
-                                        slug={product.slug}
-                                        image={product.image}
-                                        onQuickView={() => {
-                                            setQuickViewData({
-                                                ...product,
-                                                type: 'product'
-                                            })
-                                            setIsModalOpen(true)
-                                        }}
-                                    />
-                                </motion.div>
-                            ))}
+                            {filteredProducts.map((product) => {
+                                const titleKey = `${product.slug}.title`
+                                const descKey = `${product.slug}.description`
+                                const localizedTitle = t.has(titleKey) ? t(titleKey) : product.title
+                                const localizedDesc = t.has(descKey) ? t(descKey) : product.description
+
+                                return (
+                                    <motion.div
+                                        key={product.id}
+                                        layout
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        exit={{ opacity: 0, scale: 0.9 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <ProductCard
+                                            id={product.id}
+                                            title={localizedTitle}
+                                            description={localizedDesc}
+                                            price={product.price}
+                                            category={product.category}
+                                            slug={product.slug}
+                                            image={product.image}
+                                            onQuickView={() => {
+                                                setQuickViewData({
+                                                    ...product,
+                                                    title: localizedTitle,
+                                                    description: localizedDesc,
+                                                    type: 'product'
+                                                })
+                                                setIsModalOpen(true)
+                                            }}
+                                        />
+                                    </motion.div>
+                                )
+                            })}
                         </AnimatePresence>
                     </motion.div>
 
