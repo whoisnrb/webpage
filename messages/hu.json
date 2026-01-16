@@ -57,9 +57,9 @@
         "team_title": "Ismerd meg a csapatot",
         "team_members": {
             "peter": {
-                "name": "Kovács Péter",
+                "name": "Török Norbert",
                 "role": "Lead Developer & CEO",
-                "bio": "10+ év tapasztalat full-stack fejlesztésben. A tiszta kód és a skálázható architektúrák híve."
+                "bio": "Tapasztalat full-stack fejlesztésben. A tiszta kód és a skálázható architektúrák híve."
             },
             "anna": {
                 "name": "Nagy Anna",

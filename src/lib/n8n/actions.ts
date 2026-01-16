@@ -92,7 +92,7 @@ export async function processNewsletter(body: WebhookBody) {
     await sendEmail(
         email,
         'Sikeres feliratkozás! 🚀',
-        `Kedves Feliratkozó!<br><br>Köszönjük, hogy feliratkoztál hírlevelünkre. Hamarosan küldjük a legfrissebb IT tippeket.<br><br>Üdvözlettel,<br>IT Services Csapat`
+        `Kedves Feliratkozó!<br><br>Köszönjük, hogy feliratkoztál hírlevelünkre. Hamarosan küldjük a legfrissebb IT tippeket.<br><br>Üdvözlettel,<br>BacklineIT Csapata`
     );
 
     return { success: true };
@@ -117,7 +117,7 @@ export async function processBooking(body: WebhookBody) {
         await sendEmail(
             email,
             'Időpontfoglalás Visszaigazolása',
-            `Kedves Ügyfelünk!<br><br>Megkaptuk időpontfoglalási igényét (${date} ${time || ''}). Hamarosan felvesszük Önnel a kapcsolatot a véglegesítés miatt.<br><br>Üdvözlettel,<br>IT Services Csapat`
+            `Kedves Ügyfelünk!<br><br>Megkaptuk időpontfoglalási igényét (${date} ${time || ''}). Hamarosan felvesszük Önnel a kapcsolatot a véglegesítés miatt.<br><br>Üdvözlettel,<br>BacklineIT Csapata`
         );
     }
 
