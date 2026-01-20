@@ -22,6 +22,8 @@ import { PageTransition } from "@/components/ui/page-transition";
 import { SessionProvider } from "@/components/auth/session-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { SWRegistration } from "@/components/sw-registration";
+import Script from "next/script";
+import { RecaptchaProvider } from "@/components/recaptcha-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -110,6 +112,19 @@ export default async function RootLayout({
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
         )}
+        <Script
+          id="microsoft-clarity"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "v4j4gxnvth");
+            `,
+          }}
+        />
         <NextIntlClientProvider messages={messages}>
           <SessionProvider>
             <script
@@ -118,25 +133,27 @@ export default async function RootLayout({
             />
             <NeuralBackground />
             <ScrollProgress />
-            <CurrencyProvider>
-              <CartProvider>
-                <MaintenanceBanner />
-                <PromoBanner />
+            <RecaptchaProvider>
+              <CurrencyProvider>
+                <CartProvider>
+                  <MaintenanceBanner />
+                  <PromoBanner />
 
-                <Header />
-                <PageTransition>
-                  {children}
-                </PageTransition>
-                <Footer />
-                <CommandMenu />
-                <BackToTop />
-                <SocialProof />
-                <CookieBanner />
-                <ChatWidget />
-                <Analytics />
-                <Toaster position="bottom-right" theme="dark" />
-              </CartProvider>
-            </CurrencyProvider>
+                  <Header />
+                  <PageTransition>
+                    {children}
+                  </PageTransition>
+                  <Footer />
+                  <CommandMenu />
+                  <BackToTop />
+                  <SocialProof />
+                  <CookieBanner />
+                  <ChatWidget />
+                  <Analytics />
+                  <Toaster position="bottom-right" theme="dark" />
+                </CartProvider>
+              </CurrencyProvider>
+            </RecaptchaProvider>
           </SessionProvider>
         </NextIntlClientProvider>
       </body>
