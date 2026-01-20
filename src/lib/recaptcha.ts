@@ -1,6 +1,6 @@
 "use server";
 
-const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || "6LeU7lAsAAAAAFNrJ1JBjDoislgke8AW5bTtIuD-";
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY;
 
 interface RecaptchaVerifyResponse {
     success: boolean;
