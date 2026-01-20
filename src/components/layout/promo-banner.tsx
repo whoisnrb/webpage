@@ -12,7 +12,7 @@ export function PromoBanner() {
     if (!isVisible) return null
 
     return (
-        <div className="bg-primary px-4 py-3 text-white">
+        <div className="bg-primary px-4 py-3 text-white no-print">
             <div className="container mx-auto flex items-center justify-between text-sm font-medium">
                 <p className="text-center flex-1">
                     {t('text')}

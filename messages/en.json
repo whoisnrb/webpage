@@ -1122,8 +1122,8 @@
             "details_and_order": "Details and Order",
             "pricing_from": "from",
             "pricing_custom": "Custom pricing",
-            "pricing_from_format": "from {price}",
-            "pricing_plus_format": "{price}+",
+            "pricing_from_format": "from <price>_</price>",
+            "pricing_plus_format": "<price>_</price>+",
             "pricing_per_month": "/ mo",
             "starting_price": "Starting Price"
         },
