@@ -135,7 +135,7 @@ export default function RendszeruzemeltetesPage() {
                                     <div className="mb-12">
                                         <div className="text-6xl font-black text-white tracking-tighter">
                                             {tServices.rich('item_labels.pricing_from_format', {
-                                                price: () => <PriceDisplay amount={70000} />
+                                                price: () => <PriceDisplay amount={70000} className="text-white" />
                                             })}
                                         </div>
                                         <p className="text-white/20 font-black uppercase tracking-widest text-[10px] mt-4">{tServices("item_labels.pricing_per_month")}</p>
@@ -176,7 +176,7 @@ export default function RendszeruzemeltetesPage() {
                                     <div className="mb-12">
                                         <div className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-primary tracking-tighter">
                                             {tServices.rich('item_labels.pricing_from_format', {
-                                                price: () => <PriceDisplay amount={175000} />
+                                                price: () => <PriceDisplay amount={175000} className="text-inherit" />
                                             })}
                                         </div>
                                         <p className="text-white/20 font-black uppercase tracking-widest text-[10px] mt-4">{tServices("item_labels.pricing_per_month")}</p>

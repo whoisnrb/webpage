@@ -489,7 +489,7 @@
             "gdpr": "GDPR Compliant",
             "experts": "Certified Experts"
         },
-        "rights": "Â© {year} BacklineIT. All rights reserved."
+        "rights": "© {year} BacklineIT. All rights reserved."
     },
     "Dashboard": {
         "title": "My Account",
@@ -1380,7 +1380,7 @@
         "purchased": "purchased:"
     },
     "CookieBanner": {
-        "title": "We use cookies đźŤŞ",
+        "title": "We use cookies 🍪",
         "description": "We use cookies to ensure the site's functionality and to improve your user experience.",
         "settings": "Settings",
         "decline": "Decline",
@@ -2170,7 +2170,7 @@
             "scenarios_title": "Common Integration Scenarios",
             "scenarios": [
                 {
-                    "title": "Webshop â†” Billing",
+                    "title": "Webshop ↔ Billing",
                     "description": "Automatic invoice issuance upon ordering. We connect your WooCommerce or Shopify store with your Számlázz.hu or Billingo account."
                 },
                 {

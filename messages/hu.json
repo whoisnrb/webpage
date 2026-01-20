@@ -489,7 +489,7 @@
             "gdpr": "GDPR Kompatibilis",
             "experts": "Minősített Szakértők"
         },
-        "rights": "Â© {year} BacklineIT. Minden jog fenntartva."
+        "rights": "© {year} BacklineIT. Minden jog fenntartva."
     },
     "Dashboard": {
         "title": "Fiókom",
@@ -813,7 +813,7 @@
             "warranty_legal_title": "Kellékszavatosság",
             "warranty_legal_desc": "Az ügyfél a Szolgáltató hibás teljesítése esetén a Szolgáltatóval szemben kellékszavatossági igényt érvényesíthet a Polgári Törvénykönyv szabályai szerint.",
             "warranty_product_title": "Termékszavatosság",
-            "warranty_product_desc": "Ingó dolog (termék) hibája esetén az ügyfél â€“ választása szerint â€“ kellékszavatossági vagy termékszavatossági igényt érvényesíthet.",
+            "warranty_product_desc": "Ingó dolog (termék) hibája esetén az ügyfél €“ választása szerint €“ kellékszavatossági vagy termékszavatossági igényt érvényesíthet.",
             "guarantee_title": "Jótállás",
             "guarantee_desc": "Hibás teljesítés esetén a Szolgáltató jótállásra köteles, amennyiben azt jogszabály előírja vagy a Szolgáltató önként vállalta.",
             "ip_title": "8. Szellemi tulajdonjogok",
@@ -1375,7 +1375,7 @@
         "purchased": "vásárolt:"
     },
     "CookieBanner": {
-        "title": "Sütiket használunk đźŤŞ",
+        "title": "Sütiket használunk 🍪",
         "description": "Az oldal működéséhez és a felhasználói élmény javításához sütiket használunk.",
         "settings": "Beállítások",
         "decline": "Elutasít",
@@ -2165,11 +2165,11 @@
             "scenarios_title": "Gyakori Integrációs Forgatókönyvek",
             "scenarios": [
                 {
-                    "title": "Webshop â†” Számlázó",
+                    "title": "Webshop †” Számlázó",
                     "description": "Automatikus számlakiállítás rendeléskor. Összekötjük WooCommerce vagy Shopify boltodat a Számlázz.hu vagy Billingo fiókoddal."
                 },
                 {
-                    "title": "CRM â†” Marketing",
+                    "title": "CRM †” Marketing",
                     "description": "ügyféladatok szinkronizálása a CRM rendszered (pl. HubSpot, Salesforce) és a hírlevélküldőd (pl. Mailchimp) között."
                 },
                 {

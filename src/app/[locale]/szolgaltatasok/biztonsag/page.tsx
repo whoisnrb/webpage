@@ -175,10 +175,10 @@ export default function BiztonsagPage() {
                                                 <div className="text-6xl font-black text-white tracking-tighter">
                                                     {plan.priceText ? plan.priceText : plan.priceFrom ? (
                                                         tServices.rich('item_labels.pricing_from_format', {
-                                                            price: () => <PriceDisplay amount={plan.price!} />
+                                                            price: () => <PriceDisplay amount={plan.price!} className="text-white" />
                                                         })
                                                     ) : (
-                                                        <PriceDisplay amount={plan.price!} />
+                                                        <PriceDisplay amount={plan.price!} className="text-white" />
                                                     )}
                                                 </div>
                                             </div>
