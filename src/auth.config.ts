@@ -4,8 +4,9 @@ import type { NextAuthConfig } from "next-auth"
 import type { Provider } from "next-auth/providers"
 import { LoginSchema } from "@/schemas"
 
-const githubId = process.env.GITHUB_ID
-const githubSecret = process.env.GITHUB_SECRET
+// Support both naming conventions
+const githubId = process.env.GITHUB_CLIENT_ID || process.env.GITHUB_ID
+const githubSecret = process.env.GITHUB_CLIENT_SECRET || process.env.GITHUB_SECRET
 
 const providers: Provider[] = [
     Credentials({
