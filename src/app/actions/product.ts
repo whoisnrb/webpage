@@ -3,6 +3,12 @@
 import { prisma } from "@/lib/db"
 import { revalidatePath } from "next/cache"
 
+export type Variant = {
+    name: string
+    price: number
+    description: string
+}
+
 export type ProductDTO = {
     id: string
     title: string
@@ -13,20 +19,30 @@ export type ProductDTO = {
     slug: string
     image: string
     features: string[]
-    prices: {
-        personal: number
-        commercial: number
-        developer: number
-    }
+    prices: Variant[]
     updatedAt: Date
 }
 
 function mapProduct(p: any): ProductDTO {
+    const rawPrices = typeof p.prices === 'string' ? JSON.parse(p.prices) : p.prices
+    let prices: Variant[] = []
+
+    if (Array.isArray(rawPrices)) {
+        prices = rawPrices
+    } else {
+        // Migration for old object structure
+        prices = [
+            { name: 'Personal', price: rawPrices.personal || 0, description: '1 weboldalhoz' },
+            { name: 'Commercial', price: rawPrices.commercial || 0, description: '5 weboldalhoz + Priority Support' },
+            { name: 'Developer', price: rawPrices.developer || 0, description: 'Korlátlan weboldal + Forráskód' }
+        ]
+    }
+
     return {
         ...p,
         title: p.name, // Map DB name to DTO title
         features: typeof p.features === 'string' ? JSON.parse(p.features) : p.features,
-        prices: typeof p.prices === 'string' ? JSON.parse(p.prices) : p.prices
+        prices: prices
     }
 }
 

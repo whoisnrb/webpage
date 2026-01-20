@@ -81,7 +81,7 @@ export function Hero() {
                                     </GlowButton>
                                 </Link>
                                 <Button variant="ghost" size="lg" className="w-full sm:w-auto h-16 px-8 text-white/60 hover:text-white transition-all duration-500 hover:bg-white/5 border border-white/5 font-bold text-lg rounded-2xl group" asChild>
-                                    <Link href="/kapcsolat">
+                                    <Link href="/demo">
                                         {t('cta_secondary')}
                                         <ArrowRight className="ml-3 h-5 w-5 transition-transform duration-500 group-hover:translate-x-2 text-primary" />
                                     </Link>

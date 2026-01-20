@@ -988,7 +988,9 @@
         "success": "Success",
         "cancel": "Cancelled",
         "fail": "Failed",
-        "jelentkezes": "Open Application"
+        "jelentkezes": "Open Application",
+        "demo": "Free Consultation",
+        "rolunk": "About Us"
     },
     "CommandMenu": {
         "search_label": "Search",
@@ -1454,6 +1456,79 @@
         "response_time": "Response time",
         "per_month": "/mo",
         "consultation_cta": "Not sure which package is right for you? Request a free consultation!"
+    },
+    "DemoPage": {
+        "metadata": {
+            "title": "Free Consultation | BacklineIT",
+            "description": "Book a free, 30-minute consultation with our experts. We'll discuss your projects and provide technical advice.",
+            "keywords": "free consultation, demo appointment, BacklineIT consultation, IT consulting"
+        },
+        "hero": {
+            "badge": "Free and No Obligation",
+            "title_1": "Book a Free",
+            "title_2": "30 Minute Consultation",
+            "description": "Let's discuss your projects with our experts. We'll provide technical advice, solution recommendations, and help you find the best path for your digital transformation."
+        },
+        "benefits": {
+            "consultation": {
+                "title": "30 Minute Consultation",
+                "desc": "We discuss your projects and needs in detail"
+            },
+            "expert": {
+                "title": "Expert Advice",
+                "desc": "Our experienced developers help you find the best solution"
+            },
+            "fast": {
+                "title": "Fast Answers",
+                "desc": "We answer your technical questions immediately"
+            },
+            "no_obligation": {
+                "title": "No Obligation",
+                "desc": "Completely free and commits you to nothing"
+            },
+            "growth": {
+                "title": "Growth Suggestions",
+                "desc": "Concrete tips for your business's digital development"
+            }
+        },
+        "booking": {
+            "title": "Why book a demo?",
+            "desc": "During the consultation, you get not only answers but also concrete, actionable suggestions for developing your business.",
+            "confidential_title": "100% Confidential",
+            "confidential_desc": "All information you share with us is treated as strictly confidential. We do not pass it on to third parties and use it only for the purpose of the consultation.",
+            "form_title": "Choose an Appointment",
+            "form_desc": "Fill out the form below and we will contact you."
+        },
+        "faq": {
+            "title": "Frequently Asked Questions",
+            "desc": "Everything you need to know about the consultation",
+            "items": {
+                "0": {
+                    "question": "How long does the consultation take?",
+                    "answer": "The consultation takes about 30 minutes. This is enough time to understand your needs, discuss your projects, and answer your questions."
+                },
+                "1": {
+                    "question": "Is it really free?",
+                    "answer": "Yes, it is completely free and commits you to nothing. Our goal is to get to know each other and help you find the best solution for your needs."
+                },
+                "2": {
+                    "question": "What topics can we discuss?",
+                    "answer": "Anything IT-related: web development, automation, security audit, system administration, DevOps, custom scripts, integrations, etc."
+                },
+                "3": {
+                    "question": "Is it online or in-person?",
+                    "answer": "The consultation takes place online via Google Meet or Zoom, so you can join from anywhere."
+                },
+                "4": {
+                    "question": "What should I prepare?",
+                    "answer": "Nothing special! If you have a specific project or question, it's worth formulating it in advance, but we will lead the conversation and help you navigate."
+                },
+                "5": {
+                    "question": "When will I get feedback?",
+                    "answer": "We will contact you via email or phone within 24 hours of booking to agree on the exact time."
+                }
+            }
+        }
     },
     "CareerApplication": {
         "title": "Open Application",

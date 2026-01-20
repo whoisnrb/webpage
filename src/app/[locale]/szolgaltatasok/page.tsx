@@ -312,7 +312,7 @@ export default function SzolgaltatasokPage() {
                                     {/* CTA Buttons */}
                                     <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-16">
                                         {/* Primary - Glowing cyan button */}
-                                        <Link href="/kapcsolat">
+                                        <Link href="/demo">
                                             <Button size="lg" className="group relative h-16 px-12 text-lg font-bold overflow-hidden">
                                                 {/* Button glow */}
                                                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-cyan-400 transition-all duration-300 group-hover:scale-105" />

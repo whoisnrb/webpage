@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { ProductDTO, createProduct, updateProduct } from "@/app/actions/product"
+import { ProductDTO, createProduct, updateProduct, Variant } from "@/app/actions/product"
 import { useRouter } from "@/i18n/routing"
 import { toast } from "sonner"
+import { Plus, Trash } from "lucide-react"
 
 interface ProductFormProps {
     initialData?: ProductDTO
@@ -17,6 +18,14 @@ export function ProductForm({ initialData }: ProductFormProps) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [imagePreview, setImagePreview] = useState<string | null>(initialData?.image || null)
+
+    // Initialize variants: separate migration check handled in DTO mapping ensures we always have Variant[] in initialData.prices if it exists.
+    // If it's a new product, we provide a default empty variant.
+    const [variants, setVariants] = useState<Variant[]>(
+        initialData?.prices && initialData.prices.length > 0
+            ? initialData.prices
+            : [{ name: '', price: 0, description: '' }]
+    )
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
@@ -35,6 +44,24 @@ export function ProductForm({ initialData }: ProductFormProps) {
         }
     }
 
+    const addVariant = () => {
+        setVariants([...variants, { name: '', price: 0, description: '' }])
+    }
+
+    const removeVariant = (index: number) => {
+        if (variants.length === 1) {
+            toast.error("Legalább egy verziónak lennie kell!")
+            return
+        }
+        setVariants(variants.filter((_, i) => i !== index))
+    }
+
+    const updateVariant = (index: number, field: keyof Variant, value: string | number) => {
+        const newVariants = [...variants]
+        newVariants[index] = { ...newVariants[index], [field]: value }
+        setVariants(newVariants)
+    }
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
@@ -43,28 +70,26 @@ export function ProductForm({ initialData }: ProductFormProps) {
         const featuresText = formData.get("features") as string
         const features = featuresText.split("\n").filter(line => line.trim() !== "")
 
-        // Use the preview (Base64) as the image source if available, otherwise fallback to the input value (though input is hidden/read-only now)
-        // Actually, we should ensure the hidden input has the value.
-        // Let's just use the imagePreview state for the submission if it's a data URL, 
-        // or rely on the form field if we keep it synced.
-        // Better approach: We will have a hidden input for the actual string value that gets submitted.
-
         const imageValue = imagePreview || (formData.get("image") as string)
+
+        // Validate variants
+        const validVariants = variants.filter(v => v.name.trim() !== "")
+        if (validVariants.length === 0) {
+            toast.error("Legalább egy érvényes verzió (névvel) szükséges!")
+            setLoading(false)
+            return
+        }
 
         const data = {
             title: formData.get("title") as string,
             description: formData.get("description") as string,
             longDescription: formData.get("longDescription") as string,
-            price: parseInt(formData.get("price") as string),
+            price: parseInt(formData.get("price") as string), // Display price (base)
             category: formData.get("category") as string,
             slug: formData.get("slug") as string,
             image: imageValue,
             features: features,
-            prices: {
-                personal: parseInt(formData.get("price_personal") as string),
-                commercial: parseInt(formData.get("price_commercial") as string),
-                developer: parseInt(formData.get("price_developer") as string),
-            }
+            prices: validVariants as any // We treat our Variant[] as the 'prices' field in DB
         }
 
         try {
@@ -86,7 +111,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-8 max-w-2xl">
+        <form onSubmit={handleSubmit} className="space-y-8 max-w-4xl">
             <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
@@ -134,15 +159,6 @@ export function ProductForm({ initialData }: ProductFormProps) {
                                 onChange={handleImageChange}
                                 className="cursor-pointer"
                             />
-                            {/* Hidden input to store the actual value for FormData if needed, 
-                                but we are constructing 'data' object manually in handleSubmit so we don't strictly need it 
-                                if we use state. However, keeping the original input as hidden might be useful 
-                                if we want to support manual URL entry as fallback? 
-                                Let's keep it simple: File upload OR manual URL (if they really want).
-                                Actually, let's just make the original input hidden and controlled by state 
-                                to ensure it works with the form submission logic if we were relying solely on FormData.
-                                But since we construct 'data' manually, we can just use 'imagePreview'.
-                            */}
                         </div>
                         <p className="text-xs text-muted-foreground">
                             Javasolt méret: max 800KB. A kép közvetlenül az adatbázisban lesz tárolva.
@@ -160,28 +176,71 @@ export function ProductForm({ initialData }: ProductFormProps) {
                     />
                 </div>
 
-                <div className="border p-4 rounded-lg space-y-4">
-                    <h3 className="font-semibold">Árazás (HUF)</h3>
-                    <div className="grid grid-cols-2 gap-4">
+                <div className="border p-6 rounded-lg space-y-6 bg-card">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <h3 className="text-lg font-semibold">Csomagok / Verziók</h3>
+                            <p className="text-sm text-muted-foreground">Állítsd be a termék elérhető verzióit (pl. Alap, Pro, Agency)</p>
+                        </div>
                         <div className="space-y-2">
-                            <Label htmlFor="price">Alapár (Megjelenítéshez)</Label>
-                            <Input type="number" id="price" name="price" defaultValue={initialData?.price} required />
+                            <Label htmlFor="price">Alapár megjelenítéshez (HUF)</Label>
+                            <Input
+                                type="number"
+                                id="price"
+                                name="price"
+                                defaultValue={initialData?.price}
+                                required
+                                className="w-32"
+                            />
                         </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="price_personal">Personal</Label>
-                            <Input type="number" id="price_personal" name="price_personal" defaultValue={initialData?.prices.personal} required />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="price_commercial">Commercial</Label>
-                            <Input type="number" id="price_commercial" name="price_commercial" defaultValue={initialData?.prices.commercial} required />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="price_developer">Developer</Label>
-                            <Input type="number" id="price_developer" name="price_developer" defaultValue={initialData?.prices.developer} required />
-                        </div>
+
+                    <div className="space-y-4">
+                        {variants.map((variant, index) => (
+                            <div key={index} className="grid md:grid-cols-12 gap-4 items-start p-4 border rounded-md bg-muted/20 relative group">
+                                <div className="md:col-span-3 space-y-2">
+                                    <Label>Verzió neve</Label>
+                                    <Input
+                                        value={variant.name}
+                                        onChange={(e) => updateVariant(index, 'name', e.target.value)}
+                                        placeholder="pl. Pro License"
+                                        required
+                                    />
+                                </div>
+                                <div className="md:col-span-3 space-y-2">
+                                    <Label>Ár (HUF)</Label>
+                                    <Input
+                                        type="number"
+                                        value={variant.price}
+                                        onChange={(e) => updateVariant(index, 'price', parseInt(e.target.value) || 0)}
+                                        required
+                                    />
+                                </div>
+                                <div className="md:col-span-5 space-y-2">
+                                    <Label>Leírás / Tartalom</Label>
+                                    <Input
+                                        value={variant.description}
+                                        onChange={(e) => updateVariant(index, 'description', e.target.value)}
+                                        placeholder="pl. 5 weboldal, support..."
+                                    />
+                                </div>
+                                <div className="md:col-span-1 pt-8 flex justify-end">
+                                    <Button
+                                        type="button"
+                                        variant="destructive"
+                                        size="icon"
+                                        onClick={() => removeVariant(index)}
+                                    >
+                                        <Trash className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                            </div>
+                        ))}
                     </div>
+
+                    <Button type="button" variant="outline" onClick={addVariant} className="w-full">
+                        <Plus className="mr-2 h-4 w-4" /> Új verzió hozzáadása
+                    </Button>
                 </div>
             </div>
 

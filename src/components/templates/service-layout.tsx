@@ -58,7 +58,7 @@ export function ServiceLayout({
                                 </p>
                                 <div className="flex flex-wrap gap-6">
                                     <Button size="lg" className="h-16 px-10 text-xl font-black uppercase tracking-tight bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)] transition-all duration-500 hover:scale-[1.02] active:scale-95 group" asChild>
-                                        <Link href="/kapcsolat" className="flex items-center">
+                                        <Link href="/demo" className="flex items-center">
                                             {t("get_quote")}
                                             <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
                                         </Link>
@@ -229,7 +229,7 @@ export function ServiceLayout({
 
                             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
                                 <Button size="lg" className="h-20 px-14 text-2xl font-black uppercase tracking-tight bg-white text-slate-950 hover:bg-white/90 hover:scale-105 transition-all duration-500 rounded-2xl shadow-[0_20px_40px_-10px_rgba(255,255,255,0.4)]" asChild>
-                                    <Link href="/kapcsolat" className="flex items-center">
+                                    <Link href="/demo" className="flex items-center">
                                         {t("free_consultation")}
                                         <ArrowRight className="ml-4 h-8 w-8" />
                                     </Link>

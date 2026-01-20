@@ -193,7 +193,7 @@ export default function ArakPage() {
                             {/* CTA Buttons */}
                             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-16">
                                 {/* Primary - Gold gradient button */}
-                                <Link href="/kapcsolat">
+                                <Link href="/demo">
                                     <Button size="lg" className="group relative h-16 px-12 text-lg font-bold overflow-hidden border-0">
                                         <div className="absolute inset-0 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 animate-gradient-x bg-[length:200%_auto]" />
                                         <div className="absolute inset-0 bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-gradient-x bg-[length:200%_auto]" />

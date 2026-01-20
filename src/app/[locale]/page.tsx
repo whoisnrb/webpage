@@ -71,7 +71,7 @@ export default function Home() {
                                 </p>
 
                                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                                    <Link href="/kapcsolat" className="w-full sm:w-auto">
+                                    <Link href="/demo" className="w-full sm:w-auto">
                                         <Button size="lg" className="w-full h-16 px-10 text-xl font-black uppercase tracking-tight bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)] transition-all duration-500 hover:scale-105 active:scale-95 group/btn">
                                             {t('cta_consultation')}
                                             <ArrowRight className="ml-3 h-6 w-6 group-hover/btn:translate-x-2 transition-transform" />

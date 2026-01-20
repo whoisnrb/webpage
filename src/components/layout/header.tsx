@@ -78,7 +78,7 @@ export function Header() {
                             <Link href="/login">{t("client_portal")}</Link>
                         </Button>
                         <Button size="sm" className="bg-accent hover:bg-accent/90 text-white" asChild>
-                            <Link href="/kapcsolat">{t("free_consultation")}</Link>
+                            <Link href="/demo">{t("free_consultation")}</Link>
                         </Button>
                         <ThemeCustomizer />
                         <CurrencySwitcher />
@@ -136,7 +136,7 @@ export function Header() {
                                         <Link href="/login">{t("client_portal")}</Link>
                                     </Button>
                                     <Button className="w-full bg-accent hover:bg-accent/90 text-white" asChild>
-                                        <Link href="/kapcsolat">{t("free_consultation")}</Link>
+                                        <Link href="/demo">{t("free_consultation")}</Link>
                                     </Button>
                                 </div>
                             </div>

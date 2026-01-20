@@ -6,7 +6,7 @@ export interface CartItem {
     id: string
     name: string
     price: number
-    license: "personal" | "commercial" | "developer"
+    license: string
     quantity: number
     image?: string
 }

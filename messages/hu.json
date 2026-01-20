@@ -984,7 +984,9 @@
         "success": "Sikeres",
         "cancel": "Megszakítva",
         "fail": "Sikertelen",
-        "jelentkezes": "Spontán jelentkezés"
+        "jelentkezes": "Spontán jelentkezés",
+        "demo": "Ingyenes Konzultáció",
+        "rolunk": "Rólunk"
     },
     "CommandMenu": {
         "search_label": "Keresés",
@@ -1449,6 +1451,79 @@
         "response_time": "Reakcióidő",
         "per_month": "/hó",
         "consultation_cta": "Még nem biztos melyik csomag illik hozzád? Kérj egy ingyenes konzultációt!"
+    },
+    "DemoPage": {
+        "metadata": {
+            "title": "Ingyenes Konzultáció | BacklineIT",
+            "description": "Foglalj egy ingyenes, 30 perces konzultációt szakértőinkkel. Átbeszéljük projektjeidet és technikai tanácsokat adunk.",
+            "keywords": "ingyenes konzultáció, demó időpont, BacklineIT konzultáció, IT tanácsadás"
+        },
+        "hero": {
+            "badge": "Ingyenes és Nem Kötelez Semmiről",
+            "title_1": "Foglalj Ingyenes",
+            "title_2": "30 Perces Konzultációt",
+            "description": "Beszéljük át projektjeidet szakértőinkkel. Technikai tanácsokat adunk, megoldási javaslatokat kapsz és segítünk megtalálni a legjobb utat a digitális átalakulásodhoz."
+        },
+        "benefits": {
+            "consultation": {
+                "title": "30 Perces Konzultáció",
+                "desc": "Részletesen átbeszéljük a projektjeidet és igényeidet"
+            },
+            "expert": {
+                "title": "Szakértői Tanácsadás",
+                "desc": "Tapasztalt fejlesztőink segítenek megtalálni a legjobb megoldást"
+            },
+            "fast": {
+                "title": "Gyors Válaszok",
+                "desc": "Azonnal megválaszoljuk technikai kérdéseidet"
+            },
+            "no_obligation": {
+                "title": "Nincs Kötelezettség",
+                "desc": "Teljesen ingyenes és nem kötelez semmiféle vásárlásra"
+            },
+            "growth": {
+                "title": "Növekedési Javaslatok",
+                "desc": "Konkrét tippeket adunk a vállalkozásod digitális fejlesztéséhez"
+            }
+        },
+        "booking": {
+            "title": "Miért érdemes demót foglalnod?",
+            "desc": "A konzultáció során nem csak válaszokat kapsz, hanem konkrét, cselekvésre kész javaslatokat is a vállalkozásod fejlesztéséhez.",
+            "confidential_title": "100% Bizalmas",
+            "confidential_desc": "Minden információt amit megosztasz velünk szigorúan bizalmasan kezelünk. Nem adjuk tovább harmadik félnek és csak a konzultáció céljára használjuk.",
+            "form_title": "Válassz Időpontot",
+            "form_desc": "Töltsd ki az alábbi űrlapot és mi felvesszük veled a kapcsolatot."
+        },
+        "faq": {
+            "title": "Gyakran Ismételt Kérdések",
+            "desc": "Minden, amit tudnod kell a konzultációról",
+            "items": {
+                "0": {
+                    "question": "Mennyi ideig tart a konzultáció?",
+                    "answer": "A konzultáció körülbelül 30 percet vesz igénybe. Ez elég idő ahhoz, hogy megismerjük az igényeidet, átbeszéljük a projektjeidet és válaszoljunk a kérdéseidre."
+                },
+                "1": {
+                    "question": "Valóban ingyenes?",
+                    "answer": "Igen, teljesen ingyenes és nem kötelez semmiféle vásárlásra. Célunk, hogy megismerjük egymást és segítsünk megtalálni a legjobb megoldást az igényeidhez."
+                },
+                "2": {
+                    "question": "Milyen témákról beszélhetünk?",
+                    "answer": "Bármiről, ami IT-val kapcsolatos: webfejlesztés, automatizáció, biztonsági audit, rendszerüzemeltetés, DevOps, egyedi scriptek, integrációk stb."
+                },
+                "3": {
+                    "question": "Online vagy személyesen történik?",
+                    "answer": "A konzultáció online zajlik Google Meet vagy Zoom platformon keresztül, így bárhonnan csatlakozhatsz."
+                },
+                "4": {
+                    "question": "Mit kell előkészítenem?",
+                    "answer": "Semmi különöset! Ha van konkrét projekted vagy kérdésed, érdemes azt megfogalmazni előre, de mi vezetjük a beszélgetést és segítünk eligazodni."
+                },
+                "5": {
+                    "question": "Mikor kapok visszajelzést?",
+                    "answer": "A foglalást követően 24 órán belül felvesszük veled a kapcsolatot email-ben vagy telefonon a pontos időpont egyeztetéséhez."
+                }
+            }
+        }
     },
     "CareerApplication": {
         "title": "Spontán jelentkezés",

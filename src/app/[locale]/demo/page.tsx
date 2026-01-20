@@ -1,7 +1,8 @@
 import { BookingForm } from "@/components/booking-form"
 import { Card } from "@/components/ui/card"
 import { CheckCircle2, Calendar, MessageSquare, Zap, Shield, TrendingUp } from "lucide-react"
-import { Metadata } from "next"
+import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import {
     Accordion,
     AccordionContent,
@@ -9,68 +10,45 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 
-export const metadata: Metadata = {
-    title: "Ingyenes Konzultáció | BacklineIT",
-    description: "Foglalj egy ingyenes, 30 perces konzultációt szakértőinkkel. Átbeszéljük projektjeidet és technikai tanácsokat adunk.",
-    keywords: ["ingyenes konzultáció", "demó időpont", "BacklineIT konzultáció", "IT tanácsadás"]
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'DemoPage.metadata' });
+
+    return {
+        title: t('title'),
+        description: t('description'),
+        keywords: t('keywords').split(', ')
+    }
 }
 
-const benefits = [
-    {
-        icon: Calendar,
-        title: "30 Perces Konzultáció",
-        description: "Részletesen átbeszéljük a projektjeidet és igényeidet"
-    },
-    {
-        icon: MessageSquare,
-        title: "Szakértői Tanácsadás",
-        description: "Tapasztalt fejlesztőink segítenek megtalálni a legjobb megoldást"
-    },
-    {
-        icon: Zap,
-        title: "Gyors Válaszok",
-        description: "Azonnal megválaszoljuk technikai kérdéseidet"
-    },
-    {
-        icon: Shield,
-        title: "Nincs Kötelezettség",
-        description: "Teljesen ingyenes és nem kötelez semmiféle vásárlásra"
-    },
-    {
-        icon: TrendingUp,
-        title: "Növekedési Javaslatok",
-        description: "Konkrét tippeket adsz a vállalkozásod digitális fejlesztéséhez"
-    }
-]
-
-const faqs = [
-    {
-        question: "Mennyi ideig tart a konzultáció?",
-        answer: "A konzultáció körülbelül 30 percet vesz igénybe. Ez elég idő ahhoz, hogy megismerjük az igényeidet, átbeszéljük a projektjeidet és válaszoljunk a kérdéseidre."
-    },
-    {
-        question: "Valóban ingyenes?",
-        answer: "Igen, teljesen ingyenes és nem kötelez semmiféle vásárlásra. Célunk, hogy megismerjük egymást és segítsünk megtalálni a legjobb megoldást az igényeidhez."
-    },
-    {
-        question: "Milyen témákról beszélhetünk?",
-        answer: "Bármiről, ami IT-val kapcsolatos: webfejlesztés, automatizáció, biztonsági audit, rendszerüzemeltetés, DevOps, egyedi scriptek, integrációk stb."
-    },
-    {
-        question: "Online vagy személyesen történik?",
-        answer: "A konzultáció online zajlik Google Meet vagy Zoom platformon keresztül, így bárhonnan csatlakozhatsz."
-    },
-    {
-        question: "Mit kell előkészítenem?",
-        answer: "Semmi különöset! Ha van konkrét projekted vagy kérdésed, érdemes azt megfogalmazni előre, de mi vezetjük a beszélgetést és segítünk eligazodni."
-    },
-    {
-        question: "Mikor kapok visszajelzést?",
-        answer: "A foglalást követően 24 órán belül felvesszük veled a kapcsolatot email-ben vagy telefonon a pontos időpont egyeztetéséhez."
-    }
-]
-
 export default function DemoPage() {
+    const t = useTranslations('DemoPage')
+
+    const benefits = [
+        {
+            key: 'consultation',
+            icon: Calendar
+        },
+        {
+            key: 'expert',
+            icon: MessageSquare
+        },
+        {
+            key: 'fast',
+            icon: Zap
+        },
+        {
+            key: 'no_obligation',
+            icon: Shield
+        },
+        {
+            key: 'growth',
+            icon: TrendingUp
+        }
+    ]
+
+    const faqIndices = ['0', '1', '2', '3', '4', '5'];
+
     return (
         <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
@@ -79,17 +57,16 @@ export default function DemoPage() {
                 <div className="container relative mx-auto px-4 text-center">
                     <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium text-primary mb-6 bg-primary/10 backdrop-blur-sm border-primary/20">
                         <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse" />
-                        Ingyenes és Nem Kötelez Semmiről
+                        {t('hero.badge')}
                     </div>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 leading-tight">
-                        Foglalj Ingyenes <br className="hidden md:block" />
+                        {t('hero.title_1')} <br className="hidden md:block" />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-secondary">
-                            30 Perces Konzultációt
+                            {t('hero.title_2')}
                         </span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-                        Beszéljük át projektjeidet szakértőinkkel. Technikai tanácsokat adsz, megoldási javaslatokat
-                        kapsz és segítünk megtalálni a legjobb utat a digitális átalakulásodhoz.
+                        {t('hero.description')}
                     </p>
 
                     {/* Benefits Grid */}
@@ -101,8 +78,8 @@ export default function DemoPage() {
                                     <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 mx-auto">
                                         <Icon className="h-6 w-6 text-primary" />
                                     </div>
-                                    <h3 className="font-semibold text-lg mb-2">{benefit.title}</h3>
-                                    <p className="text-muted-foreground text-sm">{benefit.description}</p>
+                                    <h3 className="font-semibold text-lg mb-2">{t(`benefits.${benefit.key}.title`)}</h3>
+                                    <p className="text-muted-foreground text-sm">{t(`benefits.${benefit.key}.desc`)}</p>
                                 </Card>
                             )
                         })}
@@ -118,11 +95,10 @@ export default function DemoPage() {
                         <div className="space-y-8">
                             <div>
                                 <h2 className="text-3xl font-bold tracking-tight mb-4">
-                                    Miért érdemes demót foglalnod?
+                                    {t('booking.title')}
                                 </h2>
                                 <p className="text-muted-foreground text-lg">
-                                    A konzultáció során nem csak válaszokat kapsz, hanem konkrét,
-                                    cselekvésre kész javaslatokat is a vállalkozásod fejlesztéséhez.
+                                    {t('booking.desc')}
                                 </p>
                             </div>
 
@@ -135,8 +111,8 @@ export default function DemoPage() {
                                                 <Icon className="h-5 w-5 text-primary" />
                                             </div>
                                             <div>
-                                                <h3 className="font-semibold mb-1">{benefit.title}</h3>
-                                                <p className="text-muted-foreground text-sm">{benefit.description}</p>
+                                                <h3 className="font-semibold mb-1">{t(`benefits.${benefit.key}.title`)}</h3>
+                                                <p className="text-muted-foreground text-sm">{t(`benefits.${benefit.key}.desc`)}</p>
                                             </div>
                                         </div>
                                     )
@@ -146,11 +122,10 @@ export default function DemoPage() {
                             <div className="bg-muted/50 p-6 rounded-xl border">
                                 <div className="flex items-center gap-2 mb-3">
                                     <CheckCircle2 className="h-5 w-5 text-primary" />
-                                    <span className="font-semibold">100% Bizalmas</span>
+                                    <span className="font-semibold">{t('booking.confidential_title')}</span>
                                 </div>
                                 <p className="text-sm text-muted-foreground">
-                                    Minden információt amit megosztasz velünk szigorúan bizalmasan kezelünk.
-                                    Nem adjuk tovább harmadik félnek és csak a konzultáció céljára használjuk.
+                                    {t('booking.confidential_desc')}
                                 </p>
                             </div>
                         </div>
@@ -159,9 +134,9 @@ export default function DemoPage() {
                         <div className="lg:sticky lg:top-8">
                             <Card className="p-8 border-2 shadow-lg">
                                 <div className="mb-6">
-                                    <h3 className="text-2xl font-bold mb-2">Válassz Időpontot</h3>
+                                    <h3 className="text-2xl font-bold mb-2">{t('booking.form_title')}</h3>
                                     <p className="text-muted-foreground">
-                                        Töltsd ki az alábbi űrlapot és mi felvesszük veled a kapcsolatot.
+                                        {t('booking.form_desc')}
                                     </p>
                                 </div>
                                 <BookingForm />
@@ -177,25 +152,25 @@ export default function DemoPage() {
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-12">
                             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                                Gyakran Ismételt Kérdések
+                                {t('faq.title')}
                             </h2>
                             <p className="text-muted-foreground text-lg">
-                                Minden, amit tudnod kell a konzultációról
+                                {t('faq.desc')}
                             </p>
                         </div>
 
                         <Accordion type="single" collapsible className="space-y-4">
-                            {faqs.map((faq, index) => (
+                            {faqIndices.map((index) => (
                                 <AccordionItem
                                     key={index}
                                     value={`item-${index}`}
                                     className="bg-card border rounded-lg px-6"
                                 >
                                     <AccordionTrigger className="hover:no-underline text-left">
-                                        <span className="font-semibold">{faq.question}</span>
+                                        <span className="font-semibold">{t(`faq.items.${index}.question`)}</span>
                                     </AccordionTrigger>
                                     <AccordionContent className="text-muted-foreground">
-                                        {faq.answer}
+                                        {t(`faq.items.${index}.answer`)}
                                     </AccordionContent>
                                 </AccordionItem>
                             ))}
