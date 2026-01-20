@@ -30,7 +30,7 @@ export default function AszfPage() {
                     </div>
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">{tImprint("email")}:</dt>
-                        <dd className="font-medium inline md:block ml-2 md:ml-0">support@backlineit.hu</dd>
+                        <dd className="font-medium inline md:block ml-2 md:ml-0">hello@backlineit.hu</dd>
                     </div>
                 </dl>
             </div>

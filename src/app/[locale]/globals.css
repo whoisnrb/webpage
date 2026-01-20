@@ -236,3 +236,63 @@ html {
     transform: translate3d(4px, 0, 0);
   }
 }
+
+@media print {
+  /* Hide non-printable elements */
+  header, 
+  footer, 
+  nav, 
+  aside,
+  button,
+  [role="dialog"],
+  .fixed,
+  .sticky,
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset body and layout */
+  body, main {
+    background-color: white !important;
+    color: black !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Reset layout containers */
+  .container, 
+  .max-w-4xl, 
+  .max-w-6xl {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Improve typography for print */
+  h1 { font-size: 24pt !important; margin-bottom: 20px !important; color: black !important; page-break-after: avoid; }
+  h2 { font-size: 18pt !important; margin-top: 30px !important; margin-bottom: 15px !important; color: black !important; page-break-after: avoid; border-bottom: 1px solid #ddd; padding-bottom: 5px; }
+  h3 { font-size: 14pt !important; margin-top: 20px !important; margin-bottom: 10px !important; color: black !important; page-break-after: avoid; }
+  p, li { font-size: 11pt !important; widows: 3; orphans: 3; }
+  
+  /* Reset link styles */
+  a { text-decoration: none !important; color: black !important; }
+  a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+  
+  /* Reset background and borders */
+  .bg-muted, .bg-muted\/30, .bg-card, .border {
+    background: none !important;
+    border: none !important;
+  }
+  
+  /* Page breaks */
+  section, article { page-break-inside: avoid; }
+
+  /* Add print header/footer */
+  @page {
+    margin: 2cm;
+  }
+}

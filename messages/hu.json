@@ -322,7 +322,7 @@
         "right_title_1": "PRÉMIUM",
         "right_title_2": "MEGOLDÁSOK",
         "right_desc": "Azonnal bevethető scriptek, sablonok és szoftverek a gyors induláshoz.",
-        "right_cta": "Termékpaletta",
+        "right_cta": "Eszközpaletta",
         "middle_text": "OR",
         "stat_projects_label": "Sikeres Projekt",
         "stat_satisfaction_label": "ügyfél Elégedettség",
@@ -720,7 +720,7 @@
             "address": "Levelezési cím",
             "tax_number": "Adószám",
             "representative": "Képviselő",
-            "representative_name": "Kovács János ügyvezető",
+            "representative_name": "Török Norbert CEO",
             "hosting_provider": "Tárhelyszolgáltató",
             "customer_service": "ügyfélszolgálat és Elérhetőségek",
             "email": "Email (ügyfélszolgálat)",
@@ -737,7 +737,7 @@
             "title": "Adatvédelmi Tájékoztató",
             "lead": "Az BacklineIT Kft. elkötelezett az Ön személyes adatainak védelme mellett. Jelen tájékoztató célja, hogy világos és átlátható információt nyújtson arról, hogyan kezeljük adatait a GDPR (Általános Adatvédelmi Rendelet) előírásaival összhangban.",
             "controller_title": "1. Az Adatkezelő",
-            "controller_desc": "Az adatok kezelője az BacklineIT Kft. (székhely: 1138 Budapest, Váci út 123., email: info@itservices.hu). Cégünk felelős az Ön által megadott személyes adatok jogszerű, tisztességes és átlátható kezeléséért.",
+            "controller_desc": "Az adatok kezelője az BacklineIT Kft. (székhely: 1138 Budapest, Váci út 123., email: hello@backlineit.hu). Cégünk felelős az Ön által megadott személyes adatok jogszerű, tisztességes és átlátható kezeléséért.",
             "collected_title": "2. Milyen adatokat gyűjtünk?",
             "collected_desc": "A szolgáltatásaink igénybevétele során az alábbi adatokat kezelhetjük:",
             "collected_list": {
@@ -821,7 +821,7 @@
             "liability_title": "9. Felelősségkorlátozás",
             "liability_desc": "A Szolgáltató mindent megtesz a weboldal és a szolgáltatások zavartalan működése érdekében, de nem vállal felelősséget az internetes hálózat hibájából, technikai leállásokból vagy vis maior eseményekből eredő károkért.",
             "complaints_title": "10. Panaszkezelés",
-            "complaints_desc": "Az ügyfél a szolgáltatással kapcsolatos panaszait a support@backlineit.hu email címen jelezheti.",
+            "complaints_desc": "Az ügyfél a szolgáltatással kapcsolatos panaszait a hello@backlineit.hu email címen jelezheti.",
             "closing_title": "11. Záró rendelkezések",
             "closing_desc": "A jelen ÁSZF-ben nem szabályozott kérdésekben a magyar jogszabályok, különösen a Ptk. rendelkezései az irányadóak."
         }

@@ -53,7 +53,7 @@ export default function ImpresszumPage() {
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("email")}</dt>
                             <dd className="font-medium text-base">
-                                <a href="mailto:support@backlineit.hu" className="text-primary hover:underline">support@backlineit.hu</a>
+                                <a href="mailto:hello@backlineit.hu" className="text-primary hover:underline">hello@backlineit.hu</a>
                             </dd>
                         </div>
                         <div>
