@@ -952,6 +952,8 @@
     },
     "Breadcrumbs": {
         "home": "Home",
+        "Auth": "Authentication",
+        "New-Verification": "New Verification",
         "blog": "Blog",
         "series": "Series",
         "contact": "Contact",
@@ -988,6 +990,7 @@
         "success": "Success",
         "cancel": "Cancelled",
         "fail": "Failed",
+        "Instructions": "Payment Instructions",
         "jelentkezes": "Open Application",
         "demo": "Free Consultation",
         "rolunk": "About Us"

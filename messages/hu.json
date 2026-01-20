@@ -952,6 +952,8 @@
     },
     "Breadcrumbs": {
         "home": "Kezdőlap",
+        "Auth": "Hitelesítés",
+        "New-Verification": "Fiók megerősítése",
         "blog": "Blog",
         "series": "Sorozatok",
         "kapcsolat": "Kapcsolat",
@@ -984,6 +986,7 @@
         "success": "Sikeres",
         "cancel": "Megszakítva",
         "fail": "Sikertelen",
+        "Instructions": "Fizetési útmutató",
         "jelentkezes": "Spontán jelentkezés",
         "demo": "Ingyenes Konzultáció",
         "rolunk": "Rólunk"
