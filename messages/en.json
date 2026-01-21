@@ -57,7 +57,7 @@
         "team_title": "Meet the Team",
         "team_members": {
             "peter": {
-                "name": "Peter Kovacs",
+                "name": "Török Norbert",
                 "role": "Lead Developer & CEO",
                 "bio": "10+ years experience in full-stack development. Believer in clean code and scalable architectures."
             },
@@ -67,9 +67,14 @@
                 "bio": "Passionate about designing user-friendly and aesthetic interfaces. Pixel-perfect mindset."
             },
             "gabor": {
-                "name": "Gabor Szabo",
+                "name": "Szabó Gábor",
                 "role": "DevOps Engineer",
                 "bio": "Expert in CI/CD processes and cloud-based infrastructures. Automates everything possible."
+            },
+            "levente": {
+                "name": "Levente Roha",
+                "role": "Sales Manager",
+                "bio": "Outstanding experience in relationship management and business development. Guides our partners through their digital transformation journey."
             }
         },
         "cta_badge": "Partnership for success",

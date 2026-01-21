@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, Target, Heart, Rocket, Code, Database, Layout } from "lucide-react"
+import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { useTranslations } from "next-intl"
@@ -26,6 +26,12 @@ export default function RolunkPage() {
             role: t('team_members.gabor.role'),
             bio: t('team_members.gabor.bio'),
             icon: Database
+        },
+        {
+            name: t('team_members.levente.name'),
+            role: t('team_members.levente.role'),
+            bio: t('team_members.levente.bio'),
+            icon: TrendingUp
         }
     ]
 
@@ -115,7 +121,7 @@ export default function RolunkPage() {
                     <SlideUp>
                         <h2 className="text-3xl font-bold mb-12">{t('team_title')}</h2>
                     </SlideUp>
-                    <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
                         {team.map((member, i) => (
                             <ScaleIn key={i} delay={i * 0.1}>
                                 <div className="bg-white/5 border-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl hover:bg-white/10 transition-all h-full flex flex-col items-center group">

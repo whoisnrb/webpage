@@ -70,6 +70,11 @@
                 "name": "Szabó Gábor",
                 "role": "DevOps Engineer",
                 "bio": "A CI/CD folyamatok és a felhő alapú infrastruktúrák szakértője. Mindent automatizál, amit lehet."
+            },
+            "levente": {
+                "name": "Roha Levente",
+                "role": "Sales Manager",
+                "bio": "Kiemelkedő tapasztalat az ügyfélkapcsolatok kezelésében és az üzletfejlesztésben. Segít partnereinknek a digitális transzformáció útján."
             }
         },
         "cta_badge": "Partnerség a sikerért",
@@ -502,7 +507,7 @@
         "status_pending": "Függőben",
         "status_cancelled": "Megszakítva",
         "quantity": "{count} db",
-        "welcome": "ödvözöljük újra, {name}!",
+        "welcome": "Üdvözöljük újra, {name}!",
         "welcome_subtitle": "Itt áttekintheted a vásárlásaidat, kezelheted a licenceidet és segítséget kérhetsz a support csapattól.",
         "overview": "Áttekintés",
         "total_purchases": "Összes Vásárlás",

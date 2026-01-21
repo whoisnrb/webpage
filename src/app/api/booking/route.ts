@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { rateLimit } from "@/lib/rate-limit"
 import { headers } from "next/headers"
 import { processBooking } from "@/lib/n8n/actions"
+import { verifyRecaptcha } from "@/lib/recaptcha"
 
 export async function POST(request: Request) {
     try {
@@ -18,9 +19,28 @@ export async function POST(request: Request) {
         }
 
         const body = await request.json()
+        const { recaptchaToken, ...bookingData } = body
+
+        // Verify reCAPTCHA
+        if (recaptchaToken) {
+            const { success, score } = await verifyRecaptcha(recaptchaToken);
+            console.log(`reCAPTCHA verification result: success=${success}, score=${score}`);
+            if (!success) {
+                return NextResponse.json(
+                    { success: false, error: "reCAPTCHA verification failed. Please try again." },
+                    { status: 400 }
+                )
+            }
+        } else if (process.env.NODE_ENV === "production") {
+            // In production, token is required
+            return NextResponse.json(
+                { success: false, error: "reCAPTCHA token is missing." },
+                { status: 400 }
+            )
+        }
 
         // Directly call the internal processing logic
-        const result = await processBooking({ ...body, action: 'booking' })
+        const result = await processBooking({ ...bookingData, action: 'booking' })
 
         return NextResponse.json(result)
 

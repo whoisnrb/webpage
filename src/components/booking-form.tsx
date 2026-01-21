@@ -12,11 +12,12 @@ import { hu, enUS } from "date-fns/locale"
 import { Calendar as CalendarIcon, Loader2, CheckCircle2 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
-import { Turnstile } from "@/components/ui/turnstile"
+import { useRecaptcha } from "@/components/recaptcha-provider"
 import { useTranslations, useLocale } from "next-intl"
 
 export function BookingForm() {
     const t = useTranslations('Booking')
+    const { executeRecaptcha } = useRecaptcha()
     const locale = useLocale()
     const dateLocale = locale === 'hu' ? hu : enUS
 
@@ -29,7 +30,6 @@ export function BookingForm() {
         topic: "",
         time: "",
         message: "",
-        turnstileToken: ""
     })
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -46,13 +46,21 @@ export function BookingForm() {
         setStatus("loading")
 
         try {
+            console.log("Executing reCAPTCHA...")
+            const token = await executeRecaptcha("booking_form")
+
+            if (!token) {
+                throw new Error("reCAPTCHA failed")
+            }
+
             console.log("Sending request to /api/booking...")
             const response = await fetch("/api/booking", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     ...formData,
-                    date: date.toISOString()
+                    date: date.toISOString(),
+                    recaptchaToken: token
                 })
             })
 
@@ -65,7 +73,7 @@ export function BookingForm() {
             }
 
             setStatus("success")
-            setFormData({ name: "", email: "", topic: "", time: "", message: "", turnstileToken: "" })
+            setFormData({ name: "", email: "", topic: "", time: "", message: "" })
             setDate(undefined)
         } catch (error) {
             console.error("Submission error:", error)
@@ -211,7 +219,7 @@ export function BookingForm() {
                 </div>
             )}
 
-            <Turnstile onVerify={(token) => setFormData(prev => ({ ...prev, turnstileToken: token }))} />
+
 
             <Button type="submit" className="w-full" disabled={status === "loading"}>
                 {status === "loading" ? (
