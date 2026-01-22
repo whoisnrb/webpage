@@ -154,6 +154,15 @@
                 "challenge": "Az Apex Logistics nyomkövető rendszere gyakran leállt terhelés alatt, ami kritikus volt a szállítmányozás szempontjából. A kiesések jelentős anyagi kárt okoztak.",
                 "solution": "Több csomópontos Kubernetes klasztert építettünk ki automatikus skálázással és HAProxy load balancerrel. Prometheus és Grafana alapú monitoring rendszert telepítettünk a proaktív hibaelhárítás érdekében.",
                 "result": "A rendszer rendelkezésre állása elérte a 99.99%-ot. A terheléses időszakokban a rendszer automatikusan skálázódik, így nincs lassulás vagy leállás."
+            },
+            "infrastructure": {
+                "title": "KKV Infrastruktúra Modernizáció",
+                "client": "TechVenture Kft.",
+                "category": "IT Infrastruktúra",
+                "description": "Papír alapú folyamatokról biztonságos privát felhőre való átállás, teljes hálózati infrastruktúra átépítéssel.",
+                "challenge": "A TechVenture Kft. 15 fős csapata elavult, helyi szervereken dolgozott. A távelérés bizonytalan volt, az adatok mentése manuális, a hálózat szegmentálása nem létezett. A COVID alatt a home office lehetetlenné vált.",
+                "solution": "Proxmox alapú privát felhőt építettünk ki, WireGuard VPN-nel a biztonságos táveléréshez. VLAN-okkal szegmentáltuk a hálózatot (iroda, vendég, szerverek). Automatikus mentési stratégiát (3-2-1) vezettünk be, és 24/7 monitoring rendszert (Zabbix) telepítettünk.",
+                "result": "A csapat bárhonnan, biztonságosan tud dolgozni. Az adatvesztés kockázata nullára csökkent, a rendszer rendelkezésre állása 99.9%. A havi IT költség 30%-kal csökkent, miközben a teljesítmény duplájára nőtt."
             }
         }
     },
@@ -1702,7 +1711,63 @@
                         "Korlátlan incidens kezelés"
                     ]
                 }
-            }
+            },
+            "pillars_badge": "Teljes körű IT szolgáltatások",
+            "pillars_title": "Szolgáltatási Pilléreink",
+            "pillars_desc": "Informatikai rendszer- és hálózatüzemeltetői szakképesítéssel, az alábbi négy területen kínálunk professzionális megoldásokat",
+            "pillars": {
+                "virtualization": {
+                    "title": "Virtualizáció & Felhő (IaaS)",
+                    "desc": "Fizikai szerverek virtualizálása a költséghatékonyság és rugalmasság érdekében. Konténerizáció és erőforrás optimalizálás.",
+                    "features": [
+                        "Proxmox / VMware / Hyper-V telepítés",
+                        "Docker & Kubernetes környezetek",
+                        "Erőforrás optimalizálás és átvilágítás",
+                        "Private Cloud megoldások"
+                    ]
+                },
+                "network": {
+                    "title": "Professzionális Hálózat",
+                    "desc": "Biztonságos távoli elérés, hálózati szegmentálás és tűzfal menedzsment vállalati szinten.",
+                    "features": [
+                        "WireGuard / OpenVPN alapú VPN",
+                        "VLAN hálózati szegmentálás",
+                        "MikroTik / Cisco / pfSense tűzfal",
+                        "WiFi menedzsment (Ubiquiti UniFi)"
+                    ]
+                },
+                "servers": {
+                    "title": "Szerverüzemeltetés",
+                    "desc": "Linux és Windows szerverek telepítése, hardening, folyamatos frissítés és központi felhasználókezelés.",
+                    "features": [
+                        "Linux/Windows Server telepítés",
+                        "Active Directory / LDAP kezelés",
+                        "24/7 Monitoring (Zabbix/UptimeKuma)",
+                        "Biztonsági frissítések és hardening"
+                    ]
+                },
+                "security": {
+                    "title": "Adatbiztonság & DR",
+                    "desc": "3-2-1 mentési stratégia, zsarolóvírus elleni védelem és katasztrófa-helyreállítási tervek.",
+                    "features": [
+                        "3-2-1 Mentési Stratégia",
+                        "Immutable (módosíthatatlan) mentések",
+                        "Ransomware elleni védelem",
+                        "Disaster Recovery tervek"
+                    ]
+                }
+            },
+            "tech_stack_badge": "Megbízható Technológiák",
+            "tech_stack_title": "Eszközeink & Technológiáink",
+            "tech_stack_desc": "Az iparág legjobb és legmegbízhatóbb eszközeivel dolgozunk",
+            "tech_categories": {
+                "virtualization": "Virtualizáció",
+                "network": "Hálózat",
+                "os": "Operációs Rendszerek",
+                "automation": "Automatizáció"
+            },
+            "certification_badge": "Informatikai Rendszer- és Hálózatüzemeltető Szakképesítés",
+            "certification_desc": "Hivatalos szakképesítéssel garantáljuk a professzionális szolgáltatásminőséget."
         },
         "WebDev": {
             "title": "Webfejlesztés & Webáruház",

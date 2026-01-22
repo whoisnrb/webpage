@@ -3,6 +3,8 @@
 import { ServiceLayout } from "@/components/templates/service-layout"
 import { PriceCalculator } from "@/components/tools/price-calculator"
 import { UseCases } from "@/components/sections/use-cases"
+import { ServicePillars } from "@/components/sections/service-pillars"
+import { InfraTechStack } from "@/components/sections/infra-tech-stack"
 import { Server, Cloud, Shield, Activity, GitBranch, Database, CheckCircle2, ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
@@ -99,6 +101,12 @@ export default function RendszeruzemeltetesPage() {
                 techStack={["Docker", "Kubernetes", "AWS", "Linux", "Nginx", "Terraform", "Ansible", "GitHub Actions"]}
                 pricing={t("plans.enterprise.price_label")}
             >
+                {/* Service Pillars Section */}
+                <ServicePillars />
+
+                {/* Tech Stack Section */}
+                <InfraTechStack />
+
                 {/* Use Cases Section */}
                 <UseCases
                     title={t("use_cases_title")}

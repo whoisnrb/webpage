@@ -47,5 +47,17 @@ export const caseStudies: CaseStudy[] = [
     challenge: "Az Apex Logistics nyomkövető rendszere gyakran leállt terhelés alatt, ami kritikus volt a szállítmányozás szempontjából. A kiesések jelentős anyagi kárt okoztak.",
     solution: "Több csomópontos Kubernetes klasztert építettünk ki automatikus skálázással és HAProxy load balancerrel. Prometheus és Grafana alapú monitoring rendszert telepítettünk a proaktív hibaelhárítás érdekében.",
     result: "A rendszer rendelkezésre állása elérte a 99.99%-ot. A terheléses időszakokban a rendszer automatikusan skálázódik, így nincs lassulás vagy leállás."
+  },
+  {
+    slug: "kkv-infrastruktura-modernizacio",
+    title: "KKV Infrastruktúra Modernizáció",
+    client: "TechVenture Kft.",
+    category: "IT Infrastruktúra",
+    description: "Papír alapú folyamatokról biztonságos privát felhőre való átállás, teljes hálózati infrastruktúra átépítéssel.",
+    tags: ["Proxmox", "WireGuard VPN", "VLAN", "Zabbix"],
+    image: "bg-purple-500/10",
+    challenge: "A TechVenture Kft. 15 fős csapata elavult, helyi szervereken dolgozott. A távelérés bizonytalan volt, az adatok mentése manuális, a hálózat szegmentálása nem létezett. A COVID alatt a home office lehetetlenné vált.",
+    solution: "Proxmox alapú privát felhőt építettünk ki, WireGuard VPN-nel a biztonságos táveléréshez. VLAN-okkal szegmentáltuk a hálózatot (iroda, vendég, szerverek). Automatikus mentési stratégiát (3-2-1) vezettünk be, és 24/7 monitoring rendszert (Zabbix) telepítettünk.",
+    result: "A csapat bárhonnan, biztonságosan tud dolgozni. Az adatvesztés kockázata nullára csökkent, a rendszer rendelkezésre állása 99.9%. A havi IT költség 30%-kal csökkent, miközben a teljesítmény duplájára nőtt."
   }
 ];

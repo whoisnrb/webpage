@@ -59,7 +59,7 @@
             "peter": {
                 "name": "Török Norbert",
                 "role": "Lead Developer & CEO",
-                "bio": "10+ years experience in full-stack development. Believer in clean code and scalable architectures."
+                "bio": "Experience in full-stack development. Believer in clean code and scalable architectures."
             },
             "anna": {
                 "name": "Anna Nagy",
@@ -154,6 +154,15 @@
                 "challenge": "Apex Logistics' tracking system often crashed under load, which was critical for freight. Outages caused significant financial loss.",
                 "solution": "We built a multi-node Kubernetes cluster with autoscaling and HAProxy load balancer. We installed Prometheus and Grafana-based monitoring for proactive troubleshooting.",
                 "result": "System availability reached 99.99%. During peak load, the system scales automatically, so there's no slowdown or downtime."
+            },
+            "infrastructure": {
+                "title": "SMB Infrastructure Modernization",
+                "client": "TechVenture Ltd.",
+                "category": "IT Infrastructure",
+                "description": "Transition from paper-based processes to secure private cloud with complete network infrastructure redesign.",
+                "challenge": "TechVenture Ltd.'s 15-person team worked on outdated, local servers. Remote access was unreliable, data backups were manual, and network segmentation didn't exist. During COVID, home office became impossible.",
+                "solution": "We built a Proxmox-based private cloud with WireGuard VPN for secure remote access. We segmented the network with VLANs (office, guest, servers). We introduced an automated 3-2-1 backup strategy and installed 24/7 monitoring (Zabbix).",
+                "result": "The team can work securely from anywhere. Data loss risk dropped to zero, system availability is 99.9%. Monthly IT costs decreased by 30% while performance doubled."
             }
         }
     },
@@ -1707,7 +1716,63 @@
                         "Unlimited incident handling"
                     ]
                 }
-            }
+            },
+            "pillars_badge": "Full-Service IT Solutions",
+            "pillars_title": "Our Service Pillars",
+            "pillars_desc": "With IT System and Network Administrator certification, we offer professional solutions in these four areas",
+            "pillars": {
+                "virtualization": {
+                    "title": "Virtualization & Cloud (IaaS)",
+                    "desc": "Virtualizing physical servers for cost efficiency and flexibility. Containerization and resource optimization.",
+                    "features": [
+                        "Proxmox / VMware / Hyper-V deployment",
+                        "Docker & Kubernetes environments",
+                        "Resource optimization and auditing",
+                        "Private Cloud solutions"
+                    ]
+                },
+                "network": {
+                    "title": "Professional Networking",
+                    "desc": "Secure remote access, network segmentation, and enterprise-grade firewall management.",
+                    "features": [
+                        "WireGuard / OpenVPN based VPN",
+                        "VLAN network segmentation",
+                        "MikroTik / Cisco / pfSense firewall",
+                        "WiFi management (Ubiquiti UniFi)"
+                    ]
+                },
+                "servers": {
+                    "title": "Server Administration",
+                    "desc": "Linux and Windows server installation, hardening, continuous updates, and centralized user management.",
+                    "features": [
+                        "Linux/Windows Server installation",
+                        "Active Directory / LDAP management",
+                        "24/7 Monitoring (Zabbix/UptimeKuma)",
+                        "Security updates and hardening"
+                    ]
+                },
+                "security": {
+                    "title": "Data Security & DR",
+                    "desc": "3-2-1 backup strategy, ransomware protection, and disaster recovery planning.",
+                    "features": [
+                        "3-2-1 Backup Strategy",
+                        "Immutable backups",
+                        "Ransomware protection",
+                        "Disaster Recovery plans"
+                    ]
+                }
+            },
+            "tech_stack_badge": "Trusted Technologies",
+            "tech_stack_title": "Our Tools & Technologies",
+            "tech_stack_desc": "We work with the best and most reliable tools in the industry",
+            "tech_categories": {
+                "virtualization": "Virtualization",
+                "network": "Network",
+                "os": "Operating Systems",
+                "automation": "Automation"
+            },
+            "certification_badge": "IT System and Network Administrator Certification",
+            "certification_desc": "Official certification guarantees professional service quality."
         },
         "WebDev": {
             "title": "Web Development & E-commerce",

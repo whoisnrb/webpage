@@ -31,6 +31,13 @@ export default function ReferenciakPage() {
             category: t('items.server.category'),
             description: t('items.server.description'),
         },
+        {
+            ...caseStudies[3],
+            title: t('items.infrastructure.title'),
+            client: t('items.infrastructure.client'),
+            category: t('items.infrastructure.category'),
+            description: t('items.infrastructure.description'),
+        },
     ]
 
     return (
