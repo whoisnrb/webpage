@@ -3,7 +3,7 @@
 import Script from "next/script";
 import { createContext, useContext, useCallback } from "react";
 
-const RECAPTCHA_SITE_KEY = "6LeU7lAsAAAAAHrrW3kJgijwWXWSMD9p7STb0U6b";
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
 
 interface RecaptchaContextType {
     executeRecaptcha: (action: string) => Promise<string | null>;

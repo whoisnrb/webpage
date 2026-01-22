@@ -50,7 +50,10 @@ export function BookingForm() {
             const token = await executeRecaptcha("booking_form")
 
             if (!token) {
-                throw new Error("reCAPTCHA failed")
+                if (process.env.NODE_ENV === 'production') {
+                    throw new Error("reCAPTCHA failed")
+                }
+                console.warn("reCAPTCHA execution failed or skipped in development. Proceeding without token.")
             }
 
             console.log("Sending request to /api/booking...")
