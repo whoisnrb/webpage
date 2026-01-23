@@ -1684,7 +1684,7 @@
             "plans": {
                 "starter": {
                     "name": "Basic",
-                    "desc": "For smaller websites and applications",
+                    "desc": "For small businesses and simpler applications",
                     "features": [
                         "Monthly system updates",
                         "Availability monitoring",
@@ -1701,18 +1701,18 @@
                         "24/7 Monitoring and Alerting",
                         "Real-time backups",
                         "4 hours troubleshooting / month",
-                        "CI/CD maintenance"
+                        "CI/CD pipeline maintenance"
                     ]
                 },
                 "enterprise": {
                     "name": "Enterprise",
-                    "desc": "For high-traffic systems",
+                    "desc": "For high-traffic, mission-critical systems",
                     "price_label": "Custom",
                     "price_sub": "by agreement",
                     "features": [
                         "Dedicated DevOps engineer",
                         "SLA guarantee",
-                        "High Availability design",
+                        "High Availability architecture",
                         "Unlimited incident handling"
                     ]
                 }

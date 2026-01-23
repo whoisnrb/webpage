@@ -1678,36 +1678,36 @@
             "cost_desc": "Használja árkalkulátorunkat a várható költségek becsléséhez. A pontos árajánlathoz kérjük, vegye fel velünk a kapcsolatot.",
             "plans": {
                 "starter": {
-                    "name": "Alap",
-                    "desc": "Kisebb weboldalakhoz és alkalmazásokhoz",
+                    "name": "Basic",
+                    "desc": "Kisvállalkozásoknak és egyszerűbb alkalmazásokhoz",
                     "features": [
-                        "Havi rendszerfrissítés",
-                        "Rendelkezésre állás figyelés",
-                        "Napi biztonsági mentés",
-                        "1 óra hibaelhárítás / hó"
+                        "Havi rendszerfrissítések",
+                        "Rendelkezésre állás monitoring",
+                        "Napi biztonsági mentések",
+                        "1 óra hibaelhárítás / hónap"
                     ]
                 },
                 "pro": {
                     "name": "Pro",
-                    "desc": "özleti kritikus alkalmazásokhoz",
+                    "desc": "Üzleti kritikus alkalmazásokhoz",
                     "badge": "LEGNÉPSZERŰBB",
                     "features": [
-                        "Heti rendszerfrissítés",
+                        "Heti rendszerfrissítések",
                         "24/7 Monitoring és Riasztás",
-                        "Valós idejű biztonsági mentés",
-                        "4 óra hibaelhárítás / hó",
-                        "CI/CD karbantartás"
+                        "Valós idejű biztonsági mentések",
+                        "4 óra hibaelhárítás / hónap",
+                        "CI/CD pipeline karbantartás"
                     ]
                 },
                 "enterprise": {
                     "name": "Enterprise",
-                    "desc": "Nagy forgalmú rendszerekhez",
+                    "desc": "Nagy forgalmú, kritikus rendszerekhez",
                     "price_label": "Egyedi",
                     "price_sub": "megállapodás szerint",
                     "features": [
                         "Dedikált DevOps mérnök",
-                        "SLA garancia",
-                        "High Availability tervezés",
+                        "SLA biztos garancia",
+                        "High Availability architektúra",
                         "Korlátlan incidens kezelés"
                     ]
                 }
