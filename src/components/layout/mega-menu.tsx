@@ -34,6 +34,11 @@ export function MegaMenu() {
             href: "/szolgaltatasok/rendszeruzemeltetes",
             description: t("nav_items.sysadmin_desc"),
         },
+        {
+            title: t("nav_items.network"),
+            href: "/szolgaltatasok/halozat",
+            description: t("nav_items.network_desc"),
+        },
     ]
 
     return (

@@ -1577,6 +1577,56 @@
         "pm": "Project management",
         "other": "Other"
     },
+    "MegaMenu": {
+        "services": "Services",
+        "products": "Products",
+        "knowledge": "Knowledge",
+        "contact": "Contact",
+        "our_services": "Our Services",
+        "services_desc": "Professional IT solutions for your business",
+        "nav_items": {
+            "scripts": "Scripts & Automation",
+            "scripts_desc": "Custom scripts and automations to save time",
+            "webdev": "Web Development",
+            "webdev_desc": "Modern websites and webshops",
+            "sysadmin": "System Administration",
+            "sysadmin_desc": "DevOps, servers, CI/CD and infrastructure",
+            "network": "Network Solutions",
+            "network_desc": "VPN, VLAN, firewall and WiFi management"
+        },
+        "all_products": "All products",
+        "all_products_desc": "Browse our complete catalog",
+        "scripts": "Scripts",
+        "scripts_desc": "Ready-to-use automations",
+        "web": "Web templates",
+        "web_desc": "Quality website themes and components",
+        "prices": "Pricing",
+        "prices_desc": "Transparent pricing for all services",
+        "references": "References",
+        "references_desc": "Success stories and case studies",
+        "blog": "Blog",
+        "blog_desc": "Technical articles and guides",
+        "reviews": "Reviews",
+        "reviews_desc": "Client feedback"
+    },
+    "Breadcrumbs": {
+        "home": "Home",
+        "szolgaltatasok": "Services",
+        "scriptek": "Scripts",
+        "webfejlesztes": "Web Development",
+        "rendszeruzemeltetes": "System Administration",
+        "halozat": "Network Solutions",
+        "biztonsag": "Security",
+        "integraciok": "Integrations",
+        "termekek": "Products",
+        "referenciak": "References",
+        "arak": "Pricing",
+        "blog": "Blog",
+        "kapcsolat": "Contact",
+        "rolunk": "About",
+        "karrier": "Career",
+        "velemeny": "Reviews"
+    },
     "ServiceTemplate": {
         "premium_service": "PREMIUM SERVICE",
         "get_quote": "Get a Quote",
@@ -2257,5 +2307,113 @@
             ],
             "pricing_label": "Custom pricing"
         }
+    },
+    "ServicesPage": {
+        "hero_badge": "Our Services",
+        "hero_title": "Professional IT Services",
+        "hero_title_highlight": "for your business",
+        "hero_desc": "Modern technologies, transparent pricing, and guaranteed quality. Choose from our services or let's create a custom package.",
+        "cta_quote": "Request Quote",
+        "cta_services": "Services",
+        "list_title": "What we offer?",
+        "list_desc": "Professional solutions for efficient operations",
+        "items": {
+            "scripts": {
+                "title": "Scripts & Automation",
+                "desc": "Custom scripts and automations that save you time and money. Working for you 24/7.",
+                "features": {
+                    "0": "Custom Python/Node.js scripts",
+                    "1": "n8n/Make workflow automations",
+                    "2": "API integrations and synchronizations",
+                    "3": "Process optimization and consultation"
+                }
+            },
+            "webdev": {
+                "title": "Web Development",
+                "desc": "Modern, fast, and mobile-friendly websites. Not just beautiful, they convert too.",
+                "features": {
+                    "0": "Next.js/React based websites",
+                    "1": "WooCommerce/Shopify webshops",
+                    "2": "Responsive and SEO optimized",
+                    "3": "Headless CMS solutions"
+                }
+            },
+            "devops": {
+                "title": "DevOps & System Administration",
+                "desc": "Stable servers, automatic backups, and 99.9% uptime. Sleep tight.",
+                "features": {
+                    "0": "Linux/Windows server management",
+                    "1": "Docker & Kubernetes",
+                    "2": "CI/CD pipeline building",
+                    "3": "24/7 Monitoring and alerting"
+                }
+            },
+            "security": {
+                "title": "Cybersecurity",
+                "desc": "Protect your data and clients. Vulnerability assessment and proactive protection.",
+                "features": {
+                    "0": "Penetration testing",
+                    "1": "WAF (Web Application Firewall)",
+                    "2": "GDPR compliance",
+                    "3": "Backup strategy"
+                }
+            },
+            "network": {
+                "title": "Network Solutions",
+                "desc": "Professional network infrastructure with VPN, VLANs, and firewalls.",
+                "features": {
+                    "0": "VPN solutions (WireGuard/OpenVPN)",
+                    "1": "VLAN network segmentation",
+                    "2": "Firewall management (MikroTik/pfSense)",
+                    "3": "WiFi network management (UniFi)"
+                }
+            }
+        },
+        "item_labels": {
+            "pricing_from": "from",
+            "pricing_custom": "Custom",
+            "whats_included": "What's included?",
+            "details_and_order": "Details and Order"
+        },
+        "why_us_title": "Why choose us?",
+        "why_us_lead": "More than 50 successful projects, satisfied clients, and modern technologies",
+        "reasons": {
+            "tech": {
+                "title": "Modern Tech Stack",
+                "desc": "We work with the latest and best technologies: Next.js, React, Docker, Kubernetes"
+            },
+            "security": {
+                "title": "Security First",
+                "desc": "Security is our top priority in every project"
+            },
+            "scale": {
+                "title": "Scalable Solutions",
+                "desc": "Our systems grow with your business"
+            }
+        },
+        "stats": {
+            "deadline": "Deadline Adherence",
+            "monitoring": "Monitoring",
+            "projects": "Successful Projects",
+            "rating": "Rating"
+        },
+        "cta_bottom_title": "Ready to start?",
+        "cta_bottom_desc": "Book a free consultation and let's discuss your project details. No obligation, just useful advice.",
+        "cta_consultation": "Free Consultation",
+        "cta_packages": "View Pricing"
+    },
+    "CTA": {
+        "available_capacity": "Available Capacity",
+        "project_slots": "project slots",
+        "build_future": "Let's build your future"
+    },
+    "Stats": {
+        "successful_projects": "Successful Projects",
+        "satisfaction": "Satisfaction",
+        "response_time": "Response Time",
+        "rating": "Rating",
+        "ssl_security": "SSL Security",
+        "gdpr_compliant": "GDPR Compliant",
+        "no_hidden_costs": "No Hidden Costs"
     }
 }

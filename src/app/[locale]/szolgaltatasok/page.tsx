@@ -77,6 +77,19 @@ export default function SzolgaltatasokPage() {
                 t('items.security.features.2'),
                 t('items.security.features.3')
             ]
+        },
+        {
+            title: t('items.network.title'),
+            description: t('items.network.desc'),
+            icon: Server, // Using Server icon temporarily, can be changed
+            href: "/szolgaltatasok/halozat",
+            pricing: 0, // 0 indicates request quote
+            features: [
+                t('items.network.features.0'),
+                t('items.network.features.1'),
+                t('items.network.features.2'),
+                t('items.network.features.3')
+            ]
         }
     ]
 
