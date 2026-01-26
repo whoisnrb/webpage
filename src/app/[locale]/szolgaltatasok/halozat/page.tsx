@@ -15,47 +15,27 @@ export default function HalozatPage() {
     const services = [
         {
             icon: Lock,
-            title: "VPN Megoldások",
-            desc: "Biztonságos távoli elérés WireGuard vagy OpenVPN technológiával",
-            features: [
-                "Site-to-Site VPN kapcsolatok",
-                "Remote Access VPN munkatársaknak",
-                "Multi-factor authentication (MFA)",
-                "Split-tunneling konfiguráció"
-            ]
+            title: t("services.vpn.title"),
+            desc: t("services.vpn.desc"),
+            features: [0, 1, 2, 3].map(i => t(`services.vpn.features.${i}`))
         },
         {
             icon: Network,
-            title: "VLAN Szegmentálás",
-            desc: "Hálózati elkülönítés a biztonság és teljesítmény növelésére",
-            features: [
-                "Irodai és szerver hálózat elkülönítése",
-                "Vendéghálózat (Guest WiFi) izolálás",
-                "IoT eszközök biztonságos kezelése",
-                "Inter-VLAN routing szabályok"
-            ]
+            title: t("services.vlan.title"),
+            desc: t("services.vlan.desc"),
+            features: [0, 1, 2, 3].map(i => t(`services.vlan.features.${i}`))
         },
         {
             icon: Shield,
-            title: "Tűzfal Menedzsment",
-            desc: "Professzionális tűzfal konfiguráció és karbantartás",
-            features: [
-                "MikroTik / Cisco / pfSense beállítás",
-                "DDoS védelem és rate limiting",
-                "Port forwarding és NAT szabályok",
-                "Folyamatos monitoring és naplózás"
-            ]
+            title: t("services.firewall.title"),
+            desc: t("services.firewall.desc"),
+            features: [0, 1, 2, 3].map(i => t(`services.firewall.features.${i}`))
         },
         {
             icon: Wifi,
-            title: "WiFi Menedzsment",
-            desc: "Vállalati szintű WiFi hálózat kiépítése és kezelése",
-            features: [
-                "Ubiquiti UniFi rendszerek",
-                "Több SSID, VLAN támogatás",
-                "Captive portal (vendég regisztráció)",
-                "Roaming optimalizálás"
-            ]
+            title: t("services.wifi.title"),
+            desc: t("services.wifi.desc"),
+            features: [0, 1, 2, 3].map(i => t(`services.wifi.features.${i}`))
         }
     ]
 
@@ -70,13 +50,13 @@ export default function HalozatPage() {
                     <div className="text-center mb-16">
                         <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-[10px] font-black tracking-[0.4em] uppercase rounded-full bg-white/[0.03] text-primary border border-white/10">
                             <Network className="h-3 w-3" />
-                            SZOLGÁLTATÁSOK
+                            {t("subtitle")}
                         </div>
                         <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">
-                            Hálózati Szolgáltatásaink
+                            {t("title")}
                         </h2>
                         <p className="text-xl text-white/40 max-w-2xl mx-auto font-medium">
-                            Professzionális megoldások vállalati hálózatok tervezésére, kiépítésére és üzemeltetésére
+                            {t("description")}
                         </p>
                     </div>
 
@@ -115,10 +95,10 @@ export default function HalozatPage() {
                 <div className="container mx-auto px-4 relative z-10">
                     <SpotlightCard className="max-w-4xl mx-auto bg-gradient-to-br from-primary/10 to-transparent border-primary/20 rounded-[48px] p-12 text-center">
                         <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter mb-6">
-                            Készen állsz egy biztonságos hálózatra?
+                            {t("cta_title")}
                         </h2>
                         <p className="text-xl text-white/60 font-medium mb-8 max-w-2xl mx-auto">
-                            Kérj ingyenes konzultációt és beszéljük át a hálózati igényeidet. Nincs kötelezettség, csak hasznos tanácsok.
+                            {t("cta_description")}
                         </p>
                         <div className="flex flex-wrap gap-4 justify-center">
                             <Button
@@ -127,7 +107,7 @@ export default function HalozatPage() {
                                 asChild
                             >
                                 <Link href="/kapcsolat">
-                                    Ajánlatkérés <ArrowRight className="ml-2 h-5 w-5" />
+                                    {t("cta_button")} <ArrowRight className="ml-2 h-5 w-5" />
                                 </Link>
                             </Button>
                             <Button
@@ -137,7 +117,7 @@ export default function HalozatPage() {
                                 asChild
                             >
                                 <Link href="/demo">
-                                    Ingyenes Konzultáció
+                                    {t("cta_secondary")}
                                 </Link>
                             </Button>
                         </div>

@@ -2301,6 +2301,58 @@
                 }
             ],
             "pricing_label": "Egyedi árazás"
+        },
+        "Network": {
+            "title": "Hálózati Szolgáltatásaink",
+            "subtitle": "SZOLGÁLTATÁSOK",
+            "description": "Professzionális megoldások vállalati hálózatok tervezésére, kiépítésére és üzemeltetésére",
+            "feature_label": "MIT TARTALMAZ?",
+            "cta_title": "Készen állsz egy biztonságos hálózatra?",
+            "cta_description": "Kérj ingyenes konzultációt és beszéljük át a hálózati igényeidet. Nincs kötelezettség, csak hasznos tanácsok.",
+            "cta_button": "Ajánlatkérés",
+            "cta_secondary": "Ingyenes Konzultáció",
+            "services": {
+                "vpn": {
+                    "title": "VPN Megoldások",
+                    "desc": "Biztonságos távoli elérés WireGuard vagy OpenVPN technológiával",
+                    "features": {
+                        "0": "Site-to-Site VPN kapcsolatok",
+                        "1": "Remote Access VPN munkatársaknak",
+                        "2": "Multi-factor authentication (MFA)",
+                        "3": "Split-tunneling konfiguráció"
+                    }
+                },
+                "vlan": {
+                    "title": "VLAN Szegmentálás",
+                    "desc": "Hálózati elkülönítés a biztonság és teljesítmény növelésére",
+                    "features": {
+                        "0": "Irodai és szerver hálózat elkülönítése",
+                        "1": "Vendéghálózat (Guest WiFi) izolálás",
+                        "2": "IoT eszközök biztonságos kezelése",
+                        "3": "Inter-VLAN routing szabályok"
+                    }
+                },
+                "firewall": {
+                    "title": "Tűzfal Menedzsment",
+                    "desc": "Professzionális tűzfal konfiguráció és karbantartás",
+                    "features": {
+                        "0": "MikroTik / Cisco / pfSense beállítás",
+                        "1": "DDoS védelem és rate limiting",
+                        "2": "Port forwarding és NAT szabályok",
+                        "3": "Folyamatos monitoring és naplózás"
+                    }
+                },
+                "wifi": {
+                    "title": "WiFi Menedzsment",
+                    "desc": "Vállalati szintű WiFi hálózat kiépítése és kezelése",
+                    "features": {
+                        "0": "Ubiquiti UniFi rendszerek",
+                        "1": "Több SSID, VLAN támogatás",
+                        "2": "Captive portal (vendég regisztráció)",
+                        "3": "Roaming optimalizálás"
+                    }
+                }
+            }
         }
     },
     "ServicesPage": {
@@ -2365,7 +2417,11 @@
             }
         },
         "item_labels": {
+            "starting_price": "Irányár",
             "pricing_from": "-tól",
+            "pricing_from_format": "{price}-tól",
+            "pricing_plus_format": "{price}+",
+            "pricing_per_month": "/ hó",
             "pricing_custom": "Egyedi",
             "whats_included": "Mit tartalmaz?",
             "details_and_order": "Részletek és Megrendelés"

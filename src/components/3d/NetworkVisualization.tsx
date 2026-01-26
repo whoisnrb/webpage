@@ -1,341 +1,315 @@
 "use client"
 
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useMemo, useRef, useState, useEffect } from 'react'
+import { Canvas, useFrame } from '@react-three/fiber'
+import {
+    OrbitControls,
+    PerspectiveCamera,
+    Html,
+    Float,
+    Stars,
+    Sphere,
+    Box,
+    Cylinder,
+    Torus,
+    Text,
+    Line
+} from '@react-three/drei'
+import * as THREE from 'three'
+import { Shield, Wifi, Server, Database, Smartphone, Globe, Lock, Cpu, Network as NetworkIcon } from 'lucide-react'
 
-interface NetworkNode {
+// Types
+type NodeType = 'cloud' | 'firewall' | 'router' | 'switch' | 'server' | 'device'
+
+interface NodeData {
     id: string
-    x: number
-    y: number
-    z: number // depth for 3D effect
+    position: [number, number, number]
+    type: NodeType
     label: string
-    type: 'router' | 'firewall' | 'switch' | 'server' | 'workstation' | 'cloud'
+    connectedTo?: string[]
 }
 
-const nodes: NetworkNode[] = [
-    // Top layer (cloud)
-    { id: 'cloud', x: 50, y: 10, z: 3, label: 'Internet', type: 'cloud' },
+// Network Data Structure
+const networkData: NodeData[] = [
+    // Level 1: Internet/Cloud
+    { id: 'cloud', position: [0, 4.5, 0], type: 'cloud', label: 'Internet', connectedTo: ['firewall'] },
 
-    // Firewall layer
-    { id: 'firewall', x: 50, y: 25, z: 2.5, label: 'Firewall', type: 'firewall' },
+    // Level 2: Security
+    { id: 'firewall', position: [0, 2.5, 0], type: 'firewall', label: 'Tűzfal', connectedTo: ['router'] },
 
-    // Core router
-    { id: 'router', x: 50, y: 40, z: 2, label: 'Core Router', type: 'router' },
+    // Level 3: Core
+    { id: 'router', position: [0, 0.5, 0], type: 'router', label: 'Core Router', connectedTo: ['sw1', 'sw2', 'sw3'] },
 
-    // Switches
-    { id: 'switch1', x: 25, y: 55, z: 1.5, label: 'Switch 1', type: 'switch' },
-    { id: 'switch2', x: 50, y: 55, z: 1.5, label: 'Switch 2', type: 'switch' },
-    { id: 'switch3', x: 75, y: 55, z: 1.5, label: 'Switch 3', type: 'switch' },
+    // Level 4: Distribution (Switches)
+    { id: 'sw1', position: [-2.5, -1.5, 1], type: 'switch', label: 'Switch A', connectedTo: ['srv1', 'srv2'] },
+    { id: 'sw2', position: [0, -1.5, -1], type: 'switch', label: 'Switch B', connectedTo: ['srv3'] },
+    { id: 'sw3', position: [2.5, -1.5, 1], type: 'switch', label: 'Switch C', connectedTo: ['dev1', 'dev2'] },
 
-    // Servers
-    { id: 'server1', x: 15, y: 75, z: 1, label: 'DB Server', type: 'server' },
-    { id: 'server2', x: 30, y: 75, z: 1, label: 'Web Server', type: 'server' },
-    { id: 'server3', x: 45, y: 75, z: 1, label: 'App Server', type: 'server' },
-
-    // Workstations
-    { id: 'ws1', x: 60, y: 75, z: 1, label: 'Workstation 1', type: 'workstation' },
-    { id: 'ws2', x: 72, y: 75, z: 1, label: 'Workstation 2', type: 'workstation' },
-    { id: 'ws3', x: 84, y: 75, z: 1, label: 'Workstation 3', type: 'workstation' },
+    // Level 5: Endpoints
+    { id: 'srv1', position: [-3.5, -3.5, 1.5], type: 'server', label: 'Adatbázis' },
+    { id: 'srv2', position: [-1.5, -3.5, 1.5], type: 'server', label: 'Webszerver' },
+    { id: 'srv3', position: [0, -3.5, -1], type: 'server', label: 'Backup' },
+    { id: 'dev1', position: [2, -3.5, 2], type: 'device', label: 'Munkaállomás' },
+    { id: 'dev2', position: [3.5, -3.5, 0.5], type: 'device', label: 'WiFi AP' },
 ]
 
-const connections = [
-    { from: 'cloud', to: 'firewall', status: 'active' },
-    { from: 'firewall', to: 'router', status: 'active' },
-    { from: 'router', to: 'switch1', status: 'active' },
-    { from: 'router', to: 'switch2', status: 'active' },
-    { from: 'router', to: 'switch3', status: 'active' },
-    { from: 'switch1', to: 'server1', status: 'active' },
-    { from: 'switch1', to: 'server2', status: 'active' },
-    { from: 'switch2', to: 'server3', status: 'active' },
-    { from: 'switch3', to: 'ws1', status: 'active' },
-    { from: 'switch3', to: 'ws2', status: 'active' },
-    { from: 'switch3', to: 'ws3', status: 'active' },
-]
-
-function getNodeConfig(type: string) {
-    switch (type) {
-        case 'cloud': return { color: '#8b5cf6', size: 8, icon: '☁️' }
-        case 'firewall': return { color: '#ef4444', size: 6, icon: '🛡️' }
-        case 'router': return { color: '#f97316', size: 7, icon: '🔄' }
-        case 'switch': return { color: '#06b6d4', size: 5, icon: '⚡' }
-        case 'server': return { color: '#10b981', size: 5, icon: '🖥️' }
-        case 'workstation': return { color: '#8b5cf6', size: 4, icon: '💻' }
-        default: return { color: '#ffffff', size: 5, icon: '•' }
+// Visual Configuration
+const config = {
+    colors: {
+        cloud: '#3b82f6', // blue
+        firewall: '#ef4444', // red
+        router: '#f97316', // orange
+        switch: '#06b6d4', // cyan
+        server: '#10b981', // green
+        device: '#8b5cf6', // violet
+        link: '#334155',   // slate-700
+        packet: '#ffffff'  // white
     }
 }
 
-export function NetworkVisualization() {
-    const [hoveredNode, setHoveredNode] = useState<string | null>(null)
-    const [autoAnimate, setAutoAnimate] = useState(true)
+// Components
+
+function NetworkNode({ node, isHovered, onHover }: { node: NodeData, isHovered: boolean, onHover: (id: string | null) => void }) {
+    const meshRef = useRef<THREE.Group>(null)
+    const color = config.colors[node.type]
+
+    useFrame((state) => {
+        if (meshRef.current) {
+            // Subtle floating rotation
+            meshRef.current.rotation.y += 0.005
+            meshRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.5) * 0.05
+        }
+    })
+
+    const Geometry = () => {
+        switch (node.type) {
+            case 'cloud':
+                return (
+                    <group>
+                        {[...Array(5)].map((_, i) => (
+                            <Sphere key={i} args={[0.3, 16, 16]} position={[Math.sin(i) * 0.4, Math.cos(i) * 0.2, 0]}>
+                                <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.5} roughness={0.2} />
+                            </Sphere>
+                        ))}
+                        <pointLight color={color} intensity={2} distance={3} />
+                    </group>
+                )
+            case 'firewall':
+                return (
+                    <Box args={[0.6, 0.6, 0.6]}>
+                        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.5} wireframe={true} />
+                        <Box args={[0.4, 0.4, 0.4]}>
+                            <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.8} />
+                        </Box>
+                    </Box>
+                )
+            case 'router':
+                return (
+                    <group>
+                        <Sphere args={[0.35, 32, 32]}>
+                            <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.8} />
+                        </Sphere>
+                        <Torus args={[0.55, 0.02, 16, 100]} rotation={[1.5, 0, 0]}>
+                            <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.5} />
+                        </Torus>
+                    </group>
+                )
+            case 'switch':
+                return (
+                    <Box args={[0.6, 0.2, 0.4]}>
+                        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.6} />
+                    </Box>
+                )
+            case 'server':
+                return (
+                    <Cylinder args={[0.25, 0.25, 0.6, 32]}>
+                        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.6} />
+                    </Cylinder>
+                )
+            case 'device':
+                return (
+                    <Box args={[0.4, 0.3, 0.05]} rotation={[-0.2, 0, 0]}>
+                        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.6} />
+                    </Box>
+                )
+            default:
+                return <Sphere args={[0.2]}><meshStandardMaterial color="white" /></Sphere>
+        }
+    }
+
+    const Icon = () => {
+        switch (node.type) {
+            case 'cloud': return <Globe size={20} className="text-blue-400" />
+            case 'firewall': return <Lock size={20} className="text-red-400" />
+            case 'router': return <NetworkIcon size={20} className="text-orange-400" />
+            case 'switch': return <Cpu size={20} className="text-cyan-400" />
+            case 'server': return <Database size={20} className="text-emerald-400" />
+            case 'device': return <Smartphone size={20} className="text-violet-400" />
+        }
+    }
 
     return (
-        <div className="w-full h-full relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            {/* Animated background grid */}
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: 'linear-gradient(#06b6d4 1px, transparent 1px), linear-gradient(90deg, #06b6d4 1px, transparent 1px)',
-                    backgroundSize: '20px 20px'
-                }} />
+        <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
+            <group
+                ref={meshRef}
+                position={node.position}
+                onPointerOver={() => onHover(node.id)}
+                onPointerOut={() => onHover(null)}
+            >
+                <Geometry />
+
+                {/* Glow Sprite */}
+                <sprite scale={[1.5, 1.5, 1]}>
+                    <spriteMaterial
+                        transparent
+                        opacity={0.2}
+                        color={color}
+                        blending={THREE.AdditiveBlending}
+                    />
+                </sprite>
+
+                {/* Label Tooltip */}
+                <Html distanceFactor={10} position={[0, 0.8, 0]} style={{ pointerEvents: 'none', display: isHovered ? 'block' : 'none' }}>
+                    <div className="bg-slate-900/90 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg shadow-xl flex items-center gap-2 whitespace-nowrap transform -translate-x-1/2 transition-opacity duration-200">
+                        <Icon />
+                        <span className="text-xs font-bold text-white tracking-wide">{node.label}</span>
+                    </div>
+                </Html>
+            </group>
+        </Float>
+    )
+}
+
+function ConnectionLink({ start, end, active }: { start: [number, number, number], end: [number, number, number], active: boolean }) {
+    const points = useMemo(() => [new THREE.Vector3(...start), new THREE.Vector3(...end)], [start, end])
+
+    return (
+        <group>
+            {/* Base line */}
+            <Line
+                points={points}
+                color={config.colors.link}
+                lineWidth={1}
+                transparent
+                opacity={0.3}
+            />
+
+            {/* Active Data Packet */}
+            {active && <DataPacket path={points} />}
+        </group>
+    )
+}
+
+function DataPacket({ path }: { path: THREE.Vector3[] }) {
+    const meshRef = useRef<THREE.Mesh>(null)
+    const [progress, setProgress] = useState(0)
+    const speed = 1.5 // units per second
+
+    useFrame((state, delta) => {
+        if (!meshRef.current) return
+
+        const newProgress = (progress + delta * speed) % 1
+        setProgress(newProgress)
+
+        const pos = new THREE.Vector3().lerpVectors(path[0], path[1], newProgress)
+        meshRef.current.position.copy(pos)
+    })
+
+    return (
+        <mesh ref={meshRef}>
+            <sphereGeometry args={[0.08, 8, 8]} />
+            <meshBasicMaterial color={config.colors.packet} />
+            <pointLight distance={1} intensity={1} color={config.colors.packet} decay={2} />
+        </mesh>
+    )
+}
+
+function Scene() {
+    const [hoveredNode, setHoveredNode] = useState<string | null>(null)
+
+    // Generate connections
+    const connections = useMemo(() => {
+        const links: JSX.Element[] = []
+        networkData.forEach(source => {
+            if (source.connectedTo) {
+                source.connectedTo.forEach(targetId => {
+                    const target = networkData.find(n => n.id === targetId)
+                    if (target) {
+                        links.push(
+                            <ConnectionLink
+                                key={`${source.id}-${target.id}`}
+                                start={source.position}
+                                end={target.position}
+                                active={true}
+                            />
+                        )
+                    }
+                })
+            }
+        })
+        return links
+    }, [])
+
+    return (
+        <>
+            <PerspectiveCamera makeDefault position={[5, 1, 8]} fov={50} />
+            <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                minPolarAngle={Math.PI / 4}
+                maxPolarAngle={Math.PI / 1.5}
+                autoRotate
+                autoRotateSpeed={0.5}
+            />
+
+            {/* Environment */}
+            <color attach="background" args={['#020617']} /> {/* slate-950 */}
+            <fog attach="fog" args={['#020617', 5, 20]} />
+            <ambientLight intensity={0.2} />
+            <pointLight position={[10, 10, 10]} intensity={1} />
+            <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} fade speed={1} />
+
+            {/* Grid Floor */}
+            <gridHelper args={[20, 20, 0x1e293b, 0x0f172a]} position={[0, -4, 0]} />
+
+            {/* Network Components */}
+            <group position={[0, 0, 0]}>
+                {connections}
+                {networkData.map(node => (
+                    <NetworkNode
+                        key={node.id}
+                        node={node}
+                        isHovered={hoveredNode === node.id}
+                        onHover={setHoveredNode}
+                    />
+                ))}
+            </group>
+        </>
+    )
+}
+
+export function NetworkVisualization() {
+    return (
+        <div className="w-full h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-slate-950 relative group">
+            <Canvas dpr={[1, 2]} performance={{ min: 0.5 }}>
+                <Scene />
+            </Canvas>
+
+            {/* Minimal overlay UI */}
+            <div className="absolute bottom-4 left-4 pointer-events-none">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span className="text-[10px] font-medium text-white/50 uppercase tracking-widest">
+                        Live Monitor
+                    </span>
+                </div>
             </div>
 
-            <svg
-                viewBox="0 0 100 90"
-                className="w-full h-full relative z-10"
-                style={{ filter: 'drop-shadow(0 4px 20px rgba(6, 182, 212, 0.15))' }}
-            >
-                <defs>
-                    {/* Enhanced gradients */}
-                    <radialGradient id="routerGlow">
-                        <stop offset="0%" stopColor="#f97316" stopOpacity="0.8" />
-                        <stop offset="100%" stopColor="#f97316" stopOpacity="0" />
-                    </radialGradient>
-
-                    <linearGradient id="dataFlow" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#06b6d4" stopOpacity="0" />
-                        <stop offset="50%" stopColor="#06b6d4" stopOpacity="1" />
-                        <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
-                    </linearGradient>
-
-                    {/* Filters */}
-                    <filter id="strongGlow">
-                        <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
-                        <feMerge>
-                            <feMergeNode in="coloredBlur" />
-                            <feMergeNode in="coloredBlur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-
-                    <filter id="softGlow">
-                        <feGaussianBlur stdDeviation="0.8" result="coloredBlur" />
-                        <feMerge>
-                            <feMergeNode in="coloredBlur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                </defs>
-
-                {/* Connection lines with data flow */}
-                <g className="connections">
-                    {connections.map((conn, i) => {
-                        const fromNode = nodes.find(n => n.id === conn.from)!
-                        const toNode = nodes.find(n => n.id === conn.to)!
-
-                        return (
-                            <g key={i}>
-                                {/* Base line */}
-                                <motion.line
-                                    x1={fromNode.x}
-                                    y1={fromNode.y}
-                                    x2={toNode.x}
-                                    y2={toNode.y}
-                                    stroke="#1e293b"
-                                    strokeWidth="0.4"
-                                    strokeLinecap="round"
-                                />
-
-                                {/* Animated line */}
-                                <motion.line
-                                    x1={fromNode.x}
-                                    y1={fromNode.y}
-                                    x2={toNode.x}
-                                    y2={toNode.y}
-                                    stroke="#06b6d4"
-                                    strokeWidth="0.3"
-                                    strokeLinecap="round"
-                                    initial={{ pathLength: 0, opacity: 0 }}
-                                    animate={{
-                                        pathLength: 1,
-                                        opacity: [0.3, 0.8, 0.3]
-                                    }}
-                                    transition={{
-                                        pathLength: { duration: 0.8, delay: i * 0.08 },
-                                        opacity: autoAnimate ? {
-                                            duration: 2,
-                                            repeat: Infinity,
-                                            ease: "easeInOut",
-                                            delay: i * 0.1
-                                        } : { duration: 0.5 }
-                                    }}
-                                    filter="url(#softGlow)"
-                                />
-
-                                {/* Data packet */}
-                                {autoAnimate && (
-                                    <motion.circle
-                                        r="0.6"
-                                        fill="#06b6d4"
-                                        filter="url(#strongGlow)"
-                                        initial={{ x: fromNode.x, y: fromNode.y, opacity: 0 }}
-                                        animate={{
-                                            x: [fromNode.x, toNode.x],
-                                            y: [fromNode.y, toNode.y],
-                                            opacity: [0, 1, 1, 0]
-                                        }}
-                                        transition={{
-                                            duration: 2,
-                                            repeat: Infinity,
-                                            delay: i * 0.2,
-                                            ease: "linear"
-                                        }}
-                                    />
-                                )}
-                            </g>
-                        )
-                    })}
-                </g>
-
-                {/* Network nodes */}
-                <g className="nodes">
-                    {nodes.map((node, i) => {
-                        const config = getNodeConfig(node.type)
-                        const size = config.size
-                        const isHovered = hoveredNode === node.id
-                        const scale = node.z / 2 // depth-based scaling
-
-                        return (
-                            <g key={node.id}>
-                                {/* Outer glow ring */}
-                                <motion.circle
-                                    cx={node.x}
-                                    cy={node.y}
-                                    r={size * scale * 1.8}
-                                    fill="none"
-                                    stroke={config.color}
-                                    strokeWidth="0.15"
-                                    opacity={isHovered ? 0.4 : 0.2}
-                                    initial={{ scale: 0.8, opacity: 0 }}
-                                    animate={{
-                                        scale: isHovered ? 1.1 : 1,
-                                        opacity: isHovered ? 0.4 : 0.2
-                                    }}
-                                    transition={{
-                                        scale: { duration: 0.3 },
-                                        opacity: { duration: 0.5, delay: i * 0.1 }
-                                    }}
-                                />
-
-                                {/* Pulse ring for special nodes */}
-                                {(node.type === 'router' || node.type === 'firewall') && autoAnimate && (
-                                    <motion.circle
-                                        cx={node.x}
-                                        cy={node.y}
-                                        r={size * scale}
-                                        fill="none"
-                                        stroke={config.color}
-                                        strokeWidth="0.4"
-                                        initial={{ scale: 1, opacity: 0.8 }}
-                                        animate={{
-                                            scale: [1, 2, 1],
-                                            opacity: [0.8, 0, 0.8]
-                                        }}
-                                        transition={{
-                                            duration: 3,
-                                            repeat: Infinity,
-                                            ease: "easeInOut",
-                                            delay: node.type === 'firewall' ? 0.5 : 0
-                                        }}
-                                    />
-                                )}
-
-                                {/* Node background circle */}
-                                <motion.circle
-                                    cx={node.x}
-                                    cy={node.y}
-                                    r={size * scale}
-                                    fill={`${config.color}15`}
-                                    stroke={config.color}
-                                    strokeWidth={isHovered ? "0.4" : "0.25"}
-                                    filter="url(#softGlow)"
-                                    style={{ cursor: 'pointer' }}
-                                    onMouseEnter={() => setHoveredNode(node.id)}
-                                    onMouseLeave={() => setHoveredNode(null)}
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    animate={{
-                                        scale: isHovered ? 1.15 : 1,
-                                        opacity: 1
-                                    }}
-                                    transition={{
-                                        scale: { duration: 0.2 },
-                                        opacity: { duration: 0.6, delay: i * 0.12 }
-                                    }}
-                                />
-
-                                {/* Inner bright circle */}
-                                <motion.circle
-                                    cx={node.x}
-                                    cy={node.y}
-                                    r={size * scale * 0.6}
-                                    fill={config.color}
-                                    opacity={isHovered ? 1 : 0.8}
-                                    filter="url(#strongGlow)"
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: isHovered ? 1.1 : 1 }}
-                                    transition={{ duration: 0.2 }}
-                                />
-
-                                {/* Label on hover */}
-                                {isHovered && (
-                                    <motion.g
-                                        initial={{ opacity: 0, y: node.y }}
-                                        animate={{ opacity: 1, y: node.y - size * scale - 3 }}
-                                        transition={{ duration: 0.2 }}
-                                    >
-                                        <rect
-                                            x={node.x - node.label.length * 1.2}
-                                            y={node.y - size * scale - 5}
-                                            width={node.label.length * 2.4}
-                                            height="3.5"
-                                            fill="#0f172a"
-                                            stroke={config.color}
-                                            strokeWidth="0.15"
-                                            rx="0.5"
-                                            opacity="0.95"
-                                        />
-                                        <text
-                                            x={node.x}
-                                            y={node.y - size * scale - 2.5}
-                                            textAnchor="middle"
-                                            fill="#ffffff"
-                                            fontSize="2.2"
-                                            fontWeight="600"
-                                        >
-                                            {node.label}
-                                        </text>
-                                    </motion.g>
-                                )}
-                            </g>
-                        )
-                    })}
-                </g>
-            </svg>
-
-            {/* Enhanced Control Panel */}
-            <div className="absolute bottom-4 left-4 right-4 z-10 flex flex-wrap gap-3 justify-between items-center">
-                <button
-                    onClick={() => setAutoAnimate(!autoAnimate)}
-                    className="group px-5 py-2.5 bg-gradient-to-r from-primary/20 to-primary/10 hover:from-primary/30 hover:to-primary/20 backdrop-blur-md border border-primary/30 rounded-xl text-white text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-primary/20"
-                >
-                    <span className="flex items-center gap-2">
-                        {autoAnimate ? '⏸' : '▶'}
-                        {autoAnimate ? 'Animáció Szünet' : 'Animáció Indítás'}
-                    </span>
-                </button>
-
-                <div className="flex gap-3 text-xs font-medium bg-slate-900/50 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#f97316] shadow-lg shadow-orange-500/50" />
-                        <span className="text-white/70">Router</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#06b6d4] shadow-lg shadow-cyan-500/50" />
-                        <span className="text-white/70">Switch</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-[#10b981] shadow-lg shadow-green-500/50" />
-                        <span className="text-white/70">Server</span>
-                    </div>
-                </div>
+            {/* Interaction Hint */}
+            <div className="absolute bottom-4 right-4 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span className="text-[10px] font-medium text-white/30 uppercase tracking-widest">
+                    Drag to Rotate
+                </span>
             </div>
         </div>
     )

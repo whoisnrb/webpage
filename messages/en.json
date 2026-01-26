@@ -2306,6 +2306,58 @@
                 }
             ],
             "pricing_label": "Custom pricing"
+        },
+        "Network": {
+            "title": "Network Services",
+            "subtitle": "SERVICES",
+            "description": "Professional solutions for designing, building, and operating corporate networks",
+            "feature_label": "WHAT'S INCLUDED?",
+            "cta_title": "Ready for a secure network?",
+            "cta_description": "Request a free consultation and let's discuss your network needs. No obligation, just useful advice.",
+            "cta_button": "Request Quote",
+            "cta_secondary": "Free Consultation",
+            "services": {
+                "vpn": {
+                    "title": "VPN Solutions",
+                    "desc": "Secure remote access with WireGuard or OpenVPN technology",
+                    "features": {
+                        "0": "Site-to-Site VPN connections",
+                        "1": "Remote Access VPN for employees",
+                        "2": "Multi-factor authentication (MFA)",
+                        "3": "Split-tunneling configuration"
+                    }
+                },
+                "vlan": {
+                    "title": "VLAN Segmentation",
+                    "desc": "Network isolation for increased security and performance",
+                    "features": {
+                        "0": "Office and server network separation",
+                        "1": "Guest WiFi isolation",
+                        "2": "Secure IoT device management",
+                        "3": "Inter-VLAN routing rules"
+                    }
+                },
+                "firewall": {
+                    "title": "Firewall Management",
+                    "desc": "Professional firewall configuration and maintenance",
+                    "features": {
+                        "0": "MikroTik / Cisco / pfSense setup",
+                        "1": "DDoS protection and rate limiting",
+                        "2": "Port forwarding and NAT rules",
+                        "3": "Continuous monitoring and logging"
+                    }
+                },
+                "wifi": {
+                    "title": "WiFi Management",
+                    "desc": "Enterprise-grade WiFi network deployment and management",
+                    "features": {
+                        "0": "Ubiquiti UniFi systems",
+                        "1": "Multiple SSID, VLAN support",
+                        "2": "Captive portal (guest registration)",
+                        "3": "Roaming optimization"
+                    }
+                }
+            }
         }
     },
     "ServicesPage": {
@@ -2370,7 +2422,11 @@
             }
         },
         "item_labels": {
+            "starting_price": "Starting Price",
             "pricing_from": "from",
+            "pricing_from_format": "from {price}",
+            "pricing_plus_format": "{price}+",
+            "pricing_per_month": "/ month",
             "pricing_custom": "Custom",
             "whats_included": "What's included?",
             "details_and_order": "Details and Order"
