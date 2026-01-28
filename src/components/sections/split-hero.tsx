@@ -7,6 +7,8 @@ import { useTranslations } from "next-intl"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Code, ShoppingCart, Zap, Shield, Sparkles, Box, Layers, MousePointer2 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import DecryptedText from "@/components/ui/decrypted-text"
+import { SplitText } from "@/components/ui/split-text"
 
 const FloatingElement = ({ delay, className, children }: { delay: number, className?: string, children: React.ReactNode }) => (
     <motion.div
@@ -93,7 +95,14 @@ export function SplitHero() {
                         <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-[0.9] lg:leading-[0.85]">
                             <span className="block opacity-70 group-hover/left:opacity-100 transition-opacity">{t('left_title_1')}</span>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-primary/80 animate-gradient-x bg-[length:200%_auto] block">
-                                {t('left_title_2')}
+                                <DecryptedText
+                                    text={t('left_title_2')}
+                                    animateOn="view"
+                                    revealDirection="center"
+                                    speed={80}
+                                    maxIterations={20}
+                                    className="block"
+                                />
                             </span>
                         </h2>
 
@@ -195,7 +204,7 @@ export function SplitHero() {
                         <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-[0.9] lg:leading-[0.85]">
                             <span className="block opacity-70 group-hover/right:opacity-100 transition-opacity">{t('right_title_1')}</span>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-orange-400 to-accent/80 animate-gradient-x bg-[length:200%_auto] block">
-                                {t('right_title_2')}
+                                <SplitText text={t('right_title_2')} delay={0.2} />
                             </span>
                         </h2>
 
