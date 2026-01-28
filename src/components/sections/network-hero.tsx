@@ -5,6 +5,9 @@ import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import { Shield, Wifi, Lock, Network } from 'lucide-react'
+import { NeuralNetworkBackground } from '@/components/ui/neural-network-background'
+import { SpotlightCard } from '@/components/ui/spotlight-card'
+import DecryptedText from '@/components/ui/decrypted-text'
 
 // Lazy load the 3D component for better performance
 const NetworkVisualization = lazy(() =>
@@ -29,7 +32,8 @@ export function NetworkHero() {
     return (
         <section className="relative py-24 md:py-32 overflow-hidden">
             {/* Background Effects */}
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-transparent pointer-events-none" />
+            <NeuralNetworkBackground />
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/80 to-slate-950 pointer-events-none" />
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
@@ -55,7 +59,12 @@ export function NetworkHero() {
                         <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9]">
                             Professzionális<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-primary">
-                                Hálózati Megoldások
+                                <DecryptedText
+                                    text="Hálózati Megoldások"
+                                    animateOn="view"
+                                    speed={100}
+                                    className="inline-block"
+                                />
                             </span>
                         </h1>
 
@@ -73,12 +82,14 @@ export function NetworkHero() {
                                 { icon: Shield, text: 'Tűzfal Menedzsment' },
                                 { icon: Wifi, text: 'WiFi Kezelés' },
                             ].map((feature, i) => (
-                                <div key={i} className="flex items-center gap-3 text-white/80">
-                                    <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
-                                        <feature.icon className="h-4 w-4 text-primary" />
+                                <SpotlightCard key={i} className="p-3 border-white/5 bg-white/5 hover:bg-white/10 transition-colors" spotlightColor="rgba(6, 182, 212, 0.25)">
+                                    <div className="flex items-center gap-3 text-white/90">
+                                        <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 bg-primary/5">
+                                            <feature.icon className="h-4 w-4 text-primary" />
+                                        </div>
+                                        <span className="text-sm font-bold tracking-wide">{feature.text}</span>
                                     </div>
-                                    <span className="text-sm font-medium">{feature.text}</span>
-                                </div>
+                                </SpotlightCard>
                             ))}
                         </div>
 
