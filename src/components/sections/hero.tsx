@@ -10,6 +10,8 @@ import { Typewriter } from "@/components/ui/typewriter"
 import { GlowButton } from "@/components/ui/glow-button"
 import { FluidBackground } from "@/components/ui/fluid-background"
 import { SplineScene } from "@/components/ui/spline-scene"
+import { AuroraBackground } from "@/components/ui/aurora-background"
+import { SplitText } from "@/components/ui/split-text"
 import { useRef } from "react"
 
 export function Hero() {
@@ -26,9 +28,10 @@ export function Hero() {
     return (
         <section ref={containerRef} className="relative min-h-[90vh] flex items-center overflow-hidden pt-24 pb-20 md:pt-32 md:pb-32">
             {/* Ultra-luxury background elements */}
-            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[150px] opacity-10 animate-pulse" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/10 rounded-full blur-[150px] opacity-10" />
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <AuroraBackground className="h-full w-full bg-transparent" showRadialGradient={true}>
+                    <div />
+                </AuroraBackground>
             </div>
 
             <div className="container relative mx-auto px-4 z-10">
@@ -50,7 +53,7 @@ export function Hero() {
                             </div>
 
                             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-8 leading-[0.9] perspective-1000">
-                                {t('title_1')} <br />
+                                <SplitText text={t('title_1')} delay={0.2} /> <br />
                                 <span className="relative inline-block mt-2">
                                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-primary to-purple-500 animate-gradient-x bg-[length:200%_auto] drop-shadow-[0_0_30px_rgba(6,182,212,0.3)]">
                                         <Typewriter
