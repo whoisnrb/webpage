@@ -24,6 +24,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SWRegistration } from "@/components/sw-registration";
 import Script from "next/script";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
+import { SpotlightCursor } from "@/components/ui/spotlight-cursor";
+import { Dock } from "@/components/layout/dock";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -140,9 +142,11 @@ export default async function RootLayout({
                   <PromoBanner />
 
                   <Header />
+                  <SpotlightCursor />
                   <PageTransition>
                     {children}
                   </PageTransition>
+                  <Dock />
                   <Footer />
                   <CommandMenu />
                   <BackToTop />
