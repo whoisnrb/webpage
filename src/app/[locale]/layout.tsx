@@ -18,7 +18,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Toaster } from "sonner";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
-import { PageTransition } from "@/components/ui/page-transition";
+
 import { SessionProvider } from "@/components/auth/session-provider";
 import { Analytics } from "@vercel/analytics/react";
 import { SWRegistration } from "@/components/sw-registration";
@@ -141,9 +141,9 @@ export default async function RootLayout({
                   <PromoBanner />
 
                   <Header />
-                  <main className="relative z-10">
+                  <div className="relative z-10">
                     {children}
-                  </main>
+                  </div>
 
                   <Footer />
                   <CommandMenu />
