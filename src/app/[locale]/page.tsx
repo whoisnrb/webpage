@@ -9,6 +9,7 @@ import { Link } from "@/i18n/routing"
 import { SplitHero } from "@/components/sections/split-hero"
 import { ServicesPreview } from "@/components/sections/services-preview"
 
+
 import { TrustedBy } from "@/components/sections/trusted-by"
 import { WhyUs } from "@/components/sections/why-us"
 import { Process } from "@/components/sections/process"
@@ -29,6 +30,7 @@ export default function Home() {
 
                 {/* Services Grid */}
                 <ServicesPreview />
+
 
                 {/* Trusted Technologies & Partners */}
                 <TrustedBy />
