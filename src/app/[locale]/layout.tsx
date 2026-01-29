@@ -24,7 +24,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SWRegistration } from "@/components/sw-registration";
 import Script from "next/script";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
-import { Dock } from "@/components/layout/dock";
+
 
 const inter = Inter({
   variable: "--font-inter",
@@ -144,7 +144,7 @@ export default async function RootLayout({
                   <main className="relative z-10">
                     {children}
                   </main>
-                  <Dock />
+
                   <Footer />
                   <CommandMenu />
                   <BackToTop />
