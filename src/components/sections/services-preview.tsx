@@ -279,9 +279,9 @@ export function ServicesPreview() {
                                 spotlightColor={service.color}
                             >
                                 {/* Decorative elements */}
-                                <div className="absolute -top-10 -right-10 h-40 w-40 bg-primary/5 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-full" />
+                                <div className="absolute -top-10 -right-10 h-40 w-40 bg-primary/5 blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-full pointer-events-none" />
 
-                                <div className="flex justify-between items-start mb-10 z-10">
+                                <div className="flex justify-between items-start mb-10 z-10 relative">
                                     <div className="h-20 w-20 rounded-[1.5rem] bg-white/[0.03] border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:border-primary/60 group-hover:bg-primary/10 transition-all duration-1000 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]">
                                         <service.icon className="h-10 w-10 text-primary group-hover:text-white transition-all duration-700 animate-float" />
                                     </div>
@@ -303,7 +303,7 @@ export function ServicesPreview() {
                                     </Button>
                                 </div>
 
-                                <div className="flex-1 z-10 flex flex-col">
+                                <div className="flex-1 z-10 flex flex-col relative">
                                     <h3 className="text-3xl font-black mb-4 text-white group-hover:text-primary transition-all duration-700 tracking-tighter leading-none">{service.title}</h3>
                                     <p className="text-lg text-white/40 mb-8 font-medium leading-relaxed group-hover:text-white/70 transition-all duration-1000">
                                         {service.description}
@@ -320,7 +320,7 @@ export function ServicesPreview() {
                                     {service.extra}
                                 </div>
 
-                                <div className="mt-10 z-10">
+                                <div className="mt-10 z-10 relative">
                                     <Button asChild className="w-full bg-white/[0.03] hover:bg-primary text-white font-black uppercase tracking-[0.1em] border border-white/10 hover:border-transparent transition-all duration-700 h-14 rounded-2xl group-hover:scale-[1.02] active:scale-[0.98] group-hover:shadow-[0_20px_50px_-10px_rgba(6,182,212,0.4)]">
                                         <Link href={service.href}>
                                             {tQuickView('details')}

@@ -37,6 +37,7 @@ This checklist contains all the distinct pages found in the project structure. U
 ### Services Details
 - [ ] **Web Development** (`/szolgaltatasok/webfejlesztes`)
 - [ ] **System Operations** (`/szolgaltatasok/rendszeruzemeltetes`)
+- [ ] **Network Solutions** (`/szolgaltatasok/halozat`)
 - [ ] **Integrations/Automations** (`/szolgaltatasok/integraciok`)
 - [ ] **Scripts/Development** (`/szolgaltatasok/scriptek`)
 - [ ] **Security** (`/szolgaltatasok/biztonsag`)

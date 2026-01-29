@@ -49,8 +49,8 @@ export default function Home() {
                             className="relative max-w-6xl mx-auto overflow-hidden rounded-[3rem] border border-white/10 bg-white/[0.02] backdrop-blur-3xl p-12 md:p-20 text-center shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] group"
                         >
                             {/* Decorative Background Elements */}
-                            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/20 transition-all duration-1000" />
-                            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
+                            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/20 transition-all duration-1000 pointer-events-none" />
+                            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-600/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
                             <div className="relative z-10">
                                 <motion.div
@@ -71,18 +71,18 @@ export default function Home() {
                                 </p>
 
                                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                                    <Link href="/demo" className="w-full sm:w-auto">
-                                        <Button size="lg" className="w-full h-16 px-10 text-xl font-black uppercase tracking-tight bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)] transition-all duration-500 hover:scale-105 active:scale-95 group/btn">
+                                    <Button size="lg" className="w-full sm:w-auto h-16 px-10 text-xl font-black uppercase tracking-tight bg-primary hover:bg-primary/90 text-white rounded-2xl shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)] transition-all duration-500 hover:scale-105 active:scale-95 group/btn" asChild>
+                                        <Link href="/demo">
                                             {t('cta_consultation')}
                                             <ArrowRight className="ml-3 h-6 w-6 group-hover/btn:translate-x-2 transition-transform" />
-                                        </Button>
-                                    </Link>
+                                        </Link>
+                                    </Button>
 
-                                    <Link href="/arak" className="w-full sm:w-auto">
-                                        <Button variant="ghost" size="lg" className="w-full h-16 px-10 text-xl font-black uppercase tracking-tight text-white/60 hover:text-white hover:bg-white/5 border border-white/10 rounded-2xl transition-all duration-500">
+                                    <Button variant="ghost" size="lg" className="w-full sm:w-auto h-16 px-10 text-xl font-black uppercase tracking-tight text-white/60 hover:text-white hover:bg-white/5 border border-white/10 rounded-2xl transition-all duration-500" asChild>
+                                        <Link href="/arak">
                                             {t('cta_prices')}
-                                        </Button>
-                                    </Link>
+                                        </Link>
+                                    </Button>
                                 </div>
 
                                 {/* Trust indicators */}
