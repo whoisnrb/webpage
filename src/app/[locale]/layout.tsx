@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/components/ecommerce/cart-provider";
 import { CurrencyProvider } from "@/components/currency-provider";
-import { NeuralBackground } from "@/components/neural-background";
+
 import { CommandMenu } from "@/components/layout/command-menu";
 import { BackToTop } from "@/components/layout/back-to-top";
 import { SocialProof } from "@/components/marketing/social-proof";
@@ -132,7 +132,7 @@ export default async function RootLayout({
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <NeuralBackground />
+
             <ScrollProgress />
             <RecaptchaProvider>
               <CurrencyProvider>
