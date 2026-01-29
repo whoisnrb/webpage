@@ -104,7 +104,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="dark">
+    <html lang={locale} className="dark" suppressHydrationWarning>
       <body
         className={`${inter.variable} antialiased`}
       >
@@ -141,9 +141,9 @@ export default async function RootLayout({
                   <PromoBanner />
 
                   <Header />
-                  <PageTransition>
+                  <main className="relative z-10">
                     {children}
-                  </PageTransition>
+                  </main>
                   <Dock />
                   <Footer />
                   <CommandMenu />
