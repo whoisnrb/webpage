@@ -736,7 +736,7 @@
             "representative": "Képviselő",
             "representative_name": "Török Norbert CEO",
             "hosting_provider": "Tárhelyszolgáltató",
-            "customer_service": "ügyfélszolgálat és Elérhetőségek",
+            "customer_service": "Ügyfélszolgálat és Elérhetőségek",
             "email": "Email (ügyfélszolgálat)",
             "phone": "Telefon",
             "website": "Weboldal",
@@ -751,7 +751,7 @@
             "title": "Adatvédelmi Tájékoztató",
             "lead": "Az BacklineIT Kft. elkötelezett az Ön személyes adatainak védelme mellett. Jelen tájékoztató célja, hogy világos és átlátható információt nyújtson arról, hogyan kezeljük adatait a GDPR (Általános Adatvédelmi Rendelet) előírásaival összhangban.",
             "controller_title": "1. Az Adatkezelő",
-            "controller_desc": "Az adatok kezelője az BacklineIT Kft. (székhely: 1138 Budapest, Váci út 123., email: hello@backlineit.hu). Cégünk felelős az Ön által megadott személyes adatok jogszerű, tisztességes és átlátható kezeléséért.",
+            "controller_desc": "Az adatok kezelője az BacklineIT Kft. (székhely: 2141 Csömör, Vörösmarty utca 11., email: hello@backlineit.hu). Cégünk felelős az Ön által megadott személyes adatok jogszerű, tisztességes és átlátható kezeléséért.",
             "collected_title": "2. Milyen adatokat gyűjtünk?",
             "collected_desc": "A szolgáltatásaink igénybevétele során az alábbi adatokat kezelhetjük:",
             "collected_list": {

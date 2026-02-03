@@ -104,7 +104,7 @@ export default function AdatvedelemPage() {
             </ul>
             <p>
                 {/* Contact for rights - missed key. */}
-                Please contact us at <a href="mailto:info@itservices.hu">info@itservices.hu</a>.
+                Please contact us at <a href="mailto:hello@backlineit.hu">hello@backlineit.hu</a>.
             </p>
 
             <h2>{t("remedy_title")}</h2>
