@@ -117,7 +117,7 @@ export function WebDevelopmentClient() {
             gradient: "from-green-500 to-emerald-400",
             tags: ["WooCommerce", "Stripe", "WordPress"],
             metric: t("portfolio_revenue"),
-            value: <PriceDisplay amount={2500000} />
+            value: <PriceDisplay amount={2500000} className="text-primary" />
         },
         {
             title: t("portfolio_items.2.title"),
@@ -163,7 +163,7 @@ export function WebDevelopmentClient() {
                 ]}
                 techStack={["Next.js", "React", "Tailwind CSS", "WordPress", "WooCommerce", "PostgreSQL", "Stripe", "Vercel"]}
                 pricing={tServices.rich('item_labels.pricing_from_format', {
-                    price: () => <PriceDisplay amount={250000} />
+                    price: () => <PriceDisplay amount={250000} className="text-white" />
                 }) as any}
             >
                 {/* Individual Page Content as Children */}
@@ -269,14 +269,14 @@ export function WebDevelopmentClient() {
                                                 <div className="text-6xl font-black text-white tracking-tighter">
                                                     {plan.priceFrom ? (
                                                         tServices.rich('item_labels.pricing_from_format', {
-                                                            price: () => <PriceDisplay amount={plan.price} />
+                                                            price: () => <PriceDisplay amount={plan.price} className="text-white" />
                                                         })
                                                     ) : plan.pricePlus ? (
                                                         tServices.rich('item_labels.pricing_plus_format', {
-                                                            price: () => <PriceDisplay amount={plan.price} />
+                                                            price: () => <PriceDisplay amount={plan.price} className="text-white" />
                                                         })
                                                     ) : (
-                                                        <PriceDisplay amount={plan.price} />
+                                                        <PriceDisplay amount={plan.price} className="text-white" />
                                                     )}
                                                 </div>
                                             </div>
