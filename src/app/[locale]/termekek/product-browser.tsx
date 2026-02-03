@@ -34,20 +34,29 @@ export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
 
     return (
         <>
-            <section className="py-8 border-b sticky top-16 bg-background/95 backdrop-blur z-40">
-                <div className="container mx-auto px-4 overflow-x-auto">
-                    <div className="flex gap-2 min-w-max justify-center">
-                        {categories.map((cat) => (
-                            <Button
-                                key={cat.id}
-                                variant={activeCategory === cat.id ? "default" : "outline"}
-                                size="sm"
-                                onClick={() => setActiveCategory(cat.id)}
-                                className="rounded-full transition-all duration-300"
-                            >
-                                {cat.label}
-                            </Button>
-                        ))}
+            <section className="sticky top-20 z-40 py-4 transition-all duration-300">
+                <div className="container mx-auto px-4 flex justify-center">
+                    <div className="inline-flex flex-wrap items-center justify-center gap-1 p-1.5 bg-black/40 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl">
+                        {categories.map((cat) => {
+                            const isActive = activeCategory === cat.id
+                            return (
+                                <button
+                                    key={cat.id}
+                                    onClick={() => setActiveCategory(cat.id)}
+                                    className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+                                        }`}
+                                >
+                                    {isActive && (
+                                        <motion.div
+                                            layoutId="activeCategory"
+                                            className="absolute inset-0 bg-primary rounded-full"
+                                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                        />
+                                    )}
+                                    <span className="relative z-10">{cat.label}</span>
+                                </button>
+                            )
+                        })}
                     </div>
                 </div>
             </section>
