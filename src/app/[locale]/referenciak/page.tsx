@@ -59,12 +59,22 @@ export default function ReferenciakPage() {
                         {studies.map((study, index) => (
                             <Link href={`/referenciak/${study.slug}`} key={index} className="group h-full">
                                 <Card className="flex flex-col h-full overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 cursor-pointer">
-                                    <div className={`h-56 w-full ${study.image} flex items-center justify-center relative overflow-hidden`}>
-                                        <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors" />
-                                        {/* Placeholder for project image - in real app use Next.js Image */}
-                                        <div className="text-center p-6">
-                                            <div className="font-bold text-2xl opacity-20 uppercase tracking-widest text-foreground">{study.client.split(' ')[0]}</div>
-                                        </div>
+                                    <div className={`h-56 w-full flex items-center justify-center relative overflow-hidden ${!study.image.startsWith('/') ? study.image : ''}`}>
+                                        {study.image.startsWith('/') ? (
+                                            <img
+                                                src={study.image}
+                                                alt={study.title}
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                            />
+                                        ) : (
+                                            <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors" />
+                                        )}
+                                        {/* Placeholder text only if no image */}
+                                        {!study.image.startsWith('/') && (
+                                            <div className="text-center p-6 relative z-10">
+                                                <div className="font-bold text-2xl opacity-20 uppercase tracking-widest text-foreground">{study.client.split(' ')[0]}</div>
+                                            </div>
+                                        )}
                                     </div>
                                     <CardHeader>
                                         <div className="flex justify-between items-start mb-3">
