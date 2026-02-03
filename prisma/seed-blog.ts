@@ -10,7 +10,7 @@ const blogData = [
             slug: "devops-mesterfogasok",
             description: "Tanuld meg, hogyan építhetsz stabil és skálázható infrastruktúrát modern eszközökkel.",
             descriptionEn: "Learn how to build stable and scalable infrastructure with modern tools.",
-            coverImage: "/images/blog/devops-series.jpg"
+            coverImage: "/images/blog/devops-series.png"
         },
         posts: [
             {
@@ -42,7 +42,7 @@ const blogData = [
             slug: "modern-webfejlesztes",
             description: "A legújabb technológiák és trendek a frontend és backend világából.",
             descriptionEn: "The latest technologies and trends from the frontend and backend world.",
-            coverImage: "/images/blog/webdev-series.jpg"
+            coverImage: "/images/blog/webdev-series.png"
         },
         posts: [
             {
@@ -64,7 +64,7 @@ const blogData = [
             slug: "automatizacio-101",
             description: "Hogyan spórolj időt és pénzt a folyamataid automatizálásával.",
             descriptionEn: "How to save time and money by automating your processes.",
-            coverImage: "/images/blog/auto-series.jpg"
+            coverImage: "/images/blog/auto-series.png"
         },
         posts: [
             {
