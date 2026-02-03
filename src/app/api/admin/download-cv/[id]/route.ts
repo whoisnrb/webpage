@@ -31,7 +31,7 @@ export async function GET(
         }
 
         // 3. Return file
-        return new NextResponse(app.cvFile, {
+        return new NextResponse(app.cvFile as any, {
             headers: {
                 "Content-Type": app.cvMimeType || "application/octet-stream",
                 "Content-Disposition": `attachment; filename="${app.cvFileName || 'cv.pdf'}"`
