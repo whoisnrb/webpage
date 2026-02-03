@@ -749,9 +749,9 @@
         },
         "Privacy": {
             "title": "Adatvédelmi Tájékoztató",
-            "lead": "Az BacklineIT Kft. elkötelezett az Ön személyes adatainak védelme mellett. Jelen tájékoztató célja, hogy világos és átlátható információt nyújtson arról, hogyan kezeljük adatait a GDPR (Általános Adatvédelmi Rendelet) előírásaival összhangban.",
+            "lead": "Az BacklineIT elkötelezett az Ön személyes adatainak védelme mellett. Jelen tájékoztató célja, hogy világos és átlátható információt nyújtson arról, hogyan kezeljük adatait a GDPR (Általános Adatvédelmi Rendelet) előírásaival összhangban.",
             "controller_title": "1. Az Adatkezelő",
-            "controller_desc": "Az adatok kezelője az BacklineIT Kft. (székhely: 2141 Csömör, Vörösmarty utca 11., email: hello@backlineit.hu). Cégünk felelős az Ön által megadott személyes adatok jogszerű, tisztességes és átlátható kezeléséért.",
+            "controller_desc": "Az adatok kezelője az BacklineIT  (székhely: 2141 Csömör, Vörösmarty utca 11., email: hello@backlineit.hu). Cégünk felelős az Ön által megadott személyes adatok jogszerű, tisztességes és átlátható kezeléséért.",
             "collected_title": "2. Milyen adatokat gyűjtünk?",
             "collected_desc": "A szolgáltatásaink igénybevétele során az alábbi adatokat kezelhetjük:",
             "collected_list": {
@@ -1621,7 +1621,10 @@
         "kapcsolat": "Kapcsolat",
         "rolunk": "Rólunk",
         "karrier": "Karrier",
-        "velemeny": "Vélemények"
+        "velemeny": "Vélemények",
+        "impresszum": "Impresszum",
+        "aszf": "ÁSZF",
+        "adatvedelem": "Adatvédelem"
     },
     "ServiceTemplate": {
         "premium_service": "PRÉMIUM SZOLGÁLTATÁS",

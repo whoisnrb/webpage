@@ -1626,7 +1626,10 @@
         "kapcsolat": "Contact",
         "rolunk": "About",
         "karrier": "Career",
-        "velemeny": "Reviews"
+        "velemeny": "Reviews",
+        "impresszum": "Imprint",
+        "aszf": "Terms of Service",
+        "adatvedelem": "Privacy"
     },
     "ServiceTemplate": {
         "premium_service": "PREMIUM SERVICE",
