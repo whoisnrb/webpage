@@ -56,6 +56,12 @@ export default async function AdminLayout({
                             Support Tickets
                         </Button>
                     </Link>
+                    <Link href="/admin/careers">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <Briefcase className="mr-2 h-4 w-4" />
+                            Jelentkezések
+                        </Button>
+                    </Link>
                     <Link href="/admin/products">
                         <Button variant="ghost" className="w-full justify-start">
                             <Package className="mr-2 h-4 w-4" />

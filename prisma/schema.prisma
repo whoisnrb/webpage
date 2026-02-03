@@ -337,3 +337,19 @@ model Review {
   approved  Boolean  @default(false)
   createdAt DateTime @default(now())
 }
+
+model JobApplication {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String?
+  linkedin    String?
+  areas       String[]
+  motivation  String?  @db.Text
+  cvFile      Bytes?   // Store CV file directly in DB for now (limit size in logic)
+  cvFileName  String?
+  cvMimeType  String?
+  status      String   @default("NEW") // NEW, REVIEWED, INTERVIEW, REJECTED, HIRED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

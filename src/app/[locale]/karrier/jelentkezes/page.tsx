@@ -9,9 +9,12 @@ import { Link } from "@/i18n/routing"
 import { ArrowLeft, Upload, CheckCircle2, Sparkles, Briefcase, Code2, Server } from "lucide-react"
 import { useTranslations } from "next-intl"
 
+import { submitApplication } from "./actions"
+
 export default function SpontanJelentkezesPage() {
     const t = useTranslations('Careers.application')
     const [submitted, setSubmitted] = useState(false)
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const [selectedAreas, setSelectedAreas] = useState<string[]>([])
 
     const areas = [
@@ -29,10 +32,27 @@ export default function SpontanJelentkezesPage() {
         )
     }
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // Itt lenne a form submission logic
-        setSubmitted(true)
+        setIsSubmitting(true)
+
+        try {
+            const formData = new FormData(e.currentTarget)
+            formData.append('areas', JSON.stringify(selectedAreas))
+
+            const result = await submitApplication(null, formData)
+
+            if (result.success) {
+                setSubmitted(true)
+            } else {
+                alert(result.error)
+            }
+        } catch (error) {
+            console.error(error)
+            alert('Hiba történt a küldés során.')
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     if (submitted) {
@@ -122,6 +142,7 @@ export default function SpontanJelentkezesPage() {
                                             <Label htmlFor="name" className="text-slate-300">{t('form.name')}</Label>
                                             <Input
                                                 id="name"
+                                                name="name"
                                                 required
                                                 placeholder={t('form.name_placeholder')}
                                                 className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 h-12"
@@ -131,6 +152,7 @@ export default function SpontanJelentkezesPage() {
                                             <Label htmlFor="email" className="text-slate-300">{t('form.email')}</Label>
                                             <Input
                                                 id="email"
+                                                name="email"
                                                 type="email"
                                                 required
                                                 placeholder={t('form.email_placeholder')}
@@ -144,6 +166,7 @@ export default function SpontanJelentkezesPage() {
                                             <Label htmlFor="phone" className="text-slate-300">{t('form.phone')}</Label>
                                             <Input
                                                 id="phone"
+                                                name="phone"
                                                 type="tel"
                                                 placeholder={t('form.phone_placeholder')}
                                                 className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 h-12"
@@ -153,6 +176,7 @@ export default function SpontanJelentkezesPage() {
                                             <Label htmlFor="linkedin" className="text-slate-300">{t('form.linkedin')}</Label>
                                             <Input
                                                 id="linkedin"
+                                                name="linkedin"
                                                 type="url"
                                                 placeholder={t('form.linkedin_placeholder')}
                                                 className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 h-12"
@@ -187,6 +211,7 @@ export default function SpontanJelentkezesPage() {
                                         <div className="relative">
                                             <input
                                                 id="cv"
+                                                name="cv"
                                                 type="file"
                                                 required
                                                 accept=".pdf,.doc,.docx"
@@ -209,6 +234,7 @@ export default function SpontanJelentkezesPage() {
                                         <Label htmlFor="motivation" className="text-slate-300">{t('form.motivation_label')}</Label>
                                         <Textarea
                                             id="motivation"
+                                            name="motivation"
                                             rows={5}
                                             placeholder={t('form.motivation_placeholder')}
                                             className="bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 focus:border-cyan-500 resize-none"
@@ -218,11 +244,12 @@ export default function SpontanJelentkezesPage() {
                                     {/* Submit */}
                                     <div className="pt-4">
                                         <Button
+                                            disabled={isSubmitting}
                                             type="submit"
                                             size="lg"
-                                            className="w-full h-14 text-lg font-bold bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white shadow-lg shadow-cyan-500/25"
+                                            className="w-full h-14 text-lg font-bold bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-400 hover:to-violet-400 text-white shadow-lg shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
-                                            {t('form.submit')}
+                                            {isSubmitting ? 'Küldés...' : t('form.submit')}
                                         </Button>
                                         <p className="text-center text-sm text-slate-500 mt-4">
                                             {t('form.terms_prefix')}
