@@ -6,10 +6,10 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
-      allowedOrigins: ["localhost:3000", "192.168.1.204:3000"],
+      allowedOrigins: ["backlineit.hu", "localhost:3000"],
     },
   },
-  allowedDevOrigins: ["localhost:3000", "192.168.1.204", "192.168.1.204:3000"],
+  allowedDevOrigins: ["localhost:3000"],
   async headers() {
     return [
       {
@@ -55,7 +55,7 @@ export default withSentryConfig(withNextIntl(nextConfig), {
   // This can increase your server load as well as your hosting bill.
   // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
   // side errors will fail.
-  tunnelRoute: "/monitoring",
+  // tunnelRoute: "/monitoring",
 
   // Automatically tree-shake Sentry logger statements to reduce bundle size
   disableLogger: true,

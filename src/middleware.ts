@@ -8,39 +8,33 @@ const intlMiddleware = createMiddleware(routing);
 const { auth } = NextAuth(authConfig)
 
 export default auth((req) => {
-    const isLoggedIn = !!req.auth
-    const isAuthPage = req.nextUrl.pathname.includes("/login") || req.nextUrl.pathname.includes("/register")
-    const isAdminPage = req.nextUrl.pathname.includes("/admin")
+    const { nextUrl } = req;
+    const isLoggedIn = !!req.auth;
 
-    if (isAuthPage) {
-        if (isLoggedIn) {
-            return NextResponse.redirect(new URL("/dashboard", req.nextUrl))
-        }
-    }
-
-    if (isAdminPage) {
-        if (!isLoggedIn) {
-            return NextResponse.redirect(new URL("/login", req.nextUrl))
-        }
-
-        // Note: Role check might need to be moved to layout or page level 
-        // if role is not available in the token without database access in middleware
-        // For now, we'll keep it simple or rely on session strategy
-    }
-
-    // Handle localized API routes (e.g., /hu/api/auth/...) by rewriting to /api/...
-    if (req.nextUrl.pathname.includes('/api/')) {
-        const apiIndex = req.nextUrl.pathname.indexOf('/api/');
-        if (apiIndex > 0) {
-            const newPath = req.nextUrl.pathname.substring(apiIndex);
-            return NextResponse.rewrite(new URL(newPath, req.url));
-        }
+    // 1. API útvonalak azonnali átengedése (ne pörgesse a middleware-t feleslegesen)
+    if (nextUrl.pathname.includes('/api/')) {
         return NextResponse.next();
     }
 
+    const isAuthPage = nextUrl.pathname.includes("/login") || nextUrl.pathname.includes("/register");
+    const isAdminPage = nextUrl.pathname.includes("/admin");
+
+    // 2. Auth logika
+    if (isAuthPage && isLoggedIn) {
+        return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
+    }
+
+    if (isAdminPage && !isLoggedIn) {
+        return NextResponse.redirect(new URL("/login", req.nextUrl));
+    }
+
+    // 3. Nyelvi kezelés (intl)
     return intlMiddleware(req);
 })
 
 export const config = {
-    matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)"],
-}
+    // Szigorúbb szűrés: csak az oldalakra fusson le, képekre/scriptekre/api-ra NE
+    matcher: [
+        '/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|.*\\..*).*)',
+    ],
+};
