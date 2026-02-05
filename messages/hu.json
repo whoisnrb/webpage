@@ -2306,7 +2306,108 @@
             ],
             "pricing_label": "Egyedi árazás"
         },
+        "SysAdmin": {
+            "subtitle": "SYSADMIN OPS",
+            "title": "Rendszerüzemeltetés Operations",
+            "description": "Biztosítsd szervereid magas rendelkezésre állását és biztonságát professzionális rendszerüzemeltetési szolgáltatásainkkal.",
+            "hero_badge": "SYSADMIN OPS",
+            "features": {
+                "devops": "DevOps CI/CD",
+                "cloud": "Cloud Migráció",
+                "database": "Adatbázis Tuning",
+                "monitoring": "24/7 Monitoring"
+            },
+            "cta_button": "Ajánlatkérés",
+            "cta_secondary": "Referenciák",
+            "use_cases_title": "Mire használható?",
+            "use_cases_desc": "Problémák, amiket megoldunk",
+            "use_cases_items": [
+                {
+                    "title": "CI/CD Bevezetés",
+                    "description": "Fejlesztési folyamatok automatizálása.",
+                    "example": "GitLab CI pipeline optimalizálás.",
+                    "roi": "Gyorsabb fejlesztés"
+                },
+                {
+                    "title": "Felhő Infrastruktúra",
+                    "description": "Skálázható felhő megoldások AWS vagy Azure alapokon.",
+                    "example": "Kubernetes cluster menedzsment.",
+                    "roi": "Skálázhatóság"
+                },
+                {
+                    "title": "Rendszer Monitoring",
+                    "description": "Valós idejű figyelés és riasztás.",
+                    "example": "Grafana és Prometheus beállítás.",
+                    "roi": "Leállások minimalizálása"
+                },
+                {
+                    "title": "Adatbázis Üzemeltetés",
+                    "description": "Adatbázisok optimalizálása és karbantartása.",
+                    "example": "PostgreSQL tuning és replikáció.",
+                    "roi": "Gyorsabb lekérdezések"
+                },
+                {
+                    "title": "Terheléselosztás",
+                    "description": "Forgalomkezelés és magas rendelkezésre állás.",
+                    "example": "Nginx / HAProxy konfiguráció.",
+                    "roi": "99.99% Uptime"
+                },
+                {
+                    "title": "Biztonsági Keményítés",
+                    "description": "Szerver és hálózat biztonsági beállítása.",
+                    "example": "Tűzfal és Fail2Ban beállítás.",
+                    "roi": "Biztonságos infrastruktúra"
+                }
+            ],
+            "pricing_badge": "CSOMAGOK",
+            "pricing_title": "Válassz csomagot",
+            "pricing_desc": "Skálázható megoldások minden méretre",
+            "pricing_reaction_time": "Reakcióidő",
+            "pricing_select_plan": "Csomag kiválasztása",
+            "pricing_contact_us": "Kapcsolatfelvétel",
+            "cost_title": "Kalkulátor",
+            "cost_desc": "Számold ki a várható költségeket",
+            "plans": {
+                "starter": {
+                    "name": "Starter",
+                    "desc": "Kisebb szerverekhez",
+                    "features": [
+                        "Alapvető Monitoring",
+                        "Havi Frissítések",
+                        "Napi Biztonsági Mentés",
+                        "9-17 Támogatás"
+                    ]
+                },
+                "pro": {
+                    "name": "Pro",
+                    "desc": "Növekvő vállalkozásoknak",
+                    "badge": "LEGNÉPSZERŰBB",
+                    "features": [
+                        "24/7 Monitoring",
+                        "Teljesítmény Optimalizálás",
+                        "Incidens Kezelés",
+                        "Prioritásos Támogatás",
+                        "Heti Riportok"
+                    ]
+                },
+                "enterprise": {
+                    "name": "Enterprise",
+                    "price_label": "Egyedi",
+                    "price_sub": "árajánlat alapján",
+                    "desc": "Nagy forgalmú rendszerekhez",
+                    "features": [
+                        "High Availability (HA) Kiépítés",
+                        "Egyedi SLA",
+                        "Dedikált Mérnök",
+                        "Architektúra Tervezés"
+                    ]
+                }
+            }
+        },
         "Network": {
+            "hero_badge": "HÁLÓZATI MEGOLDÁSOK",
+            "hero_title": "Professzionális Hálózati Megoldások",
+            "hero_description": "Biztonságos távoli elérés, hálózati szegmentálás és tűzfal menedzsment vállalati szinten. Építsünk együtt egy megbízható és skálázható hálózati infrastruktúrát.",
             "title": "Hálózati Szolgáltatásaink",
             "subtitle": "SZOLGÁLTATÁSOK",
             "description": "Professzionális megoldások vállalati hálózatok tervezésére, kiépítésére és üzemeltetésére",

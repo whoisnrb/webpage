@@ -35,7 +35,7 @@ export function SysAdminHero() {
                         {/* Badge */}
                         <div className="inline-flex items-center gap-2 px-4 py-2 text-[10px] font-black tracking-[0.4em] uppercase rounded-full bg-white/[0.03] text-cyan-400 border border-white/10">
                             <Server className="h-3 w-3" />
-                            SysAdmin Ops
+                            {t('subtitle')}
                         </div>
 
                         {/* Title */}
@@ -54,10 +54,10 @@ export function SysAdminHero() {
                         {/* Features Grid */}
                         <div className="grid grid-cols-2 gap-4">
                             {[
-                                { icon: GitBranch, text: 'DevOps CI/CD' },
-                                { icon: Cloud, text: 'Cloud Migration' },
-                                { icon: Database, text: 'Adatbázis Tuning' },
-                                { icon: Activity, text: '24/7 Monitoring' },
+                                { icon: GitBranch, text: t('features.devops') },
+                                { icon: Cloud, text: t('features.cloud') },
+                                { icon: Database, text: t('features.database') },
+                                { icon: Activity, text: t('features.monitoring') },
                             ].map((feature, i) => (
                                 <div key={i} className="p-3 border border-white/5 bg-white/5 hover:bg-white/10 transition-colors rounded-xl">
                                     <div className="flex items-center gap-3 text-white/90">
@@ -78,7 +78,7 @@ export function SysAdminHero() {
                                 asChild
                             >
                                 <Link href="/kapcsolat">
-                                    Ajánlatkérés
+                                    {t('cta_button')}
                                 </Link>
                             </Button>
                             <Button
@@ -88,7 +88,7 @@ export function SysAdminHero() {
                                 asChild
                             >
                                 <Link href="/referenciak">
-                                    Referenciák
+                                    {t('cta_secondary')}
                                 </Link>
                             </Button>
                         </div>

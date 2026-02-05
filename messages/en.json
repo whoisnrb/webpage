@@ -2311,7 +2311,108 @@
             ],
             "pricing_label": "Custom pricing"
         },
+        "SysAdmin": {
+            "subtitle": "SYSADMIN OPS",
+            "title": "System Administration Operations",
+            "description": "Ensure high availability and security for your servers with our professional system administration services.",
+            "hero_badge": "SYSADMIN OPS",
+            "features": {
+                "devops": "DevOps CI/CD",
+                "cloud": "Cloud Migration",
+                "database": "Database Tuning",
+                "monitoring": "24/7 Monitoring"
+            },
+            "cta_button": "Request Quote",
+            "cta_secondary": "References",
+            "use_cases_title": "Use Cases",
+            "use_cases_desc": "Problems we solve",
+            "use_cases_items": [
+                {
+                    "title": "CI/CD Implementation",
+                    "description": "Building and automating deployment pipelines.",
+                    "example": "GitLab CI pipeline optimization.",
+                    "roi": "Faster development"
+                },
+                {
+                    "title": "Cloud Infrastructure",
+                    "description": "Scalable cloud solutions on AWS or Azure.",
+                    "example": "Kubernetes cluster management.",
+                    "roi": "Scalability"
+                },
+                {
+                    "title": "System Monitoring",
+                    "description": "Real-time monitoring and alerting.",
+                    "example": "Grafana and Prometheus setup.",
+                    "roi": "Minimizing downtime"
+                },
+                {
+                    "title": "Database Management",
+                    "description": "Optimization and maintenance of databases.",
+                    "example": "PostgreSQL tuning and replication.",
+                    "roi": "Faster queries"
+                },
+                {
+                    "title": "Load Balancing",
+                    "description": "High availability traffic management.",
+                    "example": "Nginx / HAProxy configuration.",
+                    "roi": "99.99% Uptime"
+                },
+                {
+                    "title": "Security Hardening",
+                    "description": "Server and network security configuration.",
+                    "example": "Firewall and Fail2Ban setup.",
+                    "roi": "Secure infrastructure"
+                }
+            ],
+            "pricing_badge": "PACKAGES",
+            "pricing_title": "Choose a Plan",
+            "pricing_desc": "Scalable solutions for every size",
+            "pricing_reaction_time": "Response Time",
+            "pricing_select_plan": "Select Plan",
+            "pricing_contact_us": "Contact Us",
+            "cost_title": "Cost Calculator",
+            "cost_desc": "Estimate your monthly costs",
+            "plans": {
+                "starter": {
+                    "name": "Starter",
+                    "desc": "For smaller servers",
+                    "features": [
+                        "Basic Monitoring",
+                        "Monthly Updates",
+                        "Daily Backups",
+                        "9-5 Support"
+                    ]
+                },
+                "pro": {
+                    "name": "Pro",
+                    "desc": "For growing businesses",
+                    "badge": "POPULAR",
+                    "features": [
+                        "24/7 Monitoring",
+                        "Performance Tuning",
+                        "Incident Response",
+                        "Priority Support",
+                        "Weekly Reports"
+                    ]
+                },
+                "enterprise": {
+                    "name": "Enterprise",
+                    "price_label": "Custom",
+                    "price_sub": "based on quote",
+                    "desc": "For high-traffic systems",
+                    "features": [
+                        "High Availability Setup",
+                        "Custom SLA",
+                        "Dedicated Engineer",
+                        "Architecture Design"
+                    ]
+                }
+            }
+        },
         "Network": {
+            "hero_badge": "NETWORK SOLUTIONS",
+            "hero_title": "Professional Network Solutions",
+            "hero_description": "Secure remote access, network segmentation, and firewall management at an enterprise level. Let's build a reliable and scalable network infrastructure together.",
             "title": "Network Services",
             "subtitle": "SERVICES",
             "description": "Professional solutions for designing, building, and operating corporate networks",

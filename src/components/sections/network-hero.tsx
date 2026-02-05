@@ -22,30 +22,33 @@ export function NetworkHero() {
                         {/* Badge */}
                         <div className="inline-flex items-center gap-2 px-4 py-2 text-[10px] font-black tracking-[0.4em] uppercase rounded-full bg-white/[0.03] text-primary border border-white/10">
                             <Network className="h-3 w-3" />
-                            NETWORK SOLUTIONS
+                            {t('hero_badge')}
                         </div>
 
                         {/* Title */}
                         <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9]">
-                            Professzionális<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-primary">
-                                Hálózati Megoldások
-                            </span>
+                            {t.rich('hero_title', {
+                                br: () => <br />,
+                                span: (chunks) => (
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-primary">
+                                        {chunks}
+                                    </span>
+                                )
+                            })}
                         </h1>
 
                         {/* Description */}
                         <p className="text-xl text-white/60 font-medium leading-relaxed max-w-xl">
-                            Biztonságos távoli elérés, hálózati szegmentálás és tűzfal menedzsment vállalati szinten.
-                            Építsünk együtt egy megbízható és skálázható hálózati infrastruktúrát.
+                            {t('hero_description')}
                         </p>
 
                         {/* Features */}
                         <div className="grid grid-cols-2 gap-4">
                             {[
-                                { icon: Lock, text: 'VPN Megoldások' },
-                                { icon: Network, text: 'VLAN Szegmentálás' },
-                                { icon: Shield, text: 'Tűzfal Menedzsment' },
-                                { icon: Wifi, text: 'WiFi Kezelés' },
+                                { icon: Lock, text: t('services.vpn.title') },
+                                { icon: Network, text: t('services.vlan.title') },
+                                { icon: Shield, text: t('services.firewall.title') },
+                                { icon: Wifi, text: t('services.wifi.title') },
                             ].map((feature, i) => (
                                 <div key={i} className="p-3 border border-white/5 bg-white/5 hover:bg-white/10 transition-colors rounded-xl">
                                     <div className="flex items-center gap-3 text-white/90">
@@ -66,7 +69,7 @@ export function NetworkHero() {
                                 asChild
                             >
                                 <Link href="/kapcsolat">
-                                    Ajánlatkérés
+                                    {t('cta_button')}
                                 </Link>
                             </Button>
                             <Button
@@ -76,7 +79,7 @@ export function NetworkHero() {
                                 asChild
                             >
                                 <Link href="/demo">
-                                    Ingyenes Konzultáció
+                                    {t('cta_secondary')}
                                 </Link>
                             </Button>
                         </div>
