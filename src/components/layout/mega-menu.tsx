@@ -39,6 +39,11 @@ export function MegaMenu() {
             href: "/szolgaltatasok/halozat",
             description: t("nav_items.network_desc"),
         },
+        {
+            title: t("nav_items.integrations"),
+            href: "/szolgaltatasok/integraciok",
+            description: t("nav_items.integrations_desc"),
+        },
     ]
 
     return (
@@ -48,7 +53,7 @@ export function MegaMenu() {
                     <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("services")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 rounded-[1.5rem] shadow-3xl">
-                            <li className="row-span-3">
+                            <li className="row-span-5">
                                 <NavigationMenuLink asChild>
                                     <Link
                                         className="flex h-full w-full select-none flex-col justify-end rounded-2xl bg-gradient-to-br from-primary/20 via-primary/5 to-transparent p-6 no-underline outline-none focus:shadow-md border border-white/5 group"

@@ -87,10 +87,10 @@ export function NetworkHero() {
                         {/* Trust Badge */}
                         <div className="pt-8 border-t border-white/10">
                             <p className="text-xs text-white/40 font-medium mb-2">
-                                HIVATALOS SZAKKÉPESÍTÉS
+                                {t('official_qualification')}
                             </p>
                             <p className="text-sm text-white/60 font-bold">
-                                Informatikai Rendszer- és Hálózatüzemeltető 🎓
+                                {t('qualification_name')}
                             </p>
                         </div>
                     </div>

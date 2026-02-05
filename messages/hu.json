@@ -2292,15 +2292,15 @@
             "scenarios_title": "Gyakori Integrációs Forgatókönyvek",
             "scenarios": [
                 {
-                    "title": "Webshop †” Számlázó",
+                    "title": "Webshop + Számlázó",
                     "description": "Automatikus számlakiállítás rendeléskor. Összekötjük WooCommerce vagy Shopify boltodat a Számlázz.hu vagy Billingo fiókoddal."
                 },
                 {
-                    "title": "CRM †” Marketing",
+                    "title": "CRM + Marketing",
                     "description": "ügyféladatok szinkronizálása a CRM rendszered (pl. HubSpot, Salesforce) és a hírlevélküldőd (pl. Mailchimp) között."
                 },
                 {
-                    "title": "ERP â†” Készletkezelő",
+                    "title": "ERP + Készletkezelő",
                     "description": "Valós idejű készletfrissítés minden értékesítési csatornán. Ha eladsz valamit a boltban, a webshopon is frissül a készlet."
                 }
             ],
@@ -2408,6 +2408,8 @@
             "hero_badge": "HÁLÓZATI MEGOLDÁSOK",
             "hero_title": "Professzionális Hálózati Megoldások",
             "hero_description": "Biztonságos távoli elérés, hálózati szegmentálás és tűzfal menedzsment vállalati szinten. Építsünk együtt egy megbízható és skálázható hálózati infrastruktúrát.",
+            "official_qualification": "HIVATALOS SZAKKÉPESÍTÉS",
+            "qualification_name": "Informatikai Rendszer- és Hálózatüzemeltető 🎓",
             "title": "Hálózati Szolgáltatásaink",
             "subtitle": "SZOLGÁLTATÁSOK",
             "description": "Professzionális megoldások vállalati hálózatok tervezésére, kiépítésére és üzemeltetésére",
@@ -2571,5 +2573,31 @@
         "ssl_security": "SSL Biztonság",
         "gdpr_compliant": "GDPR Kompatibilis",
         "no_hidden_costs": "Nincsenek rejtett költségek"
+    },
+    "MegaMenu": {
+        "nav_items": {
+            "integrations": "Integrációk",
+            "integrations_desc": "Rendszerösszekötések és API megoldások"
+        },
+        "services": "Szolgáltatások",
+        "products": "Termékek",
+        "knowledge": "Tudástár",
+        "our_services": "Szolgáltatásaink",
+        "services_desc": "Teljes körű IT megoldások vállalkozásodnak",
+        "all_products": "Összes termék",
+        "all_products_desc": "Böngéssz teljes katalógusunkban",
+        "scripts": "Scriptek",
+        "scripts_desc": "Automatizáld a munkafolyamataidat",
+        "web": "Webfejlesztés",
+        "web_desc": "Modern weboldalak és webshopok",
+        "prices": "Árak",
+        "prices_desc": "Átlátható árazás",
+        "references": "Referenciák",
+        "references_desc": "Sikertörténetek",
+        "blog": "Blog",
+        "blog_desc": "Szakmai cikkek és útmutatók",
+        "reviews": "Vélemények",
+        "reviews_desc": "Ügyfeleink visszajelzései",
+        "contact": "Kapcsolat"
     }
 }

@@ -2413,6 +2413,8 @@
             "hero_badge": "NETWORK SOLUTIONS",
             "hero_title": "Professional Network Solutions",
             "hero_description": "Secure remote access, network segmentation, and firewall management at an enterprise level. Let's build a reliable and scalable network infrastructure together.",
+            "official_qualification": "OFFICIAL QUALIFICATION",
+            "qualification_name": "IT System and Network Administrator 🎓",
             "title": "Network Services",
             "subtitle": "SERVICES",
             "description": "Professional solutions for designing, building, and operating corporate networks",
@@ -2576,5 +2578,31 @@
         "ssl_security": "SSL Security",
         "gdpr_compliant": "GDPR Compliant",
         "no_hidden_costs": "No Hidden Costs"
+    },
+    "MegaMenu": {
+        "nav_items": {
+            "integrations": "Integrations",
+            "integrations_desc": "System integrations and API solutions"
+        },
+        "services": "Services",
+        "products": "Products",
+        "knowledge": "Knowledge Center",
+        "our_services": "Our Services",
+        "services_desc": "Complete IT solutions for your business",
+        "all_products": "All Products",
+        "all_products_desc": "Browse our full catalog",
+        "scripts": "Scripts",
+        "scripts_desc": "Automate your workflow",
+        "web": "Web Development",
+        "web_desc": "Modern websites and shops",
+        "prices": "Pricing",
+        "prices_desc": "Transparent pricing",
+        "references": "References",
+        "references_desc": "Success stories",
+        "blog": "Blog",
+        "blog_desc": "Tech articles & guides",
+        "reviews": "Reviews",
+        "reviews_desc": "What our clients say",
+        "contact": "Contact"
     }
 }
