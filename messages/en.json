@@ -2582,7 +2582,15 @@
     "MegaMenu": {
         "nav_items": {
             "integrations": "Integrations",
-            "integrations_desc": "System integrations and API solutions"
+            "integrations_desc": "System integrations and API solutions",
+            "scripts": "Scripts",
+            "scripts_desc": "Automate your workflow",
+            "webdev": "Web Development",
+            "webdev_desc": "Modern websites and shops",
+            "sysadmin": "System Administration",
+            "sysadmin_desc": "Stable servers and cloud solutions",
+            "network": "Network & Security",
+            "network_desc": "VPN, Firewall and secure networks"
         },
         "services": "Services",
         "products": "Products",

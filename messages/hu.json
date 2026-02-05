@@ -2577,7 +2577,15 @@
     "MegaMenu": {
         "nav_items": {
             "integrations": "Integrációk",
-            "integrations_desc": "Rendszerösszekötések és API megoldások"
+            "integrations_desc": "Rendszerösszekötések és API megoldások",
+            "scripts": "Scriptek",
+            "scripts_desc": "Automatizáld a munkafolyamataidat",
+            "webdev": "Webfejlesztés",
+            "webdev_desc": "Modern weboldalak és webshopok",
+            "sysadmin": "Rendszerüzemeltetés",
+            "sysadmin_desc": "Stabil szerverek és felhő megoldások",
+            "network": "Hálózat & Biztonság",
+            "network_desc": "VPN, Tűzfal és biztonságos hálózatok"
         },
         "services": "Szolgáltatások",
         "products": "Termékek",
