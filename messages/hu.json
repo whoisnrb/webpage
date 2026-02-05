@@ -1134,8 +1134,8 @@
             "details_and_order": "Részletek és Megrendelés",
             "pricing_from": "-tól",
             "pricing_custom": "Egyedi árazás",
-            "pricing_from_format": "<price>_</price>-tól",
-            "pricing_plus_format": "<price>_</price>+",
+            "pricing_from_format": "{price}-tól",
+            "pricing_plus_format": "{price}+",
             "pricing_per_month": "/ hó",
             "starting_price": "Irányár"
         },

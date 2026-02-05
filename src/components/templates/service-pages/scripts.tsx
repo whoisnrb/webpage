@@ -11,10 +11,18 @@ import { PriceDisplay } from "@/components/price-display"
 import { motion } from "framer-motion"
 import { FadeIn, SlideUp } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
+import { useCurrency } from "@/components/currency-provider"
+import { formatPrice } from "@/lib/currency"
 
 export function ScriptsClient() {
     const t = useTranslations("Services.Scripts")
     const tServices = useTranslations("ServicesPage")
+    const { currency, rates } = useCurrency()
+
+    const getPriceString = (amount: number) => {
+        const val = amount / (rates['HUF'] || 1) * (rates[currency] || 1)
+        return formatPrice(val, currency)
+    }
 
     const useCases = [
         {
@@ -124,9 +132,9 @@ export function ScriptsClient() {
                     }
                 ]}
                 techStack={["Python", "Node.js", "n8n", "Docker", "REST API", "GraphQL", "Zapier", "Make"]}
-                pricing={tServices.rich('item_labels.pricing_from_format', {
-                    price: () => <PriceDisplay amount={100000} />
-                }) as any}
+                pricing={tServices('item_labels.pricing_from_format', {
+                    price: getPriceString(100000)
+                })}
             >
                 <UseCases
                     title={t("use_cases_title")}
@@ -175,12 +183,12 @@ export function ScriptsClient() {
                                             <div className="flex items-baseline gap-2">
                                                 <div className="text-6xl font-black text-white tracking-tighter">
                                                     {plan.priceFrom ? (
-                                                        tServices.rich('item_labels.pricing_from_format', {
-                                                            price: () => <PriceDisplay amount={plan.price} />
+                                                        tServices('item_labels.pricing_from_format', {
+                                                            price: getPriceString(plan.price)
                                                         })
                                                     ) : plan.pricePlus ? (
-                                                        tServices.rich('item_labels.pricing_plus_format', {
-                                                            price: () => <PriceDisplay amount={plan.price} />
+                                                        tServices('item_labels.pricing_plus_format', {
+                                                            price: getPriceString(plan.price)
                                                         })
                                                     ) : (
                                                         <PriceDisplay amount={plan.price} />

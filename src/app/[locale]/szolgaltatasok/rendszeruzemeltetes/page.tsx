@@ -12,6 +12,8 @@ import { PriceDisplay } from "@/components/price-display"
 import { motion } from "framer-motion"
 import { FadeIn } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
+import { useCurrency } from "@/components/currency-provider"
+import { formatPrice } from "@/lib/currency"
 import { SysAdminHero } from "@/components/sections/sysadmin-hero"
 import { PremiumCTA } from "@/components/sections/premium-cta"
 
@@ -19,6 +21,12 @@ export default function RendszeruzemeltetesPage() {
     const t = useTranslations("Services.SysAdmin")
     const tCommon = useTranslations("Common")
     const tServices = useTranslations("ServicesPage")
+    const { currency, rates } = useCurrency()
+
+    const getPriceString = (amount: number) => {
+        const val = amount / (rates['HUF'] || 1) * (rates[currency] || 1)
+        return formatPrice(val, currency)
+    }
 
     const useCases = [
         {
@@ -111,8 +119,8 @@ export default function RendszeruzemeltetesPage() {
                                 </div>
                                 <div className="mb-12">
                                     <div className="text-6xl font-black text-white tracking-tighter">
-                                        {tServices.rich('item_labels.pricing_from_format', {
-                                            price: () => <PriceDisplay amount={70000} className="text-white" />
+                                        {tServices('item_labels.pricing_from_format', {
+                                            price: getPriceString(70000)
                                         })}
                                     </div>
                                     <p className="text-white/20 font-black uppercase tracking-widest text-[10px] mt-4">{tServices("item_labels.pricing_per_month")}</p>
@@ -152,8 +160,8 @@ export default function RendszeruzemeltetesPage() {
                                 </div>
                                 <div className="mb-12">
                                     <div className="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-primary tracking-tighter">
-                                        {tServices.rich('item_labels.pricing_from_format', {
-                                            price: () => <PriceDisplay amount={175000} className="text-inherit" />
+                                        {tServices('item_labels.pricing_from_format', {
+                                            price: getPriceString(175000)
                                         })}
                                     </div>
                                     <p className="text-white/20 font-black uppercase tracking-widest text-[10px] mt-4">{tServices("item_labels.pricing_per_month")}</p>

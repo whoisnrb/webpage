@@ -11,10 +11,18 @@ import { PriceDisplay } from "@/components/price-display"
 import { motion } from "framer-motion"
 import { FadeIn, SlideUp } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
+import { useCurrency } from "@/components/currency-provider"
+import { formatPrice } from "@/lib/currency"
 
 export default function BiztonsagPage() {
     const t = useTranslations("Services.Security")
     const tServices = useTranslations("ServicesPage")
+    const { currency, rates } = useCurrency()
+
+    const getPriceString = (amount: number) => {
+        const val = amount / (rates['HUF'] || 1) * (rates[currency] || 1)
+        return formatPrice(val, currency)
+    }
 
     const useCases = [
         {
@@ -123,9 +131,9 @@ export default function BiztonsagPage() {
                     }
                 ]}
                 techStack={["Kali Linux", "Nmap", "Wireshark", "Metasploit", "Cloudflare", "ModSecurity", "Fail2Ban", "OpenVAS"]}
-                pricing={tServices.rich('item_labels.pricing_from_format', {
-                    price: () => <PriceDisplay amount={125000} />
-                }) as any}
+                pricing={tServices('item_labels.pricing_from_format', {
+                    price: getPriceString(125000)
+                })}
             >
                 <UseCases
                     title={t("use_cases_title")}
@@ -174,8 +182,8 @@ export default function BiztonsagPage() {
                                             <div className="flex items-baseline gap-2">
                                                 <div className="text-6xl font-black text-white tracking-tighter">
                                                     {plan.priceText ? plan.priceText : plan.priceFrom ? (
-                                                        tServices.rich('item_labels.pricing_from_format', {
-                                                            price: () => <PriceDisplay amount={plan.price!} className="text-white" />
+                                                        tServices('item_labels.pricing_from_format', {
+                                                            price: getPriceString(plan.price!)
                                                         })
                                                     ) : (
                                                         <PriceDisplay amount={plan.price!} className="text-white" />
