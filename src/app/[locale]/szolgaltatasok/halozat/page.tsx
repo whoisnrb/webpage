@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Lock, Network, Shield, Wifi, CheckCircle2, ArrowRight } from "lucide-react"
-import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { motion } from "framer-motion"
 
 export default function HalozatPage() {
@@ -41,7 +40,7 @@ export default function HalozatPage() {
 
     return (
         <div className="flex flex-col min-h-screen bg-transparent">
-            {/* Hero with 3D Visualization */}
+            {/* Hero with 3D Visualization - Now Simplified */}
             <NetworkHero />
 
             {/* Services Grid */}
@@ -69,7 +68,7 @@ export default function HalozatPage() {
                                 transition={{ delay: index * 0.1 }}
                                 viewport={{ once: true }}
                             >
-                                <SpotlightCard className="h-full bg-white/[0.02] border-white/10 rounded-3xl p-8">
+                                <div className="h-full bg-white/[0.02] border border-white/10 rounded-3xl p-8 hover:bg-white/[0.04] transition-colors duration-300">
                                     <div className="p-3 inline-block rounded-2xl bg-primary/10 border border-primary/20 mb-6">
                                         <service.icon className="h-8 w-8 text-primary" />
                                     </div>
@@ -83,7 +82,7 @@ export default function HalozatPage() {
                                             </li>
                                         ))}
                                     </ul>
-                                </SpotlightCard>
+                                </div>
                             </motion.div>
                         ))}
                     </div>
@@ -93,7 +92,7 @@ export default function HalozatPage() {
             {/* CTA Section */}
             <section className="py-24 md:py-32 relative bg-transparent">
                 <div className="container mx-auto px-4 relative z-10">
-                    <SpotlightCard className="max-w-4xl mx-auto bg-gradient-to-br from-primary/10 to-transparent border-primary/20 rounded-[48px] p-12 text-center">
+                    <div className="max-w-4xl mx-auto bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 rounded-[48px] p-12 text-center">
                         <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter mb-6">
                             {t("cta_title")}
                         </h2>
@@ -121,7 +120,7 @@ export default function HalozatPage() {
                                 </Link>
                             </Button>
                         </div>
-                    </SpotlightCard>
+                    </div>
                 </div>
             </section>
         </div>

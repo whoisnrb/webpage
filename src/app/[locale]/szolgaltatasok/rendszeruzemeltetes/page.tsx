@@ -11,7 +11,6 @@ import { useTranslations } from "next-intl"
 import { PriceDisplay } from "@/components/price-display"
 import { motion } from "framer-motion"
 import { FadeIn } from "@/components/ui/motion-wrapper"
-import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { useCurrency } from "@/components/currency-provider"
 import { formatPrice } from "@/lib/currency"
 import { SysAdminHero } from "@/components/sections/sysadmin-hero"
@@ -112,7 +111,7 @@ export default function RendszeruzemeltetesPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             className="relative group"
                         >
-                            <SpotlightCard className="h-full bg-white/[0.02] border-white/10 rounded-[48px] p-10 flex flex-col">
+                            <div className="h-full bg-white/[0.02] border border-white/10 rounded-[48px] p-10 flex flex-col hover:bg-white/[0.04] transition-colors duration-300">
                                 <div className="mb-10">
                                     <h3 className="text-3xl font-black text-white mb-4">{t("plans.starter.name")}</h3>
                                     <p className="text-white/40 font-medium leading-relaxed">{t("plans.starter.desc")}</p>
@@ -139,7 +138,7 @@ export default function RendszeruzemeltetesPage() {
                                         <Link href="/kapcsolat">{t("pricing_select_plan")}</Link>
                                     </Button>
                                 </div>
-                            </SpotlightCard>
+                            </div>
                         </motion.div>
 
                         {/* Pro */}
@@ -153,7 +152,7 @@ export default function RendszeruzemeltetesPage() {
                                     ⭐ {t("plans.pro.badge")}
                                 </div>
                             </div>
-                            <SpotlightCard className="h-full bg-primary/[0.03] border-primary/30 rounded-[48px] p-10 flex flex-col">
+                            <div className="h-full bg-primary/[0.03] border border-primary/30 rounded-[48px] p-10 flex flex-col hover:bg-primary/[0.06] transition-colors duration-300">
                                 <div className="mb-10">
                                     <h3 className="text-3xl font-black text-white mb-4">{t("plans.pro.name")}</h3>
                                     <p className="text-white/40 font-medium leading-relaxed">{t("plans.pro.desc")}</p>
@@ -180,7 +179,7 @@ export default function RendszeruzemeltetesPage() {
                                         <Link href="/kapcsolat">{t("pricing_select_plan")}</Link>
                                     </Button>
                                 </div>
-                            </SpotlightCard>
+                            </div>
                         </motion.div>
 
                         {/* Enterprise */}
@@ -189,7 +188,7 @@ export default function RendszeruzemeltetesPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             className="relative group"
                         >
-                            <SpotlightCard className="h-full bg-white/[0.02] border-white/10 rounded-[48px] p-10 flex flex-col">
+                            <div className="h-full bg-white/[0.02] border border-white/10 rounded-[48px] p-10 flex flex-col hover:bg-white/[0.04] transition-colors duration-300">
                                 <div className="mb-10">
                                     <h3 className="text-3xl font-black text-white mb-4">{t("plans.enterprise.name")}</h3>
                                     <p className="text-white/40 font-medium leading-relaxed">{t("plans.enterprise.desc")}</p>
@@ -212,7 +211,7 @@ export default function RendszeruzemeltetesPage() {
                                         <Link href="/kapcsolat">{t("pricing_contact_us")}</Link>
                                     </Button>
                                 </div>
-                            </SpotlightCard>
+                            </div>
                         </motion.div>
                     </div>
                 </div>
@@ -226,9 +225,9 @@ export default function RendszeruzemeltetesPage() {
                         <p className="text-xl text-white/40 max-w-2xl mx-auto font-medium">{t("cost_desc")}</p>
                     </div>
                     <div className="max-w-4xl mx-auto">
-                        <SpotlightCard className="bg-white/[0.02] border-white/10 rounded-[48px] p-8 md:p-12">
+                        <div className="bg-white/[0.02] border border-white/10 rounded-[48px] p-8 md:p-12 hover:bg-white/[0.03] transition-colors duration-300">
                             <PriceCalculator />
-                        </SpotlightCard>
+                        </div>
                     </div>
                 </div>
             </section>
