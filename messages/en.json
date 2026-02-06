@@ -1806,63 +1806,7 @@
                         "Unlimited incident handling"
                     ]
                 }
-            },
-            "pillars_badge": "Full-Service IT Solutions",
-            "pillars_title": "Our Service Pillars",
-            "pillars_desc": "With IT System and Network Administrator certification, we offer professional solutions in these four areas",
-            "pillars": {
-                "virtualization": {
-                    "title": "Virtualization & Cloud (IaaS)",
-                    "desc": "Virtualizing physical servers for cost efficiency and flexibility. Containerization and resource optimization.",
-                    "features": [
-                        "Proxmox / VMware / Hyper-V deployment",
-                        "Docker & Kubernetes environments",
-                        "Resource optimization and auditing",
-                        "Private Cloud solutions"
-                    ]
-                },
-                "network": {
-                    "title": "Professional Networking",
-                    "desc": "Secure remote access, network segmentation, and enterprise-grade firewall management.",
-                    "features": [
-                        "WireGuard / OpenVPN based VPN",
-                        "VLAN network segmentation",
-                        "MikroTik / Cisco / pfSense firewall",
-                        "WiFi management (Ubiquiti UniFi)"
-                    ]
-                },
-                "servers": {
-                    "title": "Server Administration",
-                    "desc": "Linux and Windows server installation, hardening, continuous updates, and centralized user management.",
-                    "features": [
-                        "Linux/Windows Server installation",
-                        "Active Directory / LDAP management",
-                        "24/7 Monitoring (Zabbix/UptimeKuma)",
-                        "Security updates and hardening"
-                    ]
-                },
-                "security": {
-                    "title": "Data Security & DR",
-                    "desc": "3-2-1 backup strategy, ransomware protection, and disaster recovery planning.",
-                    "features": [
-                        "3-2-1 Backup Strategy",
-                        "Immutable backups",
-                        "Ransomware protection",
-                        "Disaster Recovery plans"
-                    ]
-                }
-            },
-            "tech_stack_badge": "Trusted Technologies",
-            "tech_stack_title": "Our Tools & Technologies",
-            "tech_stack_desc": "We work with the best and most reliable tools in the industry",
-            "tech_categories": {
-                "virtualization": "Virtualization",
-                "network": "Network",
-                "os": "Operating Systems",
-                "automation": "Automation"
-            },
-            "certification_badge": "IT System and Network Administrator Certification",
-            "certification_desc": "Official certification guarantees professional service quality."
+            }
         },
         "WebDev": {
             "title": "Web Development & E-commerce",

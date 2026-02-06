@@ -1802,63 +1802,7 @@
                         "Korlátlan incidens kezelés"
                     ]
                 }
-            },
-            "pillars_badge": "Teljes körű IT szolgáltatások",
-            "pillars_title": "Szolgáltatási Pilléreink",
-            "pillars_desc": "Informatikai rendszer- és hálózatüzemeltetői szakképesítéssel, az alábbi négy területen kínálunk professzionális megoldásokat",
-            "pillars": {
-                "virtualization": {
-                    "title": "Virtualizáció & Felhő (IaaS)",
-                    "desc": "Fizikai szerverek virtualizálása a költséghatékonyság és rugalmasság érdekében. Konténerizáció és erőforrás optimalizálás.",
-                    "features": [
-                        "Proxmox / VMware / Hyper-V telepítés",
-                        "Docker & Kubernetes környezetek",
-                        "Erőforrás optimalizálás és átvilágítás",
-                        "Private Cloud megoldások"
-                    ]
-                },
-                "network": {
-                    "title": "Professzionális Hálózat",
-                    "desc": "Biztonságos távoli elérés, hálózati szegmentálás és tűzfal menedzsment vállalati szinten.",
-                    "features": [
-                        "WireGuard / OpenVPN alapú VPN",
-                        "VLAN hálózati szegmentálás",
-                        "MikroTik / Cisco / pfSense tűzfal",
-                        "WiFi menedzsment (Ubiquiti UniFi)"
-                    ]
-                },
-                "servers": {
-                    "title": "Szerverüzemeltetés",
-                    "desc": "Linux és Windows szerverek telepítése, hardening, folyamatos frissítés és központi felhasználókezelés.",
-                    "features": [
-                        "Linux/Windows Server telepítés",
-                        "Active Directory / LDAP kezelés",
-                        "24/7 Monitoring (Zabbix/UptimeKuma)",
-                        "Biztonsági frissítések és hardening"
-                    ]
-                },
-                "security": {
-                    "title": "Adatbiztonság & DR",
-                    "desc": "3-2-1 mentési stratégia, zsarolóvírus elleni védelem és katasztrófa-helyreállítási tervek.",
-                    "features": [
-                        "3-2-1 Mentési Stratégia",
-                        "Immutable (módosíthatatlan) mentések",
-                        "Ransomware elleni védelem",
-                        "Disaster Recovery tervek"
-                    ]
-                }
-            },
-            "tech_stack_badge": "Megbízható Technológiák",
-            "tech_stack_title": "Eszközeink & Technológiáink",
-            "tech_stack_desc": "Az iparág legjobb és legmegbízhatóbb eszközeivel dolgozunk",
-            "tech_categories": {
-                "virtualization": "Virtualizáció",
-                "network": "Hálózat",
-                "os": "Operációs Rendszerek",
-                "automation": "Automatizáció"
-            },
-            "certification_badge": "Informatikai Rendszer- és Hálózatüzemeltető Szakképesítés",
-            "certification_desc": "Hivatalos szakképesítéssel garantáljuk a professzionális szolgáltatásminőséget."
+            }
         },
         "WebDev": {
             "title": "Webfejlesztés & Webáruház",
