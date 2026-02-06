@@ -2612,5 +2612,160 @@
         "reviews": "Reviews",
         "reviews_desc": "What our clients say",
         "contact": "Contact"
+    },
+    "Services": {
+        "SysAdmin": {
+            "title": "Modern System Administration",
+            "subtitle": "SYSTEM ADMINISTRATOR",
+            "description": "We don’t just put out fires. We proactively build systems that are stable, secure and scalable.",
+            "features": {
+                "devops": "DevOps Mindset",
+                "cloud": "Cloud Native",
+                "database": "Database Experts",
+                "monitoring": "24/7 Monitoring"
+            },
+            "cta_button": "Free Consultation",
+            "cta_secondary": "References",
+            "pillars_badge": "PILLARS",
+            "pillars_title": "The 4 Pillars of System Administration",
+            "pillars_desc": "We provide a stable IT background for your business so you can focus on growth.",
+            "pillars": {
+                "virtualization": {
+                    "title": "Virtualization & Cloud",
+                    "desc": "Designing scalable, cost-effective and secure environments.",
+                    "features": {
+                        "0": "Proxmox / VMware clusters",
+                        "1": "Private and Hybrid Cloud",
+                        "2": "High Availability (HA)",
+                        "3": "Resource Optimization"
+                    }
+                },
+                "network": {
+                    "title": "Network & VPN",
+                    "desc": "Fast and secure communication between offices and the cloud.",
+                    "features": {
+                        "0": "Ubiquiti / MikroTik networks",
+                        "1": "Site-to-Site VPN (WireGuard)",
+                        "2": "VLAN segmentation",
+                        "3": "QoS and bandwidth management"
+                    }
+                },
+                "servers": {
+                    "title": "Linux & Windows Servers",
+                    "desc": "Reliable server management and automatic updates.",
+                    "features": {
+                        "0": "Linux (Debian/Ubuntu/RHEL)",
+                        "1": "Windows Server AD/GPO",
+                        "2": "Automatic patch management",
+                        "3": "Hardening and security audit"
+                    }
+                },
+                "security": {
+                    "title": "Cybersecurity",
+                    "desc": "Multi-layer protection for data and systems.",
+                    "features": {
+                        "0": "Firewall management",
+                        "1": "Intrusion Detection (IPS/IDS)",
+                        "2": "Regular backups",
+                        "3": "Disaster Recovery plan"
+                    }
+                }
+            },
+            "certification_badge": "Certified Experts",
+            "certification_desc": "Our engineers hold internationally recognized certifications.",
+            "tech_stack_badge": "TECH STACK",
+            "tech_stack_title": "Technologies We Use",
+            "tech_stack_desc": "We work with the industry's best tools for maximum stability.",
+            "tech_categories": {
+                "virtualization": "Virtualization",
+                "network": "Network",
+                "os": "Operating Systems",
+                "automation": "Automation & Monitoring"
+            },
+            "use_cases_title": "Use Cases",
+            "use_cases_desc": "Real examples of how we helped others.",
+            "use_cases_items": {
+                "0": {
+                    "title": "DevOps Pipeline",
+                    "description": "Automating CI/CD processes for faster development.",
+                    "example": "GitLab CI / GitHub Actions",
+                    "roi": "Faster Release"
+                },
+                "1": {
+                    "title": "Cloud Migration",
+                    "description": "Moving local servers to the cloud.",
+                    "example": "AWS / Google Cloud",
+                    "roi": "Cost Reduction"
+                },
+                "2": {
+                    "title": "Log Monitoring",
+                    "description": "Centralized log collection and analysis.",
+                    "example": "ELK / Loki",
+                    "roi": "Faster Troubleshooting"
+                },
+                "3": {
+                    "title": "Database Cluster",
+                    "description": "Building high-availability databases.",
+                    "example": "PostgreSQL HA",
+                    "roi": "0% Data Loss"
+                },
+                "4": {
+                    "title": "Webserver Tuning",
+                    "description": "Optimizing high-traffic websites.",
+                    "example": "Nginx / Varnish",
+                    "roi": "Faster Loading"
+                },
+                "5": {
+                    "title": "Security Audit",
+                    "description": "Vulnerability assessment of systems.",
+                    "example": "Penetration Testing",
+                    "roi": "Secure Operation"
+                }
+            },
+            "pricing_badge": "PRICING",
+            "pricing_title": "Transparent Packages",
+            "pricing_desc": "No hidden costs. Choose the level that suits your needs.",
+            "pricing_reaction_time": "Reaction Time",
+            "pricing_select_plan": "Select Plan",
+            "pricing_contact_us": "Contact Us",
+            "cost_title": "Calculator",
+            "cost_desc": "Calculate exactly how much operation would cost.",
+            "plans": {
+                "starter": {
+                    "name": "Starter",
+                    "desc": "For small businesses with basic needs.",
+                    "features": {
+                        "0": "Weekly Backup",
+                        "1": "Monthly Updates",
+                        "2": "Business Hours (8-16) Support",
+                        "3": "Basic Uptime Monitoring"
+                    }
+                },
+                "pro": {
+                    "badge": "Recommended",
+                    "name": "Pro",
+                    "desc": "For growing businesses, critical systems.",
+                    "features": {
+                        "0": "Daily Backup",
+                        "1": "Weekly Updates",
+                        "2": "24/7 Support (SLA)",
+                        "3": "Performance Monitoring (CPU/RAM)",
+                        "4": "Dedicated Contact"
+                    }
+                },
+                "enterprise": {
+                    "name": "Enterprise",
+                    "desc": "For large enterprises with custom needs.",
+                    "price_label": "Custom",
+                    "price_sub": "By Agreement",
+                    "features": {
+                        "0": "Real-time Replication & DR",
+                        "1": "Continuous Security Audit",
+                        "2": "Dedicated Engineering Team",
+                        "3": "Personalized Reports"
+                    }
+                }
+            }
+        }
     }
 }

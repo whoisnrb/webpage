@@ -2607,5 +2607,160 @@
         "reviews": "Vélemények",
         "reviews_desc": "Ügyfeleink visszajelzései",
         "contact": "Kapcsolat"
+    },
+    "Services": {
+        "SysAdmin": {
+            "title": "Modern Rendszerüzemeltetés",
+            "subtitle": "SYSTEM ADMINISTRATOR",
+            "description": "Nem csak tüzet oltunk. Proaktívan építünk olyan rendszereket, amelyek stabilak, biztonságosak és skálázhatók.",
+            "features": {
+                "devops": "DevOps szemlélet",
+                "cloud": "Cloud Native",
+                "database": "Adatbázis szakértők",
+                "monitoring": "24/7 Monitoring"
+            },
+            "cta_button": "Ingyenes Konzultáció",
+            "cta_secondary": "Referenciák",
+            "pillars_badge": "PILLÉREK",
+            "pillars_title": "A Rendszerüzemeltetés 4 Pillére",
+            "pillars_desc": "Stabil informatikai hátteret biztosítunk vállalkozásod számára, hogy te az üzletépítésre koncentrálhass.",
+            "pillars": {
+                "virtualization": {
+                    "title": "Virtualizáció & Felhő",
+                    "desc": "Skálázható, költséghatékony és biztonságos környezetek tervezése.",
+                    "features": {
+                        "0": "Proxmox / VMware klaszterek",
+                        "1": "Privát és Hibrid felhő",
+                        "2": "Magas rendelkezésre állás (HA)",
+                        "3": "Erőforrás optimalizálás"
+                    }
+                },
+                "network": {
+                    "title": "Hálózat & VPN",
+                    "desc": "Gyors és biztonságos kommunikáció az irodák és a felhő között.",
+                    "features": {
+                        "0": "Ubiquiti / MikroTik hálózatok",
+                        "1": "Site-to-Site VPN (WireGuard)",
+                        "2": "VLAN szegmentálás",
+                        "3": "QoS és sávszélesség menedzsment"
+                    }
+                },
+                "servers": {
+                    "title": "Linux & Windows Szerverek",
+                    "desc": "Megbízható szerverüzemeltetés és automatikus frissítések.",
+                    "features": {
+                        "0": "Linux (Debian/Ubuntu/RHEL)",
+                        "1": "Windows Server AD/GPO",
+                        "2": "Automatikus patch menedzsment",
+                        "3": "Hardening és biztonsági audit"
+                    }
+                },
+                "security": {
+                    "title": "Kiberbiztonság",
+                    "desc": "Többrétegű védelem az adatok és a rendszerek számára.",
+                    "features": {
+                        "0": "Tűzfal menedzsment",
+                        "1": "Behatolásérzékelés (IPS/IDS)",
+                        "2": "Rendszeres biztonsági mentés",
+                        "3": "Disaster Recovery terv"
+                    }
+                }
+            },
+            "certification_badge": "Minősített Szakértők",
+            "certification_desc": "Mérnökeink nemzetközileg elismert vizsgákkal rendelkeznek.",
+            "tech_stack_badge": "TECH STACK",
+            "tech_stack_title": "Technológiák, amiket használunk",
+            "tech_stack_desc": "Az iparág legjobb eszközeivel dolgozunk a maximális stabilitásért.",
+            "tech_categories": {
+                "virtualization": "Virtualizáció",
+                "network": "Hálózat",
+                "os": "Operációs Rendszerek",
+                "automation": "Automatizáció & Monitoring"
+            },
+            "use_cases_title": "Használati Esetek",
+            "use_cases_desc": "Valós példák arra, hogyan segítettünk másoknak.",
+            "use_cases_items": {
+                "0": {
+                    "title": "DevOps Pipeline",
+                    "description": "CI/CD folyamatok automatizálása a gyorsabb fejlesztésért.",
+                    "example": "GitLab CI / GitHub Actions",
+                    "roi": "Gyorsabb Release"
+                },
+                "1": {
+                    "title": "Felhő Migráció",
+                    "description": "Helyi szerverek költöztetése a felhőbe.",
+                    "example": "AWS / Google Cloud",
+                    "roi": "Költségcsökkentés"
+                },
+                "2": {
+                    "title": "Log Monitorozás",
+                    "description": "Központi loggyűjtés és elemzés.",
+                    "example": "ELK / Loki",
+                    "roi": "Gyorsabb hibakeresés"
+                },
+                "3": {
+                    "title": "Adatbázis Klaszter",
+                    "description": "Magas rendelkezésre állású adatbázisok építése.",
+                    "example": "PostgreSQL HA",
+                    "roi": "0% Adatvesztés"
+                },
+                "4": {
+                    "title": "Webszerver Tuning",
+                    "description": "Nagy terhelésű weboldalak optimalizálása.",
+                    "example": "Nginx / Varnish",
+                    "roi": "Gyorsabb betöltés"
+                },
+                "5": {
+                    "title": "Biztonsági Audit",
+                    "description": "Rendszerek sérülékenységvizsgálata.",
+                    "example": "Penetration Testing",
+                    "roi": "Biztonságos működés"
+                }
+            },
+            "pricing_badge": "ÁRAZÁS",
+            "pricing_title": "Átlátható Csomagok",
+            "pricing_desc": "Nincsenek rejtett költségek. Válassz az igényeidnek megfelelő szintet.",
+            "pricing_reaction_time": "Reakcióidő",
+            "pricing_select_plan": "Csomag kiválasztása",
+            "pricing_contact_us": "Kapcsolatfelvétel",
+            "cost_title": "Kalkulátor",
+            "cost_desc": "Számold ki pontosan, mennyibe kerülne az üzemeltetés.",
+            "plans": {
+                "starter": {
+                    "name": "Induló",
+                    "desc": "Kisebb cégeknek, alapvető igényekkel.",
+                    "features": {
+                        "0": "Heti biztonsági mentés",
+                        "1": "Havi rendszerfrissítés",
+                        "2": "Munkaidőben (8-16) support",
+                        "3": "Alapvető rendelkezésre állás monitoring"
+                    }
+                },
+                "pro": {
+                    "badge": "Javasolt",
+                    "name": "Pro",
+                    "desc": "Növekvő vállalkozásoknak, kritikus rendszerekhez.",
+                    "features": {
+                        "0": "Napi biztonsági mentés",
+                        "1": "Heti rendszerfrissítés",
+                        "2": "0-24 ügyelet (SLA)",
+                        "3": "Teljesítmény monitoring (CPU/RAM)",
+                        "4": "Dedikált kapcsolattartó"
+                    }
+                },
+                "enterprise": {
+                    "name": "Enterprise",
+                    "desc": "Nagyvállalatoknak, egyedi igényekkel.",
+                    "price_label": "Egyedi",
+                    "price_sub": "Megegyezés szerint",
+                    "features": {
+                        "0": "Valós idejű replikáció & DR",
+                        "1": "Folyamatos biztonsági audit",
+                        "2": "Dedikált mérnök csapat",
+                        "3": "Személyre szabott riportok"
+                    }
+                }
+            }
+        }
     }
 }
