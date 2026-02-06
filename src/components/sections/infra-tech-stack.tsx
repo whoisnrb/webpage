@@ -27,7 +27,7 @@ const techCategories = {
         { name: "Debian", logo: "https://cdn.simpleicons.org/debian/A81D33" },
         { name: "Ubuntu", logo: "https://cdn.simpleicons.org/ubuntu/E95420" },
         { name: "Rocky Linux", logo: "https://cdn.simpleicons.org/rockylinux/10B981" },
-        { name: "Windows Server", logo: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/windows.svg" },
+        { name: "Windows Server", logo: "/assets/icons/windows.svg" },
         { name: "AlmaLinux", logo: "https://cdn.simpleicons.org/almalinux/0F4266" },
         { name: "CentOS", logo: "https://cdn.simpleicons.org/centos/262577" },
     ],
@@ -37,7 +37,7 @@ const techCategories = {
         { name: "GitHub Actions", logo: "https://cdn.simpleicons.org/githubactions/2088FF" },
         { name: "Prometheus", logo: "https://cdn.simpleicons.org/prometheus/E6522C" },
         { name: "Grafana", logo: "https://cdn.simpleicons.org/grafana/F46800" },
-        { name: "Zabbix", logo: "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/zabbix.svg" },
+        { name: "Zabbix", logo: "/assets/icons/zabbix.svg" },
     ],
 }
 
