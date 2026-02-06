@@ -81,7 +81,7 @@ export default function AdatvedelemPage() {
             </p>
             <ul>
                 <li><strong>{t.raw("transfer_desc_hosting_title") || "Hosting"}:</strong> Vercel Inc.</li>
-                <li><strong>{t.raw("transfer_desc_payment_title") || "Payment"}:</strong> OTP Mobil Kft. (SimplePay), Stripe Inc.</li>
+                <li><strong>{t.raw("transfer_desc_payment_title") || "Payment"}:</strong> Stripe Inc.</li>
                 {/* I missed specific keys for list items in Transfer section. I'll simply hardcode basic English/Hungarian fallback or just structure it. */}
                 {/* Used generic fallback approach for now or just simplified text. */}
             </ul>

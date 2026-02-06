@@ -93,7 +93,7 @@ export const products: Product[] = [
         id: "5",
         title: "Next.js SaaS Boilerplate",
         description: "Indítsd el a saját szoftver szolgáltatásodat napok alatt. Auth, Stripe, Dashboard előre beállítva.",
-        longDescription: "A leggyorsabb út az ötlettől a bevételig. Ez a boilerplate tartalmaz mindent, ami egy modern SaaS-hoz kell: hitelesítés (NextAuth), fizetés (Stripe/SimplePay), adatbázis (Prisma), UI komponensek (shadcn/ui) és admin felület.",
+        longDescription: "A leggyorsabb út az ötlettől a bevételig. Ez a boilerplate tartalmaz mindent, ami egy modern SaaS-hoz kell: hitelesítés (NextAuth), fizetés (Stripe), adatbázis (Prisma), UI komponensek (shadcn/ui) és admin felület.",
         price: 44990,
         category: "Template",
         slug: "nextjs-saas-boilerplate",
