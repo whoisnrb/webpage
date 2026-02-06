@@ -1711,6 +1711,51 @@
             },
             "certification_badge": "Certified Experts",
             "certification_desc": "Our engineers hold internationally recognized certifications.",
+            "pillars_badge": "PILLARS",
+            "pillars_title": "The 4 Pillars of System Administration",
+            "pillars_desc": "We provide a stable IT background for your business so you can focus on growth.",
+            "pillars": {
+                "virtualization": {
+                    "title": "Virtualization & Cloud",
+                    "desc": "Designing scalable, cost-effective and secure environments.",
+                    "features": {
+                        "0": "Proxmox / VMware clusters",
+                        "1": "Private and Hybrid Cloud",
+                        "2": "High Availability (HA)",
+                        "3": "Resource Optimization"
+                    }
+                },
+                "network": {
+                    "title": "Network & VPN",
+                    "desc": "Fast and secure communication between offices and the cloud.",
+                    "features": {
+                        "0": "Ubiquiti / MikroTik networks",
+                        "1": "Site-to-Site VPN (WireGuard)",
+                        "2": "VLAN segmentation",
+                        "3": "QoS and bandwidth management"
+                    }
+                },
+                "servers": {
+                    "title": "Linux & Windows Servers",
+                    "desc": "Reliable server management and automatic updates.",
+                    "features": {
+                        "0": "Linux (Debian/Ubuntu/RHEL)",
+                        "1": "Windows Server AD/GPO",
+                        "2": "Automatic patch management",
+                        "3": "Hardening and security audit"
+                    }
+                },
+                "security": {
+                    "title": "Cybersecurity",
+                    "desc": "Multi-layer protection for data and systems.",
+                    "features": {
+                        "0": "Firewall management",
+                        "1": "Intrusion Detection (IPS/IDS)",
+                        "2": "Regular backups",
+                        "3": "Disaster Recovery plan"
+                    }
+                }
+            },
             "tech_stack_badge": "TECH STACK",
             "tech_stack_title": "Technologies We Use",
             "tech_stack_desc": "We work with the industry's best tools for maximum stability.",
@@ -1720,6 +1765,7 @@
                 "os": "Operating Systems",
                 "automation": "Automation & Monitoring"
             },
+            "use_cases_badge": "Use Cases",
             "use_cases_title": "Use Cases",
             "use_cases_desc": "Real examples of how we helped others.",
             "use_cases_items": [
@@ -2290,104 +2336,6 @@
                 }
             ],
             "pricing_label": "Custom pricing"
-        },
-        "SysAdmin": {
-            "subtitle": "SYSADMIN OPS",
-            "title": "System Administration Operations",
-            "description": "Ensure high availability and security for your servers with our professional system administration services.",
-            "hero_badge": "SYSADMIN OPS",
-            "features": {
-                "devops": "DevOps CI/CD",
-                "cloud": "Cloud Migration",
-                "database": "Database Tuning",
-                "monitoring": "24/7 Monitoring"
-            },
-            "cta_button": "Request Quote",
-            "cta_secondary": "References",
-            "use_cases_title": "Use Cases",
-            "use_cases_desc": "Problems we solve",
-            "use_cases_items": [
-                {
-                    "title": "CI/CD Implementation",
-                    "description": "Building and automating deployment pipelines.",
-                    "example": "GitLab CI pipeline optimization.",
-                    "roi": "Faster development"
-                },
-                {
-                    "title": "Cloud Infrastructure",
-                    "description": "Scalable cloud solutions on AWS or Azure.",
-                    "example": "Kubernetes cluster management.",
-                    "roi": "Scalability"
-                },
-                {
-                    "title": "System Monitoring",
-                    "description": "Real-time monitoring and alerting.",
-                    "example": "Grafana and Prometheus setup.",
-                    "roi": "Minimizing downtime"
-                },
-                {
-                    "title": "Database Management",
-                    "description": "Optimization and maintenance of databases.",
-                    "example": "PostgreSQL tuning and replication.",
-                    "roi": "Faster queries"
-                },
-                {
-                    "title": "Load Balancing",
-                    "description": "High availability traffic management.",
-                    "example": "Nginx / HAProxy configuration.",
-                    "roi": "99.99% Uptime"
-                },
-                {
-                    "title": "Security Hardening",
-                    "description": "Server and network security configuration.",
-                    "example": "Firewall and Fail2Ban setup.",
-                    "roi": "Secure infrastructure"
-                }
-            ],
-            "pricing_badge": "PACKAGES",
-            "pricing_title": "Choose a Plan",
-            "pricing_desc": "Scalable solutions for every size",
-            "pricing_reaction_time": "Response Time",
-            "pricing_select_plan": "Select Plan",
-            "pricing_contact_us": "Contact Us",
-            "cost_title": "Cost Calculator",
-            "cost_desc": "Estimate your monthly costs",
-            "plans": {
-                "starter": {
-                    "name": "Starter",
-                    "desc": "For smaller servers",
-                    "features": [
-                        "Basic Monitoring",
-                        "Monthly Updates",
-                        "Daily Backups",
-                        "9-5 Support"
-                    ]
-                },
-                "pro": {
-                    "name": "Pro",
-                    "desc": "For growing businesses",
-                    "badge": "POPULAR",
-                    "features": [
-                        "24/7 Monitoring",
-                        "Performance Tuning",
-                        "Incident Response",
-                        "Priority Support",
-                        "Weekly Reports"
-                    ]
-                },
-                "enterprise": {
-                    "name": "Enterprise",
-                    "price_label": "Custom",
-                    "price_sub": "based on quote",
-                    "desc": "For high-traffic systems",
-                    "features": [
-                        "High Availability Setup",
-                        "Custom SLA",
-                        "Dedicated Engineer",
-                        "Architecture Design"
-                    ]
-                }
-            }
         },
         "Network": {
             "hero_badge": "NETWORK SOLUTIONS",
