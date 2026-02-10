@@ -3,6 +3,7 @@ import { ProductDetailClient } from "./product-detail-client"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import { notFound } from "next/navigation"
+import { getTranslations } from 'next-intl/server'
 
 interface PageProps {
     params: Promise<{ slug: string }>
@@ -13,10 +14,11 @@ import { Metadata } from "next"
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params
     const product = await getProductBySlug(slug)
+    const t = await getTranslations('ProductDetailPage')
 
     if (!product) {
         return {
-            title: "Termék nem található",
+            title: t('not_found'),
         }
     }
 
@@ -34,13 +36,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ProductDetailPage({ params }: PageProps) {
     const { slug } = await params
     const product = await getProductBySlug(slug)
+    const t = await getTranslations('ProductDetailPage')
 
     if (!product) {
         return (
             <div className="container mx-auto py-20 text-center">
-                <h1 className="text-2xl font-bold mb-4">Termék nem található</h1>
+                <h1 className="text-2xl font-bold mb-4">{t('not_found')}</h1>
                 <Link href="/termekek">
-                    <Button>Vissza a termékekhez</Button>
+                    <Button>{t('back_to_products')}</Button>
                 </Link>
             </div>
         )
@@ -95,9 +98,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
                             <svg className="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
-                            <span className="text-sm font-medium text-cyan-300">Termék információ</span>
+                            <span className="text-sm font-medium text-cyan-300">{t('product_info')}</span>
                         </div>
-                        <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Részletes leírás</h2>
+                        <h2 className="text-4xl md:text-5xl font-black text-white mb-4">{t('detailed_description')}</h2>
                     </div>
 
                     {/* Description card */}
@@ -118,7 +121,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                 </svg>
                             </div>
-                            Funkciók listája
+                            {t('features_list')}
                         </h3>
 
                         <div className="grid md:grid-cols-2 gap-4">
@@ -149,7 +152,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                 </svg>
                             </div>
-                            <span>Biztonságos kód</span>
+                            <span>{t('secure_code')}</span>
                         </div>
                         <div className="flex items-center gap-2 text-slate-400 text-sm">
                             <div className="h-8 w-8 rounded-full bg-green-500/10 flex items-center justify-center">
@@ -157,7 +160,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                                 </svg>
                             </div>
-                            <span>Rendszeres frissítések</span>
+                            <span>{t('regular_updates')}</span>
                         </div>
                         <div className="flex items-center gap-2 text-slate-400 text-sm">
                             <div className="h-8 w-8 rounded-full bg-green-500/10 flex items-center justify-center">
@@ -165,7 +168,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
                             </div>
-                            <span>Technikai támogatás</span>
+                            <span>{t('technical_support')}</span>
                         </div>
                         <div className="flex items-center gap-2 text-slate-400 text-sm">
                             <div className="h-8 w-8 rounded-full bg-green-500/10 flex items-center justify-center">
@@ -173,7 +176,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                                 </svg>
                             </div>
-                            <span>Dokumentáció</span>
+                            <span>{t('documentation')}</span>
                         </div>
                     </div>
                 </div>

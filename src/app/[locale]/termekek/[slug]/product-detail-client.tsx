@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ShoppingCart, PlayCircle, ShieldCheck, Download } from "lucide-react"
 import { useCart } from "@/components/ecommerce/cart-provider"
 import { ProductDTO, Variant } from "@/app/actions/product"
+import { useTranslations } from 'next-intl'
 
 interface ProductDetailClientProps {
     product: ProductDTO
@@ -12,6 +13,7 @@ interface ProductDetailClientProps {
 
 export function ProductDetailClient({ product }: ProductDetailClientProps) {
     const { addItem } = useCart()
+    const t = useTranslations('ProductDetailPage')
     const variants: Variant[] = Array.isArray(product.prices) ? product.prices : []
     const [selectedVariant, setSelectedVariant] = useState<Variant | null>(variants.length > 0 ? variants[0] : null)
 
@@ -34,14 +36,14 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                 <div className="aspect-video bg-background rounded-xl border shadow-sm flex items-center justify-center relative overflow-hidden group">
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
                     <PlayCircle className="h-20 w-20 text-primary/20 group-hover:text-primary/40 transition-colors cursor-pointer" />
-                    <span className="absolute bottom-4 text-sm text-muted-foreground">Demo Videó Lejátszása</span>
+                    <span className="absolute bottom-4 text-sm text-muted-foreground">{t('demo_video')}</span>
                 </div>
             </div>
 
             {/* Product Info */}
             <div className="flex-1">
                 <div className="bg-card border rounded-xl p-6 mb-8">
-                    <h3 className="font-semibold mb-4">Válassz verziót:</h3>
+                    <h3 className="font-semibold mb-4">{t('select_version')}</h3>
                     <div className="space-y-3">
                         {variants.length > 0 ? (
                             variants.map((variant, index) => (
@@ -60,7 +62,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                                 </div>
                             ))
                         ) : (
-                            <div className="text-sm text-muted-foreground">Nem érhető el variáció ehhez a termékhez.</div>
+                            <div className="text-sm text-muted-foreground">{t('no_variants')}</div>
                         )}
                     </div>
 
@@ -71,7 +73,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                             onClick={handleAddToCart}
                             disabled={!selectedVariant}
                         >
-                            <ShoppingCart className="mr-2 h-5 w-5" /> Kosárba teszem
+                            <ShoppingCart className="mr-2 h-5 w-5" /> {t('add_to_cart')}
                         </Button>
                     </div>
                 </div>
@@ -79,11 +81,11 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                 <div className="flex items-center gap-6 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
                         <ShieldCheck className="h-4 w-4 text-green-500" />
-                        <span>Ellenőrzött kód</span>
+                        <span>{t('verified_code')}</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <Download className="h-4 w-4 text-green-500" />
-                        <span>Azonnali letöltés</span>
+                        <span>{t('instant_download')}</span>
                     </div>
                 </div>
             </div>

@@ -656,6 +656,23 @@
             "description": "Előre elkészített Excel dashboard KKV-knak IT eszközök, szerverek, licencek és karbantartások nyomon követésére."
         }
     },
+    "ProductDetailPage": {
+        "product_info": "Termék információ",
+        "detailed_description": "Részletes leírás",
+        "features_list": "Funkciók listája",
+        "secure_code": "Biztonságos kód",
+        "regular_updates": "Rendszeres frissítések",
+        "technical_support": "Technikai támogatás",
+        "documentation": "Dokumentáció",
+        "not_found": "Termék nem található",
+        "back_to_products": "Vissza a termékekhez",
+        "select_version": "Válassz verziót:",
+        "add_to_cart": "Kosárba teszem",
+        "verified_code": "Ellenőrzött kód",
+        "instant_download": "Azonnali letöltés",
+        "demo_video": "Demo Videó Lejátszása",
+        "no_variants": "Nem érhető el variáció ehhez a termékhez."
+    },
     "QuoteRequest": {
         "title": "Valósítsuk meg az ötleted!",
         "subtitle": "Töltsd ki az alábbi űrlapot, és mi elkészítjük a személyre szabott ajánlatodat.",
@@ -1003,7 +1020,13 @@
         "Instructions": "Fizetési útmutató",
         "jelentkezes": "Spontán jelentkezés",
         "demo": "Ingyenes Konzultáció",
-        "rolunk": "Rólunk"
+        "rolunk": "Rólunk",
+        "nextjs-saas-boilerplate": "Next.js SaaS Boilerplate",
+        "security-audit-checklist": "Biztonsági Audit Checklist",
+        "woocommerce-szamlazz-hu": "WooCommerce Számlázz.hu Integráció",
+        "n8n-lead-management": "n8n Lead Management Workflow",
+        "python-web-scraper": "Python Web Scraper Starter Kit",
+        "it-maintenance-dashboard": "IT Karbantartási Dashboard"
     },
     "CommandMenu": {
         "search_label": "Keresés",

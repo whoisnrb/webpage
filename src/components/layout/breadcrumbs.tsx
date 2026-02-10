@@ -26,12 +26,11 @@ export function Breadcrumbs() {
                 const isLast = index === segments.length - 1
 
                 // Try to translate the segment, fallback to capitalizing the segment itself
-                // We use a prefix to avoid collisions with other keys, though here we use a dedicated namespace
                 let name = segment
-                try {
+                if (t.has(segment as any)) {
                     name = t(segment as any)
-                } catch (e) {
-                    name = segment.charAt(0).toUpperCase() + segment.slice(1)
+                } else {
+                    name = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ')
                 }
 
                 return (

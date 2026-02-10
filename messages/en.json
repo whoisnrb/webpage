@@ -656,6 +656,23 @@
             "description": "Pre-made Excel dashboard for SMEs to track IT assets, servers, licenses and maintenance tasks."
         }
     },
+    "ProductDetailPage": {
+        "product_info": "Product Information",
+        "detailed_description": "Detailed Description",
+        "features_list": "Features List",
+        "secure_code": "Secure Code",
+        "regular_updates": "Regular Updates",
+        "technical_support": "Technical Support",
+        "documentation": "Documentation",
+        "not_found": "Product not found",
+        "back_to_products": "Back to Products",
+        "select_version": "Select version:",
+        "add_to_cart": "Add to Cart",
+        "verified_code": "Verified Code",
+        "instant_download": "Instant Download",
+        "demo_video": "Play Demo Video",
+        "no_variants": "No variants available for this product."
+    },
     "QuoteRequest": {
         "title": "Let's realize your idea!",
         "subtitle": "Fill out the form below, and we'll prepare a personalized quote for you.",
@@ -1007,7 +1024,13 @@
         "Instructions": "Payment Instructions",
         "jelentkezes": "Open Application",
         "demo": "Free Consultation",
-        "rolunk": "About Us"
+        "rolunk": "About Us",
+        "nextjs-saas-boilerplate": "Next.js SaaS Boilerplate",
+        "security-audit-checklist": "Security Audit Checklist",
+        "woocommerce-szamlazz-hu": "WooCommerce Számlázz.hu Integration",
+        "n8n-lead-management": "n8n Lead Management Workflow",
+        "python-web-scraper": "Python Web Scraper Starter Kit",
+        "it-maintenance-dashboard": "IT Maintenance Dashboard"
     },
     "CommandMenu": {
         "search_label": "Search",
