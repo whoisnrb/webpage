@@ -207,7 +207,7 @@ export function SplitHero() {
                         <div className="relative group/btn">
                             <div className="absolute -inset-1 bg-gradient-to-r from-accent to-orange-500 rounded-full blur opacity-40 group-hover/btn:opacity-100 transition duration-1000 group-hover/btn:duration-200 pointer-events-none" />
                             <Button asChild size="lg" className="relative z-10 h-14 px-10 text-xl font-bold rounded-full bg-background hover:bg-background text-foreground border-none shadow-2xl transition-transform hover:scale-105">
-                                <Link href="/termekek">
+                                <Link href="/megoldasok">
                                     {t('right_cta')} <ArrowRight className="ml-2 h-6 w-6 group-hover/right:translate-x-2 transition-transform" />
                                 </Link>
                             </Button>
