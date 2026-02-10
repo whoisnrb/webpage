@@ -86,13 +86,13 @@ export function MegaMenu() {
                     <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("products")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 rounded-[1.5rem] shadow-3xl">
-                            <ListItem href="/termekek" title={t("all_products")} className="hover:bg-white/5 rounded-xl">
+                            <ListItem href="/megoldasok" title={t("all_products")} className="hover:bg-white/5 rounded-xl">
                                 {t("all_products_desc")}
                             </ListItem>
-                            <ListItem href="/termekek?category=scripts" title={t("scripts")} className="hover:bg-white/5 rounded-xl">
+                            <ListItem href="/megoldasok?category=scripts" title={t("scripts")} className="hover:bg-white/5 rounded-xl">
                                 {t("scripts_desc")}
                             </ListItem>
-                            <ListItem href="/termekek?category=web" title={t("web")} className="hover:bg-white/5 rounded-xl">
+                            <ListItem href="/megoldasok?category=web" title={t("web")} className="hover:bg-white/5 rounded-xl">
                                 {t("web_desc")}
                             </ListItem>
                             <ListItem href="/arak" title={t("prices")} className="hover:bg-white/5 rounded-xl">

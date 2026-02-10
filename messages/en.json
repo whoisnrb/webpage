@@ -330,7 +330,7 @@
     },
     "SplitHero": {
         "left_title_1": "CUSTOM",
-        "left_title_2": "SOLUTIONS",
+        "left_title_2": "SERVICES",
         "left_desc": "Professional IT services, development, and hosting tailored to your needs.",
         "left_cta": "View Services",
         "right_title_1": "PREMIUM",
@@ -1054,36 +1054,6 @@
             "login": "Login"
         }
     },
-    "MegaMenu": {
-        "services": "Services",
-        "products": "Solutions",
-        "knowledge": "Knowledge Base",
-        "contact": "Contact",
-        "our_services": "Our Services",
-        "services_desc": "Explore our full range from development to operations.",
-        "all_products": "All Solutions",
-        "all_products_desc": "Browse our full software and script catalog.",
-        "scripts": "Scripts",
-        "scripts_desc": "FiveM and other game server scripts.",
-        "web": "Web Solutions",
-        "web_desc": "Templates, plugins, and ready-made websites.",
-        "prices": "Pricing",
-        "prices_desc": "Transparent packages and custom pricing.",
-        "references": "References",
-        "references_desc": "Our previous work and satisfied clients.",
-        "blog": "Blog",
-        "blog_desc": "Professional articles, guides, and news.",
-        "reviews": "Reviews",
-        "reviews_desc": "What do clients say about us?",
-        "nav_items": {
-            "scripts": "Scripts",
-            "scripts_desc": "Custom scripts and plugins for servers.",
-            "webdev": "Web Development",
-            "webdev_desc": "Modern, responsive websites and webshops.",
-            "sysadmin": "System Administration",
-            "sysadmin_desc": "Server maintenance, monitoring, and security updates."
-        }
-    },
     "Cart": {
         "title": "Cart Contents",
         "empty": "Your cart is empty.",
@@ -1602,7 +1572,7 @@
     },
     "MegaMenu": {
         "services": "Services",
-        "products": "Products",
+        "products": "Solutions",
         "knowledge": "Knowledge",
         "contact": "Contact",
         "our_services": "Our Services",
@@ -1617,7 +1587,7 @@
             "network": "Network Solutions",
             "network_desc": "VPN, VLAN, firewall and WiFi management"
         },
-        "all_products": "All products",
+        "all_products": "All Solutions",
         "all_products_desc": "Browse our complete catalog",
         "scripts": "Scripts",
         "scripts_desc": "Ready-to-use automations",
@@ -1631,28 +1601,6 @@
         "blog_desc": "Technical articles and guides",
         "reviews": "Reviews",
         "reviews_desc": "Client feedback"
-    },
-    "Breadcrumbs": {
-        "home": "Home",
-        "ajanlatkeres": "Quote Request",
-        "szolgaltatasok": "Services",
-        "scriptek": "Scripts",
-        "webfejlesztes": "Web Development",
-        "rendszeruzemeltetes": "System Administration",
-        "halozat": "Network Solutions",
-        "biztonsag": "Security",
-        "integraciok": "Integrations",
-        "termekek": "Products",
-        "referenciak": "References",
-        "arak": "Pricing",
-        "blog": "Blog",
-        "kapcsolat": "Contact",
-        "rolunk": "About",
-        "karrier": "Career",
-        "velemeny": "Reviews",
-        "impresszum": "Imprint",
-        "aszf": "Terms of Service",
-        "adatvedelem": "Privacy"
     },
     "ServiceTemplate": {
         "premium_service": "PREMIUM SERVICE",

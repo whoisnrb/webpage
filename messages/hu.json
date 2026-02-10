@@ -1050,36 +1050,6 @@
             "login": "Bejelentkezés"
         }
     },
-    "MegaMenu": {
-        "services": "Szolgáltatások",
-        "products": "Megoldások",
-        "knowledge": "Tudástár",
-        "contact": "Kapcsolat",
-        "our_services": "Szolgáltatásaink",
-        "services_desc": "Fedezd fel teljes kínálatunkat a fejlesztéstől az üzemeltetésig.",
-        "all_products": "Összes megoldás",
-        "all_products_desc": "Böngéssz a teljes szoftver és script kínálatunkban.",
-        "scripts": "Scriptek",
-        "scripts_desc": "FiveM és egyéb játékszerver scriptek.",
-        "web": "Webes Megoldások",
-        "web_desc": "Sablonok, pluginok és kész weboldalak.",
-        "prices": "Árak",
-        "prices_desc": "Átlátható csomagajánlatok és egyedi árazás.",
-        "references": "Referenciák",
-        "references_desc": "Korábbi munkáink és elégedett ügyfeleink.",
-        "blog": "Blog",
-        "blog_desc": "Szakmai cikkek, útmutatók és hírek.",
-        "reviews": "Vélemények",
-        "reviews_desc": "Mit mondanak rólunk az ügyfelek?",
-        "nav_items": {
-            "scripts": "Scriptek",
-            "scripts_desc": "Egyedi fejlesztésű scriptek és bővítmények szerverekhez.",
-            "webdev": "Webfejlesztés",
-            "webdev_desc": "Modern, reszponzív weboldalak és webshopok készítése.",
-            "sysadmin": "Rendszerüzemeltetés",
-            "sysadmin_desc": "Szerverek karbantartása, monitorozása és biztonsági frissítése."
-        }
-    },
     "Cart": {
         "title": "Kosár tartalma",
         "empty": "A kosarad üres.",
@@ -1612,7 +1582,7 @@
             "network": "Hálózati Megoldások",
             "network_desc": "VPN, VLAN, tűzfal és WiFi menedzsment"
         },
-        "all_products": "Minden termék",
+        "all_products": "Összes megoldás",
         "all_products_desc": "Böngészd át teljes kínálatunkat",
         "scripts": "Scriptek",
         "scripts_desc": "Készen használható automatizációk",
@@ -1626,28 +1596,6 @@
         "blog_desc": "Szakmai cikkek és útmutatók",
         "reviews": "Vélemények",
         "reviews_desc": "Ügyfeleink visszajelzései"
-    },
-    "Breadcrumbs": {
-        "home": "Főoldal",
-        "ajanlatkeres": "Árajánlatkérés",
-        "szolgaltatasok": "Szolgáltatások",
-        "scriptek": "Scriptek",
-        "webfejlesztes": "Webfejlesztés",
-        "rendszeruzemeltetes": "Rendszerüzemeltetés",
-        "halozat": "Hálózati Megoldások",
-        "biztonsag": "Biztonság",
-        "integraciok": "Integrációk",
-        "termekek": "Termékek",
-        "referenciak": "Referenciák",
-        "arak": "Árak",
-        "blog": "Blog",
-        "kapcsolat": "Kapcsolat",
-        "rolunk": "Rólunk",
-        "karrier": "Karrier",
-        "velemeny": "Vélemények",
-        "impresszum": "Impresszum",
-        "aszf": "ÁSZF",
-        "adatvedelem": "Adatvédelem"
     },
     "ServiceTemplate": {
         "premium_service": "PRÉMIUM SZOLGÁLTATÁS",
