@@ -8,8 +8,6 @@ import { useSession } from "next-auth/react"
 
 const sidebarItems = [
     { name: "Áttekintés", href: "/dashboard", icon: LayoutDashboard },
-    { name: "Vásárlások", href: "/dashboard/purchases", icon: ShoppingBag },
-    { name: "Licencek", href: "/dashboard/licenses", icon: Key },
     { name: "Támogatás", href: "/dashboard/tickets", icon: Ticket },
     { name: "Beállítások", href: "/dashboard/settings", icon: Settings },
 ]

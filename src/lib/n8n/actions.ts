@@ -156,26 +156,43 @@ export async function processChat(body: WebhookBody) {
     return { output: response };
 }
 
-export async function processPurchase(body: WebhookBody) {
-    const { email, name, products } = body;
+export async function processConsultation(body: WebhookBody) {
+    const { name, email, company, phone, description, productName, packageName } = body;
 
-    // Logic from n8n "Format Email" node
-    const licensedProducts = (products || []).filter((p: any) => p.isLicensed);
-    let emailBody = `Dear ${name || 'Customer'},<br><br>Thank you for your purchase!<br><br>`;
+    // 1. Save to Sheet (using BOOKING sheet as fallback for now)
+    const topic = `Konzultáció: ${productName || 'Általános'} ${packageName ? `(${packageName})` : ''}`;
+    const date = new Date().toLocaleDateString('hu-HU');
+    const time = new Date().toLocaleTimeString('hu-HU', { hour: '2-digit', minute: '2-digit' });
+    const fullMessage = `Cég: ${company || '-'}, Tel: ${phone || '-'}\n\nLeírás:\n${description}`;
 
-    if (licensedProducts.length > 0) {
-        emailBody += "Here are the license keys for your products:<br><br>";
-        licensedProducts.forEach((p: any) => {
-            emailBody += `Product: ${p.name}<br>License Key: ${p.licenseKey}<br><br>`;
-        });
-    } else {
-        emailBody += "Your subscription is active. No separate license keys are required for your current products.<br>";
-    }
+    await appendToSheet(GOOGLE_SHEET_IDS.BOOKING, [name || '', email || '', date, time, topic, fullMessage]);
 
-    emailBody += "Best regards,<br>Your Team";
+    // 2. Notify Admin
+    const adminEmail = process.env.ADMIN_EMAIL || 'whoisnrb@gmail.com';
+    await sendEmail(
+        adminEmail,
+        'Új Konzultációs Igény',
+        `Új konzultációs igény érkezett a weboldalról:<br><br>
+        <strong>Név:</strong> ${name}<br>
+        <strong>Email:</strong> ${email}<br>
+        <strong>Cég:</strong> ${company || '-'}<br>
+        <strong>Telefon:</strong> ${phone || '-'}<br>
+        <strong>Megoldás:</strong> ${productName || '-'} ${packageName ? `(${packageName})` : ''}<br>
+        <br>
+        <strong>Leírás:</strong><br>${description}`
+    );
 
+    // 3. Confirm to User
     if (email) {
-        await sendEmail(email, 'Your Purchase Confirmation & Licenses', emailBody);
+        await sendEmail(
+            email,
+            'Konzultációs igényét fogadtuk',
+            `Kedves ${name}!<br><br>
+            Köszönjük érdeklődését! Megkaptuk konzultációs igényét a következővel kapcsolatban: <strong>${productName || 'Automatizációs megoldások'}</strong>.<br><br>
+            Kollégáink hamarosan felveszik Önnel a kapcsolatot a megadott elérhetőségeken (általában 24 órán belül).<br><br>
+            Üdvözlettel,<br>
+            A BacklineIT Csapata`
+        );
     }
 
     return { success: true };

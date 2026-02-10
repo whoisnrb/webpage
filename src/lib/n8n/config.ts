@@ -11,6 +11,7 @@ export type WebhookAction =
     | 'newsletter'
     | 'booking'
     | 'purchase'
+    | 'consultation'
     | 'verification'
     | 'chat'
     | 'crm_sync'

@@ -19,20 +19,10 @@ model User {
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
   accounts        Account[]
-  licenses        License[]
-  orders          Order[]
-  sessions        Session[]
-  tickets         Ticket[]       @relation("UserTickets")
+  sessions        Session[] // Visszatéve
+  tickets         Ticket[]       @relation("UserTickets") // Visszatéve
   assignedTickets Ticket[]       @relation("AssignedTickets")
   ticketReplies   TicketReply[]
-
-  // Referral System
-  referralCode    String?        @unique
-  referredBy      String?
-  referrer        User?          @relation("UserReferrals", fields: [referredBy], references: [id])
-  referrals       User[]         @relation("UserReferrals")
-  referralRewards ReferralReward[]
-  managedClicks   ReferralClick[]
   auditLogs       AuditLog[]
 }
 
@@ -70,48 +60,6 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Order {
-  id            String      @id @default(cuid())
-  orderRef      String      @unique
-  totalAmount   Int
-  currency      String      @default("HUF")
-  status        String      @default("PENDING")
-  paymentMethod String      @default("SIMPLEPAY") // SIMPLEPAY, TRANSFER, PAYPAL
-  customerEmail String
-  customerName  String?
-  userId        String?
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  licenses      License[]
-  user          User?       @relation(fields: [userId], references: [id])
-  items         OrderItem[]
-}
-
-model OrderItem {
-  id        String  @id @default(cuid())
-  orderId   String
-  productId String
-  quantity  Int
-  price     Int
-  product   Product @relation(fields: [productId], references: [id])
-  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-}
-
-model License {
-  id        String   @id @default(cuid())
-  key       String   @unique
-  type      String
-  status    String   @default("ACTIVE")
-  userId    String?
-  orderId   String?
-  productId String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  product   Product? @relation(fields: [productId], references: [id])
-  order     Order?   @relation(fields: [orderId], references: [id])
-  user      User?    @relation(fields: [userId], references: [id])
-}
-
 model Lead {
   id              String   @id @default(cuid())
   name            String?
@@ -125,30 +73,22 @@ model Lead {
   updatedAt       DateTime @updatedAt
 }
 
-model Transaction {
+model Consultation {
   id          String   @id @default(cuid())
-  type        String   @default("INCOME") // INCOME, EXPENSE
-  category    String   // AD, SUBSCRIPTION, SALE, SALARY, TAX, OTHER
-  amount      Float
-  currency    String   @default("HUF")
-  taxAmount   Float    @default(0)
-  date        DateTime @default(now())
-  description String?  @db.Text
+  name        String
+  email       String
+  company     String?
+  phone       String?
+  description String   @db.Text
+  
+  // Választott megoldás és csomag
+  productId   String?
+  product     Product? @relation(fields: [productId], references: [id])
+  packageName String?  // pl. "Start", "Pro", "Enterprise"
+  
+  status      String   @default("NEW") // NEW, CONTACTED, OFFER_SENT, CLOSED
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-}
-
-model FinancialSubscription {
-  id              String   @id @default(cuid())
-  name            String
-  provider        String?
-  amount          Float
-  currency        String   @default("HUF")
-  billingCycle    String   @default("MONTHLY") // MONTHLY, YEARLY
-  nextBillingDate DateTime?
-  status          String   @default("ACTIVE") // ACTIVE, CANCELLED, EXPIRED
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
 }
 
 model Product {
@@ -165,12 +105,12 @@ model Product {
   image           String
   features        String
   featuresEn      String?
-  prices          String
+  prices          String // JSON string marad a csomagok tárolására
   active          Boolean     @default(true)
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
-  licenses        License[]
-  orderItems      OrderItem[]
+  
+  consultations   Consultation[]
 }
 
 model Ticket {
@@ -200,28 +140,6 @@ model TicketReply {
   createdAt    DateTime @default(now())
   ticket       Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model ReferralClick {
-  id           String   @id @default(cuid())
-  referralCode String
-  ipAddress    String?
-  userAgent    String?
-  createdAt    DateTime @default(now())
-  ownerId      String
-  owner        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-}
-
-model ReferralReward {
-  id           String   @id @default(cuid())
-  amount       Int
-  currency     String   @default("HUF")
-  status       String   @default("PENDING") // PENDING, PAID, CANCELLED
-  recipientId  String
-  recipient    User     @relation(fields: [recipientId], references: [id], onDelete: Cascade)
-  sourceUserId String?  // The user who made the purchase
-  createdAt    DateTime @default(now())
-  paidAt       DateTime?
 }
 
 model BlogPost {

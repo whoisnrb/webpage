@@ -6,7 +6,7 @@ import {
     processBooking,
     processTicket,
     processChat,
-    processPurchase
+    processConsultation
 } from '@/lib/n8n/actions';
 
 export async function POST(req: NextRequest) {
@@ -33,9 +33,9 @@ export async function POST(req: NextRequest) {
             case 'chat':
                 const chatResult = await processChat(body);
                 return NextResponse.json(chatResult);
-            case 'purchase':
-                const purchaseResult = await processPurchase(body);
-                return NextResponse.json(purchaseResult);
+            case 'consultation':
+                const consultationResult = await processConsultation(body);
+                return NextResponse.json(consultationResult);
             default:
                 console.error(`[Unified Webhook] Unknown action: ${action}`);
                 return NextResponse.json({ error: `Unknown action: ${action}` }, { status: 400 });

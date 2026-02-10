@@ -29,28 +29,11 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
             return { error: t("email_taken") };
         }
 
-        // Referral Logic
-        const cookieStore = await cookies();
-        const referralCookie = cookieStore.get("ref")?.value;
-        let referredBy = null;
-
-        if (referralCookie) {
-            const referrer = await prisma.user.findUnique({
-                where: { referralCode: referralCookie }
-            });
-            if (referrer) referredBy = referrer.id;
-        }
-
-        // Generate unique referral code
-        const newReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-
         await prisma.user.create({
             data: {
                 name,
                 email,
                 password: hashedPassword,
-                referralCode: newReferralCode,
-                referredBy
             },
         });
 

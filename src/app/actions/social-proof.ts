@@ -10,43 +10,23 @@ export interface RecentPurchase {
 
 export async function getRecentPurchases(): Promise<RecentPurchase[]> {
     try {
-        const orders = await prisma.order.findMany({
-            where: {
-                status: 'SUCCESS'
-            },
+        const items = await prisma.consultation.findMany({
             take: 5,
             orderBy: {
                 createdAt: 'desc'
             },
             include: {
-                items: {
-                    include: {
-                        product: true
-                    }
-                }
+                product: true
             }
         })
 
-        return orders.map(order => {
-            // Extract first name for privacy
-            const nameParts = (order.customerName || 'Vásárló').split(' ')
-            // Assuming "Lastname Firstname" order in Hungarian, or just take the first part if unsure.
-            // Let's try to be smart: if 2 parts, usually [Last, First]. If 1 part, just that.
-            // But actually, for "Gábor", "Anna", it's the first name.
-            // In Hungary: Kovács János -> János is the first name (utónév).
-            // So we usually want the LAST part of the name string if it's Hungarian order.
-            // But let's just use the full name or a generic "Vásárló" if missing.
-            // Actually, let's just use the name as is, or maybe just the first part if it looks like a full name.
-            // Let's just use the whole name for now, or maybe "K. János" format?
-            // Let's stick to the first name if we can guess it.
-            // Simple approach: just use the name provided.
-            const name = order.customerName || 'Vásárló'
+        const now = new Date()
 
-            // Product name
-            const product = order.items.length > 0 ? order.items[0].product.name : 'Szolgáltatás'
+        return items.map(item => {
+            const name = item.name
+            const product = item.product?.name || item.packageName || 'Konzultáció'
 
-            // Time calculation
-            const diffInSeconds = Math.floor((new Date().getTime() - new Date(order.createdAt).getTime()) / 1000)
+            const diffInSeconds = Math.floor((now.getTime() - new Date(item.createdAt).getTime()) / 1000)
             let time = ''
 
             if (diffInSeconds < 60) {
@@ -69,7 +49,7 @@ export async function getRecentPurchases(): Promise<RecentPurchase[]> {
             }
         })
     } catch (error) {
-        console.error('Error fetching recent purchases:', error)
+        console.error('Error fetching recent activities:', error)
         return []
     }
 }

@@ -7,6 +7,8 @@ import { useCart } from "@/components/ecommerce/cart-provider"
 import { LocalizedProductDTO, Variant } from "@/app/actions/product"
 import { useTranslations } from 'next-intl'
 
+import { useRouter } from "@/i18n/routing"
+
 interface ProductDetailClientProps {
     product: LocalizedProductDTO
 }
@@ -14,6 +16,7 @@ interface ProductDetailClientProps {
 export function ProductDetailClient({ product }: ProductDetailClientProps) {
     const { addItem } = useCart()
     const t = useTranslations('ProductDetailPage')
+    const router = useRouter()
     const variants: Variant[] = Array.isArray(product.prices) ? product.prices : []
     const [selectedVariant, setSelectedVariant] = useState<Variant | null>(variants.length > 0 ? variants[0] : null)
 
@@ -27,6 +30,9 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             license: selectedVariant.name,
             image: product.image
         })
+
+        // Redirect to consultation page
+        router.push('/konzultacio')
     }
 
     return (
@@ -73,7 +79,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                             onClick={handleAddToCart}
                             disabled={!selectedVariant}
                         >
-                            <ShoppingCart className="mr-2 h-5 w-5" /> {t('add_to_cart')}
+                            <ShoppingCart className="mr-2 h-5 w-5" /> {t('request_consultation')}
                         </Button>
                     </div>
                 </div>
@@ -81,11 +87,11 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                 <div className="flex items-center gap-6 text-sm text-muted-foreground">
                     <div className="flex items-center gap-2">
                         <ShieldCheck className="h-4 w-4 text-green-500" />
-                        <span>{t('verified_code')}</span>
+                        <span>{t('secure_solution')}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Download className="h-4 w-4 text-green-500" />
-                        <span>{t('instant_download')}</span>
+                        <PlayCircle className="h-4 w-4 text-green-500" />
+                        <span>{t('fast_implementation')}</span>
                     </div>
                 </div>
             </div>

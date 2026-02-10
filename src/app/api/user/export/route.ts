@@ -13,18 +13,11 @@ export async function GET() {
         const userData = await prisma.user.findUnique({
             where: { email: session.user.email },
             include: {
-                orders: {
-                    include: {
-                        items: true,
-                        licenses: true,
-                    }
-                },
                 tickets: {
                     include: {
                         replies: true,
                     }
                 },
-                licenses: true,
             },
         })
 

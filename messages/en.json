@@ -657,21 +657,21 @@
         }
     },
     "ProductDetailPage": {
-        "product_info": "Product Information",
+        "product_info": "Solution Information",
         "detailed_description": "Detailed Description",
         "features_list": "Features List",
         "secure_code": "Secure Code",
         "regular_updates": "Regular Updates",
         "technical_support": "Technical Support",
         "documentation": "Documentation",
-        "not_found": "Product not found",
-        "back_to_products": "Back to Products",
-        "select_version": "Select version:",
-        "add_to_cart": "Add to Cart",
-        "verified_code": "Verified Code",
-        "instant_download": "Instant Download",
+        "not_found": "Solution not found",
+        "back_to_products": "Back to Solutions",
+        "select_version": "Select Package:",
+        "request_consultation": "Finalize Configuration",
+        "secure_solution": "Secure Solution",
+        "fast_implementation": "Quick Implementation",
         "demo_video": "Play Demo Video",
-        "no_variants": "No variants available for this product."
+        "no_variants": "No packages available for this solution."
     },
     "QuoteRequest": {
         "title": "Let's realize your idea!",

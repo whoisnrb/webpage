@@ -134,7 +134,7 @@ export async function createProduct(data: Omit<ProductDTO, 'id' | 'updatedAt'>) 
             prices: JSON.stringify(data.prices)
         }
     })
-    revalidatePath('/termekek')
+    revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
 }
 
@@ -169,7 +169,7 @@ export async function updateProduct(id: string, data: Partial<ProductDTO>) {
         where: { id },
         data: updateData
     })
-    revalidatePath('/termekek')
+    revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
 }
 
@@ -177,6 +177,6 @@ export async function deleteProduct(id: string) {
     await prisma.product.delete({
         where: { id }
     })
-    revalidatePath('/termekek')
+    revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
 }

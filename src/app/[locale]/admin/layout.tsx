@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -32,16 +32,16 @@ export default async function AdminLayout({
                             Vezérlőpult
                         </Button>
                     </Link>
+                    <Link href="/admin/consultations">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <FileText className="mr-2 h-4 w-4" />
+                            Konzultációk
+                        </Button>
+                    </Link>
                     <Link href="/admin/crm">
                         <Button variant="ghost" className="w-full justify-start">
                             <Briefcase className="mr-2 h-4 w-4" />
                             CRM
-                        </Button>
-                    </Link>
-                    <Link href="/admin/finance">
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Banknote className="mr-2 h-4 w-4" />
-                            Pénzügyek
                         </Button>
                     </Link>
                     <Link href="/admin/leads">
@@ -65,7 +65,7 @@ export default async function AdminLayout({
                     <Link href="/admin/products">
                         <Button variant="ghost" className="w-full justify-start">
                             <Package className="mr-2 h-4 w-4" />
-                            Termékek
+                            Megoldások
                         </Button>
                     </Link>
                     <Link href="/admin/audit-logs">

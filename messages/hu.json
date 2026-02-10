@@ -665,13 +665,13 @@
         "technical_support": "Technikai támogatás",
         "documentation": "Dokumentáció",
         "not_found": "Termék nem található",
-        "back_to_products": "Vissza a termékekhez",
-        "select_version": "Válassz verziót:",
-        "add_to_cart": "Kosárba teszem",
-        "verified_code": "Ellenőrzött kód",
-        "instant_download": "Azonnali letöltés",
+        "back_to_products": "Vissza a megoldásokhoz",
+        "select_version": "Válassz csomagot:",
+        "request_consultation": "Konfiguráció véglegesítése",
+        "secure_solution": "Biztonságos megoldás",
+        "fast_implementation": "Gyors bevezetés",
         "demo_video": "Demo Videó Lejátszása",
-        "no_variants": "Nem érhető el variáció ehhez a termékhez."
+        "no_variants": "Nem érhető el csomag ehhez a megoldáshoz."
     },
     "QuoteRequest": {
         "title": "Valósítsuk meg az ötleted!",

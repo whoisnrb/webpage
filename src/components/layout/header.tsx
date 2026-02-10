@@ -23,7 +23,7 @@ export function Header() {
         { name: t("services"), href: "/szolgaltatasok" },
         { name: t("scripts"), href: "/szolgaltatasok/scriptek" },
         { name: t("web_dev"), href: "/szolgaltatasok/webfejlesztes" },
-        { name: t("products"), href: "/termekek" },
+        { name: t("products"), href: "/megoldasok" },
         { name: t("references"), href: "/referenciak" },
         { name: t("pricing"), href: "/arak" },
         { name: t("reviews"), href: "/velemeny" },
@@ -73,7 +73,6 @@ export function Header() {
                                 <path d="m21 21-4.3-4.3" />
                             </svg>
                         </Button>
-                        <CartDrawer />
                         <Button variant="ghost" size="sm" asChild>
                             <Link href="/login">{t("client_portal")}</Link>
                         </Button>
