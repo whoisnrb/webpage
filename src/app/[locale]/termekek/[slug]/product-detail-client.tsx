@@ -4,11 +4,11 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ShoppingCart, PlayCircle, ShieldCheck, Download } from "lucide-react"
 import { useCart } from "@/components/ecommerce/cart-provider"
-import { ProductDTO, Variant } from "@/app/actions/product"
+import { LocalizedProductDTO, Variant } from "@/app/actions/product"
 import { useTranslations } from 'next-intl'
 
 interface ProductDetailClientProps {
-    product: ProductDTO
+    product: LocalizedProductDTO
 }
 
 export function ProductDetailClient({ product }: ProductDetailClientProps) {

@@ -3,13 +3,13 @@
 import { useState } from "react"
 import { ProductCard } from "@/components/ecommerce/product-card"
 import { Button } from "@/components/ui/button"
-import { ProductDTO } from "@/app/actions/product"
+import { LocalizedProductDTO } from "@/app/actions/product"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTranslations } from "next-intl"
 import { QuickViewModal } from "@/components/ui/quick-view-modal"
 
 interface ProductBrowserProps {
-    initialProducts: ProductDTO[]
+    initialProducts: LocalizedProductDTO[]
 }
 
 export function ProductBrowser({ initialProducts }: ProductBrowserProps) {

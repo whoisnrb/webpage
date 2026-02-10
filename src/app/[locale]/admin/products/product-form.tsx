@@ -69,6 +69,8 @@ export function ProductForm({ initialData }: ProductFormProps) {
         const formData = new FormData(e.currentTarget)
         const featuresText = formData.get("features") as string
         const features = featuresText.split("\n").filter(line => line.trim() !== "")
+        const featuresEnText = formData.get("featuresEn") as string
+        const featuresEn = featuresEnText ? featuresEnText.split("\n").filter(line => line.trim() !== "") : null
 
         const imageValue = imagePreview || (formData.get("image") as string)
 
@@ -82,14 +84,18 @@ export function ProductForm({ initialData }: ProductFormProps) {
 
         const data = {
             title: formData.get("title") as string,
+            titleEn: (formData.get("titleEn") as string) || null,
             description: formData.get("description") as string,
+            descriptionEn: (formData.get("descriptionEn") as string) || null,
             longDescription: formData.get("longDescription") as string,
-            price: parseInt(formData.get("price") as string), // Display price (base)
+            longDescriptionEn: (formData.get("longDescriptionEn") as string) || null,
+            price: parseInt(formData.get("price") as string),
             category: formData.get("category") as string,
             slug: formData.get("slug") as string,
             image: imageValue,
             features: features,
-            prices: validVariants as any // We treat our Variant[] as the 'prices' field in DB
+            featuresEn: featuresEn && featuresEn.length > 0 ? featuresEn : null,
+            prices: validVariants as any
         }
 
         try {
@@ -115,28 +121,46 @@ export function ProductForm({ initialData }: ProductFormProps) {
             <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                        <Label htmlFor="title">Termék neve</Label>
+                        <Label htmlFor="title">Termék neve (HU)</Label>
                         <Input id="title" name="title" defaultValue={initialData?.title} required />
                     </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="titleEn">Product Name (EN)</Label>
+                        <Input id="titleEn" name="titleEn" defaultValue={initialData?.titleEn || ""} placeholder="English product name" />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
                         <Label htmlFor="slug">Slug (URL)</Label>
                         <Input id="slug" name="slug" defaultValue={initialData?.slug} required />
                     </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="category">Kategória</Label>
+                        <Input id="category" name="category" defaultValue={initialData?.category} required />
+                    </div>
                 </div>
 
-                <div className="space-y-2">
-                    <Label htmlFor="category">Kategória</Label>
-                    <Input id="category" name="category" defaultValue={initialData?.category} required />
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                        <Label htmlFor="description">Rövid leírás (HU)</Label>
+                        <Textarea id="description" name="description" defaultValue={initialData?.description} required />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="descriptionEn">Short Description (EN)</Label>
+                        <Textarea id="descriptionEn" name="descriptionEn" defaultValue={initialData?.descriptionEn || ""} placeholder="English short description" />
+                    </div>
                 </div>
 
-                <div className="space-y-2">
-                    <Label htmlFor="description">Rövid leírás</Label>
-                    <Textarea id="description" name="description" defaultValue={initialData?.description} required />
-                </div>
-
-                <div className="space-y-2">
-                    <Label htmlFor="longDescription">Hosszú leírás</Label>
-                    <Textarea id="longDescription" name="longDescription" defaultValue={initialData?.longDescription || ""} className="h-32" />
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                        <Label htmlFor="longDescription">Hosszú leírás (HU)</Label>
+                        <Textarea id="longDescription" name="longDescription" defaultValue={initialData?.longDescription || ""} className="h-32" />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="longDescriptionEn">Long Description (EN)</Label>
+                        <Textarea id="longDescriptionEn" name="longDescriptionEn" defaultValue={initialData?.longDescriptionEn || ""} className="h-32" placeholder="English long description" />
+                    </div>
                 </div>
 
                 <div className="space-y-2">
@@ -166,14 +190,26 @@ export function ProductForm({ initialData }: ProductFormProps) {
                     </div>
                 </div>
 
-                <div className="space-y-2">
-                    <Label htmlFor="features">Funkciók (soronként egy)</Label>
-                    <Textarea
-                        id="features"
-                        name="features"
-                        defaultValue={initialData?.features.join("\n")}
-                        className="h-32 font-mono text-sm"
-                    />
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                        <Label htmlFor="features">Funkciók - HU (soronként egy)</Label>
+                        <Textarea
+                            id="features"
+                            name="features"
+                            defaultValue={initialData?.features.join("\n")}
+                            className="h-32 font-mono text-sm"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="featuresEn">Features - EN (one per line)</Label>
+                        <Textarea
+                            id="featuresEn"
+                            name="featuresEn"
+                            defaultValue={initialData?.featuresEn?.join("\n") || ""}
+                            className="h-32 font-mono text-sm"
+                            placeholder="English features, one per line"
+                        />
+                    </div>
                 </div>
 
                 <div className="border p-6 rounded-lg space-y-6 bg-card">

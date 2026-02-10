@@ -1,10 +1,15 @@
-import { getProducts } from "@/app/actions/product"
+import { getLocalizedProducts } from "@/app/actions/product"
 import { getTranslations } from "next-intl/server"
 import { ProductBrowser } from "./product-browser"
 import { FadeIn } from "@/components/ui/motion-wrapper"
 
-export default async function ProductsPage() {
-    const products = await getProducts()
+interface PageProps {
+    params: Promise<{ locale: string }>
+}
+
+export default async function ProductsPage({ params }: PageProps) {
+    const { locale } = await params
+    const products = await getLocalizedProducts(locale)
     const t = await getTranslations("Products")
 
     return (

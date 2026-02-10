@@ -1,4 +1,4 @@
-import { getProductBySlug } from "@/app/actions/product"
+import { getLocalizedProductBySlug } from "@/app/actions/product"
 import { ProductDetailClient } from "./product-detail-client"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
@@ -6,14 +6,14 @@ import { notFound } from "next/navigation"
 import { getTranslations } from 'next-intl/server'
 
 interface PageProps {
-    params: Promise<{ slug: string }>
+    params: Promise<{ slug: string; locale: string }>
 }
 
 import { Metadata } from "next"
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    const { slug } = await params
-    const product = await getProductBySlug(slug)
+    const { slug, locale } = await params
+    const product = await getLocalizedProductBySlug(slug, locale)
     const t = await getTranslations('ProductDetailPage')
 
     if (!product) {
@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
-    const { slug } = await params
-    const product = await getProductBySlug(slug)
+    const { slug, locale } = await params
+    const product = await getLocalizedProductBySlug(slug, locale)
     const t = await getTranslations('ProductDetailPage')
 
     if (!product) {

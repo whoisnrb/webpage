@@ -154,13 +154,17 @@ model FinancialSubscription {
 model Product {
   id              String      @id @default(cuid())
   name            String
+  nameEn          String?
   description     String
+  descriptionEn   String?
   longDescription String?
+  longDescriptionEn String?
   price           Int
   category        String
   slug            String      @unique
   image           String
   features        String
+  featuresEn      String?
   prices          String
   active          Boolean     @default(true)
   createdAt       DateTime    @default(now())
