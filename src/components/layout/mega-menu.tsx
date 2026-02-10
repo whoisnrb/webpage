@@ -95,8 +95,8 @@ export function MegaMenu() {
                             <ListItem href="/megoldasok?category=web" title={t("web")} className="hover:bg-white/5 rounded-xl">
                                 {t("web_desc")}
                             </ListItem>
-                            <ListItem href="/arak" title={t("prices")} className="hover:bg-white/5 rounded-xl">
-                                {t("prices_desc")}
+                            <ListItem href="/megoldasok?category=plugins" title={t("plugins")} className="hover:bg-white/5 rounded-xl">
+                                {t("plugins_desc")}
                             </ListItem>
                         </ul>
                     </NavigationMenuContent>

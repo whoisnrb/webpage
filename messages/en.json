@@ -1593,6 +1593,8 @@
         "scripts_desc": "Ready-to-use automations",
         "web": "Web templates",
         "web_desc": "Quality website themes and components",
+        "plugins": "Plugins",
+        "plugins_desc": "Extensions and add-ons for your projects",
         "prices": "Pricing",
         "prices_desc": "Transparent pricing for all services",
         "references": "References",

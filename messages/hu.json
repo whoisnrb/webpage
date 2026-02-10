@@ -1588,6 +1588,8 @@
         "scripts_desc": "Készen használható automatizációk",
         "web": "Web sablonok",
         "web_desc": "Minőségi website témák és elemek",
+        "plugins": "Bővítmények",
+        "plugins_desc": "Egyedi kiegészítők projektjeidhez",
         "prices": "Árak",
         "prices_desc": "Átlátható árazás minden szolgáltatásra",
         "references": "Referenciák",
