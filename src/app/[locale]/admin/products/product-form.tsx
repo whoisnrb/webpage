@@ -24,7 +24,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
     const [variants, setVariants] = useState<Variant[]>(
         initialData?.prices && initialData.prices.length > 0
             ? initialData.prices
-            : [{ name: '', price: 0, description: '' }]
+            : [{ name: '', nameEn: '', price: 0, description: '', descriptionEn: '' }]
     )
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +45,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
     }
 
     const addVariant = () => {
-        setVariants([...variants, { name: '', price: 0, description: '' }])
+        setVariants([...variants, { name: '', nameEn: '', price: 0, description: '', descriptionEn: '' }])
     }
 
     const removeVariant = (index: number) => {
@@ -233,42 +233,64 @@ export function ProductForm({ initialData }: ProductFormProps) {
 
                     <div className="space-y-4">
                         {variants.map((variant, index) => (
-                            <div key={index} className="grid md:grid-cols-12 gap-4 items-start p-4 border rounded-md bg-muted/20 relative group">
-                                <div className="md:col-span-3 space-y-2">
-                                    <Label>Verzió neve</Label>
-                                    <Input
-                                        value={variant.name}
-                                        onChange={(e) => updateVariant(index, 'name', e.target.value)}
-                                        placeholder="pl. Pro License"
-                                        required
-                                    />
+                            <div key={index} className="p-4 border rounded-md bg-muted/20 relative group space-y-3">
+                                <div className="grid md:grid-cols-12 gap-4 items-start">
+                                    <div className="md:col-span-3 space-y-2">
+                                        <Label>Verzió neve (HU)</Label>
+                                        <Input
+                                            value={variant.name}
+                                            onChange={(e) => updateVariant(index, 'name', e.target.value)}
+                                            placeholder="pl. Pro License"
+                                            required
+                                        />
+                                    </div>
+                                    <div className="md:col-span-3 space-y-2">
+                                        <Label>Ár (HUF)</Label>
+                                        <Input
+                                            type="number"
+                                            value={variant.price}
+                                            onChange={(e) => updateVariant(index, 'price', parseInt(e.target.value) || 0)}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="md:col-span-5 space-y-2">
+                                        <Label>Leírás (HU)</Label>
+                                        <Input
+                                            value={variant.description}
+                                            onChange={(e) => updateVariant(index, 'description', e.target.value)}
+                                            placeholder="pl. 5 weboldal, support..."
+                                        />
+                                    </div>
+                                    <div className="md:col-span-1 pt-8 flex justify-end">
+                                        <Button
+                                            type="button"
+                                            variant="destructive"
+                                            size="icon"
+                                            onClick={() => removeVariant(index)}
+                                        >
+                                            <Trash className="h-4 w-4" />
+                                        </Button>
+                                    </div>
                                 </div>
-                                <div className="md:col-span-3 space-y-2">
-                                    <Label>Ár (HUF)</Label>
-                                    <Input
-                                        type="number"
-                                        value={variant.price}
-                                        onChange={(e) => updateVariant(index, 'price', parseInt(e.target.value) || 0)}
-                                        required
-                                    />
-                                </div>
-                                <div className="md:col-span-5 space-y-2">
-                                    <Label>Leírás / Tartalom</Label>
-                                    <Input
-                                        value={variant.description}
-                                        onChange={(e) => updateVariant(index, 'description', e.target.value)}
-                                        placeholder="pl. 5 weboldal, support..."
-                                    />
-                                </div>
-                                <div className="md:col-span-1 pt-8 flex justify-end">
-                                    <Button
-                                        type="button"
-                                        variant="destructive"
-                                        size="icon"
-                                        onClick={() => removeVariant(index)}
-                                    >
-                                        <Trash className="h-4 w-4" />
-                                    </Button>
+                                <div className="grid md:grid-cols-12 gap-4 items-start">
+                                    <div className="md:col-span-3 space-y-2">
+                                        <Label className="text-muted-foreground">Version Name (EN)</Label>
+                                        <Input
+                                            value={variant.nameEn || ''}
+                                            onChange={(e) => updateVariant(index, 'nameEn', e.target.value)}
+                                            placeholder="e.g. Pro License"
+                                        />
+                                    </div>
+                                    <div className="md:col-span-3" />
+                                    <div className="md:col-span-5 space-y-2">
+                                        <Label className="text-muted-foreground">Description (EN)</Label>
+                                        <Input
+                                            value={variant.descriptionEn || ''}
+                                            onChange={(e) => updateVariant(index, 'descriptionEn', e.target.value)}
+                                            placeholder="e.g. 5 websites, support..."
+                                        />
+                                    </div>
+                                    <div className="md:col-span-1" />
                                 </div>
                             </div>
                         ))}

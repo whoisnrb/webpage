@@ -5,8 +5,10 @@ import { revalidatePath } from "next/cache"
 
 export type Variant = {
     name: string
+    nameEn?: string
     price: number
     description: string
+    descriptionEn?: string
 }
 
 export type ProductDTO = {
@@ -82,7 +84,11 @@ function localizeProduct(product: ProductDTO, locale: string): LocalizedProductD
         slug: product.slug,
         image: product.image,
         features: (isEn && product.featuresEn && product.featuresEn.length > 0) ? product.featuresEn : product.features,
-        prices: product.prices,
+        prices: product.prices.map(v => ({
+            name: (isEn && v.nameEn) ? v.nameEn : v.name,
+            price: v.price,
+            description: (isEn && v.descriptionEn) ? v.descriptionEn : v.description,
+        })),
         updatedAt: product.updatedAt
     }
 }
