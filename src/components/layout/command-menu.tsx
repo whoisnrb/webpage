@@ -121,7 +121,7 @@ export function CommandMenu() {
                             <Command.Group heading={t("groups.other")} className="text-white/60 px-2 py-1.5 text-xs font-medium mt-2">
                                 <Command.Item
                                     className="relative flex cursor-default select-none items-center rounded-sm px-2 py-2 text-sm outline-none aria-selected:bg-white/10 aria-selected:text-white text-white/80 data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
-                                    onSelect={() => runCommand(() => router.push("/termekek"))}
+                                    onSelect={() => runCommand(() => router.push("/megoldasok"))}
                                 >
                                     <ShoppingCart className="mr-2 h-4 w-4" />
                                     <span>{t("items.products")}</span>

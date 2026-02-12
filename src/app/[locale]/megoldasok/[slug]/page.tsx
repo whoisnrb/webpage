@@ -42,7 +42,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         return (
             <div className="container mx-auto py-20 text-center">
                 <h1 className="text-2xl font-bold mb-4">{t('not_found')}</h1>
-                <Link href="/termekek">
+                <Link href="/megoldasok">
                     <Button>{t('back_to_products')}</Button>
                 </Link>
             </div>

@@ -84,7 +84,7 @@ export function ProductCard({ id, title, description, price, category, slug, ima
                             <Eye className="mr-2 h-4 w-4" /> {t('QuickView.quick_view')}
                         </Button>
                         <Button size="sm" variant="outline" asChild className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75 border-white text-white hover:bg-white/20">
-                            <Link href={`/termekek/${slug}`}>
+                            <Link href={`/megoldasok/${slug}`}>
                                 {t('QuickView.details')}
                             </Link>
                         </Button>

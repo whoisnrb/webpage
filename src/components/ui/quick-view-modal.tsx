@@ -186,7 +186,7 @@ export function QuickViewModal({ isOpen, onOpenChange, data }: QuickViewModalPro
                                     variant="ghost"
                                     className="h-14 px-8 text-white/40 hover:text-white hover:bg-white/5 rounded-2xl font-bold transition-all"
                                 >
-                                    <Link href={data.type === 'product' ? `/termekek/${data.slug}` : data.slug} onClick={() => onOpenChange(false)}>
+                                    <Link href={data.type === 'product' ? `/megoldasok/${data.slug}` : data.slug} onClick={() => onOpenChange(false)}>
                                         Details
                                     </Link>
                                 </Button>

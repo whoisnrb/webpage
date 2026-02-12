@@ -29,7 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/szolgaltatasok/webfejlesztes',
         '/szolgaltatasok/rendszeruzemeltetes',
         '/szolgaltatasok/biztonsag',
-        '/termekek',
+        '/megoldasok',
         '/referenciak',
         '/blog',
         '/kapcsolat',
@@ -64,7 +64,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         // Products
         for (const product of products) {
             routes.push({
-                url: `${baseUrl}/${locale}/termekek/${product.slug}`,
+                url: `${baseUrl}/${locale}/megoldasok/${product.slug}`,
                 lastModified: product.updatedAt ? new Date(product.updatedAt) : new Date(),
                 changeFrequency: 'weekly',
                 priority: 0.9,
