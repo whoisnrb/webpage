@@ -11,15 +11,15 @@ export default auth((req) => {
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
 
-    // 1. API útvonalak azonnali átengedése (ne pörgesse a middleware-t feleslegesen)
+    // 1. API útvonalak azonnali átengedése
     if (nextUrl.pathname.includes('/api/')) {
         return NextResponse.next();
     }
 
     const isAuthPage = nextUrl.pathname.includes("/login") || nextUrl.pathname.includes("/register");
-    const isAdminPage = nextUrl.pathname.includes("/admin");
+    const isAdminPage = nextUrl.pathname.includes("/admin") || nextUrl.pathname.includes("/dashboard");
 
-    // 2. Auth logika
+    // 2. Auth logika — CSAK admin/dashboard oldalakra
     if (isAuthPage && isLoggedIn) {
         return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
     }

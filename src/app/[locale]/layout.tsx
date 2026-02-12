@@ -9,7 +9,6 @@ import { NeuralBackground } from "@/components/neural-background";
 
 import { CommandMenu } from "@/components/layout/command-menu";
 import { BackToTop } from "@/components/layout/back-to-top";
-import { SocialProof } from "@/components/marketing/social-proof";
 import { CookieBanner } from "@/components/cookie-banner";
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { NextIntlClientProvider } from 'next-intl';
@@ -149,7 +148,6 @@ export default async function RootLayout({
                   <Footer />
                   <CommandMenu />
                   <BackToTop />
-                  <SocialProof />
                   <CookieBanner />
                   <ChatWidget />
                   <Analytics />
