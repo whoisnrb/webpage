@@ -68,6 +68,12 @@ export default async function AdminLayout({
                             Megoldások
                         </Button>
                     </Link>
+                    <Link href="/admin/services">
+                        <Button variant="ghost" className="w-full justify-start">
+                            <Banknote className="mr-2 h-4 w-4" />
+                            Szolgáltatások
+                        </Button>
+                    </Link>
                     <Link href="/admin/audit-logs">
                         <Button variant="ghost" className="w-full justify-start">
                             <Activity className="mr-2 h-4 w-4" />

@@ -275,3 +275,21 @@ model JobApplication {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+model Service {
+  id            String   @id @default(cuid())
+  name          String
+  nameEn        String?
+  slug          String   @unique
+  description   String   @db.Text
+  descriptionEn String?  @db.Text
+  price         Int      @default(0)
+  icon          String   @default("Code2")
+  href          String
+  features      String   @db.Text
+  featuresEn    String?  @db.Text
+  active        Boolean  @default(true)
+  sortOrder     Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
