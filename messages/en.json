@@ -1585,7 +1585,9 @@
             "sysadmin": "System Administration",
             "sysadmin_desc": "DevOps, servers, CI/CD and infrastructure",
             "network": "Network Solutions",
-            "network_desc": "VPN, VLAN, firewall and WiFi management"
+            "network_desc": "VPN, VLAN, firewall and WiFi management",
+            "integrations": "Integrations",
+            "integrations_desc": "System integrations and API solutions"
         },
         "all_products": "All Solutions",
         "all_products_desc": "Browse our complete catalog",
@@ -2479,39 +2481,5 @@
         "ssl_security": "SSL Security",
         "gdpr_compliant": "GDPR Compliant",
         "no_hidden_costs": "No Hidden Costs"
-    },
-    "MegaMenu": {
-        "nav_items": {
-            "integrations": "Integrations",
-            "integrations_desc": "System integrations and API solutions",
-            "scripts": "Scripts",
-            "scripts_desc": "Automate your workflow",
-            "webdev": "Web Development",
-            "webdev_desc": "Modern websites and shops",
-            "sysadmin": "System Administration",
-            "sysadmin_desc": "Stable servers and cloud solutions",
-            "network": "Network & Security",
-            "network_desc": "VPN, Firewall and secure networks"
-        },
-        "services": "Services",
-        "products": "Products",
-        "knowledge": "Knowledge Center",
-        "our_services": "Our Services",
-        "services_desc": "Complete IT solutions for your business",
-        "all_products": "All Products",
-        "all_products_desc": "Browse our full catalog",
-        "scripts": "Scripts",
-        "scripts_desc": "Automate your workflow",
-        "web": "Web Development",
-        "web_desc": "Modern websites and shops",
-        "prices": "Pricing",
-        "prices_desc": "Transparent pricing",
-        "references": "References",
-        "references_desc": "Success stories",
-        "blog": "Blog",
-        "blog_desc": "Tech articles & guides",
-        "reviews": "Reviews",
-        "reviews_desc": "What our clients say",
-        "contact": "Contact"
     }
 }

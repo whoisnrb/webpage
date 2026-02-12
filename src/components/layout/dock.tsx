@@ -20,7 +20,7 @@ export const Dock = () => {
     const items = [
         { icon: Home, label: "Főoldal", href: "/" },
         { icon: Terminal, label: "Szolgáltatások", href: "/szolgaltatasok" },
-        { icon: Box, label: "Termékek", href: "/termekek" },
+        { icon: Box, label: "Megoldások", href: "/megoldasok" },
         { icon: LayoutGrid, label: "Referenciák", href: "/referenciak" },
         { icon: Users, label: "Csapat", href: "/rolunk" },
         { icon: Mail, label: "Kapcsolat", href: "/kapcsolat" },

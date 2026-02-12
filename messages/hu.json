@@ -1580,7 +1580,9 @@
             "sysadmin": "Rendszerüzemeltetés",
             "sysadmin_desc": "DevOps, szerverek, CI/CD és infrastruktúra",
             "network": "Hálózati Megoldások",
-            "network_desc": "VPN, VLAN, tűzfal és WiFi menedzsment"
+            "network_desc": "VPN, VLAN, tűzfal és WiFi menedzsment",
+            "integrations": "Integrációk",
+            "integrations_desc": "Rendszerösszekötések és API megoldások"
         },
         "all_products": "Összes megoldás",
         "all_products_desc": "Böngészd át teljes kínálatunkat",
@@ -2429,39 +2431,5 @@
         "ssl_security": "SSL Biztonság",
         "gdpr_compliant": "GDPR Kompatibilis",
         "no_hidden_costs": "Nincsenek rejtett költségek"
-    },
-    "MegaMenu": {
-        "nav_items": {
-            "integrations": "Integrációk",
-            "integrations_desc": "Rendszerösszekötések és API megoldások",
-            "scripts": "Scriptek",
-            "scripts_desc": "Automatizáld a munkafolyamataidat",
-            "webdev": "Webfejlesztés",
-            "webdev_desc": "Modern weboldalak és webshopok",
-            "sysadmin": "Rendszerüzemeltetés",
-            "sysadmin_desc": "Stabil szerverek és felhő megoldások",
-            "network": "Hálózat & Biztonság",
-            "network_desc": "VPN, Tűzfal és biztonságos hálózatok"
-        },
-        "services": "Szolgáltatások",
-        "products": "Termékek",
-        "knowledge": "Tudástár",
-        "our_services": "Szolgáltatásaink",
-        "services_desc": "Teljes körű IT megoldások vállalkozásodnak",
-        "all_products": "Összes termék",
-        "all_products_desc": "Böngéssz teljes katalógusunkban",
-        "scripts": "Scriptek",
-        "scripts_desc": "Automatizáld a munkafolyamataidat",
-        "web": "Webfejlesztés",
-        "web_desc": "Modern weboldalak és webshopok",
-        "prices": "Árak",
-        "prices_desc": "Átlátható árazás",
-        "references": "Referenciák",
-        "references_desc": "Sikertörténetek",
-        "blog": "Blog",
-        "blog_desc": "Szakmai cikkek és útmutatók",
-        "reviews": "Vélemények",
-        "reviews_desc": "Ügyfeleink visszajelzései",
-        "contact": "Kapcsolat"
     }
 }
