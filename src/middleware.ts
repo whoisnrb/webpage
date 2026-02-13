@@ -1,3 +1,5 @@
+import NextAuth from "next-auth"
+import authConfig from "./auth.config"
 import { NextResponse, type NextRequest, type NextFetchEvent } from "next/server"
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
