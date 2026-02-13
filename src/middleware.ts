@@ -1,20 +1,13 @@
-import NextAuth from "next-auth"
-import authConfig from "./auth.config"
-import { NextResponse } from "next/server"
+import { NextResponse, type NextRequest, type NextFetchEvent } from "next/server"
 import createMiddleware from 'next-intl/middleware';
 import { routing } from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
 const { auth } = NextAuth(authConfig)
 
-export default auth((req) => {
+const authMiddleware = auth((req) => {
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
-
-    // 1. API útvonalak azonnali átengedése
-    if (nextUrl.pathname.includes('/api/')) {
-        return NextResponse.next();
-    }
 
     const isAuthPage = nextUrl.pathname.includes("/login") || nextUrl.pathname.includes("/register");
     const isAdminPage = nextUrl.pathname.includes("/admin") || nextUrl.pathname.includes("/dashboard");
@@ -31,6 +24,25 @@ export default auth((req) => {
     // 3. Nyelvi kezelés (intl)
     return intlMiddleware(req);
 })
+
+export default function middleware(req: NextRequest, event: NextFetchEvent) {
+    const { nextUrl } = req;
+
+    // 1. API útvonalak azonnali átengedése
+    if (nextUrl.pathname.includes('/api/')) {
+        return NextResponse.next();
+    }
+
+    const isAuthPage = nextUrl.pathname.includes("/login") || nextUrl.pathname.includes("/register");
+    const isAdminPage = nextUrl.pathname.includes("/admin") || nextUrl.pathname.includes("/dashboard");
+
+    // CSAK akkor futtatjuk az auth middleware-t, ha védett útvonalon vagyunk
+    if (isAuthPage || isAdminPage) {
+        return (authMiddleware as any)(req, event);
+    }
+
+    return intlMiddleware(req);
+}
 
 export const config = {
     // Szigorúbb szűrés: csak az oldalakra fusson le, képekre/scriptekre/api-ra NE
