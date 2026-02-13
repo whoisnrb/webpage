@@ -15,36 +15,36 @@ const themes = [
     {
         value: "cyan",
         colors: {
-            "--primary": "oklch(0.70 0.15 200)",
-            "--ring": "oklch(0.70 0.15 200)",
+            "--color-primary": "oklch(0.70 0.15 200)",
+            "--color-ring": "oklch(0.70 0.15 200)",
         },
     },
     {
         value: "purple",
         colors: {
-            "--primary": "oklch(0.65 0.25 290)",
-            "--ring": "oklch(0.65 0.25 290)",
+            "--color-primary": "oklch(0.65 0.25 290)",
+            "--color-ring": "oklch(0.65 0.25 290)",
         },
     },
     {
         value: "green",
         colors: {
-            "--primary": "oklch(0.70 0.20 140)",
-            "--ring": "oklch(0.70 0.20 140)",
+            "--color-primary": "oklch(0.70 0.20 140)",
+            "--color-ring": "oklch(0.70 0.20 140)",
         },
     },
     {
         value: "orange",
         colors: {
-            "--primary": "oklch(0.70 0.20 40)",
-            "--ring": "oklch(0.70 0.20 40)",
+            "--color-primary": "oklch(0.70 0.20 40)",
+            "--color-ring": "oklch(0.70 0.20 40)",
         },
     },
     {
         value: "pink",
         colors: {
-            "--primary": "oklch(0.70 0.25 340)",
-            "--ring": "oklch(0.70 0.25 340)",
+            "--color-primary": "oklch(0.70 0.25 340)",
+            "--color-ring": "oklch(0.70 0.25 340)",
         },
     },
 ]
@@ -100,7 +100,7 @@ export function ThemeCustomizer() {
                     >
                         <div
                             className="h-4 w-4 rounded-full border"
-                            style={{ background: theme.colors["--primary"] }}
+                            style={{ background: theme.colors["--color-primary"] }}
                         />
                         {t(`themes.${theme.value}`)}
                     </DropdownMenuItem>
