@@ -241,7 +241,7 @@
                 "cv_label": "Önéletrajz feltöltése *",
                 "cv_drop": "Húzd ide a fájlt vagy kattints a feltöltéshez",
                 "cv_hint": "PDF, DOC, DOCX (max. 5MB)",
-                "motivation_label": "Motivációs levél / özenet",
+                "motivation_label": "Motivációs levél / Üzenet",
                 "motivation_placeholder": "Mesélj magadról, tapasztalataidról és arról, hogy miért szeretnél nálunk dolgozni...",
                 "submit": "Jelentkezés elküldése",
                 "terms_prefix": "A jelentkezéssel elfogadod az ",
@@ -444,7 +444,7 @@
         "address": "2141 Csömör, Vörösmarty utca 11.",
         "email_hello": "hello@backlineit.hu",
         "email_support": "support@backlineit.hu",
-        "booking_title": "Időpontfoglalás & özenet"
+        "booking_title": "Időpontfoglalás & Üzenet"
     },
     "Checkout": {
         "title": "Pénztár",
@@ -579,7 +579,7 @@
         },
         "date": "Dátum",
         "time": "Időpont",
-        "message": "özenet (Opcionális)",
+        "message": "Üzenet (Opcionális)",
         "message_placeholder": "Rövid leírás a projektről...",
         "submit": "Időpont kérése",
         "submitting": "Küldés folyamatban...",
@@ -1550,7 +1550,7 @@
         "cv_upload": "Önéletrajz feltöltése",
         "cv_upload_hint": "Húzd ide a fájlt vagy kattints a feltöltéshez",
         "cv_formats": "PDF, DOC, DOCX (max. 5MB)",
-        "motivation": "Motivációs levél / özenet",
+        "motivation": "Motivációs levél / Üzenet",
         "motivation_placeholder": "Mesélj magadról, tapasztalataidról és arról, hogy miért szeretnél nálunk dolgozni...",
         "submit": "Jelentkezés elküldése",
         "privacy_note": "A jelentkezéssel elfogadod az",
