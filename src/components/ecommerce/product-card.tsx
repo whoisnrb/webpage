@@ -1,11 +1,10 @@
 "use client"
 
 import { Link } from "@/i18n/routing"
-import { ShoppingCart, Eye } from "lucide-react"
+import { ArrowRight, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { useCart } from "@/components/ecommerce/cart-provider"
 import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
 import { PriceDisplay } from "@/components/price-display"
@@ -22,18 +21,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ id, title, description, price, category, slug, image, onQuickView }: ProductCardProps) {
-    const { addItem } = useCart()
     const t = useTranslations()
-
-    const handleAddToCart = () => {
-        addItem({
-            id,
-            name: title,
-            price,
-            license: "personal", // Default to personal for quick add
-            image
-        })
-    }
 
     return (
         <motion.div
@@ -104,9 +92,11 @@ export function ProductCard({ id, title, description, price, category, slug, ima
                 </CardContent>
 
                 <CardFooter>
-                    <Button className="w-full bg-accent hover:bg-accent/90 text-white group" onClick={handleAddToCart}>
-                        <ShoppingCart className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                        {t('QuickView.add_to_cart')}
+                    <Button className="w-full bg-accent hover:bg-accent/90 text-white group" asChild>
+                        <Link href={`/megoldasok/${slug}`}>
+                            {t('QuickView.details')}
+                            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
                     </Button>
                 </CardFooter>
             </Card>
