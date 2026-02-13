@@ -29,6 +29,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         '/szolgaltatasok/webfejlesztes',
         '/szolgaltatasok/rendszeruzemeltetes',
         '/szolgaltatasok/biztonsag',
+        '/szolgaltatasok/halozat',
+        '/szolgaltatasok/integraciok',
         '/megoldasok',
         '/referenciak',
         '/blog',

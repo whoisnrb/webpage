@@ -8,15 +8,29 @@ import { getTranslations } from "next-intl/server"
 import { PriceDisplay } from "@/components/price-display"
 import { ServicesHero } from "@/components/sections/services-hero"
 
+import { routing } from '@/i18n/routing';
+
 // Metadata generation for multilingual support
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'ServicesPage' });
 
     return {
-        title: t('hero_badge') + " | BacklineIT", // Or a specific metadata title key
+        title: t('hero_badge') + " | BacklineIT",
         description: t('hero_desc'),
+        keywords: ["IT szolgáltatások", "webfejlesztés", "rendszerüzemeltetés", "kiberbiztonság", "egyedi szoftver", "backlineit"],
+        alternates: {
+            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok`,
+            languages: {
+                'hu': 'https://backlineit.hu/szolgaltatasok',
+                'en': 'https://backlineit.hu/en/services', // Note: Check if route is localized in routing.ts, assuming simple prefix for now
+            },
+        },
     };
+}
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
 }
 
 export default function SzolgaltatasokPage() {

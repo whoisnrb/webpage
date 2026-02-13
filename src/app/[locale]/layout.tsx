@@ -24,12 +24,17 @@ import { Analytics } from "@vercel/analytics/react";
 import { SWRegistration } from "@/components/sw-registration";
 import Script from "next/script";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
+import { routing } from '@/i18n/routing';
 
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -60,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     metadataBase: new URL("https://backlineit.hu"),
     alternates: {
-      canonical: '/',
+      canonical: `/${locale === 'hu' ? '' : 'en'}`,
       languages: {
         'hu': '/hu',
         'en': '/en',
