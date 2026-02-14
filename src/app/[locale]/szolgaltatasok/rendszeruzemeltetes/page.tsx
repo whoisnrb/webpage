@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": t('hero_title'),
-        "description": t('hero_desc'),
+        "name": t('title'),
+        "description": t('description'),
         "provider": {
             "@type": "Organization",
             "name": "BacklineIT",
@@ -52,8 +52,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     }
 
     return {
-        title: t('hero_title') + " | BacklineIT",
-        description: t('hero_desc'),
+        title: t('title') + " | BacklineIT",
+        description: t('description'),
         keywords: ["rendszerüzemeltetés", "devops", "szerver karbantartás", "linux", "cloud", "aws", "kubernetes"],
         alternates: {
             canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/rendszeruzemeltetes`,
