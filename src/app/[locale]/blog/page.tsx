@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/db"
+import { getBlogSeries, getBlogPosts } from "@/app/actions/blog"
 import { Link } from "@/i18n/routing"
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -11,23 +11,11 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
     const { locale } = await params
     const t = await getTranslations("Blog")
 
-    // Fetch series
-    const series = await prisma.blogSeries.findMany({
-        include: {
-            _count: {
-                select: { posts: true }
-            }
-        },
-        orderBy: { createdAt: 'desc' }
-    })
-
-    // Fetch recent individual posts
-    const recentPosts = await prisma.blogPost.findMany({
-        where: { published: true },
-        orderBy: { createdAt: 'desc' },
-        take: 6,
-        include: { series: true }
-    })
+    // Use cached functions instead of direct Prisma calls
+    const series = await getBlogSeries() as any[]
+    const recentPosts = (await getBlogPosts() as any[])
+        .filter((p: any) => p.published)
+        .slice(0, 6)
 
     const topics = [
         { icon: Zap, label: t('categories.automation'), color: "text-orange-500", key: 'automation' },

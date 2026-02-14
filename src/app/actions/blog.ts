@@ -2,7 +2,7 @@
 "use server"
 
 import { prisma as db } from "@/lib/db"
-import { revalidatePath } from "next/cache"
+import { revalidatePath, revalidateTag, unstable_cache } from "next/cache"
 import { redirect } from "next/navigation"
 
 export type BlogPostData = {
@@ -29,6 +29,7 @@ export async function createBlogPost(data: BlogPostData) {
                 author: data.author || "BacklineIT Team",
             }
         })
+        revalidateTag('blog', 'default')
         revalidatePath("/blog")
         revalidatePath("/admin/blog")
         return { success: true }
@@ -44,6 +45,7 @@ export async function updateBlogPost(id: string, data: BlogPostData) {
             where: { id },
             data
         })
+        revalidateTag('blog', 'default')
         revalidatePath("/blog")
         revalidatePath("/admin/blog")
         revalidatePath(`/blog/${data.slug}`)
@@ -59,6 +61,7 @@ export async function deleteBlogPost(id: string) {
         await db.blogPost.delete({
             where: { id }
         })
+        revalidateTag('blog', 'default')
         revalidatePath("/blog")
         revalidatePath("/admin/blog")
         return { success: true }
@@ -79,32 +82,47 @@ export async function getBlogPostById(id: string) {
     }
 }
 
-export async function getBlogPostBySlug(slug: string) {
-    try {
+const getCachedBlogPostBySlug = unstable_cache(
+    async (slug: string) => {
         const post = await db.blogPost.findUnique({
             where: { slug },
             include: { series: true }
         })
         return post
+    },
+    ['blog-post-by-slug'],
+    { revalidate: 3600, tags: ['blog'] }
+)
+
+export async function getBlogPostBySlug(slug: string) {
+    try {
+        return await getCachedBlogPostBySlug(slug)
     } catch (error) {
         return null
     }
 }
 
-export async function getBlogPosts() {
-    try {
-        const posts = await db.blogPost.findMany({
+const getCachedBlogPosts = unstable_cache(
+    async () => {
+        return await db.blogPost.findMany({
             orderBy: { createdAt: "desc" },
             include: { series: true }
         })
-        return posts
+    },
+    ['all-blog-posts'],
+    { revalidate: 3600, tags: ['blog'] }
+)
+
+export async function getBlogPosts() {
+    try {
+        return await getCachedBlogPosts()
     } catch (error) {
         return []
     }
 }
 
-export async function getBlogSeries() {
-    try {
+const getCachedBlogSeries = unstable_cache(
+    async () => {
         return await db.blogSeries.findMany({
             include: {
                 _count: {
@@ -113,13 +131,21 @@ export async function getBlogSeries() {
             },
             orderBy: { createdAt: 'desc' }
         })
+    },
+    ['all-blog-series'],
+    { revalidate: 3600, tags: ['blog'] }
+)
+
+export async function getBlogSeries() {
+    try {
+        return await getCachedBlogSeries()
     } catch (error) {
         return []
     }
 }
 
-export async function getSeriesBySlug(slug: string) {
-    try {
+const getCachedSeriesBySlug = unstable_cache(
+    async (slug: string) => {
         return await db.blogSeries.findUnique({
             where: { slug },
             include: {
@@ -129,6 +155,14 @@ export async function getSeriesBySlug(slug: string) {
                 }
             }
         })
+    },
+    ['blog-series-by-slug'],
+    { revalidate: 3600, tags: ['blog'] }
+)
+
+export async function getSeriesBySlug(slug: string) {
+    try {
+        return await getCachedSeriesBySlug(slug)
     } catch (error) {
         return null
     }

@@ -1,10 +1,10 @@
 "use server"
 
 import { prisma } from "@/lib/db"
-import { revalidatePath } from "next/cache"
+import { revalidatePath, revalidateTag, unstable_cache } from "next/cache"
 
-export async function getApprovedReviews() {
-    try {
+const getCachedApprovedReviews = unstable_cache(
+    async () => {
         const reviews = await prisma.review.findMany({
             where: {
                 approved: true
@@ -18,6 +18,14 @@ export async function getApprovedReviews() {
             ...review,
             createdAt: review.createdAt.toISOString()
         }))
+    },
+    ['approved-reviews'],
+    { revalidate: 3600, tags: ['reviews'] }
+)
+
+export async function getApprovedReviews() {
+    try {
+        return await getCachedApprovedReviews()
     } catch (error) {
         console.error("Failed to fetch reviews:", error)
         return []
@@ -44,6 +52,7 @@ export async function approveReview(id: string) {
             where: { id },
             data: { approved: true }
         })
+        revalidateTag('reviews', 'default')
         revalidatePath('/velemeny')
         return { success: true }
     } catch (error) {

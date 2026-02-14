@@ -1,7 +1,7 @@
 'use server'
 
 import { prisma } from "@/lib/db"
-import { revalidatePath } from "next/cache"
+import { revalidatePath, revalidateTag, unstable_cache } from "next/cache"
 
 export type Variant = {
     name: string
@@ -93,12 +93,20 @@ function localizeProduct(product: ProductDTO, locale: string): LocalizedProductD
     }
 }
 
-export async function getProducts(): Promise<ProductDTO[]> {
-    const products = await prisma.product.findMany({
-        orderBy: { createdAt: 'desc' }
-    })
-    try {
+const getCachedProducts = unstable_cache(
+    async () => {
+        const products = await prisma.product.findMany({
+            orderBy: { createdAt: 'desc' }
+        })
         return products.map(mapProduct)
+    },
+    ['all-products'],
+    { revalidate: 3600, tags: ['products'] }
+)
+
+export async function getProducts(): Promise<ProductDTO[]> {
+    try {
+        return await getCachedProducts()
     } catch (error) {
         console.error('Error mapping products:', error)
         throw error
@@ -111,12 +119,20 @@ export async function getLocalizedProducts(locale: string = 'hu'): Promise<Local
     return products.map(p => localizeProduct(p, locale))
 }
 
+const getCachedProductBySlug = unstable_cache(
+    async (slug: string) => {
+        const product = await prisma.product.findUnique({
+            where: { slug }
+        })
+        if (!product) return null
+        return mapProduct(product)
+    },
+    ['product-by-slug'],
+    { revalidate: 3600, tags: ['products'] }
+)
+
 export async function getProductBySlug(slug: string): Promise<ProductDTO | null> {
-    const product = await prisma.product.findUnique({
-        where: { slug }
-    })
-    if (!product) return null
-    return mapProduct(product)
+    return getCachedProductBySlug(slug)
 }
 
 /** Get a single product localized to a specific language */
@@ -140,6 +156,7 @@ export async function createProduct(data: Omit<ProductDTO, 'id' | 'updatedAt'>) 
             prices: JSON.stringify(data.prices)
         }
     })
+    revalidateTag('products', 'default')
     revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
 }
@@ -175,6 +192,7 @@ export async function updateProduct(id: string, data: Partial<ProductDTO>) {
         where: { id },
         data: updateData
     })
+    revalidateTag('products', 'default')
     revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
 }
@@ -183,6 +201,7 @@ export async function deleteProduct(id: string) {
     await prisma.product.delete({
         where: { id }
     })
+    revalidateTag('products', 'default')
     revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
 }
