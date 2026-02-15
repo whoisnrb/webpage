@@ -1,0 +1,2 @@
+﻿src/app/[locale]/admin/blog/_components/blog-list-client.tsx(176,104): error TS1005: ':' expected.
+src/app/[locale]/admin/blog/_components/blog-list-client.tsx(178,41): error TS1381: Unexpected token. Did you mean `{'}'}` or `&rbrace;`?

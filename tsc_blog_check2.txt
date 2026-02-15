@@ -1,0 +1,8 @@
+﻿src/app/actions/blog.ts(43,9): error TS2554: Expected 2 arguments, but got 1.
+src/app/actions/blog.ts(62,9): error TS2554: Expected 2 arguments, but got 1.
+src/app/actions/blog.ts(78,9): error TS2554: Expected 2 arguments, but got 1.
+src/app/actions/blog.ts(95,9): error TS2554: Expected 2 arguments, but got 1.
+src/app/actions/blog.ts(112,9): error TS2554: Expected 2 arguments, but got 1.
+src/app/actions/blog.ts(265,9): error TS2554: Expected 2 arguments, but got 1.
+src/app/actions/blog.ts(278,9): error TS2554: Expected 2 arguments, but got 1.
+src/app/actions/blog.ts(296,9): error TS2554: Expected 2 arguments, but got 1.

@@ -1,50 +1,29 @@
 
 import { BlogPostForm } from "../_components/blog-post-form"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Link } from "@/i18n/routing"
-import { ArrowLeft } from "lucide-react"
-import { getBlogPostById } from "@/app/actions/blog"
+import { getBlogPostById, getAdminBlogSeries } from "@/app/actions/blog"
 import { notFound } from "next/navigation"
 
 export default async function EditBlogPostPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params
-    const post = await getBlogPostById(id)
+    const [post, series] = await Promise.all([
+        getBlogPostById(id),
+        getAdminBlogSeries(),
+    ])
 
     if (!post) {
         notFound()
     }
 
-    // Transform null to undefined for coverImage to match BlogPostData type
     const postData = {
         ...post,
-        coverImage: post.coverImage ?? undefined
+        coverImage: post.coverImage ?? undefined,
+        titleEn: post.titleEn ?? undefined,
+        excerptEn: post.excerptEn ?? undefined,
+        contentEn: post.contentEn ?? undefined,
+        seriesId: post.seriesId ?? undefined,
     }
 
-    return (
-        <div className="space-y-6">
-            <div className="flex items-center gap-4">
-                <Button variant="ghost" asChild>
-                    <Link href="/admin/blog">
-                        <ArrowLeft className="mr-2 h-4 w-4" /> Vissza
-                    </Link>
-                </Button>
-                <div>
-                    <h1 className="text-3xl font-bold tracking-tight">Bejegyzés Szerkesztése</h1>
-                    <p className="text-muted-foreground">
-                        {post.title}
-                    </p>
-                </div>
-            </div>
+    const seriesList = series.map((s: any) => ({ id: s.id, title: s.title }))
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>Szerkesztés</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <BlogPostForm initialData={postData as any} />
-                </CardContent>
-            </Card>
-        </div>
-    )
+    return <BlogPostForm initialData={postData as any} seriesList={seriesList} />
 }
