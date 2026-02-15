@@ -4,6 +4,11 @@ import { Badge } from "@/components/ui/badge"
 import { Briefcase, Coffee, Laptop, Zap } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
+import { routing } from '@/i18n/routing'
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 export default function KarrierPage() {
     const t = useTranslations('Careers')

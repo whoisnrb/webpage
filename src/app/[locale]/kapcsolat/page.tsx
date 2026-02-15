@@ -7,6 +7,11 @@ import { Mail, MapPin, Phone, Clock } from "lucide-react"
 import { FadeIn, SlideUp } from "@/components/ui/motion-wrapper"
 import { TrustSignals } from "@/components/ui/trust-signals"
 import { useTranslations } from "next-intl"
+import { routing } from '@/i18n/routing'
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 export default function ContactPage() {
     const t = useTranslations('Contact')

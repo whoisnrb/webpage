@@ -4,6 +4,11 @@ import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp } from
 import { Link } from "@/i18n/routing"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { useTranslations } from "next-intl"
+import { routing } from '@/i18n/routing'
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 export default function RolunkPage() {
     const t = useTranslations('AboutPage')

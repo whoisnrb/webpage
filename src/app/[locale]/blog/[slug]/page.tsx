@@ -9,6 +9,9 @@ import { Badge } from "@/components/ui/badge"
 import { getTranslations } from "next-intl/server"
 import { SmartDate } from "@/components/ui/smart-date"
 import { FadeIn } from "@/components/ui/motion-wrapper"
+import { routing } from '@/i18n/routing'
+
+export const revalidate = 3600
 
 type Props = {
     params: Promise<{ slug: string; locale: string }>

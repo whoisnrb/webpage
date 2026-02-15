@@ -6,6 +6,13 @@ import { ArrowLeft } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
+import { routing } from '@/i18n/routing'
+
+export function generateStaticParams() {
+    return routing.locales.flatMap((locale) =>
+        caseStudies.map((study) => ({ locale, slug: study.slug }))
+    );
+}
 
 // Correct usage for Next.js 15+ dynamic params:
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {

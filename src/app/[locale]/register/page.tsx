@@ -2,6 +2,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Link } from "@/i18n/routing"
 import { RegisterForm } from "@/components/auth/register-form"
 import { useTranslations } from "next-intl"
+import { routing } from '@/i18n/routing'
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 export default function RegisterPage() {
     const t = useTranslations("Auth.Register");

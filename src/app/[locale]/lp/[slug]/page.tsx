@@ -8,6 +8,16 @@ import { Check, Star, ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link } from "@/i18n/routing"; // Use i18n link
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { routing } from '@/i18n/routing';
+
+export function generateStaticParams() {
+    const industrySlugs = industries.map((i) => i.slug);
+    const lpSlugs = Object.keys(landingPages);
+    const allSlugs = [...industrySlugs, ...lpSlugs];
+    return routing.locales.flatMap((locale) =>
+        allSlugs.map((slug) => ({ locale, slug }))
+    );
+}
 
 interface Props {
     params: Promise<{

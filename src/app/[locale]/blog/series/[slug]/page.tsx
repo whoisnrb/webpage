@@ -8,6 +8,9 @@ import { ArrowLeft, BookOpen, Clock, Play } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 import { FadeIn, FadeInStagger, FadeInStaggerItem } from "@/components/ui/motion-wrapper"
 import { Badge } from "@/components/ui/badge"
+import { routing } from '@/i18n/routing'
+
+export const revalidate = 3600
 
 export default async function SeriesPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const { slug, locale } = await params

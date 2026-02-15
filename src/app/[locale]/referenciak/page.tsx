@@ -5,6 +5,11 @@ import { ArrowRight } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { caseStudies } from "@/lib/case-studies-data"
 import { useTranslations } from "next-intl"
+import { routing } from '@/i18n/routing'
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 export default function ReferenciakPage() {
     const t = useTranslations('References')

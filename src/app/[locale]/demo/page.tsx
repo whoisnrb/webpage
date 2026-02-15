@@ -3,12 +3,17 @@ import { Card } from "@/components/ui/card"
 import { CheckCircle2, Calendar, MessageSquare, Zap, Shield, TrendingUp } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { getTranslations } from "next-intl/server"
+import { routing } from '@/i18n/routing'
 import {
     Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;

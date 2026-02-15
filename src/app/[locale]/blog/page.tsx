@@ -6,6 +6,13 @@ import { BookOpen, ArrowRight, Sparkles, Zap, Shield, Cpu } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 import { FadeIn, FadeInStagger, FadeInStaggerItem } from "@/components/ui/motion-wrapper"
 import { Badge } from "@/components/ui/badge"
+import { routing } from '@/i18n/routing'
+
+export const revalidate = 3600
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params

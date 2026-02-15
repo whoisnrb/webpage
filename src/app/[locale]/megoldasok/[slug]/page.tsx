@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
 import { notFound } from "next/navigation"
 import { getTranslations } from 'next-intl/server'
+import { routing } from '@/i18n/routing'
+
+export const revalidate = 3600
 
 interface PageProps {
     params: Promise<{ slug: string; locale: string }>

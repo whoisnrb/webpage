@@ -2,6 +2,13 @@ import { getLocalizedProducts } from "@/app/actions/product"
 import { getTranslations } from "next-intl/server"
 import { ProductBrowser } from "./product-browser"
 import { FadeIn } from "@/components/ui/motion-wrapper"
+import { routing } from '@/i18n/routing'
+
+export const revalidate = 3600
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
 
 interface PageProps {
     params: Promise<{ locale: string }>
