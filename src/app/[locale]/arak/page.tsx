@@ -12,6 +12,8 @@ export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
 
+export const revalidate = 86400; // 24 hours
+
 export default function ArakPage() {
     const t = useTranslations('PricingPage');
 

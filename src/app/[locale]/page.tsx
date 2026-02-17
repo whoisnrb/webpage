@@ -6,6 +6,9 @@ export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
 
+// Cache the page for 24 hours to reduce CPU usage
+export const revalidate = 86400;
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'Metadata' });
