@@ -52,8 +52,8 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                     {youtubeId ? (
                         <div className="absolute inset-0 w-full h-full overflow-hidden rounded-xl">
                             <iframe
-                                className="absolute top-[-12%] left-0 w-full h-[124%]"
-                                src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&showinfo=0&autohide=1`}
+                                className="absolute top-[-15%] left-0 w-full h-[130%]"
+                                src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&showinfo=0&autohide=1&iv_load_policy=3`}
                                 title="Product Demo Video"
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
