@@ -50,14 +50,16 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             <div className="flex-1">
                 <div className="aspect-video bg-background rounded-xl border shadow-sm flex items-center justify-center relative overflow-hidden group">
                     {youtubeId ? (
-                        <iframe
-                            className="absolute inset-0 w-full h-full"
-                            src={`https://www.youtube.com/embed/${youtubeId}?rel=0`}
-                            title="Product Demo Video"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
+                        <div className="absolute inset-0 w-full h-full overflow-hidden rounded-xl">
+                            <iframe
+                                className="absolute top-[-12%] left-0 w-full h-[124%]"
+                                src={`https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&showinfo=0&autohide=1`}
+                                title="Product Demo Video"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
                     ) : (
                         <>
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5" />
