@@ -107,6 +107,7 @@ model Product {
   featuresEn      String?
   prices          String // JSON string marad a csomagok tárolására
   active          Boolean     @default(true)
+  demoVideoUrl    String?
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
   

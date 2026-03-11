@@ -26,6 +26,7 @@ export type ProductDTO = {
     features: string[]
     featuresEn: string[] | null
     prices: Variant[]
+    demoVideoUrl?: string | null
     updatedAt: Date
 }
 
@@ -41,6 +42,7 @@ export type LocalizedProductDTO = {
     image: string
     features: string[]
     prices: Variant[]
+    demoVideoUrl?: string | null
     updatedAt: Date
 }
 
@@ -67,7 +69,8 @@ function mapProduct(p: any): ProductDTO {
         longDescriptionEn: p.longDescriptionEn || null,
         features: typeof p.features === 'string' ? JSON.parse(p.features) : p.features,
         featuresEn: p.featuresEn ? (typeof p.featuresEn === 'string' ? JSON.parse(p.featuresEn) : p.featuresEn) : null,
-        prices: prices
+        prices: prices,
+        demoVideoUrl: p.demoVideoUrl || null
     }
 }
 
@@ -89,6 +92,7 @@ function localizeProduct(product: ProductDTO, locale: string): LocalizedProductD
             price: v.price,
             description: (isEn && v.descriptionEn) ? v.descriptionEn : v.description,
         })),
+        demoVideoUrl: product.demoVideoUrl || null,
         updatedAt: product.updatedAt
     }
 }
@@ -143,7 +147,7 @@ export async function getLocalizedProductBySlug(slug: string, locale: string = '
 }
 
 export async function createProduct(data: Omit<ProductDTO, 'id' | 'updatedAt'>) {
-    const { title, titleEn, featuresEn, descriptionEn, longDescriptionEn, ...rest } = data
+    const { title, titleEn, featuresEn, descriptionEn, longDescriptionEn, demoVideoUrl, ...rest } = data
     await prisma.product.create({
         data: {
             ...rest,
@@ -153,7 +157,8 @@ export async function createProduct(data: Omit<ProductDTO, 'id' | 'updatedAt'>) 
             longDescriptionEn: longDescriptionEn || null,
             features: JSON.stringify(data.features),
             featuresEn: featuresEn ? JSON.stringify(featuresEn) : null,
-            prices: JSON.stringify(data.prices)
+            prices: JSON.stringify(data.prices),
+            demoVideoUrl: demoVideoUrl || null
         }
     })
     revalidateTag('products', 'default')
@@ -182,6 +187,7 @@ export async function updateProduct(id: string, data: Partial<ProductDTO>) {
         updateData.featuresEn = data.featuresEn ? JSON.stringify(data.featuresEn) : null
     }
     if (data.prices) updateData.prices = JSON.stringify(data.prices)
+    if (data.demoVideoUrl !== undefined) updateData.demoVideoUrl = data.demoVideoUrl
 
     delete updateData.descriptionEn
     // Re-add if it was in data

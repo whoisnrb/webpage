@@ -95,7 +95,8 @@ export function ProductForm({ initialData }: ProductFormProps) {
             image: imageValue,
             features: features,
             featuresEn: featuresEn && featuresEn.length > 0 ? featuresEn : null,
-            prices: validVariants as any
+            prices: validVariants as any,
+            demoVideoUrl: (formData.get("demoVideoUrl") as string) || null
         }
 
         try {
@@ -139,6 +140,14 @@ export function ProductForm({ initialData }: ProductFormProps) {
                         <Label htmlFor="category">Kategória</Label>
                         <Input id="category" name="category" defaultValue={initialData?.category} required />
                     </div>
+                </div>
+
+                <div className="space-y-2">
+                    <Label htmlFor="demoVideoUrl">YouTube Demo Videó URL (Opcionális)</Label>
+                    <Input id="demoVideoUrl" name="demoVideoUrl" defaultValue={initialData?.demoVideoUrl || ""} placeholder="https://www.youtube.com/watch?v=..." />
+                    <p className="text-xs text-muted-foreground">
+                        Ha megadsz egy YouTube videó linket, az megjelenik a megoldás oldalán, és beágyazva nézhetik meg a felhasználók.
+                    </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
