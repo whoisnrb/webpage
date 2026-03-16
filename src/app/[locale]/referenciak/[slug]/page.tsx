@@ -1,4 +1,3 @@
-import { caseStudies } from '@/lib/case-studies-data'
 import { UpsellEngine } from '@/components/upsell/recommendations'
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -7,40 +6,25 @@ import { Link } from "@/i18n/routing"
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
+import { getLocalizedReferenceBySlug } from '@/app/actions/reference'
+import { prisma } from '@/lib/db'
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+    const references = await (prisma as any).reference.findMany({ select: { slug: true } })
     return routing.locales.flatMap((locale) =>
-        caseStudies.map((study) => ({ locale, slug: study.slug }))
+        references.map((ref: { slug: string }) => ({ locale, slug: ref.slug }))
     );
 }
 
 // Correct usage for Next.js 15+ dynamic params:
-export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
+export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string, locale: string }> }) {
+    const { slug, locale } = await params;
     const t = await getTranslations('References')
 
-    // Find key based on slug
-    let key = '';
-    if (slug === 'webshop-optimalizalas') key = 'webshop';
-    else if (slug === 'paciens-kezelo-rendszer') key = 'patient';
-    else if (slug === 'server-klaszter') key = 'server';
+    const study = await getLocalizedReferenceBySlug(slug, locale)
 
-    if (!key) {
+    if (!study) {
         notFound();
-    }
-
-    const baseStudy = caseStudies.find(s => s.slug === slug);
-    if (!baseStudy) notFound();
-
-    const study = {
-        ...baseStudy,
-        title: t(`items.${key}.title`),
-        client: t(`items.${key}.client`),
-        category: t(`items.${key}.category`),
-        description: t(`items.${key}.description`),
-        challenge: t(`items.${key}.challenge`),
-        solution: t(`items.${key}.solution`),
-        result: t(`items.${key}.result`),
     }
 
     // Determine upsell tags based on study tags + category
@@ -74,10 +58,17 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                             ))}
                         </div>
                     </div>
-                    <div className={`aspect-video rounded-2xl ${study.image} flex items-center justify-center shadow-2xl skew-y-1 transform transition-all`}>
-                        <div className="text-center p-6">
-                            <div className="font-bold text-4xl opacity-20 uppercase tracking-widest text-primary-foreground">{study.client.split(' ')[0]}</div>
-                        </div>
+                    <div className={`aspect-video rounded-2xl ${study.image.startsWith('/') ? '' : study.image} flex items-center justify-center shadow-2xl skew-y-1 transform transition-all overflow-hidden relative`}>
+                        {study.image.startsWith('/') ? (
+                            <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
+                        ) : (
+                            <div className="absolute inset-0 bg-black/5" />
+                        )}
+                        {!study.image.startsWith('/') && (
+                            <div className="text-center p-6 relative z-10">
+                                <div className="font-bold text-4xl opacity-20 uppercase tracking-widest text-primary-foreground">{study.client.split(' ')[0]}</div>
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -112,28 +103,19 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     </div>
                 </div>
 
-                {/* Results Highlight (Mock) */}
-                <div className="bg-primary/5 rounded-2xl p-8 md:p-12 mb-16 text-center">
-                    <h2 className="text-2xl font-bold mb-8">{t('key_results')}</h2>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                        <div>
-                            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">40%</div>
-                            <div className="text-sm text-muted-foreground font-medium">{t('metrics.conversion_growth')}</div>
-                        </div>
-                        <div>
-                            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">3x</div>
-                            <div className="text-sm text-muted-foreground font-medium">{t('metrics.faster_loading')}</div>
-                        </div>
-                        <div>
-                            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">100%</div>
-                            <div className="text-sm text-muted-foreground font-medium">{t('metrics.automated')}</div>
-                        </div>
-                        <div>
-                            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">0</div>
-                            <div className="text-sm text-muted-foreground font-medium">{t('metrics.no_data_loss')}</div>
+                {(study.metrics && study.metrics.length > 0) && (
+                    <div className="bg-primary/5 rounded-2xl p-8 md:p-12 mb-16 text-center">
+                        <h2 className="text-2xl font-bold mb-8">{t('key_results')}</h2>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                            {study.metrics.map((metric, i) => (
+                                <div key={i}>
+                                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{metric.value}</div>
+                                    <div className="text-sm text-muted-foreground font-medium">{metric.label}</div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                </div>
+                )}
 
                 {/* Upsell Engine Integration */}
                 <UpsellEngine

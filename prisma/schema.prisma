@@ -294,3 +294,28 @@ model Service {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
+
+model Reference {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  titleEn       String?
+  client        String
+  clientEn      String?
+  category      String
+  categoryEn    String?
+  description   String   @db.Text
+  descriptionEn String?  @db.Text
+  challenge     String   @db.Text
+  challengeEn   String?  @db.Text
+  solution      String   @db.Text
+  solutionEn    String?  @db.Text
+  result        String   @db.Text
+  resultEn      String?  @db.Text
+  image         String
+  tags          String[]
+  metrics       Json?    // Array of { value: string, label: string }
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

@@ -3,49 +3,20 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight } from "lucide-react"
 import { Link } from "@/i18n/routing"
-import { caseStudies } from "@/lib/case-studies-data"
-import { useTranslations } from "next-intl"
+import { getLocalizedReferences } from "@/app/actions/reference"
+import { getTranslations } from "next-intl/server"
 import { routing } from '@/i18n/routing'
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
 
-export const revalidate = 86400; // 24 hours
+export const revalidate = 3600; // 1 hour
 
-export default function ReferenciakPage() {
-    const t = useTranslations('References')
-
-    const studies = [
-        {
-            ...caseStudies[0],
-            title: t('items.webshop.title'),
-            client: t('items.webshop.client'),
-            category: t('items.webshop.category'),
-            description: t('items.webshop.description'),
-        },
-        {
-            ...caseStudies[1],
-            title: t('items.patient.title'),
-            client: t('items.patient.client'),
-            category: t('items.patient.category'),
-            description: t('items.patient.description'),
-        },
-        {
-            ...caseStudies[2],
-            title: t('items.server.title'),
-            client: t('items.server.client'),
-            category: t('items.server.category'),
-            description: t('items.server.description'),
-        },
-        {
-            ...caseStudies[3],
-            title: t('items.infrastructure.title'),
-            client: t('items.infrastructure.client'),
-            category: t('items.infrastructure.category'),
-            description: t('items.infrastructure.description'),
-        },
-    ]
+export default async function ReferenciakPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
+    const t = await getTranslations('References')
+    const studies = await getLocalizedReferences(locale)
 
     return (
         <div className="min-h-screen flex flex-col">

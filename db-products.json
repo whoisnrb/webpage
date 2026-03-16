@@ -1,0 +1,46 @@
+[
+  {
+    "name": "SocialFlow - Automata Posztoló Rendszer",
+    "slug": "socialflow-autoposter"
+  },
+  {
+    "name": "Biztonsági Audit Checklist",
+    "slug": "cybersecurity-audit-checklist"
+  },
+  {
+    "name": "GDPR & Cookie Consent Kezelő (SimpleConsent)",
+    "slug": "simple-consent-gdpr"
+  },
+  {
+    "name": "HomeLab Master - Docker Compose Gyűjtemény",
+    "slug": "homelab-master-docker"
+  },
+  {
+    "name": "Next.js SaaS Starter Kit",
+    "slug": "nextjs-saas-starter"
+  },
+  {
+    "name": "OpsView - Grafana Dashboard Pack",
+    "slug": "opsview-grafana"
+  },
+  {
+    "name": "InvoiceAI - Számla OCR Feldolgozó",
+    "slug": "invoice-ai-ocr"
+  },
+  {
+    "name": "Kiberpajzs - Biztonsági Útmutató Cégvezetőknek",
+    "slug": "kiberbiztonsagi-kezikonyv"
+  },
+  {
+    "name": "EstatePro - Prémium Ingatlanos Sablon",
+    "slug": "estatepro-template"
+  },
+  {
+    "name": "CartRecover - WooCommerce Bővítmény",
+    "slug": "cart-recover-plugin"
+  },
+  {
+    "name": "PrivNet - WireGuard VPN Installer",
+    "slug": "privnet-wireguard-vpn"
+  }
+]
