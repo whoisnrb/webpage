@@ -84,7 +84,7 @@ export function ChatWidget() {
             dragMomentum={false}
             dragListener={false}
             dragControls={dragControls}
-            className="fixed top-32 right-4 z-50 flex flex-col items-end gap-4"
+            className="fixed top-40 right-4 z-50 flex flex-col items-end gap-4"
         >
             <AnimatePresence>
                 {isOpen && (
