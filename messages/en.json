@@ -99,6 +99,9 @@
         "solution": "Solution",
         "result": "Result",
         "key_results": "Key Results",
+        "documentation": "Project Documentation",
+        "documentation_desc": "Download the detailed technical description and case study in PDF format.",
+        "download_case_study": "Download Documentation",
         "metrics": {
             "conversion_growth": "Conversion Growth",
             "faster_loading": "Faster Loading",

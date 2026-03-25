@@ -27,6 +27,8 @@ export type ReferenceDTO = {
     result: string
     resultEn: string | null
     image: string
+    documentationFile: string | null
+    showDocumentation: boolean
     tags: string[]
     metrics: Metric[] | null
     active: boolean
@@ -44,6 +46,8 @@ export type LocalizedReferenceDTO = {
     solution: string
     result: string
     image: string
+    documentationFile: string | null
+    showDocumentation: boolean
     tags: string[]
     metrics: Metric[] | null
     updatedAt: Date
@@ -69,6 +73,8 @@ function localizeReference(ref: ReferenceDTO, locale: string): LocalizedReferenc
         solution: (isEn && ref.solutionEn) ? ref.solutionEn : ref.solution,
         result: (isEn && ref.resultEn) ? ref.resultEn : ref.result,
         image: ref.image,
+        documentationFile: ref.documentationFile,
+        showDocumentation: ref.showDocumentation,
         tags: ref.tags,
         metrics: ref.metrics ? ref.metrics.map(m => ({
             value: m.value,
@@ -124,7 +130,9 @@ export async function createReference(data: Omit<ReferenceDTO, 'id' | 'updatedAt
     await (prisma as any).reference.create({
         data: {
             ...data,
-            metrics: data.metrics ? JSON.stringify(data.metrics) : null
+            metrics: data.metrics ? JSON.stringify(data.metrics) : null,
+            documentationFile: data.documentationFile,
+            showDocumentation: data.showDocumentation
         }
     })
     revalidateTag('references', 'default')
@@ -140,7 +148,11 @@ export async function updateReference(id: string, data: Partial<ReferenceDTO>) {
 
     await (prisma as any).reference.update({
         where: { id },
-        data: updateData
+        data: {
+            ...updateData,
+            documentationFile: data.documentationFile !== undefined ? data.documentationFile : undefined,
+            showDocumentation: data.showDocumentation !== undefined ? data.showDocumentation : undefined,
+        }
     })
     revalidateTag('references', 'default')
     revalidatePath('/referenciak')

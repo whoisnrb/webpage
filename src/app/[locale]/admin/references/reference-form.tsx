@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { ReferenceDTO, Metric, createReference, updateReference } from "@/app/actions/reference"
 import { useRouter } from "@/i18n/routing"
 import { toast } from "sonner"
-import { Plus, Trash, Image as ImageIcon } from "lucide-react"
+import { Plus, Trash, Image as ImageIcon, FileText, Download } from "lucide-react"
 
 interface ReferenceFormProps {
     initialData?: ReferenceDTO
@@ -18,6 +18,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [imagePreview, setImagePreview] = useState<string | null>(initialData?.image || null)
+    const [docFile, setDocFile] = useState<string | null>(initialData?.documentationFile || null)
     const [metrics, setMetrics] = useState<Metric[]>(initialData?.metrics || [{ value: '', label: '', labelEn: '' }])
     const [tags, setTags] = useState<string[]>(initialData?.tags || [])
     const [newTag, setNewTag] = useState("")
@@ -25,8 +26,8 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) {
-            if (file.size > 1024 * 1024) { // 1MB limit for references
-                toast.error("A kép mérete nem haladhatja meg az 1MB-ot!")
+            if (file.size > 2 * 1024 * 1024) { // 2MB limit for images
+                toast.error("A kép mérete nem haladhatja meg a 2MB-ot!")
                 e.target.value = ""
                 return
             }
@@ -34,6 +35,23 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
             const reader = new FileReader()
             reader.onloadend = () => {
                 setImagePreview(reader.result as string)
+            }
+            reader.readAsDataURL(file)
+        }
+    }
+
+    const handleDocChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) { // 5MB limit for docs
+                toast.error("A dokumentáció mérete nem haladhatja meg az 5MB-ot!")
+                e.target.value = ""
+                return
+            }
+
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                setDocFile(reader.result as string)
             }
             reader.readAsDataURL(file)
         }
@@ -94,6 +112,8 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
             result: formData.get("result") as string,
             resultEn: (formData.get("resultEn") as string) || null,
             image: imageValue,
+            documentationFile: docFile,
+            showDocumentation: formData.get("showDocumentation") === "on",
             tags: tags,
             metrics: metrics.filter(m => m.value.trim() !== "" && m.label.trim() !== "").map(m => ({ value: m.value, label: m.label, labelEn: m.labelEn })),
             active: formData.get("active") === "on",
@@ -173,6 +193,17 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                         />
                         <Label htmlFor="active">Aktív (Megjelenik az oldalon)</Label>
                     </div>
+
+                    <div className="flex items-center space-x-2 pt-2">
+                        <input
+                            type="checkbox"
+                            id="showDocumentation"
+                            name="showDocumentation"
+                            defaultChecked={initialData ? initialData.showDocumentation : false}
+                            className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                        />
+                        <Label htmlFor="showDocumentation">Dokumentáció letöltés engedélyezése</Label>
+                    </div>
                 </div>
 
                 {/* Images & Tags */}
@@ -227,6 +258,42 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                                     </button>
                                 </span>
                             ))}
+                        </div>
+                    </div>
+
+                    <div className="space-y-2 pt-4 border-t">
+                        <Label>Dokumentáció (PDF)</Label>
+                        <div className="border-2 border-dashed rounded-lg p-4 text-center space-y-4">
+                            {docFile ? (
+                                <div className="flex items-center justify-between p-3 bg-muted rounded-md border border-primary/20">
+                                    <div className="flex items-center gap-3">
+                                        <div className="bg-primary/20 p-2 rounded text-primary">
+                                            <FileText className="h-6 w-6" />
+                                        </div>
+                                        <div className="text-left">
+                                            <p className="text-sm font-medium">Dokumentáció feltöltve</p>
+                                            <p className="text-xs text-muted-foreground uppercase">PDF fájl</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex gap-2">
+                                        <Button 
+                                            type="button" 
+                                            variant="destructive" 
+                                            size="icon" 
+                                            className="h-8 w-8"
+                                            onClick={() => setDocFile(null)}
+                                        >
+                                            <Trash className="h-4 w-4" />
+                                        </Button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="py-4 flex flex-col items-center justify-center text-muted-foreground">
+                                    <FileText className="h-10 w-10 mb-2 opacity-20" />
+                                    <p className="text-sm">Tallózz be egy PDF dokumentációt</p>
+                                </div>
+                            )}
+                            <Input type="file" accept="application/pdf" onChange={handleDocChange} className="cursor-pointer" />
                         </div>
                     </div>
                 </div>

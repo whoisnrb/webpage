@@ -1,7 +1,7 @@
 import { UpsellEngine } from '@/components/upsell/recommendations'
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, Download } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
@@ -107,15 +107,39 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 </div>
 
                 {(study.metrics && study.metrics.length > 0) && (
-                    <div className="bg-primary/5 rounded-2xl p-8 md:p-12 mb-16 text-center">
-                        <h2 className="text-2xl font-bold mb-8">{t('key_results')}</h2>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                            {study.metrics.map((metric, i) => (
-                                <div key={i}>
-                                    <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{metric.value}</div>
-                                    <div className="text-sm text-muted-foreground font-medium">{metric.label}</div>
+                    <div className="bg-primary/5 rounded-2xl p-8 md:p-12 mb-16 text-center border border-primary/10 relative overflow-hidden group">
+                        {/* Decorative background element for Documentation link area if present */}
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+                        
+                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div className="flex-1">
+                                <h2 className="text-2xl font-bold mb-8 text-left">{t('key_results')}</h2>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                                    {study.metrics.map((metric, i) => (
+                                        <div key={i} className="text-left">
+                                            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{metric.value}</div>
+                                            <div className="text-sm text-muted-foreground font-medium">{metric.label}</div>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
+                            </div>
+                            
+                            {(study.showDocumentation && study.documentationFile) && (
+                                <div className="w-full md:w-auto md:border-l border-primary/20 md:pl-12 flex flex-col items-center md:items-start text-center md:text-left pt-8 md:pt-0">
+                                    <h3 className="text-xl font-bold mb-4">{t('documentation')}</h3>
+                                    <p className="text-muted-foreground text-sm mb-6 max-w-xs">{t('documentation_desc')}</p>
+                                    <a 
+                                        href={study.documentationFile} 
+                                        download={`BacklineIT-${study.slug}-dokumentacio.pdf`}
+                                        className="w-full"
+                                    >
+                                        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-lg shadow-primary/20 group/btn">
+                                            <Download className="mr-2 h-5 w-5 group-hover/btn:translate-y-0.5 transition-transform" />
+                                            {t('download_case_study')}
+                                        </Button>
+                                    </a>
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}

@@ -313,6 +313,8 @@ model Reference {
   result        String   @db.Text
   resultEn      String?  @db.Text
   image         String
+  documentationFile String? @db.Text
+  showDocumentation Boolean @default(false)
   tags          String[]
   metrics       Json?    // Array of { value: string, label: string }
   active        Boolean  @default(true)

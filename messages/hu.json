@@ -99,6 +99,9 @@
         "solution": "Megoldás",
         "result": "Eredmény",
         "key_results": "Főbb Eredmények",
+        "documentation": "Projekt Dokumentáció",
+        "documentation_desc": "Töltsd le a részletes technikai leírást és az esettanulmányt PDF formátumban.",
+        "download_case_study": "Dokumentáció Letöltése",
         "metrics": {
             "conversion_growth": "Konverzió Növekedés",
             "faster_loading": "Gyorsabb Betöltés",
