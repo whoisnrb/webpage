@@ -30,6 +30,8 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     // Determine upsell tags based on study tags + category
     const upsellTags = [...study.tags, study.category];
 
+    const isImageUrl = study.image.startsWith('/') || study.image.startsWith('data:image') || study.image.startsWith('http');
+
     return (
         <div className="min-h-screen flex flex-col pt-20">
             <div className="container mx-auto px-4 py-8">
@@ -58,13 +60,13 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                             ))}
                         </div>
                     </div>
-                    <div className={`aspect-video rounded-2xl ${study.image.startsWith('/') ? '' : study.image} flex items-center justify-center shadow-2xl skew-y-1 transform transition-all overflow-hidden relative`}>
-                        {study.image.startsWith('/') ? (
+                    <div className={`aspect-video rounded-2xl ${isImageUrl ? '' : study.image} flex items-center justify-center shadow-2xl skew-y-1 transform transition-all overflow-hidden relative`}>
+                        {isImageUrl ? (
                             <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
                         ) : (
                             <div className="absolute inset-0 bg-black/5" />
                         )}
-                        {!study.image.startsWith('/') && (
+                        {!isImageUrl && (
                             <div className="text-center p-6 relative z-10">
                                 <div className="font-bold text-4xl opacity-20 uppercase tracking-widest text-primary-foreground">{study.client.split(' ')[0]}</div>
                             </div>
