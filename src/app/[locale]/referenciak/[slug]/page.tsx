@@ -33,7 +33,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     const isImageUrl = study.image.startsWith('/') || study.image.startsWith('data:image') || study.image.startsWith('http');
 
     return (
-        <div className="min-h-screen flex flex-col pt-20">
+        <div className="min-h-screen flex flex-col">
             <div className="container mx-auto px-4 py-8">
                 {/* Hero */}
                 <div className="grid lg:grid-cols-2 gap-12 mb-16 items-center">
