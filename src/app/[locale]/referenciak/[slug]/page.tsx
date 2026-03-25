@@ -35,15 +35,16 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
     return (
         <div className="min-h-screen flex flex-col pt-20">
             <div className="container mx-auto px-4 py-8">
-                <Link href="/referenciak">
-                    <Button variant="ghost" className="mb-6 pl-0 hover:pl-2 transition-all text-muted-foreground hover:text-foreground">
-                        <ArrowLeft className="mr-2 h-4 w-4" /> {t('back_to_references')}
-                    </Button>
-                </Link>
-
                 {/* Hero */}
                 <div className="grid lg:grid-cols-2 gap-12 mb-16 items-center">
                     <div>
+                        <div className="mb-8">
+                            <Link href="/referenciak">
+                                <Button variant="ghost" className="pl-0 hover:pl-2 transition-all text-muted-foreground hover:text-foreground">
+                                    <ArrowLeft className="mr-2 h-4 w-4" /> {t('back_to_references')}
+                                </Button>
+                            </Link>
+                        </div>
                         <Badge className="mb-4" variant="secondary">{study.category}</Badge>
                         <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight leading-tight">{study.title}</h1>
                         <p className="text-xl text-muted-foreground mb-6 font-medium">

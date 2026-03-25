@@ -18,7 +18,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [imagePreview, setImagePreview] = useState<string | null>(initialData?.image || null)
-    const [metrics, setMetrics] = useState<Metric[]>(initialData?.metrics || [{ value: '', label: '' }])
+    const [metrics, setMetrics] = useState<Metric[]>(initialData?.metrics || [{ value: '', label: '', labelEn: '' }])
     const [tags, setTags] = useState<string[]>(initialData?.tags || [])
     const [newTag, setNewTag] = useState("")
 
@@ -40,7 +40,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     }
 
     const addMetric = () => {
-        setMetrics([...metrics, { value: '', label: '' }])
+        setMetrics([...metrics, { value: '', label: '', labelEn: '' }])
     }
 
     const removeMetric = (index: number) => {
@@ -95,7 +95,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
             resultEn: (formData.get("resultEn") as string) || null,
             image: imageValue,
             tags: tags,
-            metrics: metrics.filter(m => m.value.trim() !== "" && m.label.trim() !== ""),
+            metrics: metrics.filter(m => m.value.trim() !== "" && m.label.trim() !== "").map(m => ({ value: m.value, label: m.label, labelEn: m.labelEn })),
             active: formData.get("active") === "on",
         }
 
@@ -135,14 +135,20 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-4">
                         <div className="space-y-2">
                             <Label htmlFor="slug">Slug (URL)</Label>
                             <Input id="slug" name="slug" defaultValue={initialData?.slug} required placeholder="pl. webshop-automatizalas" />
                         </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="category">Kategória (HU)</Label>
-                            <Input id="category" name="category" defaultValue={initialData?.category} required placeholder="pl. E-kereskedelem" />
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="category">Kategória (HU)</Label>
+                                <Input id="category" name="category" defaultValue={initialData?.category} required placeholder="pl. E-kereskedelem" />
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="categoryEn">Category (EN)</Label>
+                                <Input id="categoryEn" name="categoryEn" defaultValue={initialData?.categoryEn || ""} placeholder="e.g. E-commerce" />
+                            </div>
                         </div>
                     </div>
 
@@ -295,6 +301,11 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                                 placeholder="Címke (pl. Gyorsabb)" 
                                 value={metric.label} 
                                 onChange={(e) => updateMetric(index, 'label', e.target.value)}
+                            />
+                            <Input 
+                                placeholder="Label (EN) pl. Faster" 
+                                value={metric.labelEn || ''} 
+                                onChange={(e) => updateMetric(index, 'labelEn', e.target.value)}
                             />
                             <Button 
                                 type="button" 

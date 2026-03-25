@@ -6,6 +6,7 @@ import { revalidatePath, revalidateTag, unstable_cache } from "next/cache"
 export type Metric = {
     value: string
     label: string
+    labelEn?: string
 }
 
 export type ReferenceDTO = {
@@ -69,7 +70,10 @@ function localizeReference(ref: ReferenceDTO, locale: string): LocalizedReferenc
         result: (isEn && ref.resultEn) ? ref.resultEn : ref.result,
         image: ref.image,
         tags: ref.tags,
-        metrics: ref.metrics,
+        metrics: ref.metrics ? ref.metrics.map(m => ({
+            value: m.value,
+            label: (isEn && m.labelEn) ? m.labelEn : m.label
+        })) : null,
         updatedAt: ref.updatedAt
     }
 }
