@@ -2,7 +2,8 @@ import { MetadataRoute } from 'next'
 import { getBlogPosts, getBlogSeries } from '@/app/actions/blog'
 import { getProducts } from '@/app/actions/product'
 import { routing } from '@/i18n/routing'
-import { caseStudies } from '@/lib/case-studies-data'
+import { getReferences } from '@/app/actions/reference'
+import { caseStudies as staticCaseStudies } from '@/lib/case-studies-data'
 import { industries } from '@/lib/industry-data'
 import { landingPages } from '@/config/landing-pages'
 
@@ -15,6 +16,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let products: any[] = []
     let posts: any[] = []
     let series: any[] = []
+    let dbReferences: any[] = []
+
+    try {
+        dbReferences = await getReferences()
+    } catch (error) {
+        console.warn('Could not fetch references for sitemap generation:', error)
+    }
 
     try {
         products = await getProducts()
@@ -130,12 +138,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     // Case studies (references)
+    const allReferences = [
+        ...staticCaseStudies.map(s => ({ slug: s.slug, updatedAt: new Date() })),
+        ...dbReferences.filter(r => r.active).map(r => ({ slug: r.slug, updatedAt: r.updatedAt }))
+    ]
+
     for (const locale of locales) {
-        for (const study of caseStudies) {
+        for (const study of allReferences) {
             const studyPath = `/referenciak/${study.slug}`
             routes.push({
                 url: `${baseUrl}/${locale}${studyPath}`,
-                lastModified: new Date(),
+                lastModified: study.updatedAt,
                 changeFrequency: 'monthly',
                 priority: 0.6,
                 alternates: getAlternates(studyPath),

@@ -9,21 +9,21 @@ datasource db {
 }
 
 model User {
-  id              String         @id @default(cuid())
+  id              String        @id @default(cuid())
   name            String?
-  email           String?        @unique
+  email           String?       @unique
   password        String?
-  role            String         @default("USER")
+  role            String        @default("USER")
   emailVerified   DateTime?
   image           String?
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
   accounts        Account[]
-  sessions        Session[] // Visszatéve
-  tickets         Ticket[]       @relation("UserTickets") // Visszatéve
-  assignedTickets Ticket[]       @relation("AssignedTickets")
-  ticketReplies   TicketReply[]
   auditLogs       AuditLog[]
+  sessions        Session[]
+  assignedTickets Ticket[]      @relation("AssignedTickets")
+  tickets         Ticket[]      @relation("UserTickets")
+  ticketReplies   TicketReply[]
 }
 
 model Account {
@@ -61,16 +61,16 @@ model VerificationToken {
 }
 
 model Lead {
-  id              String   @id @default(cuid())
+  id              String    @id @default(cuid())
   name            String?
+  email           String    @unique
+  source          String    @default("lead-magnet")
+  createdAt       DateTime  @default(now())
   companyName     String?
-  email           String   @unique
-  source          String   @default("lead-magnet")
-  status          String   @default("LEAD") // LEAD / AJÁNLAT / AKTÍV / INAKTÍV
   lastContactedAt DateTime?
-  notes           String?  @db.Text
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  notes           String?
+  status          String    @default("LEAD")
+  updatedAt       DateTime  @updatedAt
 }
 
 model Consultation {
@@ -79,56 +79,52 @@ model Consultation {
   email       String
   company     String?
   phone       String?
-  description String   @db.Text
-  
-  // Választott megoldás és csomag
+  description String
   productId   String?
-  product     Product? @relation(fields: [productId], references: [id])
-  packageName String?  // pl. "Start", "Pro", "Enterprise"
-  
-  status      String   @default("NEW") // NEW, CONTACTED, OFFER_SENT, CLOSED
+  packageName String?
+  status      String   @default("NEW")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  product     Product? @relation(fields: [productId], references: [id])
 }
 
 model Product {
-  id              String      @id @default(cuid())
-  name            String
-  nameEn          String?
-  description     String
-  descriptionEn   String?
-  longDescription String?
+  id                String         @id @default(cuid())
+  name              String
+  description       String
+  longDescription   String?
+  price             Int
+  category          String
+  slug              String         @unique
+  image             String
+  features          String
+  prices            String
+  active            Boolean        @default(true)
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  descriptionEn     String?
+  featuresEn        String?
   longDescriptionEn String?
-  price           Int
-  category        String
-  slug            String      @unique
-  image           String
-  features        String
-  featuresEn      String?
-  prices          String // JSON string marad a csomagok tárolására
-  active          Boolean     @default(true)
-  demoVideoUrl    String?
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
-  
-  consultations   Consultation[]
+  nameEn            String?
+  demoVideoUrl      String?
+  consultations     Consultation[]
 }
 
 model Ticket {
-  id           String         @id @default(cuid())
-  ticketNumber String         @unique
+  id           String        @id @default(cuid())
+  ticketNumber String        @unique
   subject      String
   description  String
-  status       String         @default("OPEN") // OPEN, IN_PROGRESS, WAITING_FOR_CUSTOMER, RESOLVED, CLOSED
-  priority     String         @default("MEDIUM") // LOW, MEDIUM, HIGH, URGENT
-  category     String         @default("GENERAL") // TECHNICAL, BILLING, GENERAL, BUG_REPORT
+  status       String        @default("OPEN")
+  priority     String        @default("MEDIUM")
+  category     String        @default("GENERAL")
   userId       String
   assignedToId String?
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
   closedAt     DateTime?
-  user         User           @relation("UserTickets", fields: [userId], references: [id], onDelete: Cascade)
-  assignedTo   User?          @relation("AssignedTickets", fields: [assignedToId], references: [id])
+  assignedTo   User?         @relation("AssignedTickets", fields: [assignedToId], references: [id])
+  user         User          @relation("UserTickets", fields: [userId], references: [id], onDelete: Cascade)
   replies      TicketReply[]
 }
 
@@ -144,33 +140,33 @@ model TicketReply {
 }
 
 model BlogPost {
-  id          String   @id @default(cuid())
-  title       String
-  titleEn     String?
-  slug        String   @unique
-  excerpt     String
-  excerptEn   String?
-  content     String   @db.Text
-  contentEn   String?  @db.Text
-  coverImage  String?
-  author      String   @default("BacklineIT Team")
-  tags        String[]
-  published   Boolean    @default(false)
-  featured    Boolean    @default(false)
-  seriesId    String?
-  series      BlogSeries? @relation(fields: [seriesId], references: [id])
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id         String      @id @default(cuid())
+  title      String
+  titleEn    String?
+  slug       String      @unique
+  excerpt    String
+  excerptEn  String?
+  content    String
+  contentEn  String?
+  coverImage String?
+  author     String      @default("BacklineIT Team")
+  tags       String[]
+  published  Boolean     @default(false)
+  featured   Boolean     @default(false)
+  seriesId   String?
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  series     BlogSeries? @relation(fields: [seriesId], references: [id])
 }
 
 model Metric {
-  id          String   @id @default(cuid())
-  key         String   @unique
-  value       Int      @default(0)
-  label       String
-  icon        String?
-  active      Boolean  @default(true)
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Int      @default(0)
+  label     String
+  icon      String?
+  active    Boolean  @default(true)
+  updatedAt DateTime @updatedAt
 }
 
 model AuditLog {
@@ -178,12 +174,12 @@ model AuditLog {
   action    String
   entity    String
   entityId  String?
-  details   String?  @db.Text
+  details   String?
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
   ipAddress String?
   userAgent String?
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@index([entity])
@@ -199,19 +195,19 @@ model CronJob {
   enabled     Boolean      @default(true)
   lastRun     DateTime?
   status      String       @default("IDLE")
-  logs        CronJobLog[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
+  logs        CronJobLog[]
 }
 
 model CronJobLog {
   id        String   @id @default(cuid())
   jobId     String
-  job       CronJob  @relation(fields: [jobId], references: [id], onDelete: Cascade)
   status    String
-  output    String?  @db.Text
+  output    String?
   duration  Int?
   createdAt DateTime @default(now())
+  job       CronJob  @relation(fields: [jobId], references: [id], onDelete: Cascade)
 
   @@index([jobId])
 }
@@ -227,54 +223,55 @@ model FeatureFlag {
 }
 
 model BlogSeries {
-  id          String     @id @default(cuid())
-  title       String
-  titleEn     String?
-  slug        String     @unique
-  description String     @db.Text
-  descriptionEn String?  @db.Text
-  coverImage  String?
-  posts       BlogPost[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id            String     @id @default(cuid())
+  title         String
+  titleEn       String?
+  slug          String     @unique
+  description   String
+  descriptionEn String?
+  coverImage    String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  posts         BlogPost[]
 }
 
 model AnalyticsEvent {
-  id        String   @id @default(cuid())
-  name      String
-  category  String   @default("general")
+  id         String   @id @default(cuid())
+  name       String
+  category   String   @default("general")
   properties Json?
-  userId    String?
-  createdAt DateTime @default(now())
+  userId     String?
+  createdAt  DateTime @default(now())
 
   @@index([name])
   @@index([userId])
 }
+
 model Review {
   id        String   @id @default(cuid())
   name      String
   email     String?
   rating    Int      @default(5)
-  content   String   @db.Text
+  content   String
   locale    String   @default("hu")
   approved  Boolean  @default(false)
   createdAt DateTime @default(now())
 }
 
 model JobApplication {
-  id          String   @id @default(cuid())
-  name        String
-  email       String
-  phone       String?
-  linkedin    String?
-  areas       String[]
-  motivation  String?  @db.Text
-  cvFile      Bytes?   // Store CV file directly in DB for now (limit size in logic)
-  cvFileName  String?
-  cvMimeType  String?
-  status      String   @default("NEW") // NEW, REVIEWED, INTERVIEW, REJECTED, HIRED
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id         String   @id @default(cuid())
+  name       String
+  email      String
+  phone      String?
+  linkedin   String?
+  areas      String[]
+  motivation String?
+  cvFile     Bytes?
+  cvFileName String?
+  cvMimeType String?
+  status     String   @default("NEW")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
 
 model Service {
@@ -282,13 +279,13 @@ model Service {
   name          String
   nameEn        String?
   slug          String   @unique
-  description   String   @db.Text
-  descriptionEn String?  @db.Text
+  description   String
+  descriptionEn String?
   price         Int      @default(0)
   icon          String   @default("Code2")
   href          String
-  features      String   @db.Text
-  featuresEn    String?  @db.Text
+  features      String
+  featuresEn    String?
   active        Boolean  @default(true)
   sortOrder     Int      @default(0)
   createdAt     DateTime @default(now())
@@ -296,28 +293,28 @@ model Service {
 }
 
 model Reference {
-  id            String   @id @default(cuid())
-  slug          String   @unique
-  title         String
-  titleEn       String?
-  client        String
-  clientEn      String?
-  category      String
-  categoryEn    String?
-  description   String   @db.Text
-  descriptionEn String?  @db.Text
-  challenge     String   @db.Text
-  challengeEn   String?  @db.Text
-  solution      String   @db.Text
-  solutionEn    String?  @db.Text
-  result        String   @db.Text
-  resultEn      String?  @db.Text
-  image         String
-  documentationFile String? @db.Text
-  showDocumentation Boolean @default(false)
-  tags          String[]
-  metrics       Json?    // Array of { value: string, label: string }
-  active        Boolean  @default(true)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id                String   @id @default(cuid())
+  slug              String   @unique
+  title             String
+  titleEn           String?
+  client            String
+  clientEn          String?
+  category          String
+  categoryEn        String?
+  description       String
+  descriptionEn     String?
+  challenge         String
+  challengeEn       String?
+  solution          String
+  solutionEn        String?
+  result            String
+  resultEn          String?
+  image             String
+  tags              String[]
+  metrics           Json?
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  documentationFile String?
+  showDocumentation Boolean  @default(false)
 }

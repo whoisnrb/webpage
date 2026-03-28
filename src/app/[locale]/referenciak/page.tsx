@@ -11,6 +11,15 @@ export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
 
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
+    const t = await getTranslations('References')
+    return {
+        title: t('title'),
+        description: t('description'),
+    }
+}
+
 export const revalidate = 3600; // 1 hour
 
 export default async function ReferenciakPage({ params }: { params: Promise<{ locale: string }> }) {

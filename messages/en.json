@@ -592,9 +592,6 @@
         "error_fill_all": "Please fill in all fields and select a date!",
         "error_generic": "An error occurred during submission"
     },
-    "Maintenance": {
-        "banner_text": "Currently under maintenance. We only accept custom quotes."
-    },
     "Blog": {
         "title": "Blog & Knowledge Base",
         "subtitle": "Professional articles, case studies, and practical tips from the world of digitalization.",

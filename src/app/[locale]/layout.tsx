@@ -96,7 +96,6 @@ const jsonLd = {
   }
 }
 
-import { MaintenanceBanner } from "@/components/layout/maintenance-banner";
 
 export default async function RootLayout({
   children,
@@ -142,7 +141,6 @@ export default async function RootLayout({
             <RecaptchaProvider>
               <CurrencyProvider>
                 <CartProvider>
-                  <MaintenanceBanner />
                   <PromoBanner />
 
                   <Header />

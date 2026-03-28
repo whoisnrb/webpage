@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { UpsellEngine } from '@/components/upsell/recommendations'
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -14,6 +15,30 @@ export async function generateStaticParams() {
     return routing.locales.flatMap((locale) =>
         references.map((ref: { slug: string }) => ({ locale, slug: ref.slug }))
     );
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }): Promise<Metadata> {
+    const { slug, locale } = await params;
+    const study = await getLocalizedReferenceBySlug(slug, locale)
+
+    if (!study) return {}
+
+    return {
+        title: study.title,
+        description: study.description,
+        openGraph: {
+            title: study.title,
+            description: study.description,
+            type: 'article',
+            images: study.image ? [{ url: study.image }] : [],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: study.title,
+            description: study.description,
+            images: study.image ? [study.image] : [],
+        }
+    }
 }
 
 // Correct usage for Next.js 15+ dynamic params:
@@ -138,11 +163,32 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                                             {t('download_case_study')}
                                         </Button>
                                     </a>
-                                </div>
+                                 </div>
                             )}
                         </div>
                     </div>
                 )}
+
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "CaseStudy",
+                            "name": study.title,
+                            "description": study.description,
+                            "image": study.image,
+                            "publisher": {
+                                "@type": "Organization",
+                                "name": "BacklineIT",
+                                "logo": {
+                                    "@type": "ImageObject",
+                                    "url": "https://backlineit.hu/logo.png"
+                                }
+                            }
+                        })
+                    }}
+                />
 
                 {/* Upsell Engine Integration */}
                 <UpsellEngine

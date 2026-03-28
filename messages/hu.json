@@ -592,9 +592,6 @@
         "error_fill_all": "Kérlek tölts ki minden mezőt és válassz dátumot!",
         "error_generic": "Hiba történt a küldés során"
     },
-    "Maintenance": {
-        "banner_text": "Jelenleg karbantartás alatt. Csak egyedi ajánlatokat vállalunk."
-    },
     "Blog": {
         "title": "Blog & Tudástár",
         "subtitle": "Szakmai cikkek, esettanulmányok és praktikus tippek a digitalizáció világából.",
