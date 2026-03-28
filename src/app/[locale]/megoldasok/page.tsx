@@ -34,16 +34,16 @@ export default async function ProductsPage({ params }: PageProps) {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
                             </span>
-                            Prémium digitális eszközök
+                            {t('badge')}
                         </div>
 
                         {/* Title */}
                         <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
                             <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">
-                                Digitális{" "}
+                                {t('title_1')}{" "}
                             </span>
                             <span className="bg-gradient-to-r from-primary via-cyan-400 to-primary/70 bg-clip-text text-transparent">
-                                Piactér
+                                {t('title_2')}
                             </span>
                         </h1>
 

@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { ProductCard } from "@/components/ecommerce/product-card"
 import { Button } from "@/components/ui/button"
+import { Link } from "@/i18n/routing"
 import { LocalizedProductDTO } from "@/app/actions/product"
 import { motion, AnimatePresence } from "framer-motion"
 import { useTranslations } from "next-intl"
@@ -118,8 +119,10 @@ export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
                         <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
                             {t('not_found_desc')}
                         </p>
-                        <Button variant="outline" size="lg" onClick={() => window.location.href = '/ajanlatkeres'}>
-                            {t('request_custom')}
+                        <Button variant="outline" size="lg" asChild>
+                            <Link href="/contact">
+                                {t('request_custom')}
+                            </Link>
                         </Button>
                     </div>
                 </div>

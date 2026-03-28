@@ -658,6 +658,9 @@
         }
     },
     "Products": {
+        "badge": "Premium Digital Assets",
+        "title_1": "Digital",
+        "title_2": "Marketplace",
         "title": "Digital Marketplace",
         "subtitle": "Ready-made solutions, scripts, and templates to instantly accelerate your business.",
         "categories": {
@@ -1024,6 +1027,7 @@
     },
     "Breadcrumbs": {
         "home": "Home",
+        "megoldasok": "Solutions",
         "Auth": "Authentication",
         "New-Verification": "New Verification",
         "blog": "Blog",
@@ -1727,51 +1731,6 @@
             },
             "certification_badge": "Certified Experts",
             "certification_desc": "Our engineers hold internationally recognized certifications.",
-            "pillars_badge": "PILLARS",
-            "pillars_title": "The 4 Pillars of System Administration",
-            "pillars_desc": "We provide a stable IT background for your business so you can focus on growth.",
-            "pillars": {
-                "virtualization": {
-                    "title": "Virtualization & Cloud",
-                    "desc": "Designing scalable, cost-effective and secure environments.",
-                    "features": {
-                        "0": "Proxmox / VMware clusters",
-                        "1": "Private and Hybrid Cloud",
-                        "2": "High Availability (HA)",
-                        "3": "Resource Optimization"
-                    }
-                },
-                "network": {
-                    "title": "Network & VPN",
-                    "desc": "Fast and secure communication between offices and the cloud.",
-                    "features": {
-                        "0": "Ubiquiti / MikroTik networks",
-                        "1": "Site-to-Site VPN (WireGuard)",
-                        "2": "VLAN segmentation",
-                        "3": "QoS and bandwidth management"
-                    }
-                },
-                "servers": {
-                    "title": "Linux & Windows Servers",
-                    "desc": "Reliable server management and automatic updates.",
-                    "features": {
-                        "0": "Linux (Debian/Ubuntu/RHEL)",
-                        "1": "Windows Server AD/GPO",
-                        "2": "Automatic patch management",
-                        "3": "Hardening and security audit"
-                    }
-                },
-                "security": {
-                    "title": "Cybersecurity",
-                    "desc": "Multi-layer protection for data and systems.",
-                    "features": {
-                        "0": "Firewall management",
-                        "1": "Intrusion Detection (IPS/IDS)",
-                        "2": "Regular backups",
-                        "3": "Disaster Recovery plan"
-                    }
-                }
-            },
             "tech_stack_badge": "TECH STACK",
             "tech_stack_title": "Technologies We Use",
             "tech_stack_desc": "We work with the industry's best tools for maximum stability.",
@@ -2410,117 +2369,5 @@
                 }
             }
         }
-    },
-    "ServicesPage": {
-        "hero_badge": "Our Services",
-        "hero_title": "Professional IT Services",
-        "hero_title_highlight": "for your business",
-        "hero_desc": "Modern technologies, transparent pricing, and guaranteed quality. Choose from our services or let's create a custom package.",
-        "cta_quote": "Request Quote",
-        "cta_services": "Services",
-        "list_title": "What we offer?",
-        "list_desc": "Professional solutions for efficient operations",
-        "items": {
-            "scripts": {
-                "title": "Scripts & Automation",
-                "desc": "Custom scripts and automations that save you time and money. Working for you 24/7.",
-                "features": {
-                    "0": "Custom Python/Node.js scripts",
-                    "1": "n8n/Make workflow automations",
-                    "2": "API integrations and synchronizations",
-                    "3": "Process optimization and consultation"
-                }
-            },
-            "webdev": {
-                "title": "Web Development",
-                "desc": "Modern, fast, and mobile-friendly websites. Not just beautiful, they convert too.",
-                "features": {
-                    "0": "Next.js/React based websites",
-                    "1": "WooCommerce/Shopify webshops",
-                    "2": "Responsive and SEO optimized",
-                    "3": "Headless CMS solutions"
-                }
-            },
-            "devops": {
-                "title": "DevOps & System Administration",
-                "desc": "Stable servers, automatic backups, and 99.9% uptime. Sleep tight.",
-                "features": {
-                    "0": "Linux/Windows server management",
-                    "1": "Docker & Kubernetes",
-                    "2": "CI/CD pipeline building",
-                    "3": "24/7 Monitoring and alerting"
-                }
-            },
-            "security": {
-                "title": "Cybersecurity",
-                "desc": "Protect your data and clients. Vulnerability assessment and proactive protection.",
-                "features": {
-                    "0": "Penetration testing",
-                    "1": "WAF (Web Application Firewall)",
-                    "2": "GDPR compliance",
-                    "3": "Backup strategy"
-                }
-            },
-            "network": {
-                "title": "Network Solutions",
-                "desc": "Professional network infrastructure with VPN, VLANs, and firewalls.",
-                "features": {
-                    "0": "VPN solutions (WireGuard/OpenVPN)",
-                    "1": "VLAN network segmentation",
-                    "2": "Firewall management (MikroTik/pfSense)",
-                    "3": "WiFi network management (UniFi)"
-                }
-            }
-        },
-        "item_labels": {
-            "starting_price": "Starting Price",
-            "pricing_from": "from",
-            "pricing_from_format": "from {price}",
-            "pricing_plus_format": "{price}+",
-            "pricing_per_month": "/ month",
-            "pricing_custom": "Custom",
-            "whats_included": "What's included?",
-            "details_and_order": "Details and Order"
-        },
-        "why_us_title": "Why choose us?",
-        "why_us_lead": "More than 50 successful projects, satisfied clients, and modern technologies",
-        "reasons": {
-            "tech": {
-                "title": "Modern Tech Stack",
-                "desc": "We work with the latest and best technologies: Next.js, React, Docker, Kubernetes"
-            },
-            "security": {
-                "title": "Security First",
-                "desc": "Security is our top priority in every project"
-            },
-            "scale": {
-                "title": "Scalable Solutions",
-                "desc": "Our systems grow with your business"
-            }
-        },
-        "stats": {
-            "deadline": "Deadline Adherence",
-            "monitoring": "Monitoring",
-            "projects": "Successful Projects",
-            "rating": "Rating"
-        },
-        "cta_bottom_title": "Ready to start?",
-        "cta_bottom_desc": "Book a free consultation and let's discuss your project details. No obligation, just useful advice.",
-        "cta_consultation": "Free Consultation",
-        "cta_packages": "View Pricing"
-    },
-    "CTA": {
-        "available_capacity": "Available Capacity",
-        "project_slots": "project slots",
-        "build_future": "Let's build your future"
-    },
-    "Stats": {
-        "successful_projects": "Successful Projects",
-        "satisfaction": "Satisfaction",
-        "response_time": "Response Time",
-        "rating": "Rating",
-        "ssl_security": "SSL Security",
-        "gdpr_compliant": "GDPR Compliant",
-        "no_hidden_costs": "No Hidden Costs"
     }
 }

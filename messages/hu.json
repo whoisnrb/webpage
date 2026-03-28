@@ -658,6 +658,9 @@
         }
     },
     "Products": {
+        "badge": "Prémium digitális eszközök",
+        "title_1": "Digitális",
+        "title_2": "Piactér",
         "title": "Digitális Piactér",
         "subtitle": "Kész megoldások, scriptek és sablonok, amikkel azonnal gyorsíthatod a vállalkozásodat.",
         "categories": {
@@ -1024,6 +1027,7 @@
     },
     "Breadcrumbs": {
         "home": "Kezdőlap",
+        "megoldasok": "Megoldások",
         "Auth": "Hitelesítés",
         "New-Verification": "Fiók megerősítése",
         "blog": "Blog",
@@ -2360,117 +2364,5 @@
                 }
             }
         }
-    },
-    "ServicesPage": {
-        "hero_badge": "Szolgáltatásaink",
-        "hero_title": "Professzionális IT Szolgáltatások",
-        "hero_title_highlight": "a vállalkozásodnak",
-        "hero_desc": "Modern technológiák, átlátható árazás és garantált minőség. Válassz a szolgáltatásaink közül vagy állítsunk össze egyedi csomagot.",
-        "cta_quote": "Ajánlatkérés",
-        "cta_services": "Szolgáltatások",
-        "list_title": "Mit kínálunk?",
-        "list_desc": "Professzionális megoldások a hatékony működéshez",
-        "items": {
-            "scripts": {
-                "title": "Scriptek & Automatizáció",
-                "desc": "Egyedi scriptek és automatizációk, amelyek időt és pénzt takarítanak meg. 24/7 dolgoznak helyetted.",
-                "features": {
-                    "0": "Egyedi Python/Node.js scriptek",
-                    "1": "n8n/Make workflow automatizációk",
-                    "2": "API integrációk és szinkronizációk",
-                    "3": "Folyamatoptimalizálás és tanácsadás"
-                }
-            },
-            "webdev": {
-                "title": "Webfejlesztés",
-                "desc": "Modern, gyors és mobilbarát weboldalak. Nem csak szépek, hanem konvertálnak is.",
-                "features": {
-                    "0": "Next.js/React alapú weboldalak",
-                    "1": "WooCommerce/Shopify webshopok",
-                    "2": "Responsive és SEO optimalizált",
-                    "3": "Headless CMS megoldások"
-                }
-            },
-            "devops": {
-                "title": "DevOps & Rendszerüzemeltetés",
-                "desc": "Stabil szerverek, automatikus mentések és 99.9% rendelkezésre állás. Nyugodtan alhatsal.",
-                "features": {
-                    "0": "Linux/Windows szerver felügyelet",
-                    "1": "Docker & Kubernetes",
-                    "2": "CI/CD pipeline építés",
-                    "3": "24/7 Monitoring és riasztás"
-                }
-            },
-            "security": {
-                "title": "Kiberbiztonság",
-                "desc": "Védd meg az adataidat és az ügyfeleidet. Sérülékenység vizsgálat és proaktív védelem.",
-                "features": {
-                    "0": "Penetrációs tesztelés",
-                    "1": "WAF (Web Application Firewall)",
-                    "2": "GDPR megfelelőség",
-                    "3": "Biztonsági mentési stratégia"
-                }
-            },
-            "network": {
-                "title": "Hálózati Megoldások",
-                "desc": "Professzionális hálózati infrastruktúra VPN-nel, VLAN-okkal és tűzfallal.",
-                "features": {
-                    "0": "VPN megoldások (WireGuard/OpenVPN)",
-                    "1": "VLAN hálózati szegmentálás",
-                    "2": "Tűzfal menedzsment (MikroTik/pfSense)",
-                    "3": "WiFi hálózat kezelés (UniFi)"
-                }
-            }
-        },
-        "item_labels": {
-            "starting_price": "Irányár",
-            "pricing_from": "-tól",
-            "pricing_from_format": "{price}-tól",
-            "pricing_plus_format": "{price}+",
-            "pricing_per_month": "/ hó",
-            "pricing_custom": "Egyedi",
-            "whats_included": "Mit tartalmaz?",
-            "details_and_order": "Részletek és Megrendelés"
-        },
-        "why_us_title": "Miért válassz minket?",
-        "why_us_lead": "Több mint 50 sikeres projekt, elégedett ügyfelek és modern technológiák",
-        "reasons": {
-            "tech": {
-                "title": "Modern Tech Stack",
-                "desc": "A legújabb és legjobb technológiákkal dolgozunk: Next.js, React, Docker, Kubernetes"
-            },
-            "security": {
-                "title": "Biztonság Első",
-                "desc": "Minden projektünk esetében a biztonság az első számú prioritás"
-            },
-            "scale": {
-                "title": "Skálázható Megoldások",
-                "desc": "A rendszereink a vállalkozásoddal együtt nőnek"
-            }
-        },
-        "stats": {
-            "deadline": "Határidő Betartás",
-            "monitoring": "Monitoring",
-            "projects": "Sikeres Projekt",
-            "rating": "Értékelés"
-        },
-        "cta_bottom_title": "Készen állsz?",
-        "cta_bottom_desc": "Foglalj egy ingyenes konzultációt és beszéljük át a projekted részleteit. Nincs kötelezettség, csak hasznos tanácsok.",
-        "cta_consultation": "Ingyenes Konzultáció",
-        "cta_packages": "Árak Megtekintése"
-    },
-    "CTA": {
-        "available_capacity": "Elérhető kapacitás",
-        "project_slots": "projekt hely",
-        "build_future": "Építsük a jövődet"
-    },
-    "Stats": {
-        "successful_projects": "Sikeres projekt",
-        "satisfaction": "Elégedettség",
-        "response_time": "Válaszidő",
-        "rating": "Értékelés",
-        "ssl_security": "SSL Biztonság",
-        "gdpr_compliant": "GDPR Kompatibilis",
-        "no_hidden_costs": "Nincsenek rejtett költségek"
     }
 }
