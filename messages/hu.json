@@ -686,36 +686,7 @@
         "python-web-scraper": {
             "title": "Python Web Scraper Starter Kit",
             "description": "Előre megírt osztályok és függvények webes adatgyűjtéshez. Proxy kezelés, user-agent rotálás."
-        },
-        "security-audit-checklist": {
-            "title": "Biztonsági Audit Checklist",
-            "description": "Részletes PDF és Excel tábla 100+ ellenőrzési ponttal weboldalak biztonsági átvilágításához."
-        },
-        "nextjs-saas-boilerplate": {
-            "title": "Next.js SaaS Boilerplate",
-            "description": "Indítsd el a saját szoftver szolgáltatásodat napok alatt. Auth, Stripe, Dashboard előre beállítva."
-        },
-        "it-maintenance-dashboard": {
-            "title": "IT Karbantartási & Leltár Dashboard",
-            "description": "Előre elkészített Excel dashboard KKV-knak IT eszközök, szerverek, licencek és karbantartások nyomon követésére."
         }
-    },
-    "ProductDetailPage": {
-        "product_info": "Termék információ",
-        "detailed_description": "Részletes leírás",
-        "features_list": "Funkciók listája",
-        "secure_code": "Biztonságos kód",
-        "regular_updates": "Rendszeres frissítések",
-        "technical_support": "Technikai támogatás",
-        "documentation": "Dokumentáció",
-        "not_found": "Termék nem található",
-        "back_to_products": "Vissza a megoldásokhoz",
-        "select_version": "Válassz csomagot:",
-        "request_consultation": "Konfiguráció véglegesítése",
-        "secure_solution": "Biztonságos megoldás",
-        "fast_implementation": "Gyors bevezetés",
-        "demo_video": "Demo Videó Lejátszása",
-        "no_variants": "Nem érhető el csomag ehhez a megoldáshoz."
     },
     "QuoteRequest": {
         "title": "Valósítsuk meg az ötleted!",
@@ -723,35 +694,30 @@
         "success_title": "Köszönjük a megkeresést!",
         "success_desc": "Sikeresen megkaptuk az ajánlatkérésedet. Kollégáink hamarosan (általában 24 órán belül) felveszik veled a kapcsolatot a megadott elérhetőségeken.",
         "back_home": "Vissza a főoldalra",
-        "sidebar": {
-            "title": "Miért válassz minket?",
-            "feature_1_title": "Gyors Megvalósítás",
-            "feature_1_desc": "Hatékony folyamatok, tartott határidők.",
-            "feature_2_title": "Modern Tech",
-            "feature_2_desc": "A legújabb technológiákat használjuk.",
-            "feature_3_title": "Responsive Design",
-            "feature_3_desc": "Minden eszközön tökéletes megjelenés.",
-            "step_1": "Alapadatok",
-            "step_2": "Projekt részletei",
-            "step_3": "Összegzés"
-        },
-        "steps": {
-            "1_title": "Kezdjük az alapokkal",
-            "1_desc": "Add meg az elérhetőségeidet, hogy felvehessük veled a kapcsolatot.",
-            "2_title": "Mesélj a projektről",
-            "2_desc": "Minél több részletet osztasz meg, annál pontosabb ajánlatot tudunk adni.",
-            "3_title": "Ellenőrzés és küldés",
-            "3_desc": "Nézd át az adatokat, és ha minden rendben, küldd el az igényedet."
-        },
+        "success_toast": "Konzultációs igény sikeresen elküldve!",
+        "error_prefix": "Hiba történt: ",
+        "error_unexpected": "Váratlan hiba történt.",
         "form": {
-            "name": "Teljes név *",
+            "name": "Név *",
             "name_placeholder": "Kovács János",
             "email": "Email cím *",
             "email_placeholder": "janos@ceg.hu",
-            "phone": "Telefonszám",
-            "phone_placeholder": "+36 30 123 4567",
             "company": "Cégnév (opcionális)",
             "company_placeholder": "Minta Kft.",
+            "phone": "Telefonszám (opcionális)",
+            "phone_placeholder": "+36 30 123 4567",
+            "solution_section": "Választott Megoldás",
+            "solution_label": "Megoldás",
+            "solution_placeholder": "Válasszon megoldást...",
+            "package_label": "Csomag",
+            "package_placeholder": "Válasszon csomagot...",
+            "no_packages": "Nincs elérhető csomag",
+            "description_label": "Projekt leírása / Igények *",
+            "description_hint": "Kérjük, írja le röviden, hogyan szeretné használni a megoldást, vagy milyen egyedi igényei vannak.",
+            "description_placeholder": "Szeretnék egy olyan rendszert, ami...",
+            "submit": "Konzultációs igény küldése",
+            "sending": "Küldés folyamatban...",
+            "terms": "Az űrlap elküldésével elfogadja az Adatkezelési Tájékoztatóban foglaltakat.",
             "project_type": "Projekt típusa *",
             "budget": "Tervezett keretösszeg",
             "description": "Projekt leírása *",
@@ -773,8 +739,6 @@
                 "enterprise": "5.000.000 Ft felett"
             },
             "privacy_disclaimer": "Az \"Ajánlatkérés küldése\" gombra kattintva elfogadod az Adatvédelmi tájékoztatónkat.",
-            "submit": "Ajánlatkérés küldése",
-            "processing": "Feldolgozás...",
             "next": "Tovább",
             "back": "Vissza",
             "summary_labels": {
@@ -783,6 +747,26 @@
                 "project": "Projekt:",
                 "budget": "Keret:"
             }
+        },
+        "sidebar": {
+            "title": "Miért válassz minket?",
+            "feature_1_title": "Gyors Megvalósítás",
+            "feature_1_desc": "Hatékony folyamatok, tartott határidők.",
+            "feature_2_title": "Modern Tech",
+            "feature_2_desc": "A legújabb technológiákat használjuk.",
+            "feature_3_title": "Responsive Design",
+            "feature_3_desc": "Minden eszközön tökéletes megjelenés.",
+            "step_1": "Alapadatok",
+            "step_2": "Projekt részletei",
+            "step_3": "Összegzés"
+        },
+        "steps": {
+            "1_title": "Kezdjük az alapokkal",
+            "1_desc": "Add meg az elérhetőségeidet, hogy felvehessük veled a kapcsolatot.",
+            "2_title": "Mesélj a projektről",
+            "2_desc": "Minél több részletet osztasz meg, annál pontosabb ajánlatot tudunk adni.",
+            "3_title": "Ellenőrzés és küldés",
+            "3_desc": "Nézd át az adatokat, és ha minden rendben, küldd el az igényedet."
         }
     },
     "Legal": {
@@ -1028,6 +1012,7 @@
     "Breadcrumbs": {
         "home": "Kezdőlap",
         "megoldasok": "Megoldások",
+        "konzultacio": "Konzultáció",
         "Auth": "Hitelesítés",
         "New-Verification": "Fiók megerősítése",
         "blog": "Blog",

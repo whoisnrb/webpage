@@ -723,35 +723,30 @@
         "success_title": "Thank you for your inquiry!",
         "success_desc": "We have successfully received your quote request. Our colleagues will contact you shortly (usually within 24 hours).",
         "back_home": "Back to Home",
-        "sidebar": {
-            "title": "Why choose us?",
-            "feature_1_title": "Fast Implementation",
-            "feature_1_desc": "Efficient processes, met deadlines.",
-            "feature_2_title": "Modern Tech",
-            "feature_2_desc": "We use the latest technologies.",
-            "feature_3_title": "Responsive Design",
-            "feature_3_desc": "Perfect look on every device.",
-            "step_1": "Basic Info",
-            "step_2": "Project Details",
-            "step_3": "Summary"
-        },
-        "steps": {
-            "1_title": "Let's start with the basics",
-            "1_desc": "Provide your contact details so we can reach you.",
-            "2_title": "Tell us about the project",
-            "2_desc": "The more details you share, the accurate quote we can give.",
-            "3_title": "Review and Send",
-            "3_desc": "Review the data, and if everything is correct, send your request."
-        },
+        "success_toast": "Consultation request sent successfully!",
+        "error_prefix": "An error occurred: ",
+        "error_unexpected": "An unexpected error occurred.",
         "form": {
             "name": "Full Name *",
             "name_placeholder": "John Doe",
             "email": "Email Address *",
             "email_placeholder": "john@company.com",
-            "phone": "Phone Number",
-            "phone_placeholder": "+36 30 123 4567",
-            "company": "Company Name (Optional)",
+            "company": "Company Name (optional)",
             "company_placeholder": "Example Ltd.",
+            "phone": "Phone Number (optional)",
+            "phone_placeholder": "+36 30 123 4567",
+            "solution_section": "Chosen Solution",
+            "solution_label": "Solution",
+            "solution_placeholder": "Select solution...",
+            "package_label": "Package",
+            "package_placeholder": "Select package...",
+            "no_packages": "No packages available",
+            "description_label": "Project Description / Requirements *",
+            "description_hint": "Please briefly describe how you want to use the solution, or what custom needs you have.",
+            "description_placeholder": "I would like a system that...",
+            "submit": "Send Consultation Request",
+            "sending": "Sending...",
+            "terms": "By submitting the form, you accept our Privacy Policy.",
             "project_type": "Project Type *",
             "budget": "Planned Budget",
             "description": "Project Description *",
@@ -773,8 +768,6 @@
                 "enterprise": "Over 5.000.000 Ft"
             },
             "privacy_disclaimer": "By clicking 'Send Quote Request', you accept our Privacy Policy.",
-            "submit": "Send Quote Request",
-            "processing": "Processing...",
             "next": "Next",
             "back": "Back",
             "summary_labels": {
@@ -783,6 +776,26 @@
                 "project": "Project:",
                 "budget": "Budget:"
             }
+        },
+        "sidebar": {
+            "title": "Why choose us?",
+            "feature_1_title": "Fast Implementation",
+            "feature_1_desc": "Efficient processes, met deadlines.",
+            "feature_2_title": "Modern Tech",
+            "feature_2_desc": "We use the latest technologies.",
+            "feature_3_title": "Responsive Design",
+            "feature_3_desc": "Perfect look on every device.",
+            "step_1": "Basic Info",
+            "step_2": "Project Details",
+            "step_3": "Summary"
+        },
+        "steps": {
+            "1_title": "Let's start with the basics",
+            "1_desc": "Provide your contact details so we can reach you.",
+            "2_title": "Tell us about the project",
+            "2_desc": "The more details you share, the accurate quote we can give.",
+            "3_title": "Review and Send",
+            "3_desc": "Review the data, and if everything is correct, send your request."
         }
     },
     "Legal": {
@@ -1028,6 +1041,7 @@
     "Breadcrumbs": {
         "home": "Home",
         "megoldasok": "Solutions",
+        "konzultacio": "Consultation",
         "Auth": "Authentication",
         "New-Verification": "New Verification",
         "blog": "Blog",
