@@ -33,7 +33,11 @@ interface Ticket {
     }>
 }
 
+import { useTranslations } from "next-intl"
+
 export default function UserTicketsPage() {
+    const tTickets = useTranslations('Tickets')
+    const tCommon = useTranslations('Common')
     const [tickets, setTickets] = useState<Ticket[]>([])
     const [loading, setLoading] = useState(true)
 
@@ -54,34 +58,34 @@ export default function UserTicketsPage() {
         <div className="space-y-6">
             <div className="flex justify-between items-center">
                 <div>
-                    <h2 className="text-3xl font-bold tracking-tight">Support Ticket-jeim</h2>
-                    <p className="text-muted-foreground">Kezelje a support kéréseit</p>
+                    <h2 className="text-3xl font-bold tracking-tight">{tTickets('my_tickets')}</h2>
+                    <p className="text-muted-foreground">{tTickets('manage_tickets')}</p>
                 </div>
                 <Link href="/dashboard/tickets/new">
                     <Button>
                         <Plus className="mr-2 h-4 w-4" />
-                        Új Ticket
+                        {tTickets('new_ticket')}
                     </Button>
                 </Link>
             </div>
 
             <Card>
                 <CardHeader>
-                    <CardTitle>Ticketek</CardTitle>
+                    <CardTitle>{tTickets('table_title')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     {loading ? (
-                        <p className="text-center py-10 text-muted-foreground">Betöltés...</p>
+                        <p className="text-center py-10 text-muted-foreground">{tCommon('loading')}</p>
                     ) : (
                         <Table>
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>Ticket#</TableHead>
-                                    <TableHead>Tárgy</TableHead>
-                                    <TableHead>Státusz</TableHead>
-                                    <TableHead>Prioritás</TableHead>
-                                    <TableHead>Válaszok</TableHead>
-                                    <TableHead>Létrehozva</TableHead>
+                                    <TableHead>{tTickets('subject')}</TableHead>
+                                    <TableHead>{tTickets('status')}</TableHead>
+                                    <TableHead>{tTickets('priority')}</TableHead>
+                                    <TableHead>{tTickets('replies')}</TableHead>
+                                    <TableHead>{tTickets('created_at')}</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -105,14 +109,14 @@ export default function UserTicketsPage() {
                                         </TableCell>
                                         <TableCell>{ticket._count.replies}</TableCell>
                                         <TableCell className="text-sm">
-                                            {new Date(ticket.createdAt).toLocaleDateString('hu-HU')}
+                                            {new Date(ticket.createdAt).toLocaleDateString()}
                                         </TableCell>
                                     </TableRow>
                                 ))}
                                 {tickets.length === 0 && (
                                     <TableRow>
                                         <TableCell colSpan={6} className="text-center py-10 text-muted-foreground">
-                                            Még nincs ticket-je.
+                                            {tTickets('no_tickets')}
                                         </TableCell>
                                     </TableRow>
                                 )}

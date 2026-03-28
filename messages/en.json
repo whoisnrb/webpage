@@ -329,7 +329,12 @@
         "hours": "hours",
         "save": "Save",
         "cancel": "Cancel",
-        "close": "Close"
+        "close": "Close",
+        "loading": "Loading...",
+        "sending": "Sending...",
+        "email": "Email",
+        "name": "Name",
+        "network_error": "A network error occurred"
     },
     "SplitHero": {
         "left_title_1": "CUSTOM",
@@ -539,7 +544,16 @@
         "activate_license": "Activate License",
         "redeem_key": "Redeem new key",
         "browse_shop": "Browse Shop",
-        "buy_new_services": "Buy new services"
+        "buy_new_services": "Buy new services",
+        "settings": "Settings",
+        "administration": "Administration",
+        "manage_account": "Manage account details.",
+        "profile_info": "Profile Information",
+        "update_profile": "Update your profile details.",
+        "email_label": "Email address",
+        "email_not_editable": "Email address cannot be changed.",
+        "name_label": "Name",
+        "name_placeholder": "Enter your name"
     },
     "Tickets": {
         "title": "Tickets",
@@ -562,7 +576,34 @@
         "priority_low": "Low",
         "priority_medium": "Medium",
         "priority_high": "High",
-        "priority_urgent": "Urgent"
+        "priority_urgent": "Urgent",
+        "my_tickets": "My Support Tickets",
+        "manage_tickets": "Manage your support requests",
+        "new_ticket": "New Ticket",
+        "table_title": "Tickets",
+        "replies": "Replies",
+        "created_at": "Created At",
+        "create_title": "Create New Ticket",
+        "create_desc": "Describe your problem and our staff will respond soon.",
+        "details_title": "Ticket Details",
+        "subject_placeholder": "Short summary of the problem",
+        "char_count": "{count}/200 characters",
+        "description_label": "Detailed description *",
+        "description_placeholder": "Describe the problem or question in detail...",
+        "min_chars": "Minimum 20 characters required",
+        "not_found": "Ticket not found",
+        "client_label": "Client",
+        "support_label": "SUPPORT",
+        "reply_placeholder": "Type your reply here...",
+        "closed_message": "This ticket has been closed. If you have further questions, please open a new one.",
+        "success_create": "Ticket created: {number}",
+        "error_create": "Error: {error}",
+        "categories": {
+            "TECHNICAL": "Technical Question",
+            "BILLING": "Billing",
+            "GENERAL": "General",
+            "BUG_REPORT": "Bug Report"
+        }
     },
     "Booking": {
         "title": "Booking",

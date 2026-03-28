@@ -37,7 +37,11 @@ interface TicketDetail {
     }>
 }
 
+import { useTranslations } from "next-intl"
+
 export default function TicketDetailPage() {
+    const tTickets = useTranslations('Tickets')
+    const tCommon = useTranslations('Common')
     const params = useParams()
     const router = useRouter()
     const [ticket, setTicket] = useState<TicketDetail | null>(null)
@@ -64,18 +68,6 @@ export default function TicketDetailPage() {
 
     const fetchTicket = async () => {
         try {
-            // We can reuse the list API with a filter or create a specific detail API
-            // For now, let's assume we need a specific endpoint or we filter client side if the list returns everything (not ideal for scale)
-            // But wait, we don't have a detail endpoint yet.
-            // Let's create a quick server action or just use a new API route for details.
-            // Actually, for now, let's try to fetch from a new endpoint we will create: /api/ticket/[id]
-            // OR, simpler: just use a server component?
-            // Since this is a client component (for the form), we fetch data.
-
-            // Let's assume we will create /api/ticket/[id]/route.ts or similar.
-            // But wait, the plan didn't explicitly say we'd create a detail API for users, just "UI".
-            // I should probably create the API route for fetching a single ticket too.
-
             const response = await fetch(`/api/ticket/${ticketId}`)
             if (!response.ok) throw new Error("Failed to fetch ticket")
 
@@ -110,17 +102,17 @@ export default function TicketDetailPage() {
                 setReplyContent("")
                 fetchTicket() // Refresh to show new reply
             } else {
-                alert(data.error || "Hiba történt a válasz küldésekor")
+                alert(data.error || tTickets('error_create', { error: "" }))
             }
         } catch (error) {
-            alert("Hálózati hiba")
+            alert(tCommon('network_error'))
         } finally {
             setSending(false)
         }
     }
 
-    if (loading) return <div className="p-10 text-center">Betöltés...</div>
-    if (!ticket) return <div className="p-10 text-center">Ticket nem található</div>
+    if (loading) return <div className="p-10 text-center">{tCommon('loading')}</div>
+    if (!ticket) return <div className="p-10 text-center">{tTickets('not_found')}</div>
 
     return (
         <div className="space-y-6 max-w-4xl mx-auto">
@@ -140,7 +132,7 @@ export default function TicketDetailPage() {
                         <TicketPriorityBadge priority={ticket.priority} />
                         <span className="text-sm text-muted-foreground flex items-center gap-1">
                             <Clock className="h-3 w-3" />
-                            {new Date(ticket.createdAt).toLocaleDateString('hu-HU')}
+                            {new Date(ticket.createdAt).toLocaleDateString()}
                         </span>
                     </div>
                 </div>
@@ -156,10 +148,10 @@ export default function TicketDetailPage() {
                             </Avatar>
                             <div>
                                 <div className="font-semibold">{ticket.user.name}</div>
-                                <div className="text-xs text-muted-foreground">Ügyfél</div>
+                                <div className="text-xs text-muted-foreground">{tTickets('client_label')}</div>
                             </div>
                             <div className="ml-auto text-xs text-muted-foreground">
-                                {new Date(ticket.createdAt).toLocaleString('hu-HU')}
+                                {new Date(ticket.createdAt).toLocaleString()}
                             </div>
                         </div>
                     </CardHeader>
@@ -190,11 +182,11 @@ export default function TicketDetailPage() {
                                     <div>
                                         <div className="font-semibold text-sm flex items-center gap-2">
                                             {reply.user.name}
-                                            {reply.isStaffReply && <span className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded">SUPPORT</span>}
+                                            {reply.isStaffReply && <span className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded">{tTickets('support_label')}</span>}
                                         </div>
                                     </div>
                                     <div className="ml-auto text-xs text-muted-foreground">
-                                        {new Date(reply.createdAt).toLocaleString('hu-HU')}
+                                        {new Date(reply.createdAt).toLocaleString()}
                                     </div>
                                 </div>
                             </CardHeader>
@@ -212,17 +204,17 @@ export default function TicketDetailPage() {
                         <CardContent className="p-4">
                             <div className="space-y-4">
                                 <Textarea
-                                    placeholder="Írja ide a válaszát..."
+                                    placeholder={tTickets('reply_placeholder')}
                                     value={replyContent}
                                     onChange={(e) => setReplyContent(e.target.value)}
                                     rows={4}
                                 />
                                 <div className="flex justify-end">
                                     <Button onClick={handleReply} disabled={sending || !replyContent.trim()}>
-                                        {sending ? "Küldés..." : (
+                                        {sending ? tCommon('sending') : (
                                             <>
                                                 <Send className="mr-2 h-4 w-4" />
-                                                Válasz küldése
+                                                {tTickets('send_reply')}
                                             </>
                                         )}
                                     </Button>
@@ -232,7 +224,7 @@ export default function TicketDetailPage() {
                     </Card>
                 ) : (
                     <div className="text-center p-4 bg-muted rounded-lg text-muted-foreground">
-                        Ez a ticket le lett zárva. Ha további kérdése van, kérjük nyisson újat.
+                        {tTickets('closed_message')}
                     </div>
                 )}
             </div>

@@ -5,21 +5,25 @@ import { cn } from "@/lib/utils"
 import { LayoutDashboard, ShoppingBag, Key, Ticket, Settings, LogOut, ShieldAlert } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useSession } from "next-auth/react"
+import { useTranslations } from "next-intl"
 
 const sidebarItems = [
-    { name: "Áttekintés", href: "/dashboard", icon: LayoutDashboard },
-    { name: "Támogatás", href: "/dashboard/tickets", icon: Ticket },
-    { name: "Beállítások", href: "/dashboard/settings", icon: Settings },
+    { name: "overview", href: "/dashboard", icon: LayoutDashboard },
+    { name: "title", href: "/dashboard/tickets", icon: Ticket },
+    { name: "settings", href: "/dashboard/settings", icon: Settings },
 ]
 
 export function Sidebar() {
     const pathname = usePathname()
     const { data: session } = useSession()
+    const tNav = useTranslations('Navigation')
+    const tDash = useTranslations('Dashboard')
+    const tTickets = useTranslations('Tickets')
 
     return (
         <div className="flex h-full flex-col border-r bg-muted/10">
             <div className="p-6">
-                <h2 className="text-lg font-bold tracking-tight">Ügyfélportál</h2>
+                <h2 className="text-lg font-bold tracking-tight">{tNav('client_portal')}</h2>
             </div>
             <div className="flex-1 px-4 py-2">
                 <nav className="space-y-1">
@@ -33,7 +37,7 @@ export function Sidebar() {
                             )}
                         >
                             <item.icon className="h-4 w-4" />
-                            {item.name}
+                            {item.name === 'title' ? tTickets('title') : tDash(item.name)}
                         </Link>
                     ))}
 
@@ -48,7 +52,7 @@ export function Sidebar() {
                                 )}
                             >
                                 <ShieldAlert className="h-4 w-4" />
-                                Adminisztráció
+                                {tDash('administration')}
                             </Link>
                         </>
                     )}
@@ -58,7 +62,7 @@ export function Sidebar() {
                 <Button variant="ghost" className="w-full justify-start text-muted-foreground hover:text-destructive" asChild>
                     <Link href="/login">
                         <LogOut className="mr-2 h-4 w-4" />
-                        Kijelentkezés
+                        {tDash('logout')}
                     </Link>
                 </Button>
             </div>

@@ -9,7 +9,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
+import { useTranslations } from "next-intl"
+
 export default function NewTicketPage() {
+    const tTickets = useTranslations('Tickets')
+    const tCommon = useTranslations('Common')
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
@@ -33,13 +37,13 @@ export default function NewTicketPage() {
             const data = await response.json()
 
             if (data.success) {
-                alert(`✅ Ticket létrehozva: ${data.ticket.ticketNumber}`)
+                alert(`✅ ${tTickets('success_create', { number: data.ticket.ticketNumber })}`)
                 router.push(`/dashboard/tickets`)
             } else {
-                alert(`❌ Hiba: ${data.error || "Nem sikerült létrehozni a ticket-et"}`)
+                alert(`❌ ${tTickets('error_create', { error: data.error || tTickets('not_found') })}`)
             }
         } catch (error) {
-            alert('❌ Hálózati hiba történt')
+            alert(`❌ ${tCommon('network_error')}`)
         } finally {
             setLoading(false)
         }
@@ -48,72 +52,72 @@ export default function NewTicketPage() {
     return (
         <div className="space-y-6">
             <div>
-                <h2 className="text-3xl font-bold tracking-tight">Új Ticket Létrehozása</h2>
-                <p className="text-muted-foreground">Írja le a problémáját és munkatársaink hamarosan válaszolnak.</p>
+                <h2 className="text-3xl font-bold tracking-tight">{tTickets('create_title')}</h2>
+                <p className="text-muted-foreground">{tTickets('create_desc')}</p>
             </div>
 
             <Card>
                 <CardHeader>
-                    <CardTitle>Ticket részletek</CardTitle>
+                    <CardTitle>{tTickets('details_title')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="space-y-2">
-                            <Label htmlFor="subject">Tárgy *</Label>
+                            <Label htmlFor="subject">{tTickets('subject')} *</Label>
                             <Input
                                 id="subject"
-                                placeholder="Rövid összefoglaló a problémáról"
+                                placeholder={tTickets('subject_placeholder')}
                                 value={formData.subject}
                                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                                 maxLength={200}
                                 required
                             />
                             <p className="text-xs text-muted-foreground">
-                                {formData.subject.length}/200 karakter
+                                {tTickets('char_count', { count: formData.subject.length })}
                             </p>
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="description">Részletes leírás *</Label>
+                            <Label htmlFor="description">{tTickets('description_label')}</Label>
                             <Textarea
                                 id="description"
-                                placeholder="Részletesen írja le a problémát vagy kérdést..."
+                                placeholder={tTickets('description_placeholder')}
                                 value={formData.description}
                                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                                 rows={8}
                                 required
                             />
                             <p className="text-xs text-muted-foreground">
-                                Minimum 20 karakter szükséges
+                                {tTickets('min_chars')}
                             </p>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <Label htmlFor="category">Kategória</Label>
+                                <Label htmlFor="category">{tTickets('category')}</Label>
                                 <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
                                     <SelectTrigger>
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="TECHNICAL">Technikai kérdés</SelectItem>
-                                        <SelectItem value="BILLING">Számlázás</SelectItem>
-                                        <SelectItem value="GENERAL">Általános</SelectItem>
-                                        <SelectItem value="BUG_REPORT">Hibajelentés</SelectItem>
+                                        <SelectItem value="TECHNICAL">{tTickets('categories.TECHNICAL')}</SelectItem>
+                                        <SelectItem value="BILLING">{tTickets('categories.BILLING')}</SelectItem>
+                                        <SelectItem value="GENERAL">{tTickets('categories.GENERAL')}</SelectItem>
+                                        <SelectItem value="BUG_REPORT">{tTickets('categories.BUG_REPORT')}</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="priority">Prioritás</Label>
+                                <Label htmlFor="priority">{tTickets('priority')}</Label>
                                 <Select value={formData.priority} onValueChange={(value) => setFormData({ ...formData, priority: value })}>
                                     <SelectTrigger>
                                         <SelectValue />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="LOW">Alacsony</SelectItem>
-                                        <SelectItem value="MEDIUM">Közepes</SelectItem>
-                                        <SelectItem value="HIGH">Magas</SelectItem>
+                                        <SelectItem value="LOW">{tTickets('priority_low')}</SelectItem>
+                                        <SelectItem value="MEDIUM">{tTickets('priority_medium')}</SelectItem>
+                                        <SelectItem value="HIGH">{tTickets('priority_high')}</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -121,10 +125,10 @@ export default function NewTicketPage() {
 
                         <div className="flex gap-4">
                             <Button type="submit" disabled={loading || formData.description.length < 20}>
-                                {loading ? "Létrehozás..." : "Ticket beküldése"}
+                                {loading ? tCommon('loading') : tTickets('submit')}
                             </Button>
                             <Button type="button" variant="outline" onClick={() => router.back()}>
-                                Mégse
+                                {tCommon('cancel')}
                             </Button>
                         </div>
                     </form>

@@ -329,7 +329,12 @@
         "hours": "óra",
         "save": "Mentés",
         "cancel": "Mégse",
-        "close": "Bezárás"
+        "close": "Bezárás",
+        "loading": "Betöltés...",
+        "sending": "Küldés...",
+        "email": "Email",
+        "name": "Név",
+        "network_error": "Hálózati hiba történt"
     },
     "SplitHero": {
         "left_title_1": "EGYEDI",
@@ -539,7 +544,16 @@
         "activate_license": "Licenc aktiválása",
         "redeem_key": "Új kulcs beváltása",
         "browse_shop": "Böngészés a boltban",
-        "buy_new_services": "Új szolgáltatások vásárlása"
+        "buy_new_services": "Új szolgáltatások vásárlása",
+        "settings": "Beállítások",
+        "administration": "Adminisztráció",
+        "manage_account": "Fiók adatainak kezelése.",
+        "profile_info": "Profil Információk",
+        "update_profile": "Frissítsd a profilod adatait.",
+        "email_label": "E-mail cím",
+        "email_not_editable": "Az e-mail cím nem módosítható.",
+        "name_label": "Név",
+        "name_placeholder": "Név megadása"
     },
     "Tickets": {
         "title": "Hibajegyek",
@@ -562,7 +576,34 @@
         "priority_low": "Alacsony",
         "priority_medium": "Közepes",
         "priority_high": "Magas",
-        "priority_urgent": "Sürgős"
+        "priority_urgent": "Sürgős",
+        "my_tickets": "Support Ticket-jeim",
+        "manage_tickets": "Kezelje a support kéréseit",
+        "new_ticket": "Új Ticket",
+        "table_title": "Ticketek",
+        "replies": "Válaszok",
+        "created_at": "Létrehozva",
+        "create_title": "Új Ticket Létrehozása",
+        "create_desc": "Írja le a problémáját és munkatársaink hamarosan válaszolnak.",
+        "details_title": "Ticket részletek",
+        "subject_placeholder": "Rövid összefoglaló a problémáról",
+        "char_count": "{count}/200 karakter",
+        "description_label": "Részletes leírás *",
+        "description_placeholder": "Részletesen írja le a problémát vagy kérdést...",
+        "min_chars": "Minimum 20 karakter szükséges",
+        "not_found": "Ticket nem található",
+        "client_label": "Ügyfél",
+        "support_label": "SUPPORT",
+        "reply_placeholder": "Írja ide a válaszát...",
+        "closed_message": "Ez a ticket le lett zárva. Ha további kérdése van, kérjük nyisson újat.",
+        "success_create": "Ticket létrehozva: {number}",
+        "error_create": "Hiba: {error}",
+        "categories": {
+            "TECHNICAL": "Technikai kérdés",
+            "BILLING": "Számlázás",
+            "GENERAL": "Általános",
+            "BUG_REPORT": "Hibajelentés"
+        }
     },
     "Booking": {
         "title": "Időpontfoglalás",

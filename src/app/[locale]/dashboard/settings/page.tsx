@@ -7,7 +7,12 @@ import { Button } from "@/components/ui/button"
 import { prisma } from "@/lib/db"
 import { revalidatePath } from "next/cache"
 
-export default async function SettingsPage() {
+import { getTranslations } from "next-intl/server"
+
+export default async function SettingsPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
+    const tDash = await getTranslations({ locale, namespace: 'Dashboard' })
+    const tCommon = await getTranslations({ locale, namespace: 'Common' })
     const session = await auth()
 
     if (!session?.user) {
@@ -30,31 +35,31 @@ export default async function SettingsPage() {
     return (
         <div className="space-y-8">
             <div>
-                <h2 className="text-3xl font-bold tracking-tight">Beállítások</h2>
-                <p className="text-muted-foreground">Fiók adatainak kezelése.</p>
+                <h2 className="text-3xl font-bold tracking-tight">{tDash('settings')}</h2>
+                <p className="text-muted-foreground">{tDash('manage_account')}</p>
             </div>
 
             <Card>
                 <CardHeader>
-                    <CardTitle>Profil Információk</CardTitle>
+                    <CardTitle>{tDash('profile_info')}</CardTitle>
                     <CardDescription>
-                        Frissítsd a profilod adatait.
+                        {tDash('update_profile')}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form action={updateProfile} className="space-y-4">
                         <div className="space-y-2">
-                            <Label htmlFor="email">E-mail cím</Label>
+                            <Label htmlFor="email">{tDash('email_label')}</Label>
                             <Input id="email" value={session.user.email || ''} disabled />
                             <p className="text-[0.8rem] text-muted-foreground">
-                                Az e-mail cím nem módosítható.
+                                {tDash('email_not_editable')}
                             </p>
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="name">Név</Label>
-                            <Input id="name" name="name" defaultValue={session.user.name || ''} placeholder="Név megadása" />
+                            <Label htmlFor="name">{tDash('name_label')}</Label>
+                            <Input id="name" name="name" defaultValue={session.user.name || ''} placeholder={tDash('name_placeholder')} />
                         </div>
-                        <Button type="submit">Mentés</Button>
+                        <Button type="submit">{tCommon('save')}</Button>
                     </form>
                 </CardContent>
             </Card>
