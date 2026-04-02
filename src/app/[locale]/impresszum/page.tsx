@@ -58,7 +58,7 @@ export default function ImpresszumPage() {
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("phone")}</dt>
-                            <dd className="font-medium">Hamarosan</dd>
+                            <dd className="font-medium">+36 30 542 8272</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("website")}</dt>

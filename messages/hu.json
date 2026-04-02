@@ -719,9 +719,6 @@
             "sending": "Küldés folyamatban...",
             "terms": "Az űrlap elküldésével elfogadja az Adatkezelési Tájékoztatóban foglaltakat.",
             "project_type": "Projekt típusa *",
-            "budget": "Tervezett keretösszeg",
-            "description": "Projekt leírása *",
-            "description_placeholder": "Írd le röviden az elképzelésedet, céljaidat...",
             "select_type": "Válassz típust",
             "select_budget": "Válassz keretet",
             "types": {

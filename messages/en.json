@@ -748,9 +748,6 @@
             "sending": "Sending...",
             "terms": "By submitting the form, you accept our Privacy Policy.",
             "project_type": "Project Type *",
-            "budget": "Planned Budget",
-            "description": "Project Description *",
-            "description_placeholder": "Briefly describe your idea, goals...",
             "select_type": "Select Type",
             "select_budget": "Select Budget",
             "types": {
