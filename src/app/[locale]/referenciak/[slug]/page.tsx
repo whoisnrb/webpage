@@ -126,6 +126,25 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     </div>
                 </div>
 
+                {(study.content && study.content.trim() !== '') && (
+                    <div className="mb-16 bg-card border rounded-xl p-8 shadow-sm">
+                        <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: study.content }} />
+                    </div>
+                )}
+
+                {(study.galleryImages && study.galleryImages.length > 0) && (
+                    <div className="mb-16">
+                        <h2 className="text-2xl font-bold mb-8">{t('gallery') || 'Galéria'}</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {study.galleryImages.map((img, i) => (
+                                <div key={i} className="aspect-video rounded-xl overflow-hidden shadow-md group border">
+                                    <img src={img} alt={`${study.title} ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
                 {(study.metrics && study.metrics.length > 0) && (
                     <div className="bg-primary/5 rounded-2xl p-8 md:p-12 mb-16 text-center border border-primary/10 relative overflow-hidden group">
                         {/* Decorative background element for Documentation link area if present */}

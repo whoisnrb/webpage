@@ -61,6 +61,7 @@
     "nodemailer": "^7.0.12",
     "pdfkit": "^0.17.2",
     "postprocessing": "^6.38.2",
+    "radix-ui": "^1.4.3",
     "react": "^19.2.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^19.2.1",

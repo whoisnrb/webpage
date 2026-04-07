@@ -27,6 +27,10 @@ export type ReferenceDTO = {
     result: string
     resultEn: string | null
     image: string
+    galleryImages: string[]
+    content: string | null
+    contentEn: string | null
+    type: string
     documentationFile: string | null
     showDocumentation: boolean
     tags: string[]
@@ -46,6 +50,9 @@ export type LocalizedReferenceDTO = {
     solution: string
     result: string
     image: string
+    galleryImages: string[]
+    content: string | null
+    type: string
     documentationFile: string | null
     showDocumentation: boolean
     tags: string[]
@@ -73,6 +80,9 @@ function localizeReference(ref: ReferenceDTO, locale: string): LocalizedReferenc
         solution: (isEn && ref.solutionEn) ? ref.solutionEn : ref.solution,
         result: (isEn && ref.resultEn) ? ref.resultEn : ref.result,
         image: ref.image,
+        galleryImages: ref.galleryImages,
+        content: (isEn && ref.contentEn) ? ref.contentEn : ref.content,
+        type: ref.type,
         documentationFile: ref.documentationFile,
         showDocumentation: ref.showDocumentation,
         tags: ref.tags,

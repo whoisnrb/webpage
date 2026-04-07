@@ -18,6 +18,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [imagePreview, setImagePreview] = useState<string | null>(initialData?.image || null)
+    const [galleryPreviews, setGalleryPreviews] = useState<string[]>(initialData?.galleryImages || [])
     const [docFile, setDocFile] = useState<string | null>(initialData?.documentationFile || null)
     const [metrics, setMetrics] = useState<Metric[]>(initialData?.metrics || [{ value: '', label: '', labelEn: '' }])
     const [tags, setTags] = useState<string[]>(initialData?.tags || [])
@@ -38,6 +39,30 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
             }
             reader.readAsDataURL(file)
         }
+    }
+
+    const handleGalleryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(e.target.files || [])
+        const validFiles = files.filter(f => {
+            if (f.size > 2 * 1024 * 1024) {
+                toast.error(`${f.name} mérete túl nagy (max 2MB)`)
+                return false
+            }
+            return true
+        })
+
+        validFiles.forEach(file => {
+            const reader = new FileReader()
+            reader.onloadend = () => {
+                setGalleryPreviews(prev => [...prev, reader.result as string])
+            }
+            reader.readAsDataURL(file)
+        })
+        e.target.value = ""
+    }
+
+    const removeGalleryImage = (index: number) => {
+        setGalleryPreviews(prev => prev.filter((_, i) => i !== index))
     }
 
     const handleDocChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -112,6 +137,10 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
             result: formData.get("result") as string,
             resultEn: (formData.get("resultEn") as string) || null,
             image: imageValue,
+            galleryImages: galleryPreviews,
+            content: (formData.get("content") as string) || null,
+            contentEn: (formData.get("contentEn") as string) || null,
+            type: formData.get("type") as string,
             documentationFile: docFile,
             showDocumentation: formData.get("showDocumentation") === "on",
             tags: tags,
@@ -144,6 +173,14 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                 <div className="space-y-6">
                     <h3 className="text-lg font-bold border-b pb-2">Alapadatok</h3>
                     
+                    <div className="space-y-2">
+                        <Label htmlFor="type">Referencia Típusa</Label>
+                        <select id="type" name="type" defaultValue={initialData?.type || "WEBSITE"} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                            <option value="WEBSITE">Weboldal</option>
+                            <option value="SERVICE">Szolgáltatás</option>
+                        </select>
+                    </div>
+
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
                             <Label htmlFor="title">Cím (HU)</Label>
@@ -236,6 +273,35 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                         </div>
                     </div>
 
+                    <div className="space-y-2 pt-4 border-t">
+                        <Label>Galéria Képek</Label>
+                        <div className="border-2 border-dashed rounded-lg p-4 text-center space-y-4">
+                            {galleryPreviews.length > 0 && (
+                                <div className="grid grid-cols-3 gap-2 mb-4">
+                                    {galleryPreviews.map((preview, index) => (
+                                        <div key={index} className="relative aspect-square rounded-md overflow-hidden bg-muted">
+                                            <img src={preview} alt={`Gallery Preview ${index + 1}`} className="w-full h-full object-cover" />
+                                            <Button 
+                                                type="button" 
+                                                variant="destructive" 
+                                                size="icon" 
+                                                className="absolute top-1 right-1 h-6 w-6"
+                                                onClick={() => removeGalleryImage(index)}
+                                            >
+                                                <Trash className="h-3 w-3" />
+                                            </Button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                            <div className="py-4 flex flex-col items-center justify-center text-muted-foreground">
+                                <ImageIcon className="h-8 w-8 mb-2 opacity-20" />
+                                <p className="text-sm">Tallózz be további képeket (max 2MB/kép)</p>
+                            </div>
+                            <Input type="file" accept="image/*" multiple onChange={handleGalleryChange} className="cursor-pointer" />
+                        </div>
+                    </div>
+
                     <div className="space-y-2">
                         <Label>Tegek (pl. Next.js, n8n, VPN)</Label>
                         <div className="flex gap-2">
@@ -322,6 +388,11 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                             <Label htmlFor="result">Eredmény</Label>
                             <Textarea id="result" name="result" defaultValue={initialData?.result} required rows={5} />
                         </div>
+                        <div className="space-y-2 pt-4 border-t">
+                            <Label htmlFor="content">Bővebb tartalom (Opcionális HTML/Szöveg)</Label>
+                            <p className="text-xs text-muted-foreground">Tetszőleges más dolgok kiírására a kihívás/megoldás/eredmény blokkokon túl.</p>
+                            <Textarea id="content" name="content" defaultValue={initialData?.content || ""} rows={10} />
+                        </div>
                     </div>
 
                     <div className="space-y-4 text-muted-foreground">
@@ -341,6 +412,11 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                         <div className="space-y-2">
                             <Label htmlFor="resultEn">Result (EN)</Label>
                             <Textarea id="resultEn" name="resultEn" defaultValue={initialData?.resultEn || ""} rows={5} />
+                        </div>
+                        <div className="space-y-2 pt-4 border-t">
+                            <Label htmlFor="contentEn">Extended Content (EN)</Label>
+                            <p className="text-xs text-muted-foreground">Optional, extra HTML or text to display besides standard blocks.</p>
+                            <Textarea id="contentEn" name="contentEn" defaultValue={initialData?.contentEn || ""} rows={10} />
                         </div>
                     </div>
                 </div>

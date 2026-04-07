@@ -310,6 +310,10 @@ model Reference {
   result            String
   resultEn          String?
   image             String
+  galleryImages     String[]
+  content           String?
+  contentEn         String?
+  type              String   @default("WEBSITE")
   tags              String[]
   metrics           Json?
   active            Boolean  @default(true)
