@@ -4,11 +4,17 @@ import { Link } from "@/i18n/routing"
 import { Code2 } from "lucide-react"
 import { auth } from "@/auth"
 
+import { getTranslations } from "next-intl/server"
+
 export default async function DashboardLayout({
     children,
+    params
 }: {
     children: React.ReactNode
+    params: Promise<{ locale: string }>
 }) {
+    const { locale } = await params;
+    const tDash = await getTranslations({ locale, namespace: 'Dashboard' })
     const session = await auth()
 
     return (
@@ -35,7 +41,7 @@ export default async function DashboardLayout({
                 {/* Top bar */}
                 <header className="hidden md:flex h-14 items-center justify-between border-b border-white/5 bg-[#080812]/80 backdrop-blur px-6 sticky top-0 z-20">
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <span className="font-medium text-foreground">Ügyfélfiókom</span>
+                        <span className="font-medium text-foreground">{tDash('client_portal_header')}</span>
                     </div>
                     <UserNav user={session?.user} />
                 </header>

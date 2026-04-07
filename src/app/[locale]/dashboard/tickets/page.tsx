@@ -70,7 +70,7 @@ export default function UserTicketsPage() {
                         </div>
                         <div className="text-center">
                             <p className="font-medium text-sm">{tTickets('no_tickets')}</p>
-                            <p className="text-xs text-muted-foreground mt-1">Nyisson egy új jegyet, ha segítségre van szüksége</p>
+                            <p className="text-xs text-muted-foreground mt-1">{tTickets('create_first_ticket')}</p>
                         </div>
                         <Link href="/dashboard/tickets/new">
                             <button className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium hover:border-white/20 hover:bg-white/8 transition-all">

@@ -27,7 +27,7 @@ export default async function DashboardPage() {
         // Ticket table not available yet
     }
 
-    const userName = session.user.name || 'Felhasználó'
+    const userName = session.user.name || t('anonymous_user')
     const initials = userName.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)
 
     return (
@@ -49,7 +49,7 @@ export default async function DashboardPage() {
                     <div>
                         <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-                            Ügyfélfiókom aktív
+                            {t('client_portal_header')}
                         </div>
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-white/60">
@@ -77,7 +77,7 @@ export default async function DashboardPage() {
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-500/10 text-orange-500">
                             <Ticket className="h-5 w-5" />
                         </div>
-                        <span className="text-xs text-muted-foreground border border-white/5 rounded-full px-2 py-0.5 bg-white/5">Élő</span>
+                        <span className="text-xs text-muted-foreground border border-white/5 rounded-full px-2 py-0.5 bg-white/5">{t('live')}</span>
                     </div>
                     <div className="text-3xl font-bold mb-1">{openTickets}</div>
                     <div className="text-sm text-muted-foreground">{t('open_tickets')}</div>
@@ -94,13 +94,13 @@ export default async function DashboardPage() {
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-500">
                             <Clock className="h-5 w-5" />
                         </div>
-                        <span className="text-xs text-muted-foreground border border-white/5 rounded-full px-2 py-0.5 bg-white/5">SLA</span>
+                        <span className="text-xs text-muted-foreground border border-white/5 rounded-full px-2 py-0.5 bg-white/5">{t('sla')}</span>
                     </div>
                     <div className="text-3xl font-bold mb-1">&lt; 24h</div>
-                    <div className="text-sm text-muted-foreground">Válaszidő garancia</div>
+                    <div className="text-sm text-muted-foreground">{t('response_time_guarantee')}</div>
                     <div className="mt-3 text-xs text-emerald-400/70 flex items-center gap-1">
                         <CheckCircle2 className="h-3 w-3" />
-                        Munkanapokon garantált
+                        {t('guaranteed_on_workdays')}
                     </div>
                 </div>
 
@@ -111,13 +111,13 @@ export default async function DashboardPage() {
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 text-blue-500">
                             <TrendingUp className="h-5 w-5" />
                         </div>
-                        <span className="text-xs text-muted-foreground border border-white/5 rounded-full px-2 py-0.5 bg-white/5">Portfólió</span>
+                        <span className="text-xs text-muted-foreground border border-white/5 rounded-full px-2 py-0.5 bg-white/5">{t('portfolio')}</span>
                     </div>
                     <div className="text-3xl font-bold mb-1">20+</div>
-                    <div className="text-sm text-muted-foreground">Elérhető megoldás</div>
+                    <div className="text-sm text-muted-foreground">{t('available_solutions')}</div>
                     <div className="mt-3 text-xs text-blue-400/70 flex items-center gap-1">
                         <Zap className="h-3 w-3" />
-                        Folyamatosan bővülő
+                        {t('constantly_expanding')}
                     </div>
                 </div>
             </div>
@@ -158,8 +158,8 @@ export default async function DashboardPage() {
                                 <ArrowUpRight className="h-4 w-4 text-muted-foreground/40 transition-all group-hover:text-blue-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             </div>
                             <div>
-                                <p className="font-semibold text-sm mb-0.5">Megoldások böngészése</p>
-                                <p className="text-xs text-muted-foreground leading-relaxed">Fedezze fel szolgáltatásainkat</p>
+                                <p className="font-semibold text-sm mb-0.5">{t('browse_solutions')}</p>
+                                <p className="text-xs text-muted-foreground leading-relaxed">{t('discover_services')}</p>
                             </div>
                         </div>
                     </Link>
@@ -175,8 +175,8 @@ export default async function DashboardPage() {
                                 <ArrowUpRight className="h-4 w-4 text-muted-foreground/40 transition-all group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             </div>
                             <div>
-                                <p className="font-semibold text-sm mb-0.5">Konzultáció kérése</p>
-                                <p className="text-xs text-muted-foreground leading-relaxed">Egyedi ajánlatkérés</p>
+                                <p className="font-semibold text-sm mb-0.5">{t('request_consultation')}</p>
+                                <p className="text-xs text-muted-foreground leading-relaxed">{t('custom_quote')}</p>
                             </div>
                         </div>
                     </Link>
@@ -189,14 +189,14 @@ export default async function DashboardPage() {
                     <Zap className="h-5 w-5" />
                 </div>
                 <div>
-                    <p className="font-medium text-sm">Szüksége van segítségre?</p>
+                    <p className="font-medium text-sm">{t('need_help_banner')}</p>
                     <p className="text-xs text-muted-foreground mt-0.5">
-                        Csapatunk munkanapokon 9–18 óra között elérhető. Nyisson jegyet, vagy kérjen ingyenes konzultációt!
+                        {t('need_help_banner_desc')}
                     </p>
                 </div>
                 <Link href="/dashboard/tickets/new" className="ml-auto shrink-0">
                     <div className="text-xs font-medium text-primary hover:underline flex items-center gap-1">
-                        Jegyet nyit <ArrowUpRight className="h-3 w-3" />
+                        {t('open_ticket_action')} <ArrowUpRight className="h-3 w-3" />
                     </div>
                 </Link>
             </div>

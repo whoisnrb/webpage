@@ -19,7 +19,7 @@ export function Sidebar() {
     const tDash  = useTranslations('Dashboard')
     const tTickets = useTranslations('Tickets')
 
-    const userName = session?.user?.name || 'Felhasználó'
+    const userName = session?.user?.name || tDash('anonymous_user')
     const userEmail = session?.user?.email || ''
     const initials = userName.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)
 
@@ -34,7 +34,7 @@ export function Sidebar() {
                     </div>
                     <div>
                         <span className="text-sm font-bold text-white tracking-tight">BacklineIT</span>
-                        <p className="text-[10px] text-muted-foreground leading-none mt-0.5">{tNav('client_portal')}</p>
+                        <p className="text-[10px] text-muted-foreground leading-none mt-0.5">{tDash('client_portal_header')}</p>
                     </div>
                 </Link>
             </div>
@@ -42,7 +42,7 @@ export function Sidebar() {
             {/* Nav */}
             <div className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
                 <p className="px-3 mb-3 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/50">
-                    Navigáció
+                    {tDash('navigation')}
                 </p>
 
                 {sidebarItems.map((item) => {
