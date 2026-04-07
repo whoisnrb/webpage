@@ -1,6 +1,6 @@
 "use client"
 
-import { Link } from "@/i18n/routing"
+import { Link, usePathname } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Code2, ShieldCheck, Lock, Award } from "lucide-react"
 import { NewsletterForm } from "@/components/newsletter-form"
@@ -8,6 +8,11 @@ import { NewsletterForm } from "@/components/newsletter-form"
 export function Footer() {
     const tStats = useTranslations("Footer")
     const tNav = useTranslations("Navigation")
+    const pathname = usePathname()
+
+    if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
+        return null;
+    }
 
     const signals = [
         { icon: Lock, label: tStats("signals.ssl") },

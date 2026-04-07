@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Link } from "@/i18n/routing"
+import { Link, usePathname } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { Menu, X, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -18,6 +18,11 @@ import { MegaMenu } from "@/components/layout/mega-menu"
 export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
     const t = useTranslations("Navigation")
+    const pathname = usePathname()
+
+    if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
+        return null;
+    }
 
     const navigation = [
         { name: t("services"), href: "/szolgaltatasok" },

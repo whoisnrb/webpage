@@ -4,10 +4,16 @@ import { useState } from "react"
 import { X } from "lucide-react"
 
 import { useTranslations } from "next-intl"
+import { usePathname } from "@/i18n/routing"
 
 export function PromoBanner() {
     const t = useTranslations('PromoBanner')
     const [isVisible, setIsVisible] = useState(true)
+    const pathname = usePathname()
+
+    if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
+        return null;
+    }
 
     if (!isVisible) return null
 
