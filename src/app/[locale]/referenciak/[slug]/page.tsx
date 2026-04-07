@@ -6,16 +6,11 @@ import { ArrowLeft, Download } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
-import { routing } from '@/i18n/routing'
 import { getLocalizedReferenceBySlug } from '@/app/actions/reference'
-import { prisma } from '@/lib/db'
 
-export async function generateStaticParams() {
-    const references = await (prisma as any).reference.findMany({ select: { slug: true } })
-    return routing.locales.flatMap((locale) =>
-        references.map((ref: { slug: string }) => ({ locale, slug: ref.slug }))
-    );
-}
+// Force dynamic rendering — Prisma nem érhető el build-time-on (Vercel)
+export const dynamic = 'force-dynamic'
+export const dynamicParams = true
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }): Promise<Metadata> {
     const { slug, locale } = await params;
