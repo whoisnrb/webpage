@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
       allowedOrigins: ["backlineit.hu", "localhost:3000"],
-      bodySizeLimit: "10mb",
+      bodySizeLimit: "50mb",
     },
   },
   allowedDevOrigins: ["localhost:3000"],

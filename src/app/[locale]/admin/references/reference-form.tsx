@@ -27,8 +27,8 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) {
-            if (file.size > 2 * 1024 * 1024) { // 2MB limit for images
-                toast.error("A kép mérete nem haladhatja meg a 2MB-ot!")
+            if (file.size > 10 * 1024 * 1024) { // 10MB limit for images
+                toast.error("A kép mérete nem haladhatja meg a 10MB-ot!")
                 e.target.value = ""
                 return
             }
@@ -44,8 +44,8 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const handleGalleryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || [])
         const validFiles = files.filter(f => {
-            if (f.size > 2 * 1024 * 1024) {
-                toast.error(`${f.name} mérete túl nagy (max 2MB)`)
+            if (f.size > 10 * 1024 * 1024) {
+                toast.error(`${f.name} mérete túl nagy (max 10MB)`)
                 return false
             }
             return true
@@ -68,8 +68,8 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const handleDocChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) {
-            if (file.size > 5 * 1024 * 1024) { // 5MB limit for docs
-                toast.error("A dokumentáció mérete nem haladhatja meg az 5MB-ot!")
+            if (file.size > 15 * 1024 * 1024) { // 15MB limit for docs
+                toast.error("A dokumentáció mérete nem haladhatja meg a 15MB-ot!")
                 e.target.value = ""
                 return
             }
@@ -296,7 +296,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                             )}
                             <div className="py-4 flex flex-col items-center justify-center text-muted-foreground">
                                 <ImageIcon className="h-8 w-8 mb-2 opacity-20" />
-                                <p className="text-sm">Tallózz be további képeket (max 2MB/kép)</p>
+                                <p className="text-sm">Tallózz be további képeket (max 10MB/kép)</p>
                             </div>
                             <Input type="file" accept="image/*" multiple onChange={handleGalleryChange} className="cursor-pointer" />
                         </div>
