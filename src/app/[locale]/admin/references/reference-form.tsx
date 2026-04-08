@@ -14,6 +14,49 @@ interface ReferenceFormProps {
     initialData?: ReferenceDTO
 }
 
+// Client-side image optimization utility
+const optimizeImage = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file)
+        reader.onload = (event) => {
+            const img = new Image()
+            img.src = event.target?.result as string
+            img.onload = () => {
+                const canvas = document.createElement('canvas')
+                let width = img.width
+                let height = img.height
+
+                // Max dimensions: 1920px (Full HD)
+                const MAX_WIDTH = 1920
+                const MAX_HEIGHT = 1920
+
+                if (width > height) {
+                    if (width > MAX_WIDTH) {
+                        height *= MAX_WIDTH / width
+                        width = MAX_WIDTH
+                    }
+                } else {
+                    if (height > MAX_HEIGHT) {
+                        width *= MAX_HEIGHT / height
+                        height = MAX_HEIGHT
+                    }
+                }
+
+                canvas.width = width
+                canvas.height = height
+                const ctx = canvas.getContext('2d')
+                ctx?.drawImage(img, 0, 0, width, height)
+
+                // Output as JPEG with 0.8 quality
+                resolve(canvas.toDataURL('image/jpeg', 0.8))
+            }
+            img.onerror = reject
+        }
+        reader.onerror = reject
+    })
+}
+
 export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
@@ -24,40 +67,38 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const [tags, setTags] = useState<string[]>(initialData?.tags || [])
     const [newTag, setNewTag] = useState("")
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) {
-            if (file.size > 10 * 1024 * 1024) { // 10MB limit for images
-                toast.error("A kép mérete nem haladhatja meg a 10MB-ot!")
-                e.target.value = ""
-                return
+            setLoading(true)
+            try {
+                const optimized = await optimizeImage(file)
+                setImagePreview(optimized)
+            } catch (error) {
+                console.error("Image optimization failed:", error)
+                toast.error("Hiba történt a kép feldolgozása során")
+            } finally {
+                setLoading(false)
             }
-
-            const reader = new FileReader()
-            reader.onloadend = () => {
-                setImagePreview(reader.result as string)
-            }
-            reader.readAsDataURL(file)
         }
     }
 
-    const handleGalleryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleGalleryChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(e.target.files || [])
-        const validFiles = files.filter(f => {
-            if (f.size > 10 * 1024 * 1024) {
-                toast.error(`${f.name} mérete túl nagy (max 10MB)`)
-                return false
-            }
-            return true
-        })
+        if (files.length === 0) return
 
-        validFiles.forEach(file => {
-            const reader = new FileReader()
-            reader.onloadend = () => {
-                setGalleryPreviews(prev => [...prev, reader.result as string])
-            }
-            reader.readAsDataURL(file)
-        })
+        setLoading(true)
+        try {
+            const optimizedImages = await Promise.all(
+                files.map(file => optimizeImage(file))
+            )
+            setGalleryPreviews(prev => [...prev, ...optimizedImages])
+        } catch (error) {
+            console.error("Gallery optimization failed:", error)
+            toast.error("Hiba történt a galéria képek feldolgozása során")
+        } finally {
+            setLoading(false)
+        }
         e.target.value = ""
     }
 
@@ -297,7 +338,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                             )}
                             <div className="py-4 flex flex-col items-center justify-center text-muted-foreground">
                                 <ImageIcon className="h-8 w-8 mb-2 opacity-20" />
-                                <p className="text-sm">Tallózz be további képeket (max 10MB/kép)</p>
+                                <p className="text-sm">Tallózz be további képeket (automatikus optimalizálás)</p>
                             </div>
                             <Input type="file" accept="image/*" multiple onChange={handleGalleryChange} className="cursor-pointer" />
                         </div>
