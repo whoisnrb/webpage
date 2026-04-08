@@ -6,7 +6,13 @@ const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
-      allowedOrigins: ["https://backlineit.hu", "https://www.backlineit.hu", "http://localhost:3000"],
+      allowedOrigins: [
+        "https://backlineit.hu", 
+        "https://www.backlineit.hu", 
+        "http://backlineit.hu", 
+        "http://www.backlineit.hu", 
+        "http://localhost:3000"
+      ],
       bodySizeLimit: "100mb",
     },
   },

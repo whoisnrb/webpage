@@ -158,9 +158,10 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
             }
             router.push("/admin/references")
             router.refresh()
-        } catch (error) {
+        } catch (error: any) {
             console.error("REFERENCE FORM SUBMIT ERROR:", error)
-            toast.error("Hiba történt a mentés során")
+            const errorMsg = error?.message || "Ismeretlen hiba"
+            toast.error(`Hiba történt a mentés során: ${errorMsg}`)
         } finally {
             setLoading(false)
         }
