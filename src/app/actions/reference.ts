@@ -40,7 +40,7 @@ export type ReferenceDTO = {
 }
 
 export type LocalizedReferenceDTO = {
-    id: string
+    id: string,
     slug: string
     title: string
     client: string
@@ -137,36 +137,46 @@ export async function getLocalizedReferenceBySlug(slug: string, locale: string =
 }
 
 export async function createReference(data: Omit<ReferenceDTO, 'id' | 'updatedAt'>) {
-    await (prisma as any).reference.create({
-        data: {
-            ...data,
-            metrics: data.metrics ? JSON.stringify(data.metrics) : null,
-            documentationFile: data.documentationFile,
-            showDocumentation: data.showDocumentation
-        }
-    })
-    revalidateTag('references', 'default')
-    revalidatePath('/referenciak')
-    revalidatePath('/admin/references')
+    try {
+        await (prisma as any).reference.create({
+            data: {
+                ...data,
+                metrics: data.metrics ? JSON.stringify(data.metrics) : null,
+                documentationFile: data.documentationFile,
+                showDocumentation: data.showDocumentation
+            }
+        })
+        revalidateTag('references', 'default')
+        revalidatePath('/referenciak')
+        revalidatePath('/admin/references')
+    } catch (error) {
+        console.error("CREATE REFERENCE ERROR:", error)
+        throw error
+    }
 }
 
 export async function updateReference(id: string, data: Partial<ReferenceDTO>) {
-    const updateData: any = { ...data }
-    if (data.metrics !== undefined) {
-        updateData.metrics = data.metrics ? JSON.stringify(data.metrics) : null
-    }
-
-    await (prisma as any).reference.update({
-        where: { id },
-        data: {
-            ...updateData,
-            documentationFile: data.documentationFile !== undefined ? data.documentationFile : undefined,
-            showDocumentation: data.showDocumentation !== undefined ? data.showDocumentation : undefined,
+    try {
+        const updateData: any = { ...data }
+        if (data.metrics !== undefined) {
+            updateData.metrics = data.metrics ? JSON.stringify(data.metrics) : null
         }
-    })
-    revalidateTag('references', 'default')
-    revalidatePath('/referenciak')
-    revalidatePath('/admin/references')
+
+        await (prisma as any).reference.update({
+            where: { id },
+            data: {
+                ...updateData,
+                documentationFile: data.documentationFile !== undefined ? data.documentationFile : undefined,
+                showDocumentation: data.showDocumentation !== undefined ? data.showDocumentation : undefined,
+            }
+        })
+        revalidateTag('references', 'default')
+        revalidatePath('/referenciak')
+        revalidatePath('/admin/references')
+    } catch (error) {
+        console.error("UPDATE REFERENCE ERROR:", error)
+        throw error
+    }
 }
 
 export async function deleteReference(id: string) {
