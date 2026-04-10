@@ -26,7 +26,7 @@ export default function AszfPage() {
                     </div>
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">{tImprint("tax_number")}:</dt>
-                        <dd className="font-medium inline md:block ml-2 md:ml-0">Hamarosan</dd>
+                        <dd className="font-medium inline md:block ml-2 md:ml-0">91947448-1-33</dd>
                     </div>
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">{tImprint("email")}:</dt>

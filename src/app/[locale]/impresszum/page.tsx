@@ -32,7 +32,7 @@ export default function ImpresszumPage() {
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("tax_number")}</dt>
-                            <dd className="font-medium">Hamarosan</dd>
+                            <dd className="font-medium">91947448-1-33</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("representative")}</dt>
