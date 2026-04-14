@@ -114,6 +114,9 @@ export function MegaMenu() {
                             <ListItem href="/velemeny" title={t("reviews")} className="hover:bg-white/5 rounded-xl">
                                 {t("reviews_desc")}
                             </ListItem>
+                            <ListItem href="/arak" title={t("prices")} className="hover:bg-white/5 rounded-xl">
+                                {t("prices_desc")}
+                            </ListItem>
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>

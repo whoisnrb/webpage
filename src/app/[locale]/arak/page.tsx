@@ -21,7 +21,7 @@ export default function ArakPage() {
         <div className="flex min-h-screen flex-col">
             <main className="flex-1">
                 {/* Hero Section */}
-                <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24 border-b">
+                <section className="bg-gradient-to-b from-muted/50 to-background py-16 md:py-24">
                     <div className="container mx-auto px-4 text-center">
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
                             {t('hero_title')}<br />
