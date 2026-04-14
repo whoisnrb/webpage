@@ -62,7 +62,7 @@ export default async function BlogPostPage({ params }: Props) {
     return (
         <article className="min-h-screen">
             {/* Post Header / Hero */}
-            <div className="relative py-16 md:py-24 border-b bg-muted/10">
+            <div className="relative py-16 md:py-24">
                 <div className="container mx-auto px-4">
                     <FadeIn>
                         <Button variant="ghost" asChild className="mb-8 hover:bg-transparent hover:text-primary -ml-4 group">
@@ -79,12 +79,12 @@ export default async function BlogPostPage({ params }: Props) {
                                         {locale === 'en' ? (post.series.titleEn || post.series.title) : post.series.title}
                                     </Badge>
                                 )}
-                                {post.tags.map((tag: string) => (
+                                {post.tags && post.tags.map((tag: string) => (
                                     <Badge key={tag} variant="outline" className="text-muted-foreground">{tag}</Badge>
                                 ))}
                             </div>
 
-                            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70 leading-tight">
+                            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 pb-1 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70 leading-tight">
                                 {title}
                             </h1>
 
@@ -101,7 +101,7 @@ export default async function BlogPostPage({ params }: Props) {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Clock className="h-4 w-4" />
-                                    {Math.ceil(content.length / 1500)} min read
+                                    {content ? Math.ceil(content.length / 1500) : 0} min read
                                 </div>
                             </div>
                         </div>

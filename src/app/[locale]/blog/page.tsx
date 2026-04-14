@@ -35,14 +35,13 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
         <div className="min-h-screen bg-transparent">
             {/* Hero Section */}
             <section className="relative py-24 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
                 <div className="container relative z-10 mx-auto px-4 text-center">
                     <FadeIn>
                         <Badge variant="outline" className="mb-4 py-1 px-4 border-primary/20 bg-primary/5 text-primary">
                             <Sparkles className="w-3 h-3 mr-2" />
                             {t('hero_badge')}
                         </Badge>
-                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
+                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6 pb-2 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
                             {t('title')}
                         </h1>
                         <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
