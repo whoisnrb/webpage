@@ -42,12 +42,7 @@ export default function RolunkPage() {
 
     return (
         <div className="min-h-screen flex flex-col relative overflow-hidden">
-            {/* Background elements */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 -z-20" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,_rgba(255,255,255,0.03)_1px,_transparent_0)] bg-[length:32px_32px] -z-20" />
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] -z-10 animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-[120px] -z-10 animate-pulse" style={{ animationDelay: '2s' }} />
-
+            {/* Background elements removed for global background uniformity */}
             {/* Hero */}
             <section className="pt-24 pb-16 md:pt-32 md:pb-24">
                 <div className="container mx-auto px-4 text-center">
@@ -203,7 +198,7 @@ export default function RolunkPage() {
                                     {/* Stats */}
                                     <div className="grid grid-cols-4 gap-6 pt-10 border-t border-slate-800">
                                         <div className="text-center">
-                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 mb-1">10+</div>
+                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 mb-1">4+</div>
                                             <div className="text-xs text-slate-500">{useTranslations('HomePage')('stats_exp_title')}</div>
                                         </div>
                                         <div className="text-center">

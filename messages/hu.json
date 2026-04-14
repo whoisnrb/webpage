@@ -42,7 +42,7 @@
                 "desc": "Mérhető üzleti eredményekre törekszünk."
             },
             "client": {
-                "title": "ügyfélközpontúság",
+                "title": "Ügyfélközpontúság",
                 "desc": "Hosszú távú partnerségekben hiszünk."
             },
             "innovation": {
@@ -419,7 +419,7 @@
         "stats_exp_desc": "Több mint 5 éve dolgozunk IT projekteken, startupokkal és vállalatokkal",
         "stats_projects_title": "Sikeres projekt",
         "stats_projects_desc": "Weboldalak, webshopok, automatizációk és egyedi szoftverek",
-        "stats_satisfaction_title": "ügyfél elégedettség",
+        "stats_satisfaction_title": "Ügyfél elégedettség",
         "stats_satisfaction_desc": "Minden ügyfelünk elégedett volt a munkánkkal és ajánl minket tovább",
         "process_title": "Hogyan dolgozunk?",
         "process_desc": "Egyszerű, átlátható folyamat a sikeres projektért",
