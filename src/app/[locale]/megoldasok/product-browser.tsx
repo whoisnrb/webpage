@@ -120,7 +120,7 @@ export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
                             {t('not_found_desc')}
                         </p>
                         <Button variant="outline" size="lg" asChild>
-                            <Link href="/contact">
+                            <Link href="/ajanlatkeres">
                                 {t('request_custom')}
                             </Link>
                         </Button>
