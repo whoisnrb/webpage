@@ -29,7 +29,7 @@ export default async function ReferenciakPage({ params }: { params: Promise<{ lo
 
     return (
         <div className="min-h-screen flex flex-col">
-            <section className="bg-muted/30 py-20 md:py-32 border-b relative overflow-hidden">
+            <section className="py-20 md:py-32 relative overflow-hidden">
                 <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-800/50" />
                 <div className="container relative mx-auto px-4 text-center">
                     <Badge className="mb-4" variant="outline">{t('badge')}</Badge>
