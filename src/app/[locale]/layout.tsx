@@ -13,7 +13,6 @@ import { CookieBanner } from "@/components/cookie-banner";
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
-import { PromoBanner } from "@/components/layout/promo-banner";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Toaster } from "sonner";
@@ -140,8 +139,7 @@ export default async function RootLayout({
             <ScrollProgress />
             <RecaptchaProvider>
               <CurrencyProvider>
-                <CartProvider>
-                  <PromoBanner />
+                  <CartProvider>
 
                   <Header />
                   <div className="relative z-10">
