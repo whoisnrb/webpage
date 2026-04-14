@@ -1164,6 +1164,16 @@
                     "WAF beállítás",
                     "GDPR compliance"
                 ]
+            },
+            "network": {
+                "title": "IT Infrastruktúra & Hálózat",
+                "desc": "Megbízható céges hálózatok, wifi rendszerek és szerver infrastruktúrák tervezése, kiépítése.",
+                "features": [
+                    "Hálózat tervezés",
+                    "Eszköz beszerzés & telepítés",
+                    "Biztonságos VPN",
+                    "Karbantartás"
+                ]
             }
         },
         "item_labels": {

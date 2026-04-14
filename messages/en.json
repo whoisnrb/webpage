@@ -1198,6 +1198,16 @@
                     "WAF setup",
                     "GDPR compliance"
                 ]
+            },
+            "network": {
+                "title": "IT Infrastructure & Network",
+                "desc": "Designing and building reliable corporate networks, wifi systems, and server infrastructures.",
+                "features": [
+                    "Network design",
+                    "Hardware procurement & setup",
+                    "Secure VPN",
+                    "Maintenance"
+                ]
             }
         },
         "item_labels": {
