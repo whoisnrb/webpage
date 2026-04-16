@@ -58,7 +58,7 @@ function ReferenceTable({ references }: { references: ReferenceDTO[] }) {
                         </TableCell>
                         <TableCell className="text-right">
                             <div className="flex justify-end gap-2">
-                                <Link href={`/admin/references/${ref.id}`}>
+                                <Link href={`/admin/references/${ref.id}` as any}>
                                     <Button variant="ghost" size="icon">
                                         <Pencil className="h-4 w-4" />
                                     </Button>
@@ -83,7 +83,7 @@ function ReferenceTable({ references }: { references: ReferenceDTO[] }) {
                                     <Plus className="h-8 w-8 opacity-20" />
                                 </div>
                                 <p>Nincs még hozzáadott referencia.</p>
-                                <Link href="/admin/references/new">
+                                <Link href={"/admin/references/new" as any}>
                                     <Button variant="link">Hozzáadom az elsőt</Button>
                                 </Link>
                             </div>
@@ -107,7 +107,7 @@ export default async function AdminReferencesPage() {
                     <h1 className="text-3xl font-bold tracking-tight">Referenciák</h1>
                     <p className="text-muted-foreground">Kezeld a weboldalon megjelenő esettanulmányokat és referenciamunkákat.</p>
                 </div>
-                <Link href="/admin/references/new">
+                <Link href={"/admin/references/new" as any}>
                     <Button>
                         <Plus className="mr-2 h-4 w-4" />
                         Új referencia

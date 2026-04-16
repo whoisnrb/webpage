@@ -322,7 +322,7 @@ export function ServicesPreview() {
 
                                 <div className="mt-10 z-10 relative">
                                     <Button asChild className="w-full bg-white/[0.03] hover:bg-primary text-white font-black uppercase tracking-[0.1em] border border-white/10 hover:border-transparent transition-all duration-700 h-14 rounded-2xl group-hover:scale-[1.02] active:scale-[0.98] group-hover:shadow-[0_20px_50px_-10px_rgba(6,182,212,0.4)]">
-                                        <Link href={service.href}>
+                                        <Link href={service.href as any}>
                                             {tQuickView('details')}
                                         </Link>
                                     </Button>

@@ -63,7 +63,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
                                         </div>
                                         <CardHeader className="p-0">
                                             <CardTitle className="scroll-m-20 text-2xl font-semibold tracking-tight group-hover:text-primary transition-colors">
-                                                <Link href={`/blog/${post.slug}`} className="block">
+                                                <Link href={`/blog/${post.slug}` as any} className="block">
                                                     {postTitle}
                                                 </Link>
                                             </CardTitle>
@@ -83,7 +83,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ slug: s
                                         </div>
                                     </div>
                                     <div className="p-8 pt-0 md:pt-8 flex items-center">
-                                        <Link href={`/blog/${post.slug}`} className="w-full md:w-auto">
+                                        <Link href={`/blog/${post.slug}` as any} className="w-full md:w-auto">
                                             <Button className="w-full md:w-auto bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/20">
                                                 <Play className="w-4 h-4 mr-2 fill-current" />
                                                 {t('read_more')}

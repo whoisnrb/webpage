@@ -179,7 +179,7 @@ export default function SzolgaltatasokPage() {
                                             </ul>
                                         </div>
 
-                                        <Link href={service.href} className="mt-auto">
+                                        <Link href={service.href as any} className="mt-auto">
                                             <Button className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" variant="outline">
                                                 {t('item_labels.details_and_order')} <ArrowRight className="ml-2 h-4 w-4" />
                                             </Button>

@@ -18,7 +18,7 @@ export default async function AdminServicesPage() {
         <div className="space-y-6">
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold tracking-tight">Szolgáltatások</h1>
-                <Link href="/admin/services/new">
+                <Link href={"/admin/services/new" as any}>
                     <Button>
                         <Plus className="mr-2 h-4 w-4" />
                         Új szolgáltatás
@@ -63,7 +63,7 @@ export default async function AdminServicesPage() {
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <div className="flex justify-end gap-2">
-                                        <Link href={`/admin/services/${service.id}`}>
+                                        <Link href={`/admin/services/${service.id}` as any}>
                                             <Button variant="ghost" size="icon">
                                                 <Pencil className="h-4 w-4" />
                                             </Button>

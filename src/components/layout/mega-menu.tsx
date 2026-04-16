@@ -18,7 +18,7 @@ import { useTranslations } from "next-intl"
 export function MegaMenu() {
     const t = useTranslations("MegaMenu")
 
-    const components: { title: string; href: string; description: string }[] = [
+    const components: { title: string; href: any; description: string }[] = [
         {
             title: t("nav_items.scripts"),
             href: "/szolgaltatasok/scriptek",
@@ -89,13 +89,13 @@ export function MegaMenu() {
                             <ListItem href="/megoldasok" title={t("all_products")} className="hover:bg-white/5 rounded-xl">
                                 {t("all_products_desc")}
                             </ListItem>
-                            <ListItem href="/megoldasok?category=scripts" title={t("scripts")} className="hover:bg-white/5 rounded-xl">
+                            <ListItem href={{ pathname: "/megoldasok", query: { category: "scripts" } }} title={t("scripts")} className="hover:bg-white/5 rounded-xl">
                                 {t("scripts_desc")}
                             </ListItem>
-                            <ListItem href="/megoldasok?category=web" title={t("web")} className="hover:bg-white/5 rounded-xl">
+                            <ListItem href={{ pathname: "/megoldasok", query: { category: "web" } }} title={t("web")} className="hover:bg-white/5 rounded-xl">
                                 {t("web_desc")}
                             </ListItem>
-                            <ListItem href="/megoldasok?category=plugins" title={t("plugins")} className="hover:bg-white/5 rounded-xl">
+                            <ListItem href={{ pathname: "/megoldasok", query: { category: "plugins" } }} title={t("plugins")} className="hover:bg-white/5 rounded-xl">
                                 {t("plugins_desc")}
                             </ListItem>
                         </ul>
@@ -133,13 +133,13 @@ export function MegaMenu() {
 }
 
 const ListItem = React.forwardRef<
-    React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a">
+    HTMLAnchorElement,
+    React.ComponentPropsWithoutRef<typeof Link>
 >(({ className, title, children, ...props }, ref) => {
     return (
         <li>
             <NavigationMenuLink asChild>
-                <a
+                <Link
                     ref={ref}
                     className={cn(
                         "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-all hover:bg-white/5 group",
@@ -151,7 +151,7 @@ const ListItem = React.forwardRef<
                     <p className="line-clamp-2 text-sm leading-snug text-white/40 group-hover:text-white/60 transition-colors font-medium">
                         {children}
                     </p>
-                </a>
+                </Link>
             </NavigationMenuLink>
         </li>
     )

@@ -149,7 +149,7 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
     return (
         <div className="space-y-6 max-w-4xl">
             <div className="flex items-center gap-4">
-                <Link href="/admin/services">
+                <Link href={"/admin/services" as any}>
                     <Button variant="ghost" size="icon">
                         <ArrowLeft className="h-4 w-4" />
                     </Button>
@@ -359,7 +359,7 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
                         <Save className="mr-2 h-4 w-4" />
                         {loading ? "Mentés..." : (isNew ? "Létrehozás" : "Mentés")}
                     </Button>
-                    <Link href="/admin/services">
+                    <Link href={"/admin/services" as any}>
                         <Button type="button" variant="outline">Mégse</Button>
                     </Link>
                 </div>

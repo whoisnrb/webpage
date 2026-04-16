@@ -80,7 +80,7 @@ export function BlogSeriesForm({ initialData }: BlogSeriesFormProps) {
     return (
         <div className="space-y-6 max-w-4xl">
             <div className="flex items-center gap-4">
-                <Link href="/admin/blog/series">
+                <Link href={"/admin/blog/series" as any}>
                     <Button variant="ghost" size="icon">
                         <ArrowLeft className="h-4 w-4" />
                     </Button>
@@ -206,7 +206,7 @@ export function BlogSeriesForm({ initialData }: BlogSeriesFormProps) {
                         )}
                         {loading ? "Mentés..." : (isNew ? "Létrehozás" : "Mentés")}
                     </Button>
-                    <Link href="/admin/blog/series">
+                    <Link href={"/admin/blog/series" as any}>
                         <Button type="button" variant="outline">Mégse</Button>
                     </Link>
                 </div>

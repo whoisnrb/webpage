@@ -51,7 +51,7 @@ export function SeriesActions({ id, postCount }: SeriesActionsProps) {
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Műveletek</DropdownMenuLabel>
                 <DropdownMenuItem asChild>
-                    <Link href={`/admin/blog/series/${id}`} className="cursor-pointer">
+                    <Link href={`/admin/blog/series/${id}` as any} className="cursor-pointer">
                         <Edit className="mr-2 h-4 w-4" /> Szerkesztés
                     </Link>
                 </DropdownMenuItem>

@@ -187,7 +187,7 @@ export default function AdminTicketDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 space-y-6">
                 <div className="flex items-center gap-4">
-                    <Link href="/admin/tickets">
+                    <Link href={"/admin/tickets" as any}>
                         <Button variant="ghost" size="icon">
                             <ArrowLeft className="h-4 w-4" />
                         </Button>

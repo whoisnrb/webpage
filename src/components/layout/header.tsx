@@ -24,7 +24,7 @@ export function Header() {
         return null;
     }
 
-    const navigation = [
+    const navigation: { name: string; href: any }[] = [
         { name: t("services"), href: "/szolgaltatasok" },
         { name: t("scripts"), href: "/szolgaltatasok/scriptek" },
         { name: t("web_dev"), href: "/szolgaltatasok/webfejlesztes" },

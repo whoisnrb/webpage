@@ -40,7 +40,7 @@ export default function UserTicketsPage() {
                     <h2 className="text-2xl font-bold tracking-tight">{tTickets('my_tickets')}</h2>
                     <p className="text-sm text-muted-foreground mt-0.5">{tTickets('manage_tickets')}</p>
                 </div>
-                <Link href="/dashboard/tickets/new">
+                <Link href={"/dashboard/tickets/new" as any}>
                     <button className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm shadow-primary/25 hover:bg-primary/90 transition-all hover:-translate-y-0.5">
                         <Plus className="h-4 w-4" />
                         {tTickets('new_ticket')}
@@ -72,7 +72,7 @@ export default function UserTicketsPage() {
                             <p className="font-medium text-sm">{tTickets('no_tickets')}</p>
                             <p className="text-xs text-muted-foreground mt-1">{tTickets('create_first_ticket')}</p>
                         </div>
-                        <Link href="/dashboard/tickets/new">
+                        <Link href={"/dashboard/tickets/new" as any}>
                             <button className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium hover:border-white/20 hover:bg-white/8 transition-all">
                                 <Plus className="h-3.5 w-3.5" />
                                 {tTickets('new_ticket')}
@@ -92,7 +92,7 @@ export default function UserTicketsPage() {
                         </div>
 
                         {tickets.map((ticket) => (
-                            <Link key={ticket.id} href={`/dashboard/tickets/${ticket.id}`} className="block">
+                            <Link key={ticket.id} href={`/dashboard/tickets/${ticket.id}` as any} className="block">
                                 <div className="group grid grid-cols-[auto_1fr_auto_auto_auto_auto] gap-4 items-center px-5 py-3.5 hover:bg-white/[0.03] transition-colors">
                                     <span className="font-mono text-xs text-muted-foreground">{ticket.ticketNumber}</span>
                                     <div className="min-w-0">

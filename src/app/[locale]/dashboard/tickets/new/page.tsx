@@ -63,7 +63,7 @@ export default function NewTicketPage() {
 
             {/* Header */}
             <div className="flex items-center gap-3">
-                <Link href="/dashboard/tickets">
+                <Link href={"/dashboard/tickets" as any}>
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/8 bg-white/5 text-muted-foreground hover:bg-white/10 hover:text-foreground transition-all">
                         <ArrowLeft className="h-4 w-4" />
                     </div>

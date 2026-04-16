@@ -122,7 +122,7 @@ export default async function LandingPage({ params }: Props) {
                             <h2 className="text-3xl font-bold mb-12 text-center">Így segítettünk másoknak</h2>
                             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                                 {relatedCaseStudies.map((study, idx) => (
-                                    <Link href={`/referenciak/${study.slug}`} key={idx} className="group">
+                                    <Link href={`/referenciak/${study.slug}` as any} key={idx} className="group">
                                         <Card className="h-full hover:shadow-lg transition-all border-l-4 border-l-primary/50">
                                             <CardHeader>
                                                 <Badge variant="outline" className="w-fit mb-2">{study.client}</Badge>

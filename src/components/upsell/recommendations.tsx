@@ -84,7 +84,7 @@ export function UpsellEngine({ tags, currentService, title, description }: Upsel
                                 <CardDescription>{rec.description}</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <Link href={rec.link}>
+                                <Link href={rec.link as any}>
                                     <Button variant="outline" className="w-full group">
                                         Megnézem <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                                     </Button>

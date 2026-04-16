@@ -150,7 +150,7 @@ export function PricingTable() {
                                             {pkg.cta}
                                         </Button>
                                     ) : (
-                                        <Link href={pkg.href} className="w-full">
+                                        <Link href={pkg.href as any} className="w-full">
                                             <Button
                                                 size="lg"
                                                 className={`w-full ${pkg.popular

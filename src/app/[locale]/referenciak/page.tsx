@@ -44,7 +44,7 @@ export default async function ReferenciakPage({ params }: { params: Promise<{ lo
                 <div className="container mx-auto px-4">
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {studies.map((study, index) => (
-                            <Link href={`/referenciak/${study.slug}`} key={index} className="group h-full">
+                            <Link href={`/referenciak/${study.slug}` as any} key={index} className="group h-full">
                                 <Card className="flex flex-col h-full overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 cursor-pointer">
                                     <div className={`h-56 w-full flex items-center justify-center relative overflow-hidden ${!(study.image.startsWith('/') || study.image.startsWith('data:image') || study.image.startsWith('http')) ? study.image : ''}`}>
                                         {(study.image.startsWith('/') || study.image.startsWith('data:image') || study.image.startsWith('http')) ? (

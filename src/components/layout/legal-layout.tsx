@@ -17,7 +17,7 @@ export function LegalLayout({ children, title, lastUpdated }: LegalLayoutProps) 
     const t = useTranslations('LegalLayout')
     const pathname = usePathname()
 
-    const links = [
+    const links: { href: any; label: string; icon: any }[] = [
         { href: "/aszf", label: t('terms'), icon: FileText },
         { href: "/adatvedelem", label: t('privacy'), icon: Shield },
         { href: "/impresszum", label: t('imprint'), icon: Info },

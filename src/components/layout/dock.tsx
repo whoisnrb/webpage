@@ -54,7 +54,7 @@ function DockItem({ mouseX, icon: Icon, label, href }: { mouseX: any, icon: any,
     const opacity = useSpring(opacitySync, { mass: 0.1, stiffness: 150, damping: 12 })
 
     return (
-        <Link href={href} className="block">
+        <Link href={href as any} className="block">
             <motion.div
                 ref={ref}
                 style={{ width }}

@@ -131,7 +131,7 @@ export default async function DashboardPage() {
 
                 <div className="grid gap-4 md:grid-cols-3">
                     {/* New ticket */}
-                    <Link href="/dashboard/tickets/new">
+                    <Link href={"/dashboard/tickets/new" as any}>
                         <div className="group relative flex flex-col gap-4 overflow-hidden rounded-xl border border-white/5 bg-card/40 p-5 backdrop-blur transition-all duration-300 hover:border-orange-500/30 hover:bg-card/70 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-500/5 cursor-pointer h-full">
                             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                             <div className="flex items-center justify-between">
@@ -194,7 +194,7 @@ export default async function DashboardPage() {
                         {t('need_help_banner_desc')}
                     </p>
                 </div>
-                <Link href="/dashboard/tickets/new" className="ml-auto shrink-0">
+                <Link href={"/dashboard/tickets/new" as any} className="ml-auto shrink-0">
                     <div className="text-xs font-medium text-primary hover:underline flex items-center gap-1">
                         {t('open_ticket_action')} <ArrowUpRight className="h-3 w-3" />
                     </div>

@@ -43,7 +43,7 @@ export const RegisterForm = () => {
                     if (data.success) {
                         console.log("Registration success!");
                         toast.success(t("success"));
-                        router.push("/auth/new-verification");
+                        router.push("/auth/new-verification" as any);
                     }
                 })
                 .catch((err) => {

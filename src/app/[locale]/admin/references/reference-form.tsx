@@ -197,7 +197,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                 await createReference(data)
                 toast.success("Referencia létrehozva")
             }
-            router.push("/admin/references")
+            router.push("/admin/references" as any)
             router.refresh()
         } catch (error: any) {
             console.error("REFERENCE FORM SUBMIT ERROR:", error)

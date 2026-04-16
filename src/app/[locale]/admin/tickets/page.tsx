@@ -140,7 +140,7 @@ export default function AdminTicketsPage() {
                                 {filteredTickets.map((ticket) => (
                                     <TableRow key={ticket.id} className="cursor-pointer hover:bg-muted/50">
                                         <TableCell className="font-mono text-xs">
-                                            <Link href={`/admin/tickets/${ticket.id}`} className="hover:underline">
+                                            <Link href={`/admin/tickets/${ticket.id}` as any} className="hover:underline">
                                                 {ticket.ticketNumber}
                                             </Link>
                                         </TableCell>
@@ -151,7 +151,7 @@ export default function AdminTicketsPage() {
                                             </div>
                                         </TableCell>
                                         <TableCell>
-                                            <Link href={`/admin/tickets/${ticket.id}`} className="hover:underline font-medium">
+                                            <Link href={`/admin/tickets/${ticket.id}` as any} className="hover:underline font-medium">
                                                 {ticket.subject}
                                             </Link>
                                         </TableCell>

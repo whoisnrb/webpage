@@ -60,7 +60,7 @@ export function ServicesHero({ badge, title, titleHighlight, description, ctaQuo
                             <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-2 transition-transform" />
                         </Button>
                     </Link>
-                    <Link href="#szolgaltatasok" className="w-full sm:w-auto">
+                    <Link href={"#szolgaltatasok" as any} className="w-full sm:w-auto">
                         <Button size="lg" variant="ghost" className="w-full h-16 px-10 text-xl font-black uppercase tracking-tight text-white/60 hover:text-white hover:bg-white/5 border border-white/10 rounded-2xl transition-all duration-500">
                             {ctaServices}
                         </Button>

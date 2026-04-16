@@ -52,7 +52,7 @@ export function Sidebar() {
                     return (
                         <Link
                             key={item.href}
-                            href={item.href}
+                            href={item.href as any}
                             className={cn(
                                 "group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium border transition-all duration-200",
                                 isActive
@@ -85,7 +85,7 @@ export function Sidebar() {
                             Admin
                         </p>
                         <Link
-                            href="/admin/tickets"
+                            href={"/admin/tickets" as any}
                             className={cn(
                                 "group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium border transition-all duration-200",
                                 pathname.startsWith("/admin")

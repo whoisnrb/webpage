@@ -39,7 +39,7 @@ export function Breadcrumbs() {
                         {isLast ? (
                             <span className="font-medium text-foreground capitalize">{name}</span>
                         ) : (
-                            <Link href={href} className="hover:text-primary transition-colors capitalize">
+                            <Link href={href as any} className="hover:text-primary transition-colors capitalize">
                                 {name}
                             </Link>
                         )}

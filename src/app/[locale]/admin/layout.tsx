@@ -26,91 +26,91 @@ export default async function AdminLayout({
                     <p className="text-xs text-muted-foreground">BacklineIT</p>
                 </div>
                 <nav className="flex-1 p-4 space-y-2">
-                    <Link href="/admin">
+                    <Link href={"/admin" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <LayoutDashboard className="mr-2 h-4 w-4" />
                             Vezérlőpult
                         </Button>
                     </Link>
-                    <Link href="/admin/consultations">
+                    <Link href={"/admin/consultations" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <FileText className="mr-2 h-4 w-4" />
                             Konzultációk
                         </Button>
                     </Link>
-                    <Link href="/admin/crm">
+                    <Link href={"/admin/crm" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <Briefcase className="mr-2 h-4 w-4" />
                             CRM
                         </Button>
                     </Link>
-                    <Link href="/admin/leads">
+                    <Link href={"/admin/leads" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <Users className="mr-2 h-4 w-4" />
                             Leads (Régi)
                         </Button>
                     </Link>
-                    <Link href="/admin/tickets">
+                    <Link href={"/admin/tickets" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <Ticket className="mr-2 h-4 w-4" />
                             Support Tickets
                         </Button>
                     </Link>
-                    <Link href="/admin/careers">
+                    <Link href={"/admin/careers" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <Briefcase className="mr-2 h-4 w-4" />
                             Jelentkezések
                         </Button>
                     </Link>
-                    <Link href="/admin/products">
+                    <Link href={"/admin/products" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <Package className="mr-2 h-4 w-4" />
                             Megoldások
                         </Button>
                     </Link>
-                    <Link href="/admin/services">
+                    <Link href={"/admin/services" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <Banknote className="mr-2 h-4 w-4" />
                             Szolgáltatások
                         </Button>
                     </Link>
-                    <Link href="/admin/references">
+                    <Link href={"/admin/references" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <FileText className="mr-2 h-4 w-4" />
                             Referenciák
                         </Button>
                     </Link>
-                    <Link href="/admin/blog">
+                    <Link href={"/admin/blog" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <FileText className="mr-2 h-4 w-4" />
                             Blog
                         </Button>
                     </Link>
-                    <Link href="/admin/audit-logs">
+                    <Link href={"/admin/audit-logs" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <Activity className="mr-2 h-4 w-4" />
                             Audit Log
                         </Button>
                     </Link>
-                    <Link href="/admin/cron-jobs">
+                    <Link href={"/admin/cron-jobs" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <Clock className="mr-2 h-4 w-4" />
                             Cron Jobs
                         </Button>
                     </Link>
-                    <Link href="/admin/features">
+                    <Link href={"/admin/features" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <ToggleLeft className="mr-2 h-4 w-4" />
                             Feature Flags
                         </Button>
                     </Link>
-                    <Link href="/admin/analytics">
+                    <Link href={"/admin/analytics" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <BarChart3 className="mr-2 h-4 w-4" />
                             Analytics
                         </Button>
                     </Link>
-                    <Link href="/dashboard">
+                    <Link href={"/dashboard" as any}>
                         <Button variant="ghost" className="w-full justify-start">
                             <Settings className="mr-2 h-4 w-4" />
                             Felhasználói fiók

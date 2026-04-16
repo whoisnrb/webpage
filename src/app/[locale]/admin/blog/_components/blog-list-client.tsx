@@ -80,12 +80,12 @@ export function BlogListClient({ posts }: BlogListClientProps) {
                 </div>
                 <div className="flex gap-2">
                     <Button variant="outline" asChild>
-                        <Link href="/admin/blog/series">
+                        <Link href={"/admin/blog/series" as any}>
                             <BookOpen className="mr-2 h-4 w-4" /> Sorozatok
                         </Link>
                     </Button>
                     <Button asChild>
-                        <Link href="/admin/blog/new">
+                        <Link href={"/admin/blog/new" as any}>
                             <Plus className="mr-2 h-4 w-4" /> Új Bejegyzés
                         </Link>
                     </Button>

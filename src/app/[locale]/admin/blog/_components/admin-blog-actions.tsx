@@ -49,12 +49,12 @@ export function AdminBlogActions({ id, slug }: AdminBlogActionsProps) {
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Műveletek</DropdownMenuLabel>
                 <DropdownMenuItem asChild>
-                    <Link href={`/blog/${slug}`} target="_blank" className="cursor-pointer">
+                    <Link href={`/blog/${slug}` as any} target="_blank" className="cursor-pointer">
                         <Eye className="mr-2 h-4 w-4" /> Megtekintés
                     </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                    <Link href={`/admin/blog/${id}`} className="cursor-pointer">
+                    <Link href={`/admin/blog/${id}` as any} className="cursor-pointer">
                         <Edit className="mr-2 h-4 w-4" /> Szerkesztés
                     </Link>
                 </DropdownMenuItem>

@@ -23,7 +23,7 @@ export default async function AdminBlogSeriesPage() {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                    <Link href="/admin/blog">
+                    <Link href={"/admin/blog" as any}>
                         <Button variant="ghost" size="icon">
                             <ArrowLeft className="h-4 w-4" />
                         </Button>
@@ -36,7 +36,7 @@ export default async function AdminBlogSeriesPage() {
                     </div>
                 </div>
                 <Button asChild>
-                    <Link href="/admin/blog/series/new">
+                    <Link href={"/admin/blog/series/new" as any}>
                         <Plus className="mr-2 h-4 w-4" /> Új Sorozat
                     </Link>
                 </Button>

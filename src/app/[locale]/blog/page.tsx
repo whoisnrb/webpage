@@ -103,7 +103,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                                             </CardDescription>
                                         </CardHeader>
                                         <CardFooter className="mt-auto pt-0">
-                                            <Link href={`/blog/series/${s.slug}`} className="w-full">
+                                            <Link href={`/blog/series/${s.slug}` as any} className="w-full">
                                                 <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all">
                                                     {t('view_series')}
                                                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -140,7 +140,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                                             </span>
                                         </div>
                                         <CardTitle className="line-clamp-2 group-hover:text-primary transition-colors cursor-pointer">
-                                            <Link href={`/blog/${post.slug}`}>
+                                            <Link href={`/blog/${post.slug}` as any}>
                                                 {locale === 'en' ? (post.titleEn || post.title) : post.title}
                                             </Link>
                                         </CardTitle>
@@ -156,7 +156,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
                                                 </span>
                                             ))}
                                         </div>
-                                        <Link href={`/blog/${post.slug}`}>
+                                        <Link href={`/blog/${post.slug}` as any}>
                                             <Button variant="ghost" size="sm" className="group-hover:text-primary p-0">
                                                 {t('read_more')}
                                                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />

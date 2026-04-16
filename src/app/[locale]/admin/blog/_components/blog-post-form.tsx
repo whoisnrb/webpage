@@ -116,7 +116,7 @@ export function BlogPostForm({ initialData, seriesList: initialSeriesList }: Blo
         <div className="space-y-6 max-w-5xl">
             {/* Header */}
             <div className="flex items-center gap-4">
-                <Link href="/admin/blog">
+                <Link href={"/admin/blog" as any}>
                     <Button variant="ghost" size="icon">
                         <ArrowLeft className="h-4 w-4" />
                     </Button>
@@ -318,7 +318,7 @@ export function BlogPostForm({ initialData, seriesList: initialSeriesList }: Blo
                                 ))}
                             </select>
                             <p className="text-xs text-muted-foreground">
-                                Sorozatokat a <Link href="/admin/blog/series" className="underline">Sorozatok kezelés</Link> menüpontban hozhatsz létre.
+                                Sorozatokat a <Link href={"/admin/blog/series" as any} className="underline">Sorozatok kezelés</Link> menüpontban hozhatsz létre.
                             </p>
                         </div>
                     </CardContent>
@@ -367,7 +367,7 @@ export function BlogPostForm({ initialData, seriesList: initialSeriesList }: Blo
                         )}
                         {loading ? "Mentés..." : (isNew ? "Létrehozás" : "Mentés")}
                     </Button>
-                    <Link href="/admin/blog">
+                    <Link href={"/admin/blog" as any}>
                         <Button type="button" variant="outline">Mégse</Button>
                     </Link>
                 </div>

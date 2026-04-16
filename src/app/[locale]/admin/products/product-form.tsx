@@ -107,7 +107,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
                 await createProduct(data)
                 toast.success("Termék létrehozva")
             }
-            router.push("/admin/products")
+            router.push("/admin/products" as any)
             router.refresh()
         } catch (error) {
             console.error(error)

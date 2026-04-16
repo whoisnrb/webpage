@@ -18,7 +18,7 @@ export default async function AdminProductsPage() {
         <div className="space-y-6">
             <div className="flex justify-between items-center">
                 <h1 className="text-3xl font-bold tracking-tight">Termékek</h1>
-                <Link href="/admin/products/new">
+                <Link href={"/admin/products/new" as any}>
                     <Button>
                         <Plus className="mr-2 h-4 w-4" />
                         Új termék
@@ -44,7 +44,7 @@ export default async function AdminProductsPage() {
                                 <TableCell>{new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(product.price)}</TableCell>
                                 <TableCell className="text-right">
                                     <div className="flex justify-end gap-2">
-                                        <Link href={`/admin/products/${product.slug}`}>
+                                        <Link href={`/admin/products/${product.slug}` as any}>
                                             <Button variant="ghost" size="icon">
                                                 <Pencil className="h-4 w-4" />
                                             </Button>
