@@ -27,8 +27,49 @@ const authMiddleware = auth((req) => {
     return intlMiddleware(req);
 })
 
+const REDIRECT_MAP: Record<string, string> = {
+    '/en/rolunk': '/en/about-us',
+    '/en/referenciak': '/en/references',
+    '/en/arak': '/en/pricing',
+    '/en/kapcsolat': '/en/contact',
+    '/en/szolgaltatasok': '/en/services',
+    '/en/szolgaltatasok/biztonsag': '/en/services/security',
+    '/en/szolgaltatasok/halozat': '/en/services/network',
+    '/en/szolgaltatasok/integraciok': '/en/services/integrations',
+    '/en/szolgaltatasok/rendszeruzemeltetes': '/en/services/system-administration',
+    '/en/szolgaltatasok/scriptek': '/en/services/scripts',
+    '/en/szolgaltatasok/webfejlesztes': '/en/services/web-development',
+    '/en/megoldasok': '/en/solutions',
+    '/en/velemeny': '/en/testimonials',
+    '/en/konzultacio': '/en/consultation',
+    '/en/karrier': '/en/careers',
+    '/en/karrier/jelentkezes': '/en/careers/apply',
+    '/en/impresszum': '/en/imprint',
+    '/en/adatvedelem': '/en/privacy-policy',
+    '/en/aszf': '/en/terms-and-conditions',
+    '/en/ajanlatkeres': '/en/request-a-quote',
+};
+
 export default function middleware(req: NextRequest, event: NextFetchEvent) {
     const { pathname } = req.nextUrl;
+
+    // 0. SEO Redirects for renamed English routes (301 Permanent)
+    if (pathname.startsWith('/en/')) {
+        // Exact matches
+        if (REDIRECT_MAP[pathname]) {
+            return NextResponse.redirect(new URL(REDIRECT_MAP[pathname], req.nextUrl), 301);
+        }
+
+        // Dynamic matches for references and solutions
+        if (pathname.startsWith('/en/referenciak/')) {
+            const slug = pathname.replace('/en/referenciak/', '');
+            return NextResponse.redirect(new URL(`/en/references/${slug}`, req.nextUrl), 301);
+        }
+        if (pathname.startsWith('/en/megoldasok/')) {
+            const slug = pathname.replace('/en/megoldasok/', '');
+            return NextResponse.redirect(new URL(`/en/solutions/${slug}`, req.nextUrl), 301);
+        }
+    }
 
     // 1. API útvonalak azonnali átengedése
     if (pathname.startsWith('/api/')) {
