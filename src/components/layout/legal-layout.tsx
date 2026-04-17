@@ -29,18 +29,8 @@ export function LegalLayout({ children, title, lastUpdated }: LegalLayoutProps) 
 
     return (
         <div className="min-h-screen bg-muted/30">
-            {/* Header Background */}
-            <div className="h-64 bg-gradient-to-r from-primary/10 to-secondary/10 w-full absolute top-0 left-0 -z-10" />
 
             <div className="container mx-auto px-4 py-12 relative">
-                {/* Back Link */}
-                <Link
-                    href="/"
-                    className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8 transition-colors"
-                >
-                    <ArrowLeft className="mr-2 h-4 w-4" />
-                    {t('back_home')}
-                </Link>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     {/* Sidebar */}
