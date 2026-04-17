@@ -70,6 +70,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     };
 }
 
-export default function BiztonsagPage() {
+import { trackEvent } from "@/lib/analytics";
+
+export default async function BiztonsagPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+
+    // Track service view
+    trackEvent("view_service", "engagement", {
+        service: "biztonsag",
+        locale
+    });
+
     return <BiztonsagContent />;
 }

@@ -8,6 +8,7 @@ import { getUserByEmail } from "@/data/user";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
 import { getTranslations } from "next-intl/server";
+import { trackEvent } from "@/lib/analytics";
 import { cookies } from "next/headers";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
@@ -57,6 +58,9 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         } catch (crmError) {
             console.error("CRM Sync Error:", crmError);
         }
+
+        // Track successful registration
+        await trackEvent("user_registered", "auth", { email });
 
         return { success: t("verification_sent") };
     } catch (error) {

@@ -30,8 +30,18 @@ export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
 
+import { trackEvent } from "@/lib/analytics";
+
 export const revalidate = 86400; // 24 hours
 
-export default function WebfejlesztesPage() {
+export default async function WebfejlesztesPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+
+    // Track service view
+    trackEvent("view_service", "engagement", {
+        service: "webfejlesztes",
+        locale
+    });
+
     return <WebDevelopmentClient />;
 }

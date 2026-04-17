@@ -5,6 +5,7 @@ import { Link } from "@/i18n/routing"
 import { notFound } from "next/navigation"
 import { getTranslations } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
+import { trackEvent } from "@/lib/analytics"
 
 export const revalidate = 3600
 
@@ -40,6 +41,15 @@ export default async function ProductDetailPage({ params }: PageProps) {
     const { slug, locale } = await params
     const product = await getLocalizedProductBySlug(slug, locale)
     const t = await getTranslations('ProductDetailPage')
+
+    if (product) {
+        // Track product view
+        trackEvent("view_product", "engagement", {
+            slug,
+            name: product.title,
+            locale
+        });
+    }
 
     if (!product) {
         return (
