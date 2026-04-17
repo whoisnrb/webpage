@@ -569,7 +569,8 @@
         "open_ticket_action": "Jegyet nyit",
         "client_portal_header": "Ügyfélfiókom",
         "navigation": "Navigáció",
-        "anonymous_user": "Névtelen felhasználó"
+        "anonymous_user": "Névtelen felhasználó",
+        "name_label": "Név"
     },
     "Tickets": {
         "title": "Hibajegyek",

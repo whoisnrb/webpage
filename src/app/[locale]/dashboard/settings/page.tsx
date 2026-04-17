@@ -47,7 +47,7 @@ export default async function SettingsPage({ params }: { params: Promise<{ local
                     {initials}
                 </div>
                 <div>
-                    <p className="font-semibold">{userName || 'Névtelen felhasználó'}</p>
+                    <p className="font-semibold">{userName || tDash('anonymous_user')}</p>
                     <p className="text-sm text-muted-foreground">{userEmail}</p>
                 </div>
                 <div className="ml-auto flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-400">

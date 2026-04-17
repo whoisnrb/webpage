@@ -569,7 +569,8 @@
         "open_ticket_action": "Open Ticket",
         "client_portal_header": "Client Portal",
         "navigation": "Navigation",
-        "anonymous_user": "Anonymous User"
+        "anonymous_user": "Anonymous User",
+        "name_label": "Name"
     },
     "Tickets": {
         "title": "Tickets",
