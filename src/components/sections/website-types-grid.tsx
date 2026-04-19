@@ -68,7 +68,7 @@ export function WebsiteTypesGrid() {
                                 viewport={{ once: true, margin: "-50px" }}
                                 className="group h-full"
                             >
-                                <Link href={`/ajanlatkeres?subject=${encodeURIComponent(typeName)}`} className="block h-full">
+                                <Link href={{ pathname: '/ajanlatkeres', query: { subject: typeName } }} className="block h-full">
                                     <div className="relative h-full bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-6 transition-all duration-300 hover:bg-slate-800/80 hover:border-orange-500/30 hover:shadow-[0_0_30px_-5px_rgba(249,115,22,0.15)] flex flex-col">
                                         <div className="flex items-center gap-4 mb-4">
                                             <div className="flex items-center justify-center w-12 h-12 border border-orange-500/20 rounded-xl text-orange-400 bg-orange-500/5 group-hover:bg-orange-500/10 transition-colors shrink-0">
