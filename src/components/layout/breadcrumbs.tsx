@@ -1,18 +1,22 @@
 "use client"
 
-import { usePathname } from "@/i18n/routing"
+import { usePathname as useNextPathname } from "next/navigation"
 import { Link } from "@/i18n/routing"
 import { ChevronRight, Home } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 export function Breadcrumbs() {
-    const pathname = usePathname()
+    const rawPathname = useNextPathname() || ""
     const t = useTranslations('Breadcrumbs')
 
-    // Don't show breadcrumbs on home page
-    if (pathname === '/') return null
+    // Parse path and remove locale if present
+    const rawSegments = rawPathname.split('/').filter(Boolean)
+    const segments = rawSegments.length > 0 && ['hu', 'en'].includes(rawSegments[0]) 
+        ? rawSegments.slice(1) 
+        : rawSegments
 
-    const segments = pathname.split('/').filter(Boolean)
+    // Don't show breadcrumbs on home page
+    if (segments.length === 0) return null
 
     return (
         <nav className="flex items-center text-sm text-muted-foreground py-4 animate-in fade-in slide-in-from-left-4 duration-500">
@@ -26,11 +30,12 @@ export function Breadcrumbs() {
                 const isLast = index === segments.length - 1
 
                 // Try to translate the segment, fallback to capitalizing the segment itself
-                let name = segment
-                if (t.has(segment as any)) {
-                    name = t(segment as any)
+                const decodedSegment = decodeURIComponent(segment)
+                let name = decodedSegment
+                if (t.has(decodedSegment as any)) {
+                    name = t(decodedSegment as any)
                 } else {
-                    name = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ')
+                    name = decodedSegment.charAt(0).toUpperCase() + decodedSegment.slice(1).replace(/-/g, ' ')
                 }
 
                 return (
