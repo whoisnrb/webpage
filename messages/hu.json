@@ -1838,6 +1838,113 @@
         "WebDev": {
             "title": "Webfejlesztés & Webáruház",
             "description": "Modern, gyors és konverzió-fókuszált weboldalak és webshopok. Nem csak szépek, de pénzt is termelnek.",
+            "websiteTypes": {
+                "title": "Weboldal típusok • üzletileg működő megoldások",
+                "subtitle": "Kattints bármelyik kártyára, és automatikusan kitöltöm az ajánlatkérés tárgyát.",
+                "clickToQuote": "Kattints ajánlatkéréshez ➔",
+                "items": {
+                    "presentation": {
+                        "title": "Bemutatkozó weboldal",
+                        "description": "Cég, szolgáltatás vagy személyes márka professzionális online bemutatása.",
+                        "badge": "Brand építés"
+                    },
+                    "landing": {
+                        "title": "Landing page",
+                        "description": "Egy kampányra, hirdetésre vagy konkrét ajánlatra optimalizált konverziós oldal.",
+                        "badge": "Konverzió fókusz"
+                    },
+                    "portfolio": {
+                        "title": "Portfólió oldal",
+                        "description": "Referenciák, projektek és vizuális eredmények látványos prezentálása.",
+                        "badge": "Referenciák"
+                    },
+                    "webshop": {
+                        "title": "Webshop",
+                        "description": "Online értékesítés, kosár, rendelés, admin és mobilra optimalizált vásárlási folyamat.",
+                        "badge": "Értékesítés"
+                    },
+                    "corporate": {
+                        "title": "Céges weboldal",
+                        "description": "Több aloldalas vállalati jelenlét kapcsolatfelvétellel, szolgáltatásblokkokkal és bizalomépítéssel.",
+                        "badge": "Stabil jelenlét"
+                    },
+                    "blog": {
+                        "title": "Blog / magazin",
+                        "description": "Cikkek, hírek, tartalommarketing és keresőbarát folyamatos publikáció.",
+                        "badge": "Tartalommarketing"
+                    },
+                    "news": {
+                        "title": "Hírportál",
+                        "description": "Nagy mennyiségű frissülő tartalom, kategóriák és erős navigációs struktúra.",
+                        "badge": "Nagy forgalom"
+                    },
+                    "social": {
+                        "title": "Közösségi oldal",
+                        "description": "Profilok, posztok, aktivitáskezelés és közösségi funkciók egy rendszeren belül.",
+                        "badge": "Közösség"
+                    },
+                    "forum": {
+                        "title": "Fórum",
+                        "description": "Témák, hozzászólások, moderáció és strukturált beszélgetések.",
+                        "badge": "Interakció"
+                    },
+                    "education": {
+                        "title": "Oktatási oldal",
+                        "description": "Kurzusok, leckék, zárt tartalmak és előrehaladás kezelés.",
+                        "badge": "E-learning"
+                    },
+                    "booking": {
+                        "title": "Foglalási rendszer",
+                        "description": "Időpontfoglalás, automatikus visszaigazolás és ügyfélkezelési folyamatok.",
+                        "badge": "Automatizáció"
+                    },
+                    "classified": {
+                        "title": "Apróhirdetési oldal",
+                        "description": "Hirdetésfeladás, kategóriák, keresés, szűrés és kapcsolatfelvételi lehetőség.",
+                        "badge": "Hirdetések"
+                    },
+                    "catalog": {
+                        "title": "Katalógus oldal",
+                        "description": "Szolgáltatások vagy termékek áttekinthető listázása direkt vásárlás nélkül.",
+                        "badge": "Prezentáció"
+                    },
+                    "membership": {
+                        "title": "Tagsági oldal",
+                        "description": "Belépéshez kötött tartalmak, jogosultságok és előfizetéses üzleti modell.",
+                        "badge": "Előfizetés"
+                    },
+                    "webapp": {
+                        "title": "Webalkalmazás",
+                        "description": "Komplex üzleti logika, admin, ügyfélkezelés és egyedi folyamatok digitális leképezése.",
+                        "badge": "Rendszerfejlesztés"
+                    },
+                    "onepage": {
+                        "title": "One-page weboldal",
+                        "description": "Minden információ egyetlen, letisztult, gyorsan fogyasztható oldalon.",
+                        "badge": "Letisztult"
+                    },
+                    "cv": {
+                        "title": "Személyes / CV oldal",
+                        "description": "Önéletrajz, bemutatkozás, készségek, tapasztalat és kapcsolat egy modern felületen.",
+                        "badge": "Személyes márka"
+                    },
+                    "nonprofit": {
+                        "title": "Nonprofit / egyesületi oldal",
+                        "description": "Közösségi célú szervezetek, programok, események és támogatói felületek.",
+                        "badge": "Közösségi cél"
+                    },
+                    "media": {
+                        "title": "Streaming / médiaoldal",
+                        "description": "Rádió, podcast, élő stream, videó vagy tartalomfogyasztásra kihegyezett felület.",
+                        "badge": "Média platform"
+                    },
+                    "portal": {
+                        "title": "Ügyfélportál",
+                        "description": "Belépés utáni dokumentumok, státuszok, számlák, ügyféladatok és ügykezelés.",
+                        "badge": "B2B / Ügyfélkezelés"
+                    }
+                }
+            },
             "hero_features": [
                 "Egyedi weboldal tervezés és fejlesztés",
                 "WooCommerce / Shopify webáruház készítés",

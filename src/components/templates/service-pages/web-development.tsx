@@ -1,7 +1,7 @@
 "use client"
 
 import { ServiceLayout } from "@/components/templates/service-layout"
-import { UseCases } from "@/components/sections/use-cases"
+import { WebsiteTypesGrid } from "@/components/sections/website-types-grid"
 import { ShoppingCart, Globe, Rocket, Building2, Smartphone, Zap, CheckCircle2, ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -176,12 +176,8 @@ export function WebDevelopmentClient() {
             >
                 {/* Individual Page Content as Children */}
 
-                {/* Project Types (UseCases) */}
-                <UseCases
-                    title={t("project_types_title")}
-                    description={t("project_types_desc")}
-                    cases={projectTypes}
-                />
+                {/* Project Types (WebsiteTypesGrid) */}
+                <WebsiteTypesGrid />
 
                 {/* Extended Portfolio Section */}
                 <section className="py-24 md:py-32 relative overflow-hidden bg-transparent">

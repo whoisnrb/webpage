@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { Suspense, useEffect, useState } from "react"
+import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -12,7 +13,21 @@ import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
 
 export default function QuoteRequestPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-muted/30 py-12 px-4 flex items-center justify-center">
+                <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+            </div>
+        }>
+            <QuoteRequestContent />
+        </Suspense>
+    )
+}
+
+function QuoteRequestContent() {
     const t = useTranslations("QuoteRequest");
+    const searchParams = useSearchParams();
+    const subject = searchParams.get('subject');
     const [step, setStep] = useState(1)
     const [submitted, setSubmitted] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -27,6 +42,16 @@ export default function QuoteRequestPage() {
         description: "",
         deadline: ""
     })
+
+    useEffect(() => {
+        if (subject) {
+            setFormData(prev => ({
+                ...prev,
+                projectType: "web",
+                description: `Érdeklődöm a következő weboldal típus készítése iránt: ${subject}`
+            }))
+        }
+    }, [subject])
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })

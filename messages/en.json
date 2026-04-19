@@ -1872,6 +1872,113 @@
         "WebDev": {
             "title": "Web Development & E-commerce",
             "description": "Modern, fast, and conversion-focused websites and webshops. Not just beautiful, but they also generate revenue.",
+            "websiteTypes": {
+                "title": "Website types • solutions that work for business",
+                "subtitle": "Click any card, and I'll automatically fill in the quote request subject.",
+                "clickToQuote": "Click to request a quote ➔",
+                "items": {
+                    "presentation": {
+                        "title": "Presentation site",
+                        "description": "Professional online presentation of a company, service, or personal brand.",
+                        "badge": "Brand building"
+                    },
+                    "landing": {
+                        "title": "Landing page",
+                        "description": "A conversion page optimized for a campaign, ad, or specific offer.",
+                        "badge": "Conversion focus"
+                    },
+                    "portfolio": {
+                        "title": "Portfolio site",
+                        "description": "Spectacular presentation of references, projects, and visual results.",
+                        "badge": "References"
+                    },
+                    "webshop": {
+                        "title": "Webshop",
+                        "description": "Online sales, cart, ordering, admin, and mobile-optimized shopping process.",
+                        "badge": "Sales"
+                    },
+                    "corporate": {
+                        "title": "Corporate website",
+                        "description": "Multi-page corporate presence with contact forms, service blocks, and trust building.",
+                        "badge": "Stable presence"
+                    },
+                    "blog": {
+                        "title": "Blog / magazine",
+                        "description": "Articles, news, content marketing, and SEO-friendly continuous publication.",
+                        "badge": "Content marketing"
+                    },
+                    "news": {
+                        "title": "News portal",
+                        "description": "High volume of updating content, categories, and strong navigation structure.",
+                        "badge": "High traffic"
+                    },
+                    "social": {
+                        "title": "Social network",
+                        "description": "Profiles, posts, activity management, and social features within one system.",
+                        "badge": "Community"
+                    },
+                    "forum": {
+                        "title": "Forum",
+                        "description": "Topics, comments, moderation, and structured discussions.",
+                        "badge": "Interaction"
+                    },
+                    "education": {
+                        "title": "Educational site",
+                        "description": "Courses, lessons, gated content, and progress management.",
+                        "badge": "E-learning"
+                    },
+                    "booking": {
+                        "title": "Booking system",
+                        "description": "Appointment booking, automatic confirmation, and customer management processes.",
+                        "badge": "Automation"
+                    },
+                    "classified": {
+                        "title": "Classifieds site",
+                        "description": "Ad posting, categories, search, filtering, and contact capabilities.",
+                        "badge": "Advertisements"
+                    },
+                    "catalog": {
+                        "title": "Catalog site",
+                        "description": "Clear listing of services or products without direct purchase.",
+                        "badge": "Presentation"
+                    },
+                    "membership": {
+                        "title": "Membership site",
+                        "description": "Gated content, permissions, and subscription-based business model.",
+                        "badge": "Subscription"
+                    },
+                    "webapp": {
+                        "title": "Web application",
+                        "description": "Digital mapping of complex business logic, admin, CRM, and custom processes.",
+                        "badge": "System development"
+                    },
+                    "onepage": {
+                        "title": "One-page website",
+                        "description": "All information on a single, clean, fast-to-consume page.",
+                        "badge": "Clean"
+                    },
+                    "cv": {
+                        "title": "Personal / CV site",
+                        "description": "Resume, introduction, skills, experience, and contact in a modern interface.",
+                        "badge": "Personal brand"
+                    },
+                    "nonprofit": {
+                        "title": "Nonprofit / association site",
+                        "description": "Community goal organizations, programs, events, and supporter interfaces.",
+                        "badge": "Community goal"
+                    },
+                    "media": {
+                        "title": "Streaming / media site",
+                        "description": "Radio, podcast, live stream, video, or content consumption focused interface.",
+                        "badge": "Media platform"
+                    },
+                    "portal": {
+                        "title": "Client portal",
+                        "description": "Post-login documents, statuses, invoices, client data, and case management.",
+                        "badge": "B2B / CRM"
+                    }
+                }
+            },
             "hero_features": [
                 "Custom website design and development",
                 "WooCommerce / Shopify webshop creation",
