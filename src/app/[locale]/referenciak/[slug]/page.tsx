@@ -7,6 +7,7 @@ import { Link } from "@/i18n/routing"
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 import { getLocalizedReferenceBySlug } from '@/app/actions/reference'
+import { ClientGallery } from './client-gallery'
 
 // Force dynamic rendering — Prisma nem érhető el build-time-on (Vercel)
 export const dynamic = 'force-dynamic'
@@ -135,13 +136,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 {(study.galleryImages && study.galleryImages.length > 0) && (
                     <div className="mb-16">
                         <h2 className="text-2xl font-bold mb-8">{t('gallery') || 'Galéria'}</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {study.galleryImages.map((img, i) => (
-                                <div key={i} className="aspect-video rounded-xl overflow-hidden shadow-md group border">
-                                    <img src={img} alt={`${study.title} ${i + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                                </div>
-                            ))}
-                        </div>
+                        <ClientGallery images={study.galleryImages} title={study.title} />
                     </div>
                 )}
 
