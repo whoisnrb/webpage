@@ -10,6 +10,7 @@ import { useTranslations } from "next-intl"
 import { motion } from "framer-motion"
 import { FadeIn } from "@/components/ui/motion-wrapper"
 import { Link } from "@/i18n/routing"
+import { NeuralNetworkBackground } from "@/components/ui/neural-network-background"
 
 export function WebsiteTypesGrid() {
     const t = useTranslations("Services.WebDev.websiteTypes")
@@ -39,6 +40,7 @@ export function WebsiteTypesGrid() {
 
     return (
         <section className="py-24 md:py-32 bg-[#08080a] relative overflow-hidden">
+            <NeuralNetworkBackground />
             {/* Dark background, orange/amber subtle glows based on screenshots */}
             <div className="absolute top-1/4 left-0 w-96 h-96 bg-orange-500/5 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-[120px] pointer-events-none" />
