@@ -166,7 +166,7 @@ export function Header() {
                                                             return (
                                                                 <Link
                                                                     key={item.name}
-                                                                    href={item.href}
+                                                                    href={item.href as any}
                                                                     className={cn(
                                                                         "text-sm font-medium transition-colors border-l-2 pl-4 py-1",
                                                                         isActive
@@ -190,7 +190,7 @@ export function Header() {
                                             return (
                                                 <Link
                                                     key={item.name}
-                                                    href={item.href}
+                                                    href={item.href as any}
                                                     className={cn(
                                                         "text-lg font-bold transition-all px-1 py-1",
                                                         isActive ? "text-primary" : "text-white/90 hover:text-primary"
