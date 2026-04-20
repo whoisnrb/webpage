@@ -161,7 +161,8 @@ export function Header() {
                                                 <AccordionContent>
                                                     <div className="flex flex-col gap-3 pl-4 pt-2 pb-4">
                                                         {category.items.map((item) => {
-                                                            const isActive = pathname === item.href || (typeof item.href === 'object' && pathname === item.href.pathname);
+                                                            const href = typeof item.href === 'string' ? item.href : (item.href as any).pathname;
+                                                            const isActive = pathname === href;
                                                             return (
                                                                 <Link
                                                                     key={item.name}
