@@ -1689,7 +1689,10 @@
         "blog": "Blog",
         "blog_desc": "Technical articles and guides",
         "reviews": "Reviews",
-        "reviews_desc": "Client feedback"
+        "reviews_desc": "Client feedback",
+        "theme": "Theme",
+        "language": "Language",
+        "currency": "Currency"
     },
     "ServiceTemplate": {
         "premium_service": "PREMIUM SERVICE",

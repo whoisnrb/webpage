@@ -1655,7 +1655,10 @@
         "blog": "Blog",
         "blog_desc": "Szakmai cikkek és útmutatók",
         "reviews": "Vélemények",
-        "reviews_desc": "Ügyfeleink visszajelzései"
+        "reviews_desc": "Ügyfeleink visszajelzései",
+        "theme": "Téma",
+        "language": "Nyelv",
+        "currency": "Pénznem"
     },
     "ServiceTemplate": {
         "premium_service": "PRÉMIUM SZOLGÁLTATÁS",

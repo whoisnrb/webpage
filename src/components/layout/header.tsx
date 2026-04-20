@@ -205,19 +205,19 @@ export function Header() {
                                 </nav>
                                 <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
                                     <div className="flex justify-between items-center px-2">
-                                        <div className="flex items-center gap-6">
-                                            <div className="flex flex-col gap-1 items-center">
+                                        <div className="flex items-center gap-8">
+                                            <div className="flex flex-col gap-1.5 items-center">
                                                 <ThemeCustomizer />
-                                                <span className="text-[10px] text-white/20 uppercase font-bold tracking-widest">{tMega("theme")}</span>
+                                                <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">{tMega("theme")}</span>
                                             </div>
-                                            <div className="flex flex-col gap-1 items-center">
+                                            <div className="flex flex-col gap-1.5 items-center">
                                                 <LanguageSwitcher />
-                                                <span className="text-[10px] text-white/20 uppercase font-bold tracking-widest">{tMega("language")}</span>
+                                                <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">{tMega("language")}</span>
                                             </div>
                                         </div>
-                                        <div className="flex flex-col gap-1 items-end">
+                                        <div className="flex flex-col gap-1.5 items-center">
                                             <CurrencySwitcher />
-                                            <span className="text-[10px] text-white/20 uppercase font-bold tracking-widest">{tMega("currency")}</span>
+                                            <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">{tMega("currency")}</span>
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-1 gap-3 mt-4">
