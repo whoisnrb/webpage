@@ -12,26 +12,58 @@ import { ThemeCustomizer } from "@/components/theme/theme-customizer"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
 import { CurrencySwitcher } from "@/components/layout/currency-switcher"
 import { MegaMenu } from "@/components/layout/mega-menu"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { NeuralBackground } from "@/components/neural-background"
+import { cn } from "@/lib/utils"
 
 
 
 export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
     const t = useTranslations("Navigation")
+    const tMega = useTranslations("MegaMenu")
     const pathname = usePathname()
 
     if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
         return null;
     }
 
-    const navigation: { name: string; href: any }[] = [
-        { name: t("services"), href: "/szolgaltatasok" },
-        { name: t("scripts"), href: "/szolgaltatasok/scriptek" },
-        { name: t("web_dev"), href: "/szolgaltatasok/webfejlesztes" },
-        { name: t("products"), href: "/megoldasok" },
-        { name: t("references"), href: "/referenciak" },
-        { name: t("pricing"), href: "/arak" },
-        { name: t("reviews"), href: "/velemeny" },
+    const navCategories = [
+        {
+            name: t("services"),
+            href: "/szolgaltatasok",
+            items: [
+                { name: tMega("nav_items.scripts"), href: "/szolgaltatasok/scriptek" },
+                { name: tMega("nav_items.webdev"), href: "/szolgaltatasok/webfejlesztes" },
+                { name: tMega("nav_items.sysadmin"), href: "/szolgaltatasok/rendszeruzemeltetes" },
+                { name: tMega("nav_items.network"), href: "/szolgaltatasok/halozat" },
+                { name: tMega("nav_items.integrations"), href: "/szolgaltatasok/integraciok" },
+            ]
+        },
+        {
+            name: t("products"),
+            href: "/megoldasok",
+            items: [
+                { name: tMega("all_products"), href: "/megoldasok" },
+                { name: tMega("scripts"), href: "/megoldasok?category=scripts" },
+                { name: tMega("web"), href: "/megoldasok?category=web" },
+                { name: tMega("plugins"), href: "/megoldasok?category=plugins" },
+            ]
+        },
+        {
+            name: tMega("knowledge"),
+            href: "/referenciak",
+            items: [
+                { name: t("references"), href: "/referenciak" },
+                { name: t("pricing"), href: "/arak" },
+                { name: t("reviews"), href: "/velemeny" },
+                { name: tMega("blog"), href: "/blog" },
+            ]
+        }
+    ]
+
+    const singleLinks = [
+        { name: tMega("contact"), href: "/kapcsolat" },
     ]
 
     return (
@@ -113,35 +145,88 @@ export function Header() {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="md:hidden border-b bg-background"
+                            className="md:hidden border-b bg-[#050810]/95 backdrop-blur-3xl relative overflow-hidden"
                         >
-                            <div className="container mx-auto px-4 py-4 space-y-4">
-                                <nav className="flex flex-col gap-4">
-                                    {navigation.map((item) => (
-                                        <Link
-                                            key={item.name}
-                                            href={item.href}
-                                            className="text-sm font-medium text-foreground hover:text-primary"
-                                            onClick={() => setMobileMenuOpen(false)}
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    ))}
-                                </nav>
-                                <div className="flex flex-col gap-2 pt-4 border-t">
-                                    <div className="flex justify-between items-center px-2">
-                                        <div className="flex items-center gap-4">
-                                            <ThemeCustomizer />
-                                            <LanguageSwitcher />
-                                        </div>
-                                        <CurrencySwitcher />
+                            <div className="absolute inset-0 z-0 opacity-20">
+                                <NeuralBackground />
+                            </div>
+                            <div className="container mx-auto px-4 py-8 space-y-6 relative z-10">
+                                <nav>
+                                    <Accordion type="single" collapsible className="w-full">
+                                        {navCategories.map((category) => (
+                                            <AccordionItem key={category.name} value={category.name} className="border-white/5">
+                                                <AccordionTrigger className="text-lg font-bold text-white/90 hover:text-primary py-4 hover:no-underline">
+                                                    {category.name}
+                                                </AccordionTrigger>
+                                                <AccordionContent>
+                                                    <div className="flex flex-col gap-3 pl-4 pt-2 pb-4">
+                                                        {category.items.map((item) => {
+                                                            const isActive = pathname === item.href || (typeof item.href === 'object' && pathname === item.href.pathname);
+                                                            return (
+                                                                <Link
+                                                                    key={item.name}
+                                                                    href={item.href}
+                                                                    className={cn(
+                                                                        "text-sm font-medium transition-colors border-l-2 pl-4 py-1",
+                                                                        isActive
+                                                                            ? "text-primary border-primary bg-primary/5"
+                                                                            : "text-white/40 border-transparent hover:text-white hover:border-white/10"
+                                                                    )}
+                                                                    onClick={() => setMobileMenuOpen(false)}
+                                                                >
+                                                                    {item.name}
+                                                                </Link>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </AccordionContent>
+                                            </AccordionItem>
+                                        ))}
+                                    </Accordion>
+                                    <div className="flex flex-col gap-4 mt-6">
+                                        {singleLinks.map((item) => {
+                                            const isActive = pathname === item.href;
+                                            return (
+                                                <Link
+                                                    key={item.name}
+                                                    href={item.href}
+                                                    className={cn(
+                                                        "text-lg font-bold transition-all px-1 py-1",
+                                                        isActive ? "text-primary" : "text-white/90 hover:text-primary"
+                                                    )}
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                >
+                                                    {item.name}
+                                                </Link>
+                                            )
+                                        })}
                                     </div>
-                                    <Button variant="ghost" asChild className="justify-start">
-                                        <Link href="/login">{t("client_portal")}</Link>
-                                    </Button>
-                                    <Button className="w-full bg-accent hover:bg-accent/90 text-white" asChild>
-                                        <Link href="/demo">{t("free_consultation")}</Link>
-                                    </Button>
+                                </nav>
+                                <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
+                                    <div className="flex justify-between items-center px-2">
+                                        <div className="flex items-center gap-6">
+                                            <div className="flex flex-col gap-1 items-center">
+                                                <ThemeCustomizer />
+                                                <span className="text-[10px] text-white/20 uppercase font-bold tracking-widest">{tMega("theme")}</span>
+                                            </div>
+                                            <div className="flex flex-col gap-1 items-center">
+                                                <LanguageSwitcher />
+                                                <span className="text-[10px] text-white/20 uppercase font-bold tracking-widest">{tMega("language")}</span>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-col gap-1 items-end">
+                                            <CurrencySwitcher />
+                                            <span className="text-[10px] text-white/20 uppercase font-bold tracking-widest">{tMega("currency")}</span>
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-1 gap-3 mt-4">
+                                        <Button variant="outline" asChild className="w-full bg-white/5 border-white/10 hover:bg-white/10 text-white">
+                                            <Link href="/login">{t("client_portal")}</Link>
+                                        </Button>
+                                        <Button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:scale-[1.02] transition-transform text-white border-none shadow-lg shadow-cyan-500/20 font-bold h-12" asChild>
+                                            <Link href="/demo">{t("free_consultation")}</Link>
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>

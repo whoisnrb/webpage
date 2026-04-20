@@ -15,6 +15,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { MobileFab } from "@/components/layout/mobile-fab";
 import { Toaster } from "sonner";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
 
@@ -151,6 +152,7 @@ export default async function RootLayout({
                   <BackToTop />
                   <CookieBanner />
                   <ChatWidget />
+                  <MobileFab />
                   <Analytics />
                   <Toaster position="bottom-right" theme="dark" />
                 </CartProvider>
