@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -36,6 +36,12 @@ export default async function AdminLayout({
                         <Button variant="ghost" className="w-full justify-start">
                             <FileText className="mr-2 h-4 w-4" />
                             Konzultációk
+                        </Button>
+                    </Link>
+                    <Link href={"/admin/inquiries" as any}>
+                        <Button variant="ghost" className="w-full justify-start">
+                            <MessageSquare className="mr-2 h-4 w-4" />
+                            Megkeresések
                         </Button>
                     </Link>
                     <Link href={"/admin/crm" as any}>

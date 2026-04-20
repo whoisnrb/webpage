@@ -104,7 +104,7 @@ export function HalozatContent() {
                                 className="h-16 px-8 rounded-2xl bg-primary hover:bg-primary/90 text-white font-black uppercase tracking-tight shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)]"
                                 asChild
                             >
-                                <Link href="/kapcsolat">
+                                <Link href={{ pathname: "/ajanlatkeres", query: { service: "Hálózatépítés" } }}>
                                     {t("cta_button")} <ArrowRight className="ml-2 h-5 w-5" />
                                 </Link>
                             </Button>

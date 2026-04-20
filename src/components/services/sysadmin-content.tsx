@@ -134,7 +134,7 @@ export function SysAdminContent() {
                                 <div className="pt-8 border-t border-white/5">
                                     <p className="text-xs text-white/20 mb-8">{t("pricing_reaction_time")}: 24 {tCommon("hours")}</p>
                                     <Button className="w-full h-16 rounded-2xl bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10" asChild>
-                                        <Link href="/kapcsolat">{t("pricing_select_plan")}</Link>
+                                        <Link href={{ pathname: "/ajanlatkeres", query: { service: "Rendszerüzemeltetés" } }}>{t("pricing_select_plan")}</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@ export function SysAdminContent() {
                                 <div className="pt-8 border-t border-white/5">
                                     <p className="text-xs text-primary/60 font-bold mb-8">⚡ {t("pricing_reaction_time")}: 4 {tCommon("hours")}</p>
                                     <Button className="w-full h-16 rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)] font-black uppercase tracking-tight" asChild>
-                                        <Link href="/kapcsolat">{t("pricing_select_plan")}</Link>
+                                        <Link href={{ pathname: "/ajanlatkeres", query: { service: "Rendszerüzemeltetés" } }}>{t("pricing_select_plan")}</Link>
                                     </Button>
                                 </div>
                             </div>
@@ -207,7 +207,7 @@ export function SysAdminContent() {
                                 <div className="pt-8 border-t border-white/5">
                                     <p className="text-xs text-amber-400/60 font-bold mb-8">🔥 {t("pricing_reaction_time")}: 1 {tCommon("hours")}</p>
                                     <Button className="w-full h-16 rounded-2xl bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10 font-black uppercase tracking-tight" asChild>
-                                        <Link href="/kapcsolat">{t("pricing_contact_us")}</Link>
+                                        <Link href={{ pathname: "/ajanlatkeres", query: { service: "Rendszerüzemeltetés" } }}>{t("pricing_contact_us")}</Link>
                                     </Button>
                                 </div>
                             </div>

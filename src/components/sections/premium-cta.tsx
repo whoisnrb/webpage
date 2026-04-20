@@ -43,7 +43,7 @@ export function PremiumCTA() {
 
                         <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
                             <Button size="lg" className="h-20 px-14 text-2xl font-black uppercase tracking-tight bg-white text-slate-950 hover:bg-white/90 hover:scale-105 transition-all duration-500 rounded-2xl shadow-[0_20px_40px_-10px_rgba(255,255,255,0.4)]" asChild>
-                                <Link href="/demo" className="flex items-center">
+                                <Link href="/ajanlatkeres" className="flex items-center">
                                     {t("free_consultation")}
                                     <ArrowRight className="ml-4 h-8 w-8" />
                                 </Link>

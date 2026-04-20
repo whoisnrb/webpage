@@ -45,3 +45,82 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     }
 };
 
+export const sendAdminInquiryNotification = async (inquiry: any) => {
+    const adminEmail = process.env.GMAIL_USER;
+    if (!adminEmail) return;
+
+    const mailOptions = {
+        from: `"BacklineIT System" <${process.env.GMAIL_USER}>`,
+        to: adminEmail,
+        subject: `ÚJ AJÁNLATKÉRÉS: ${inquiry.name} - ${inquiry.serviceType}`,
+        html: `
+            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #1a1a1a; background-color: #050810; color: #fff; border-radius: 15px;">
+                <h2 style="color: #06b6d4; border-bottom: 1px solid #333; padding-bottom: 10px;">Új Ajánlatkérés Érkezett</h2>
+                <div style="margin: 20px 0;">
+                    <p><strong>Név:</strong> ${inquiry.name}</p>
+                    <p><strong>Email:</strong> ${inquiry.email}</p>
+                    <p><strong>Telefon:</strong> ${inquiry.phone || 'Nincs megadva'}</p>
+                    <p><strong>Cég:</strong> ${inquiry.company || 'Nincs megadva'}</p>
+                    <p><strong>Típus:</strong> ${inquiry.serviceType}</p>
+                    <p><strong>Büdzsé:</strong> ${inquiry.budget || 'Nincs megadva'}</p>
+                </div>
+                <div style="background-color: #0f172a; padding: 15px; border-radius: 10px; border: 1px solid #1e293b;">
+                    <h3 style="margin-top: 0; color: #06b6d4; font-size: 14px;">Leírás:</h3>
+                    <p style="white-space: pre-wrap;">${inquiry.description}</p>
+                </div>
+                <p style="margin-top: 20px; font-size: 12px; color: #64748b;">Ezt az üzenetet a BacklineIT automatikus rendszere küldte.</p>
+            </div>
+        `,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(`[MAIL] Admin notification sent for inquiry from ${inquiry.email}`);
+    } catch (error) {
+        console.error("[MAIL] Error sending admin notification:", error);
+    }
+};
+
+export const sendPaymentLinkEmail = async (email: string, name: string, serviceType: string, paymentLink: string) => {
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) return;
+
+    const mailOptions = {
+        from: `"BacklineIT Team" <${process.env.GMAIL_USER}>`,
+        to: email,
+        subject: `Fizetési hivatkozás: ${serviceType} - BacklineIT`,
+        html: `
+            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #eee; border-radius: 20px; color: #333;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h1 style="color: #000; margin-bottom: 10px;">Tisztelt ${name}!</h1>
+                    <p style="font-size: 16px; color: #666;">Köszönjük a bizalmadat! Elkészült az egyedi fizetési hivatkozásod a(z) <strong>${serviceType}</strong> szolgáltatáshoz.</p>
+                </div>
+                
+                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 25px; border-radius: 15px; text-align: center; margin: 30px 0;">
+                    <p style="margin-bottom: 20px; font-weight: 500;">A fizetés elindításához kattints az alábbi gombra:</p>
+                    <a href="${paymentLink}" style="display: inline-block; background-color: #06b6d4; color: #ffffff; padding: 16px 32px; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px -1px rgba(6, 182, 212, 0.2);">BIZTONSÁGOS FIZETÉS</a>
+                    <p style="margin-top: 20px; font-size: 12px; color: #94a3b8;">A fizetés a Stripe titkosított rendszerén keresztül történik.</p>
+                </div>
+
+                <p style="font-size: 14px; line-height: 1.6; color: #475569;">
+                    A fizetés után rendszerünk rögzíti a tranzakciót, és hamarosan megkezdjük a beállított munkafolyamatokat. A számlát a Számlázz.hu rendszerén keresztül küldjük meg részedre.
+                </p>
+
+                <hr style="border: none; border-top: 1px solid #f1f5f9; margin: 30px 0;">
+                
+                <div style="text-align: center;">
+                    <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px;">BacklineIT Csapat</p>
+                    <p style="font-size: 12px; color: #94a3b8;">Ez egy automatikusan generált üzenet.</p>
+                </div>
+            </div>
+        `,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(`[MAIL] Payment link email sent to ${email}`);
+    } catch (error) {
+        console.error("[MAIL] Error sending payment link email:", error);
+    }
+};
+
+

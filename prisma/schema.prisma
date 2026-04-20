@@ -322,3 +322,18 @@ model Reference {
   documentationFile String?
   showDocumentation Boolean  @default(false)
 }
+model ServiceInquiry {
+  id                String   @id @default(cuid())
+  name              String
+  email             String
+  phone             String?
+  company           String?
+  serviceType       String   // web, script, sysadmin, etc.
+  budget            String?
+  description       String
+  stripePaymentLink String?
+  status            String   @default("NEW") // NEW, QUOTED, PAID, COMPLETED, CANCELLED
+  adminNotes        String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}

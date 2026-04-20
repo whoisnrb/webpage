@@ -44,14 +44,21 @@ function QuoteRequestContent() {
     })
 
     useEffect(() => {
-        if (subject) {
+        const serviceParam = searchParams.get('service');
+        if (serviceParam) {
+            setFormData(prev => ({
+                ...prev,
+                projectType: serviceParam,
+                description: `Érdeklődöm a következő szolgáltatás iránt: ${serviceParam}`
+            }))
+        } else if (subject) {
             setFormData(prev => ({
                 ...prev,
                 projectType: "web",
                 description: `Érdeklődöm a következő weboldal típus készítése iránt: ${subject}`
             }))
         }
-    }, [subject])
+    }, [subject, searchParams])
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -65,11 +72,29 @@ function QuoteRequestContent() {
         e.preventDefault()
         setLoading(true)
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        try {
+            const { submitInquiry } = await import("@/app/actions/inquiry")
+            const result = await submitInquiry({
+                name: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                company: formData.company,
+                serviceType: formData.projectType || "egyéb",
+                budget: formData.budget,
+                description: formData.description
+            })
 
-        setLoading(false)
-        setSubmitted(true)
+            if (result.success) {
+                setSubmitted(true)
+            } else {
+                alert(result.error || "Hiba történt a beküldés során.")
+            }
+        } catch (error) {
+            console.error(error)
+            alert("Váratlan hiba történt.")
+        } finally {
+            setLoading(false)
+        }
     }
 
     const nextStep = () => setStep(step + 1)
