@@ -72,8 +72,8 @@ export function MegaMenu() {
                 <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("services")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/40 backdrop-blur-3xl border border-white/10 shadow-2xl">
-                            <div className="absolute inset-0 z-0 opacity-[0.07] pointer-events-none">
+                        <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 shadow-2xl">
+                            <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
                                 <NeuralBackground />
                             </div>
                             <ul className="relative z-10 grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
@@ -111,8 +111,8 @@ export function MegaMenu() {
                 <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("products")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/40 backdrop-blur-3xl border border-white/10 shadow-2xl">
-                            <div className="absolute inset-0 z-0 opacity-[0.07] pointer-events-none">
+                        <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 shadow-2xl">
+                            <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
                                 <NeuralBackground />
                             </div>
                             <ul className="relative z-10 grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
@@ -136,8 +136,8 @@ export function MegaMenu() {
                 <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("knowledge")}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/40 backdrop-blur-3xl border border-white/10 shadow-2xl">
-                            <div className="absolute inset-0 z-0 opacity-[0.07] pointer-events-none">
+                        <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 shadow-2xl">
+                            <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
                                 <NeuralBackground />
                             </div>
                             <ul className="relative z-10 grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
