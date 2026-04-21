@@ -24,7 +24,7 @@ export async function createCheckoutSession(params: {
         const origin = headersList.get("origin") || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
 
         // Helper to handle zero-decimal currencies
-        const zeroDecimalCurrencies = ['bif', 'clp', 'djf', 'gnf', 'jpy', 'kmf', 'krw', 'mga', 'pyg', 'rwf', 'ugx', 'vnd', 'vuv', 'xaf', 'xof', 'xpf', 'huf']
+        const zeroDecimalCurrencies = ['bif', 'clp', 'djf', 'gnf', 'jpy', 'kmf', 'krw', 'mga', 'pyg', 'rwf', 'ugx', 'vnd', 'vuv', 'xaf', 'xof', 'xpf']
         const isZeroDecimal = zeroDecimalCurrencies.includes(params.currency.toLowerCase())
         const unitAmount = isZeroDecimal ? Math.round(params.price) : Math.round(params.price * 100)
 
