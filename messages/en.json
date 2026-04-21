@@ -2520,5 +2520,11 @@
         }
       }
     }
+  },
+  "SuccessPage": {
+    "title": "Payment Successful!",
+    "description": "Thank you for your trust! Your payment was successful and your service is in progress.",
+    "invoice_notice": "Your electronic invoice has been automatically sent to your provided email address via Szamlazz.hu.",
+    "back_home": "Back to Home"
   }
 }

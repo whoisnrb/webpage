@@ -45,7 +45,7 @@ export async function createCheckoutSession(params: {
                 },
             ],
             mode: "payment",
-            success_url: params.successUrl ? `${origin}${params.successUrl}` : `${origin}/megoldasok?success=true`,
+            success_url: params.successUrl ? `${origin}${params.successUrl}` : `${origin}/sikeres-fizetes`,
             cancel_url: params.cancelUrl ? `${origin}${params.cancelUrl}` : `${origin}/megoldasok?canceled=true`,
             metadata: {
                 serviceName: params.serviceName,

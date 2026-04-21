@@ -2486,5 +2486,11 @@
         }
       }
     }
+  },
+  "SuccessPage": {
+    "title": "Sikeres Fizetés!",
+    "description": "Köszönjük a bizalmadat! A kifizetés sikeresen megtörtént, a szolgáltatásod folyamatban van.",
+    "invoice_notice": "Az elektronikus számlát (E-számla) automatikusan elküldtük a megadott e-mail címedre a Számlázz.hu rendszerén keresztül.",
+    "back_home": "Vissza a főoldalra"
   }
 }
