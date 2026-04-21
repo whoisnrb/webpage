@@ -13,6 +13,7 @@ import { FadeIn } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { useCurrency } from "@/components/currency-provider"
 import { formatPrice } from "@/lib/currency"
+import { CheckoutButton } from "@/components/checkout-button"
 
 export function WebDevelopmentClient() {
     const t = useTranslations("Services.WebDev")
@@ -300,12 +301,15 @@ export function WebDevelopmentClient() {
 
                                         <div className="pt-8 border-t border-white/5 mt-auto">
                                             <p className="text-xs italic text-white/20 mb-8">{plan.ideal}</p>
-                                            <Button className={`w-full h-16 rounded-2xl text-lg font-black uppercase tracking-tight transition-all duration-500 ${plan.popular ? 'bg-primary hover:bg-primary/90 text-white shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)]' : 'bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10'}`} asChild>
-                                                <Link href={{ pathname: "/ajanlatkeres", query: { service: "Webfejlesztés" } }}>
-                                                    {tServices("cta_quote")}
-                                                    <ArrowRight className="ml-3 h-6 w-6" />
-                                                </Link>
-                                            </Button>
+                                            <CheckoutButton 
+                                                serviceName={`Webfejlesztés - ${plan.name}`}
+                                                price={plan.price}
+                                                currency="HUF"
+                                                className={`w-full h-16 rounded-2xl text-lg font-black uppercase tracking-tight transition-all duration-500 ${plan.popular ? 'bg-primary hover:bg-primary/90 text-white shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)]' : 'bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10'}`}
+                                            >
+                                                Fizetés Most
+                                                <ArrowRight className="ml-3 h-6 w-6" />
+                                            </CheckoutButton>
                                         </div>
                                     </SpotlightCard>
                                 </motion.div>

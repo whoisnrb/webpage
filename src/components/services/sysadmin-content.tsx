@@ -14,6 +14,7 @@ import { useCurrency } from "@/components/currency-provider"
 import { formatPrice } from "@/lib/currency"
 import { SysAdminHero } from "@/components/sections/sysadmin-hero"
 import { PremiumCTA } from "@/components/sections/premium-cta"
+import { CheckoutButton } from "@/components/checkout-button"
 
 export function SysAdminContent() {
     const t = useTranslations("Services.SysAdmin")
@@ -133,9 +134,14 @@ export function SysAdminContent() {
                                 </div>
                                 <div className="pt-8 border-t border-white/5">
                                     <p className="text-xs text-white/20 mb-8">{t("pricing_reaction_time")}: 24 {tCommon("hours")}</p>
-                                    <Button className="w-full h-16 rounded-2xl bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10" asChild>
-                                        <Link href={{ pathname: "/ajanlatkeres", query: { service: "Rendszerüzemeltetés" } }}>{t("pricing_select_plan")}</Link>
-                                    </Button>
+                                    <CheckoutButton 
+                                        serviceName={`Rendszerüzemeltetés - ${t("plans.starter.name")}`}
+                                        price={70000}
+                                        currency="HUF"
+                                        className="w-full h-16 rounded-2xl bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10 font-black uppercase tracking-tight transition-all duration-500"
+                                    >
+                                        {t("pricing_select_plan")}
+                                    </CheckoutButton>
                                 </div>
                             </div>
                         </motion.div>
@@ -174,9 +180,14 @@ export function SysAdminContent() {
                                 </div>
                                 <div className="pt-8 border-t border-white/5">
                                     <p className="text-xs text-primary/60 font-bold mb-8">⚡ {t("pricing_reaction_time")}: 4 {tCommon("hours")}</p>
-                                    <Button className="w-full h-16 rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)] font-black uppercase tracking-tight" asChild>
-                                        <Link href={{ pathname: "/ajanlatkeres", query: { service: "Rendszerüzemeltetés" } }}>{t("pricing_select_plan")}</Link>
-                                    </Button>
+                                    <CheckoutButton 
+                                        serviceName={`Rendszerüzemeltetés - ${t("plans.pro.name")}`}
+                                        price={175000}
+                                        currency="HUF"
+                                        className="w-full h-16 rounded-2xl bg-primary hover:bg-primary/90 text-white shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)] font-black uppercase tracking-tight transition-all duration-500"
+                                    >
+                                        {t("pricing_select_plan")}
+                                    </CheckoutButton>
                                 </div>
                             </div>
                         </motion.div>

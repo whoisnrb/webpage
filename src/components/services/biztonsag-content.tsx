@@ -12,6 +12,7 @@ import { FadeIn } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { useCurrency } from "@/components/currency-provider"
 import { formatPrice } from "@/lib/currency"
+import { CheckoutButton } from "@/components/checkout-button"
 
 export function BiztonsagContent() {
     const t = useTranslations("Services.Security")
@@ -206,12 +207,24 @@ export function BiztonsagContent() {
                                         <div className="pt-8 border-t border-white/5 mt-auto">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-3">{t("plans.base.duration_label")}</p>
                                             <p className="text-sm italic text-white/40 mb-8">{plan.duration}</p>
-                                            <Button className={`w-full h-16 rounded-2xl text-lg font-black uppercase tracking-tight transition-all duration-500 ${plan.popular ? 'bg-primary hover:bg-primary/90 text-white shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)]' : 'bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10'}`} asChild>
-                                                <Link href={{ pathname: "/ajanlatkeres", query: { service: "Kiberbiztonság" } }}>
-                                                    {t("cta_request_audit")}
+                                            {plan.price ? (
+                                                <CheckoutButton 
+                                                    serviceName={`Kiberbiztonság - ${plan.name}`}
+                                                    price={plan.price}
+                                                    currency="HUF"
+                                                    className={`w-full h-16 rounded-2xl text-lg font-black uppercase tracking-tight transition-all duration-500 ${plan.popular ? 'bg-primary hover:bg-primary/90 text-white shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)]' : 'bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10'}`}
+                                                >
+                                                    Fizetés Most
                                                     <ArrowRight className="ml-3 h-6 w-6" />
-                                                </Link>
-                                            </Button>
+                                                </CheckoutButton>
+                                            ) : (
+                                                <Button className={`w-full h-16 rounded-2xl text-lg font-black uppercase tracking-tight transition-all duration-500 bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10`} asChild>
+                                                    <Link href={{ pathname: "/ajanlatkeres", query: { service: "Kiberbiztonság" } }}>
+                                                        {t("cta_request_audit")}
+                                                        <ArrowRight className="ml-3 h-6 w-6" />
+                                                    </Link>
+                                                </Button>
+                                            )}
                                         </div>
                                     </SpotlightCard>
                                 </motion.div>
