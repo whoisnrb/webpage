@@ -34,7 +34,7 @@ export async function createInvoice(session: Stripe.Checkout.Session) {
     // or we'd need to fetch line items from Stripe API: const lineItems = await stripe.checkout.sessions.listLineItems(session.id)
     
     const serviceName = session.metadata?.serviceName || "IT Szolgáltatás"
-    const amountInHuf = session.amount_total ? session.amount_total : 0 // Since HUF is zero decimal, amount_total is exactly HUF. If it was EUR, it would be cents.
+    const amountInHuf = session.amount_total ? session.amount_total / 100 : 0 // Stripe returns HUF amounts multiplied by 100 (treating it as hundred-decimal)
 
     // AAM (Alanyi Adómentes) or 27% VAT. Assuming Alanyi Adómentes for individual entrepreneur by default, but this should be configurable.
     const item = new szamlazz.Item({
