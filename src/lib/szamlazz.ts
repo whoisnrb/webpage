@@ -14,7 +14,7 @@ export async function createInvoice(session: Stripe.Checkout.Session) {
     // Initialize Számla Agent Client
     const szamlaAgent = new szamlazz.Client({
         authToken: process.env.SZAMLAZZHU_API_KEY,
-        eInvoice: true, // Generate e-invoice
+        eInvoice: false, // E-számla készítés nincs engedélyezve a fiókban, így hagyományos digitális számlát állítunk ki
         requestInvoiceDownload: false, // We just want to issue it and let Számlázz.hu email it
     })
 
@@ -45,16 +45,20 @@ export async function createInvoice(session: Stripe.Checkout.Session) {
         netUnitPrice: amountInHuf, // For AAM, net = gross
     })
 
+    // The seller's data is usually automatically resolved from the Számlázz.hu account based on the API key, but the XML requires an <elado> block.
+    const seller = new szamlazz.Seller({
+        bank: '' // An empty seller object is often enough to create the <elado> block
+    })
+
     const invoice = new szamlazz.Invoice({
         paymentMethod: szamlazz.PaymentMethod.Stripe,
         currency: szamlazz.Currency.Ft,
         language: szamlazz.Language.Hungarian,
-        invoiceIdPrefix: 'WEB', // Prefix for web orders
         paid: true, // Since they paid via Stripe
+        seller: seller,
         buyer: buyer,
+        items: [item]
     })
-
-    invoice.add(item)
 
     // Issue the invoice
     try {
