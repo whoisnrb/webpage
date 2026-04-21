@@ -51,6 +51,7 @@ export async function createInvoice(session: Stripe.Checkout.Session) {
         language: szamlazz.Language.Hungarian,
         invoiceIdPrefix: 'WEB', // Prefix for web orders
         paid: true, // Since they paid via Stripe
+        buyer: buyer,
     })
 
     invoice.add(item)
