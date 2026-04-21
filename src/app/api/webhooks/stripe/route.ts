@@ -45,8 +45,23 @@ export async function POST(req: NextRequest) {
                  console.warn("No customer details found in session, skipping invoice generation.")
             }
 
-            // TODO: Update database order status if we stored it
-
+            // Save payment to database so it appears in Admin Inquiries panel
+            if (session.customer_details) {
+                const { prisma } = require('@/lib/db')
+                await prisma.serviceInquiry.create({
+                    data: {
+                        name: session.customer_details.name || 'Ismeretlen Vásárló',
+                        email: session.customer_details.email || 'ismeretlen@email.com',
+                        serviceType: session.metadata?.serviceName || 'Stripe Checkout',
+                        description: 'Automatikus Stripe fizetés',
+                        status: 'PAID',
+                        budget: session.amount_total ? `${session.amount_total / 100} Ft` : 'N/A',
+                        company: session.customer_details.address?.line1 || null,
+                        phone: session.customer_details.phone || null
+                    }
+                })
+                console.log(`Saved ServiceInquiry to database for session ${session.id}`)
+            }
         } catch (error) {
             console.error("Error processing successful checkout:", error)
             return NextResponse.json({ error: "Error processing checkout" }, { status: 500 })

@@ -234,9 +234,11 @@ export function Header() {
                     )}
                 </AnimatePresence>
             </header>
-            <div className="container mx-auto px-4">
-                <Breadcrumbs />
-            </div>
+            {!pathname.includes('/sikeres-fizetes') && (
+                <div className="container mx-auto px-4">
+                    <Breadcrumbs />
+                </div>
+            )}
         </>
     )
 }
