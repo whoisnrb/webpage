@@ -78,7 +78,7 @@ export default async function SuccessPage({ params }: Props) {
                         size="lg" 
                         className="h-14 px-10 rounded-xl bg-white text-black hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] font-bold text-lg transition-all shadow-[0_0_40px_rgba(255,255,255,0.2)]"
                     >
-                        <Link href="/dashboard">
+                        <Link href={"/dashboard" as any}>
                             {t("back_home")}
                             <ArrowRight className="ml-2 h-5 w-5" />
                         </Link>
