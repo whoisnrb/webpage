@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -60,6 +60,12 @@ export default async function AdminLayout({
                         <Button variant="ghost" className="w-full justify-start">
                             <Ticket className="mr-2 h-4 w-4" />
                             Support Tickets
+                        </Button>
+                    </Link>
+                    <Link href={"/admin/projects" as any}>
+                        <Button variant="ghost" className="w-full justify-start text-blue-500">
+                            <Folder className="mr-2 h-4 w-4" />
+                            Ügyfél Projektek
                         </Button>
                     </Link>
                     <Link href={"/admin/careers" as any}>

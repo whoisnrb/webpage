@@ -123,4 +123,47 @@ export const sendPaymentLinkEmail = async (email: string, name: string, serviceT
     }
 };
 
+export const sendAccountCreatedEmail = async (email: string, name: string, generatedPassword: string, projectName: string) => {
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) return;
 
+    const mailOptions = {
+        from: `"BacklineIT Team" <${process.env.GMAIL_USER}>`,
+        to: email,
+        subject: `Sikeres megrendelés és fiók létrehozása - BacklineIT`,
+        html: `
+            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #eee; border-radius: 20px; color: #333;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h1 style="color: #000; margin-bottom: 10px;">Üdvözlünk a fedélzeten, ${name}!</h1>
+                    <p style="font-size: 16px; color: #666;">Köszönjük a megrendelést! A(z) <strong>${projectName}</strong> projekted elindult.</p>
+                </div>
+                
+                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 25px; border-radius: 15px; text-align: center; margin: 30px 0;">
+                    <h3 style="margin-top: 0;">Ügyfélportál Hozzáférés</h3>
+                    <p style="margin-bottom: 20px;">Automatikusan létrehoztunk számodra egy fiókot, ahol nyomon követheted a projekted állását.</p>
+                    
+                    <div style="background-color: #fff; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 20px; text-align: left;">
+                        <p style="margin: 0 0 10px 0;"><strong>E-mail:</strong> ${email}</p>
+                        <p style="margin: 0;"><strong>Jelszó:</strong> <code style="background: #f1f5f9; padding: 4px 8px; border-radius: 4px;">${generatedPassword}</code></p>
+                    </div>
+
+                    <a href="https://backlineit.hu/login" style="display: inline-block; background-color: #06b6d4; color: #ffffff; padding: 16px 32px; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 6px -1px rgba(6, 182, 212, 0.2);">BELÉPÉS A PORTÁLRA</a>
+                    <p style="margin-top: 20px; font-size: 12px; color: #94a3b8;">Kérjük, az első belépés után változtasd meg a jelszavad a Beállítások menüpontban!</p>
+                </div>
+
+                <hr style="border: none; border-top: 1px solid #f1f5f9; margin: 30px 0;">
+                
+                <div style="text-align: center;">
+                    <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px;">BacklineIT Csapat</p>
+                    <p style="font-size: 12px; color: #94a3b8;">Ez egy automatikusan generált üzenet.</p>
+                </div>
+            </div>
+        `,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(`[MAIL] Account creation email sent to ${email}`);
+    } catch (error) {
+        console.error("[MAIL] Error sending account creation email:", error);
+    }
+};

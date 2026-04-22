@@ -516,6 +516,7 @@
   },
   "Dashboard": {
     "title": "Fiókom",
+    "projects": "Projektek",
     "logout": "Kijelentkezés",
     "orders_title": "Korábbi Rendelések",
     "orders_empty": "Még nem vásároltál semmit. Nézz körül a <link>termékeink</link> között!",

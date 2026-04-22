@@ -516,6 +516,7 @@
   },
   "Dashboard": {
     "title": "My Account",
+    "projects": "Projects",
     "logout": "Logout",
     "orders_title": "Order History",
     "orders_empty": "You haven't purchased anything yet. Browse our <link>products</link>!",

@@ -48,11 +48,15 @@ export async function POST(req: NextRequest) {
             // Save payment to database so it appears in Admin Inquiries panel
             if (session.customer_details) {
                 const { prisma } = require('@/lib/db')
+                const email = session.customer_details.email || 'ismeretlen@email.com';
+                const name = session.customer_details.name || 'Ismeretlen Vásárló';
+                const serviceName = session.metadata?.serviceName || 'Stripe Checkout';
+
                 await prisma.serviceInquiry.create({
                     data: {
-                        name: session.customer_details.name || 'Ismeretlen Vásárló',
-                        email: session.customer_details.email || 'ismeretlen@email.com',
-                        serviceType: session.metadata?.serviceName || 'Stripe Checkout',
+                        name: name,
+                        email: email,
+                        serviceType: serviceName,
                         description: 'Automatikus Stripe fizetés',
                         status: 'PAID',
                         budget: session.amount_total ? `${session.amount_total / 100} Ft` : 'N/A',
@@ -61,6 +65,47 @@ export async function POST(req: NextRequest) {
                     }
                 })
                 console.log(`Saved ServiceInquiry to database for session ${session.id}`)
+
+                // Create User and Project if not exists
+                if (email !== 'ismeretlen@email.com') {
+                    let user = await prisma.user.findUnique({ where: { email } });
+                    let isNewUser = false;
+                    let generatedPassword = "";
+
+                    if (!user) {
+                        const { hash } = require('bcryptjs');
+                        const crypto = require('crypto');
+                        generatedPassword = crypto.randomBytes(6).toString('hex'); // 12 chars
+                        const hashedPassword = await hash(generatedPassword, 10);
+                        
+                        user = await prisma.user.create({
+                            data: {
+                                email,
+                                name,
+                                password: hashedPassword,
+                                role: "USER",
+                            }
+                        });
+                        isNewUser = true;
+                    }
+
+                    // Create project
+                    await prisma.project.create({
+                        data: {
+                            title: serviceName,
+                            description: `Automatikus projekt létrehozás Stripe fizetés után.`,
+                            status: "KICKOFF",
+                            userId: user.id,
+                            serviceType: serviceName,
+                        }
+                    });
+                    console.log(`Created project for user ${email}`);
+
+                    if (isNewUser) {
+                        const { sendAccountCreatedEmail } = require('@/lib/mail');
+                        await sendAccountCreatedEmail(email, name, generatedPassword, serviceName);
+                    }
+                }
             }
         } catch (error) {
             console.error("Error processing successful checkout:", error)

@@ -2,12 +2,13 @@
 
 import { Link, usePathname } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
-import { LayoutDashboard, Ticket, Settings, LogOut, ShieldAlert, Code2, ChevronRight } from "lucide-react"
+import { LayoutDashboard, Ticket, Settings, LogOut, ShieldAlert, Code2, ChevronRight, Briefcase } from "lucide-react"
 import { useSession, signOut } from "next-auth/react"
 import { useTranslations } from "next-intl"
 
 const sidebarItems = [
     { name: "overview", href: "/dashboard", icon: LayoutDashboard, color: "text-primary", bg: "bg-primary/10", hoverBorder: "hover:border-primary/30", activeBorder: "border-primary/30", activeBg: "bg-primary/10", activeText: "text-primary" },
+    { name: "projects", href: "/dashboard/projects", icon: Briefcase, color: "text-blue-400", bg: "bg-blue-400/10", hoverBorder: "hover:border-blue-400/30", activeBorder: "border-blue-400/30", activeBg: "bg-blue-400/10", activeText: "text-blue-400" },
     { name: "title",    href: "/dashboard/tickets", icon: Ticket,          color: "text-orange-400", bg: "bg-orange-400/10", hoverBorder: "hover:border-orange-400/30", activeBorder: "border-orange-400/30", activeBg: "bg-orange-400/10", activeText: "text-orange-400" },
     { name: "settings", href: "/dashboard/settings", icon: Settings,        color: "text-slate-400",  bg: "bg-slate-400/10",  hoverBorder: "hover:border-slate-400/30", activeBorder: "border-slate-400/30",  activeBg: "bg-slate-400/10",  activeText: "text-slate-300" },
 ]
