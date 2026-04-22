@@ -167,3 +167,66 @@ export const sendAccountCreatedEmail = async (email: string, name: string, gener
         console.error("[MAIL] Error sending account creation email:", error);
     }
 };
+
+export const sendStatusUpdateEmail = async (email: string, name: string, projectName: string, newStatus: string, progress: number) => {
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) return;
+
+    const statusMap: Record<string, string> = {
+        'KICKOFF': 'Indulás',
+        'DESIGN': 'Tervezés',
+        'DEVELOPMENT': 'Fejlesztés',
+        'REVISION': 'Revízió',
+        'COMPLETED': 'Kész'
+    };
+
+    const friendlyStatus = statusMap[newStatus] || newStatus;
+    
+    // Customize messaging based on completion
+    const isCompleted = progress === 100 || newStatus === 'COMPLETED';
+    const headline = isCompleted ? 'A projekted elkészült!' : 'Projekt állapotfrissítés';
+    const subheadline = isCompleted 
+        ? `Örömmel értesítünk, hogy a(z) <strong>${projectName}</strong> projekted elérte a 100%-os készültséget!` 
+        : `A(z) <strong>${projectName}</strong> projekted új fázisba lépett.`;
+
+    const mailOptions = {
+        from: `"BacklineIT Team" <${process.env.GMAIL_USER}>`,
+        to: email,
+        subject: isCompleted ? `A projekted elkészült! 🎉 - BacklineIT` : `Projekt állapotfrissítés: ${friendlyStatus} - BacklineIT`,
+        html: `
+            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 30px; border: 1px solid #eee; border-radius: 20px; color: #333;">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h1 style="color: #000; margin-bottom: 10px;">Kedves ${name}!</h1>
+                    <p style="font-size: 16px; color: #666;">${subheadline}</p>
+                </div>
+                
+                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 25px; border-radius: 15px; text-align: center; margin: 30px 0;">
+                    <p style="margin-bottom: 10px; font-weight: 500; font-size: 14px; color: #64748b;">JELENLEGI STÁTUSZ</p>
+                    <h2 style="margin: 0 0 15px 0; color: #06b6d4; font-size: 24px;">${friendlyStatus}</h2>
+                    
+                    <div style="background-color: #e2e8f0; border-radius: 999px; height: 8px; margin: 20px 0; overflow: hidden; width: 100%;">
+                        <div style="background-color: #06b6d4; height: 100%; width: ${progress}%; border-radius: 999px;"></div>
+                    </div>
+                    <p style="margin-top: 10px; font-weight: bold; font-size: 18px;">Készültség: ${progress}%</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <a href="https://backlineit.hu/dashboard/projects" style="display: inline-block; background-color: #000; color: #ffffff; padding: 14px 28px; text-decoration: none; border-radius: 10px; font-weight: bold; font-size: 14px;">IRÁNY A VEZÉRLŐPULT</a>
+                    </div>
+                </div>
+
+                <hr style="border: none; border-top: 1px solid #f1f5f9; margin: 30px 0;">
+                
+                <div style="text-align: center;">
+                    <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px;">BacklineIT Csapat</p>
+                    <p style="font-size: 12px; color: #94a3b8;">Ez egy automatikusan generált üzenet.</p>
+                </div>
+            </div>
+        `,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(`[MAIL] Status update email sent to ${email} (Status: ${friendlyStatus}, Progress: ${progress}%)`);
+    } catch (error) {
+        console.error("[MAIL] Error sending status update email:", error);
+    }
+};
