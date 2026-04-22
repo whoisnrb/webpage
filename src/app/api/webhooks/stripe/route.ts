@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
 import { headers } from "next/headers"
 import { createInvoice } from "@/lib/szamlazz"
+import { prisma } from "@/lib/db"
+import { sendAccountCreatedEmail } from "@/lib/mail"
+import { hash } from "bcryptjs"
+import crypto from "crypto"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
     apiVersion: "2024-06-20" as any,
@@ -47,7 +51,6 @@ export async function POST(req: NextRequest) {
 
             // Save payment to database so it appears in Admin Inquiries panel
             if (session.customer_details) {
-                const { prisma } = require('@/lib/db')
                 const email = session.customer_details.email || 'ismeretlen@email.com';
                 const name = session.customer_details.name || 'Ismeretlen Vásárló';
                 const serviceName = session.metadata?.serviceName || 'Stripe Checkout';
@@ -73,8 +76,6 @@ export async function POST(req: NextRequest) {
                     let generatedPassword = "";
 
                     if (!user) {
-                        const { hash } = require('bcryptjs');
-                        const crypto = require('crypto');
                         generatedPassword = crypto.randomBytes(6).toString('hex'); // 12 chars
                         const hashedPassword = await hash(generatedPassword, 10);
                         
@@ -102,7 +103,6 @@ export async function POST(req: NextRequest) {
                     console.log(`Created project for user ${email}`);
 
                     if (isNewUser) {
-                        const { sendAccountCreatedEmail } = require('@/lib/mail');
                         await sendAccountCreatedEmail(email, name, generatedPassword, serviceName);
                     }
                 }
