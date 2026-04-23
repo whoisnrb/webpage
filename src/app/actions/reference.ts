@@ -122,7 +122,7 @@ const getCachedReferenceBySlug = unstable_cache(
         if (!reference) return null
         return mapReference(reference)
     },
-    ['reference-by-slug'],
+    ['reference-by-slug', slug],
     { revalidate: 3600, tags: ['references'] }
 )
 
