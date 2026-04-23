@@ -97,12 +97,20 @@ function localizeProduct(product: ProductDTO, locale: string): LocalizedProductD
     }
 }
 
-export async function getProducts(): Promise<ProductDTO[]> {
-    try {
+const getCachedProducts = unstable_cache(
+    async () => {
         const products = await prisma.product.findMany({
             orderBy: { createdAt: 'desc' }
         })
         return products.map(mapProduct)
+    },
+    ['all-products'],
+    { revalidate: 3600, tags: ['products'] }
+)
+
+export async function getProducts(): Promise<ProductDTO[]> {
+    try {
+        return await getCachedProducts()
     } catch (error) {
         console.error('Error fetching products:', error)
         return []
@@ -115,13 +123,21 @@ export async function getLocalizedProducts(locale: string = 'hu'): Promise<Local
     return products.map(p => localizeProduct(p, locale))
 }
 
-export async function getProductBySlug(slug: string): Promise<ProductDTO | null> {
-    try {
+const getCachedProductBySlug = unstable_cache(
+    async (slug: string) => {
         const product = await prisma.product.findUnique({
             where: { slug }
         })
         if (!product) return null
         return mapProduct(product)
+    },
+    ['product-by-slug'],
+    { revalidate: 3600, tags: ['products'] }
+)
+
+export async function getProductBySlug(slug: string): Promise<ProductDTO | null> {
+    try {
+        return await getCachedProductBySlug(slug)
     } catch (error) {
         console.error('Error fetching product by slug:', error)
         return null
