@@ -1,11 +1,24 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export function NeuralBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
+    const [isMobile, setIsMobile] = useState<boolean | null>(null)
 
     useEffect(() => {
+        // Detect mobile once on mount - avoids SSR mismatch
+        setIsMobile(window.innerWidth < 768)
+
+        const handleResize = () => setIsMobile(window.innerWidth < 768)
+        window.addEventListener("resize", handleResize)
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
+
+    useEffect(() => {
+        // Only run the heavy canvas animation on desktop
+        if (isMobile !== false) return
+
         const canvas = canvasRef.current
         if (!canvas) return
 
@@ -16,11 +29,11 @@ export function NeuralBackground() {
         let height = (canvas.height = window.innerHeight)
 
         const particles: Particle[] = []
-        const particleCount = 100 // Adjust for density
+        const particleCount = 100
         const connectionDistance = 150
         const mouseDistance = 200
-
         let mouse = { x: 0, y: 0 }
+        let animationId: number
 
         class Particle {
             x: number
@@ -32,7 +45,7 @@ export function NeuralBackground() {
             constructor() {
                 this.x = Math.random() * width
                 this.y = Math.random() * height
-                this.vx = (Math.random() - 0.5) * 0.5 // Slower movement
+                this.vx = (Math.random() - 0.5) * 0.5
                 this.vy = (Math.random() - 0.5) * 0.5
                 this.size = Math.random() * 2 + 1
             }
@@ -40,38 +53,15 @@ export function NeuralBackground() {
             update() {
                 this.x += this.vx
                 this.y += this.vy
-
-                // Bounce off edges
                 if (this.x < 0 || this.x > width) this.vx *= -1
                 if (this.y < 0 || this.y > height) this.vy *= -1
-
-                // Mouse interaction
-                const dx = mouse.x - this.x
-                const dy = mouse.y - this.y
-                const distance = Math.sqrt(dx * dx + dy * dy)
-
-                if (distance < mouseDistance) {
-                    // Gentle push away or pull towards? Let's do a subtle pull for "connection" feel
-                    // or maybe just highlight. Let's make them slightly flee to create a "wave"
-                    const forceDirectionX = dx / distance
-                    const forceDirectionY = dy / distance
-                    const force = (mouseDistance - distance) / mouseDistance
-                    const directionX = forceDirectionX * force * 0.5
-                    const directionY = forceDirectionY * force * 0.5
-
-                    // Repel
-                    // this.vx -= directionX
-                    // this.vy -= directionY
-
-                    // Actually, let's just make them connect to mouse
-                }
             }
 
             draw() {
                 if (!ctx) return
                 ctx.beginPath()
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-                ctx.fillStyle = "rgba(6, 182, 212, 0.5)" // Cyan nodes
+                ctx.fillStyle = "rgba(6, 182, 212, 0.5)"
                 ctx.fill()
             }
         }
@@ -87,22 +77,16 @@ export function NeuralBackground() {
             if (!ctx) return
             ctx.clearRect(0, 0, width, height)
 
-            // Update and draw particles
-            particles.forEach((particle) => {
-                particle.update()
-                particle.draw()
-            })
+            particles.forEach((p) => { p.update(); p.draw() })
 
-            // Draw connections
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x
                     const dy = particles[i].y - particles[j].y
                     const distance = Math.sqrt(dx * dx + dy * dy)
-
                     if (distance < connectionDistance) {
                         ctx.beginPath()
-                        ctx.strokeStyle = `rgba(6, 182, 212, ${1 - distance / connectionDistance})` // Cyan lines
+                        ctx.strokeStyle = `rgba(6, 182, 212, ${1 - distance / connectionDistance})`
                         ctx.lineWidth = 1
                         ctx.moveTo(particles[i].x, particles[i].y)
                         ctx.lineTo(particles[j].x, particles[j].y)
@@ -110,14 +94,12 @@ export function NeuralBackground() {
                     }
                 }
 
-                // Connect to mouse
                 const dx = particles[i].x - mouse.x
                 const dy = particles[i].y - mouse.y
                 const distance = Math.sqrt(dx * dx + dy * dy)
-
                 if (distance < mouseDistance) {
                     ctx.beginPath()
-                    ctx.strokeStyle = `rgba(139, 92, 246, ${1 - distance / mouseDistance})` // Purple mouse connections
+                    ctx.strokeStyle = `rgba(139, 92, 246, ${1 - distance / mouseDistance})`
                     ctx.lineWidth = 1.5
                     ctx.moveTo(particles[i].x, particles[i].y)
                     ctx.lineTo(mouse.x, mouse.y)
@@ -125,7 +107,7 @@ export function NeuralBackground() {
                 }
             }
 
-            requestAnimationFrame(animate)
+            animationId = requestAnimationFrame(animate)
         }
 
         const handleResize = () => {
@@ -141,20 +123,41 @@ export function NeuralBackground() {
 
         window.addEventListener("resize", handleResize)
         window.addEventListener("mousemove", handleMouseMove)
-
         init()
         animate()
 
         return () => {
+            cancelAnimationFrame(animationId)
             window.removeEventListener("resize", handleResize)
             window.removeEventListener("mousemove", handleMouseMove)
         }
-    }, [])
+    }, [isMobile])
+
+    // Mobile: lightweight static gradient background - zero CPU usage
+    if (isMobile === true) {
+        return (
+            <div
+                className="fixed inset-0 -z-10 pointer-events-none"
+                style={{
+                    background: `
+                        radial-gradient(ellipse at 20% 10%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.03) 0%, transparent 70%),
+                        #050810
+                    `
+                }}
+            />
+        )
+    }
+
+    // Desktop: full animated canvas
+    if (isMobile === null) return null // SSR / initial render - avoid flash
 
     return (
         <canvas
             ref={canvasRef}
-            className="fixed inset-0 -z-10 pointer-events-none" // Transparent, relies on body background
+            className="fixed inset-0 -z-10 pointer-events-none"
         />
     )
 }
+
