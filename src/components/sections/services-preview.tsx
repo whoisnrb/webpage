@@ -247,12 +247,12 @@ export function ServicesPreview() {
                                 <div className="h-2 w-2 rounded-full bg-yellow-500/40" />
                                 <div className="h-2 w-2 rounded-full bg-green-500/40" />
                             </div>
-                            <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] flex-1 font-bold">Network Monitor v2.1</span>
+                            <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] flex-1 font-bold truncate">Network Monitor v2.1</span>
                             <div className="flex items-center gap-1 opacity-60">
                                 <Activity className="h-3 w-3 text-primary animate-pulse" />
                             </div>
                         </div>
-                        <div className="flex items-center gap-6">
+                        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
                             {/* Mini node diagram */}
                             <div className="flex-shrink-0">
                                 <svg viewBox="0 0 80 50" className="w-28 h-20">
@@ -278,7 +278,7 @@ export function ServicesPreview() {
                                 </svg>
                             </div>
                             {/* Live stats */}
-                            <div className="flex-1 space-y-2">
+                            <div className="flex-1 w-full space-y-2">
                                 {[
                                     { label: 'VPN Peers', value: '5/5', color: 'text-cyan-400', bar: 100 },
                                     { label: 'Firewall Rules', value: '48 active', color: 'text-amber-400', bar: 80 },
@@ -331,7 +331,7 @@ export function ServicesPreview() {
                             <Sparkles className="h-3 w-3 animate-spin-slow text-cyan-400" />
                             Premium Intelligence
                         </div>
-                        <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 text-white leading-[0.95] perspective-1000">
+                        <h2 className="text-4xl md:text-7xl font-black tracking-tighter mb-6 md:mb-8 text-white leading-[0.95] perspective-1000">
                             {t('title_1')} <br />
                             <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-cyan-300 to-blue-500 drop-shadow-[0_0_40px_rgba(6,182,212,0.4)]">
                                 {t('title_2')}
@@ -354,7 +354,7 @@ export function ServicesPreview() {
                             transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                         >
                             <SpotlightCard
-                                className="border border-white/10 shadow-3xl hover:border-primary/40 transition-all duration-1000 w-full relative overflow-hidden flex flex-col p-8 md:p-10 backdrop-blur-3xl bg-white/[0.015] rounded-[2.5rem]"
+                                className="border border-white/10 shadow-3xl hover:border-primary/40 transition-all duration-1000 w-full relative overflow-hidden flex flex-col p-6 md:p-10 backdrop-blur-3xl bg-white/[0.015] rounded-[2rem] md:rounded-[2.5rem]"
                                 spotlightColor={service.color}
                             >
                                 {/* Decorative elements */}
@@ -383,12 +383,12 @@ export function ServicesPreview() {
                                 </div>
 
                                 <div className="flex-1 z-10 flex flex-col relative">
-                                    <h3 className="text-3xl font-black mb-4 text-white group-hover:text-primary transition-all duration-700 tracking-tighter leading-none">{service.title}</h3>
-                                    <p className="text-lg text-white/40 mb-8 font-medium leading-relaxed group-hover:text-white/70 transition-all duration-1000">
+                                    <h3 className="text-2xl md:text-3xl font-black mb-3 md:mb-4 text-white group-hover:text-primary transition-all duration-700 tracking-tighter leading-none">{service.title}</h3>
+                                    <p className="text-base md:text-lg text-white/40 mb-6 md:mb-8 font-medium leading-relaxed group-hover:text-white/70 transition-all duration-1000">
                                         {service.description}
                                     </p>
 
-                                    <div className="flex items-center text-xs font-black text-primary mb-8 uppercase tracking-[0.3em] group-hover:tracking-[0.4em] transition-all duration-700">
+                                    <div className="flex items-center text-[10px] md:text-xs font-black text-primary mb-6 md:mb-8 uppercase tracking-[0.3em] group-hover:tracking-[0.4em] transition-all duration-700">
                                         <span className="relative">
                                             {service.benefit}
                                             <span className="absolute -bottom-2 left-0 w-full h-[2px] bg-gradient-to-r from-primary to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />

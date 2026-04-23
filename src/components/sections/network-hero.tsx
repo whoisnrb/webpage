@@ -248,7 +248,7 @@ export function NetworkHero() {
                         </div>
 
                         {/* Title */}
-                        <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9]">
+                        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9]">
                             {t.rich('hero_title', {
                                 br: () => <br />,
                                 span: (chunks) => (
@@ -260,7 +260,7 @@ export function NetworkHero() {
                         </h1>
 
                         {/* Description */}
-                        <p className="text-xl text-white/60 font-medium leading-relaxed max-w-xl">
+                        <p className="text-lg md:text-xl text-white/60 font-medium leading-relaxed max-w-xl">
                             {t('hero_description')}
                         </p>
 
@@ -327,13 +327,14 @@ export function NetworkHero() {
                     <motion.div
                         className="order-1 lg:order-2"
                         initial={{ opacity: 0, x: 30 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.8, ease: 'easeOut' }}
                     >
                         <div className="relative w-full max-w-lg mx-auto lg:mx-0 p-1">
                             {/* Outer glow */}
                             <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-purple-500/10 rounded-3xl blur-2xl opacity-60 pointer-events-none" />
-                            <div className="relative bg-white/[0.02] border border-white/10 rounded-3xl p-4 backdrop-blur-sm shadow-2xl" style={{ height: '420px' }}>
+                            <div className="relative bg-white/[0.02] border border-white/10 rounded-3xl p-4 backdrop-blur-sm shadow-2xl h-[320px] md:h-[420px]">
                                 <NetworkTopologyViz />
                             </div>
                         </div>

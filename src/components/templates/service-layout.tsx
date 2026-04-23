@@ -46,7 +46,7 @@ export function ServiceLayout({
                                     <Sparkles className="h-3 w-3 group-hover:rotate-12 transition-transform" />
                                     {t("premium_service")}
                                 </div>
-                                <h1 className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-8 text-white leading-[0.85]">
+                                <h1 className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-8 text-white leading-[0.85]">
                                     {title.split(' ').map((word, i) => (
                                         <span key={i} className={i === title.split(' ').length - 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-primary to-purple-500 animate-gradient-x bg-[length:200%_auto] block lg:inline" : ""}>
                                             {word}{' '}
@@ -89,18 +89,18 @@ export function ServiceLayout({
                                     />
 
                                     {/* Main Icon Glass Plate */}
-                                    <div className="relative h-full w-full rounded-[48px] bg-white/[0.02] border border-white/10 backdrop-blur-3xl flex items-center justify-center p-12 overflow-hidden group shadow-2xl">
+                                    <div className="relative h-full w-full rounded-[32px] md:rounded-[48px] bg-white/[0.02] border border-white/10 backdrop-blur-3xl flex items-center justify-center p-8 md:p-12 overflow-hidden group shadow-2xl">
                                         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                         <div className="relative text-cyan-400 transform group-hover:scale-110 transition-transform duration-700 drop-shadow-[0_0_30px_rgba(34,211,238,0.5)]">
                                             {icon}
                                         </div>
 
-                                        {/* Floating Elements */}
-                                        <div className="absolute top-12 right-12 p-5 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-xl animate-float shadow-xl">
-                                            <Zap className="h-8 w-8 text-yellow-400" />
+                                        {/* Floating Elements - Adjusted for mobile */}
+                                        <div className="absolute top-4 right-4 md:top-12 md:right-12 p-3 md:p-5 rounded-xl md:rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-xl animate-float shadow-xl">
+                                            <Zap className="h-5 w-5 md:h-8 md:w-8 text-yellow-400" />
                                         </div>
-                                        <div className="absolute bottom-12 left-12 p-5 rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-xl animate-float-delayed shadow-xl">
-                                            <ShieldCheck className="h-8 w-8 text-emerald-400" />
+                                        <div className="absolute bottom-4 left-4 md:bottom-12 md:left-12 p-3 md:p-5 rounded-xl md:rounded-2xl bg-white/[0.05] border border-white/10 backdrop-blur-xl animate-float-delayed shadow-xl">
+                                            <ShieldCheck className="h-5 w-5 md:h-8 md:w-8 text-emerald-400" />
                                         </div>
                                     </div>
                                 </div>
@@ -119,11 +119,11 @@ export function ServiceLayout({
                     <div className="grid lg:grid-cols-2 gap-24 items-start">
                         <div>
                             <SlideUp>
-                                <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter mb-16 leading-[0.9]">
+                                <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white tracking-tighter mb-12 md:mb-16 leading-[0.9]">
                                     {t("why_need_this")}<br />
                                     <span className="text-white/20 italic font-serif">{t("with_backlineit")}</span>
                                 </h2>
-                                <div className="space-y-12">
+                                <div className="space-y-8 md:space-y-12">
                                     {benefits.map((benefit, index) => (
                                         <motion.div
                                             key={index}
@@ -131,14 +131,14 @@ export function ServiceLayout({
                                             whileInView={{ opacity: 1, x: 0 }}
                                             transition={{ delay: index * 0.1 }}
                                             viewport={{ once: true }}
-                                            className="flex gap-8 group"
+                                            className="flex gap-5 md:gap-8 group"
                                         >
-                                            <div className="mt-1 h-16 w-16 shrink-0 rounded-2xl bg-white/[0.03] flex items-center justify-center border border-white/10 text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:scale-110 transition-all duration-500 shadow-lg">
-                                                <Trophy className="h-8 w-8" />
+                                            <div className="mt-1 h-12 w-12 md:h-16 md:w-16 shrink-0 rounded-xl md:rounded-2xl bg-white/[0.03] flex items-center justify-center border border-white/10 text-primary group-hover:bg-primary group-hover:text-white group-hover:border-primary group-hover:scale-110 transition-all duration-500 shadow-lg">
+                                                <Trophy className="h-6 w-6 md:h-8 md:w-8" />
                                             </div>
                                             <div>
-                                                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 group-hover:text-primary transition-colors">{benefit.title}</h3>
-                                                <p className="text-lg md:text-xl text-white/40 leading-relaxed font-medium">{benefit.description}</p>
+                                                <h3 className="text-xl md:text-3xl font-black text-white mb-3 md:mb-4 group-hover:text-primary transition-colors">{benefit.title}</h3>
+                                                <p className="text-base md:text-xl text-white/40 leading-relaxed font-medium">{benefit.description}</p>
                                             </div>
                                         </motion.div>
                                     ))}
@@ -148,21 +148,21 @@ export function ServiceLayout({
 
                         <div className="relative lg:sticky lg:top-32">
                             <FadeIn delay={0.3}>
-                                <div className="p-10 md:p-14 rounded-[48px] bg-white/[0.02] border border-white/10 backdrop-blur-3xl overflow-hidden group shadow-2xl">
+                                <div className="p-8 md:p-14 rounded-[32px] md:rounded-[48px] bg-white/[0.02] border border-white/10 backdrop-blur-3xl overflow-hidden group shadow-2xl">
                                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
 
-                                    <h3 className="text-3xl md:text-4xl font-black text-white mb-10 flex items-center gap-4">
-                                        <div className="h-10 w-10 rounded-xl bg-primary/20 flex items-center justify-center">
-                                            <div className="h-3.5 w-3.5 rounded-full bg-primary animate-pulse" />
+                                    <h3 className="text-2xl md:text-4xl font-black text-white mb-8 md:mb-10 flex items-center gap-4">
+                                        <div className="h-8 w-8 md:h-10 md:w-10 rounded-lg md:rounded-xl bg-primary/20 flex items-center justify-center">
+                                            <div className="h-2.5 w-2.5 md:h-3.5 md:w-3.5 rounded-full bg-primary animate-pulse" />
                                         </div>
                                         {t("whats_included")}
                                     </h3>
 
-                                    <div className="grid gap-5 mb-14">
+                                    <div className="grid gap-4 md:gap-5 mb-10 md:mb-14">
                                         {features.map((feature, index) => (
-                                            <div key={index} className="flex items-center gap-5 p-5 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/30 hover:bg-white/[0.05] transition-all duration-300 group/item">
-                                                <CheckCircle2 className="h-7 w-7 text-primary group-hover/item:scale-110 transition-transform" />
-                                                <span className="text-lg md:text-xl font-semibold text-white/60 group-hover/item:text-white transition-colors">{feature}</span>
+                                            <div key={index} className="flex items-center gap-4 md:gap-5 p-4 md:p-5 rounded-xl md:rounded-2xl bg-white/[0.03] border border-white/5 hover:border-primary/30 hover:bg-white/[0.05] transition-all duration-300 group/item">
+                                                <CheckCircle2 className="h-6 w-6 md:h-7 md:w-7 text-primary group-hover/item:scale-110 transition-transform shrink-0" />
+                                                <span className="text-base md:text-xl font-semibold text-white/60 group-hover/item:text-white transition-colors">{feature}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -219,11 +219,11 @@ export function ServiceLayout({
                                 {t("free_consultation_available")}
                             </div>
 
-                            <h2 className="text-6xl md:text-9xl font-black mb-10 text-white tracking-tighter leading-[0.85]">
+                            <h2 className="text-4xl md:text-9xl font-black mb-10 text-white tracking-tighter leading-[0.85]">
                                 {t("ready_to_start")}<br />
                                 <span className="text-white/20">{t("let_us_build")}</span>
                             </h2>
-                            <p className="text-xl md:text-3xl text-white/40 mb-20 max-w-4xl mx-auto font-medium leading-relaxed">
+                            <p className="text-lg md:text-3xl text-white/40 mb-14 md:mb-20 max-w-4xl mx-auto font-medium leading-relaxed">
                                 {t("cta_description")}
                             </p>
 
