@@ -46,7 +46,7 @@ export function Process() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-6xl font-black tracking-tighter mb-6 text-white"
+                        className="text-3xl md:text-6xl font-black tracking-tighter mb-4 md:mb-6 text-white leading-tight"
                     >
                         {t('process_title')}
                     </motion.h2>
@@ -55,13 +55,13 @@ export function Process() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-white/40 text-lg md:text-xl max-w-2xl mx-auto font-medium"
+                        className="text-white/40 text-base md:text-xl max-w-2xl mx-auto font-medium leading-relaxed"
                     >
                         {t('process_desc')}
                     </motion.p>
                 </div>
 
-                <div className="relative grid md:grid-cols-4 gap-12 max-w-7xl mx-auto">
+                <div className="relative grid md:grid-cols-4 gap-8 md:gap-12 max-w-7xl mx-auto">
                     {/* Progress line for Desktop */}
                     <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent hidden md:block -translate-y-12" />
 
@@ -80,8 +80,8 @@ export function Process() {
                                     0{index + 1}
                                 </div>
 
-                                <div className={`h-24 w-24 rounded-[2rem] ${step.bg} border border-white/5 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-2xl`}>
-                                    <step.icon className={`h-10 w-10 ${step.color} group-hover:scale-110 transition-transform`} />
+                                <div className={`h-20 w-20 md:h-24 md:w-24 rounded-[1.5rem] md:rounded-[2rem] ${step.bg} border border-white/5 flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-2xl`}>
+                                    <step.icon className={`h-8 w-8 md:h-10 md:w-10 ${step.color} group-hover:scale-110 transition-transform`} />
                                 </div>
 
                                 {index < steps.length - 1 && (

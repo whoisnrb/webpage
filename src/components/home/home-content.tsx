@@ -58,10 +58,10 @@ export function HomeContent() {
                                     {tST('free_consultation_available')}
                                 </motion.div>
 
-                                <h2 className="text-4xl md:text-7xl font-black mb-8 text-white tracking-tighter leading-none">
+                                <h2 className="text-3xl md:text-7xl font-black mb-6 md:mb-8 text-white tracking-tighter leading-[0.95] md:leading-none">
                                     {t('cta_footer_title')}
                                 </h2>
-                                <p className="text-xl md:text-2xl text-white/40 mb-12 max-w-3xl mx-auto font-medium leading-relaxed group-hover:text-white/60 transition-colors duration-700">
+                                <p className="text-lg md:text-2xl text-white/40 mb-10 md:mb-12 max-w-3xl mx-auto font-medium leading-relaxed group-hover:text-white/60 transition-colors duration-700">
                                     {t('cta_footer_desc')}
                                 </p>
 

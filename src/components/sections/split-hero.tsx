@@ -34,7 +34,7 @@ export function SplitHero() {
     const [hoverSide, setHoverSide] = React.useState<'left' | 'right' | null>(null)
 
     return (
-        <section className="relative w-full h-[700px] md:h-screen min-h-[600px] overflow-hidden bg-transparent">
+        <section className="relative w-full h-auto md:h-screen min-h-[600px] overflow-hidden bg-transparent py-16 md:py-0">
 
             {/* Ambient Background Glow */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -59,8 +59,8 @@ export function SplitHero() {
                     onMouseEnter={() => setHoverSide('left')}
                     onMouseLeave={() => setHoverSide(null)}
                 >
-                    {/* Visual Flourishes for Left */}
-                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    {/* Visual Flourishes for Left - Hidden on mobile */}
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
                         <FloatingElement delay={0} className="top-1/4 left-1/4 text-primary/20">
                             <Code size={120} />
                         </FloatingElement>
@@ -82,23 +82,23 @@ export function SplitHero() {
                                 scale: hoverSide === 'left' ? 1.1 : 1,
                                 backgroundColor: hoverSide === 'left' ? "rgba(var(--primary), 0.2)" : "rgba(var(--primary), 0.1)"
                             }}
-                            className="h-20 w-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-8 shadow-2xl relative"
+                            className="h-16 w-16 md:h-20 md:w-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 md:mb-8 shadow-2xl relative"
                         >
-                            <Code className="h-10 w-10 text-primary" />
+                            <Code className="h-8 w-8 md:h-10 md:w-10 text-primary" />
                             <motion.div
                                 animate={{ opacity: hoverSide === 'left' ? 1 : 0 }}
                                 className="absolute -top-1 -right-1 h-4 w-4 bg-cyan-400 rounded-full animate-ping"
                             />
                         </motion.div>
 
-                        <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-[0.9] lg:leading-[0.85]">
+                        <h2 className="text-3xl md:text-6xl font-black mb-4 md:mb-6 tracking-tighter leading-tight md:leading-[0.85]">
                             <span className="block opacity-70 group-hover/left:opacity-100 transition-opacity">{t('left_title_1')}</span>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-primary/80 animate-gradient-x bg-[length:200%_auto] block">
                                 {t('left_title_2')}
                             </span>
                         </h2>
 
-                        <p className="text-muted-foreground text-lg md:text-xl mb-10 leading-relaxed font-medium">
+                        <p className="text-muted-foreground text-base md:text-xl mb-8 md:mb-10 leading-relaxed font-medium">
                             {t('left_desc')}
                         </p>
 
@@ -158,8 +158,8 @@ export function SplitHero() {
                     onMouseEnter={() => setHoverSide('right')}
                     onMouseLeave={() => setHoverSide(null)}
                 >
-                    {/* Visual Flourishes for Right */}
-                    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+                    {/* Visual Flourishes for Right - Hidden on mobile */}
+                    <div className="absolute inset-0 pointer-events-none overflow-hidden hidden md:block">
                         <FloatingElement delay={0.5} className="top-1/4 right-1/4 text-accent/20">
                             <ShoppingCart size={120} />
                         </FloatingElement>
@@ -184,23 +184,23 @@ export function SplitHero() {
                                 scale: hoverSide === 'right' ? 1.1 : 1,
                                 backgroundColor: hoverSide === 'right' ? "rgba(249, 115, 22, 0.2)" : "rgba(249, 115, 22, 0.1)"
                             }}
-                            className="h-20 w-20 rounded-2xl bg-accent/10 flex items-center justify-center mb-8 shadow-2xl relative"
+                            className="h-16 w-16 md:h-20 md:w-20 rounded-2xl bg-accent/10 flex items-center justify-center mb-6 md:mb-8 shadow-2xl relative"
                         >
-                            <ShoppingCart className="h-10 w-10 text-accent" />
+                            <ShoppingCart className="h-8 w-8 md:h-10 md:w-10 text-accent" />
                             <motion.div
                                 animate={{ opacity: hoverSide === 'right' ? 1 : 0 }}
                                 className="absolute -top-1 -left-1 h-4 w-4 bg-orange-400 rounded-full animate-ping"
                             />
                         </motion.div>
 
-                        <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter leading-[0.9] lg:leading-[0.85]">
+                        <h2 className="text-3xl md:text-6xl font-black mb-4 md:mb-6 tracking-tighter leading-tight md:leading-[0.85]">
                             <span className="block opacity-70 group-hover/right:opacity-100 transition-opacity">{t('right_title_1')}</span>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-orange-400 to-accent/80 animate-gradient-x bg-[length:200%_auto] block">
                                 {t('right_title_2')}
                             </span>
                         </h2>
 
-                        <p className="text-muted-foreground text-lg md:text-xl mb-10 leading-relaxed font-medium">
+                        <p className="text-muted-foreground text-base md:text-xl mb-8 md:mb-10 leading-relaxed font-medium">
                             {t('right_desc')}
                         </p>
 
