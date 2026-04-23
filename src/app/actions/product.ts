@@ -161,7 +161,7 @@ export async function createProduct(data: Omit<ProductDTO, 'id' | 'updatedAt'>) 
             demoVideoUrl: demoVideoUrl || null
         }
     })
-    revalidateTag('products', 'default')
+    revalidateTag('products')
     revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
 }
@@ -198,7 +198,7 @@ export async function updateProduct(id: string, data: Partial<ProductDTO>) {
         where: { id },
         data: updateData
     })
-    revalidateTag('products', 'default')
+    revalidateTag('products')
     revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
 }
@@ -207,7 +207,7 @@ export async function deleteProduct(id: string) {
     await prisma.product.delete({
         where: { id }
     })
-    revalidateTag('products', 'default')
+    revalidateTag('products')
     revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
 }
