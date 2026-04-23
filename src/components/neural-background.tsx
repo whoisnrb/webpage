@@ -61,46 +61,38 @@ export function NeuralBackground() {
                 if (!ctx) return
                 ctx.beginPath()
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-                ctx.fillStyle = "rgba(6, 182, 212, 0.5)"
                 ctx.fill()
             }
         }
 
-        const init = () => {
-            particles.length = 0
+        const initParticles = () => {
+            particles = []
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle())
             }
         }
 
-        const animate = () => {
+        const drawLines = () => {
             if (!ctx) return
-            ctx.clearRect(0, 0, width, height)
-
-            particles.forEach((p) => { p.update(); p.draw() })
-
+            const maxDistance = 150
             for (let i = 0; i < particles.length; i++) {
-                for (let j = i; j < particles.length; j++) {
+                for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x
                     const dy = particles[i].y - particles[j].y
                     const distance = Math.sqrt(dx * dx + dy * dy)
-                    if (distance < connectionDistance) {
+
+                    if (distance < maxDistance) {
+                        const opacity = 1 - distance / maxDistance
+                        ctx.strokeStyle = theme === 'dark' 
+                            ? `rgba(147, 51, 234, ${opacity * 0.15})` 
+                            : `rgba(147, 51, 234, ${opacity * 0.1})`
+                        ctx.lineWidth = 0.5
                         ctx.beginPath()
-                        ctx.strokeStyle = `rgba(6, 182, 212, ${1 - distance / connectionDistance})`
-                        ctx.lineWidth = 1
                         ctx.moveTo(particles[i].x, particles[i].y)
                         ctx.lineTo(particles[j].x, particles[j].y)
                         ctx.stroke()
                     }
                 }
-
-                const dx = particles[i].x - mouse.x
-                const dy = particles[i].y - mouse.y
-                const distance = Math.sqrt(dx * dx + dy * dy)
-                if (distance < mouseDistance) {
-                    ctx.beginPath()
-                    ctx.strokeStyle = `rgba(139, 92, 246, ${1 - distance / mouseDistance})`
-                    ctx.lineWidth = 1.5
                     ctx.moveTo(particles[i].x, particles[i].y)
                     ctx.lineTo(mouse.x, mouse.y)
                     ctx.stroke()
