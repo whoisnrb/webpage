@@ -141,17 +141,14 @@ export default async function BlogPostPage({ params }: Props) {
                     </div>
                 </div>
             </article>
-        )
+        );
     } catch (error: any) {
         return (
             <div className="p-20 text-center">
                 <h1 className="text-2xl font-bold mb-4">Rendering Error</h1>
                 <pre className="p-4 bg-muted rounded text-left overflow-auto max-w-full">
                     {error.message}
-                    {error.stack}
                 </pre>
             </div>
-        )
+        );
     }
-    )
-}
