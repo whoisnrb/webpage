@@ -115,17 +115,11 @@ export async function getLocalizedReferences(locale: string = 'hu'): Promise<Loc
 }
 
 export async function getReferenceBySlug(slug: string) {
-    return unstable_cache(
-        async () => {
-            const reference = await (prisma as any).reference.findUnique({
-                where: { slug }
-            })
-            if (!reference) return null
-            return mapReference(reference)
-        },
-        ['reference-by-slug', slug],
-        { revalidate: 3600, tags: ['references'] }
-    )()
+    const reference = await (prisma as any).reference.findUnique({
+        where: { slug }
+    })
+    if (!reference) return null
+    return mapReference(reference)
 }
 
 export async function getLocalizedReferenceBySlug(slug: string, locale: string = 'hu'): Promise<LocalizedReferenceDTO | null> {

@@ -146,17 +146,11 @@ export async function getBlogPostById(id: string) {
 
 export async function getBlogPostBySlug(slug: string) {
     try {
-        return await unstable_cache(
-            async () => {
-                const post = await db.blogPost.findUnique({
-                    where: { slug },
-                    include: { series: true }
-                })
-                return post
-            },
-            ['blog-post-by-slug', slug],
-            { revalidate: 3600, tags: ['blog'] }
-        )()
+        const post = await db.blogPost.findUnique({
+            where: { slug },
+            include: { series: true }
+        })
+        return post
     } catch (error) {
         return null
     }
