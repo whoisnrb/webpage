@@ -1,5 +1,6 @@
 import { Sidebar } from "@/components/dashboard/sidebar"
 import { UserNav } from "@/components/dashboard/user-nav"
+import { MobileNav } from "@/components/dashboard/mobile-nav"
 import { Link } from "@/i18n/routing"
 import { Code2 } from "lucide-react"
 import { auth } from "@/auth"
@@ -21,13 +22,16 @@ export default async function DashboardLayout({
         <div className="min-h-screen flex flex-col md:flex-row bg-[#070711]">
 
             {/* Mobile Header */}
-            <div className="md:hidden border-b border-white/5 px-4 py-3 flex items-center justify-between bg-[#080812]">
-                <Link href="/" className="flex items-center gap-2">
-                    <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 ring-1 ring-primary/20">
-                        <Code2 className="h-3.5 w-3.5 text-primary" />
-                    </div>
-                    <span className="font-bold text-sm">BacklineIT</span>
-                </Link>
+            <div className="md:hidden border-b border-white/5 px-4 py-3 flex items-center justify-between bg-[#080812] sticky top-0 z-50">
+                <div className="flex items-center gap-3">
+                    <MobileNav />
+                    <Link href="/" className="flex items-center gap-2">
+                        <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 ring-1 ring-primary/20">
+                            <Code2 className="h-3.5 w-3.5 text-primary" />
+                        </div>
+                        <span className="font-bold text-sm">BacklineIT</span>
+                    </Link>
+                </div>
                 <UserNav user={session?.user} />
             </div>
 
