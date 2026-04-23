@@ -99,7 +99,11 @@ export function BlogPostForm({ initialData, seriesList: initialSeriesList }: Blo
             }
 
             if (result.success) {
-                toast.success(isNew ? "Bejegyzés létrehozva!" : "Bejegyzés frissítve!")
+                const finalSlug = (result as any).slug
+                const message = isNew 
+                    ? `Bejegyzés létrehozva!${finalSlug && finalSlug !== slug ? ` (Slug módosítva: ${finalSlug})` : ""}`
+                    : "Bejegyzés frissítve!"
+                toast.success(message)
                 router.push("/admin/blog")
                 router.refresh()
             } else {

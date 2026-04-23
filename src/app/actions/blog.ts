@@ -33,9 +33,21 @@ export type BlogSeriesData = {
 
 export async function createBlogPost(data: BlogPostData) {
     try {
+        // Check for slug collision
+        const existingPost = await db.blogPost.findUnique({
+            where: { slug: data.slug }
+        })
+
+        let finalSlug = data.slug
+        if (existingPost) {
+            // Append a short random string if slug exists
+            finalSlug = `${data.slug}-${Math.random().toString(36).substring(2, 6)}`
+        }
+
         await db.blogPost.create({
             data: {
                 ...data,
+                slug: finalSlug,
                 author: data.author || "BacklineIT Team",
                 seriesId: data.seriesId || null,
             }
@@ -43,10 +55,13 @@ export async function createBlogPost(data: BlogPostData) {
         revalidateTag('blog', 'default')
         revalidatePath("/blog")
         revalidatePath("/admin/blog")
-        return { success: true }
+        return { success: true, slug: finalSlug } as { success: true; slug: string }
     } catch (error) {
         console.error("Error creating blog post:", error)
-        return { success: false, error: "Failed to create blog post" }
+        return { 
+            success: false, 
+            error: "Failed to create blog post: " + (error instanceof Error ? error.message : String(error)) 
+        } as { success: false; error: string }
     }
 }
 
