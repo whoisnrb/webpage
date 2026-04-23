@@ -33,16 +33,17 @@ export function Sidebar({ hideLogo = false }: { hideLogo?: boolean }) {
             {/* Logo */}
             {!hideLogo && (
                 <div className="px-5 py-5 border-b border-white/5">
-                <Link href="/" className="flex items-center gap-2.5 group">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/20 group-hover:ring-primary/40 transition-all">
-                        <Code2 className="h-4 w-4 text-primary" />
-                    </div>
-                    <div>
-                        <span className="text-sm font-bold text-white tracking-tight">BacklineIT</span>
-                        <p className="text-[10px] text-muted-foreground leading-none mt-0.5">{tDash('client_portal_header')}</p>
-                    </div>
-                </Link>
-            </div>
+                    <Link href="/" className="flex items-center gap-2.5 group">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 ring-1 ring-primary/20 group-hover:ring-primary/40 transition-all">
+                            <Code2 className="h-4 w-4 text-primary" />
+                        </div>
+                        <div>
+                            <span className="text-sm font-bold text-white tracking-tight">BacklineIT</span>
+                            <p className="text-[10px] text-muted-foreground leading-none mt-0.5">{tDash('client_portal_header')}</p>
+                        </div>
+                    </Link>
+                </div>
+            )}
 
             {/* Nav */}
             <div className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
