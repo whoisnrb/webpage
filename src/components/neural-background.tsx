@@ -1,39 +1,36 @@
-"use client"
+'use client'
 
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useMemo } from 'react'
+import { useTheme } from 'next-themes'
 
-export function NeuralBackground() {
+export const NeuralBackground: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
-    const [isMobile, setIsMobile] = useState<boolean | null>(null)
+    const { theme } = useTheme()
 
-    useEffect(() => {
-        // Detect mobile once on mount - avoids SSR mismatch
-        setIsMobile(window.innerWidth < 768)
-
-        const handleResize = () => setIsMobile(window.innerWidth < 768)
-        window.addEventListener("resize", handleResize)
-        return () => window.removeEventListener("resize", handleResize)
+    // Reduced particle count for better performance
+    const particleCount = useMemo(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 768 ? 40 : 80
+        }
+        return 80
     }, [])
 
     useEffect(() => {
-        // Only run the heavy canvas animation on desktop
-        if (isMobile !== false) return
-
         const canvas = canvasRef.current
         if (!canvas) return
 
-        const ctx = canvas.getContext("2d")
+        const ctx = canvas.getContext('2d', { alpha: false })
         if (!ctx) return
 
-        let width = (canvas.width = window.innerWidth)
-        let height = (canvas.height = window.innerHeight)
+        let animationFrameId: number
+        let particles: Particle[] = []
 
-        const particles: Particle[] = []
-        const particleCount = 100
-        const connectionDistance = 150
-        const mouseDistance = 200
-        let mouse = { x: 0, y: 0 }
-        let animationId: number
+        const resizeCanvas = () => {
+            if (!canvas) return
+            canvas.width = window.innerWidth
+            canvas.height = window.innerHeight
+            initParticles()
+        }
 
         class Particle {
             x: number
@@ -43,22 +40,25 @@ export function NeuralBackground() {
             size: number
 
             constructor() {
-                this.x = Math.random() * width
-                this.y = Math.random() * height
+                this.x = Math.random() * (canvas?.width || 800)
+                this.y = Math.random() * (canvas?.height || 600)
                 this.vx = (Math.random() - 0.5) * 0.5
                 this.vy = (Math.random() - 0.5) * 0.5
-                this.size = Math.random() * 2 + 1
+                this.size = Math.random() * 2
             }
 
             update() {
+                if (!canvas) return
                 this.x += this.vx
                 this.y += this.vy
-                if (this.x < 0 || this.x > width) this.vx *= -1
-                if (this.y < 0 || this.y > height) this.vy *= -1
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1
             }
 
             draw() {
                 if (!ctx) return
+                ctx.fillStyle = theme === 'dark' ? 'rgba(147, 51, 234, 0.4)' : 'rgba(147, 51, 234, 0.2)'
                 ctx.beginPath()
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
                 ctx.fill()
@@ -93,63 +93,39 @@ export function NeuralBackground() {
                         ctx.stroke()
                     }
                 }
-                    ctx.moveTo(particles[i].x, particles[i].y)
-                    ctx.lineTo(mouse.x, mouse.y)
-                    ctx.stroke()
-                }
             }
-
-            animationId = requestAnimationFrame(animate)
         }
 
-        const handleResize = () => {
-            width = canvas.width = window.innerWidth
-            height = canvas.height = window.innerHeight
-            init()
+        const animate = () => {
+            if (!ctx || !canvas) return
+            
+            ctx.fillStyle = theme === 'dark' ? '#000' : '#fff'
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+            particles.forEach(p => {
+                p.update()
+                p.draw()
+            })
+            drawLines()
+            animationFrameId = requestAnimationFrame(animate)
         }
 
-        const handleMouseMove = (e: MouseEvent) => {
-            mouse.x = e.clientX
-            mouse.y = e.clientY
-        }
-
-        window.addEventListener("resize", handleResize)
-        window.addEventListener("mousemove", handleMouseMove)
-        init()
+        resizeCanvas()
         animate()
 
+        window.addEventListener('resize', resizeCanvas)
+
         return () => {
-            cancelAnimationFrame(animationId)
-            window.removeEventListener("resize", handleResize)
-            window.removeEventListener("mousemove", handleMouseMove)
+            window.removeEventListener('resize', resizeCanvas)
+            cancelAnimationFrame(animationFrameId)
         }
-    }, [isMobile])
-
-    // Mobile: lightweight static gradient background - zero CPU usage
-    if (isMobile === true) {
-        return (
-            <div
-                className="fixed inset-0 -z-10 pointer-events-none"
-                style={{
-                    background: `
-                        radial-gradient(ellipse at 20% 10%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
-                        radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.03) 0%, transparent 70%),
-                        #050810
-                    `
-                }}
-            />
-        )
-    }
-
-    // Desktop: full animated canvas
-    if (isMobile === null) return null // SSR / initial render - avoid flash
+    }, [theme, particleCount])
 
     return (
         <canvas
             ref={canvasRef}
             className="fixed inset-0 -z-10 pointer-events-none"
+            style={{ filter: 'blur(1px)' }}
         />
     )
 }
-
