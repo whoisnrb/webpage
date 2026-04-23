@@ -39,6 +39,8 @@ export async function generateStaticParams() {
     return []
 }
 
+import ReactMarkdown from 'react-markdown'
+
 export default async function BlogPostPage({ params }: Props) {
     const { slug, locale } = await params
     const post = await getBlogPostBySlug(slug) as any
@@ -109,7 +111,7 @@ export default async function BlogPostPage({ params }: Props) {
                         <div className="prose prose-neutral dark:prose-invert lg:prose-xl max-w-none 
                             prose-headings:scroll-mt-20 prose-a:text-primary hover:prose-a:underline 
                             prose-img:rounded-2xl prose-img:shadow-xl prose-pre:bg-muted/50 transition-all">
-                            <MDXRemote source={content || ''} />
+                            <ReactMarkdown>{content || ''}</ReactMarkdown>
                         </div>
 
                         {/* Footer / Share */}
