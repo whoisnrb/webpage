@@ -99,7 +99,7 @@ export function SysAdminContent() {
                                 <Sparkles className="h-3 w-3" />
                                 {t("pricing_badge")}
                             </div>
-                            <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter mb-6">{t("pricing_title")}</h2>
+                            <h2 className="text-3xl md:text-7xl font-black text-white tracking-tighter mb-6">{t("pricing_title")}</h2>
                             <p className="text-xl text-white/40 max-w-2xl mx-auto font-medium">{t("pricing_desc")}</p>
                         </FadeIn>
                     </div>
@@ -111,7 +111,7 @@ export function SysAdminContent() {
                             whileInView={{ opacity: 1, y: 0 }}
                             className="relative group"
                         >
-                            <div className="h-full bg-white/[0.02] border border-white/10 rounded-[48px] p-10 flex flex-col hover:bg-white/[0.04] transition-colors duration-300">
+                            <div className="h-full bg-white/[0.02] border border-white/10 rounded-[32px] md:rounded-[48px] p-6 md:p-10 flex flex-col hover:bg-white/[0.04] transition-colors duration-300">
                                 <div className="mb-10">
                                     <h3 className="text-3xl font-black text-white mb-4">{t("plans.starter.name")}</h3>
                                     <p className="text-white/40 font-medium leading-relaxed">{t("plans.starter.desc")}</p>
@@ -157,7 +157,7 @@ export function SysAdminContent() {
                                     ⭐ {t("plans.pro.badge")}
                                 </div>
                             </div>
-                            <div className="h-full bg-primary/[0.03] border border-primary/30 rounded-[48px] p-10 flex flex-col hover:bg-primary/[0.06] transition-colors duration-300">
+                            <div className="h-full bg-primary/[0.03] border border-primary/30 rounded-[32px] md:rounded-[48px] p-6 md:p-10 flex flex-col hover:bg-primary/[0.06] transition-colors duration-300">
                                 <div className="mb-10">
                                     <h3 className="text-3xl font-black text-white mb-4">{t("plans.pro.name")}</h3>
                                     <p className="text-white/40 font-medium leading-relaxed">{t("plans.pro.desc")}</p>
@@ -231,7 +231,7 @@ export function SysAdminContent() {
             <section className="py-24 md:py-32 relative overflow-hidden bg-transparent">
                 <div className="container relative mx-auto px-4 z-10">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6">{t("cost_title")}</h2>
+                        <h2 className="text-3xl md:text-6xl font-black text-white tracking-tighter mb-6">{t("cost_title")}</h2>
                         <p className="text-xl text-white/40 max-w-2xl mx-auto font-medium">{t("cost_desc")}</p>
                     </div>
                     <div className="max-w-4xl mx-auto">

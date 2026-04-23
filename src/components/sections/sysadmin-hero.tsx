@@ -39,7 +39,7 @@ export function SysAdminHero() {
                         </div>
 
                         {/* Title */}
-                        <h1 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9]">
+                        <h1 className="text-3xl sm:text-5xl md:text-7xl font-black text-white tracking-tighter leading-[0.9]">
                             {t('title').split(' ')[0]}<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">
                                 {t('title').split(' ').slice(1).join(' ')}
@@ -52,7 +52,7 @@ export function SysAdminHero() {
                         </p>
 
                         {/* Features Grid */}
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             {[
                                 { icon: GitBranch, text: t('features.devops') },
                                 { icon: Cloud, text: t('features.cloud') },
@@ -71,26 +71,24 @@ export function SysAdminHero() {
                         </div>
 
                         {/* CTAs */}
-                        <div className="flex flex-wrap gap-4 pt-4">
-                            <Button
-                                size="lg"
-                                className="h-14 px-8 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-white font-black uppercase tracking-tight shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)]"
-                                asChild
-                            >
-                                <Link href="/kapcsolat">
-                                    {t('cta_button')}
+                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                                <Link href="/kapcsolat" className="w-full sm:w-auto">
+                                    <Button
+                                        size="lg"
+                                        className="h-14 px-8 w-full rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-white font-black uppercase tracking-tight shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)]"
+                                    >
+                                        {t('cta_button')}
+                                    </Button>
                                 </Link>
-                            </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                className="h-14 px-8 rounded-2xl border-white/20 hover:bg-white/5 text-white font-bold"
-                                asChild
-                            >
-                                <Link href="/referenciak">
-                                    {t('cta_secondary')}
+                                <Link href="/referenciak" className="w-full sm:w-auto">
+                                    <Button
+                                        size="lg"
+                                        variant="outline"
+                                        className="h-14 px-8 w-full rounded-2xl border-white/20 hover:bg-white/5 text-white font-bold"
+                                    >
+                                        {t('cta_secondary')}
+                                    </Button>
                                 </Link>
-                            </Button>
                         </div>
                     </div>
 
