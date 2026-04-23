@@ -403,6 +403,17 @@
           "2": "Pénzügyi adatok védelme",
           "3": "Biztonsági mentési stratégia"
         }
+      },
+      "network": {
+        "title": "Hálózati Megoldások",
+        "description": "Biztonságos VPN, VLAN szegmentálás és tűzfal menedzsment vállalati szinten. Távolról is elérhető.",
+        "benefit": "99.9% uptime, zéró besziágás",
+        "features": {
+          "0": "WireGuard / OpenVPN beállítás",
+          "1": "VLAN szegmentálás",
+          "2": "Tűzfal konfiguráció",
+          "3": "Hálózati audit"
+        }
       }
     }
   },

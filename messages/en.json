@@ -403,6 +403,17 @@
           "2": "Financial data protection",
           "3": "Backup strategy"
         }
+      },
+      "network": {
+        "title": "Network Solutions",
+        "description": "Secure VPN, VLAN segmentation, and firewall management at enterprise level. Fully remote delivery.",
+        "benefit": "99.9% uptime, zero intrusions",
+        "features": {
+          "0": "WireGuard / OpenVPN setup",
+          "1": "VLAN segmentation",
+          "2": "Firewall configuration",
+          "3": "Network audit"
+        }
       }
     }
   },

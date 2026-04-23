@@ -1,6 +1,6 @@
 "use client"
 
-import { Code, Server, Shield, ShoppingCart, ArrowRight, Eye, Terminal, Cpu, Zap, Globe, Lock, Activity, Sparkles, Database, BarChart3, Layers } from "lucide-react"
+import { Code, Server, Shield, ShoppingCart, ArrowRight, Eye, Terminal, Cpu, Zap, Globe, Lock, Activity, Sparkles, Database, BarChart3, Layers, Network, Wifi } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { useState, useEffect } from "react"
@@ -227,6 +227,85 @@ export function ServicesPreview() {
                         transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                         className="absolute left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent z-0"
                     />
+                </div>
+            )
+        },
+        {
+            title: t('items.network.title'),
+            description: t('items.network.description'),
+            benefit: t('items.network.benefit'),
+            icon: Network,
+            href: "/szolgaltatasok/halozat",
+            className: "md:col-span-8 md:row-span-1",
+            color: "rgba(6, 182, 212, 0.15)",
+            extra: (
+                <div className="mt-auto pt-4">
+                    <div className="bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 p-4 group-hover:border-primary/40 transition-all duration-700 shadow-2xl">
+                        <div className="flex items-center gap-2 mb-3 border-b border-white/10 pb-2">
+                            <div className="flex gap-1.5">
+                                <div className="h-2 w-2 rounded-full bg-red-500/40" />
+                                <div className="h-2 w-2 rounded-full bg-yellow-500/40" />
+                                <div className="h-2 w-2 rounded-full bg-green-500/40" />
+                            </div>
+                            <span className="text-[9px] text-white/40 uppercase tracking-[0.2em] flex-1 font-bold">Network Monitor v2.1</span>
+                            <div className="flex items-center gap-1 opacity-60">
+                                <Activity className="h-3 w-3 text-primary animate-pulse" />
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-6">
+                            {/* Mini node diagram */}
+                            <div className="flex-shrink-0">
+                                <svg viewBox="0 0 80 50" className="w-28 h-20">
+                                    <line x1="40" y1="8" x2="40" y2="22" stroke="rgba(6,182,212,0.3)" strokeWidth="0.8" />
+                                    <line x1="40" y1="28" x2="18" y2="42" stroke="rgba(6,182,212,0.3)" strokeWidth="0.8" />
+                                    <line x1="40" y1="28" x2="40" y2="42" stroke="rgba(16,185,129,0.4)" strokeWidth="0.8" strokeDasharray="2 1" />
+                                    <line x1="40" y1="28" x2="62" y2="42" stroke="rgba(139,92,246,0.3)" strokeWidth="0.8" />
+                                    <circle cx="40" cy="6" r="4" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" strokeWidth="0.6" />
+                                    <text x="40" y="7.5" textAnchor="middle" fontSize="4" fill="white">🌐</text>
+                                    <circle cx="40" cy="25" r="4" fill="rgba(245,158,11,0.15)" stroke="#f59e0b" strokeWidth="0.6" />
+                                    <text x="40" y="26.5" textAnchor="middle" fontSize="4" fill="white">🛡️</text>
+                                    <circle cx="18" cy="44" r="3.5" fill="rgba(16,185,129,0.15)" stroke="#10b981" strokeWidth="0.6" />
+                                    <text x="18" y="45" textAnchor="middle" fontSize="3">💼</text>
+                                    <circle cx="40" cy="44" r="3.5" fill="rgba(6,182,212,0.15)" stroke="#06b6d4" strokeWidth="0.6" />
+                                    <text x="40" y="45" textAnchor="middle" fontSize="3">👥</text>
+                                    <circle cx="62" cy="44" r="3.5" fill="rgba(139,92,246,0.15)" stroke="#8b5cf6" strokeWidth="0.6" />
+                                    <text x="62" y="45" textAnchor="middle" fontSize="3">🔒</text>
+                                    <motion.circle r="1.5" fill="#06b6d4"
+                                        initial={{ cx: 40, cy: 6 }}
+                                        animate={{ cx: 40, cy: 25 }}
+                                        transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+                                    />
+                                </svg>
+                            </div>
+                            {/* Live stats */}
+                            <div className="flex-1 space-y-2">
+                                {[
+                                    { label: 'VPN Peers', value: '5/5', color: 'text-cyan-400', bar: 100 },
+                                    { label: 'Firewall Rules', value: '48 active', color: 'text-amber-400', bar: 80 },
+                                    { label: 'Threats Blocked', value: '0 today', color: 'text-emerald-400', bar: 0 },
+                                ].map((stat, i) => (
+                                    <div key={i}>
+                                        <div className="flex justify-between text-[9px] font-black uppercase tracking-widest mb-0.5">
+                                            <span className="text-white/30">{stat.label}</span>
+                                            <span className={stat.color}>{stat.value}</span>
+                                        </div>
+                                        <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: `${stat.bar === 0 ? 4 : stat.bar}%` }}
+                                                transition={{ duration: 1.5, ease: 'circOut', delay: i * 0.1 }}
+                                                className={`h-full rounded-full ${stat.bar === 0 ? 'bg-emerald-400' : i === 0 ? 'bg-gradient-to-r from-cyan-600 to-cyan-400' : 'bg-gradient-to-r from-amber-600 to-amber-400'}`}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="absolute bottom-3 right-4 flex items-center gap-2 bg-emerald-500/10 px-2 py-1 rounded-full border border-emerald-500/20">
+                            <div className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                            <span className="text-[9px] text-emerald-400 uppercase font-black tracking-tighter">All Systems OK</span>
+                        </div>
+                    </div>
                 </div>
             )
         },
