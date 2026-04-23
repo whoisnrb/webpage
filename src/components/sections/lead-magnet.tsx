@@ -38,8 +38,7 @@ export function LeadMagnet() {
             setIsSuccess(true)
             toast.success(result.message)
         } catch (error) {
-            toast.error(t("success_desc")) // Fallback error handling in translation? Or keep generic?
-            // Actually let's use a generic error message from translation or just generic
+            toast.error(t("success_desc")) 
             console.error(error)
         } finally {
             setIsLoading(false)
@@ -56,10 +55,10 @@ export function LeadMagnet() {
             <div className="container relative mx-auto px-4">
                 <div className="flex flex-col lg:flex-row items-center gap-12">
                     <div className="flex-1 text-center lg:text-left">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                        <h2 className="text-2xl md:text-4xl font-bold mb-4 leading-tight">
                             {t("title")}
                         </h2>
-                        <p className="text-primary-foreground/80 text-lg mb-8 max-w-xl mx-auto lg:mx-0">
+                        <p className="text-primary-foreground/80 text-base md:text-lg mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                             {t("subtitle")}
                         </p>
                         <ul className="space-y-3 mb-8 text-left inline-block">
@@ -78,7 +77,7 @@ export function LeadMagnet() {
                         </ul>
                     </div>
 
-                    <div className="flex-1 w-full max-w-md bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10">
+                    <div className="flex-1 w-full max-w-md bg-white/5 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-white/10">
                         {isSuccess ? (
                             <div className="text-center py-12 space-y-4">
                                 <div className="h-16 w-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto">

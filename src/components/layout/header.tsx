@@ -205,7 +205,7 @@ export function Header() {
                                 </nav>
                                 <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
                                     <div className="flex justify-between items-center px-2">
-                                        <div className="flex items-center gap-8">
+                                        <div className="flex items-center gap-4 sm:gap-8">
                                             <div className="flex flex-col gap-1.5 items-center">
                                                 <ThemeCustomizer />
                                                 <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">{tMega("theme")}</span>

@@ -19,7 +19,7 @@ export function Breadcrumbs() {
     if (segments.length === 0) return null
 
     return (
-        <nav className="flex items-center text-sm text-muted-foreground py-4 animate-in fade-in slide-in-from-left-4 duration-500">
+        <nav className="flex flex-wrap items-center text-sm text-muted-foreground py-4 animate-in fade-in slide-in-from-left-4 duration-500 overflow-hidden">
             <Link href="/" className="flex items-center hover:text-primary transition-colors">
                 <Home className="h-4 w-4" />
                 <span className="sr-only">{t('home')}</span>

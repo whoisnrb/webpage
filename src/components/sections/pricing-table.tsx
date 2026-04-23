@@ -102,7 +102,7 @@ export function PricingTable() {
                             <Card
                                 key={index}
                                 className={`relative flex flex-col ${pkg.popular
-                                    ? 'border-primary shadow-xl scale-105 md:scale-110'
+                                    ? 'border-primary shadow-xl scale-100 md:scale-110 my-4 md:my-0'
                                     : 'border-border shadow-md'
                                     }`}
                             >
