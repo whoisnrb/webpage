@@ -46,20 +46,20 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function BlogPostPage({ params }: Props) {
-    const { slug, locale } = await params
-    const post = await getBlogPostBySlug(slug) as any
-
-    if (!post || !post.published) {
-        notFound()
-    }
-
-    const t = await getTranslations('Blog')
-
-    const title = locale === 'en' ? (post.titleEn || post.title) : post.title
-    const excerpt = locale === 'en' ? (post.excerptEn || post.excerpt) : post.excerpt
-    const content = locale === 'en' ? (post.contentEn || post.content) : post.content
-
     try {
+        const { slug, locale } = await params
+        const post = await getBlogPostBySlug(slug) as any
+
+        if (!post || !post.published) {
+            notFound()
+        }
+
+        const t = await getTranslations('Blog')
+
+        const title = locale === 'en' ? (post.titleEn || post.title) : post.title
+        const excerpt = locale === 'en' ? (post.excerptEn || post.excerpt) : post.excerpt
+        const content = locale === 'en' ? (post.contentEn || post.content) : post.content
+
         return (
             <article className="min-h-screen">
                 {/* Post Header / Hero */}
@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }: Props) {
                                 <div className="flex flex-wrap items-center gap-6 text-muted-foreground text-sm">
                                     <div className="flex items-center gap-2">
                                         <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                                            {post.author[0]}
+                                            {post.author ? post.author[0] : 'B'}
                                         </div>
                                         <span className="font-medium text-foreground">{post.author}</span>
                                     </div>
@@ -117,7 +117,8 @@ export default async function BlogPostPage({ params }: Props) {
                             <div className="prose prose-neutral dark:prose-invert lg:prose-xl max-w-none 
                                 prose-headings:scroll-mt-20 prose-a:text-primary hover:prose-a:underline 
                                 prose-img:rounded-2xl prose-img:shadow-xl prose-pre:bg-muted/50 transition-all">
-                                <MDXRemote source={content || ''} />
+                                {/* Temporarily disabled MDXRemote to test if it's the cause */}
+                                <div className="whitespace-pre-wrap">{content}</div>
                             </div>
 
                             {/* Footer / Share */}
@@ -143,11 +144,14 @@ export default async function BlogPostPage({ params }: Props) {
         );
     } catch (error: any) {
         return (
-            <div className="p-20 text-center">
-                <h1 className="text-2xl font-bold mb-4">Rendering Error</h1>
-                <pre className="p-4 bg-muted rounded text-left overflow-auto max-w-full">
-                    {error.message}
-                </pre>
+            <div className="p-20 text-center bg-background min-h-screen">
+                <h1 className="text-2xl font-bold mb-4 text-red-500">Critical Rendering Error</h1>
+                <div className="p-4 bg-muted rounded text-left overflow-auto max-w-4xl mx-auto border border-red-200">
+                    <p className="font-bold mb-2">Message: {error.message}</p>
+                    <pre className="text-xs opacity-70">
+                        {error.stack}
+                    </pre>
+                </div>
             </div>
         );
     }
