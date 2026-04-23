@@ -2599,7 +2599,9 @@
     "personal": "Personal",
     "team": "Team Edition",
     "enterprise": "Enterprise",
-    "buy_now": "Buy now"
+    "buy_now": "Buy now",
+    "secure_solution": "Secure Solution",
+    "fast_implementation": "Fast Implementation"
   },
   "SuccessPage": {
     "title": "Payment Successful!",

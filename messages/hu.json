@@ -2565,7 +2565,9 @@
     "personal": "Személyes",
     "team": "Team Edition",
     "enterprise": "Enterprise",
-    "buy_now": "Vásárlás most"
+    "buy_now": "Vásárlás most",
+    "secure_solution": "Biztonságos megoldás",
+    "fast_implementation": "Gyors implementáció"
   },
   "SuccessPage": {
     "title": "Sikeres Fizetés!",
