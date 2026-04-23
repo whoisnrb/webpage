@@ -2584,6 +2584,23 @@
       ]
     }
   },
+  "ProductDetailPage": {
+    "product_info": "Product Information",
+    "detailed_description": "Detailed Description",
+    "features_list": "Key Features & Benefits",
+    "secure_code": "Secure Code",
+    "regular_updates": "Regular Updates",
+    "technical_support": "Technical Support",
+    "documentation": "Documentation",
+    "select_version": "Select version",
+    "request_consultation": "Request consultation",
+    "not_found": "Product not found",
+    "back_to_products": "Back to solutions",
+    "personal": "Personal",
+    "team": "Team Edition",
+    "enterprise": "Enterprise",
+    "buy_now": "Buy now"
+  },
   "SuccessPage": {
     "title": "Payment Successful!",
     "description": "Thank you for your trust! Your payment was successful and your service is in progress.",

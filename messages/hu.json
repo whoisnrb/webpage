@@ -2550,6 +2550,23 @@
       ]
     }
   },
+  "ProductDetailPage": {
+    "product_info": "Termék Információ",
+    "detailed_description": "Részletes leírás",
+    "features_list": "Főbb Funkciók és Előnyök",
+    "secure_code": "Biztonságos Kód",
+    "regular_updates": "Rendszeres Frissítések",
+    "technical_support": "Technikai Támogatás",
+    "documentation": "Dokumentáció",
+    "select_version": "Válassz verziót",
+    "request_consultation": "Konzultáció kérése",
+    "not_found": "A termék nem található",
+    "back_to_products": "Vissza a megoldásokhoz",
+    "personal": "Személyes",
+    "team": "Team Edition",
+    "enterprise": "Enterprise",
+    "buy_now": "Vásárlás most"
+  },
   "SuccessPage": {
     "title": "Sikeres Fizetés!",
     "description": "Köszönjük a bizalmadat! A kifizetés sikeresen megtörtént, a szolgáltatásod folyamatban van.",
