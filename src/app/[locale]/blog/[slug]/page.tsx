@@ -59,7 +59,6 @@ export default async function BlogPostPage({ params }: Props) {
     const excerpt = locale === 'en' ? (post.excerptEn || post.excerpt) : post.excerpt
     const content = locale === 'en' ? (post.contentEn || post.content) : post.content
 
-    return (
     try {
         return (
             <article className="min-h-screen">
@@ -152,3 +151,4 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
         );
     }
+}
