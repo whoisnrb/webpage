@@ -152,7 +152,7 @@ const getCachedBlogPostBySlug = unstable_cache(
         })
         return post
     },
-    ['blog-post-by-slug', slug],
+    ['blog-post-by-slug'],
     { revalidate: 3600, tags: ['blog'] }
 )
 
