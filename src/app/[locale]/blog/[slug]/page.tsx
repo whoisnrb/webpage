@@ -53,88 +53,30 @@ export default async function BlogPostPage({ params }: Props) {
         notFound()
     }
 
-    const t = await getTranslations('Blog')
-
     const title = locale === 'en' ? (post.titleEn || post.title) : post.title
     const content = locale === 'en' ? (post.contentEn || post.content) : post.content
 
     return (
-        <article className="min-h-screen">
-            {/* Post Header / Hero */}
-            <div className="relative py-16 md:py-24">
-                <div className="container mx-auto px-4">
-                    <FadeIn>
-                        <Button variant="ghost" asChild className="mb-8 hover:bg-transparent hover:text-primary -ml-4 group">
-                            <Link href="/blog">
-                                <ArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-                                {t('back_to_blog')}
-                            </Link>
-                        </Button>
+        <article className="container mx-auto px-4 py-20 min-h-screen">
+            <div className="max-w-3xl mx-auto">
+                <Button variant="ghost" asChild className="mb-8">
+                    <Link href="/blog">
+                        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Blog
+                    </Link>
+                </Button>
 
-                        <div className="max-w-4xl mx-auto">
-                            <div className="flex flex-wrap gap-2 mb-6">
-                                {post.series && (
-                                    <Badge variant="default" className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/20 py-1">
-                                        {locale === 'en' ? (post.series.titleEn || post.series.title) : post.series.title}
-                                    </Badge>
-                                )}
-                                {post.tags && post.tags.map((tag: string) => (
-                                    <Badge key={tag} variant="outline" className="text-muted-foreground">{tag}</Badge>
-                                ))}
-                            </div>
+                <h1 className="text-4xl md:text-6xl font-bold mb-8">
+                    {title}
+                </h1>
 
-                            <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-8 pb-1 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70 leading-tight">
-                                {title}
-                            </h1>
-
-                            <div className="flex flex-wrap items-center gap-6 text-muted-foreground text-sm">
-                                <div className="flex items-center gap-2">
-                                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                                        {post.author ? post.author[0] : 'B'}
-                                    </div>
-                                    <span className="font-medium text-foreground">{post.author}</span>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Calendar className="h-4 w-4" />
-                                    <SmartDate date={post.createdAt} formatStr="PPP" />
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Clock className="h-4 w-4" />
-                                    {content ? Math.ceil(content.length / 1500) : 0} min read
-                                </div>
-                            </div>
-                        </div>
-                    </FadeIn>
+                <div className="flex items-center gap-4 text-muted-foreground mb-12">
+                    <span>{post.author}</span>
+                    <span>•</span>
+                    <span>{new Date(post.createdAt).toLocaleDateString()}</span>
                 </div>
-            </div>
 
-            {/* Post Content */}
-            <div className="container mx-auto px-4 py-16">
-                <div className="max-w-3xl mx-auto">
-                    <FadeIn delay={0.2} direction="none">
-                        <div className="prose prose-neutral dark:prose-invert lg:prose-xl max-w-none 
-                            prose-headings:scroll-mt-20 prose-a:text-primary hover:prose-a:underline 
-                            prose-img:rounded-2xl prose-img:shadow-xl prose-pre:bg-muted/50 transition-all">
-                            <MDXRemote source={content || ''} />
-                        </div>
-
-                        {/* Footer / Share */}
-                        <div className="mt-16 pt-8 border-t flex flex-wrap items-center justify-between gap-4">
-                            <div className="flex items-center gap-4">
-                                <span className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                                    <Tag className="w-4 h-4" /> Tags:
-                                </span>
-                                <div className="flex gap-2">
-                                    {post.tags && post.tags.map((tag: any) => (
-                                        <Badge key={tag} variant="secondary" className="bg-muted/50">{tag}</Badge>
-                                    ))}
-                                </div>
-                            </div>
-                            <Button variant="outline" size="sm" className="rounded-full">
-                                <Share2 className="w-4 h-4 mr-2" /> Share Article
-                            </Button>
-                        </div>
-                    </FadeIn>
+                <div className="prose prose-neutral dark:prose-invert lg:prose-xl max-w-none">
+                    <MDXRemote source={content || ''} />
                 </div>
             </div>
         </article>
