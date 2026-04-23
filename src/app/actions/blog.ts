@@ -144,20 +144,12 @@ export async function getBlogPostById(id: string) {
     }
 }
 
-const getCachedBlogPostBySlug = (slug: string) => unstable_cache(
-    async () => {
+export async function getBlogPostBySlug(slug: string) {
+    try {
         return await db.blogPost.findUnique({
             where: { slug },
             include: { series: true }
         })
-    },
-    [`blog-post-${slug}`],
-    { revalidate: 3600, tags: ['blog'] }
-)()
-
-export async function getBlogPostBySlug(slug: string) {
-    try {
-        return await getCachedBlogPostBySlug(slug)
     } catch (error) {
         console.error("Error fetching blog post by slug:", error)
         return null
