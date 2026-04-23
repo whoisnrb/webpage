@@ -146,7 +146,7 @@ export async function createReference(data: Omit<ReferenceDTO, 'id' | 'updatedAt
                 showDocumentation: data.showDocumentation
             }
         })
-        revalidateTag('references')
+        revalidateTag('references', 'default')
         revalidatePath('/referenciak')
         revalidatePath('/admin/references')
     } catch (error) {
@@ -170,7 +170,7 @@ export async function updateReference(id: string, data: Partial<ReferenceDTO>) {
                 showDocumentation: data.showDocumentation !== undefined ? data.showDocumentation : undefined,
             }
         })
-        revalidateTag('references')
+        revalidateTag('references', 'default')
         revalidatePath('/referenciak')
         revalidatePath('/admin/references')
     } catch (error) {

@@ -52,7 +52,7 @@ export async function createBlogPost(data: BlogPostData) {
                 seriesId: data.seriesId || null,
             }
         })
-        revalidateTag('blog')
+        revalidateTag('blog', 'default')
         revalidatePath("/blog")
         revalidatePath("/admin/blog")
         return { success: true, slug: finalSlug } as { success: true; slug: string }
@@ -74,7 +74,7 @@ export async function updateBlogPost(id: string, data: BlogPostData) {
                 seriesId: data.seriesId || null,
             }
         })
-        revalidateTag('blog')
+        revalidateTag('blog', 'default')
         revalidatePath("/blog")
         revalidatePath("/admin/blog")
         revalidatePath(`/blog/${data.slug}`)
@@ -90,7 +90,7 @@ export async function deleteBlogPost(id: string) {
         await db.blogPost.delete({
             where: { id }
         })
-        revalidateTag('blog')
+        revalidateTag('blog', 'default')
         revalidatePath("/blog")
         revalidatePath("/admin/blog")
         return { success: true }
@@ -107,7 +107,7 @@ export async function togglePublished(id: string) {
             where: { id },
             data: { published: !post.published }
         })
-        revalidateTag('blog')
+        revalidateTag('blog', 'default')
         revalidatePath("/blog")
         revalidatePath("/admin/blog")
         return { success: true, published: !post.published }
@@ -124,7 +124,7 @@ export async function toggleFeatured(id: string) {
             where: { id },
             data: { featured: !post.featured }
         })
-        revalidateTag('blog')
+        revalidateTag('blog', 'default')
         revalidatePath("/admin/blog")
         return { success: true, featured: !post.featured }
     } catch (error) {
@@ -277,7 +277,7 @@ export async function getSeriesBySlug(slug: string) {
 export async function createBlogSeries(data: BlogSeriesData) {
     try {
         await db.blogSeries.create({ data })
-        revalidateTag('blog')
+        revalidateTag('blog', 'default')
         revalidatePath("/admin/blog")
         revalidatePath("/admin/blog/series")
         return { success: true }
@@ -290,7 +290,7 @@ export async function createBlogSeries(data: BlogSeriesData) {
 export async function updateBlogSeries(id: string, data: BlogSeriesData) {
     try {
         await db.blogSeries.update({ where: { id }, data })
-        revalidateTag('blog')
+        revalidateTag('blog', 'default')
         revalidatePath("/admin/blog")
         revalidatePath("/admin/blog/series")
         return { success: true }
@@ -308,7 +308,7 @@ export async function deleteBlogSeries(id: string) {
             data: { seriesId: null }
         })
         await db.blogSeries.delete({ where: { id } })
-        revalidateTag('blog')
+        revalidateTag('blog', 'default')
         revalidatePath("/admin/blog")
         revalidatePath("/admin/blog/series")
         return { success: true }
