@@ -156,21 +156,14 @@ export async function getBlogPostBySlug(slug: string) {
     }
 }
 
-const getCachedBlogPosts = unstable_cache(
-    async () => {
+export async function getBlogPosts() {
+    try {
         return await db.blogPost.findMany({
             orderBy: { createdAt: "desc" },
             include: { series: true }
         })
-    },
-    ['all-blog-posts'],
-    { revalidate: 3600, tags: ['blog'] }
-)
-
-export async function getBlogPosts() {
-    try {
-        return await getCachedBlogPosts()
     } catch (error) {
+        console.error("Error fetching blog posts:", error)
         return []
     }
 }

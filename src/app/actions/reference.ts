@@ -94,19 +94,16 @@ function localizeReference(ref: ReferenceDTO, locale: string): LocalizedReferenc
     }
 }
 
-const getCachedReferences = unstable_cache(
-    async () => {
+export async function getReferences(): Promise<ReferenceDTO[]> {
+    try {
         const references = await (prisma as any).reference.findMany({
             orderBy: { createdAt: 'desc' }
         })
         return references.map(mapReference)
-    },
-    ['all-references'],
-    { revalidate: 3600, tags: ['references'] }
-)
-
-export async function getReferences(): Promise<ReferenceDTO[]> {
-    return getCachedReferences()
+    } catch (error) {
+        console.error("Error fetching references:", error)
+        return []
+    }
 }
 
 export async function getLocalizedReferences(locale: string = 'hu'): Promise<LocalizedReferenceDTO[]> {
