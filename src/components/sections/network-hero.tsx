@@ -10,9 +10,7 @@ export function NetworkHero() {
 
     return (
         <section className="relative py-24 md:py-32 overflow-hidden">
-            {/* Background Effects - Simplified */}
-            <div className="absolute inset-0 bg-slate-950" />
-            <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/80 to-slate-950 pointer-events-none" />
+            {/* Background Effects - transparent to blend with global neural background */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">

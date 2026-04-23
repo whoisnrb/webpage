@@ -2485,7 +2485,58 @@
             "3": "Roaming optimalizálás"
           }
         }
-      }
+      },
+      "pricing_badge": "MEGVÁSÁROLHATÓ CSOMAGOK",
+      "pricing_title": "Hálózati Szolgáltatási Csomagok",
+      "pricing_desc": "Távolról elvégezhető, átlátható árazású hálózati megoldások vállalkozásoknak",
+      "plans": [
+        {
+          "name": "Alap Táv-beállítás",
+          "badge": "OTTHON / KIS IRODA",
+          "desc": "Otthoni vagy kis irodai hálózat professzionális, távolról elvégzett beállítása",
+          "sub": "egyszeri díj",
+          "features": [
+            "Router / tűzfal alapkonfiguráció távolról",
+            "Biztonságos VPN beállítás (max. 5 kliens, WireGuard)",
+            "Biztonsági audit és portszkenner futtatás",
+            "WiFi optimalizálás (ha távolról menedzselhető eszköz)",
+            "Alapvető védelmi szabályok beállítása",
+            "Összefoglaló riport a beállításokról"
+          ],
+          "ideal": "Ideális: otthoni irodához, kisvállalkozásoknak"
+        },
+        {
+          "name": "Pro Hálózati Konfiguráció",
+          "badge": "ÜZLETI",
+          "popular": "LEGNÉPSZERŰBB",
+          "desc": "Vállalati szintű eszközök távoli konfigurálása, szegmentálással és VPN-nel",
+          "sub": "egyszeri díj",
+          "features": [
+            "MikroTik / pfSense / Ubiquiti táv-konfiguráció",
+            "VLAN szegmentálás (vendég, irodai, IoT elkülönítés)",
+            "Site-to-Site VPN két telephely összekötésére",
+            "Fejlett tűzfalszabályok és tartalomszűrés",
+            "Sávszélesség-menedzsment (QoS) beállítása",
+            "Részletes technikai dokumentáció"
+          ],
+          "ideal": "Ideális: több telephelyes vállalkozásoknak"
+        },
+        {
+          "name": "Hálózati Biztonsági Audit",
+          "badge": "AUDIT",
+          "desc": "Meglévő hálózatod átfogó, távolról elvégzett biztonsági vizsgálata",
+          "sub": "egyszeri díj",
+          "features": [
+            "Külső és belső sebezhetőség vizsgálat",
+            "Konfigurációs hibák keresése hálózati eszközökön",
+            "Nyitott portok és gyenge pontok azonosítása",
+            "Részletes audit jelentés magyarul",
+            "Konkrét javítási javaslatok prioritással",
+            "30 perces konzultáció az eredményekről"
+          ],
+          "ideal": "Ideális: meglévő rendszerek felülvizsgálatához"
+        }
+      ]
     }
   },
   "SuccessPage": {

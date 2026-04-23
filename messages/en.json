@@ -2519,7 +2519,58 @@
             "3": "Roaming optimization"
           }
         }
-      }
+      },
+      "pricing_badge": "PURCHASABLE PACKAGES",
+      "pricing_title": "Network Service Packages",
+      "pricing_desc": "Remotely delivered, transparent pricing for professional network solutions",
+      "plans": [
+        {
+          "name": "Basic Remote Setup",
+          "badge": "HOME / SMALL OFFICE",
+          "desc": "Professional remote configuration of a home or small office network",
+          "sub": "one-time fee",
+          "features": [
+            "Router / firewall basic configuration remotely",
+            "Secure VPN setup (up to 5 clients, WireGuard)",
+            "Security audit and port scan",
+            "WiFi optimization (if remotely manageable device)",
+            "Basic security rules configuration",
+            "Summary report of all settings"
+          ],
+          "ideal": "Ideal for: home offices, small businesses"
+        },
+        {
+          "name": "Pro Network Configuration",
+          "badge": "BUSINESS",
+          "popular": "MOST POPULAR",
+          "desc": "Remote configuration of enterprise devices with segmentation and VPN",
+          "sub": "one-time fee",
+          "features": [
+            "MikroTik / pfSense / Ubiquiti remote configuration",
+            "VLAN segmentation (guest, office, IoT separation)",
+            "Site-to-Site VPN connecting two locations",
+            "Advanced firewall rules and content filtering",
+            "Bandwidth management (QoS) configuration",
+            "Detailed technical documentation"
+          ],
+          "ideal": "Ideal for: multi-location businesses"
+        },
+        {
+          "name": "Network Security Audit",
+          "badge": "AUDIT",
+          "desc": "Comprehensive remote security assessment of your existing network",
+          "sub": "one-time fee",
+          "features": [
+            "External and internal vulnerability scanning",
+            "Configuration error analysis on network devices",
+            "Open ports and weak point identification",
+            "Detailed audit report in English",
+            "Concrete fix recommendations with priorities",
+            "30-minute consultation on findings"
+          ],
+          "ideal": "Ideal for: reviewing existing infrastructure"
+        }
+      ]
     }
   },
   "SuccessPage": {
