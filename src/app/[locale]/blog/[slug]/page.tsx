@@ -1,14 +1,10 @@
 
 import { getBlogPostBySlug } from "@/app/actions/blog"
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import ReactMarkdown from 'react-markdown'
 import { notFound } from "next/navigation"
-import { Calendar, User, ArrowLeft, Clock, Share2, Tag } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
-import { Badge } from "@/components/ui/badge"
-import { getTranslations } from "next-intl/server"
-import { SmartDate } from "@/components/ui/smart-date"
-import { FadeIn } from "@/components/ui/motion-wrapper"
 import { routing } from '@/i18n/routing'
 
 export const revalidate = 3600
@@ -44,7 +40,6 @@ export async function generateMetadata({ params }: Props) {
         }
     }
 }
-
 export default async function BlogPostPage({ params }: Props) {
     const { slug, locale } = await params
     const post = await getBlogPostBySlug(slug) as any
@@ -76,7 +71,7 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
 
                 <div className="prose prose-neutral dark:prose-invert lg:prose-xl max-w-none">
-                    <MDXRemote source={content || ''} />
+                    <ReactMarkdown>{content || ''}</ReactMarkdown>
                 </div>
             </div>
         </article>
