@@ -144,21 +144,19 @@ export async function getBlogPostById(id: string) {
     }
 }
 
-const getCachedBlogPostBySlug = unstable_cache(
-    async (slug: string) => {
-        const post = await db.blogPost.findUnique({
-            where: { slug },
-            include: { series: true }
-        })
-        return post
-    },
-    ['blog-post-by-slug'],
-    { revalidate: 3600, tags: ['blog'] }
-)
-
 export async function getBlogPostBySlug(slug: string) {
     try {
-        return await getCachedBlogPostBySlug(slug)
+        return await unstable_cache(
+            async () => {
+                const post = await db.blogPost.findUnique({
+                    where: { slug },
+                    include: { series: true }
+                })
+                return post
+            },
+            ['blog-post-by-slug', slug],
+            { revalidate: 3600, tags: ['blog'] }
+        )()
     } catch (error) {
         return null
     }
