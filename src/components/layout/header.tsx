@@ -12,6 +12,7 @@ import { ThemeCustomizer } from "@/components/theme/theme-customizer"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
 import { CurrencySwitcher } from "@/components/layout/currency-switcher"
 import { MegaMenu } from "@/components/layout/mega-menu"
+import { DarkModeToggle } from "@/components/theme/dark-mode-toggle"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { NeuralBackground } from "@/components/neural-background"
 import { cn } from "@/lib/utils"
@@ -116,6 +117,7 @@ export function Header() {
                         <Button size="sm" className="bg-accent hover:bg-accent/90 text-white" asChild>
                             <Link href="/demo">{t("free_consultation")}</Link>
                         </Button>
+                        <DarkModeToggle />
                         <ThemeCustomizer />
                         <CurrencySwitcher />
                         <LanguageSwitcher />
@@ -206,6 +208,10 @@ export function Header() {
                                 <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
                                     <div className="flex justify-between items-center px-2">
                                         <div className="flex items-center gap-4 sm:gap-8">
+                                            <div className="flex flex-col gap-1.5 items-center">
+                                                <DarkModeToggle />
+                                                <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">Mode</span>
+                                            </div>
                                             <div className="flex flex-col gap-1.5 items-center">
                                                 <ThemeCustomizer />
                                                 <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">{tMega("theme")}</span>

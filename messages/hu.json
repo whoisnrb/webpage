@@ -1,4 +1,11 @@
 {
+  "ExitIntent": {
+    "title": "Mielőtt elmennél...",
+    "subtitle": "Ingyenes Konzultáció & Audit",
+    "description": "Ne hagyd ott a pénzt az asztalon! Kérj egy ingyenes 15 perces auditot, ahol átnézzük a jelenlegi rendszereid és megmutatjuk, hol tudsz havi szinten órákat spórolni az automatizációval.",
+    "cta": "Kérem az ingyenes auditot",
+    "no_thanks": "Nem köszönöm, maradok a manuális munkánál"
+  },
   "Hero": {
     "badge": "Új: Automation Starter Pack",
     "title_1": "Automatizáld a sikert.",

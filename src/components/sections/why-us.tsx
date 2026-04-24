@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { Trophy, Rocket, Users, Target, ShieldCheck, Zap } from "lucide-react"
+import { AnimatedCounter } from "@/components/ui/animated-counter"
 
 export function WhyUs() {
     const t = useTranslations('HomePage')
@@ -89,7 +90,7 @@ export function WhyUs() {
                                 </div>
 
                                 <div className="text-4xl md:text-5xl font-black text-white mb-3 md:mb-4 tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
-                                    {stat.value}
+                                    <AnimatedCounter value={stat.value} duration={2.5} />
                                 </div>
 
                                 <h3 className="text-xl font-black text-white mb-4 group-hover:text-primary transition-colors duration-500">

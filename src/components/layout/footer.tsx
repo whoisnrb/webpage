@@ -81,10 +81,13 @@ export function Footer() {
                     <p className="text-xs text-white/20">
                         {tStats("rights", { year: new Date().getFullYear() })}
                     </p>
-                    <div className="flex gap-6">
+                    <div className="flex gap-6 items-center">
                         <Link href="/adatvedelem" className="text-xs text-white/40 hover:text-white transition-colors">{tNav("privacy")}</Link>
                         <Link href="/aszf" className="text-xs text-white/40 hover:text-white transition-colors">{tNav("terms")}</Link>
                         <Link href="/impresszum" className="text-xs text-white/40 hover:text-white transition-colors">{tNav("imprint")}</Link>
+                        <a href="/rss.xml" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-primary transition-colors" title="RSS Feed">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+                        </a>
                     </div>
                 </div>
             </div>

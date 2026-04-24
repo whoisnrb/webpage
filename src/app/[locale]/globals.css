@@ -22,9 +22,31 @@
 }
 
 :root {
+  --background: oklch(0.97 0.005 260);
+  --foreground: oklch(0.15 0.02 260);
+  --popover: oklch(0.99 0.005 260);
+  --color-card-light: oklch(0.99 0.005 260 / 80%);
+  --color-muted-light: oklch(0.94 0.01 260);
+  --color-border-light: oklch(0.15 0.02 260 / 12%);
+}
+
+.dark {
   --background: oklch(0.02 0.01 260);
   --foreground: oklch(0.98 0.01 240);
   --popover: oklch(0.05 0.02 260);
+}
+
+/* Light mode overrides */
+:root:not(.dark) {
+  --color-background: oklch(0.97 0.005 260);
+  --color-foreground: oklch(0.15 0.02 260);
+  --color-card: oklch(0.99 0.005 260 / 80%);
+  --color-muted: oklch(0.94 0.01 260);
+  --color-muted-foreground: oklch(0.45 0.05 260);
+  --color-border: oklch(0.15 0.02 260 / 12%);
+  --color-popover: oklch(0.99 0.005 260);
+  --color-popover-foreground: oklch(0.15 0.02 260);
+  --color-secondary: oklch(0.94 0.01 260);
 }
 
 body {
@@ -175,6 +197,46 @@ h6 {
 
 .bg-white\/\[0\.03\] {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Light mode text overrides */
+:root:not(.dark) .text-white,
+:root:not(.dark) .text-white\/90 {
+  color: var(--foreground) !important;
+}
+
+:root:not(.dark) .text-white\/40 {
+  color: var(--color-muted-foreground) !important;
+}
+
+:root:not(.dark) .text-white\/60 {
+  color: oklch(0.35 0.03 260) !important;
+}
+
+:root:not(.dark) .bg-white\/\[0\.01\],
+:root:not(.dark) .bg-white\/\[0\.02\],
+:root:not(.dark) .bg-white\/\[0\.03\] {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+:root:not(.dark) .bg-white\/5,
+:root:not(.dark) .bg-white\/\[0\.05\] {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+:root:not(.dark) .border-white\/5,
+:root:not(.dark) .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+:root:not(.dark) .bg-black\/60 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+:root:not(.dark) [data-radix-menu-content] {
+  background-color: var(--popover) !important;
+  color: var(--foreground) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Consistent transitions */

@@ -70,9 +70,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         'hu': '/hu',
         'en': '/en',
       },
+      types: {
+        'application/rss+xml': '/rss.xml',
+      },
     },
     verification: {
       google: "w5GusFwWrjuwRjB6Et93XNbdps97gw7pOuMeX4a5pbY",
+    },
+    itunes: {
+      appId: "my-app-id",
+    },
+    appleWebApp: {
+      title: "BacklineIT",
+      statusBarStyle: "black-translucent",
     },
   };
 }

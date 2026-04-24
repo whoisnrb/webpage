@@ -1,4 +1,11 @@
 {
+  "ExitIntent": {
+    "title": "Before you go...",
+    "subtitle": "Free Consultation & Audit",
+    "description": "Don't leave money on the table! Request a free 15-minute audit where we review your current systems and show you where you can save hours every month with automation.",
+    "cta": "Get my free audit",
+    "no_thanks": "No thanks, I'll stick to manual work"
+  },
   "Hero": {
     "badge": "New: Automation Starter Pack",
     "title_1": "Automate Success.",
