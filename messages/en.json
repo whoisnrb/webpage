@@ -111,7 +111,31 @@
     },
     "upsell": {
       "title": "Struggling with a similar problem?",
-      "description": "Check out our services that can help take your business to success."
+      "description": "Check out our services that can help take your business to success.",
+      "cta_button": "Free Consultation",
+      "view_more": "View Details",
+      "services": {
+        "webdev": {
+          "title": "Custom Web Development",
+          "description": "Modern, fast, and scalable websites and web applications built on Next.js."
+        },
+        "automation": {
+          "title": "Business Automation",
+          "description": "Save time and money! Automate your boring, repetitive processes with n8n."
+        },
+        "consulting": {
+          "title": "IT Consulting",
+          "description": "We help you find the best technological solutions for your business problems."
+        },
+        "cloud": {
+          "title": "Cloud Infrastructure",
+          "description": "Deployment and operation of secure and scalable server solutions (AWS, Vercel)."
+        },
+        "security": {
+          "title": "Cybersecurity",
+          "description": "Protect your data and systems! Providing security audits and GDPR compliance."
+        }
+      }
     },
     "cta": {
       "badge": "Growing Together",
@@ -731,23 +755,7 @@
       "description": "Pre-made Excel dashboard for SMEs to track IT assets, servers, licenses and maintenance tasks."
     }
   },
-  "ProductDetailPage": {
-    "product_info": "Solution Information",
-    "detailed_description": "Detailed Description",
-    "features_list": "Features List",
-    "secure_code": "Secure Code",
-    "regular_updates": "Regular Updates",
-    "technical_support": "Technical Support",
-    "documentation": "Documentation",
-    "not_found": "Solution not found",
-    "back_to_products": "Back to Solutions",
-    "select_version": "Select Package:",
-    "request_consultation": "Finalize Configuration",
-    "secure_solution": "Secure Solution",
-    "fast_implementation": "Quick Implementation",
-    "demo_video": "Play Demo Video",
-    "no_variants": "No packages available for this solution."
-  },
+
   "QuoteRequest": {
     "title": "Let's realize your idea!",
     "subtitle": "Fill out the form below, and we'll prepare a personalized quote for you.",
@@ -2585,23 +2593,25 @@
     }
   },
   "ProductDetailPage": {
-    "product_info": "Product Information",
+    "product_info": "Solution Information",
     "detailed_description": "Detailed Description",
     "features_list": "Key Features & Benefits",
     "secure_code": "Secure Code",
     "regular_updates": "Regular Updates",
     "technical_support": "Technical Support",
     "documentation": "Documentation",
-    "select_version": "Select version",
-    "request_consultation": "Request consultation",
-    "not_found": "Product not found",
-    "back_to_products": "Back to solutions",
+    "select_version": "Select Package:",
+    "request_consultation": "Finalize Configuration",
+    "not_found": "Solution not found",
+    "back_to_products": "Back to Solutions",
     "personal": "Personal",
     "team": "Team Edition",
     "enterprise": "Enterprise",
     "buy_now": "Buy now",
     "secure_solution": "Secure Solution",
-    "fast_implementation": "Fast Implementation"
+    "fast_implementation": "Quick Implementation",
+    "demo_video": "Play Demo Video",
+    "no_variants": "No packages available for this solution."
   },
   "SuccessPage": {
     "title": "Payment Successful!",

@@ -111,7 +111,31 @@
     },
     "upsell": {
       "title": "Hasonló problémával küzdesz?",
-      "description": "Nézd meg szolgáltatásainkat, melyekkel a te cégedet is sikerre vihetjük."
+      "description": "Nézd meg szolgáltatásainkat, melyekkel a te cégedet is sikerre vihetjük.",
+      "cta_button": "Ingyenes Konzultáció",
+      "view_more": "Megnézem",
+      "services": {
+        "webdev": {
+          "title": "Egyedi Webfejlesztés",
+          "description": "Modern, gyors és skálázható weboldalak és webalkalmazások fejlesztése Next.js alapokon."
+        },
+        "automation": {
+          "title": "Üzleti Automatizáció",
+          "description": "Spórolj időt és pénzt! Automatizáld unalmas, ismétlődő folyamataidat n8n segítségével."
+        },
+        "consulting": {
+          "title": "IT Tanácsadás",
+          "description": "Segítünk megtalálni a legjobb technológiai megoldást üzleti problémáidra."
+        },
+        "cloud": {
+          "title": "Felhő Infrastruktúra",
+          "description": "Biztonságos és skálázható szervermegoldások (AWS, Vercel) telepítése és üzemeltetése."
+        },
+        "security": {
+          "title": "Kiberbiztonság",
+          "description": "Védd meg adataidat és rendszereidet! Biztonsági audit és GDPR megfelelés biztosítása."
+        }
+      }
     },
     "cta": {
       "badge": "Együtt növekedünk",
