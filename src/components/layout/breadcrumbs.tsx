@@ -32,8 +32,8 @@ export function Breadcrumbs() {
                 // Try to translate the segment, fallback to capitalizing the segment itself
                 const decodedSegment = decodeURIComponent(segment)
                 let name = decodedSegment
-                if (t.has(decodedSegment as any)) {
-                    name = t(decodedSegment as any)
+                if (t.has(decodedSegment as never)) {
+                    name = t(decodedSegment as never)
                 } else {
                     name = decodedSegment.charAt(0).toUpperCase() + decodedSegment.slice(1).replace(/-/g, ' ')
                 }
@@ -42,9 +42,9 @@ export function Breadcrumbs() {
                     <div key={href} className="flex items-center">
                         <ChevronRight className="h-4 w-4 mx-2 text-muted-foreground/50" />
                         {isLast ? (
-                            <span className="font-medium text-foreground capitalize">{name}</span>
+                            <span className="font-medium text-foreground">{name}</span>
                         ) : (
-                            <Link href={href as any} className="hover:text-primary transition-colors capitalize">
+                            <Link href={href as never} className="hover:text-primary transition-colors">
                                 {name}
                             </Link>
                         )}

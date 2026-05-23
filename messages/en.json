@@ -389,6 +389,15 @@
   "ServicesPreview": {
     "title_1": "We don't just code.",
     "title_2": "We solve problems.",
+    "tab_smb": "SMB IT Services",
+    "tab_core": "Custom Systems & DevOps",
+    "benefit_wordpress": "99.9% Uptime",
+    "benefit_webshop": "Save 20+ hours/mo",
+    "benefit_audit": "Fix Security Holes",
+    "benefit_managed": "24/7 Proactive Support",
+    "benefit_backup": "Zero Data Loss",
+    "benefit_office": "Unified Cloud Team",
+    "benefit_ai": "90% Faster Workflows",
     "description": "Choose from our services and take your business to the next level.",
     "items": {
       "automation": {
@@ -495,7 +504,10 @@
     "address": "2141 Csömör, Vörösmarty utca 11.",
     "email_hello": "hello@backlineit.hu",
     "email_support": "support@backlineit.hu",
-    "booking_title": "Booking & Message"
+    "booking_title": "Booking & Message",
+    "response_time": "Response Time",
+    "satisfaction": "Satisfaction",
+    "support": "Support"
   },
   "Checkout": {
     "title": "Checkout",
@@ -1133,12 +1145,24 @@
     "n8n-lead-management": "n8n Lead Management Workflow",
     "python-web-scraper": "Python Web Scraper Starter Kit",
     "it-maintenance-dashboard": "IT Maintenance Dashboard",
-    "wordpress-woocommerce-karbantartas": "WordPress Maintenance",
-    "kkv-it-audit": "IT Audit",
-    "webshop-automatizacio": "Webshop Automation",
-    "ai-asszisztensek": "AI Assistants",
+    "security": "Cybersecurity",
+    "network": "Network Solutions",
+    "integrations": "Integrations",
+    "system-administration": "System Administration",
+    "scripts": "Scripts & Automation",
+    "web-development": "Web Development",
+    "wordpress-woocommerce-maintenance": "WordPress / WooCommerce Maintenance",
+    "smb-it-audit": "SMB IT Audit & Assessment",
+    "webshop-automation": "Webshop Automation",
+    "ai-assistants": "AI Assistants & Automation",
     "microsoft-365-google-workspace": "Microsoft 365 & Google Workspace",
-    "backup-adatmentes": "Backup & Recovery",
+    "backup-data-recovery": "Backup & Data Recovery",
+    "managed-it-services": "Managed IT Services",
+    "wordpress-woocommerce-karbantartas": "WordPress / WooCommerce Maintenance",
+    "kkv-it-audit": "SMB IT Audit & Assessment",
+    "webshop-automatizacio": "Webshop Automation",
+    "ai-asszisztensek": "AI Assistants & Automation",
+    "backup-adatmentes": "Backup & Data Recovery",
     "havidijas-rendszergazda": "Managed IT Services"
   },
   "CommandMenu": {
@@ -1439,7 +1463,7 @@
         "desc": "Full-service system administration and rapid remote support",
         "items": {
           "managed": {
-            "name": "Managed IT Services / Rendszergazda",
+            "name": "Managed IT Services",
             "price": "From 39 000 HUF / mo",
             "desc": "Proactive server monitoring, workstation maintenance, and 24/7 helpdesk.",
             "link": "/szolgaltatasok/havidijas-rendszergazda"
@@ -1503,7 +1527,7 @@
             "3 months free support",
             "Google Analytics integration"
           ],
-          "cta": "Order Now"
+          "cta": "Book Consultation"
         },
         "pro": {
           "name": "Professional",
@@ -1521,7 +1545,7 @@
             "Monthly performance report",
             "Daily backups"
           ],
-          "cta": "Order Now"
+          "cta": "Discuss This Package"
         },
         "enterprise": {
           "name": "Enterprise",
@@ -1864,7 +1888,7 @@
       "integrations_desc": "System integrations and API solutions",
       "wordpress": "WordPress / WooCommerce Maintenance",
       "wordpress_desc": "WooCommerce & WP updates, security and optimization",
-      "it_audit": "KKV IT Audit & Assessment",
+      "it_audit": "SMB IT Audit & Assessment",
       "it_audit_desc": "Digital maturity review and tech roadmap for SMBs",
       "webshop_auto": "Webshop Automation",
       "webshop_auto_desc": "Invoicing, courier services and inventory synchronization",
@@ -1874,7 +1898,7 @@
       "office_suite_desc": "Office productivity cloud setup and data migration",
       "backup": "Backup & Recovery",
       "backup_desc": "3-2-1 backup strategy and business continuity plans",
-      "managed_it": "Managed IT Services / Rendszergazda",
+      "managed_it": "Managed IT Services",
       "managed_it_desc": "Full-service SMB system administration and remote support"
     },
     "need_help_title": "Don't know what you need?",
@@ -1905,8 +1929,8 @@
     "get_quote": "Get a Quote",
     "view_references": "References",
     "request_appointment": "Request Appointment",
-    "why_need_this": "Why do you need this?",
-    "with_backlineit": "with BacklineIT?",
+    "why_need_this": "Why choose BacklineIT",
+    "with_backlineit": "for this?",
     "whats_included": "What's included in the package?",
     "technologies": "Technologies:",
     "starting_price": "Starting Price",
@@ -2811,13 +2835,13 @@
           "title": "Plugin Updates",
           "description": "Safe and compatible updates of extensions carried out in staging environments first.",
           "example": "Updating WooCommerce and payment gateways without causing checkout downtime.",
-          "roi": "0% update glitches"
+          "roi": "Safer update process"
         },
         {
           "title": "Data Protection",
           "description": "Full database and media file backups stored on separate secure servers.",
           "example": "Daily backups with a 30-day retention policy, letting you restore at any time.",
-          "roi": "100% data safety"
+          "roi": "Stronger recovery readiness"
         },
         {
           "title": "Performance Tuning",
@@ -3012,7 +3036,7 @@
         {
           "title": "Courier Automation",
           "description": "Customer addresses turn into shipping labels on the fly.",
-          "example": "Courier APIs generate label PDFs, notify dispatch, and email vewers a tracking number.",
+          "example": "Courier APIs generate label PDFs, notify dispatch, and email customers a tracking number.",
           "roi": "~25 hours/month saved + 98% fewer mistakes"
         },
         {
@@ -3086,15 +3110,15 @@
       ],
       "hero_benefits": [
         {
-          "title": "24/7 Client Responding",
+          "title": "24/7 Client Responses",
           "description": "Your AI bot answers incoming product questions instantly, day or night, keeping prospects engaged."
         },
         {
-          "title": "Drastic Office Speeds",
+          "title": "Faster Office Workflows",
           "description": "Let AI do data crunching, document reading, and sorting while your team focuses on high-value business tasks."
         },
         {
-          "title": "Instant Data Finding",
+          "title": "Instant Information Retrieval",
           "description": "Employees locate specific clauses, product details, or manuals in seconds via a conversational AI chat."
         }
       ],
@@ -3203,7 +3227,7 @@
           "title": "Email Migrations",
           "description": "Moving old, unreliable hosting mail accounts to solid cloud systems without data loss.",
           "example": "Transferring cPanel email history, calendar lists, and contacts to Google Workspace.",
-          "roi": "100% data migrated, zero mail bounce"
+          "roi": "Successful data migration, zero mail bounces"
         },
         {
           "title": "Shared Drive Architectures",
@@ -3215,7 +3239,7 @@
           "title": "Security Shielding",
           "description": "Hardening mailboxes against phishing, spoofing, and credentials harvesting.",
           "example": "Enforcing two-step login (MFA), setting up spam filter alerts, and configuring DMARC/SPF.",
-          "roi": "99% drop in business email threats"
+          "roi": "Significantly reduced email security risk"
         }
       ],
       "pricing_title": "Rollout Packages",
@@ -3302,7 +3326,7 @@
           "title": "Ransomware Defenses",
           "description": "Structuring immutable backups that hackers cannot delete or encrypt.",
           "example": "Setting S3 Object Lock on daily backups, making them physically undeletable for 14 days.",
-          "roi": "100% ransomware defense"
+          "roi": "Ransomware-resilient backup design"
         },
         {
           "title": "NAS Device Setup",
@@ -3358,7 +3382,7 @@
             "Immediate virtual machine (VM) spin-up in cloud",
             "Strict RTO and RPO guarantees in writing",
             "24/7 technical monitoring & active sysadmin",
-            "Quarterly full katastrophe simulation testing",
+            "Quarterly full disaster recovery simulation testing",
             "Unlimited recovery assistance services",
             "Ongoing infrastructure consulting"
           ],
@@ -3368,7 +3392,7 @@
     },
     "ManagedIT": {
       "title": "Managed IT & Dedicated Sysadmin",
-      "description": "Proactive systems monitoring, quick remote user helpdesk, and complete KKV IT management under a predictable monthly rate.",
+      "description": "Proactive systems monitoring, quick remote user helpdesk, and complete SMB IT management under a predictable monthly rate.",
       "keywords": "managed IT, business sysadmin, IT support cégeknek, systems administrator, IT outsourcing, remote helpdesk",
       "hero_features": [
         "Proactive 24/7 server & network monitoring",

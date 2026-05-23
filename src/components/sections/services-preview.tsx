@@ -1,6 +1,6 @@
 "use client"
 
-import { Code, Server, Shield, ShoppingCart, ArrowRight, Eye, Terminal, Cpu, Zap, Globe, Lock, Activity, Sparkles, Database, BarChart3, Layers, Network, Wifi } from "lucide-react"
+import { Shield, ArrowRight, Eye, Cpu, Zap, Globe, Lock, Activity, Sparkles, Database, Network, Search, Cloud, RefreshCw } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { useState, useEffect } from "react"
@@ -10,33 +10,104 @@ import { cn } from "@/lib/utils"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { motion, AnimatePresence } from "framer-motion"
 
+// Automation terminal lines static data
+const ALL_TERMINAL_LINES = [
+    '[16:54:20] FETCH orders FROM simplepay...',
+    '[16:54:21] PARSING 12 items...',
+    '[16:54:23] SYNCED with "Marketing DB"',
+    '[16:54:25] SENDING webhook to n8n...',
+    '[16:54:26] DONE: Success'
+]
+
 export function ServicesPreview() {
     const t = useTranslations('ServicesPreview')
+    const tMega = useTranslations('MegaMenu')
     const tQuickView = useTranslations('QuickView')
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [selectedService, setSelectedService] = useState<any | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [activeTab, setActiveTab] = useState<'smb' | 'core'>('smb')
 
-    // Automation terminal lines
+    // Automation terminal lines state
     const [terminalLines, setTerminalLines] = useState<string[]>([])
-    const allLines = [
-        '[16:54:20] FETCH orders FROM simplepay...',
-        '[16:54:21] PARSING 12 items...',
-        '[16:54:23] SYNCED with "Marketing DB"',
-        '[16:54:25] SENDING webhook to n8n...',
-        '[16:54:26] DONE: Success'
-    ]
 
     useEffect(() => {
         const interval = setInterval(() => {
             setTerminalLines(prev => {
-                if (prev.length >= allLines.length) return [allLines[0]]
-                return [...prev, allLines[prev.length]]
+                if (prev.length >= ALL_TERMINAL_LINES.length) return [ALL_TERMINAL_LINES[0]]
+                return [...prev, ALL_TERMINAL_LINES[prev.length]]
             })
         }, 2000)
         return () => clearInterval(interval)
     }, [])
 
-    const services = [
+    const smbServices = [
+        {
+            title: tMega('nav_items.wordpress'),
+            description: tMega('nav_items.wordpress_desc'),
+            benefit: t('benefit_wordpress'),
+            icon: RefreshCw,
+            href: "/szolgaltatasok/wordpress-woocommerce-karbantartas",
+            className: "md:col-span-4 md:row-span-1",
+            color: "rgba(6, 182, 212, 0.15)",
+        },
+        {
+            title: tMega('nav_items.webshop_auto'),
+            description: tMega('nav_items.webshop_auto_desc'),
+            benefit: t('benefit_webshop'),
+            icon: Zap,
+            href: "/szolgaltatasok/webshop-automatizacio",
+            className: "md:col-span-4 md:row-span-1",
+            color: "rgba(249, 115, 22, 0.15)",
+        },
+        {
+            title: tMega('nav_items.it_audit'),
+            description: tMega('nav_items.it_audit_desc'),
+            benefit: t('benefit_audit'),
+            icon: Search,
+            href: "/szolgaltatasok/kkv-it-audit",
+            className: "md:col-span-4 md:row-span-1",
+            color: "rgba(168, 85, 247, 0.15)",
+        },
+        {
+            title: tMega('nav_items.managed_it'),
+            description: tMega('nav_items.managed_it_desc'),
+            benefit: t('benefit_managed'),
+            icon: Activity,
+            href: "/szolgaltatasok/havidijas-rendszergazda",
+            className: "md:col-span-6 md:row-span-1",
+            color: "rgba(34, 197, 94, 0.15)",
+        },
+        {
+            title: tMega('nav_items.backup'),
+            description: tMega('nav_items.backup_desc'),
+            benefit: t('benefit_backup'),
+            icon: Database,
+            href: "/szolgaltatasok/backup-adatmentes",
+            className: "md:col-span-6 md:row-span-1",
+            color: "rgba(239, 68, 68, 0.15)",
+        },
+        {
+            title: tMega('nav_items.office_suite'),
+            description: tMega('nav_items.office_suite_desc'),
+            benefit: t('benefit_office'),
+            icon: Cloud,
+            href: "/szolgaltatasok/microsoft-365-google-workspace",
+            className: "md:col-span-6 md:row-span-1",
+            color: "rgba(59, 130, 246, 0.15)",
+        },
+        {
+            title: tMega('nav_items.ai_auto'),
+            description: tMega('nav_items.ai_auto_desc'),
+            benefit: t('benefit_ai'),
+            icon: Cpu,
+            href: "/szolgaltatasok/ai-asszisztensek",
+            className: "md:col-span-6 md:row-span-1",
+            color: "rgba(6, 182, 212, 0.15)",
+        }
+    ]
+
+    const coreServices = [
         {
             title: t('items.automation.title'),
             description: t('items.automation.description'),
@@ -311,6 +382,8 @@ export function ServicesPreview() {
         },
     ]
 
+    const activeServices = activeTab === 'smb' ? smbServices : coreServices
+
     return (
         <section className="py-24 md:py-32 relative overflow-hidden">
             {/* Ultra-luxury background elements */}
@@ -320,7 +393,7 @@ export function ServicesPreview() {
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="max-w-4xl mx-auto text-center mb-24">
+                <div className="max-w-4xl mx-auto text-center mb-16">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -343,15 +416,49 @@ export function ServicesPreview() {
                     </motion.div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-12 auto-rows-auto gap-6 max-w-7xl mx-auto">
-                    {services.map((service, index) => (
+                {/* Tab Switcher */}
+                <div className="flex justify-center mb-16 relative z-20">
+                    <div className="inline-flex rounded-full bg-white/[0.02] p-1.5 border border-white/10 backdrop-blur-xl">
+                        <button
+                            onClick={() => setActiveTab('smb')}
+                            className={cn(
+                                "px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-500",
+                                activeTab === 'smb'
+                                    ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.2)] font-black"
+                                    : "text-white/40 hover:text-white/80 border border-transparent font-bold"
+                            )}
+                        >
+                            {t('tab_smb')}
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('core')}
+                            className={cn(
+                                "px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-500",
+                                activeTab === 'core'
+                                    ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-400 border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.2)] font-black"
+                                    : "text-white/40 hover:text-white/80 border border-transparent font-bold"
+                            )}
+                        >
+                            {t('tab_core')}
+                        </button>
+                    </div>
+                </div>
+
+                <motion.div
+                    key={activeTab}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="grid grid-cols-1 md:grid-cols-12 auto-rows-auto gap-6 max-w-7xl mx-auto"
+                >
+                    {activeServices.map((service, index) => (
                         <motion.div
                             key={index}
                             className={cn("group flex h-full", service.className)}
                             initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 1, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 1, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                         >
                             <SpotlightCard
                                 className="border border-white/10 shadow-3xl hover:border-primary/40 transition-all duration-1000 w-full relative overflow-hidden flex flex-col p-6 md:p-10 backdrop-blur-3xl bg-white/[0.015] rounded-[2rem] md:rounded-[2.5rem]"
@@ -396,12 +503,12 @@ export function ServicesPreview() {
                                         <ArrowRight className="ml-3 h-5 w-5 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-1000" />
                                     </div>
 
-                                    {service.extra}
+                                    {(service as { extra?: import("react").ReactNode }).extra}
                                 </div>
 
                                 <div className="mt-10 z-10 relative">
                                     <Button asChild className="w-full bg-white/[0.03] hover:bg-primary text-white font-black uppercase tracking-[0.1em] border border-white/10 hover:border-transparent transition-all duration-700 h-14 rounded-2xl group-hover:scale-[1.02] active:scale-[0.98] group-hover:shadow-[0_20px_50px_-10px_rgba(6,182,212,0.4)]">
-                                        <Link href={service.href as any}>
+                                        <Link href={service.href as never}>
                                             {tQuickView('details')}
                                         </Link>
                                     </Button>
@@ -409,7 +516,7 @@ export function ServicesPreview() {
                             </SpotlightCard>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
 
             <QuickViewModal

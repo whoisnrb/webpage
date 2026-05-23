@@ -109,21 +109,21 @@ export default function ContactPage() {
                                         <Zap className="h-5 w-5 text-amber-400" />
                                     </div>
                                     <p className="text-xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">&lt;2h</p>
-                                    <p className="text-[11px] text-white/40 mt-0.5">{/* Response time */}Válaszidő</p>
+                                    <p className="text-[11px] text-white/40 mt-0.5">{t('response_time')}</p>
                                 </div>
                                 <div className="text-center p-4 rounded-2xl border border-white/10 bg-white/[0.02]">
                                     <div className="flex items-center justify-center mb-2">
                                         <Shield className="h-5 w-5 text-emerald-400" />
                                     </div>
                                     <p className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">100%</p>
-                                    <p className="text-[11px] text-white/40 mt-0.5">{/* Satisfaction */}Elégedettség</p>
+                                    <p className="text-[11px] text-white/40 mt-0.5">{t('satisfaction')}</p>
                                 </div>
                                 <div className="text-center p-4 rounded-2xl border border-white/10 bg-white/[0.02]">
                                     <div className="flex items-center justify-center mb-2">
                                         <Headphones className="h-5 w-5 text-cyan-400" />
                                     </div>
                                     <p className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">24/7</p>
-                                    <p className="text-[11px] text-white/40 mt-0.5">{/* Support */}Support</p>
+                                    <p className="text-[11px] text-white/40 mt-0.5">{t('support')}</p>
                                 </div>
                             </div>
 

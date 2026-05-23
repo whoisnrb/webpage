@@ -389,6 +389,15 @@
   "ServicesPreview": {
     "title_1": "Nem csak kódolunk.",
     "title_2": "Problémákat oldunk meg.",
+    "tab_smb": "KKV IT Szolgáltatások",
+    "tab_core": "Egyedi Rendszerek & DevOps",
+    "benefit_wordpress": "99.9% rendelkezésre állás",
+    "benefit_webshop": "Havi 20+ óra megtakarítás",
+    "benefit_audit": "Biztonsági rések lezárása",
+    "benefit_managed": "24/7 proaktív támogatás",
+    "benefit_backup": "Zéró adatvesztés",
+    "benefit_office": "Egységes felhő csapat",
+    "benefit_ai": "90%-kal gyorsabb munka",
     "description": "Válassz a szolgáltatásaink közül, és emeld a vállalkozásodat a következő szintre.",
     "items": {
       "automation": {
@@ -495,7 +504,10 @@
     "address": "2141 Csömör, Vörösmarty utca 11.",
     "email_hello": "hello@backlineit.hu",
     "email_support": "support@backlineit.hu",
-    "booking_title": "Időpontfoglalás & Üzenet"
+    "booking_title": "Időpontfoglalás & Üzenet",
+    "response_time": "Válaszidő",
+    "satisfaction": "Elégedettség",
+    "support": "Support"
   },
   "Checkout": {
     "title": "Pénztár",
@@ -1116,13 +1128,26 @@
     "n8n-lead-management": "n8n Lead Management Workflow",
     "python-web-scraper": "Python Web Scraper Starter Kit",
     "it-maintenance-dashboard": "IT Karbantartási Dashboard",
-    "wordpress-woocommerce-karbantartas": "WordPress karbantartás",
-    "kkv-it-audit": "IT Audit",
-    "webshop-automatizacio": "Webshop automatizáció",
-    "ai-asszisztensek": "AI Asszisztens",
-    "microsoft-365-google-workspace": "Microsoft 365 / Google Workspace",
+    "wordpress-woocommerce-karbantartas": "WordPress / WooCommerce Karbantartás",
+    "kkv-it-audit": "KKV IT Audit & Állapotfelmérés",
+    "webshop-automatizacio": "Webshop Automatizáció",
+    "ai-asszisztensek": "AI Asszisztensek & Automatizáció",
+    "microsoft-365-google-workspace": "Microsoft 365 & Google Workspace",
     "backup-adatmentes": "Backup & Adatmentés",
-    "havidijas-rendszergazda": "Havidíjas Rendszergazda"
+    "havidijas-rendszergazda": "Havidíjas Rendszergazda / Managed IT",
+    "halozat": "Hálózati Megoldások",
+    "security": "Cybersecurity",
+    "network": "Network Solutions",
+    "integrations": "Integrations",
+    "system-administration": "System Administration",
+    "scripts": "Scripts & Automation",
+    "web-development": "Web Development",
+    "wordpress-woocommerce-maintenance": "WordPress / WooCommerce Karbantartás",
+    "smb-it-audit": "KKV IT Audit & Állapotfelmérés",
+    "webshop-automation": "Webshop Automatizáció",
+    "ai-assistants": "AI Asszisztensek & Automatizáció",
+    "backup-data-recovery": "Backup & Adatmentés",
+    "managed-it-services": "Havidíjas Rendszergazda / Managed IT"
   },
   "CommandMenu": {
     "search_label": "Keresés",
@@ -1485,7 +1510,7 @@
             "3 hónap ingyenes support",
             "Google Analytics integráció"
           ],
-          "cta": "Megrendelem"
+          "cta": "Konzultáció foglalása"
         },
         "pro": {
           "name": "Professional",
@@ -1503,7 +1528,7 @@
             "Havi teljesítmény riport",
             "Biztonsági mentések (napi)"
           ],
-          "cta": "Megrendelem"
+          "cta": "Beszéljünk róla"
         },
         "enterprise": {
           "name": "Enterprise",
@@ -1887,8 +1912,8 @@
     "get_quote": "Kérj árajánlatot",
     "view_references": "Referenciák",
     "request_appointment": "Időpont kérés",
-    "why_need_this": "Miért van erre szükséged?",
-    "with_backlineit": "a BacklineIT-vel?",
+    "why_need_this": "Miért a BacklineIT-t",
+    "with_backlineit": "válaszd ehhez?",
     "whats_included": "Mit tartalmaz a csomag?",
     "technologies": "Technológiák:",
     "starting_price": "Irányár",
@@ -2793,13 +2818,13 @@
           "title": "Plugin frissítések",
           "description": "A kiegészítők biztonságos és kompatibilis frissítése tesztkörnyezetben.",
           "example": "WooCommerce és fizetési modulok frissítése a webáruház működésének megszakítása nélkül.",
-          "roi": "0% frissítési hiba"
+          "roi": "Biztonságos frissítési folyamat"
         },
         {
           "title": "Adatmentés",
           "description": "Teljes adatbázis és fájlmentés külső, biztonságos szerverekre.",
           "example": "Napi mentések 30 napos megőrzéssel, így bármikor visszagörgethető az oldal.",
-          "roi": "100% adatbiztonság"
+          "roi": "Magas szintű adatbiztonság"
         },
         {
           "title": "Sebesség optimalizálás",
@@ -3185,7 +3210,7 @@
           "title": "E-mail migráció",
           "description": "Régi, instabil levelezőrendszerek költöztetése modern felhőbe az adatok elvesztése nélkül.",
           "example": "Tárhelyes cPanel levelezés átvitele a Google Workspace vagy Microsoft 365 professzionális rendszerébe.",
-          "roi": "100% biztonságos levelezés leállás nélkül"
+          "roi": "Biztonságos migráció leállások nélkül"
         },
         {
           "title": "Megosztott fájlstruktúra",
@@ -3197,7 +3222,7 @@
           "title": "Kiberbiztonsági keményítés",
           "description": "Védelem beállítása a fiókok feltörése és az adatok kiszivárgása ellen.",
           "example": "Kötelező kétlépcsős azonosítás (MFA) bevezetése, spam szűrés és gyanús bejelentkezések blokkolása.",
-          "roi": "99%-kal kevesebb sikeres adathalász támadás"
+          "roi": "Minimálisra csökkentett adathalász biztonsági kockázat"
         }
       ],
       "pricing_title": "Bevezetési Csomagok",
@@ -3266,7 +3291,7 @@
       "hero_benefits": [
         {
           "title": "Garantált adatbiztonság",
-          "description": "Hardverhiba, tűzeset vagy zsarolóvírusos támadás esetén is az adataid 100%-ban biztonságban és visszaállíthatóan megmaradnak."
+          "description": "Hardverhiba, tűzeset vagy zsarolóvírusos támadás esetén is az adataid biztonságban és garantáltan visszaállíthatóan megmaradnak."
         },
         {
           "title": "Minimális leállási idő",
@@ -3284,7 +3309,7 @@
           "title": "Ransomware elleni védelem",
           "description": "Módosíthatatlan (immutable) mentések kialakítása, amit a zsarolóvírusok nem tudnak letörölni vagy titkosítani.",
           "example": "A napi mentések zárolása (Object Lock) felhő tárhelyen, ami 14 napig fizikai képtelenség felülírni vagy törölni.",
-          "roi": "100% védelem zsarolás ellen"
+          "roi": "Zsarolóvírus-rezisztens backup kialakítás"
         },
         {
           "title": "Synology NAS telepítés",
