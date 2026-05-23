@@ -25,7 +25,13 @@ import {
     Briefcase, 
     FileText, 
     MessageSquare, 
-    CreditCard 
+    CreditCard,
+    Activity,
+    RefreshCw,
+    Cpu,
+    Cloud,
+    Database,
+    Search
 } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { NeuralBackground } from "@/components/neural-background"
@@ -64,6 +70,48 @@ export function MegaMenu() {
             description: t("nav_items.integrations_desc"),
             icon: Puzzle,
         },
+        {
+            title: t("nav_items.wordpress"),
+            href: "/szolgaltatasok/wordpress-woocommerce-karbantartas",
+            description: t("nav_items.wordpress_desc"),
+            icon: RefreshCw,
+        },
+        {
+            title: t("nav_items.it_audit"),
+            href: "/szolgaltatasok/kkv-it-audit",
+            description: t("nav_items.it_audit_desc"),
+            icon: Search,
+        },
+        {
+            title: t("nav_items.webshop_auto"),
+            href: "/szolgaltatasok/webshop-automatizacio",
+            description: t("nav_items.webshop_auto_desc"),
+            icon: Zap,
+        },
+        {
+            title: t("nav_items.ai_auto"),
+            href: "/szolgaltatasok/ai-asszisztensek",
+            description: t("nav_items.ai_auto_desc"),
+            icon: Cpu,
+        },
+        {
+            title: t("nav_items.office_suite"),
+            href: "/szolgaltatasok/microsoft-365-google-workspace",
+            description: t("nav_items.office_suite_desc"),
+            icon: Cloud,
+        },
+        {
+            title: t("nav_items.backup"),
+            href: "/szolgaltatasok/backup-adatmentes",
+            description: t("nav_items.backup_desc"),
+            icon: Database,
+        },
+        {
+            title: t("nav_items.managed_it"),
+            href: "/szolgaltatasok/havidijas-rendszergazda",
+            description: t("nav_items.managed_it_desc"),
+            icon: Activity,
+        },
     ]
 
     return (
@@ -76,8 +124,8 @@ export function MegaMenu() {
                             <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
                                 <NeuralBackground />
                             </div>
-                            <ul className="relative z-10 grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                                <li className="row-span-5">
+                            <ul className="relative z-10 grid gap-3 p-6 md:w-[700px] lg:w-[900px] md:grid-cols-[200px_1fr_1fr] lg:grid-cols-[250px_1fr_1fr]">
+                                <li className="row-span-6 md:row-span-6">
                                     <NavigationMenuLink asChild>
                                         <Link
                                             className="flex h-full w-full select-none flex-col justify-end rounded-2xl bg-gradient-to-br from-cyan-500/20 via-blue-500/5 to-transparent p-6 no-underline outline-none focus:shadow-md border border-white/5 group"

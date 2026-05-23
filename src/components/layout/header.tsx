@@ -39,6 +39,13 @@ export function Header() {
                 { name: tMega("nav_items.sysadmin"), href: "/szolgaltatasok/rendszeruzemeltetes" },
                 { name: tMega("nav_items.network"), href: "/szolgaltatasok/halozat" },
                 { name: tMega("nav_items.integrations"), href: "/szolgaltatasok/integraciok" },
+                { name: tMega("nav_items.wordpress"), href: "/szolgaltatasok/wordpress-woocommerce-karbantartas" },
+                { name: tMega("nav_items.it_audit"), href: "/szolgaltatasok/kkv-it-audit" },
+                { name: tMega("nav_items.webshop_auto"), href: "/szolgaltatasok/webshop-automatizacio" },
+                { name: tMega("nav_items.ai_auto"), href: "/szolgaltatasok/ai-asszisztensek" },
+                { name: tMega("nav_items.office_suite"), href: "/szolgaltatasok/microsoft-365-google-workspace" },
+                { name: tMega("nav_items.backup"), href: "/szolgaltatasok/backup-adatmentes" },
+                { name: tMega("nav_items.managed_it"), href: "/szolgaltatasok/havidijas-rendszergazda" },
             ]
         },
         {

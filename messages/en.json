@@ -1132,7 +1132,14 @@
     "woocommerce-szamlazz-hu": "WooCommerce Számlázz.hu Integration",
     "n8n-lead-management": "n8n Lead Management Workflow",
     "python-web-scraper": "Python Web Scraper Starter Kit",
-    "it-maintenance-dashboard": "IT Maintenance Dashboard"
+    "it-maintenance-dashboard": "IT Maintenance Dashboard",
+    "wordpress-woocommerce-karbantartas": "WordPress Maintenance",
+    "kkv-it-audit": "IT Audit",
+    "webshop-automatizacio": "Webshop Automation",
+    "ai-asszisztensek": "AI Assistants",
+    "microsoft-365-google-workspace": "Microsoft 365 & Google Workspace",
+    "backup-adatmentes": "Backup & Recovery",
+    "havidijas-rendszergazda": "Managed IT Services"
   },
   "CommandMenu": {
     "search_label": "Search",
@@ -1236,6 +1243,76 @@
           "Hardware procurement & setup",
           "Secure VPN",
           "Maintenance"
+        ]
+      },
+      "wordpress": {
+        "title": "WordPress & WooCommerce Maintenance",
+        "desc": "Secure, fast, and always online WordPress websites and WooCommerce stores managed and supported monthly.",
+        "features": [
+          "Regular core & plugin updates",
+          "Daily automated backups",
+          "Real-time security shielding",
+          "Performance optimization"
+        ]
+      },
+      "it_audit": {
+        "title": "SMB IT Audit & Digital Health Check",
+        "desc": "A comprehensive review of your business's IT infrastructure, cloud setups, and security, with a concrete action roadmap.",
+        "features": [
+          "Security vulnerability scan",
+          "Software license & subscription audit",
+          "Network health diagnostics",
+          "Digital transformation roadmap"
+        ]
+      },
+      "webshop_auto": {
+        "title": "E-commerce & Webshop Automation",
+        "desc": "Connect your WooCommerce or Shopify store to billing portals, shipping carriers, and CRM software to eliminate human errors.",
+        "features": [
+          "Automated invoicing",
+          "Courier & shipping integration",
+          "Real-time stock sync",
+          "Automated tracking notifications"
+        ]
+      },
+      "ai_auto": {
+        "title": "AI Assistants & Business Automation",
+        "desc": "Boost organizational productivity using tailored AI tools, automated customer service bots, and intelligent data extraction.",
+        "features": [
+          "Internal RAG AI assistant",
+          "Customer service web bot",
+          "Intelligent document parsing",
+          "Automated workflow pipelines"
+        ]
+      },
+      "office_suite": {
+        "title": "Microsoft 365 & Google Workspace Setup",
+        "desc": "Professional business cloud workspace setup, secure email migration, folder access structures, and MFA setup.",
+        "features": [
+          "Secure email migration",
+          "Role-based file access design",
+          "Team collaboration tools setup",
+          "Cloud threat protection & MFA"
+        ]
+      },
+      "backup": {
+        "title": "Backup & Disaster Recovery Strategy",
+        "desc": "Protect your company files and customer databases from ransomware, theft, and hardware failure using the 3-2-1 backup rule.",
+        "features": [
+          "Automated daily backup routine",
+          "Ransomware immutable backups",
+          "Hybrid local & cloud backups",
+          "Disaster recovery planning"
+        ]
+      },
+      "managed_it": {
+        "title": "Managed IT & Dedicated Sysadmin",
+        "desc": "End-to-end server management, network monitoring, and rapid remote user helpdesk under a predictable monthly plan.",
+        "features": [
+          "Proactive server & network monitoring",
+          "Workstation maintenance & patch management",
+          "24/7 Threat alerts & diagnostics",
+          "Dedicated technical helpdesk"
         ]
       }
     },
@@ -1700,7 +1777,21 @@
       "network": "Network Solutions",
       "network_desc": "VPN, VLAN, firewall and WiFi management",
       "integrations": "Integrations",
-      "integrations_desc": "System integrations and API solutions"
+      "integrations_desc": "System integrations and API solutions",
+      "wordpress": "WordPress Maintenance",
+      "wordpress_desc": "WooCommerce & WP updates, security and optimization",
+      "it_audit": "IT Audit & Assessment",
+      "it_audit_desc": "Digital maturity review and tech roadmap for SMBs",
+      "webshop_auto": "Webshop Automation",
+      "webshop_auto_desc": "Invoicing, courier services and inventory synchronization",
+      "ai_auto": "AI & Business Automation",
+      "ai_auto_desc": "Custom AI assistants and n8n workflow integrations",
+      "office_suite": "M365 & Google Workspace",
+      "office_suite_desc": "Office productivity cloud setup and data migration",
+      "backup": "Backup & Recovery",
+      "backup_desc": "3-2-1 backup strategy and business continuity plans",
+      "managed_it": "Managed IT Services",
+      "managed_it_desc": "Full-service SMB system administration and remote support"
     },
     "all_products": "All Solutions",
     "all_products_desc": "Browse our complete catalog",
@@ -2597,6 +2688,694 @@
           "ideal": "Ideal for: reviewing existing infrastructure"
         }
       ]
+    },
+    "WordPressMaintenance": {
+      "title": "WordPress / WooCommerce Maintenance",
+      "description": "Secure, fast, and always online WordPress websites and WooCommerce stores managed and supported monthly.",
+      "keywords": "wordpress maintenance, woocommerce support, wordpress updates, wordpress security, performance optimization, managed it services",
+      "hero_features": [
+        "Regular core & plugin updates",
+        "Daily automated backups",
+        "Real-time security shielding",
+        "Speed optimization",
+        "Bug fixes & developer support",
+        "Uptime monitoring",
+        "Image optimization",
+        "Database cleanup"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Continuous Security",
+          "description": "We protect your site from hacks, malware, and malicious bots using proactive security measures."
+        },
+        {
+          "title": "Faster Page Load",
+          "description": "An optimized WordPress site increases conversion rates and achieves higher Google search rankings."
+        },
+        {
+          "title": "Worry-Free Operation",
+          "description": "No more unexpected crashes. We monitor and manage your site while you focus on growing your business."
+        }
+      ],
+      "use_cases_title": "Use Cases",
+      "use_cases_desc": "How we keep your WordPress website running smoothly",
+      "use_cases_items": [
+        {
+          "title": "Plugin Updates",
+          "description": "Safe and compatible updates of extensions carried out in staging environments first.",
+          "example": "Updating WooCommerce and payment gateways without causing checkout downtime.",
+          "roi": "0% update glitches"
+        },
+        {
+          "title": "Data Protection",
+          "description": "Full database and media file backups stored on separate secure servers.",
+          "example": "Daily backups with a 30-day retention policy, letting you restore at any time.",
+          "roi": "100% data safety"
+        },
+        {
+          "title": "Performance Tuning",
+          "description": "Eliminating bloatware, configuring advanced caching, and compressing media assets.",
+          "example": "Improving Core Web Vitals, reducing loading speeds to under 3 seconds.",
+          "roi": "+20% conversion increase"
+        }
+      ],
+      "pricing_title": "Maintenance Plans",
+      "pricing_desc": "Choose the best plan for the size and complexity of your website or store",
+      "plans": {
+        "base": {
+          "name": "Basic Care",
+          "desc": "For small presentation websites and portfolio blogs",
+          "sub": "Billed monthly",
+          "features": [
+            "Monthly system updates",
+            "Weekly database backups",
+            "Basic security settings",
+            "Uptime monitoring",
+            "1 hour support / month"
+          ],
+          "duration_label": "Monthly flat rate"
+        },
+        "detailed": {
+          "name": "Pro Protection",
+          "badge": "Most Popular",
+          "desc": "For business websites and growing webshops",
+          "sub": "Billed monthly",
+          "features": [
+            "Weekly system updates",
+            "Daily secure backups",
+            "Advanced WAF & virus scanning",
+            "Performance optimization",
+            "Uptime & speed monitoring",
+            "3 hours support / month"
+          ],
+          "duration_label": "Monthly flat rate"
+        },
+        "complex": {
+          "name": "WooCommerce VIP",
+          "desc": "Complete management for high-traffic stores and critical portals",
+          "price_label": "Custom",
+          "price_sub": "based on quote",
+          "features": [
+            "Daily update diagnostics",
+            "Hourly delta backups",
+            "Dedicated staging environments",
+            "24/7 Uptime alerting & response",
+            "Unlimited bug fixes & dev support",
+            "Priority helpdesk (< 2h response)"
+          ],
+          "duration_label": "Monthly flat rate"
+        }
+      }
+    },
+    "SMB_IT_Audit": {
+      "title": "SMB IT Audit & Digital Health Check",
+      "description": "A comprehensive review of your business's IT infrastructure, cloud platforms, and cyber defenses, with a concrete action roadmap.",
+      "keywords": "it audit, smb it audit, digital health check, cybersecurity audit, network diagnostics, licensing audit",
+      "hero_features": [
+        "Full cybersecurity vulnerability scan",
+        "Software license & cloud subscription audit",
+        "Network infrastructure health check",
+        "GDPR data compliance review",
+        "Critical weak points identification",
+        "Hardware fleet & server lifecycle assessment",
+        "IT cost-saving recommendations",
+        "Actionable technology roadmap"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Find Vulnerabilities Early",
+          "description": "We identify network security holes and active access routes before malicious players can exploit them."
+        },
+        {
+          "title": "Reduce IT Expenses",
+          "description": "We highlight duplicate cloud licenses and unused subscriptions to immediately lower your costs."
+        },
+        {
+          "title": "Clear Digital Roadmap",
+          "description": "Get a concrete timeline and budget plan to modernize your business operations over the coming years."
+        }
+      ],
+      "use_cases_title": "Use Cases",
+      "use_cases_desc": "When should a business schedule a complete IT audit?",
+      "use_cases_items": [
+        {
+          "title": "Security Blind Spots",
+          "description": "When employee access levels are unmanaged and backups are unchecked.",
+          "example": "Leaking access from ex-employees, lack of multi-factor authentication (MFA) controls.",
+          "roi": "Prevention of massive data leaks"
+        },
+        {
+          "title": "License & Cloud Waste",
+          "description": "When Microsoft 365 or Google Workspace subscriptions are unoptimized.",
+          "example": "Paying for active licenses of departed employees, or underutilizing purchased apps.",
+          "roi": "Up to 20-30% off software billing"
+        },
+        {
+          "title": "Network Congestion",
+          "description": "Investigating sluggish office wifi networks, dropouts, or unstable remote VPN portals.",
+          "example": "Overwhelmed local routers, misconfigured bandwidth allocations, or poor range coverage.",
+          "roi": "Smooth, lag-free office work"
+        }
+      ],
+      "pricing_title": "Audit Packages",
+      "pricing_desc": "Fixed-fee assessments matching your company size",
+      "plans": {
+        "base": {
+          "name": "Rapid IT Assessment",
+          "desc": "For small teams with up to 10 workstations",
+          "sub": "One-time fee",
+          "features": [
+            "Basic security threat scan",
+            "License and subscription review",
+            "Backup procedure check",
+            "Brief bulleted report card",
+            "30-minute debrief call"
+          ],
+          "duration_label": "Duration: 2-3 business days"
+        },
+        "detailed": {
+          "name": "Complete SMB IT Audit",
+          "badge": "Most Popular",
+          "desc": "For growing firms with 10-35 workstations",
+          "sub": "One-time fee",
+          "features": [
+            "Everything in Rapid package",
+            "Internal network & wifi signal diagnostics",
+            "Active Directory and folder access audit",
+            "Vulnerability network scanning",
+            "Comprehensive technical & executive report",
+            "90-minute consultation & presentation"
+          ],
+          "duration_label": "Duration: 5-7 business days"
+        },
+        "complex": {
+          "name": "Enterprise Audit & Compliance",
+          "desc": "For complex setups, heavy industry regulations, or strict GDPR compliance",
+          "price_label": "Custom",
+          "price_sub": "based on quote",
+          "features": [
+            "Full penetration testing protocols",
+            "GDPR technical compliance check",
+            "ISO 27001 readiness review",
+            "Disaster Recovery (DRP) simulation test",
+            "Dedicated security auditor",
+            "6-month follow-up audit"
+          ],
+          "duration_label": "Duration: 2-3 weeks"
+        }
+      }
+    },
+    "WebshopAutomation": {
+      "title": "E-commerce & Webshop Automation",
+      "description": "Eliminate manual data entries and typing errors by automating your WooCommerce or Shopify storefront workflows.",
+      "keywords": "webshop automation, woocommerce invoicing, billingo integration, szamlazz hu api, gls automation, n8n webshop",
+      "hero_features": [
+        "Automated PDF invoicing & delivery",
+        "Courier APIs (GLS, DPD, DHL) integrations",
+        "ERP and stock-keeping sync",
+        "CRM contact synchronization",
+        "Automated customer email & SMS notifications",
+        "Supplier XML/CSV multi-import workflows",
+        "Abandoned cart automated sequences",
+        "Automated customer review requests"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Save Countless Hours",
+          "description": "Never type in invoice addresses or courier labels by hand again. Let the machines do the heavy lifting."
+        },
+        {
+          "title": "Zero Typing Mistakes",
+          "description": "Customer entries flow directly to invoicing and tracking systems, eliminating delivery failures."
+        },
+        {
+          "title": "Lightning Fast Shipments",
+          "description": "Processing starts immediately upon checkout, resulting in earlier dispatch and happier buyers."
+        }
+      ],
+      "use_cases_title": "Use Cases",
+      "use_cases_desc": "How e-commerce automations streamline your daily business",
+      "use_cases_items": [
+        {
+          "title": "Automated Invoicing",
+          "description": "Instantly trigger invoices on successful WooCommerce/Shopify checkout.",
+          "example": "Card payment succeeds -> Billingo/Számlázz.hu automatically generates invoice and emails it.",
+          "roi": "~15 hours/month saved"
+        },
+        {
+          "title": "Courier Automation",
+          "description": "Customer addresses turn into shipping labels on the fly.",
+          "example": "Courier APIs generate label PDFs, notify dispatch, and email vewers a tracking number.",
+          "roi": "~25 hours/month saved + 98% fewer mistakes"
+        },
+        {
+          "title": "Stock Syncing",
+          "description": "Syncing stock figures across multiple portals and dropship servers.",
+          "example": "XML/CSV supply updates run automatically, matching stock with offline ERP servers.",
+          "roi": "Zero sold-out order cancellations"
+        }
+      ],
+      "pricing_title": "Automation Packages",
+      "pricing_desc": "Integrate your storefront based on your transaction volumes",
+      "plans": {
+        "base": {
+          "name": "Basic Invoice & Courier",
+          "desc": "For starter shops to automate basic post-checkout tasks",
+          "sub": "One-time setup fee",
+          "features": [
+            "Invoicing API connection (Számlázz.hu/Billingo)",
+            "1 carrier shipping API integration",
+            "Automated order status transition logic",
+            "1-month support following rollout",
+            "Brief video training walkthrough"
+          ],
+          "duration_label": "One-time project"
+        },
+        "detailed": {
+          "name": "SMB Pro Integration",
+          "badge": "Most Popular",
+          "desc": "For growing brands with multi-channel requirements",
+          "sub": "One-time setup fee",
+          "features": [
+            "Everything in Basic package",
+            "Multi-courier & parcel locker (Foxpost/etc.) setups",
+            "n8n/Make CRM data syncing (HubSpot/etc.)",
+            "Abandoned cart & automated feedback loops",
+            "3 months priority support",
+            "Detailed technical handover manuals"
+          ],
+          "duration_label": "One-time project"
+        },
+        "complex": {
+          "name": "Custom ERP & AI Flows",
+          "desc": "For complex legacy integrations, SAP servers, or custom logistics",
+          "price_label": "Custom",
+          "price_sub": "based on quote",
+          "features": [
+            "Custom ERP / SAP / CRM deep integrations",
+            "Real-time multi-channel stock sync protocols",
+            "AI-powered customer service automation",
+            "Custom REST/GraphQL API development",
+            "SLA-backed uptime support plan",
+            "Dedicated project manager"
+          ],
+          "duration_label": "Project-based pricing"
+        }
+      }
+    },
+    "AI_Assistants": {
+      "title": "AI Assistants & Business Automation",
+      "description": "Unleash organizational speed using tailored AI. We build custom chatbots, automated email processors, and intelligent data parsers.",
+      "keywords": "ai assistant, chatbot development, artificial intelligence for business, langchain, openai api, business automation, n8n ai",
+      "hero_features": [
+        "Intelligent customer-facing web chatbots",
+        "Internal knowledge-base RAG assistants",
+        "Automated email sorting & draft responders",
+        "Intelligent invoice and document parsers",
+        "AI translation & content creation systems",
+        "n8n / Make workflow links with LLMs (OpenAI, Claude)",
+        "Custom desktop/web employee AI platforms",
+        "AI readiness consulting & staff workshops"
+      ],
+      "hero_benefits": [
+        {
+          "title": "24/7 Client Responding",
+          "description": "Your AI bot answers incoming product questions instantly, day or night, keeping prospects engaged."
+        },
+        {
+          "title": "Drastic Office Speeds",
+          "description": "Let AI do data crunching, document reading, and sorting while your team focuses on high-value business tasks."
+        },
+        {
+          "title": "Instant Data Finding",
+          "description": "Employees locate specific clauses, product details, or manuals in seconds via a conversational AI chat."
+        }
+      ],
+      "use_cases_title": "Use Cases",
+      "use_cases_desc": "How modern businesses leverage AI in their workflows",
+      "use_cases_items": [
+        {
+          "title": "Internal Knowledge Hub",
+          "description": "Answers HR, technical, or product questions based on corporate docs.",
+          "example": "A secure chatbot trained on internal manuals helping support teams answer customer tickets.",
+          "roi": "Up to 40% reduction in query times"
+        },
+        {
+          "title": "Smart Web Chatbots",
+          "description": "Web bots that represent your product catalog and book meetings.",
+          "example": "A bot answering price queries, then sending qualified leads an appointment booker link.",
+          "roi": "+25% qualified sales meetings"
+        },
+        {
+          "title": "Document Processing",
+          "description": "Automatically reading incoming PDFs, invoices, and contracts.",
+          "example": "Extracting line items, vendor details, and tax totals from PDFs, then pushing them to databases.",
+          "roi": "90% faster administrative tasks"
+        }
+      ],
+      "pricing_title": "AI Roadmap Packages",
+      "pricing_desc": "Select the perfect phase to introduce AI to your company",
+      "plans": {
+        "base": {
+          "name": "Basic Web Bot",
+          "desc": "Tailored customer assistance bot for your website",
+          "sub": "One-time setup fee",
+          "features": [
+            "Custom conversational chat widget",
+            "Company specs & FAQ dataset training",
+            "OpenAI / Anthropic API configuration",
+            "Lead capture forms & email alerts",
+            "1-month post-launch fine-tuning support"
+          ],
+          "duration_label": "One-time project"
+        },
+        "detailed": {
+          "name": "Knowledge Hub (RAG)",
+          "badge": "Most Popular",
+          "desc": "A secure conversational bot trained on your internal business documents",
+          "sub": "One-time setup fee",
+          "features": [
+            "Secure private cloud environment setup",
+            "PDF, Word, Excel knowledge integrations (RAG)",
+            "User access roles & permissions panel",
+            "n8n system workflow automation links",
+            "Staff training workshops & 3-month support",
+            "Usage statistics & cost reporting dashboard"
+          ],
+          "duration_label": "One-time + monthly tuning"
+        },
+        "complex": {
+          "name": "Enterprise AI Workflows",
+          "desc": "Custom agent systems designed to run complex company-wide automation pipelines",
+          "price_label": "Custom",
+          "price_sub": "based on quote",
+          "features": [
+            "Custom fine-tuned LLM models",
+            "Multi-agent autonomous systems",
+            "Deep legacy CRM / database integrations",
+            "High-volume data processing pipelines",
+            "SLA-backed priority maintenance",
+            "AI security & compliance audit"
+          ],
+          "duration_label": "Project-based pricing"
+        }
+      }
+    },
+    "OfficeSuite": {
+      "title": "Microsoft 365 / Google Workspace Setup",
+      "description": "Modernize your company files, calendars, and emails. End-to-end setup, file migrations, and advanced security configurations.",
+      "keywords": "microsoft 365 setup, google workspace migration, professional email, business cloud drive, mfa configuration, sharepoint design",
+      "hero_features": [
+        "Custom-domain professional email setup",
+        "Zero-downtime mailbox & calendar migration",
+        "Multi-factor authentication (MFA) setup",
+        "SharePoint / Google Drive folder structure design",
+        "Teams / Meet / Chat tools configuration",
+        "Mobile Device Management (MDM) security",
+        "Data Loss Prevention (DLP) configuration",
+        "Hands-on employee training guides"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Professional Image",
+          "description": "Use custom business emails (e.g. name@company.com) to instantly build client credibility over free mail hosts."
+        },
+        {
+          "title": "Ultra-Secure Cloud Drive",
+          "description": "Access, edit, and collaborate on files from anywhere, guarded by robust access privileges."
+        },
+        {
+          "title": "Flawless Collaboration",
+          "description": "Edit spreadsheets simultaneously, meet online, and chat in channels within one cohesive ecosystem."
+        }
+      ],
+      "use_cases_title": "Use Cases",
+      "use_cases_desc": "How we transition teams to organized business cloud networks",
+      "use_cases_items": [
+        {
+          "title": "Email Migrations",
+          "description": "Moving old, unreliable hosting mail accounts to solid cloud systems without data loss.",
+          "example": "Transferring cPanel email history, calendar lists, and contacts to Google Workspace.",
+          "roi": "100% data migrated, zero mail bounce"
+        },
+        {
+          "title": "Shared Drive Architectures",
+          "description": "Designing permission-based folders for finance, sales, and management teams.",
+          "example": "Restructuring Drive/SharePoint folders, preventing staff from editing unauthorized files.",
+          "roi": "Clean folder structure, zero leaks"
+        },
+        {
+          "title": "Security Shielding",
+          "description": "Hardening mailboxes against phishing, spoofing, and credentials harvesting.",
+          "example": "Enforcing two-step login (MFA), setting up spam filter alerts, and configuring DMARC/SPF.",
+          "roi": "99% drop in business email threats"
+        }
+      ],
+      "pricing_title": "Rollout Packages",
+      "pricing_desc": "Choose the best plan matching your organization size",
+      "plans": {
+        "base": {
+          "name": "Cloud Kickstart",
+          "desc": "Up to 10 seats, ideal for launching professional mail configurations",
+          "sub": "One-time setup fee",
+          "features": [
+            "Domain connection & DNS records setup",
+            "Mailboxes & cloud accounts creation",
+            "Data migration from legacy mail host",
+            "Two-step verification (MFA) onboarding",
+            "1-month support post-launch"
+          ],
+          "duration_label": "One-time project"
+        },
+        "detailed": {
+          "name": "Secure Business Cloud",
+          "badge": "Most Popular",
+          "desc": "For 10-40 seats requiring structured storage and safety",
+          "sub": "One-time setup fee",
+          "features": [
+            "Everything in Kickstart package",
+            "SharePoint / Google Shared Drive folder setup",
+            "Advanced group access levels & sharing policies",
+            "Data Loss Prevention (DLP) alerts setup",
+            "Mobile Device Management (MDM) fundamentals",
+            "3-hour employee video coaching session",
+            "3 months priority support"
+          ],
+          "duration_label": "One-time project"
+        },
+        "complex": {
+          "name": "Hybrid Cloud Enterprise",
+          "desc": "Connecting on-premise networks with secure advanced cloud systems",
+          "price_label": "Custom",
+          "price_sub": "based on quote",
+          "features": [
+            "On-premise Active Directory & Azure AD sync",
+            "Complete Endpoint Management (Intune/MDM)",
+            "Single Sign-On (SSO) links with internal software",
+            "Detailed IT operations handbook writing",
+            "Managed monthly cloud admin support (SLA)",
+            "Annual security audits"
+          ],
+          "duration_label": "One-time + monthly managed"
+        }
+      }
+    },
+    "BackupDataRecovery": {
+      "title": "Backup & Disaster Recovery Strategy",
+      "description": "Protect your databases, emails, and company files from ransomware and hardware failure using the 3-2-1 backup rule.",
+      "keywords": "business backup, data recovery, backup strategy, synology nas config, disaster recovery plan, ransomware protection",
+      "hero_features": [
+        "3-2-1 backup industry-standard design",
+        "Automated local & offsite backup routines",
+        "Synology / QNAP NAS device configuration",
+        "Encrypted cloud backups (AWS S3, Backblaze)",
+        "Immutable (undeletable) ransomware defenses",
+        "Automated backup-restore verification checks",
+        "Detailed Disaster Recovery (DRP) writing",
+        "Full Cloud (M365 / Workspace) backup setups"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Guaranteed Data Survival",
+          "description": "Even in case of severe hardware failure, theft, or office fire, your records survive intact in secondary secure hubs."
+        },
+        {
+          "title": "Minimal Downtime",
+          "description": "With a configured Disaster Recovery Plan, return your company to work in hours rather than face weeks of recovery."
+        },
+        {
+          "title": "Strict Regulatory Compliance",
+          "description": "Comply with GDPR data backup rules and relevant audit obligations for your sector."
+        }
+      ],
+      "use_cases_title": "Use Cases",
+      "use_cases_desc": "How we construct your business's data safety shield",
+      "use_cases_items": [
+        {
+          "title": "Ransomware Defenses",
+          "description": "Structuring immutable backups that hackers cannot delete or encrypt.",
+          "example": "Setting S3 Object Lock on daily backups, making them physically undeletable for 14 days.",
+          "roi": "100% ransomware defense"
+        },
+        {
+          "title": "NAS Device Setup",
+          "description": "Deploying local, high-speed centralized network storage in the office.",
+          "example": "Setting up Synology NAS with RAID arrays, syncing workstations, then scheduling cloud syncs.",
+          "roi": "Fast local data recovery"
+        },
+        {
+          "title": "Cloud Account Backups",
+          "description": "Microsoft and Google don't protect you from accidental deletions - we do.",
+          "example": "Backing up Microsoft 365 Exchange, Drive, and SharePoint daily to separate secure servers.",
+          "roi": "Instantly undo accidental files losses"
+        }
+      ],
+      "pricing_title": "Backup Plans",
+      "pricing_desc": "Predictable monthly managed backup and recovery support plans",
+      "plans": {
+        "base": {
+          "name": "Basic Cloud Backup",
+          "desc": "For small offices to protect critical datasets",
+          "sub": "Monthly managed plan",
+          "features": [
+            "Up to 500 GB encrypted offsite cloud storage",
+            "Automated daily backup schedule",
+            "Weekly manual backup health checks",
+            "Quarterly data recovery dry run",
+            "Email error alert monitoring"
+          ],
+          "duration_label": "Monthly service"
+        },
+        "detailed": {
+          "name": "Hybrid Shield",
+          "badge": "Most Popular",
+          "desc": "For growing offices requiring local NAS and redundant cloud backups",
+          "sub": "Monthly managed plan",
+          "features": [
+            "Everything in Basic package",
+            "Local NAS device setup & daily management",
+            "Up to 2 TB encrypted immutable cloud storage",
+            "Microsoft 365 or Google Workspace backup sync",
+            "Monthly restore testing procedures",
+            "Written Disaster Recovery Plan handbook",
+            "Priority restore assistance in emergencies"
+          ],
+          "duration_label": "Monthly service"
+        },
+        "complex": {
+          "name": "Managed Disaster Recovery",
+          "desc": "For businesses where downtime is not an option",
+          "price_label": "Custom",
+          "price_sub": "based on quote",
+          "features": [
+            "Immediate virtual machine (VM) spin-up in cloud",
+            "Strict RTO and RPO guarantees in writing",
+            "24/7 technical monitoring & active sysadmin",
+            "Quarterly full katastrophe simulation testing",
+            "Unlimited recovery assistance services",
+            "Ongoing infrastructure consulting"
+          ],
+          "duration_label": "Monthly managed SLA"
+        }
+      }
+    },
+    "ManagedIT": {
+      "title": "Managed IT & Dedicated Sysadmin",
+      "description": "Proactive systems monitoring, quick remote user helpdesk, and complete KKV IT management under a predictable monthly rate.",
+      "keywords": "managed IT, business sysadmin, IT support cégeknek, systems administrator, IT outsourcing, remote helpdesk",
+      "hero_features": [
+        "Proactive 24/7 server & network monitoring",
+        "Fast remote and onsite desktop helpdesk",
+        "Workstation patch management & performance audits",
+        "Managed antivirus & endpoint protection",
+        "Hardware fleet inventory and setup",
+        "IT security policy enforcement",
+        "Secure remote VPN & firewall administration",
+        "Monthly performance & health reports"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Proactive Prevention",
+          "description": "We don't wait for your systems to break. We monitor indicators and fix minor issues before they disrupt your day."
+        },
+        {
+          "title": "Predictable IT Spend",
+          "description": "Fix your IT support budget with clear flat rates, eliminating unexpected high hourly charges."
+        },
+        {
+          "title": "Your Own IT Team",
+          "description": "Gain a complete team of specialized engineers at a fraction of the cost of hiring a single in-house admin."
+        }
+      ],
+      "use_cases_title": "Use Cases",
+      "use_cases_desc": "How we keep your daily IT operations running flawlessly",
+      "use_cases_items": [
+        {
+          "title": "User Helpdesk",
+          "description": "Employees contact us directly for screen assistance or software issues.",
+          "example": "Resolving local network printer offline, or fixing folder sync errors via secure remote screen shares.",
+          "roi": "< 15-minute response times"
+        },
+        {
+          "title": "Server Management",
+          "description": "Keeping your physical or virtual server files up to date and online.",
+          "example": "Active Directory updates, managing group folders, and running security updates overnight.",
+          "roi": "99.9% corporate server uptime"
+        },
+        {
+          "title": "Device Fleet Setup",
+          "description": "Procuring, configuring, and deploying new employee hardware.",
+          "example": "Setting up a new employee laptop with all required corporate apps and threat protectors.",
+          "roi": "Devices ready to work out-of-the-box"
+        }
+      ],
+      "pricing_title": "Managed IT Plans",
+      "pricing_desc": "Predictable flat-rate support packages tailored to your company scale",
+      "plans": {
+        "base": {
+          "name": "Managed IT Starter",
+          "desc": "For small offices with up to 5 workstations",
+          "sub": "Monthly support contract",
+          "features": [
+            "Up to 5 workstations managed",
+            "1 monthly proactive health maintenance run (remote)",
+            "Business hours phone & remote screen helpdesk",
+            "Managed endpoint antivirus and security tools",
+            "Daily backup monitoring"
+          ],
+          "duration_label": "Monthly contract, 12-month commitment"
+        },
+        "detailed": {
+          "name": "Managed IT Pro",
+          "badge": "Most Popular",
+          "desc": "For growing firms with 6-20 workstations and 1 server",
+          "sub": "Monthly support contract",
+          "features": [
+            "Everything in Starter package",
+            "Up to 20 workstations + 1 server (physical or cloud)",
+            "24/7 proactive network & server monitoring",
+            "4 hours of monthly onsite emergency support",
+            "Guaranteed < 4h critical emergency response",
+            "Quarterly technology consulting & budget review"
+          ],
+          "duration_label": "Monthly contract, 12-month commitment"
+        },
+        "complex": {
+          "name": "Managed IT Enterprise",
+          "desc": "20+ workstations and complex server or multi-office configurations",
+          "price_label": "Custom",
+          "price_sub": "based on quote",
+          "features": [
+            "Unlimited workstations and server support coverage",
+            "Dedicated lead systems engineer assigned",
+            "Predictable SLA contract with uptime guarantees",
+            "24/7 helpdesk support availability",
+            "Comprehensive IT cybersecurity compliance management",
+            "Regular Disaster Recovery Plan testing runs"
+          ],
+          "duration_label": "Custom SLA contract"
+        }
+      }
     }
   },
   "ProductDetailPage": {

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Code2, Server, Shield, ShoppingCart, ArrowRight, CheckCircle2 } from "lucide-react"
+import { Code2, Server, Shield, ShoppingCart, ArrowRight, CheckCircle2, Globe, Search, RefreshCw, Cpu, Cloud, Database, Activity } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { Badge } from "@/components/ui/badge"
 import { useTranslations, useLocale } from "next-intl"
@@ -103,6 +103,97 @@ export default function SzolgaltatasokPage() {
                 t('items.network.features.1'),
                 t('items.network.features.2'),
                 t('items.network.features.3')
+            ]
+        },
+        {
+            title: t('items.wordpress.title'),
+            description: t('items.wordpress.desc'),
+            icon: Globe,
+            href: "/szolgaltatasok/wordpress-woocommerce-karbantartas",
+            pricing: 15000,
+            features: [
+                t('items.wordpress.features.0'),
+                t('items.wordpress.features.1'),
+                t('items.wordpress.features.2'),
+                t('items.wordpress.features.3')
+            ]
+        },
+        {
+            title: t('items.it_audit.title'),
+            description: t('items.it_audit.desc'),
+            icon: Search,
+            href: "/szolgaltatasok/kkv-it-audit",
+            pricing: 75000,
+            features: [
+                t('items.it_audit.features.0'),
+                t('items.it_audit.features.1'),
+                t('items.it_audit.features.2'),
+                t('items.it_audit.features.3')
+            ]
+        },
+        {
+            title: t('items.webshop_auto.title'),
+            description: t('items.webshop_auto.desc'),
+            icon: RefreshCw,
+            href: "/szolgaltatasok/webshop-automatizacio",
+            pricing: 120000,
+            features: [
+                t('items.webshop_auto.features.0'),
+                t('items.webshop_auto.features.1'),
+                t('items.webshop_auto.features.2'),
+                t('items.webshop_auto.features.3')
+            ]
+        },
+        {
+            title: t('items.ai_auto.title'),
+            description: t('items.ai_auto.desc'),
+            icon: Cpu,
+            href: "/szolgaltatasok/ai-asszisztensek",
+            pricing: 150000,
+            features: [
+                t('items.ai_auto.features.0'),
+                t('items.ai_auto.features.1'),
+                t('items.ai_auto.features.2'),
+                t('items.ai_auto.features.3')
+            ]
+        },
+        {
+            title: t('items.office_suite.title'),
+            description: t('items.office_suite.desc'),
+            icon: Cloud,
+            href: "/szolgaltatasok/microsoft-365-google-workspace",
+            pricing: 85000,
+            features: [
+                t('items.office_suite.features.0'),
+                t('items.office_suite.features.1'),
+                t('items.office_suite.features.2'),
+                t('items.office_suite.features.3')
+            ]
+        },
+        {
+            title: t('items.backup.title'),
+            description: t('items.backup.desc'),
+            icon: Database,
+            href: "/szolgaltatasok/backup-adatmentes",
+            pricing: 10000,
+            features: [
+                t('items.backup.features.0'),
+                t('items.backup.features.1'),
+                t('items.backup.features.2'),
+                t('items.backup.features.3')
+            ]
+        },
+        {
+            title: t('items.managed_it.title'),
+            description: t('items.managed_it.desc'),
+            icon: Activity,
+            href: "/szolgaltatasok/havidijas-rendszergazda",
+            pricing: 39000,
+            features: [
+                t('items.managed_it.features.0'),
+                t('items.managed_it.features.1'),
+                t('items.managed_it.features.2'),
+                t('items.managed_it.features.3')
             ]
         }
     ]

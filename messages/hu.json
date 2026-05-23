@@ -1115,7 +1115,14 @@
     "woocommerce-szamlazz-hu": "WooCommerce Számlázz.hu Integráció",
     "n8n-lead-management": "n8n Lead Management Workflow",
     "python-web-scraper": "Python Web Scraper Starter Kit",
-    "it-maintenance-dashboard": "IT Karbantartási Dashboard"
+    "it-maintenance-dashboard": "IT Karbantartási Dashboard",
+    "wordpress-woocommerce-karbantartas": "WordPress karbantartás",
+    "kkv-it-audit": "IT Audit",
+    "webshop-automatizacio": "Webshop automatizáció",
+    "ai-asszisztensek": "AI Asszisztens",
+    "microsoft-365-google-workspace": "Microsoft 365 / Google Workspace",
+    "backup-adatmentes": "Backup & Adatmentés",
+    "havidijas-rendszergazda": "Havidíjas Rendszergazda"
   },
   "CommandMenu": {
     "search_label": "Keresés",
@@ -1218,6 +1225,76 @@
           "Eszköz beszerzés & telepítés",
           "Biztonságos VPN",
           "Karbantartás"
+        ]
+      },
+      "wordpress": {
+        "title": "WordPress & WooCommerce Karbantartás",
+        "desc": "Biztonságos, gyors és mindig elérhető WordPress weboldalak és WooCommerce webshopok folyamatos karbantartása.",
+        "features": [
+          "Rendszeres frissítések",
+          "Biztonsági mentések",
+          "Sebesség optimalizálás",
+          "Hiba javítás & Support"
+        ]
+      },
+      "it_audit": {
+        "title": "KKV IT Audit & Digitális Felmérés",
+        "desc": "Vállalkozásod teljes informatikai infrastruktúrájának és biztonságának átvilágítása, konkrét cselekvési tervvel.",
+        "features": [
+          "Biztonsági átvilágítás",
+          "Szoftver licenc audit",
+          "Hálózati diagnosztika",
+          "Digitalizációs javaslatok"
+        ]
+      },
+      "webshop_auto": {
+        "title": "Webshop Automatizáció",
+        "desc": "Kössük össze webshopodat a számlázóddal, futárszolgálatoddal vagy CRM rendszereddel az emberi hibák kiküszöbölésére.",
+        "features": [
+          "Számlázó összekötés",
+          "Futárszolgálat integráció",
+          "Készlet szinkronizálás",
+          "Automata értesítések"
+        ]
+      },
+      "ai_auto": {
+        "title": "AI Asszisztensek & Üzleti Automatizáció",
+        "desc": "Növeld hatékonyságodat mesterséges intelligenciával. Egyedi AI chatbotok és intelligens munkafolyamatok bevezetése.",
+        "features": [
+          "Belső AI asszisztensek",
+          "Ügyfélszolgálati chatbot",
+          "Intelligens dokumentum-elemzés",
+          "Automatizált munkafolyamatok"
+        ]
+      },
+      "office_suite": {
+        "title": "Microsoft 365 & Google Workspace",
+        "desc": "Profi céges felhő környezet kiépítése, e-mail migráció, jogosultságok beállítása és biztonsági mentés.",
+        "features": [
+          "E-mail fiókok migrációja",
+          "Jogosultságkezelés beállítása",
+          "Csapatmunka támogatás",
+          "Felhő alapú adatvédelem"
+        ]
+      },
+      "backup": {
+        "title": "Backup & Adatmentési Stratégia",
+        "desc": "Védd meg vállalkozásod adatait a zsarolóvírusoktól és adatvesztéstől a 3-2-1 mentési szabály szerint.",
+        "features": [
+          "Automatikus mentési rend",
+          "Zsarolóvírus-védelem",
+          "Hibrid felhő mentések",
+          "Katasztrófa helyreállítási terv"
+        ]
+      },
+      "managed_it": {
+        "title": "Havidíjas Rendszergazda & Managed IT",
+        "desc": "Teljes körű rendszerfelügyelet, proaktív karbantartás és gyors helpdesk támogatás havidíjas konstrukcióban.",
+        "features": [
+          "Proaktív szerverfelügyelet",
+          "Munkaállomások karbantartása",
+          "24/7 Monitoring & Riasztás",
+          "Dedikált IT support"
         ]
       }
     },
@@ -1682,7 +1759,21 @@
       "network": "Hálózati Megoldások",
       "network_desc": "VPN, VLAN, tűzfal és WiFi menedzsment",
       "integrations": "Integrációk",
-      "integrations_desc": "Rendszerösszekötések és API megoldások"
+      "integrations_desc": "Rendszerösszekötések és API megoldások",
+      "wordpress": "WordPress Karbantartás",
+      "wordpress_desc": "WooCommerce & WP frissítések, biztonság és sebesség",
+      "it_audit": "IT Audit & Állapotfelmérés",
+      "it_audit_desc": "Digitális fejlettségi vizsgálat és fejlesztési terv KKV-knak",
+      "webshop_auto": "Webshop Automatizáció",
+      "webshop_auto_desc": "Számlázók, futárszolgálatok és készlet szinkronizáció",
+      "ai_auto": "AI & Üzleti Automatizáció",
+      "ai_auto_desc": "AI asszisztensek és n8n munkafolyamatok bevezetése",
+      "office_suite": "M365 & Google Workspace",
+      "office_suite_desc": "Irodai szoftvercsomagok bevezetése és migráció",
+      "backup": "Adatmentés & Biztonság",
+      "backup_desc": "3-2-1 backup stratégia és katasztrófa-helyreállítás",
+      "managed_it": "Havidíjas Rendszergazda",
+      "managed_it_desc": "Teljes körű KKV rendszergazdai és IT support ügyfélszolgálat"
     },
     "all_products": "Összes megoldás",
     "all_products_desc": "Böngészd át teljes kínálatunkat",
@@ -2579,6 +2670,694 @@
           "ideal": "Ideális: meglévő rendszerek felülvizsgálatához"
         }
       ]
+    },
+    "WordPressMaintenance": {
+      "title": "WordPress / WooCommerce Karbantartás",
+      "description": "Biztonságos, gyors és mindig elérhető WordPress weboldalak és WooCommerce webáruházak havidíjas, professzionális karbantartása.",
+      "keywords": "wordpress karbantartás, woocommerce támogatás, wordpress frissítés, wordpress biztonság, sebesség optimalizálás, havidíjas rendszergazda",
+      "hero_features": [
+        "Rendszeres motor és plugin frissítések",
+        "Napi automatizált biztonsági mentések",
+        "Valós idejű biztonsági védelem",
+        "Sebesség optimalizálás",
+        "Hiba javítás & Support",
+        "Uptime monitoring",
+        "Kép optimalizálás",
+        "Adatbázis tisztítás"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Folyamatos biztonság",
+          "description": "Megvédjük oldaladat a feltörésektől, vírusoktól és rosszindulatú botoktól proaktív biztonsági intézkedésekkel."
+        },
+        {
+          "title": "Gyorsabb betöltés",
+          "description": "Az optimalizált WordPress weboldal növeli a konverziót és jobb helyezést ér el a Google keresőben."
+        },
+        {
+          "title": "Nyugodt üzletmenet",
+          "description": "Nincs több váratlan összeomlás. Mi felügyeljük az oldalt, amíg te az üzletet építed."
+        }
+      ],
+      "use_cases_title": "Felhasználási Területek",
+      "use_cases_desc": "Hogyan támogatjuk WordPress oldalad zavartalan működését",
+      "use_cases_items": [
+        {
+          "title": "Plugin frissítések",
+          "description": "A kiegészítők biztonságos és kompatibilis frissítése tesztkörnyezetben.",
+          "example": "WooCommerce és fizetési modulok frissítése a webáruház működésének megszakítása nélkül.",
+          "roi": "0% frissítési hiba"
+        },
+        {
+          "title": "Adatmentés",
+          "description": "Teljes adatbázis és fájlmentés külső, biztonságos szerverekre.",
+          "example": "Napi mentések 30 napos megőrzéssel, így bármikor visszagörgethető az oldal.",
+          "roi": "100% adatbiztonság"
+        },
+        {
+          "title": "Sebesség optimalizálás",
+          "description": "Felesleges scriptek eltávolítása, gyorsítótárazás és képtömörítés.",
+          "example": "Core Web Vitals mutatók javítása, betöltési idő csökkentése 3 másodperc alá.",
+          "roi": "+20% konverzió növekedés"
+        }
+      ],
+      "pricing_title": "Karbantartási Csomagok",
+      "pricing_desc": "Válaszd ki a weboldalad vagy webáruházad méretéhez legjobban illő konstrukciót",
+      "plans": {
+        "base": {
+          "name": "Alap Karbantartás",
+          "desc": "Kisebb bemutatkozó oldalak és blogok felügyeletére",
+          "sub": "Havi számlázás",
+          "features": [
+            "Havi rendszerfrissítések",
+            "Heti biztonsági mentés",
+            "Alap biztonsági beállítások",
+            "Uptime monitoring",
+            "1 óra support / hónap"
+          ],
+          "duration_label": "Havi fix díjas"
+        },
+        "detailed": {
+          "name": "Pro Védelem",
+          "badge": "Legnépszerűbb",
+          "desc": "Összetettebb üzleti weboldalak és webáruházak számára",
+          "sub": "Havi számlázás",
+          "features": [
+            "Heti rendszerfrissítések",
+            "Napi biztonsági mentés",
+            "Fejlett tűzfal és vírusvédelem",
+            "Sebesség optimalizálás",
+            "Uptime & Sebesség monitoring",
+            "3 óra support / hónap"
+          ],
+          "duration_label": "Havi fix díjas"
+        },
+        "complex": {
+          "name": "WooCommerce VIP",
+          "desc": "Nagy forgalmú webáruházak és kritikus rendszerek teljes körű kezelése",
+          "price_label": "Egyedi",
+          "price_sub": "ajánlat alapján",
+          "features": [
+            "Napi frissítési tesztek",
+            "Óránkénti biztonsági mentések",
+            "Dedikált staging tesztkörnyezet",
+            "24/7 Uptime riasztás és beavatkozás",
+            "Korlátlan hibajavítás & Fejlesztési órák",
+            "Prioritásos helpdesk (< 2 órás reakció)"
+          ],
+          "duration_label": "Havi fix díjas"
+        }
+      }
+    },
+    "SMB_IT_Audit": {
+      "title": "KKV IT Audit & Digitális Állapotfelmérés",
+      "description": "Vállalkozásod teljes informatikai infrastruktúrájának és biztonságának átfogó átvilágítása konkrét cselekvési tervvel és digitális fejlesztési javaslatokkal.",
+      "keywords": "it audit, kkv it audit, digitális állapotfelmérés, kiberbiztonsági felmérés, hálózati diagnosztika, licenc audit",
+      "hero_features": [
+        "Teljes kiberbiztonsági átvilágítás",
+        "Szoftver licenc és felhő audit",
+        "Hálózati biztonsági ellenőrzés",
+        "Adatvédelmi (GDPR) megfelelés vizsgálata",
+        "Kritikus sérülékenységek feltárása",
+        "Eszközpark és szerverek állapotfelmérése",
+        "IT költségek optimalizálási javaslatai",
+        "Részletes cselekvési terv (Roadmap)"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Gyenge pontok feltárása",
+          "description": "Megmutatjuk, hol sebezhető a céges hálózat vagy hol szivároghatnak el értékes adatok, mielőtt komolyabb probléma történne."
+        },
+        {
+          "title": "Költségoptimalizálás",
+          "description": "Kiszűrjük a felesleges szoftver előfizetéseket és licenc túllépéseket, amivel azonnali költséget takaríthatsz meg."
+        },
+        {
+          "title": "Jövőálló útiterv",
+          "description": "Kapsz egy konkrét digitális roadmap-et, amivel fejlesztheted a céges hatékonyságot a következő évekre."
+        }
+      ],
+      "use_cases_title": "Felhasználási Területek",
+      "use_cases_desc": "Mikor elengedhetetlen a cég technológiai és biztonsági auditja?",
+      "use_cases_items": [
+        {
+          "title": "Biztonsági kockázatok",
+          "description": "Ha a cégednél nincsenek tisztázva a hozzáférések és nincs kidolgozott mentési folyamat.",
+          "example": "A távozó munkatársak hozzáféréseinek aktívan maradása, illetve a zsarolóvírusok elleni védelem hiánya.",
+          "roi": "Adatszivárgás megakadályozása"
+        },
+        {
+          "title": "Licenc & Felhő audit",
+          "description": "Ha a Microsoft 365, Google Workspace vagy más felhő előfizetések nincsenek optimálisan kihasználva.",
+          "example": "Felesleges felhasználói licencek fizetése és nem konfigurált biztonsági funkciók (MFA hiánya).",
+          "roi": "Akár 20-30% licencdíj megtakarítás"
+        },
+        {
+          "title": "Hálózati akadások",
+          "description": "Lassú irodai hálózat, akadozó WiFi, vagy nem megbízható külső VPN elérések kivizsgálása.",
+          "example": "Túlterhelt routerek és nem megfelelően elosztott sávszélesség az irodában.",
+          "roi": "Zökkenőmentes irodai munka"
+        }
+      ],
+      "pricing_title": "Audit Csomagok",
+      "pricing_desc": "Egyösszegű felmérések a cég méretéhez igazítva",
+      "plans": {
+        "base": {
+          "name": "Rapid IT Felmérés",
+          "desc": "Mikrovállalkozásoknak 5-10 munkaállomásig",
+          "sub": "Egyszeri díj",
+          "features": [
+            "Kiberbiztonsági alapfelmérés",
+            "Licenc és előfizetés ellenőrzés",
+            "Biztonsági mentések felülvizsgálata",
+            "Rövid, pontokba szedett értékelés",
+            "30 perces egyeztetés az eredményekről"
+          ],
+          "duration_label": "Átfutási idő: 2-3 munkanap"
+        },
+        "detailed": {
+          "name": "Komplett KKV IT Audit",
+          "badge": "Legnépszerűbb",
+          "desc": "Növekvő KKV-knak 10-35 munkaállomásig",
+          "sub": "Egyszeri díj",
+          "features": [
+            "Minden a Rapid csomagból",
+            "Belső hálózati és WiFi diagnosztika",
+            "Jogosultságok és Active Directory vizsgálat",
+            "Sérülékenységvizsgálat (szkenneres)",
+            "Részletes technikai és vezetői jelentés",
+            "90 perces személyes prezentáció & tanácsadás"
+          ],
+          "duration_label": "Átfutási idő: 5-7 munkanap"
+        },
+        "complex": {
+          "name": "Enterprise Audit & Compliance",
+          "desc": "Komplex rendszerek és szigorú biztonsági vagy GDPR előírások esetén",
+          "price_label": "Egyedi",
+          "price_sub": "ajánlat alapján",
+          "features": [
+            "Teljes körű penetrációs tesztelés",
+            "GDPR technikai megfelelőség audit",
+            "ISO 27001 felkészülés / audit alapok",
+            "Katasztrófa-helyreállítási (DRP) szimuláció",
+            "Dedikált biztonsági mérnök",
+            "Féléves követő audit"
+          ],
+          "duration_label": "Átfutási idő: 2-3 hét"
+        }
+      }
+    },
+    "WebshopAutomation": {
+      "title": "Webshop Automatizáció",
+      "description": "Emberi hibák és manuális feladatok kiküszöbölése WooCommerce és Shopify webáruházad automatizálásával.",
+      "keywords": "webshop automatizáció, woocommerce számlázó összekötés, billingo integráció, számlázz hu api, gls automatizálás, n8n webshop",
+      "hero_features": [
+        "Automatikus számlagenerálás és küldés",
+        "Futárszolgálat (GLS, DPD, MPL) integráció",
+        "ERP és készletkezelő szinkronizáció",
+        "CRM rendszer összekötés",
+        "Automata e-mail és SMS értesítések",
+        "Több beszállítós CSV/XML termékfeltöltés",
+        "Elhagyott kosár emlékeztetők",
+        "Vevői visszajelzés gyűjtés automatizálása"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Hihetetlen időmegtakarítás",
+          "description": "Nincs többé manuális számlázás vagy címkenyomtatás. A rendszer mindent elvégez helyetted."
+        },
+        {
+          "title": "Nulla emberi gépelési hiba",
+          "description": "A vevő által megadott adatok közvetlenül a számlázóba és a futárhoz kerülnek, így kizárt a félregépelés."
+        },
+        {
+          "title": "Gyorsabb kiszolgálás",
+          "description": "A rendelések feldolgozása azonnal elindul, így a vevők hamarabb kapják meg a csomagokat, növelve az elégedettséget."
+        }
+      ],
+      "use_cases_title": "Felhasználási Területek",
+      "use_cases_desc": "Így spórolunk időt és pénzt a webáruházadban",
+      "use_cases_items": [
+        {
+          "title": "Automata számlázás",
+          "description": "A WooCommerce/Shopify rendelés kifizetésekor a rendszer azonnal kiállítja a számlát.",
+          "example": "Sikeres kártyás fizetés után a Billingo vagy Számlázz.hu automatikusan kiállítja az e-számlát és elküldi a vevőnek.",
+          "roi": "~15 óra/hó megtakarítás"
+        },
+        {
+          "title": "Szállítási automatizáció",
+          "description": "A rendelési adatokból automatikusan generálódik a GLS, DPD vagy Foxpost feladócímke.",
+          "example": "A csomagméret és súly alapján a rendszer lekéri a futárcéget, létrehozza a szállítólevelet és visszaküldi a követőkódot a vevőnek.",
+          "roi": "~25 óra/hó megtakarítás + 98% kevesebb hiba"
+        },
+        {
+          "title": "Készletszinkron",
+          "description": "Valós idejű készlet- és árszinkronizáció a beszállítók vagy fizikai boltok rendszereivel.",
+          "example": "Napi többszöri automatikus XML/CSV importálás a nagykereskedő szerveréről az árak és darabszámok frissítésére.",
+          "roi": "Nincs többé készlethiány miatti lemondott rendelés"
+        }
+      ],
+      "pricing_title": "Automatizációs Csomagok",
+      "pricing_desc": "Válaszd ki az üzleted méretéhez leginkább illő integrációs csomagot",
+      "plans": {
+        "base": {
+          "name": "Alap Számlázás & Futár",
+          "desc": "Kezdő webáruházaknak az alapvető adminisztráció automatizálására",
+          "sub": "Egyszeri fejlesztési díj",
+          "features": [
+            "Számlázz.hu vagy Billingo összekötés",
+            "1 db választott futárszolgálat integráció",
+            "Automata rendelés státusz frissítések",
+            "1 hónap support a bevezetés után",
+            "Rövid oktató videó a használatról"
+          ],
+          "duration_label": "Egyszeri bevezetés"
+        },
+        "detailed": {
+          "name": "KKV Pro Integráció",
+          "badge": "Legnépszerűbb",
+          "desc": "Növekvő webáruházaknak komplexebb folyamatokhoz",
+          "sub": "Egyszeri fejlesztési díj",
+          "features": [
+            "Minden az Alap csomagból",
+            "Több futárszolgálat & Foxpost/Csomagküldő integráció",
+            "n8n vagy Make alapú egyedi CRM összekötés (pl. HubSpot)",
+            "Automata elhagyott kosár és visszajelzés-kérő folyamatok",
+            "3 hónap priority support",
+            "Részletes technikai dokumentáció"
+          ],
+          "duration_label": "Egyszeri bevezetés"
+        },
+        "complex": {
+          "name": "Egyedi ERP & AI Flow",
+          "desc": "Komplex egyedi webáruházak, belső vállalatirányítási rendszerek összekapcsolása",
+          "price_label": "Egyedi",
+          "price_sub": "ajánlat alapján",
+          "features": [
+            "Egyedi ERP / SAP / Kulcs-Soft integrációk",
+            "Valós idejű többcsatornás készletszinkron",
+            "Mesterséges intelligencia által vezérelt automata vevőszolgálat",
+            "Egyedi API-k fejlesztése",
+            "SLA alapú rendelkezésre állás és support",
+            "Személyes projektmenedzser"
+          ],
+          "duration_label": "Egyszeri és havi support"
+        }
+      }
+    },
+    "AI_Assistants": {
+      "title": "AI Asszisztensek & Üzleti Automatizáció",
+      "description": "Növeld céged hatékonyságát mesterséges intelligenciával. Egyedi AI chatbotok, intelligens dokumentumfeldolgozók és automata workflow-k fejlesztése.",
+      "keywords": "ai asszisztens, chatbot fejlesztés, mesterséges intelligencia cégeknek, langchain, openai api cégeknek, üzleti automatizáció, n8n ai",
+      "hero_features": [
+        "Weboldalba integrált intelligens ügyfélszolgálati chatbot",
+        "Belső céges tudásbázis alapú AI asszisztens (RAG)",
+        "Automatizált e-mail megválaszolás és osztályozás",
+        "Intelligens dokumentum és számla elemzés",
+        "AI által támogatott tartalomgenerálás és fordítás",
+        "n8n / Make integráció LLM modellekkel (OpenAI, Claude)",
+        "Személyre szabott belső AI eszközök fejlesztése",
+        "AI bevezetési tanácsadás és workshop"
+      ],
+      "hero_benefits": [
+        {
+          "title": "24/7 Ügyfélszolgálat",
+          "description": "Az AI chatbotod azonnal megválaszolja az ügyfelek kérdéseit a nap bármely szakában, emberi várakozási idő nélkül."
+        },
+        {
+          "title": "Drasztikus hatékonyság",
+          "description": "Az ismétlődő e-mailek megválaszolását és a dokumentumok feldolgozását bízd az AI-ra, a csapatod pedig koncentrálhat az értékteremtésre."
+        },
+        {
+          "title": "Könnyű hozzáférés a céges adatokhoz",
+          "description": "A munkatársak másodpercek alatt megtalálják a választ a céges dokumentumokban, szabályzatokban egy belső chatbot segítségével."
+        }
+      ],
+      "use_cases_title": "Felhasználási Területek",
+      "use_cases_desc": "Hogyan alakítja át a mesterséges intelligencia a KKV-k mindennapjait",
+      "use_cases_items": [
+        {
+          "title": "Céges AI Tudásbázis",
+          "description": "A cég belső szabályzatai, termékleírásai alapján válaszoló asszisztens a munkatársaknak.",
+          "example": "A HR szabályzatok és termékkatalógusok feltöltése után a chatbot azonnal megválaszolja a belső kérdéseket.",
+          "roi": "Akár 40%-kal kevesebb belső keresési idő"
+        },
+        {
+          "title": "Intelligens ügyfélszolgálat",
+          "description": "Weboldalba ágyazott chatbot, amely ismeri a cég szolgáltatásait és árait.",
+          "example": "Az érdeklődők kérdéseire válaszol, majd automatikusan időpontot foglal a naptáradba, ha komoly az érdeklődés.",
+          "roi": "+25% több minősített lead"
+        },
+        {
+          "title": "Dokumentum feldolgozás",
+          "description": "Beérkező PDF-ek, ajánlatok, számlák adatainak automatikus kinyerése és strukturálása.",
+          "example": "A beérkező e-mail csatolmányait az AI átolvassa, kinyeri a számlaszámot, végösszeget és beviszi a CRM-be.",
+          "roi": "90% gyorsabb adminisztráció"
+        }
+      ],
+      "pricing_title": "AI Bevezetési Csomagok",
+      "pricing_desc": "Válaszd ki a céged érettségének megfelelő AI fejlesztési csomagot",
+      "plans": {
+        "base": {
+          "name": "Alap AI Web Chatbot",
+          "desc": "Weboldaladra szabott intelligens ügyfélszolgálati asszisztens",
+          "sub": "Egyszeri bevezetési díj",
+          "features": [
+            "Egyedi chatbot felület integrálása",
+            "Céges alapadatok és FAQ betanítása",
+            "OpenAI / Anthropic API összekötés",
+            "Lead gyűjtési és kapcsolati űrlap funkció",
+            "1 hónap finomhangolás és support"
+          ],
+          "duration_label": "Egyszeri bevezetés"
+        },
+        "detailed": {
+          "name": "Céges AI Asszisztens (RAG)",
+          "badge": "Legnépszerűbb",
+          "desc": "Belső tudásbázisra épülő zárt, biztonságos AI asszisztens a munkatársaknak",
+          "sub": "Egyszeri bevezetési díj",
+          "features": [
+            "Zárt, biztonságos felhő vagy lokális környezet",
+            "PDF, Word, Excel tudásbázis integráció (RAG)",
+            "Felhasználó-kezelés és jogosultságok",
+            "n8n e-mail automatizációval való összekötése",
+            "Munkatársi oktatás és 3 hónap support",
+            "Havi használati és költség riport"
+          ],
+          "duration_label": "Egyszeri és havi finomhangolás"
+        },
+        "complex": {
+          "name": "Enterprise AI Workflow",
+          "desc": "Teljes körű, egyedi igényekre szabott AI-vezérelt folyamat-automatizáció",
+          "price_label": "Egyedi",
+          "price_sub": "ajánlat alapján",
+          "features": [
+            "Egyedi finomhangolt (Fine-tuned) modellek",
+            "Többügynökös (Multi-agent) rendszerek kiépítése",
+            "Komplex belső rendszerekkel (ERP, CRM) való integráció",
+            "Automatikus adatfeldolgozási pipeline-ok",
+            "Folyamatos SLA alapú karbantartás",
+            "AI biztonsági és adatvédelmi audit"
+          ],
+          "duration_label": "Projekt alapú árazás"
+        }
+      }
+    },
+    "OfficeSuite": {
+      "title": "Microsoft 365 / Google Workspace Bevezetés",
+      "description": "Biztonságos és hatékony céges felhő környezet kialakítása. Microsoft 365 vagy Google Workspace bevezetése, e-mail migráció és biztonsági beállítások.",
+      "keywords": "microsoft 365 bevezetés, google workspace migráció, céges e-mail, felhő tárhely cégeknek, mfa beállítás, sharepoint tervezés",
+      "hero_features": [
+        "Saját domain-es céges e-mailek beállítása",
+        "Zökkenőmentes levél és adat migráció",
+        "Kétlépcsős azonosítás (MFA) és biztonság",
+        "SharePoint / Google Drive jogosultsági rendszerek",
+        "Csapatmunka (Teams / Meet / Chat) konfigurálás",
+        "Mobileszközök biztonságos felhő elérése (MDM)",
+        "Felhő alapú adatvesztés-megelőzés (DLP)",
+        "Munkatársi oktatás a hatékony használatról"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Professzionális megjelenés",
+          "description": "Ingyenes e-mail címek helyett használj saját céges domaint (pl. nev@cegnev.hu), ami növeli a bizalmat."
+        },
+        {
+          "title": "Biztonságos felhő tárhely",
+          "description": "Tárold és szerkeszd a céges dokumentumokat bárhonnan, biztonságosan, nyomon követhető jogosultsági szintekkel."
+        },
+        {
+          "title": "Egyszerűbb együttműködés",
+          "description": "Dolgozzatok egyszerre ugyanazon a táblázaton vagy dokumentumon, tartsatok online megbeszéléseket egyetlen integrált felületen."
+        }
+      ],
+      "use_cases_title": "Felhasználási Területek",
+      "use_cases_desc": "Hogyan modernizáljuk a KKV-k belső kommunikációját és adattárolását",
+      "use_cases_items": [
+        {
+          "title": "E-mail migráció",
+          "description": "Régi, instabil levelezőrendszerek költöztetése modern felhőbe az adatok elvesztése nélkül.",
+          "example": "Tárhelyes cPanel levelezés átvitele a Google Workspace vagy Microsoft 365 professzionális rendszerébe.",
+          "roi": "100% biztonságos levelezés leállás nélkül"
+        },
+        {
+          "title": "Megosztott fájlstruktúra",
+          "description": "Átlátható, jogosultság-alapú felhő tárhely tervezése és kiépítése.",
+          "example": "SharePoint vagy Google Shared Drive könyvtárak kialakítása a Pénzügy, Értékesítés és Vezetőség számára.",
+          "roi": "0 elveszett dokumentum"
+        },
+        {
+          "title": "Kiberbiztonsági keményítés",
+          "description": "Védelem beállítása a fiókok feltörése és az adatok kiszivárgása ellen.",
+          "example": "Kötelező kétlépcsős azonosítás (MFA) bevezetése, spam szűrés és gyanús bejelentkezések blokkolása.",
+          "roi": "99%-kal kevesebb sikeres adathalász támadás"
+        }
+      ],
+      "pricing_title": "Bevezetési Csomagok",
+      "pricing_desc": "Válaszd ki a céged méretéhez és igényeihez legjobban illő csomagot",
+      "plans": {
+        "base": {
+          "name": "Alap Cloud Bevezetés",
+          "desc": "Kis cégeknek 10 felhasználóig a professzionális e-mail elindítására",
+          "sub": "Egyszeri bevezetési díj",
+          "features": [
+            "Domain beállítás és DNS rekordok konfigurálása",
+            "E-mail fiókok és felhőtárhely létrehozása",
+            "Levelek migrációja a régi rendszerből",
+            "Kétlépcsős azonosítás (MFA) beállítása",
+            "1 hónap support az elindulás után"
+          ],
+          "duration_label": "Egyszeri projekt"
+        },
+        "detailed": {
+          "name": "Biztonságos KKV Felhő",
+          "badge": "Legnépszerűbb",
+          "desc": "10-40 fős cégeknek a biztonságos és strukturált felhő működéshez",
+          "sub": "Egyszeri bevezetési díj",
+          "features": [
+            "Minden az Alap csomagból",
+            "SharePoint / Google Shared Drive mappa struktúra tervezése",
+            "Csoportok és fejlett jogosultsági szintek kezelése",
+            "Adatszivárgás-elleni (DLP) szabályok konfigurálása",
+            "Eszközkezelés (MDM) alapjai mobileszközökre",
+            "3 órás videós munkatársi tréning és oktatás",
+            "3 hónap priority support"
+          ],
+          "duration_label": "Egyszeri projekt"
+        },
+        "complex": {
+          "name": "Enterprise Hibrid Felhő",
+          "desc": "Nagyobb cégek, egyedi belső szerverek és felhő összekapcsolása",
+          "price_label": "Egyedi",
+          "price_sub": "ajánlat alapján",
+          "features": [
+            "Lokális Active Directory és Azure AD szinkronizáció",
+            "Teljes körű Mobile Device Management (Intune)",
+            "Single Sign-On (SSO) integráció más céges szoftverekkel",
+            "Részletes IT biztonsági szabályzat készítése",
+            "Folyamatos havi managed felhő support (SLA)",
+            "Rendszeres biztonsági auditok"
+          ],
+          "duration_label": "Egyszeri és havi support"
+        }
+      }
+    },
+    "BackupDataRecovery": {
+      "title": "Backup & Adatmentési Stratégia",
+      "description": "Védd meg vállalkozásod adatait a zsarolóvírusoktól, hardverhibáktól és az adatvesztéstől a professzionális 3-2-1 mentési szabály alapján.",
+      "keywords": "adatmentés cégeknek, biztonsági mentés, backup stratégia, synology nas beállítás, disaster recovery terv, zsarolóvírus védelem",
+      "hero_features": [
+        "A 3-2-1 mentési szabály szerinti architektúra tervezése",
+        "Automatizált helyi és felhő mentési folyamatok",
+        "Synology / QNAP NAS eszközök konfigurálása",
+        "Titkosított felhő mentések (AWS S3, Backblaze B2)",
+        "Ransomware (zsarolóvírus) elleni immutable (módosíthatatlan) mentések",
+        "Rendszeres, automatizált mentés-visszaállítási tesztek",
+        "Katasztrófa-helyreállítási terv (Disaster Recovery Plan) készítése",
+        "Szerverek és felhő (M365 / Workspace) mentése"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Garantált adatbiztonság",
+          "description": "Hardverhiba, tűzeset vagy zsarolóvírusos támadás esetén is az adataid 100%-ban biztonságban és visszaállíthatóan megmaradnak."
+        },
+        {
+          "title": "Minimális leállási idő",
+          "description": "A kidolgozott Disaster Recovery terv segítségével baj esetén órákon belül újraindulhat az üzletmenet a napokig tartó leállás helyett."
+        },
+        {
+          "title": "Törvényi megfelelőség",
+          "description": "Biztosítjuk a GDPR és más iparági szabályozások által megkövetelt adatmentési és megőrzési kötelezettségeket."
+        }
+      ],
+      "use_cases_title": "Felhasználási Területek",
+      "use_cases_desc": "Hogyan építjük ki a cég adatvédelmi pajzsát",
+      "use_cases_items": [
+        {
+          "title": "Ransomware elleni védelem",
+          "description": "Módosíthatatlan (immutable) mentések kialakítása, amit a zsarolóvírusok nem tudnak letörölni vagy titkosítani.",
+          "example": "A napi mentések zárolása (Object Lock) felhő tárhelyen, ami 14 napig fizikai képtelenség felülírni vagy törölni.",
+          "roi": "100% védelem zsarolás ellen"
+        },
+        {
+          "title": "Synology NAS telepítés",
+          "description": "Helyi, nagy sebességű biztonsági mentési központ kiépítése az irodában.",
+          "example": "Synology NAS beállítása raid tömbbel, automatikus szerver- és munkaállomás-mentésekkel, majd heti szinkron a felhőbe.",
+          "roi": "Gyors helyi visszaállítás"
+        },
+        {
+          "title": "Felhő mentése (M365/Google)",
+          "description": "A felhő szolgáltatók nem mentik az adataidat véletlen törlés ellen - mi gondoskodunk erről.",
+          "example": "A Microsoft 365 e-mailek, OneDrive és SharePoint fájlok mentése külső független tárhelyre naponta.",
+          "roi": "Véletlen törlések azonnali javítása"
+        }
+      ],
+      "pricing_title": "Mentési Csomagok",
+      "pricing_desc": "Havidíjas mentés-menedzsment és proaktív védelem",
+      "plans": {
+        "base": {
+          "name": "Alap KKV Mentés",
+          "desc": "Kisebb irodáknak kritikus adatok biztonságos felhő mentésére",
+          "sub": "Havi menedzsment díj",
+          "features": [
+            "Kritikus adatok (max. 500 GB) mentése felhőbe",
+            "Automatikus napi mentési ütemterv",
+            "Mentések sikerességének heti ellenőrzése",
+            "Negyedéves visszaállítási teszt",
+            "E-mail riasztások beállítása hiba esetén"
+          ],
+          "duration_label": "Havidíjas szolgáltatás"
+        },
+        "detailed": {
+          "name": "Hibrid Biztonsági Pajzs",
+          "badge": "Legnépszerűbb",
+          "desc": "Növekvő cégeknek helyi NAS és felhő alapú redundáns mentéssel",
+          "sub": "Havi menedzsment díj",
+          "features": [
+            "Minden az Alap csomagból",
+            "Helyi NAS eszköz konfigurációja és menedzsmentje",
+            "Akár 2 TB titkosított és immutable felhő mentés",
+            "Microsoft 365 vagy Google Workspace teljes mentése",
+            "Havi rendszeres visszaállítási tesztek",
+            "Írásos Katasztrófa-helyreállítási terv (DRP)",
+            "Priority support katasztrófa helyzetben"
+          ],
+          "duration_label": "Havidíjas szolgáltatás"
+        },
+        "complex": {
+          "name": "Managed Disaster Recovery",
+          "desc": "Kritikus rendszerekkel rendelkező cégeknek, ahol a leállás nem megengedett",
+          "price_label": "Egyedi",
+          "price_sub": "ajánlat alapján",
+          "features": [
+            "Virtuális gépek (VMware/Proxmox) azonnali felhőbe indíthatósága",
+            "Szigorú RTO és RPO garanciák vállalása",
+            "24/7 aktív monitoring és dedikált mérnök",
+            "Negyedéves teljes körű katasztrófa-szimuláció",
+            "Korlátlan visszaállítási asszisztencia",
+            "Folyamatos infrastruktúra fejlesztési tanácsadás"
+          ],
+          "duration_label": "Havidíjas és projekt díj"
+        }
+      }
+    },
+    "ManagedIT": {
+      "title": "Havidíjas Rendszergazda & Managed IT",
+      "description": "Proaktív rendszerfelügyelet, gyors helpdesk segítségnyújtás és komplett IT üzemeltetés KKV-k számára fix havidíjas konstrukcióban.",
+      "keywords": "rendszergazda, havidíjas rendszergazda, it üzemeltetés kkv, managed it, rendszerfelügyelet, helpdesk cégeknek, it outsourcing",
+      "hero_features": [
+        "Proaktív, 24/7 szerver és hálózat felügyelet",
+        "Gyors, távoli és helyszíni helpdesk támogatás",
+        "Munkaállomások rendszeres karbantartása és frissítése",
+        "Vírusvédelmi és biztonsági szoftverek menedzselése",
+        "Új eszközök beszerzése, telepítése és konfigurálása",
+        "IT biztonsági szabályzatok betartatása",
+        "VPN és biztonságos távoli munkakörnyezet kezelése",
+        "Havi teljesítmény és rendelkezésre állási riportok"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Proaktív hibamegelőzés",
+          "description": "Nem akkor jövünk, amikor már baj van. Folyamatosan monitorozzuk a rendszereidet, és a hibákat még azelőtt javítjuk, hogy észrevennéd."
+        },
+        {
+          "title": "Kiszámítható IT költségek",
+          "description": "A fix havidíjnak köszönhetően pontosan tervezhető az IT büdzsé, nincsenek váratlan és magas óradíjas rendszergazda számlák."
+        },
+        {
+          "title": "Saját IT részleg töredékáron",
+          "description": "Egy egész szakértői csapat áll mögötted egyetlen belső IT-s munkatárs bérének töredékéért."
+        }
+      ],
+      "use_cases_title": "Felhasználási Területek",
+      "use_cases_desc": "Hogyan biztosítjuk a zavartalan céges IT működést",
+      "use_cases_items": [
+        {
+          "title": "Helpdesk segítségnyújtás",
+          "description": "A munkatársak közvetlenül hozzánk fordulhatnak bármilyen számítógépes vagy szoftveres probléma esetén.",
+          "example": "A kolléga nem tud nyomtatni vagy nem ér el egy fájlt - távoli asztalon keresztül azonnal megoldjuk a problémát.",
+          "roi": "< 15 perces reakcióidő"
+        },
+        {
+          "title": "Szerver üzemeltetés",
+          "description": "Céges Windows vagy Linux szerverek stabil működésének biztosítása.",
+          "example": "Active Directory, fájlszerverek, felhasználói jogosultságok kezelése és proaktív frissítése éjszakai órákban.",
+          "roi": "99.9% szerver uptime"
+        },
+        {
+          "title": "Eszközpark menedzsment",
+          "description": "Új számítógépek és hálózati eszközök szakszerű kiválasztása, beüzemelése.",
+          "example": "Új munkatárs érkezésekor a laptop teljes feltelepítése a céges szabályzatok és biztonsági szoftverek alapján.",
+          "roi": "Azonnal munkára kész eszközök"
+        }
+      ],
+      "pricing_title": "Managed IT Csomagok",
+      "pricing_desc": "Fix havidíjas üzemeltetési csomagjaink a vállalkozásod méretéhez szabva",
+      "plans": {
+        "base": {
+          "name": "Managed IT Starter",
+          "desc": "Mikrovállalkozásoknak legfeljebb 5 munkaállomásig",
+          "sub": "Havidíjas szerződés",
+          "features": [
+            "Legfeljebb 5 munkaállomás teljes körű felügyelete",
+            "Havi 1 alkalmas proaktív karbantartás (távoli)",
+            "Hétköznap 9-17 közötti telefonos és távoli helpdesk",
+            "Automatikus vírusirtó és frissítés kezelés",
+            "Napi kritikus adatok mentésének figyelése"
+          ],
+          "duration_label": "Havidíjas, 12 hó elkötelezettséggel"
+        },
+        "detailed": {
+          "name": "Managed IT Pro",
+          "badge": "Legnépszerűbb",
+          "desc": "Növekvő KKV-knak 6-20 munkaállomásig és 1 szerverig",
+          "sub": "Havidíjas szerződés",
+          "features": [
+            "Minden a Starter csomagból",
+            "Legfeljebb 20 munkaállomás + 1 fizikai vagy felhő szerver felügyelete",
+            "24/7 proaktív szerver és hálózat monitoring",
+            "Havi 1 alkalommal 4 óra helyszíni karbantartás/support",
+            "Garantált < 4 órás reakcióidő kritikus hiba esetén",
+            "Negyedéves IT biztonsági és optimalizációs tanácsadás"
+          ],
+          "duration_label": "Havidíjas, 12 hó elkötelezettséggel"
+        },
+        "complex": {
+          "name": "Managed IT Enterprise",
+          "desc": "20+ munkaállomás és komplex szerver/hálózati infrastruktúra esetén",
+          "price_label": "Egyedi",
+          "price_sub": "ajánlat alapján",
+          "features": [
+            "Korlátlan munkaállomás és szerver üzemeltetése",
+            "Dedikált kiemelt kapcsolattartó IT mérnök",
+            "Szerződésben vállalt SLA (99.9% rendelkezésre állás)",
+            "24/7 helpdesk és azonnali helyszíni elhárítás",
+            "Komplett IT biztonsági és compliance menedzsment",
+            "Rendszeres katasztrófa-helyreállítási tesztelés"
+          ],
+          "duration_label": "Személyre szabott SLA"
+        }
+      }
     }
   },
   "ProductDetailPage": {

@@ -58,6 +58,34 @@ export const routing = defineRouting({
             hu: '/szolgaltatasok/webfejlesztes',
             en: '/services/web-development'
         },
+        '/szolgaltatasok/wordpress-woocommerce-karbantartas': {
+            hu: '/szolgaltatasok/wordpress-woocommerce-karbantartas',
+            en: '/services/wordpress-woocommerce-maintenance'
+        },
+        '/szolgaltatasok/kkv-it-audit': {
+            hu: '/szolgaltatasok/kkv-it-audit',
+            en: '/services/smb-it-audit'
+        },
+        '/szolgaltatasok/webshop-automatizacio': {
+            hu: '/szolgaltatasok/webshop-automatizacio',
+            en: '/services/webshop-automation'
+        },
+        '/szolgaltatasok/ai-asszisztensek': {
+            hu: '/szolgaltatasok/ai-asszisztensek',
+            en: '/services/ai-assistants'
+        },
+        '/szolgaltatasok/microsoft-365-google-workspace': {
+            hu: '/szolgaltatasok/microsoft-365-google-workspace',
+            en: '/services/microsoft-365-google-workspace'
+        },
+        '/szolgaltatasok/backup-adatmentes': {
+            hu: '/szolgaltatasok/backup-adatmentes',
+            en: '/services/backup-data-recovery'
+        },
+        '/szolgaltatasok/havidijas-rendszergazda': {
+            hu: '/szolgaltatasok/havidijas-rendszergazda',
+            en: '/services/managed-it-services'
+        },
         '/megoldasok': {
             hu: '/megoldasok',
             en: '/solutions'
