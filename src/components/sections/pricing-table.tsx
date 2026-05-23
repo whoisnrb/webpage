@@ -1,9 +1,12 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Crown, CheckCircle2, Sparkles, Zap } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { PriceDisplay } from "@/components/price-display"
+import { CheckoutButton } from "@/components/checkout-button"
 
 export function PricingTable() {
     const t = useTranslations('PricingPage.PricingTable')
@@ -29,7 +32,7 @@ export function PricingTable() {
             ],
             cta: t('packages.starter.cta'),
             href: "#",
-            disabled: true
+            disabled: false
         },
         {
             key: "pro",
@@ -53,7 +56,7 @@ export function PricingTable() {
             ],
             cta: t('packages.pro.cta'),
             href: "#",
-            disabled: true
+            disabled: false
         },
         {
             key: "enterprise",
@@ -149,6 +152,18 @@ export function PricingTable() {
                                         >
                                             {pkg.cta}
                                         </Button>
+                                    ) : typeof pkg.price === 'number' ? (
+                                        <CheckoutButton
+                                            serviceName={`BacklineIT - ${pkg.name}`}
+                                            price={pkg.price}
+                                            currency="HUF"
+                                            className={`w-full h-12 text-sm font-bold uppercase transition-all duration-300 ${pkg.popular
+                                                ? 'bg-primary hover:bg-primary/90'
+                                                : 'bg-accent hover:bg-accent/90'
+                                                }`}
+                                        >
+                                            {pkg.cta}
+                                        </CheckoutButton>
                                     ) : (
                                         <Link href={pkg.href as any} className="w-full">
                                             <Button

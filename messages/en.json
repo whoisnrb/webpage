@@ -1419,7 +1419,7 @@
             "3 months free support",
             "Google Analytics integration"
           ],
-          "cta": "Coming Soon"
+          "cta": "Order Now"
         },
         "pro": {
           "name": "Professional",
@@ -1437,7 +1437,7 @@
             "Monthly performance report",
             "Daily backups"
           ],
-          "cta": "Coming Soon"
+          "cta": "Order Now"
         },
         "enterprise": {
           "name": "Enterprise",
@@ -1778,21 +1778,24 @@
       "network_desc": "VPN, VLAN, firewall and WiFi management",
       "integrations": "Integrations",
       "integrations_desc": "System integrations and API solutions",
-      "wordpress": "WordPress Maintenance",
+      "wordpress": "WordPress / WooCommerce Maintenance",
       "wordpress_desc": "WooCommerce & WP updates, security and optimization",
-      "it_audit": "IT Audit & Assessment",
+      "it_audit": "KKV IT Audit & Assessment",
       "it_audit_desc": "Digital maturity review and tech roadmap for SMBs",
       "webshop_auto": "Webshop Automation",
       "webshop_auto_desc": "Invoicing, courier services and inventory synchronization",
-      "ai_auto": "AI & Business Automation",
+      "ai_auto": "AI Assistants & Automation",
       "ai_auto_desc": "Custom AI assistants and n8n workflow integrations",
-      "office_suite": "M365 & Google Workspace",
+      "office_suite": "Microsoft 365 & Google Workspace",
       "office_suite_desc": "Office productivity cloud setup and data migration",
       "backup": "Backup & Recovery",
       "backup_desc": "3-2-1 backup strategy and business continuity plans",
-      "managed_it": "Managed IT Services",
+      "managed_it": "Managed IT Services / Rendszergazda",
       "managed_it_desc": "Full-service SMB system administration and remote support"
     },
+    "need_help_title": "Don't know what you need?",
+    "need_help_desc": "Request a quick IT assessment, and we'll help you find the right solution.",
+    "need_help_cta": "Request Assessment",
     "all_products": "All Solutions",
     "all_products_desc": "Browse our complete catalog",
     "scripts": "Scripts",

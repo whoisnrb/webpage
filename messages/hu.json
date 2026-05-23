@@ -1401,7 +1401,7 @@
             "3 hónap ingyenes support",
             "Google Analytics integráció"
           ],
-          "cta": "Hamarosan"
+          "cta": "Megrendelem"
         },
         "pro": {
           "name": "Professional",
@@ -1419,7 +1419,7 @@
             "Havi teljesítmény riport",
             "Biztonsági mentések (napi)"
           ],
-          "cta": "Hamarosan"
+          "cta": "Megrendelem"
         },
         "enterprise": {
           "name": "Enterprise",
@@ -1760,21 +1760,24 @@
       "network_desc": "VPN, VLAN, tűzfal és WiFi menedzsment",
       "integrations": "Integrációk",
       "integrations_desc": "Rendszerösszekötések és API megoldások",
-      "wordpress": "WordPress Karbantartás",
+      "wordpress": "WordPress / WooCommerce Karbantartás",
       "wordpress_desc": "WooCommerce & WP frissítések, biztonság és sebesség",
-      "it_audit": "IT Audit & Állapotfelmérés",
+      "it_audit": "KKV IT Audit & Állapotfelmérés",
       "it_audit_desc": "Digitális fejlettségi vizsgálat és fejlesztési terv KKV-knak",
       "webshop_auto": "Webshop Automatizáció",
       "webshop_auto_desc": "Számlázók, futárszolgálatok és készlet szinkronizáció",
-      "ai_auto": "AI & Üzleti Automatizáció",
+      "ai_auto": "AI Asszisztensek & Automatizáció",
       "ai_auto_desc": "AI asszisztensek és n8n munkafolyamatok bevezetése",
-      "office_suite": "M365 & Google Workspace",
+      "office_suite": "Microsoft 365 & Google Workspace",
       "office_suite_desc": "Irodai szoftvercsomagok bevezetése és migráció",
-      "backup": "Adatmentés & Biztonság",
+      "backup": "Backup & Adatmentés",
       "backup_desc": "3-2-1 backup stratégia és katasztrófa-helyreállítás",
-      "managed_it": "Havidíjas Rendszergazda",
+      "managed_it": "Havidíjas Rendszergazda / Managed IT",
       "managed_it_desc": "Teljes körű KKV rendszergazdai és IT support ügyfélszolgálat"
     },
+    "need_help_title": "Nem tudod, mire van szükséged?",
+    "need_help_desc": "Kérj gyors IT felmérést, és segítünk kiválasztani a megfelelő megoldást.",
+    "need_help_cta": "Felmérést kérek",
     "all_products": "Összes megoldás",
     "all_products_desc": "Böngészd át teljes kínálatunkat",
     "scripts": "Scriptek",

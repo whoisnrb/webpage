@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl"
 import { Menu, X, Code2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
-import { CartDrawer } from "@/components/ecommerce/cart-drawer"
 import { Breadcrumbs } from "@/components/layout/breadcrumbs"
 import { ThemeCustomizer } from "@/components/theme/theme-customizer"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
@@ -29,23 +28,30 @@ export function Header() {
         return null;
     }
 
-    const navCategories = [
+    const navCategories: {
+        name: string;
+        href: React.ComponentProps<typeof Link>["href"];
+        items: {
+            name: string;
+            href: React.ComponentProps<typeof Link>["href"];
+        }[];
+    }[] = [
         {
             name: t("services"),
             href: "/szolgaltatasok",
             items: [
-                { name: tMega("nav_items.scripts"), href: "/szolgaltatasok/scriptek" },
+                { name: tMega("nav_items.wordpress"), href: "/szolgaltatasok/wordpress-woocommerce-karbantartas" },
+                { name: tMega("nav_items.webshop_auto"), href: "/szolgaltatasok/webshop-automatizacio" },
+                { name: tMega("nav_items.it_audit"), href: "/szolgaltatasok/kkv-it-audit" },
+                { name: tMega("nav_items.managed_it"), href: "/szolgaltatasok/havidijas-rendszergazda" },
+                { name: tMega("nav_items.backup"), href: "/szolgaltatasok/backup-adatmentes" },
+                { name: tMega("nav_items.office_suite"), href: "/szolgaltatasok/microsoft-365-google-workspace" },
+                { name: tMega("nav_items.ai_auto"), href: "/szolgaltatasok/ai-asszisztensek" },
                 { name: tMega("nav_items.webdev"), href: "/szolgaltatasok/webfejlesztes" },
+                { name: tMega("nav_items.scripts"), href: "/szolgaltatasok/scriptek" },
                 { name: tMega("nav_items.sysadmin"), href: "/szolgaltatasok/rendszeruzemeltetes" },
                 { name: tMega("nav_items.network"), href: "/szolgaltatasok/halozat" },
                 { name: tMega("nav_items.integrations"), href: "/szolgaltatasok/integraciok" },
-                { name: tMega("nav_items.wordpress"), href: "/szolgaltatasok/wordpress-woocommerce-karbantartas" },
-                { name: tMega("nav_items.it_audit"), href: "/szolgaltatasok/kkv-it-audit" },
-                { name: tMega("nav_items.webshop_auto"), href: "/szolgaltatasok/webshop-automatizacio" },
-                { name: tMega("nav_items.ai_auto"), href: "/szolgaltatasok/ai-asszisztensek" },
-                { name: tMega("nav_items.office_suite"), href: "/szolgaltatasok/microsoft-365-google-workspace" },
-                { name: tMega("nav_items.backup"), href: "/szolgaltatasok/backup-adatmentes" },
-                { name: tMega("nav_items.managed_it"), href: "/szolgaltatasok/havidijas-rendszergazda" },
             ]
         },
         {
@@ -53,9 +59,9 @@ export function Header() {
             href: "/megoldasok",
             items: [
                 { name: tMega("all_products"), href: "/megoldasok" },
-                { name: tMega("scripts"), href: "/megoldasok?category=scripts" },
-                { name: tMega("web"), href: "/megoldasok?category=web" },
-                { name: tMega("plugins"), href: "/megoldasok?category=plugins" },
+                { name: tMega("scripts"), href: { pathname: "/megoldasok", query: { category: "scripts" } } },
+                { name: tMega("web"), href: { pathname: "/megoldasok", query: { category: "web" } } },
+                { name: tMega("plugins"), href: { pathname: "/megoldasok", query: { category: "plugins" } } },
             ]
         },
         {
@@ -70,7 +76,10 @@ export function Header() {
         }
     ]
 
-    const singleLinks = [
+    const singleLinks: {
+        name: string;
+        href: React.ComponentProps<typeof Link>["href"];
+    }[] = [
         { name: tMega("contact"), href: "/kapcsolat" },
     ]
 
@@ -170,12 +179,12 @@ export function Header() {
                                                 <AccordionContent>
                                                     <div className="flex flex-col gap-3 pl-4 pt-2 pb-4">
                                                         {category.items.map((item) => {
-                                                            const href = typeof item.href === 'string' ? item.href : (item.href as any).pathname;
+                                                            const href = typeof item.href === 'string' ? item.href : (item.href as { pathname: string }).pathname;
                                                             const isActive = pathname === href;
                                                             return (
                                                                 <Link
                                                                     key={item.name}
-                                                                    href={item.href as any}
+                                                                    href={item.href}
                                                                     className={cn(
                                                                         "text-sm font-medium transition-colors border-l-2 pl-4 py-1",
                                                                         isActive
@@ -199,7 +208,7 @@ export function Header() {
                                             return (
                                                 <Link
                                                     key={item.name}
-                                                    href={item.href as any}
+                                                    href={item.href}
                                                     className={cn(
                                                         "text-lg font-bold transition-all px-1 py-1",
                                                         isActive ? "text-primary" : "text-white/90 hover:text-primary"
