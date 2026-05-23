@@ -489,7 +489,7 @@
     "info_title": "Contact Information",
     "info_desc": "Feel free to reach out via any channel. Our customer service is available on workdays between 9:00 and 17:00.",
     "phone_label": "Phone",
-    "phone_soon": "Coming Soon",
+    "phone_soon": "+36 30 542 8272",
     "phone_hours": "Monday - Friday: 09:00 - 17:00",
     "address_label": "Headquarters",
     "address": "2141 Csömör, Vörösmarty utca 11.",
@@ -1352,7 +1352,8 @@
     "cta_bottom_desc": "Book a free 30-minute consultation where we discuss your ideas and give technical advice.",
     "cta_consultation": "Free Consultation",
     "cta_packages": "Package Deals",
-    "cta_buy_now": "Pay Now"
+    "cta_buy_now": "Choose this package",
+    "duration_header": "Model / Timeline"
   },
   "PricingPage": {
     "hero_title": "Transparent pricing,",
@@ -1362,6 +1363,89 @@
       "no_hidden_fees": "No hidden fees",
       "free_consultation": "Free consultation",
       "money_back": "Money-back guarantee"
+    },
+    "services_title": "SMB IT Services Pricing",
+    "services_desc": "Transparent pricing plans to support your business's digital growth.",
+    "view_packages": "View Packages",
+    "categories": {
+      "web": {
+        "title": "Websites & Webshops",
+        "desc": "Modern online presence and e-commerce solutions",
+        "items": {
+          "wordpress": {
+            "name": "WordPress / WooCommerce Maintenance",
+            "price": "From 15 000 HUF / mo",
+            "desc": "Continuous updates, backups, security monitoring, and troubleshooting.",
+            "link": "/szolgaltatasok/wordpress-woocommerce-karbantartas"
+          },
+          "webshop": {
+            "name": "Webshop Automation",
+            "price": "From 120 000 HUF",
+            "desc": "Integration of order processing, automated billing, and shipping.",
+            "link": "/szolgaltatasok/webshop-automatizacio"
+          }
+        }
+      },
+      "automation": {
+        "title": "Automation & AI",
+        "desc": "Smart virtual assistants and workflow optimization",
+        "items": {
+          "ai": {
+            "name": "AI Assistants",
+            "price": "From 150 000 HUF",
+            "desc": "Custom AI chatbots, document analyzers, and n8n workflow automations.",
+            "link": "/szolgaltatasok/ai-asszisztensek"
+          }
+        }
+      },
+      "ops": {
+        "title": "Operations & Security",
+        "desc": "Robust infrastructure management and digital assessments",
+        "items": {
+          "audit": {
+            "name": "SMB IT Audit & Assessment",
+            "price": "From 75 000 HUF",
+            "desc": "Comprehensive security, network, and software audits with a clear development roadmap.",
+            "link": "/szolgaltatasok/kkv-it-audit"
+          }
+        }
+      },
+      "cloud": {
+        "title": "Corporate Email & Cloud",
+        "desc": "Office productivity suites and secure remote work environments",
+        "items": {
+          "office": {
+            "name": "Microsoft 365 / Google Workspace",
+            "price": "From 85 000 HUF",
+            "desc": "Secure email setups, file sharing, and data migration for teams.",
+            "link": "/szolgaltatasok/microsoft-365-google-workspace"
+          }
+        }
+      },
+      "backup": {
+        "title": "Backup & Data Recovery",
+        "desc": "Business continuity and reliable disaster recovery plans",
+        "items": {
+          "backup": {
+            "name": "Backup & Data Recovery",
+            "price": "From 10 000 HUF / mo",
+            "desc": "Implementation of the 3-2-1 backup rule and automated recovery processes.",
+            "link": "/szolgaltatasok/backup-adatmentes"
+          }
+        }
+      },
+      "managed_it": {
+        "title": "Managed IT Services",
+        "desc": "Full-service system administration and rapid remote support",
+        "items": {
+          "managed": {
+            "name": "Managed IT Services / Rendszergazda",
+            "price": "From 39 000 HUF / mo",
+            "desc": "Proactive server monitoring, workstation maintenance, and 24/7 helpdesk.",
+            "link": "/szolgaltatasok/havidijas-rendszergazda"
+          }
+        }
+      }
     },
     "comparison_title": "Detailed Comparison",
     "comparison_desc": "See exactly what each package includes",

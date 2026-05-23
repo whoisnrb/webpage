@@ -1,9 +1,7 @@
-import { Header } from "@/components/layout/header"
-import { Footer } from "@/components/layout/footer"
 import { PricingTable } from "@/components/sections/pricing-table"
 import { PricingFAQ } from "@/components/sections/pricing-faq"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Check } from "lucide-react"
+import { ArrowRight, Check, Globe, Zap, Shield, Cloud, Database, Activity } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { routing } from '@/i18n/routing'
@@ -16,6 +14,39 @@ export const revalidate = 86400; // 24 hours
 
 export default function ArakPage() {
     const t = useTranslations('PricingPage');
+
+    const pricingCategories = [
+        {
+            key: 'web',
+            icon: Globe,
+            items: ['wordpress', 'webshop']
+        },
+        {
+            key: 'automation',
+            icon: Zap,
+            items: ['ai']
+        },
+        {
+            key: 'ops',
+            icon: Shield,
+            items: ['audit']
+        },
+        {
+            key: 'cloud',
+            icon: Cloud,
+            items: ['office']
+        },
+        {
+            key: 'backup',
+            icon: Database,
+            items: ['backup']
+        },
+        {
+            key: 'managed_it',
+            icon: Activity,
+            items: ['managed']
+        }
+    ] as const;
 
     return (
         <div className="flex min-h-screen flex-col">
@@ -49,6 +80,80 @@ export default function ArakPage() {
 
                 {/* Pricing Table */}
                 <PricingTable />
+
+                {/* Services Pricing by Category */}
+                <section className="py-20 md:py-32 relative bg-transparent overflow-hidden">
+                    <div className="container mx-auto px-4 relative z-10">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter mb-4">
+                                {t('services_title')}
+                            </h2>
+                            <p className="text-lg text-white/40 max-w-2xl mx-auto font-medium">
+                                {t('services_desc')}
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                            {pricingCategories.map((category) => {
+                                const Icon = category.icon;
+                                return (
+                                    <div
+                                        key={category.key}
+                                        className="relative rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-8 flex flex-col hover:border-cyan-500/20 transition-all duration-300 group overflow-hidden"
+                                    >
+                                        {/* Subtle top border gradient glow */}
+                                        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        
+                                        <div className="flex items-center gap-4 mb-6">
+                                            <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                                                <Icon className="h-6 w-6" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-xl font-bold text-white leading-tight">
+                                                    {t(`categories.${category.key}.title`)}
+                                                </h3>
+                                                <p className="text-xs text-white/40 font-medium mt-1">
+                                                    {t(`categories.${category.key}.desc`)}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex-1 space-y-8">
+                                            {category.items.map((item) => (
+                                                <div key={item} className="space-y-3 pt-6 border-t border-white/5 first:border-0 first:pt-0">
+                                                    <div className="flex items-start justify-between gap-4">
+                                                        <h4 className="font-bold text-white text-base leading-snug">
+                                                            {t(`categories.${category.key}.items.${item}.name`)}
+                                                        </h4>
+                                                        <span className="text-sm font-black text-cyan-400 whitespace-nowrap bg-cyan-500/10 px-3 py-1 rounded-lg border border-cyan-500/20">
+                                                            {t(`categories.${category.key}.items.${item}.price`)}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-sm text-white/50 leading-relaxed font-medium">
+                                                        {t(`categories.${category.key}.items.${item}.desc`)}
+                                                    </p>
+                                                    <div className="pt-2">
+                                                        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                                        <Link href={t(`categories.${category.key}.items.${item}.link`) as any}>
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="sm"
+                                                                className="h-9 px-4 rounded-xl text-xs font-black uppercase tracking-wider text-white/60 hover:text-cyan-400 hover:bg-cyan-500/10 border border-white/5 hover:border-cyan-500/20 transition-all duration-300"
+                                                            >
+                                                                {t('view_packages')}
+                                                                <ArrowRight className="ml-2 h-4 w-4" />
+                                                            </Button>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
 
                 {/* Comparison Table */}
                 <section className="py-16 md:py-24 bg-muted/30">

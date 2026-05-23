@@ -489,7 +489,7 @@
     "info_title": "Elérhetőségeink",
     "info_desc": "Keress minket bizalommal bármelyik csatornán. ügyfélszolgálatunk munkanapokon 9:00 és 17:00 között áll rendelkezésedre.",
     "phone_label": "Telefon",
-    "phone_soon": "Hamarosan",
+    "phone_soon": "+36 30 542 8272",
     "phone_hours": "Hétfő - Péntek: 09:00 - 17:00",
     "address_label": "Székhely",
     "address": "2141 Csömör, Vörösmarty utca 11.",
@@ -1334,7 +1334,8 @@
     "cta_bottom_desc": "Foglalj egy ingyenes, 30 perces konzultációt, ahol átbeszéljük az elképzeléseidet és technikai tanácsokat adunk.",
     "cta_consultation": "Ingyenes konzultáció",
     "cta_packages": "Csomagajánlatok",
-    "cta_buy_now": "Fizetés Most"
+    "cta_buy_now": "Ezt a csomagot kérem",
+    "duration_header": "Konstrukció / Ütemezés"
   },
   "PricingPage": {
     "hero_title": "Átlátható árazás,",
@@ -1344,6 +1345,89 @@
       "no_hidden_fees": "Nincs rejtett költség",
       "free_consultation": "Ingyenes konzultáció",
       "money_back": "Pénzvisszafizetési garancia"
+    },
+    "services_title": "KKV IT Szolgáltatásaink Árazása",
+    "services_desc": "Részletes csomagajánlatok, átlátható árakkal a vállalkozásod digitális támogatására.",
+    "view_packages": "Csomagok megtekintése",
+    "categories": {
+      "web": {
+        "title": "Weboldal és webshop",
+        "desc": "Modern jelenlét és e-kereskedelmi megoldások",
+        "items": {
+          "wordpress": {
+            "name": "WordPress / WooCommerce karbantartás",
+            "price": "15 000 Ft / hó-tól",
+            "desc": "Frissítések, biztonsági mentések, sebesség- és hibajavítások folyamatosan.",
+            "link": "/szolgaltatasok/wordpress-woocommerce-karbantartas"
+          },
+          "webshop": {
+            "name": "Webshop automatizáció",
+            "price": "120 000 Ft-tól",
+            "desc": "Rendelésfeldolgozás, számlázás, készlet és futárszolgálat összekötése.",
+            "link": "/szolgaltatasok/webshop-automatizacio"
+          }
+        }
+      },
+      "automation": {
+        "title": "Automatizáció és AI",
+        "desc": "Intelligens asszisztensek és folyamatoptimalizálás",
+        "items": {
+          "ai": {
+            "name": "AI asszisztensek",
+            "price": "150 000 Ft-tól",
+            "desc": "Személyre szabott AI botok, dokumentum-elemzők és n8n munkafolyamatok.",
+            "link": "/szolgaltatasok/ai-asszisztensek"
+          }
+        }
+      },
+      "ops": {
+        "title": "Üzemeltetés és biztonság",
+        "desc": "Stabil infrastruktúra és audit KKV-knak",
+        "items": {
+          "audit": {
+            "name": "KKV IT audit & Állapotfelmérés",
+            "price": "75 000 Ft-tól",
+            "desc": "Hálózati, szoftveres és adatvédelmi vizsgálat átlátható fejlesztési tervvel.",
+            "link": "/szolgaltatasok/kkv-it-audit"
+          }
+        }
+      },
+      "cloud": {
+        "title": "Céges e-mail és felhő",
+        "desc": "Irodai szoftvercsomagok és távmunka",
+        "items": {
+          "office": {
+            "name": "Microsoft 365 / Google Workspace",
+            "price": "85 000 Ft-tól",
+            "desc": "Céges fiókok, biztonságos levelezés és felhőtárhely bevezetése/migrációja.",
+            "link": "/szolgaltatasok/microsoft-365-google-workspace"
+          }
+        }
+      },
+      "backup": {
+        "title": "Backup és adatmentés",
+        "desc": "Üzletmenet folytonosság és biztonság",
+        "items": {
+          "backup": {
+            "name": "Backup & adatmentés",
+            "price": "10 000 Ft / hó-tól",
+            "desc": "3-2-1 biztonsági mentési stratégia és automatizált mentések beállítása.",
+            "link": "/szolgaltatasok/backup-adatmentes"
+          }
+        }
+      },
+      "managed_it": {
+        "title": "Havidíjas rendszergazda",
+        "desc": "Teljes körű IT support és távoli segítségnyújtás",
+        "items": {
+          "managed": {
+            "name": "Havidíjas rendszergazda / Managed IT",
+            "price": "39 000 Ft / hó-tól",
+            "desc": "Proaktív rendszerfelügyelet, 24/7 monitoring és gyors helpdesk.",
+            "link": "/szolgaltatasok/havidijas-rendszergazda"
+          }
+        }
+      }
     },
     "comparison_title": "Részletes összehasonlítás",
     "comparison_desc": "Nézd meg pontosan, mit tartalmaz az egyes csomagok",

@@ -51,13 +51,16 @@ export function Footer() {
                     <div className="md:col-span-3 lg:col-span-2">
                         <h3 className="text-sm font-bold text-white mb-6">{tNav("services")}</h3>
                         <ul className="space-y-4">
-                            <li><Link href="/szolgaltatasok/scriptek" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.scripts")}</Link></li>
-                            <li><Link href="/szolgaltatasok/webfejlesztes" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.webdev")}</Link></li>
-                            <li><Link href="/szolgaltatasok/rendszeruzemeltetes" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.sysadmin")}</Link></li>
-                            <li><Link href="/szolgaltatasok/havidijas-rendszergazda" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.managed_it")}</Link></li>
-                            <li><Link href="/szolgaltatasok/webshop-automatizacio" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.webshop_auto")}</Link></li>
                             <li><Link href="/szolgaltatasok/wordpress-woocommerce-karbantartas" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.wordpress")}</Link></li>
+                            <li><Link href="/szolgaltatasok/webshop-automatizacio" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.webshop_auto")}</Link></li>
+                            <li><Link href="/szolgaltatasok/kkv-it-audit" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.it_audit")}</Link></li>
+                            <li><Link href="/szolgaltatasok/havidijas-rendszergazda" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.managed_it")}</Link></li>
+                            <li><Link href="/szolgaltatasok/backup-adatmentes" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.backup")}</Link></li>
+                            <li><Link href="/szolgaltatasok/microsoft-365-google-workspace" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.office_suite")}</Link></li>
                             <li><Link href="/szolgaltatasok/ai-asszisztensek" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.ai_auto")}</Link></li>
+                            <li><Link href="/szolgaltatasok/webfejlesztes" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.webdev")}</Link></li>
+                            <li><Link href="/szolgaltatasok/scriptek" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.scripts")}</Link></li>
+                            <li><Link href="/szolgaltatasok/rendszeruzemeltetes" className="text-sm text-white/40 hover:text-white transition-colors">{tMega("nav_items.sysadmin")}</Link></li>
                         </ul>
                     </div>
 

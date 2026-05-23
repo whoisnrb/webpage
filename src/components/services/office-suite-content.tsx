@@ -184,7 +184,7 @@ export function OfficeSuiteContent() {
                                         </div>
 
                                         <div className="pt-8 border-t border-white/5 mt-auto">
-                                            <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-3">{t("plans.base.duration_label")}</p>
+                                            <p className="text-[10px] font-black uppercase tracking-widest text-white/20 mb-3">{tServices("duration_header")}</p>
                                             <p className="text-sm italic text-white/40 mb-8">{plan.duration}</p>
                                             {plan.price ? (
                                                 <CheckoutButton 
