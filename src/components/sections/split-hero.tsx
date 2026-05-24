@@ -119,7 +119,7 @@ export function SplitHero() {
                             </div>
                             <div className="w-[1px] h-8 bg-border" />
                             <div>
-                                <div className="text-2xl font-bold text-primary">100%</div>
+                                <div className="text-2xl font-bold text-primary">5.0</div>
                                 <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{t('stat_satisfaction_label')}</div>
                             </div>
                         </div>

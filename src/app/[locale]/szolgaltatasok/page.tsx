@@ -20,10 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('hero_desc'),
         keywords: ["IT szolgáltatások", "webfejlesztés", "rendszerüzemeltetés", "kiberbiztonság", "egyedi szoftver", "backlineit"],
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok' : '/services'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok',
-                'en': 'https://backlineit.hu/en/services', // Note: Check if route is localized in routing.ts, assuming simple prefix for now
+                'en': 'https://backlineit.hu/en/services',
             },
         },
     };

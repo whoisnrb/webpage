@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t("description"),
         keywords: ["python script", "automatizáció", "adatbányászat", "web scraping", "egyedi fejlesztés"],
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/scriptek`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/scriptek' : '/services/scripts'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/scriptek',
                 'en': 'https://backlineit.hu/en/services/scripts',

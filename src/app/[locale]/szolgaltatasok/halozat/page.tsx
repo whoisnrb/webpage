@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: ["hálózat építés", "VPN", "tűzfal", "wifi rendszer", "SOHO", "vállalati hálózat"],
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/halozat`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/halozat' : '/services/network'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/halozat',
                 'en': 'https://backlineit.hu/en/services/network',

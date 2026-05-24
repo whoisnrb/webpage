@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: t('keywords').split(','),
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/ai-asszisztensek`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/ai-asszisztensek' : '/services/ai-assistants'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/ai-asszisztensek',
                 'en': 'https://backlineit.hu/en/services/ai-assistants',

@@ -58,10 +58,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: ["rendszerüzemeltetés", "devops", "szerver karbantartás", "linux", "cloud", "aws", "kubernetes"],
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/rendszeruzemeltetes`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/rendszeruzemeltetes' : '/services/system-administration'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/rendszeruzemeltetes',
-                'en': 'https://backlineit.hu/en/services/sysadmin', // Assuming mapped route
+                'en': 'https://backlineit.hu/en/services/system-administration',
             },
         },
         other: {

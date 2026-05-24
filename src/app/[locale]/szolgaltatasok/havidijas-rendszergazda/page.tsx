@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: t('keywords').split(','),
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/havidijas-rendszergazda`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/havidijas-rendszergazda' : '/services/managed-it-services'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/havidijas-rendszergazda',
                 'en': 'https://backlineit.hu/en/services/managed-it-services',

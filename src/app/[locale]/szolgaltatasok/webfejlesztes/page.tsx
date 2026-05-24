@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t("description"),
         keywords: ["egyedi weboldal", "webshop készítés", "Next.js fejlesztés", "React fejlesztő", "modern webdesign"],
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/webfejlesztes`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/webfejlesztes' : '/services/web-development'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/webfejlesztes',
                 'en': 'https://backlineit.hu/en/services/web-development',

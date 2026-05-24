@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: ["kiberbiztonság", "biztonsági audit", "penetration testing", "sérülékenységvizsgálat", "GDPR", "ISO 27001"],
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/biztonsag`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/biztonsag' : '/services/security'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/biztonsag',
                 'en': 'https://backlineit.hu/en/services/security',

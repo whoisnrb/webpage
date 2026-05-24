@@ -115,7 +115,7 @@ export default function ContactPage() {
                                     <div className="flex items-center justify-center mb-2">
                                         <Shield className="h-5 w-5 text-emerald-400" />
                                     </div>
-                                    <p className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">100%</p>
+                                    <p className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">5.0</p>
                                     <p className="text-[11px] text-white/40 mt-0.5">{t('satisfaction')}</p>
                                 </div>
                                 <div className="text-center p-4 rounded-2xl border border-white/10 bg-white/[0.02]">

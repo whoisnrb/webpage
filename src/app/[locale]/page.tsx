@@ -13,21 +13,52 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'Metadata' });
 
-    // WebSite Structured Data
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "BacklineIT",
-        "url": "https://backlineit.hu",
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "https://backlineit.hu/search?q={search_term_string}"
+    // Multi-schema: WebSite and ProfessionalService
+    const jsonLd = [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "BacklineIT",
+            "url": "https://backlineit.hu",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": {
+                    "@type": "EntryPoint",
+                    "urlTemplate": "https://backlineit.hu/search?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+            }
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "BacklineIT",
+            "image": "https://backlineit.hu/opengraph-image.png",
+            "@id": "https://backlineit.hu/#organization",
+            "url": "https://backlineit.hu",
+            "telephone": "+36305428272",
+            "priceRange": "$$",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Vörösmarty utca 11.",
+                "addressLocality": "Csömör",
+                "postalCode": "2141",
+                "addressCountry": "HU"
             },
-            "query-input": "required name=search_term_string"
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday"
+                ],
+                "opens": "09:00",
+                "closes": "17:00"
+            }
         }
-    }
+    ]
 
     return {
         title: t('title'),

@@ -27,7 +27,7 @@ export function WhyUs() {
             delay: 0.2
         },
         {
-            value: "100%",
+            value: "5.0",
             title: t('stats_satisfaction_title'),
             desc: t('stats_satisfaction_desc'),
             icon: Users,

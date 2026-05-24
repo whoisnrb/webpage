@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: t('keywords').split(','),
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/wordpress-woocommerce-karbantartas`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/wordpress-woocommerce-karbantartas' : '/services/wordpress-woocommerce-maintenance'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/wordpress-woocommerce-karbantartas',
                 'en': 'https://backlineit.hu/en/services/wordpress-woocommerce-maintenance',

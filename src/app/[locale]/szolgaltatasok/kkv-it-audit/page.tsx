@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: t('keywords').split(','),
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/kkv-it-audit`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/kkv-it-audit' : '/services/smb-it-audit'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/kkv-it-audit',
                 'en': 'https://backlineit.hu/en/services/smb-it-audit',

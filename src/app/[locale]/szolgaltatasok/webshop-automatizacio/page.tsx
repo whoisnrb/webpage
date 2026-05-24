@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: t('keywords').split(','),
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/webshop-automatizacio`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/webshop-automatizacio' : '/services/webshop-automation'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/webshop-automatizacio',
                 'en': 'https://backlineit.hu/en/services/webshop-automation',

@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: ["API integráció", "rendszerösszekötés", "automatizáció", "adatbázis szinkronizáció", "webhook"],
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/integraciok`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/integraciok' : '/services/integrations'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/integraciok',
                 'en': 'https://backlineit.hu/en/services/integrations',

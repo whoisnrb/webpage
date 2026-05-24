@@ -257,6 +257,42 @@ export function ServiceLayout({
                     </div>
                 </div>
             </section>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        "name": title,
+                        "description": description,
+                        "provider": {
+                            "@type": "ProfessionalService",
+                            "name": "BacklineIT",
+                            "url": "https://backlineit.hu",
+                            "telephone": "+36305428272",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "streetAddress": "Vörösmarty utca 11.",
+                                "addressLocality": "Csömör",
+                                "postalCode": "2141",
+                                "addressCountry": "HU"
+                            }
+                        },
+                        "areaServed": "Global",
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "BacklineIT Services",
+                            "itemListElement": features.map((feature) => ({
+                                "@type": "Offer",
+                                "itemOffered": {
+                                    "@type": "Service",
+                                    "name": feature
+                                }
+                            }))
+                        }
+                    })
+                }}
+            />
         </div>
     )
 }

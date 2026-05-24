@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: t('keywords').split(','),
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/backup-adatmentes`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/backup-adatmentes' : '/services/backup-data-recovery'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/backup-adatmentes',
                 'en': 'https://backlineit.hu/en/services/backup-data-recovery',

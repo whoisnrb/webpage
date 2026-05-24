@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         description: t('description'),
         keywords: t('keywords').split(','),
         alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}/szolgaltatasok/microsoft-365-google-workspace`,
+            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/microsoft-365-google-workspace' : '/services/microsoft-365-google-workspace'}`,
             languages: {
                 'hu': 'https://backlineit.hu/szolgaltatasok/microsoft-365-google-workspace',
                 'en': 'https://backlineit.hu/en/services/microsoft-365-google-workspace',

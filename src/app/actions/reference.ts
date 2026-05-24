@@ -63,7 +63,18 @@ export type LocalizedReferenceDTO = {
 function mapReference(r: any): ReferenceDTO {
     return {
         ...r,
-        metrics: r.metrics ? (typeof r.metrics === 'string' ? JSON.parse(r.metrics) : r.metrics) : null
+        content: r.content !== undefined ? r.content : null,
+        contentEn: r.contentEn !== undefined ? r.contentEn : null,
+        challenge: r.challenge !== undefined ? r.challenge : '',
+        challengeEn: r.challengeEn !== undefined ? r.challengeEn : null,
+        solution: r.solution !== undefined ? r.solution : '',
+        solutionEn: r.solutionEn !== undefined ? r.solutionEn : null,
+        result: r.result !== undefined ? r.result : '',
+        resultEn: r.resultEn !== undefined ? r.resultEn : null,
+        galleryImages: r.galleryImages !== undefined ? r.galleryImages : [],
+        metrics: r.metrics ? (typeof r.metrics === 'string' ? JSON.parse(r.metrics) : r.metrics) : null,
+        documentationFile: r.documentationFile !== undefined ? r.documentationFile : null,
+        showDocumentation: r.showDocumentation !== undefined ? r.showDocumentation : false,
     }
 }
 
@@ -97,11 +108,29 @@ function localizeReference(ref: ReferenceDTO, locale: string): LocalizedReferenc
 const getCachedReferences = unstable_cache(
     async () => {
         const references = await (prisma as any).reference.findMany({
-            orderBy: { createdAt: 'desc' }
+            orderBy: { createdAt: 'desc' },
+            select: {
+                id: true,
+                slug: true,
+                title: true,
+                titleEn: true,
+                client: true,
+                clientEn: true,
+                category: true,
+                categoryEn: true,
+                description: true,
+                descriptionEn: true,
+                image: true,
+                type: true,
+                tags: true,
+                active: true,
+                updatedAt: true,
+                createdAt: true
+            }
         })
         return references.map(mapReference)
     },
-    ['all-references'],
+    ['all-references-v3'],
     { revalidate: 3600, tags: ['references'] }
 )
 
