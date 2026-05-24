@@ -44,23 +44,17 @@ export function AnimatedCounter({ value, className, duration = 2 }: AnimatedCoun
         return () => controls.stop()
     }, [isInView, numericPart, duration, isMounted, isDecimal])
 
-    if (!isMounted) {
-        return (
-            <span className={className}>
-                {value}
-            </span>
-        )
-    }
-
     return (
         <motion.span
             ref={ref}
             className={className}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            initial={isMounted ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }}
+            animate={isMounted && isInView ? { opacity: 1, scale: 1 } : isMounted ? { opacity: 0, scale: 0.5 } : { opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
         >
-            {isInView ? `${displayValue}${suffix}` : `0${suffix}`}
+            {!isMounted 
+                ? value 
+                : (isInView ? `${displayValue}${suffix}` : `0${suffix}`)}
         </motion.span>
     )
 }
