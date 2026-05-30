@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Code2, Server, Shield, ShoppingCart, ArrowRight, CheckCircle2, Globe, Search, RefreshCw, Cpu, Cloud, Database, Activity, HelpCircle, Network, Plug } from "lucide-react"
+import { Code2, Server, Shield, ShoppingCart, ArrowRight, CheckCircle2, Globe, Search, RefreshCw, Cpu, Cloud, Database, Activity, HelpCircle, Network, Plug, Headphones, Layout, Puzzle } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { Badge } from "@/components/ui/badge"
 import { getTranslations, getLocale } from "next-intl/server"
@@ -24,6 +24,9 @@ const IconMap: Record<string, any> = {
     Activity,
     Network,
     Plug,
+    Headphones,
+    Layout,
+    Puzzle,
 }
 
 // Metadata generation for multilingual support
@@ -228,6 +231,84 @@ export default async function SzolgaltatasokPage() {
                     t('items.managed_it.features.1'),
                     t('items.managed_it.features.2'),
                     t('items.managed_it.features.3')
+                ]
+            },
+            {
+                title: t('items.cloud_migration.title'),
+                description: t('items.cloud_migration.desc'),
+                icon: Cloud,
+                href: "/szolgaltatasok/felho-migracio-koltsegoptimalizalas",
+                pricing: 190000,
+                features: [
+                    t('items.cloud_migration.features.0'),
+                    t('items.cloud_migration.features.1'),
+                    t('items.cloud_migration.features.2'),
+                    t('items.cloud_migration.features.3')
+                ]
+            },
+            {
+                title: t('items.ai_support.title'),
+                description: t('items.ai_support.desc'),
+                icon: Cpu,
+                href: "/szolgaltatasok/ai-ugyfelszolgalat-weboldalra",
+                pricing: 390000,
+                features: [
+                    t('items.ai_support.features.0'),
+                    t('items.ai_support.features.1'),
+                    t('items.ai_support.features.2'),
+                    t('items.ai_support.features.3')
+                ]
+            },
+            {
+                title: t('items.crm_auto.title'),
+                description: t('items.crm_auto.desc'),
+                icon: Puzzle,
+                href: "/szolgaltatasok/crm-lead-automatizacio",
+                pricing: 290000,
+                features: [
+                    t('items.crm_auto.features.0'),
+                    t('items.crm_auto.features.1'),
+                    t('items.crm_auto.features.2'),
+                    t('items.crm_auto.features.3')
+                ]
+            },
+            {
+                title: t('items.ecommerce_tracking.title'),
+                description: t('items.ecommerce_tracking.desc'),
+                icon: Activity,
+                href: "/szolgaltatasok/webshop-meres-konverzio-noveles",
+                pricing: 180000,
+                features: [
+                    t('items.ecommerce_tracking.features.0'),
+                    t('items.ecommerce_tracking.features.1'),
+                    t('items.ecommerce_tracking.features.2'),
+                    t('items.ecommerce_tracking.features.3')
+                ]
+            },
+            {
+                title: t('items.dashboards.title'),
+                description: t('items.dashboards.desc'),
+                icon: Layout,
+                href: "/szolgaltatasok/uzleti-dashboardok-riportok",
+                pricing: 240000,
+                features: [
+                    t('items.dashboards.features.0'),
+                    t('items.dashboards.features.1'),
+                    t('items.dashboards.features.2'),
+                    t('items.dashboards.features.3')
+                ]
+            },
+            {
+                title: t('items.remote_helpdesk.title'),
+                description: t('items.remote_helpdesk.desc'),
+                icon: Headphones,
+                href: "/szolgaltatasok/remote-it-helpdesk-ticketing",
+                pricing: 69000,
+                features: [
+                    t('items.remote_helpdesk.features.0'),
+                    t('items.remote_helpdesk.features.1'),
+                    t('items.remote_helpdesk.features.2'),
+                    t('items.remote_helpdesk.features.3')
                 ]
             }
         ]

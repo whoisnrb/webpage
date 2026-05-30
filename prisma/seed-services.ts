@@ -291,6 +291,150 @@ const services = [
         active: true,
         sortOrder: 11,
     },
+    {
+        name: "Felhő Migráció és Költségoptimalizálás",
+        nameEn: "Cloud Migration & Cost Optimization",
+        slug: "felho-migracio-koltsegoptimalizalas",
+        description: "Céges e-mailek, fájlok, szerverek és üzleti rendszerek biztonságos költöztetése modern felhőalapú környezetbe, felesleges költségek csökkentésével.",
+        descriptionEn: "Secure migration of business email, files, servers and systems to modern cloud environments with cost optimization.",
+        price: 190000,
+        icon: "Cloud",
+        href: "/szolgaltatasok/felho-migracio-koltsegoptimalizalas",
+        features: JSON.stringify([
+            "Céges e-mail migráció",
+            "Biztonságos fájl és adat költöztetés",
+            "Felhő költségoptimalizálás",
+            "Hozzáférés és jogosultságkezelés"
+        ]),
+        featuresEn: JSON.stringify([
+            "Business email migration",
+            "Secure file & data migration",
+            "Cloud cost optimization",
+            "Access & permission setup"
+        ]),
+        active: true,
+        sortOrder: 12,
+    },
+    {
+        name: "AI Ügyfélszolgálat Weboldalra",
+        nameEn: "AI Customer Support Chatbot",
+        slug: "ai-ugyfelszolgalat-weboldalra",
+        description: "AI chatbot, amely válaszol a gyakori kérdésekre, előszűri az ajánlatkéréseket, támogatja az ügyfélszolgálatot és CRM-be vagy e-mailbe továbbítja a leadeket.",
+        descriptionEn: "AI chatbot that answers frequent questions, qualifies leads, supports customer service and forwards enquiries to CRM or email.",
+        price: 390000,
+        icon: "Cpu",
+        href: "/szolgaltatasok/ai-ugyfelszolgalat-weboldalra",
+        features: JSON.stringify([
+            "24/7 AI chatbot weboldalra",
+            "Intelligens lead előszűrés",
+            "CRM és e-mail integrációk",
+            "Többnyelvű válaszadás"
+        ]),
+        featuresEn: JSON.stringify([
+            "24/7 AI chatbot on website",
+            "Intelligent lead qualification",
+            "CRM & email integrations",
+            "Multilingual response support"
+        ]),
+        active: true,
+        sortOrder: 13,
+    },
+    {
+        name: "CRM és Lead Automatizáció",
+        nameEn: "CRM & Lead Automation",
+        slug: "crm-lead-automatizacio",
+        description: "Értékesítési folyamatok, ajánlatkérések, ügyféladatok és utánkövetések automatizálása modern CRM rendszerekkel.",
+        descriptionEn: "Automation of sales processes, enquiries, customer data and follow-ups with modern CRM systems.",
+        price: 290000,
+        icon: "Puzzle",
+        href: "/szolgaltatasok/crm-lead-automatizacio",
+        features: JSON.stringify([
+            "Értékesítési tölcsérek (pipelines)",
+            "Automatikus lead- és ajánlatkezelés",
+            "Weboldal lead form integráció",
+            "Automatikus utánkövetés (follow-ups)"
+        ]),
+        featuresEn: JSON.stringify([
+            "Sales funnel (pipelines) setup",
+            "Automated lead & quote tracking",
+            "Website lead form integration",
+            "Automated follow-up workflows"
+        ]),
+        active: true,
+        sortOrder: 14,
+    },
+    {
+        name: "Webshop Mérés és Konverzió Növelés",
+        nameEn: "Ecommerce Tracking & Conversion Optimization",
+        slug: "webshop-meres-konverzio-noveles",
+        description: "GA4, Google Tag Manager, Meta Pixel, konverziómérés, kosárelhagyás és riportok beállítása webshopoknak és szolgáltató weboldalaknak.",
+        descriptionEn: "GA4, Google Tag Manager, Meta Pixel, conversion tracking, cart abandonment and reporting setup for ecommerce and service websites.",
+        price: 180000,
+        icon: "Activity",
+        href: "/szolgaltatasok/webshop-meres-konverzio-noveles",
+        features: JSON.stringify([
+            "GA4 és GTM teljes körű beállítás",
+            "Kosárelhagyás és vásárlási tölcsér mérés",
+            "Meta Pixel és hirdetési pixelek",
+            "Google Ads konverziókövetés"
+        ]),
+        featuresEn: JSON.stringify([
+            "Full GA4 & GTM configuration",
+            "Cart abandonment & purchase funnel",
+            "Meta Pixel & marketing pixels setup",
+            "Google Ads conversion tracking"
+        ]),
+        active: true,
+        sortOrder: 15,
+    },
+    {
+        name: "Üzleti Dashboardok és Automatizált Riportok",
+        nameEn: "Business Dashboards & Automated Reports",
+        slug: "uzleti-dashboardok-riportok",
+        description: "Power BI vagy Looker Studio dashboardok értékesítéshez, marketinghez, pénzügyhöz, készlethez és vezetői döntéstámogatáshoz.",
+        descriptionEn: "Power BI or Looker Studio dashboards for sales, marketing, finance, inventory and management decision-making.",
+        price: 240000,
+        icon: "Layout",
+        href: "/szolgaltatasok/uzleti-dashboardok-riportok",
+        features: JSON.stringify([
+            "Looker Studio és Power BI riportok",
+            "Több adatforrás összekapcsolása",
+            "Vezetői KPI-ok és vizualizáció",
+            "Automatikus frissítés és riportküldés"
+        ]),
+        featuresEn: JSON.stringify([
+            "Looker Studio & Power BI reports",
+            "Multi-source data connections",
+            "Executive KPIs & visualizations",
+            "Auto-refresh & scheduled reports"
+        ]),
+        active: true,
+        sortOrder: 16,
+    },
+    {
+        name: "Remote IT Helpdesk és Ticketing",
+        nameEn: "Remote IT Helpdesk & Ticketing",
+        slug: "remote-it-helpdesk-ticketing",
+        description: "Távoli informatikai támogatás, hibajegykezelés, felhasználói problémák megoldása, új munkatársak beléptetése és napi IT segítség KKV-knak.",
+        descriptionEn: "Remote IT support, ticketing, user issue resolution, employee onboarding and everyday IT assistance for small and medium-sized businesses.",
+        price: 69000,
+        icon: "Headphones",
+        href: "/szolgaltatasok/remote-it-helpdesk-ticketing",
+        features: JSON.stringify([
+            "Távoli felhasználói IT helpdesk",
+            "Professzionális hibajegy (ticket) rendszer",
+            "Új munkatársak beléptetése (onboarding)",
+            "Microsoft 365 / Google Workspace support"
+        ]),
+        featuresEn: JSON.stringify([
+            "Remote user IT helpdesk support",
+            "Professional ticketing system",
+            "Employee onboarding support",
+            "Microsoft 365 & Google Workspace care"
+        ]),
+        active: true,
+        sortOrder: 17,
+    },
 ]
 
 async function main() {

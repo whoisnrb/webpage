@@ -31,7 +31,8 @@ import {
     Cpu,
     Cloud,
     Database,
-    Search
+    Search,
+    Headphones
 } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { NeuralBackground } from "@/components/neural-background"
@@ -45,6 +46,42 @@ export function MegaMenu() {
         description: string; 
         icon: React.ComponentType<{ className?: string }> 
     }[] = [
+        {
+            title: t("nav_items.cloud_migration"),
+            href: "/szolgaltatasok/felho-migracio-koltsegoptimalizalas",
+            description: t("nav_items.cloud_migration_desc"),
+            icon: Cloud,
+        },
+        {
+            title: t("nav_items.ai_support"),
+            href: "/szolgaltatasok/ai-ugyfelszolgalat-weboldalra",
+            description: t("nav_items.ai_support_desc"),
+            icon: Cpu,
+        },
+        {
+            title: t("nav_items.crm_auto"),
+            href: "/szolgaltatasok/crm-lead-automatizacio",
+            description: t("nav_items.crm_auto_desc"),
+            icon: Puzzle,
+        },
+        {
+            title: t("nav_items.ecommerce_tracking"),
+            href: "/szolgaltatasok/webshop-meres-konverzio-noveles",
+            description: t("nav_items.ecommerce_tracking_desc"),
+            icon: Activity,
+        },
+        {
+            title: t("nav_items.dashboards"),
+            href: "/szolgaltatasok/uzleti-dashboardok-riportok",
+            description: t("nav_items.dashboards_desc"),
+            icon: Layout,
+        },
+        {
+            title: t("nav_items.remote_helpdesk"),
+            href: "/szolgaltatasok/remote-it-helpdesk-ticketing",
+            description: t("nav_items.remote_helpdesk_desc"),
+            icon: Headphones,
+        },
         {
             title: t("nav_items.wordpress"),
             href: "/szolgaltatasok/wordpress-woocommerce-karbantartas",

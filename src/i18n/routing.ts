@@ -86,6 +86,30 @@ export const routing = defineRouting({
             hu: '/szolgaltatasok/havidijas-rendszergazda',
             en: '/services/managed-it-services'
         },
+        '/szolgaltatasok/felho-migracio-koltsegoptimalizalas': {
+            hu: '/szolgaltatasok/felho-migracio-koltsegoptimalizalas',
+            en: '/services/cloud-migration-cost-optimization'
+        },
+        '/szolgaltatasok/ai-ugyfelszolgalat-weboldalra': {
+            hu: '/szolgaltatasok/ai-ugyfelszolgalat-weboldalra',
+            en: '/services/ai-customer-support-chatbot'
+        },
+        '/szolgaltatasok/crm-lead-automatizacio': {
+            hu: '/szolgaltatasok/crm-lead-automatizacio',
+            en: '/services/crm-lead-automation'
+        },
+        '/szolgaltatasok/webshop-meres-konverzio-noveles': {
+            hu: '/szolgaltatasok/webshop-meres-konverzio-noveles',
+            en: '/services/ecommerce-tracking-conversion-optimization'
+        },
+        '/szolgaltatasok/uzleti-dashboardok-riportok': {
+            hu: '/szolgaltatasok/uzleti-dashboardok-riportok',
+            en: '/services/business-dashboards-automated-reports'
+        },
+        '/szolgaltatasok/remote-it-helpdesk-ticketing': {
+            hu: '/szolgaltatasok/remote-it-helpdesk-ticketing',
+            en: '/services/remote-it-helpdesk-ticketing'
+        },
         '/megoldasok': {
             hu: '/megoldasok',
             en: '/solutions'

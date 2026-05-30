@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CheckCircle2, Send, Sparkles, Rocket, Code, Smartphone, Globe } from "lucide-react"
 import { motion } from "framer-motion"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 
 export default function QuoteRequestPage() {
     return (
@@ -26,6 +26,7 @@ export default function QuoteRequestPage() {
 
 function QuoteRequestContent() {
     const t = useTranslations("QuoteRequest");
+    const locale = useLocale();
     const searchParams = useSearchParams();
     const subject = searchParams.get('subject');
     const [step, setStep] = useState(1)
@@ -40,25 +41,47 @@ function QuoteRequestContent() {
         projectType: "",
         budget: "",
         description: "",
-        deadline: ""
+        deadline: "",
+        serviceInterest: "",
+        language: "",
+        sourcePage: ""
     })
 
     useEffect(() => {
-        const serviceParam = searchParams.get('service');
+        const serviceParam = searchParams.get('serviceInterest') || searchParams.get('service');
+        const langParam = searchParams.get('language') || searchParams.get('lang') || locale;
+        const sourceParam = searchParams.get('sourcePage') || searchParams.get('source') || '';
+        
         if (serviceParam) {
             setFormData(prev => ({
                 ...prev,
-                projectType: serviceParam,
-                description: `Érdeklődöm a következő szolgáltatás iránt: ${serviceParam}`
+                projectType: "other",
+                serviceInterest: serviceParam,
+                language: langParam,
+                sourcePage: sourceParam,
+                description: locale === 'hu' 
+                    ? `Érdeklődöm a következő szolgáltatás iránt: ${serviceParam}`
+                    : `I am interested in the following service: ${serviceParam}`
             }))
         } else if (subject) {
             setFormData(prev => ({
                 ...prev,
                 projectType: "web",
-                description: `Érdeklődöm a következő weboldal típus készítése iránt: ${subject}`
+                serviceInterest: subject,
+                language: langParam,
+                sourcePage: sourceParam,
+                description: locale === 'hu'
+                    ? `Érdeklődöm a következő weboldal típus készítése iránt: ${subject}`
+                    : `I am interested in the following website type: ${subject}`
+            }))
+        } else {
+            setFormData(prev => ({
+                ...prev,
+                language: langParam,
+                sourcePage: sourceParam
             }))
         }
-    }, [subject, searchParams])
+    }, [subject, searchParams, locale])
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -72,6 +95,13 @@ function QuoteRequestContent() {
         e.preventDefault()
         setLoading(true)
 
+        const metaInfo = `
+
+--- Metaadatok ---
+Szolgáltatás: ${formData.serviceInterest || formData.projectType || "Ismeretlen"}
+Nyelv: ${formData.language || locale}
+Forrás oldal: ${formData.sourcePage || "N/A"}`;
+
         try {
             const { submitInquiry } = await import("@/app/actions/inquiry")
             const result = await submitInquiry({
@@ -81,7 +111,7 @@ function QuoteRequestContent() {
                 company: formData.company,
                 serviceType: formData.projectType || "egyéb",
                 budget: formData.budget,
-                description: formData.description
+                description: formData.description + metaInfo
             })
 
             if (result.success) {

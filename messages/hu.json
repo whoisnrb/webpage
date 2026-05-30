@@ -1109,9 +1109,9 @@
     "rendszeruzemeltetes": "Rendszerüzemeltetés",
     "biztonsag": "Kiberbiztonság",
     "halozat": "Hálózati Megoldások",
-    "network": "Hálózati Megoldások",
-    "security": "Kiberbiztonság",
-    "system-administration": "Rendszerüzemeltetés",
+    "network": "Network Solutions",
+    "security": "Cybersecurity",
+    "system-administration": "System Administration",
     "wordpress-woocommerce-karbantartas": "WordPress / WooCommerce Karbantartás",
     "wordpress-woocommerce-maintenance": "WordPress / WooCommerce Karbantartás",
     "kkv-it-audit": "KKV IT Audit & Állapotfelmérés",
@@ -1145,26 +1145,9 @@
     "n8n-lead-management": "n8n Lead Management Workflow",
     "python-web-scraper": "Python Web Scraper Starter Kit",
     "it-maintenance-dashboard": "IT Karbantartási Dashboard",
-    "wordpress-woocommerce-karbantartas": "WordPress / WooCommerce Karbantartás",
-    "kkv-it-audit": "KKV IT Audit & Állapotfelmérés",
-    "webshop-automatizacio": "Webshop Automatizáció",
-    "ai-asszisztensek": "AI Asszisztensek & Automatizáció",
-    "microsoft-365-google-workspace": "Microsoft 365 & Google Workspace",
-    "backup-adatmentes": "Backup & Adatmentés",
-    "havidijas-rendszergazda": "Havidíjas Rendszergazda / Managed IT",
-    "halozat": "Hálózati Megoldások",
-    "security": "Cybersecurity",
-    "network": "Network Solutions",
     "integrations": "Integrations",
-    "system-administration": "System Administration",
     "scripts": "Scripts & Automation",
-    "web-development": "Web Development",
-    "wordpress-woocommerce-maintenance": "WordPress / WooCommerce Karbantartás",
-    "smb-it-audit": "KKV IT Audit & Állapotfelmérés",
-    "webshop-automation": "Webshop Automatizáció",
-    "ai-assistants": "AI Asszisztensek & Automatizáció",
-    "backup-data-recovery": "Backup & Adatmentés",
-    "managed-it-services": "Havidíjas Rendszergazda / Managed IT"
+    "web-development": "Web Development"
   },
   "CommandMenu": {
     "search_label": "Keresés",
@@ -1337,6 +1320,66 @@
           "Munkaállomások karbantartása",
           "24/7 Monitoring & Riasztás",
           "Dedikált IT support"
+        ]
+      },
+      "cloud_migration": {
+        "title": "Felhő Migráció és Költségoptimalizálás",
+        "desc": "Céges e-mailek, fájlok, szerverek és üzleti rendszerek biztonságos költöztetése modern felhőalapú környezetbe, felesleges költségek csökkentésével.",
+        "features": [
+          "Céges e-mail migráció",
+          "Biztonságos fájl és adat költöztetés",
+          "Felhő költségoptimalizálás",
+          "Hozzáférés és jogosultságkezelés"
+        ]
+      },
+      "ai_support": {
+        "title": "AI Ügyfélszolgálat Weboldalra",
+        "desc": "AI chatbot, amely válaszol a gyakori kérdésekre, előszűri az ajánlatkéréseket, támogatja az ügyfélszolgálatot és CRM-be vagy e-mailbe továbbítja a leadeket.",
+        "features": [
+          "24/7 AI chatbot weboldalra",
+          "Intelligens lead előszűrés",
+          "CRM és e-mail integrációk",
+          "Többnyelvű válaszadás"
+        ]
+      },
+      "crm_auto": {
+        "title": "CRM és Lead Automatizáció",
+        "desc": "Értékesítési folyamatok, ajánlatkérések, ügyféladatok és utánkövetések automatizálása modern CRM rendszerekkel.",
+        "features": [
+          "Értékesítési tölcsérek (pipelines)",
+          "Automatikus lead- és ajánlatkezelés",
+          "Weboldal lead form integráció",
+          "Automatikus utánkövetés (follow-ups)"
+        ]
+      },
+      "ecommerce_tracking": {
+        "title": "Webshop Mérés és Konverzió Növelés",
+        "desc": "GA4, Google Tag Manager, Meta Pixel, konverziómérés, kosárelhagyás és riportok beállítása webshopoknak és szolgáltató weboldalaknak.",
+        "features": [
+          "GA4 és GTM teljes körű beállítás",
+          "Kosárelhagyás és vásárlási tölcsér mérés",
+          "Meta Pixel és hirdetési pixelek",
+          "Google Ads konverziókövetés"
+        ]
+      },
+      "dashboards": {
+        "title": "Üzleti Dashboardok és Automatizált Riportok",
+        "desc": "Power BI vagy Looker Studio dashboardok értékesítéshez, marketinghez, pénzügyhöz, készlethez és vezetői döntéstámogatáshoz.",
+        "features": [
+          "Looker Studio és Power BI riportok",
+          "Több adatforrás összekapcsolása",
+          "Vezetői KPI-ok és vizualizáció",
+          "Automatikus frissítés és riportküldés"
+        ]
+      },
+      "remote_helpdesk": {
+        "title": "Remote IT Helpdesk és Ticketing",
+        "desc": "Távoli informatikai támogatás, hibajegykezelés, felhasználói problémák megoldása, új munkatársak beléptetése és napi IT segítség KKV-knak.",
+        "features": [
+          "Távoli felhasználói IT helpdesk",
+          "Professzionális hibajegy (ticket) rendszer",
+          "Új munkatársak beléptetése (onboarding)",
+          "Microsoft 365 / Google Workspace support"
         ]
       }
     },
@@ -1899,7 +1942,19 @@
       "backup": "Backup & Adatmentés",
       "backup_desc": "3-2-1 backup stratégia és katasztrófa-helyreállítás",
       "managed_it": "Havidíjas Rendszergazda / Managed IT",
-      "managed_it_desc": "Teljes körű KKV rendszergazdai és IT support ügyfélszolgálat"
+      "managed_it_desc": "Teljes körű KKV rendszergazdai és IT support ügyfélszolgálat",
+      "cloud_migration": "Felhő Migráció",
+      "cloud_migration_desc": "Microsoft 365, Google Workspace, Azure és cloud költségoptimalizálás",
+      "ai_support": "AI Ügyfélszolgálat",
+      "ai_support_desc": "Chatbot, lead-előszűrés és ügyfélkérdések automatizálása",
+      "crm_auto": "CRM Automatizáció",
+      "crm_auto_desc": "Leadek, ajánlatkérések és értékesítési folyamatok rendszerezése",
+      "ecommerce_tracking": "Webshop Mérés",
+      "ecommerce_tracking_desc": "GA4, GTM, Pixel és konverziómérés",
+      "dashboards": "Üzleti Dashboardok",
+      "dashboards_desc": "Power BI, Looker Studio és automatikus riportok",
+      "remote_helpdesk": "Remote Helpdesk",
+      "remote_helpdesk_desc": "Távoli IT támogatás és hibajegykezelés"
     },
     "need_help_title": "Nem tudod, mire van szükséged?",
     "need_help_desc": "Kérj gyors IT felmérést, és segítünk kiválasztani a megfelelő megoldást.",
@@ -3487,6 +3542,926 @@
           "duration_label": "Személyre szabott SLA"
         }
       }
+    },
+    "CloudMigration": {
+      "title": "Felhő Migráció és Költségoptimalizálás",
+      "description": "Céges e-mailek, fájlok, szerverek és üzleti rendszerek biztonságos költöztetése modern felhőalapú környezetbe, felesleges költségek csökkentésével.",
+      "keywords": "felhő migráció, cloud költségoptimalizálás, office 365 költözés, google workspace migráció, azure szerver költöztetés",
+      "hero_features": [
+        "Felhőre való alkalmassági vizsgálat",
+        "E-mailek és levelezés migrációja",
+        "Fájlok és közös tárhelyek átvitele",
+        "Szerverek és adatbázisok költöztetése",
+        "Felhő díjak optimalizálása és audit",
+        "Jogosultságkezelés és MFA beállítás"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Költségmegtakarítás",
+          "description": "Felszámoljuk a felesleges és túlméretezett felhős erőforrásokat, jelentősen csökkentve a havi díjakat."
+        },
+        {
+          "title": "Biztonság és stabilitás",
+          "description": "Modern kiberbiztonsági eljárásokkal és kétlépcsős azonosítással védjük meg adataidat."
+        },
+        {
+          "title": "Rugalmas munkavégzés",
+          "description": "Munkatársaid bárhonnan, bármilyen eszközről biztonságosan elérhetik a céges fájlokat."
+        }
+      ],
+      "use_cases_title": "Miben segítünk?",
+      "use_cases_desc": "Teljes körű támogatást nyújtunk a felhőbe költözés és a meglévő felhő kiadások csökkentése terén",
+      "use_cases_items": [
+        {
+          "title": "Felhő Audit és Tervezés",
+          "description": "Átvilágítjuk a meglévő felhő használatot vagy felmérjük a migrációs lehetőségeket.",
+          "example": "Erőforrások és felesleges licencek kiszűrése, optimális méret meghatározása.",
+          "roi": "Azonnali megtakarítás és migrációs terv"
+        },
+        {
+          "title": "E-mail és Levelezés költöztetés",
+          "description": "Levelezés, naptárak és névjegyek átvitele az új környezetbe.",
+          "example": "Régi IMAP vagy Exchange levelezés migrációja Microsoft 365-be vagy Google Workspace-be adatvesztés nélkül.",
+          "roi": "Biztonságos és zavartalan levelezés"
+        },
+        {
+          "title": "Fájlstruktúra és Jogosultságok",
+          "description": "SharePoint, OneDrive vagy Google Drive mappaszerkezet kialakítása.",
+          "example": "Osztályonkénti jogosultságok, megosztási szabályok és biztonsági mentések konfigurálása.",
+          "roi": "Átlátható, könnyen kezelhető tárhely"
+        },
+        {
+          "title": "Szerverek felhőbe költöztetése",
+          "description": "Fizikai vagy virtuális szerverek migrációja Azure, AWS vagy más felhőbe.",
+          "example": "SQL adatbázis és alkalmazásszerver átvitele felhős környezetbe, minimális leállással.",
+          "roi": "Magas rendelkezésre állás és skálázhatóság"
+        }
+      ],
+      "pricing_title": "Csomagok és árak",
+      "pricing_desc": "Válaszd ki a céged méretéhez és céljaihoz leginkább illeszkedő konstrukciót. Áraink ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Start Audit",
+          "desc": "Felhőre való alkalmassági vizsgálat és költségoptimalizálási terv.",
+          "price": 190000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Jelenlegi IT rendszerek felmérése",
+            "Microsoft 365 / Google Workspace lehetőségek",
+            "Szerver és adatbázis felhőbe költözési lehetőségek",
+            "Költségcsökkentési és optimalizálási javaslatok",
+            "Részletes migrációs terv és kockázati lista"
+          ],
+          "duration_label": "Ajánlott: kis cégeknek, akik még nem tudják, hogyan érdemes elindulni."
+        },
+        "detailed": {
+          "name": "Business Migration",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "desc": "E-mail, fájlok és alap üzleti rendszerek migrációja felhőbe.",
+          "price": 490000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Maximum 15 felhasználó migrációja",
+            "Levelezés és naptárak teljes költöztetése",
+            "Alapvető fájl- és jogosultságstruktúra",
+            "DNS és MX rekordok beállítása és támogatása",
+            "Átadás utáni tesztelés és 1 órás oktatás"
+          ],
+          "duration_label": "Ajánlott: KKV-knak, akik gyors és biztonságos költözést szeretnének."
+        },
+        "complex": {
+          "name": "Cloud Pro",
+          "desc": "Komplex felhőmigráció, jogosultságkezelés és biztonsági beállítások.",
+          "price": 990000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Maximum 40 felhasználó teljes migrációja",
+            "Összetett SharePoint / Google Drive struktúra",
+            "Szerver vagy adatbázis migráció előkészítése",
+            "Haladó biztonsági beállítások (MFA, Admin Policy)",
+            "Automata biztonsági mentés (backup) beállítása",
+            "30 napos átadás utáni kiemelt utókövetés"
+          ],
+          "duration_label": "Ajánlott: növekvő cégeknek, több rendszerrel és komolyabb adatbiztonsági igénnyel."
+        }
+      },
+      "how_we_work_title": "Hogyan dolgozunk?",
+      "how_we_work_desc": "Módszeres megközelítéssel biztosítjuk, hogy a költözés biztonságos legyen és a napi munka ne álljon le.",
+      "how_we_work_steps": [
+        {
+          "title": "Felmérés",
+          "description": "Részletesen feltérképezzük a meglévő szervereket, levelezést és adatstruktúrát."
+        },
+        {
+          "title": "Tervezés",
+          "description": "Elkészítjük a pontos migrációs forgatókönyvet és a célszoftverek listáját."
+        },
+        {
+          "title": "Bevezetés",
+          "description": "Létrehozzuk a felhős fiókokat, beállítjuk a jogosultságokat és elindítjuk az adatok másolását."
+        },
+        {
+          "title": "Tesztelés",
+          "description": "Ellenőrizzük a DNS beállításokat, a levelezés fogadását és az adatok integritását."
+        },
+        {
+          "title": "Átadás",
+          "description": "Átadjuk a rendszert, megtartjuk a munkatársi oktatást és elindítjuk a supportot."
+        }
+      ],
+      "faq_title": "Gyakran Ismételt Kérdések",
+      "faq_desc": "Minden fontos részlet a felhő migrációról és költségekről",
+      "faq_items": [
+        {
+          "question": "Leáll-e a levelezés vagy a munka a költözés alatt?",
+          "answer": "Nem. A migrációt úgy tervezzük meg és hajtjuk végre a háttérben, hogy a meglévő rendszerek folyamatosan működnek. Az átállás (DNS csere) általában hétvégén vagy munkaidőn kívül történik, így nem okoz kiesést a munkában."
+        },
+        {
+          "question": "Benne vannak a Microsoft 365 vagy Google licencek az árakban?",
+          "answer": "Nem, a csomagárak kizárólag a mi tervezési, migrációs és beállítási munkadíjunkat tartalmazzák. A külső felhőszolgáltatók (Microsoft, Google, AWS) havidíjai közvetlenül a szolgáltatók felé fizetendők."
+        },
+        {
+          "question": "Biztonságban vannak az adataink a felhőben?",
+          "answer": "Igen, a felhőalapú rendszerek kiberbiztonsági szintje lényegesen magasabb, mint a legtöbb helyi szerveré. Emellett beállítjuk a kétlépcsős azonosítást (MFA) és a szigorú jogosultságkezelést is, hogy minimalizáljuk az emberi hibák kockázatát."
+        },
+        {
+          "question": "Mi történik a migráció befejezése után?",
+          "answer": "Nem engedjük el a kezed. A csomagtól függően átadás utáni támogatást biztosítunk, illetve igény esetén havidíjas IT support keretében folyamatosan üzemeltetjük a felhős környezetedet."
+        }
+      ],
+      "cta_title": "Kérj ajánlatot erre a szolgáltatásra"
+    },
+    "AICustomerSupport": {
+      "title": "AI Ügyfélszolgálat Weboldalra",
+      "description": "AI chatbot, amely válaszol a gyakori kérdésekre, előszűri az ajánlatkéréseket, támogatja az ügyfélszolgálatot és CRM-be vagy e-mailbe továbbítja a leadeket.",
+      "keywords": "ai chatbot, ügyfélszolgálati chatbot, mesterséges intelligencia weboldalra, lead generáló chatbot, chat bot automatizálás",
+      "hero_features": [
+        "24/7 AI chatbot weboldalra integrálva",
+        "Gyakori kérdések automatikus megválaszolása",
+        "Ajánlatkérések és leadek előszűrése",
+        "CRM, e-mail és ticketing integrációk",
+        "Többnyelvű válaszadás (HU/EN) támogatása",
+        "Dokumentumokból és weboldalból történő betanítás"
+      ],
+      "hero_benefits": [
+        {
+          "title": "24/7 Elérhetőség",
+          "description": "Az ügyfeleid a nap bármely szakában azonnali, pontos választ kapnak a kérdéseikre."
+        },
+        {
+          "title": "Tehermentesített Support",
+          "description": "Az ismétlődő kérdések 80%-át az AI önállóan megválaszolja, így a csapatod a fontos feladatokra fókuszálhat."
+        },
+        {
+          "title": "Automatizált Lead Generálás",
+          "description": "A chatbot előszűri a látogatókat, minősíti az érdeklődést, és azonnal továbbítja az adatokat a CRM-be."
+        }
+      ],
+      "use_cases_title": "Miben segítünk?",
+      "use_cases_desc": "Intelligens AI asszisztenst építünk a weboldaladra, amely valóban segíti a vállalkozásodat",
+      "use_cases_items": [
+        {
+          "title": "Gyakori Kérdések AI kezelése",
+          "description": "Tudásbázis alapján azonnali válaszok adása a látogatóknak.",
+          "example": "A chatbot válaszol a szállítási díjakra, nyitvatartásra vagy szolgáltatási részletekre.",
+          "roi": "Ügyfélszolgálati terhelés azonnali csökkenése"
+        },
+        {
+          "title": "Lead előszűrés és minősítés",
+          "description": "Ajánlatkérési adatok felvétele beszélgetés formájában.",
+          "example": "A chatbot megkérdezi a látogató igényeit, költségvetését, elérhetőségét, majd elküldi e-mailben.",
+          "roi": "Kiváló minőségű, előszűrt megkeresések"
+        },
+        {
+          "title": "Többnyelvű support",
+          "description": "Automatikusan a látogató nyelvén (magyarul vagy angolul) válaszoló asszisztens.",
+          "example": "Angol nyelvű látogatónak angolul, magyar látogatónak magyarul ad pontos válaszokat a tudásbázisból.",
+          "roi": "Nemzetközi piacok könnyebb kiszolgálása"
+        },
+        {
+          "title": "Integrált munkafolyamat",
+          "description": "A chatbot összekapcsolása a CRM vagy e-mail rendszereddel.",
+          "example": "A sikeresen előszűrt leadek automatikusan bekerülnek a HubSpot pipeline-ba vagy Trello táblára.",
+          "roi": "0 manuális adminisztráció"
+        }
+      ],
+      "pricing_title": "Csomagok és árak",
+      "pricing_desc": "Válassz egyedi AI megoldásaink közül. Az árak ÁFA-mentesek, a licenceket és API díjakat nem tartalmazzák.",
+      "plans": {
+        "base": {
+          "name": "AI Start",
+          "desc": "Alap AI chatbot weboldalra gyakori kérdésekhez.",
+          "price": 390000,
+          "priceFrom": true,
+          "sub": "+ 49.000 Ft/hó üzemeltetés (ÁFA-mentes)",
+          "features": [
+            "1 weboldalra történő integráció és beállítás",
+            "Maximum 50 betanított kérdés-válasz",
+            "Alapvető arculati igazítás (színek, logó)",
+            "Ajánlatkérések automatikus továbbítása e-mailbe",
+            "Havi alap karbantartás és finomhangolás"
+          ],
+          "duration_label": "Ajánlott: kisebb cégeknek, akik gyorsan szeretnének AI alapú ügyfélszolgálatot."
+        },
+        "detailed": {
+          "name": "AI Business",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "desc": "Tudásbázis alapú AI asszisztens lead-előszűréssel.",
+          "price": 890000,
+          "priceFrom": true,
+          "sub": "+ 99.000 Ft/hó üzemeltetés (ÁFA-mentes)",
+          "features": [
+            "Dokumentumokból (PDF) és weboldalból betanítás",
+            "Ajánlatkérő űrlap integráció és lead minősítés",
+            "Többnyelvű válaszadás (magyar és angol)",
+            "Adminisztrátori átadási és kezelési oktatás",
+            "Havi finomhangolás és tudásbázis frissítés"
+          ],
+          "duration_label": "Ajánlott: szolgáltató cégeknek, webshopoknak és B2B vállalkozásoknak."
+        },
+        "complex": {
+          "name": "AI Pro Automation",
+          "desc": "Komplex AI ügyfélszolgálat CRM, e-mail és automatizációs integrációkkal.",
+          "price": 1790000,
+          "priceFrom": true,
+          "sub": "+ 199.000 Ft/hó üzemeltetés (ÁFA-mentes)",
+          "features": [
+            "CRM és ticketing rendszerek (API) integrációja",
+            "Automatikus lead-kategorizálás és címkézés",
+            "Komplex ügyfélszolgálati workflow automatizációk",
+            "Részletes heti/havi riportok és analitika",
+            "Több csatorna (Web, FB Messenger) előkészítése",
+            "Rendszeres heti optimalizálás és folyamatos support"
+          ],
+          "duration_label": "Ajánlott: nagyobb forgalmú cégeknek, ahol sok ismétlődő ügyfélkérdés érkezik."
+        }
+      },
+      "how_we_work_title": "Hogyan dolgozunk?",
+      "how_we_work_desc": "Lépésről lépésre tanítjuk be és finomítjuk az AI asszisztenst a céges igényeidhez igazítva.",
+      "how_we_work_steps": [
+        {
+          "title": "Felmérés",
+          "description": "Összegyűjtjük a leggyakoribb kérdéseket, meglévő dokumentumokat és support anyagokat."
+        },
+        {
+          "title": "Tervezés",
+          "description": "Kialakítjuk a chatbot hangvételét (tone of voice), a lead-előszűrés logikáját és az integrációkat."
+        },
+        {
+          "title": "Bevezetés",
+          "description": "Telepítjük a botot a weboldalra, feltöltjük a tudásbázist és összekötjük a rendszerekkel."
+        },
+        {
+          "title": "Tesztelés",
+          "description": "Több tucat tesztbeszélgetéssel finomítjuk a válaszokat, ellenőrizzük a lead-küldést."
+        },
+        {
+          "title": "Átadás",
+          "description": "Átadjuk a chatbotot, bemutatjuk az admin felületet és elindítjuk a havi optimalizálást."
+        }
+      ],
+      "faq_title": "Gyakran Ismételt Kérdések",
+      "faq_desc": "Tudj meg mindent a weboldali AI chatbotok működéséről",
+      "faq_items": [
+        {
+          "question": "Hogyan tanul a chatbot? Honnan tudja a választ?",
+          "answer": "A chatbotot a te saját anyagaidból tanítjuk be: a weboldalad tartalmából, gyakran ismételt kérdésekből, PDF dokumentumokból, árlistákból vagy korábbi ügyféllevelekből. Csak olyan információkból válaszol, amit te jóváhagysz, így nem fog 'félrebeszélni'."
+        },
+        {
+          "question": "Milyen licencekre és extra költségekre kell számítani?",
+          "answer": "A csomagok nem tartalmazzák a felhasznált AI modellek (pl. OpenAI API, Anthropic) és a chatbot platformok havi licencdíjait, valamint a szerver/üzemeltetési díjakat. Ezek a te egyedi használatod alapján közvetlenül a szolgáltatók felé fizetendők, de segítünk a legköltséghatékonyabb beállításban."
+        },
+        {
+          "question": "Mi történik, ha olyan kérdést kap, amire nem tudja a választ?",
+          "answer": "Ilyenkor az AI nem talál ki választ, hanem udvariasan jelzi a látogatónak, hogy ezt a kérdést továbbítja az ügyfélszolgálatnak. Elkéri az ügyfél nevét, e-mail címét, és az üzenetet azonnal továbbítja neked e-mailben vagy a CRM-be."
+        },
+        {
+          "question": "Magyarul és angolul is tud válaszolni a chatbot?",
+          "answer": "Igen, a Business és Pro csomagokban a chatbot intelligensen felismeri a látogató nyelvét, és azon a nyelven válaszol (magyarul vagy angolul), a tudásbázisban megadott adatok alapján."
+        }
+      ],
+      "cta_title": "Kérj ajánlatot erre a szolgáltatásra"
+    },
+    "CRMAutomation": {
+      "title": "CRM és Lead Automatizáció",
+      "description": "Értékesítési folyamatok, ajánlatkérések, ügyféladatok és utánkövetések automatizálása modern CRM rendszerekkel.",
+      "keywords": "crm bevezetés, lead automatizáció, hubspot integráció, pipedrive beállítás, értékesítési tölcsér automatizálás",
+      "hero_features": [
+        "Értékesítési tölcsér (pipeline) tervezése",
+        "Ajánlatkérések automatikus fogadása és rögzítése",
+        "Automatizált utánkövető (follow-up) e-mailek",
+        "Weboldal lead űrlapok közvetlen összekötése",
+        "Értékesítői feladatok és értesítések generálása",
+        "Vezetői riportok és teljesítmény dashboardok"
+      ],
+      "hero_benefits": [
+        {
+          "title": "0 Elveszített Ügyfél",
+          "description": "Minden beérkező megkeresés automatikusan rögzül a CRM-ben, így nincs több elfelejtett e-mail vagy elmaradt hívás."
+        },
+        {
+          "title": "Gyorsabb Kiszolgálás",
+          "description": "Az automatikus válaszlevelek és azonnali belső feladatértesítések miatt az ajánlatadási idő a töredékére csökken."
+        },
+        {
+          "title": "Tiszta Értékesítési Kép",
+          "description": "Pontosan látni fogod, melyik lead melyik státuszban van, kik a legjobb ügyfelek és mekkora a várható bevételed."
+        }
+      ],
+      "use_cases_title": "Miben segítünk?",
+      "use_cases_desc": "Rendszerezzük és automatizáljuk az értékesítési folyamataidat, hogy a csapatod csak az eladással foglalkozhasson",
+      "use_cases_items": [
+        {
+          "title": "CRM Bevezetés és Testreszabás",
+          "description": "Kiválasztjuk és a vállalkozásodra szabjuk a megfelelő CRM platformot.",
+          "example": "Pipedrive vagy HubSpot bevezetése egyedi mezőkkel, státuszokkal és értékesítési szakaszokkal.",
+          "roi": "Egységes, átlátható ügyfélnyilvántartás"
+        },
+        {
+          "title": "Lead form integráció",
+          "description": "Összekötjük a weboldaladon lévő űrlapokat a CRM rendszerrel.",
+          "example": "Ha a látogató kitölti a kapcsolatfelvételt, azonnal létrejön a Deal és a Contact a CRM-ben.",
+          "roi": "Manuális adatbevitel teljes megszüntetése"
+        },
+        {
+          "title": "Automatizált utánkövetés",
+          "description": "Értékesítési státuszokhoz kötött automatikus e-mailek küldése.",
+          "example": "Ha kiküldtél egy ajánlatot, a CRM 3 nap múlva automatikusan küld egy emlékeztető levelet az ügyfélnek.",
+          "roi": "Magasabb konverzió és elköteleződés"
+        },
+        {
+          "title": "Értékesítési riportok",
+          "description": "Valós idejű dashboardok az értékesítés teljesítményéről.",
+          "example": "Havi lezárt üzletek értéke, leadek forrása, értékesítők hatékonyságának automatikus riportolása.",
+          "roi": "Adatvezérelt vezetői döntések"
+        }
+      ],
+      "pricing_title": "Csomagok és árak",
+      "pricing_desc": "Professzionális értékesítés-támogatás. Az árak ÁFA-mentesek, a CRM szoftverek havi díjait nem tartalmazzák.",
+      "plans": {
+        "base": {
+          "name": "CRM Start",
+          "desc": "Alap CRM bevezetés kis csapatoknak.",
+          "price": 290000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "CRM szoftver kiválasztási tanácsadás",
+            "Alapértelmezett pipeline kialakítása",
+            "Egyedi mezők és státuszok beállítása",
+            "Maximum 5 felhasználó felvétele és beállítása",
+            "Kapcsolatfelvételi űrlap összekötése a CRM-mel",
+            "1 órás alapvető oktatás a használatról"
+          ],
+          "duration_label": "Ajánlott: kisvállalkozásoknak, akik Excelből vagy e-mailből váltanának CRM-re."
+        },
+        "detailed": {
+          "name": "CRM Business",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "desc": "Teljes értékesítési folyamat és lead-kezelés automatizálása.",
+          "price": 690000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Maximum 15 felhasználó beállítása",
+            "Több értékesítési pipeline (tölcsér) tervezése",
+            "E-mail sablonok és automatikus értesítések",
+            "Ajánlatkérések státuszkezelése és követése",
+            "Weboldal lead formok és chatbot integráció",
+            "Vezetői dashboardok és heti automatikus riportok"
+          ],
+          "duration_label": "Ajánlott: aktív értékesítési csapattal rendelkező KKV-knak."
+        },
+        "complex": {
+          "name": "CRM Scale",
+          "desc": "CRM, marketing és ügyfélszolgálati folyamatok összekötése.",
+          "price": 1490000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Több külső szoftver (számlázó, n8n, naptár) integrációja",
+            "Komplex, többlépcsős automatizált follow-up folyamatok",
+            "Jogosultságkezelés és csapat-hierarchia beállítása",
+            "Személyre szabott vezetői dashboardok és analitika",
+            "Adatimportálás korábbi rendszerekből / Excelből",
+            "30 napos átadás utáni kiemelt támogatás és support"
+          ],
+          "duration_label": "Ajánlott: növekvő cégeknek, akik skálázható értékesítési rendszert szeretnének."
+        }
+      },
+      "how_we_work_title": "Hogyan dolgozunk?",
+      "how_we_work_desc": "Együtt alakítjuk ki az ideális értékesítési lépéseket, hogy a szoftver valóban a te kezed alá dolgozzon.",
+      "how_we_work_steps": [
+        {
+          "title": "Felmérés",
+          "description": "Megismerjük a jelenlegi értékesítési folyamataidat, a leadek útját és a használt eszközöket."
+        },
+        {
+          "title": "Tervezés",
+          "description": "Leírjuk az értékesítési szakaszokat, az egyedi mezőket és a szükséges automatizációkat."
+        },
+        {
+          "title": "Bevezetés",
+          "description": "Beállítjuk a CRM rendszert, integráljuk a weboldallal és létrehozzuk az e-mail sablonokat."
+        },
+        {
+          "title": "Tesztelés",
+          "description": "Teszt leadekkel végigjátsszuk a teljes folyamatot a beérkezéstől a sikeres lezárásig."
+        },
+        {
+          "title": "Átadás",
+          "description": "Részletes oktatást tartunk az értékesítőknek és a vezetőknek, majd átadjuk a rendszert."
+        }
+      ],
+      "faq_title": "Gyakran Ismett Kérdések",
+      "faq_desc": "Gyakori kérdések a CRM bevezetésről és automatizálásról",
+      "faq_items": [
+        {
+          "question": "Melyik CRM rendszert érdemes választanunk?",
+          "answer": "A vállalkozásod méretétől és igényeitől függ. Kisebb értékesítési csapatoknak a Pipedrive-ot, összetettebb marketing és support igények esetén a HubSpot-ot javasoljuk. A felmérés során segítünk kiválasztani a számodra legköltséghatékonyabbat."
+        },
+        {
+          "question": "Benne vannak a CRM szoftver díjai a csomagárban?",
+          "answer": "Nem. A CRM rendszerek (pl. Pipedrive, HubSpot) havidíjait a felhasználók száma és a választott csomag alapján közvetlenül a szoftverfejlesztő cégeknek kell fizetni. A mi díjunk kizárólag a tervezési, integrációs, beállítási és oktatási munkát fedezi."
+        },
+        {
+          "question": "Át lehet hozni a meglévő adatokat Excelből vagy más rendszerből?",
+          "answer": "Igen, a CRM Scale csomagunk tartalmazza az adatok tisztítását és importálását. Meglévő Excel táblázataidat, ügyféllistáidat strukturáltan töltjük be az új CRM-be, hogy ne vesszen el korábbi információ."
+        },
+        {
+          "question": "Mennyi idő alatt tanulja meg a csapat az új rendszert?",
+          "answer": "Az általunk bevezetett CRM rendszerek rendkívül felhasználóbarátak. Az átadás során tartott gyakorlati oktatás után a kollégáid már az első napon magabiztosan fogják tudni rögzíteni a leadeket és a feladatokat."
+        }
+      ],
+      "cta_title": "Kérj ajánlatot erre a szolgáltatásra"
+    },
+    "EcommerceTracking": {
+      "title": "Webshop Mérés és Konverzió Növelés",
+      "description": "GA4, Google Tag Manager, Meta Pixel, konverziómérés, kosárelhagyás és riportok beállítása webshopoknak és szolgáltató weboldalaknak.",
+      "keywords": "ga4 beállítás, google tag manager webshop, meta pixel beállítás, konverziókövetés, ecommerce analitika, kosárelhagyás mérés",
+      "hero_features": [
+        "Google Analytics 4 (GA4) teljes körű audit",
+        "Google Tag Manager (GTM) konténer kiépítése",
+        "Meta (Facebook) Pixel és CAPI beállítás",
+        "Vásárlási és kosárelhagyási tölcsér mérése",
+        "Google Ads konverziók és remarketing tagek",
+        "Looker Studio webshop teljesítmény dashboard"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Pontos Marketing Adatok",
+          "description": "Tudni fogod, hogy melyik hirdetésed hoz valós vásárlásokat, így nem költesz feleslegesen nem működő kampányokra."
+        },
+        {
+          "title": "Kosárelhagyók Visszaszerzése",
+          "description": "A pontos méréssel azonosítani tudod a kosárelhagyókat, és remarketing hirdetésekkel vagy automata levelekkel visszaterelheted őket."
+        },
+        {
+          "title": "Adatvezérelt Optimalizálás",
+          "description": "Látni fogod, hogy a vásárlási folyamat melyik pontján morzsolódnak le a látogatók, így célzottan javíthatod a konverziót."
+        }
+      ],
+      "use_cases_title": "Miben segítünk?",
+      "use_cases_desc": "Kiküszöböljük a mérési hibákat és kristálytiszta adatokat biztosítunk a marketing kampányaidhoz",
+      "use_cases_items": [
+        {
+          "title": "Haladó GA4 & GTM Setup",
+          "description": "Megtervezzük és beállítjuk a teljes weboldali mérési infrastruktúrát.",
+          "example": "GTM segítségével mérjük a kattintásokat, űrlapkitöltéseket, videó megtekintéseket és görgetéseket.",
+          "roi": "Tökéletes, tiszta analitikai adatok"
+        },
+        {
+          "title": "E-commerce Eseménykövetés",
+          "description": "A webshop teljes vásárlási tölcsérének (funnel) precíz mérése.",
+          "example": "Termékmegtekintés, kosárba helyezés, fizetés megkezdése és a sikeres vásárlás tranzakcióértékének mérése.",
+          "roi": "Konverziós arányok pontos követése"
+        },
+        {
+          "title": "Meta Pixel és Conversion API",
+          "description": "Böngésző- és szerveroldali mérés beállítása a hirdetések pontos követéséhez.",
+          "example": "Meta Pixel és Conversions API összekötése az adatok pontosabb mérésére az iOS adatvédelmi korlátozások ellenére.",
+          "roi": "Olcsóbb Facebook hirdetési költségek"
+        },
+        {
+          "title": "Google Ads Konverziók",
+          "description": "Hirdetések közvetlen megtérülésének követése és remarketing.",
+          "example": "Konverziókövetés beállítása kosárérték-küldéssel, dinamikus remarketing tagek konfigurálása a korábbi látogatók elérésére.",
+          "roi": "Kampányok jobb ROI-ja és optimalizálása"
+        }
+      ],
+      "pricing_title": "Csomagok és árak",
+      "pricing_desc": "Mérhető és profitábilis marketing kampányok. Az árak ÁFA-mentesek, hirdetési költéseket nem tartalmaznak.",
+      "plans": {
+        "base": {
+          "name": "Tracking Start",
+          "desc": "Alap mérési rendszer beállítása.",
+          "price": 180000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Google Analytics 4 (GA4) alapbeállítás",
+            "Google Tag Manager (GTM) telepítése a kódba",
+            "Alapvető események (kattintások, görgetés) mérése",
+            "Kapcsolatfelvételi konverzió (Lead) beállítása",
+            "GDPR-barát privacy beállítások (consent mód)",
+            "Mérések tesztelése és hibakeresése"
+          ],
+          "duration_label": "Ajánlott: kisebb bemutatkozó weboldalaknak és induló szolgáltatóknak."
+        },
+        "detailed": {
+          "name": "Ecommerce Business",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "desc": "Webshop konverziómérés és marketing pixelek teljes beállítása.",
+          "price": 390000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Standard e-commerce események (View Item, Add To Cart)",
+            "Vásárlási tölcsér mérése (Checkout progress, Purchase)",
+            "Meta (Facebook) Pixel és Conversions API (CAPI)",
+            "Google Ads konverziókövetés és dinamikus remarketing",
+            "GTM alapú mérési struktúra rendszerezése",
+            "Egyéb marketing pixelek (Tiktok, Pinterest) bekötése"
+          ],
+          "duration_label": "Ajánlott: aktív webshopoknak, akik pontos marketing mérést szeretnének."
+        },
+        "complex": {
+          "name": "Conversion Pro",
+          "desc": "Mérés, riportolás és konverzióoptimalizálási javaslatok.",
+          "price": 790000,
+          "priceFrom": true,
+          "sub": "+ 99.000 Ft/hó optimalizálás (ÁFA-mentes)",
+          "features": [
+            "Minden az Ecommerce Business csomagból",
+            "Teljes körű mérési audit és hibák javítása",
+            "Looker Studio értékesítési és marketing dashboard",
+            "Részletes kosárelhagyási és látogatói elemzés",
+            "Havi riportálás, javítási és A/B teszt javaslatok",
+            "Folyamatos havi optimalizálás és support"
+          ],
+          "duration_label": "Ajánlott: növekvő webshopoknak és komoly összegekkel hirdető cégeknek."
+        }
+      },
+      "how_we_work_title": "Hogyan dolgozunk?",
+      "how_we_work_desc": "Precízen, a kód szintjén építjük fel a méréseket, hogy a marketingesed a valós adatokat lássa.",
+      "how_we_work_steps": [
+        {
+          "title": "Felmérés",
+          "description": "Megvizsgáljuk a meglévő webshop motort, a GA4-et és a jelenleg aktív marketing csatornákat."
+        },
+        {
+          "title": "Tervezés",
+          "description": "Összeállítjuk a mérési tervet (Data Layer specifikáció) a fejlesztők és marketingesek részére."
+        },
+        {
+          "title": "Bevezetés",
+          "description": "Létrehozzuk a GTM tageket, triggereljük a vásárlási eseményeket és összekötjük a platformokat."
+        },
+        {
+          "title": "Tesztelés",
+          "description": "GTM debug módban egyesével végrehajtjuk a vásárlási lépéseket, ellenőrizve az adatok egyezőségét."
+        },
+        {
+          "title": "Átadás",
+          "description": "Átadjuk a kész Looker Studio riportot, ellenőrizzük a GA4-be érkező valós tranzakciókat."
+        }
+      ],
+      "faq_title": "Gyakran Ismett Kérdések",
+      "faq_desc": "Fontos információk a webshop mérésekről és adatvédelemről",
+      "faq_items": [
+        {
+          "question": "Miért nem egyezik a webshop admin és a GA4 adatsora?",
+          "answer": "A böngészők adatvédelmi beállításai, a reklámblokkolók (AdBlock) és a cookie elutasítások miatt a GA4 alapvetően 10-20%-kal kevesebb tranzakciót mérhet. A szerveroldali mérésekkel (Meta CAPI, GA4 Server-side) ez a mérési rés minimalizálható."
+        },
+        {
+          "question": "Mi az a Google Tag Manager (GTM) és miért szükséges?",
+          "answer": "A GTM egy olyan kódkonténer a weboldaladon, amellyel anélkül tudunk új mérőkódokat és pixeleket elhelyezni, hogy minden alkalommal módosítani kellene a webshop forráskódját. Ezzel gyorsabbá és rugalmasabbá válik a mérési rendszer kezelése."
+        },
+        {
+          "question": "GDPR kompatibilis a mérésünk?",
+          "answer": "Igen, a méréseket összekötjük a weboldal cookie elfelejtő (Consent) bannerével. Ha a látogató nem járul hozzá a marketing célú követéshez, a tagek nem aktiválódnak, így elkerülhetők a komoly adatvédelmi bírságok."
+        },
+        {
+          "question": "Mi az a Looker Studio dashboard?",
+          "answer": "Egy olyan interaktív, vizuális felület, amely egy helyen mutatja be a webshopod legfontosabb számait (bevétel, látogatók, tranzakciók, hirdetési költségek). Nem kell többet a GA4 bonyolult felületét böngészned."
+        }
+      ],
+      "cta_title": "Kérj ajánlatot erre a szolgáltatásra"
+    },
+    "BusinessDashboards": {
+      "title": "Üzleti Dashboardok és Automatizált Riportok",
+      "description": "Power BI vagy Looker Studio dashboardok értékesítéshez, marketinghez, pénzügyhöz, készlethez és vezetői döntéstámogatáshoz.",
+      "keywords": "power bi dashboard, looker studio riport, üzleti intelligencia bi, automatizált riport készítés, cégvezetői KPI dashboard",
+      "hero_features": [
+        "Power BI és Looker Studio riportok tervezése",
+        "Több különböző adatforrás összekapcsolása",
+        "Értékesítési, pénzügyi és marketing KPI-ok",
+        "Automatikus adatfrissítés és tisztítás",
+        "Megosztás és jogosultságkezelés a cégen belül",
+        "Rendszeres PDF riport küldés e-mailben"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Döntés Valós Adatok Alapján",
+          "description": "Nincs több megérzés alapú döntés. Minden fontos cégvezetői mutatót valós időben, tűpontosan látsz a kijelződön."
+        },
+        {
+          "title": "Excel Túlóra Megszüntetése",
+          "description": "A kollégáknak nem kell többé napokat tölteniük az adatok másolgatásával és a havi Excel jelentések kézi összerakásával."
+        },
+        {
+          "title": "Azonnali Probléma-Felismerés",
+          "description": "Ha az értékesítés visszaesik, vagy egy készlet kritikus szint alá csökken, a dashboardon azonnal pirosan villan a KPI."
+        }
+      ],
+      "use_cases_title": "Miben segítünk?",
+      "use_cases_desc": "Egyetlen könnyen érthető felületté gyúrjuk össze a káoszos céges Excel tábláidat és adatbázisaidat",
+      "use_cases_items": [
+        {
+          "title": "Looker Studio Riportok",
+          "description": "Rendkívül látványos, online elérhető webes dashboardok kialakítása.",
+          "example": "Google hirdetések, GA4, és Google Sheets adatok egyetlen online, megosztható felületen.",
+          "roi": "Átlátható online marketing analitika"
+        },
+        {
+          "title": "Power BI Céges Dashboardok",
+          "description": "Komplex üzleti intelligencia (BI) rendszerek és adatmodellek.",
+          "example": "Helyi SQL adatbázisok, számlázók és CRM-ek összekötése és transzformálása Power BI-ban.",
+          "roi": "Teljes vállalati átvilágíthatóság"
+        },
+        {
+          "title": "Adattisztítás és ETL",
+          "description": "Különböző rendszerekből származó adatok tisztítása és egységesítése.",
+          "example": "Null értékek kezelése, dátumformátumok egységesítése, hibás adatok kiszűrése az adatbázisban.",
+          "roi": "Megbízható, torzításmentes riportok"
+        },
+        {
+          "title": "Automatikus jelentésküldés",
+          "description": "Automatikus havi vagy heti riportok küldése a vezetők e-mail címére.",
+          "example": "Minden hétfő reggel 8-kor automatikus PDF dashboard küldése az előző heti értékesítési adatokkal.",
+          "roi": "Időmegtakarítás a vezetőségnek"
+        }
+      ],
+      "pricing_title": "Csomagok és árak",
+      "pricing_desc": "Professzionális döntéstámogató rendszerek. Az árak ÁFA-mentesek, a Power BI Pro licenceket nem tartalmazzák.",
+      "plans": {
+        "base": {
+          "name": "Dashboard Start",
+          "desc": "Egyszerű vezetői dashboard egy adatforrással.",
+          "price": 240000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "1 adatforrás (pl. Google Sheets vagy GA4) bekötése",
+            "1 professzionális dashboard oldal tervezése",
+            "Alapvető cégvezetői KPI-ok és grafikonok",
+            "Adatstruktúra tisztítása és formázása",
+            "Online publikálás és megosztás beállítása",
+            "30 perces oktatás a dashboard használatáról"
+          ],
+          "duration_label": "Ajánlott: kisebb cégeknek, akik szeretnék kiváltani a kézi Excel riportokat."
+        },
+        "detailed": {
+          "name": "Dashboard Business",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "desc": "Több adatforrásból épített üzleti riport rendszer.",
+          "price": 590000,
+          "priceFrom": true,
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Maximum 3 adatforrás összekapcsolása",
+            "2-3 jól strukturált dashboard oldal",
+            "Automatikus adatfrissítés beállítása",
+            "Haladó szűrők (dátum, termékcsoport, régió)",
+            "Vezetői pénzügyi és értékesítési mutatók",
+            "Részletes technikai és használati dokumentáció"
+          ],
+          "duration_label": "Ajánlott: KKV-knak, ahol rendszeres értékesítési vagy pénzügyi riport kell."
+        },
+        "complex": {
+          "name": "Analytics Pro",
+          "desc": "Komplex dashboard rendszer adatkapcsolatokkal és havi optimalizálással.",
+          "price": 1200000,
+          "priceFrom": true,
+          "sub": "+ 150.000 Ft/hó támogatás (ÁFA-mentes)",
+          "features": [
+            "Korlátlan adatforrás és bonyolult adatmodell",
+            "Haladó DAX képletek és egyedi mutatószámok",
+            "Automatizált PDF riportküldési folyamatok",
+            "Szerepkör-alapú jogosultságkezelés (RLS)",
+            "Adatbázisok közvetlen (API) összekapcsolása",
+            "Havi karbantartás, adatfrissítések követése és új riportok"
+          ],
+          "duration_label": "Ajánlott: komoly adatvezérelt döntéshozatalt és BI infrastruktúrát építő cégeknek."
+        }
+      },
+      "how_we_work_title": "Hogyan dolgozunk?",
+      "how_we_work_desc": "Megtervezzük az adatkapcsolatokat, kitisztítjuk az adatokat és gyönyörű, könnyen érthető riportot építünk.",
+      "how_we_work_steps": [
+        {
+          "title": "Felmérés",
+          "description": "Megvizsgáljuk a céges adatok forrását (Excel, CRM, SQL), a táblák szerkezetét és a vezetőség igényeit."
+        },
+        {
+          "title": "Tervezés",
+          "description": "Kijelöljük a legfontosabb KPI mutatókat és papíron megtervezzük a dashboard vizuális elrendezését."
+        },
+        {
+          "title": "Bevezetés",
+          "description": "Összekötjük az adatforrásokat, megírjuk az adathordozó lekérdezéseket és felépítjük a grafikonokat."
+        },
+        {
+          "title": "Tesztelés",
+          "description": "Összevetjük a dashboard számait a nyers adatokkal, ellenőrizve az automatikus frissülés stabilitását."
+        },
+        {
+          "title": "Átadás",
+          "description": "Megtanítjuk a csapatot a dashboard használatára, a szűrésre és a riportok megosztására."
+        }
+      ],
+      "faq_title": "Gyakran Ismett Kérdések",
+      "faq_desc": "Minden, amit a BI rendszerekről és riportokról tudni érdemes",
+      "faq_items": [
+        {
+          "question": "Biztonságban vannak a céges üzleti titkaink?",
+          "answer": "Igen, a dashboardokat a te saját Google vagy Microsoft fiókod alatt építjük fel, így az adatokhoz csak azok férhetnek hozzá, akiknek te kifejezetten jogosultságot adsz. Nem használunk külső, harmadik fél által üzemeltetett szervereket."
+        },
+        {
+          "question": "Szükséges fizetni a Power BI vagy Looker Studio használatért?",
+          "answer": "A Looker Studio alapvetően teljesen ingyenes. A Power BI esetében a megosztás és a közös riport-megtekintés miatt a Microsoft felé fizetendő Power BI Pro licencek szükségesek (felhasználónként kb. 10 USD/hó), amelyeket a csomagárak nem tartalmaznak."
+        },
+        {
+          "question": "Valós időben frissülnek a dashboard adatai?",
+          "answer": "Az adatforrástól és a beállítástól függ. Looker Studio és Power BI esetében beállítható az óránkénti, napi vagy akár valós idejű automatikus frissülés is, így a riportjaid mindig naprakészek lesznek."
+        },
+        {
+          "question": "Mi történik, ha később új adatokat vagy oszlopokat adunk a táblázathoz?",
+          "answer": "A dashboardokat rugalmasan, dinamikus adatmodellekkel tervezzük meg. Ha a forrás táblázatot ugyanolyan struktúrában bővíted, a dashboard automatikusan beolvassa az új adatokat."
+        }
+      ],
+      "cta_title": "Kérj ajánlatot erre a szolgáltatásra"
+    },
+    "RemoteHelpdesk": {
+      "title": "Remote IT Helpdesk és Ticketing",
+      "description": "Távoli informatikai támogatás, hibajegykezelés, felhasználói problémák megoldása, új munkatársak beléptetése és napi IT segítség KKV-knak.",
+      "keywords": "remote it helpdesk, távoli rendszergazda support, hibajegy ticketing rendszer, kkv it támogatás, távoli asztal elérés",
+      "hero_features": [
+        "Távoli informatikai hibajavítás és support",
+        "Professzionális ticketing (hibajegy) rendszer",
+        "E-mail, nyomtató és szoftveres problémák kezelése",
+        "Új munkatársak beléptetése és jogosultságok",
+        "Microsoft 365 / Google Workspace fiókok támogatása",
+        "SLA alapú garantált reakcióidő"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Azonnali Segítségnyújtás",
+          "description": "A munkatársaidnak nem kell órákat vagy napokat várniuk a rendszergazdára. Távoli asztali eléréssel perceken belül megkezdjük a hárítást."
+        },
+        {
+          "title": "Kiszámítható Költségek",
+          "description": "Nincs több váratlan, méregdrága IT javítási számla. A fix havidíj pontosan tervezhetővé teszi az informatikai kiadásokat."
+        },
+        {
+          "title": "Profi Hibakövetés",
+          "description": "A ticketing rendszeren keresztül minden bejelentés nyomon követhető, dokumentált és visszakereshető lesz."
+        }
+      ],
+      "use_cases_title": "Miben segítünk?",
+      "use_cases_desc": "Gyors, távoli segítséget nyújtunk a kollégáidnak, hogy az informatikai akadályok ne lassítsák a munkát",
+      "use_cases_items": [
+        {
+          "title": "Felhasználói IT Támogatás",
+          "description": "Napi szoftveres és beállítási problémák gyors elhárítása távolról.",
+          "example": "Nem megy az Outlook szinkronizáció, nem nyomtat a nyomtató, nem működik a céges VPN.",
+          "roi": "Munkatársak gyors tehermentesítése"
+        },
+        {
+          "title": "Ticketing rendszer biztosítása",
+          "description": "Központi felület a hibák bejelentésére és transzparens követésére.",
+          "example": "Minden bejelentett hiba kap egy ticket számot, az ügyfél látja a státuszt és a megoldó mérnököt.",
+          "roi": "Követhető support munkafolyamatok"
+        },
+        {
+          "title": "Új kollégák onboardingja",
+          "description": "Fiókok létrehozása és eszközök felkészítése az új belépőknek.",
+          "example": "E-mail cím létrehozása, Teams beállítás, jogosultságok kiosztása, távoli segítség a belépéshez.",
+          "roi": "Zökkenőmentes és gyors munkába állás"
+        },
+        {
+          "title": "Fiók és jogosultságkezelés",
+          "description": "Felhasználói fiókok kezelése, jelszó-visszaállítások proaktív intézése.",
+          "example": "Elfelejtett jelszavak cseréje, távozó kolléga fiókjának biztonságos zárolása és átirányítása.",
+          "roi": "Biztonságos céges adatkezelés"
+        }
+      ],
+      "pricing_title": "Csomagok és árak",
+      "pricing_desc": "Megbízható KKV IT helpdesk támogatás. Az árak ÁFA-mentesek, havidíjas elszámolásúak.",
+      "plans": {
+        "base": {
+          "name": "Helpdesk Start",
+          "desc": "Alap távoli támogatás kis csapatoknak.",
+          "price": 69000,
+          "priceFrom": true,
+          "sub": "/hó (ÁFA-mentes, max. 5 felhasználó)",
+          "features": [
+            "Maximum 5 aktív felhasználó támogatása",
+            "Központi e-mailes hibajegy (ticket) rendszer",
+            "Távoli segítségnyújtás (AnyDesk / TeamViewer)",
+            "E-mail, Office és alap szoftveres hibaelhárítás",
+            "Havi maximum 10 hibajegy (ticket) kezelése",
+            "Munkaidőben (9:00 - 17:00) történő támogatás"
+          ],
+          "duration_label": "Ajánlott: mikrovállalkozásoknak és kis irodáknak, ahol ritkán van IT probléma."
+        },
+        "detailed": {
+          "name": "Helpdesk Business",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "desc": "Rendszeres távoli IT támogatás növekvő cégeknek.",
+          "price": 159000,
+          "priceFrom": true,
+          "sub": "/hó (ÁFA-mentes, max. 15 felhasználó)",
+          "features": [
+            "Maximum 15 aktív felhasználó támogatása",
+            "Havi maximum 30 hibajegy (ticket) kezelése",
+            "Új munkatársak teljes körű IT beléptetése",
+            "Microsoft 365 / Google Workspace adminisztráció",
+            "Prioritásos hibajegykezelés és gyorsabb reagálás",
+            "VPN és távoli elérések beállítása és támogatása"
+          ],
+          "duration_label": "Ajánlott: növekvő KKV-knak, akik teljesen kiszerveznék a napi IT ügyeket."
+        },
+        "complex": {
+          "name": "Helpdesk Pro",
+          "desc": "Teljes remote IT helpdesk SLA-val és ticketing rendszerrel.",
+          "price": 329000,
+          "priceFrom": true,
+          "sub": "/hó (ÁFA-mentes, max. 40 felhasználó)",
+          "features": [
+            "Maximum 40 felhasználó teljes körű támogatása",
+            "Szerződésben garantált SLA reakcióidő",
+            "Központi ticketing dashboard a vezetőségnek",
+            "IT eszközök és licencek nyilvántartása",
+            "Havi riport a hibajegyekről és problémákról",
+            "Rendszeres negyedéves jogosultsági és biztonsági auditok"
+          ],
+          "duration_label": "Ajánlott: több felhasználós cégeknek, ahol kritikus a gyors és kiszámítható IT támogatás."
+        }
+      },
+      "how_we_work_title": "Hogyan dolgozunk?",
+      "how_we_work_desc": "Egy gombnyomással vagy e-maillel bejelentheted a hibát, és szakértőnk azonnal átveszi a probléma elhárítását.",
+      "how_we_work_steps": [
+        {
+          "title": "Felmérés",
+          "description": "Feltérképezzük a cégnél használt gépeket, operációs rendszereket, e-maileket és nyomtatókat."
+        },
+        {
+          "title": "Tervezés",
+          "description": "Létrehozzuk a ticketing fiókokat a kollégáknak, telepítjük a távoli elérést biztosító szoftvert."
+        },
+        {
+          "title": "Bevezetés",
+          "description": "Élesítjük a helpdesket, beállítjuk a bejelentő csatornákat és elindítjuk a supportot."
+        },
+        {
+          "title": "Tesztelés",
+          "description": "Próba hibajegyekkel és távoli asztal hívásokkal ellenőrizzük a válaszidőket és a ticketinget."
+        },
+        {
+          "title": "Átadás",
+          "description": "Rövid tájékoztatót küldünk a kollégáknak a hiba bejelentésének menetéről, és élesítjük a szolgáltatást."
+        }
+      ],
+      "faq_title": "Gyakran Ismett Kérdések",
+      "faq_desc": "Gyakori kérdések a távoli IT helpdesk szolgáltatásunkról",
+      "faq_items": [
+        {
+          "question": "Hogyan történik a hiba bejelentése?",
+          "answer": "A kollégák e-mailben, vagy a számítógépen elhelyezett ikonra kattintva küldhetik el a bejelentéseiket. A rendszerünk azonnal regisztrálja a hibát, visszaigazolást küld, és kijelöli a support mérnököt."
+        },
+        {
+          "question": "Mi az a távoli asztali elérés és biztonságos-e?",
+          "answer": "Biztonságos és engedélyköteles AnyDesk vagy TeamViewer szoftvert használunk. A support mérnök csak akkor tud belépni a számítógépedre, ha te megadod a belépő kódot és rákattintasz az elfogadás gombra. Bármikor megszakíthatod a kapcsolatot."
+        },
+        {
+          "question": "Mit jelent az SLA és a garantált reakcióidő?",
+          "answer": "Az SLA (Service Level Agreement) egy olyan szerződéses megállapodás, amelyben rögzítjük, hogy maximum hány órán belül kell megkezdenünk a hiba javítását a bejelentéstől számítva. A Helpdesk Pro csomagnál ez kritikus hibák esetén akár 1-2 óra is lehet."
+        },
+        {
+          "question": "Tudtok segíteni fizikai eszközök beszerzésében vagy javításában is?",
+          "answer": "A helpdesk csomagok kizárólag a távoli szoftveres és üzemeltetési támogatást tartalmazzák. Fizikai hardverhiba esetén (pl. tönkrement kijelző, rossz alaplap) segítünk megszervezni a szervizt, de a fizikai javítás külön munkadíj."
+        }
+      ],
+      "cta_title": "Kérj ajánlatot erre a szolgáltatásra"
     }
   },
   "ProductDetailPage": {

@@ -774,7 +774,6 @@
       "description": "Pre-made Excel dashboard for SMEs to track IT assets, servers, licenses and maintenance tasks."
     }
   },
-
   "QuoteRequest": {
     "title": "Let's realize your idea!",
     "subtitle": "Fill out the form below, and we'll prepare a personalized quote for you.",
@@ -1162,25 +1161,9 @@
     "n8n-lead-management": "n8n Lead Management Workflow",
     "python-web-scraper": "Python Web Scraper Starter Kit",
     "it-maintenance-dashboard": "IT Maintenance Dashboard",
-    "security": "Cybersecurity",
-    "network": "Network Solutions",
     "integrations": "Integrations",
-    "system-administration": "System Administration",
     "scripts": "Scripts & Automation",
-    "web-development": "Web Development",
-    "wordpress-woocommerce-maintenance": "WordPress / WooCommerce Maintenance",
-    "smb-it-audit": "SMB IT Audit & Assessment",
-    "webshop-automation": "Webshop Automation",
-    "ai-assistants": "AI Assistants & Automation",
-    "microsoft-365-google-workspace": "Microsoft 365 & Google Workspace",
-    "backup-data-recovery": "Backup & Data Recovery",
-    "managed-it-services": "Managed IT Services",
-    "wordpress-woocommerce-karbantartas": "WordPress / WooCommerce Maintenance",
-    "kkv-it-audit": "SMB IT Audit & Assessment",
-    "webshop-automatizacio": "Webshop Automation",
-    "ai-asszisztensek": "AI Assistants & Automation",
-    "backup-adatmentes": "Backup & Data Recovery",
-    "havidijas-rendszergazda": "Managed IT Services"
+    "web-development": "Web Development"
   },
   "CommandMenu": {
     "search_label": "Search",
@@ -1354,6 +1337,66 @@
           "Workstation maintenance & patch management",
           "24/7 Threat alerts & diagnostics",
           "Dedicated technical helpdesk"
+        ]
+      },
+      "cloud_migration": {
+        "title": "Cloud Migration & Cost Optimization",
+        "desc": "Secure migration of business email, files, servers and systems to modern cloud environments with cost optimization.",
+        "features": [
+          "Business email migration",
+          "Secure file & data migration",
+          "Cloud cost optimization",
+          "Access & permission setup"
+        ]
+      },
+      "ai_support": {
+        "title": "AI Customer Support Chatbot",
+        "desc": "AI chatbot that answers frequent questions, qualifies leads, supports customer service and forwards enquiries to CRM or email.",
+        "features": [
+          "24/7 AI chatbot on website",
+          "Intelligent lead qualification",
+          "CRM & email integrations",
+          "Multilingual response support"
+        ]
+      },
+      "crm_auto": {
+        "title": "CRM & Lead Automation",
+        "desc": "Automation of sales processes, enquiries, customer data and follow-ups with modern CRM systems.",
+        "features": [
+          "Sales funnel (pipelines) setup",
+          "Automated lead & quote tracking",
+          "Website lead form integration",
+          "Automated follow-up workflows"
+        ]
+      },
+      "ecommerce_tracking": {
+        "title": "Ecommerce Tracking & Conversion Optimization",
+        "desc": "GA4, Google Tag Manager, Meta Pixel, conversion tracking, cart abandonment and reporting setup for ecommerce and service websites.",
+        "features": [
+          "Full GA4 & GTM configuration",
+          "Cart abandonment & purchase funnel",
+          "Meta Pixel & marketing pixels setup",
+          "Google Ads conversion tracking"
+        ]
+      },
+      "dashboards": {
+        "title": "Business Dashboards & Automated Reports",
+        "desc": "Power BI or Looker Studio dashboards for sales, marketing, finance, inventory and management decision-making.",
+        "features": [
+          "Looker Studio & Power BI reports",
+          "Multi-source data connections",
+          "Executive KPIs & visualizations",
+          "Auto-refresh & scheduled reports"
+        ]
+      },
+      "remote_helpdesk": {
+        "title": "Remote IT Helpdesk & Ticketing",
+        "desc": "Remote IT support, ticketing, user issue resolution, employee onboarding and everyday IT assistance for small and medium-sized businesses.",
+        "features": [
+          "Remote user IT helpdesk support",
+          "Professional ticketing system",
+          "Employee onboarding support",
+          "Microsoft 365 & Google Workspace care"
         ]
       }
     },
@@ -1913,10 +1956,20 @@
       "ai_auto_desc": "Custom AI assistants and n8n workflow integrations",
       "office_suite": "Microsoft 365 & Google Workspace",
       "office_suite_desc": "Office productivity cloud setup and data migration",
-      "backup": "Backup & Recovery",
-      "backup_desc": "3-2-1 backup strategy and business continuity plans",
       "managed_it": "Managed IT Services",
-      "managed_it_desc": "Full-service SMB system administration and remote support"
+      "managed_it_desc": "Full-service SMB system administration and remote support",
+      "cloud_migration": "Cloud Migration",
+      "cloud_migration_desc": "Microsoft 365, Google Workspace, Azure and cloud cost optimization",
+      "ai_support": "AI Customer Support",
+      "ai_support_desc": "Chatbot, lead qualification and customer question automation",
+      "crm_auto": "CRM Automation",
+      "crm_auto_desc": "Leads, enquiries and sales process automation",
+      "ecommerce_tracking": "Ecommerce Tracking",
+      "ecommerce_tracking_desc": "GA4, GTM, Pixel and conversion tracking",
+      "dashboards": "Business Dashboards",
+      "dashboards_desc": "Power BI, Looker Studio and automated reports",
+      "remote_helpdesk": "Remote Helpdesk",
+      "remote_helpdesk_desc": "Remote IT support and ticketing"
     },
     "need_help_title": "Don't know what you need?",
     "need_help_desc": "Request a quick IT assessment, and we'll help you find the right solution.",
@@ -3504,6 +3557,926 @@
           "duration_label": "Custom SLA contract"
         }
       }
+    },
+    "CloudMigration": {
+      "title": "Cloud Migration & Cost Optimization",
+      "description": "Secure migration of business email, files, servers and systems to modern cloud environments with cost optimization.",
+      "keywords": "cloud migration, cloud cost optimization, office 365 migration, google workspace migration, azure server migration",
+      "hero_features": [
+        "Cloud readiness check & audit",
+        "Secure business email migration",
+        "Shared folder & cloud drive setup",
+        "Server & database cloud migration",
+        "Cloud subscription cost optimization",
+        "Role-based permission & MFA setup"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Cost Savings",
+          "description": "We identify and eliminate redundant and oversized cloud resources, significantly reducing your monthly bills."
+        },
+        {
+          "title": "Security & Stability",
+          "description": "We secure your files and accounts using industry-standard protocols, access structures, and multi-factor authentication."
+        },
+        {
+          "title": "Flexible Workstyles",
+          "description": "Your team can access company documents securely from any location and on any device without disruption."
+        }
+      ],
+      "use_cases_title": "How we help?",
+      "use_cases_desc": "End-to-end guidance and technical implementation for cloud adoption and cloud budget refinement.",
+      "use_cases_items": [
+        {
+          "title": "Cloud Audit & Advisory",
+          "description": "We review your current cloud footprint or outline your initial cloud migration options.",
+          "example": "Detecting underutilized virtual instances, over-licensed cloud seats, and pricing leaks.",
+          "roi": "Immediate cloud bill reduction"
+        },
+        {
+          "title": "Email Migration",
+          "description": "Seamless migration of mailboxes, calendars, and contacts to professional cloud systems.",
+          "example": "Migrating standard cPanel IMAP or local Exchange mailboxes to Microsoft 365 or Google Workspace.",
+          "roi": "Secure, non-disruptive business email"
+        },
+        {
+          "title": "Cloud File Structure Setup",
+          "description": "Designing and deploying secure SharePoint, OneDrive, or Google Drive layouts.",
+          "example": "Setting up department directories, custom access controls, sharing limits, and backup rules.",
+          "roi": "Clean, structured, and easy-to-use drive"
+        },
+        {
+          "title": "Server & DB Migration",
+          "description": "Moving physical servers or VMs to Azure, AWS, or similar clouds.",
+          "example": "Migrating a legacy Windows/Linux application and SQL databases to cloud infrastructure with minimal downtime.",
+          "roi": "High availability and instant scalability"
+        }
+      ],
+      "pricing_title": "Packages & Pricing",
+      "pricing_desc": "Select the plan that best fits your company size and objectives. Our prices are VAT-free.",
+      "plans": {
+        "base": {
+          "name": "Start Audit",
+          "desc": "Cloud readiness check and cost optimization strategy.",
+          "price": 190000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Assessment of current IT infrastructure",
+            "Overview of Microsoft 365 vs Google Workspace options",
+            "Cloud readiness roadmap for servers & databases",
+            "Tailored cost saving recommendations",
+            "Migration path and risk mitigation checklist"
+          ],
+          "duration_label": "Recommended for small businesses seeking a structured cloud strategy."
+        },
+        "detailed": {
+          "name": "Business Migration",
+          "badge": "Most Popular",
+          "popular": true,
+          "desc": "Email, files, and basic business systems migration to the cloud.",
+          "price": 490000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Complete migration for up to 15 users",
+            "Full email, calendar, and contact transfer",
+            "Basic shared drive & access control setup",
+            "DNS & MX record updates and transition support",
+            "Post-migration verification and 1-hour admin training"
+          ],
+          "duration_label": "Recommended for SMBs looking for a fast, secure, and professional cloud transition."
+        },
+        "complex": {
+          "name": "Cloud Pro",
+          "desc": "Complex cloud migration, permission systems, and security hardening.",
+          "price": 990000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Complete cloud migration for up to 40 users",
+            "Complex SharePoint / Google Shared Drive layouts",
+            "Cloud migration setup for servers and databases",
+            "Security hardening (MFA, admin group policies)",
+            "Automated secondary backups implementation",
+            "30 days of premium post-migration support"
+          ],
+          "duration_label": "Recommended for growing companies with advanced data structures and security needs."
+        }
+      },
+      "how_we_work_title": "How we work?",
+      "how_we_work_desc": "We follow a systematic migration pipeline to ensure your data is safe and your operations never stop.",
+      "how_we_work_steps": [
+        {
+          "title": "Assessment",
+          "description": "We map out your current servers, local email directories, and active company data."
+        },
+        {
+          "title": "Planning",
+          "description": "We prepare a detailed migration playbook and coordinate the user onboarding schedule."
+        },
+        {
+          "title": "Migration",
+          "description": "We set up your cloud accounts, map security groups, and copy all files and mailboxes."
+        },
+        {
+          "title": "Testing",
+          "description": "We test MX records, email deliverability, folder permissions, and verify data integrity."
+        },
+        {
+          "title": "Handover",
+          "description": "We hand over the cloud workspace, host a team workshop, and launch active support."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Essential answers regarding cloud migrations and project scopes.",
+      "faq_items": [
+        {
+          "question": "Will my business operations pause during the migration?",
+          "answer": "No. We perform data replication and email synchronization in the background while you work. The final domain transfer is scheduled during off-hours or weekends, resulting in zero business disruption."
+        },
+        {
+          "question": "Are Microsoft 365 or Google Workspace license fees included in your pricing?",
+          "answer": "No. Our fees cover only the consulting, architecture planning, and technical implementation. The ongoing software licenses (Microsoft, Google, AWS) are billed directly by the providers."
+        },
+        {
+          "question": "Is our business data secure in the cloud?",
+          "answer": "Absolutely. Modern public clouds offer far higher security standards than average on-premise servers. In addition, we configure MFA, strong role-based access, and modern spam filters to maximize data safety."
+        },
+        {
+          "question": "What happens after the migration is complete?",
+          "answer": "We support you post-launch. Depending on your chosen tier, we provide dedicated support windows, and we also offer predictable monthly managed IT support to care for your workspace continuously."
+        }
+      ],
+      "cta_title": "Request a quote for this service"
+    },
+    "AICustomerSupport": {
+      "title": "AI Customer Support Chatbot",
+      "description": "AI chatbot that answers frequent questions, qualifies leads, supports customer service and forwards enquiries to CRM or email.",
+      "keywords": "ai chatbot, customer service chatbot, AI for websites, lead generation bot, conversational support automation",
+      "hero_features": [
+        "24/7 intelligent AI chatbot for websites",
+        "Automated answers to repetitive customer queries",
+        "Lead generation and enquiry pre-qualification",
+        "Seamless email, CRM, and ticketing integrations",
+        "Multilingual support (English and Hungarian)",
+        "Trained on your custom documents and website"
+      ],
+      "hero_benefits": [
+        {
+          "title": "24/7 Availability",
+          "description": "Your customers get accurate, instant support any time of the day or night, in their preferred language."
+        },
+        {
+          "title": "Drastically Reduced Workload",
+          "description": "The AI answers up to 80% of repetitive questions autonomously, allowing your support team to focus on high-priority tasks."
+        },
+        {
+          "title": "Automated Lead Capture",
+          "description": "The chatbot interacts with visitors, collects their contact information and project scopes, and syncs them directly."
+        }
+      ],
+      "use_cases_title": "How we help?",
+      "use_cases_desc": "We build and train custom AI assistants for your website that deliver genuine business value.",
+      "use_cases_items": [
+        {
+          "title": "FAQ Automation",
+          "description": "Instant and reliable replies based on your custom company knowledge base.",
+          "example": "The bot answers shipping rates, refund policies, booking procedures, and product specifics.",
+          "roi": "Instant reduction in customer service workload"
+        },
+        {
+          "title": "Lead Qualification",
+          "description": "Conversational forms that gather lead details naturally.",
+          "example": "The bot asks for budget, timeline, and email address, packaging the response into a structured lead ticket.",
+          "roi": "High-quality, pre-screened sales leads"
+        },
+        {
+          "title": "Multilingual Support",
+          "description": "Translating visitor questions and answering natively on the fly.",
+          "example": "Detects if a visitor writes in Hungarian or English and replies correctly using the same knowledge base.",
+          "roi": "Seamless international customer care"
+        },
+        {
+          "title": "Workflow Integration",
+          "description": "Connecting the chatbot directly with your sales and ticketing systems.",
+          "example": "Sends qualified leads directly to HubSpot pipeline or creates cards in Trello/Slack.",
+          "roi": "Zero manual data entry"
+        }
+      ],
+      "pricing_title": "Packages & Pricing",
+      "pricing_desc": "Select the perfect conversational AI plan. Prices are VAT-free. External API and platform fees are not included.",
+      "plans": {
+        "base": {
+          "name": "AI Start",
+          "desc": "Basic AI chatbot for website FAQ handling.",
+          "price": 390000,
+          "priceFrom": true,
+          "sub": "+ 49,000 HUF/month support (VAT-free)",
+          "features": [
+            "Implementation and configuration on 1 website",
+            "Up to 50 custom trained Q&A pairs",
+            "Basic brand color and widget personalization",
+            "Lead submissions forwarded directly to email",
+            "Monthly basic maintenance and calibration"
+          ],
+          "duration_label": "Recommended for small businesses seeking quick, automated customer answers."
+        },
+        "detailed": {
+          "name": "AI Business",
+          "badge": "Most Popular",
+          "popular": true,
+          "desc": "Knowledgebase-trained AI assistant with lead qualification.",
+          "price": 890000,
+          "priceFrom": true,
+          "sub": "+ 99,000 HUF/month support (VAT-free)",
+          "features": [
+            "Trained on custom PDFs, documents, and site URLs",
+            "Interactive lead forms and qualification steps",
+            "Multilingual support (English and Hungarian)",
+            "Admin onboarding and response control training",
+            "Monthly calibration and knowledge base additions"
+          ],
+          "duration_label": "Recommended for service providers, e-commerce stores, and B2B operations."
+        },
+        "complex": {
+          "name": "AI Pro Automation",
+          "desc": "Comprehensive AI support agent with CRM and database integrations.",
+          "price": 1790000,
+          "priceFrom": true,
+          "sub": "+ 199,000 HUF/month support (VAT-free)",
+          "features": [
+            "Integration with CRMs and ticketing systems via API",
+            "Automated lead categorization and CRM tags",
+            "Complex multi-stage automated workflows",
+            "Weekly analytical reports and user interaction insights",
+            "Omnichannel preparation (Web, FB Messenger)",
+            "Weekly calibration and continuous active support"
+          ],
+          "duration_label": "Recommended for high-traffic platforms with frequent customer inquiries."
+        }
+      },
+      "how_we_work_title": "How we work?",
+      "how_we_work_desc": "We step-by-step train, deploy, and calibrate the AI chatbot to represent your business professionally.",
+      "how_we_work_steps": [
+        {
+          "title": "Discovery",
+          "description": "We compile your FAQs, active documents, brand style guides, and customer care history."
+        },
+        {
+          "title": "Design",
+          "description": "We structure the conversation flows, lead pre-qualification logs, and API connection routes."
+        },
+        {
+          "title": "Training & Setup",
+          "description": "We upload the data, train the AI model, set safety guardrails, and embed the chat widget."
+        },
+        {
+          "title": "Testing",
+          "description": "We run extensive simulated conversations to verify response accuracy and webhook signals."
+        },
+        {
+          "title": "Deployment",
+          "description": "We launch the live assistant, host an editor training, and activate continuous calibration."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Everything you need to know about conversational AI assistants.",
+      "faq_items": [
+        {
+          "question": "How does the chatbot learn? Where do answers come from?",
+          "answer": "We train the AI chatbot using only your approved materials: website texts, product brochures, internal guides, or price catalogs. It utilizes strict boundaries, meaning it will only answer based on confirmed data and will not halluncinate details."
+        },
+        {
+          "question": "Are there extra platform or API costs?",
+          "answer": "Yes. Our fees cover only the database preparation, training, script embedding, and monthly optimization. The third-party platform and LLM API costs (such as OpenAI, Anthropic, or chatbot hosting) are billed separately based on your conversation volume."
+        },
+        {
+          "question": "What happens if a visitor asks a question the bot does not know?",
+          "answer": "The AI is designed to recognize its knowledge limits. If a question is outside its scope, it politely states it cannot answer, gathers the customer's contact details, and logs a ticket for your human support team to review."
+        },
+        {
+          "question": "Can it talk to customers in multiple languages?",
+          "answer": "Yes, in the Business and Pro tiers, the chatbot automatically detects the customer's input language and answers fluently in English or Hungarian using the translated knowledge base."
+        }
+      ],
+      "cta_title": "Request a quote for this service"
+    },
+    "CRMAutomation": {
+      "title": "CRM & Lead Automation",
+      "description": "Automation of sales processes, enquiries, customer data and follow-ups with modern CRM systems.",
+      "keywords": "CRM setup, sales pipeline automation, HubSpot setup, Pipedrive integration, automated lead capture",
+      "hero_features": [
+        "Custom sales pipeline design",
+        "Automated lead capture & tracking",
+        "Scheduled follow-up email campaigns",
+        "Direct website form & CRM integrations",
+        "Automated sales reminders & task creation",
+        "Real-time management KPI reporting"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Zero Lost Enquiries",
+          "description": "Every incoming website lead is instantly logged into the CRM. No more forgotten emails or missed follow-up calls."
+        },
+        {
+          "title": "Rapid Sales Response",
+          "description": "Immediate automatic emails and immediate internal task alerts decrease quote turnaround times dramatically."
+        },
+        {
+          "title": "Transparent Sales Insights",
+          "description": "Know exactly which stage every deal is in, which sales reps are closing, and view automatic revenue forecasts."
+        }
+      ],
+      "use_cases_title": "How we help?",
+      "use_cases_desc": "We structure and automate your customer pipelines so your sales team can spend time on closing deals.",
+      "use_cases_items": [
+        {
+          "title": "CRM Implementation",
+          "description": "Selecting and configuring the ideal CRM platform for your business structure.",
+          "example": "Setting up Pipedrive or HubSpot with custom pipelines, properties, and lead scoring.",
+          "roi": "Centralized, accurate customer data"
+        },
+        {
+          "title": "Lead Form Syncing",
+          "description": "Connecting website contact forms directly to your sales pipeline.",
+          "example": "Creating a new deal and client contact automatically when a quote form is submitted.",
+          "roi": "Elimination of manual database inputs"
+        },
+        {
+          "title": "Automated Follow-ups",
+          "description": "Setting up automatic emails triggered by sales pipeline changes.",
+          "example": "The CRM automatically sends a polite follow-up email 3 days after a proposal is sent.",
+          "roi": "Increased sales conversions and engagement"
+        },
+        {
+          "title": "Sales Analytics",
+          "description": "Real-time management dashboards showing sales performance.",
+          "example": "Visualizing won deal sizes, lead channels, conversion rates, and sales agent achievements.",
+          "roi": "Data-driven business choices"
+        }
+      ],
+      "pricing_title": "Packages & Pricing",
+      "pricing_desc": "Streamline your sales pipelines. Prices are VAT-free. CRM software monthly subscription fees are billed separately.",
+      "plans": {
+        "base": {
+          "name": "CRM Start",
+          "desc": "Basic CRM setup for small sales teams.",
+          "price": 290000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Consulting for CRM software selection",
+            "Standard sales pipeline design",
+            "Custom contact & deal fields configuration",
+            "Setup for up to 5 CRM user accounts",
+            "Primary website contact form integration",
+            "1-hour team training session on usage"
+          ],
+          "duration_label": "Recommended for small businesses transitiong from spreadsheets and emails to a structured CRM."
+        },
+        "detailed": {
+          "name": "CRM Business",
+          "badge": "Most Popular",
+          "popular": true,
+          "desc": "Automated lead tracking and entire sales funnel configuration.",
+          "price": 690000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Setup for up to 15 CRM user accounts",
+            "Multiple custom sales & service pipelines",
+            "Automated internally/externally triggered emails",
+            "Advanced deal age & stage alert rules",
+            "Multi-form and automated chatbot syncing",
+            "Custom executive dashboards & weekly reports"
+          ],
+          "duration_label": "Recommended for active sales teams requiring automation and detailed reporting."
+        },
+        "complex": {
+          "name": "CRM Scale",
+          "desc": "Connecting CRM, marketing campaigns, and customer support databases.",
+          "price": 1490000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Integrations with invoicing, calendars, and n8n workflows",
+            "Advanced multi-stage automated follow-up pathways",
+            "Role-based access permissions & team structures",
+            "Custom KPI business intelligence dashboard integration",
+            "Data cleansing and migration from legacy systems",
+            "30 days of premium post-launch support and edits"
+          ],
+          "duration_label": "Recommended for growing organizations requiring scalable, fully-integrated customer pipelines."
+        }
+      },
+      "how_we_work_title": "How we work?",
+      "how_we_work_desc": "We closely collaborate to map your sales stages and configure the CRM to make closing deals easier.",
+      "how_we_work_steps": [
+        {
+          "title": "Discovery",
+          "description": "We map out your current sales cycles, lead origins, and administrative bottlenecks."
+        },
+        {
+          "title": "Architecture",
+          "description": "We define the custom properties, pipelines, and trigger workflows on paper."
+        },
+        {
+          "title": "Setup & Sync",
+          "description": "We configure the CRM portal, integrate web forms, and build the communication templates."
+        },
+        {
+          "title": "Testing",
+          "description": "We run mock deals through the pipeline to ensure webhooks and automations fire flawlessly."
+        },
+        {
+          "title": "Handover",
+          "description": "We host a live training session for managers and agents, handing over the database."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Essential answers regarding CRM setups and integrations.",
+      "faq_items": [
+        {
+          "question": "Which CRM platform should we choose?",
+          "answer": "This depends entirely on your business model and team size. For small sales teams, we recommend Pipedrive for its simplicity. For complex marketing and customer support needs, HubSpot is the ideal match. We help you choose the best fit during our audit."
+        },
+        {
+          "question": "Are the monthly CRM software subscription fees included?",
+          "answer": "No. Monthly CRM platform subscriptions (e.g., Pipedrive, HubSpot) are paid directly to the providers based on your user counts. Our service covers the consulting, custom pipeline design, integration, and training."
+        },
+        {
+          "question": "Can you migrate our existing data from Excel or other software?",
+          "answer": "Yes. Our CRM Scale package includes data sanitization and migration. We will format, import, and link your existing spreadsheet lists, customer history, and contacts into the new CRM database."
+        },
+        {
+          "question": "How long does it take for my sales team to learn the new CRM?",
+          "answer": "The CRMs we implement are highly intuitive. Following the practical training session included in our handover, your sales representatives will be able to log leads, set tasks, and send quotes from day one."
+        }
+      ],
+      "cta_title": "Request a quote for this service"
+    },
+    "EcommerceTracking": {
+      "title": "Ecommerce Tracking & Conversion Optimization",
+      "description": "GA4, Google Tag Manager, Meta Pixel, conversion tracking, cart abandonment and reporting setup for ecommerce and service websites.",
+      "keywords": "GA4 ecommerce tracking, Google Tag Manager setup, Meta Pixel installation, Facebook Conversion API, cart abandonment metrics",
+      "hero_features": [
+        "Google Analytics 4 (GA4) professional auditing",
+        "Google Tag Manager (GTM) container design",
+        "Meta (Facebook) Pixel & CAPI server-side setup",
+        "Precise cart abandonment & funnel tracking",
+        "Google Ads conversions & remarketing tags",
+        "Interactive Looker Studio performance dashboard"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Clear Marketing ROI",
+          "description": "Know exactly which ads drive actual sales. Stop wasting ad spend on campaigns that don't bring revenue."
+        },
+        {
+          "title": "Recover Lost Sales",
+          "description": "Detect exactly where customers drop off, enabling you to launch precise retargeting campaigns and automated recovery emails."
+        },
+        {
+          "title": "Data-Driven Decisions",
+          "description": "Pinpoint checkout bottlenecks, optimize your user flows, and increase your store's overall conversion rate."
+        }
+      ],
+      "use_cases_title": "How we help?",
+      "use_cases_desc": "We eliminate tracking errors and supply your marketing team with highly accurate sales data.",
+      "use_cases_items": [
+        {
+          "title": "Advanced GTM Container Setup",
+          "description": "Building a solid, professional web tracking structure.",
+          "example": "Measuring custom interactions, link clicks, form submissions, and scrolls without changing hard code.",
+          "roi": "Clean and reliable web event tracking"
+        },
+        {
+          "title": "Ecommerce Funnel Tracking",
+          "description": "Detailed measurements for every step of the shopping experience.",
+          "example": "Tracking view_item, add_to_cart, begin_checkout, and purchase transactions with exact currencies.",
+          "roi": "Accurate conversion funnel analytics"
+        },
+        {
+          "title": "Meta Pixel & Conversions API",
+          "description": "Setting up browser and server-side tracking to circumvent ad blockers.",
+          "example": "Syncing store events through the server API to ensure accurate conversion logs despite iOS privacy limits.",
+          "roi": "Lower Facebook ad acquisition costs"
+        },
+        {
+          "title": "Google Ads Conversion Tracking",
+          "description": "Tracking ad revenue directly and setting up dynamic remarketing.",
+          "example": "Passing purchase order values to Google Ads and tracking custom audiences based on products viewed.",
+          "roi": "Better Google Ads ROI and auto-bidding"
+        }
+      ],
+      "pricing_title": "Packages & Pricing",
+      "pricing_desc": "Launch measurable, highly-optimized marketing campaigns. Prices are VAT-free. Ad spend is not included.",
+      "plans": {
+        "base": {
+          "name": "Tracking Start",
+          "desc": "Basic tracking implementation for lead generation sites.",
+          "price": 180000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Google Analytics 4 (GA4) basic setup",
+            "Google Tag Manager (GTM) script embedding",
+            "Standard event tracking (scrolls, clicks, downloads)",
+            "Contact form submission conversion goals",
+            "GDPR privacy setup (Consent Mode V2)",
+            "Thorough QA testing & event debugging"
+          ],
+          "duration_label": "Recommended for portfolio, service, and corporate informational websites."
+        },
+        "detailed": {
+          "name": "Ecommerce Business",
+          "badge": "Most Popular",
+          "popular": true,
+          "desc": "Full ecommerce funnel and major advertising pixels integration.",
+          "price": 390000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Standard ecommerce event logging (add_to_cart, view_item)",
+            "Multi-step checkout progress tracking",
+            "Meta Pixel & Conversions API (CAPI) implementation",
+            "Google Ads conversion tracking & dynamic remarketing",
+            "Structured GTM tag hierarchy and error logs cleanup",
+            "Integration of extra pixels (TikTok, Pinterest, etc.)"
+          ],
+          "duration_label": "Recommended for active webshops seeking precise marketing attribution."
+        },
+        "complex": {
+          "name": "Conversion Pro",
+          "desc": "Tracking, reporting, and continuous conversion rate optimization (CRO) reviews.",
+          "price": 790000,
+          "priceFrom": true,
+          "sub": "+ 99,000 HUF/month support (VAT-free)",
+          "features": [
+            "All features in the Ecommerce Business plan",
+            "Complete tracking audit & bug resolution",
+            "Custom interactive Looker Studio sales dashboard",
+            "Comprehensive checkout bottleneck and cart leak reviews",
+            "Monthly optimization report with A/B testing outlines",
+            "Continuous monthly tracking support and tags maintenance"
+          ],
+          "duration_label": "Recommended for growing ecommerce brands and high-budget advertising stores."
+        }
+      },
+      "how_we_work_title": "How we work?",
+      "how_we_work_desc": "We build pixel-perfect code-level tracking systems so your marketing leads can rely on the data.",
+      "how_we_work_steps": [
+        {
+          "title": "Discovery",
+          "description": "We inspect your store CMS (WooCommerce, Shopify, custom), active GA4 portal, and marketing routes."
+        },
+        {
+          "title": "Data Layer Design",
+          "description": "We compose a precise Data Layer specification defining variables for products, values, and events."
+        },
+        {
+          "title": "Implementation",
+          "description": "We configure GTM variables, set trigger logic, and deploy server-side CAPI webhooks."
+        },
+        {
+          "title": "Debugging",
+          "description": "We execute test transactions in GTM debug mode, verifying matching values across analytics portals."
+        },
+        {
+          "title": "Deployment",
+          "description": "We push GTM tags live, configure Looker Studio, and verify incoming transaction values."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Essential answers regarding analytics and privacy.",
+      "faq_items": [
+        {
+          "question": "Why do my store backend and GA4 purchase values mismatch?",
+          "answer": "Browser privacy controls, ad blockers, and cookie declines can cause GA4 to miss 10-20% of purchases by default. Implementing server-side tracking (such as Meta CAPI and GA4 Server-side) minimizes this discrepancy."
+        },
+        {
+          "question": "What is Google Tag Manager and why is it mandatory?",
+          "answer": "GTM acts as a single, secure script container on your site. It allows us to manage, update, and deploy conversion pixels and tracking tools without editing the website source code every time, keeping the site fast."
+        },
+        {
+          "question": "Are our analytics GDPR compliant?",
+          "answer": "Yes. We integrate all tag scripts with your cookie consent banner. If a visitor declines marketing tracking, the GTM tags remain dormant, ensuring compliance with strict European privacy laws."
+        },
+        {
+          "question": "What is a Looker Studio dashboard?",
+          "answer": "It is an interactive reporting screen that maps all your vital metrics (revenue, orders, traffic source, return on ad spend) into one clear layout. You no longer have to navigate the complex GA4 interface."
+        }
+      ],
+      "cta_title": "Request a quote for this service"
+    },
+    "BusinessDashboards": {
+      "title": "Business Dashboards & Automated Reports",
+      "description": "Power BI or Looker Studio dashboards for sales, marketing, finance, inventory and management decision-making.",
+      "keywords": "Power BI dashboard, Looker Studio report, business intelligence BI, automated reporting systems, executive KPI dashboard",
+      "hero_features": [
+        "Custom Power BI & Looker Studio designs",
+        "Merging data from multiple platforms",
+        "Financial, sales, and marketing KPIs",
+        "Automated data extraction & cleaning (ETL)",
+        "Secure company-wide share permissions",
+        "Automated PDF reports sent directly to email"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Data-Driven Choices",
+          "description": "No more guesswork. Monitor every crucial company KPI and financial metric in real time in a crystal-clear display."
+        },
+        {
+          "title": "Save Hours of Manual Work",
+          "description": "Eliminate the need for employees to spend days copying and pasting data to build manual Excel reports."
+        },
+        {
+          "title": "Spot Risks Immediately",
+          "description": "If sales drop or stock counts dip below a critical mark, your KPI card lights up red immediately, alerting you to act."
+        }
+      ],
+      "use_cases_title": "How we help?",
+      "use_cases_desc": "We compile your disjointed spreadsheets, CRMs, and databases into one elegant dashboard.",
+      "use_cases_items": [
+        {
+          "title": "Looker Studio Reports",
+          "description": "Lively, cloud-hosted online dashboards for quick insights.",
+          "example": "Combining Google Ads, GA4, and Google Sheets budgets into one online, shareable board.",
+          "roi": "Clear, accessible marketing analytics"
+        },
+        {
+          "title": "Power BI Vitals Board",
+          "description": "Enterprise-grade business intelligence and complex data modeling.",
+          "example": "Linking local SQL databases, billing systems, and CRM pipelines into one unified reporting model.",
+          "roi": "Complete operational transparency"
+        },
+        {
+          "title": "Data Cleansing & ETL",
+          "description": "Cleaning, aligning, and matching datasets from various platforms.",
+          "example": "Formatting inconsistent dates, handling empty fields, and merging records to ensure accuracy.",
+          "roi": "Accurate, dependable analytics"
+        },
+        {
+          "title": "Scheduled PDF Reports",
+          "description": "Automated delivery of reports directly to your inbox.",
+          "example": "Setting the system to email a weekly PDF digest of sales accomplishments every Monday morning at 8:00 AM.",
+          "roi": "Effortless oversight for executives"
+        }
+      ],
+      "pricing_title": "Packages & Pricing",
+      "pricing_desc": "Tailored business intelligence solutions. Prices are VAT-free. Power BI Pro licenses are billed separately.",
+      "plans": {
+        "base": {
+          "name": "Dashboard Start",
+          "desc": "Simple executive dashboard with one data source.",
+          "price": 240000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Connection to 1 data source (e.g., Google Sheets or GA4)",
+            "1 professionally designed interactive dashboard tab",
+            "Core management KPIs and visual charts",
+            "Basic data cleansing and structure alignment",
+            "Online publishing and sharing configurations",
+            "30-minute training session on utilizing the board"
+          ],
+          "duration_label": "Recommended for small businesses seeking to replace tedious manual Excel reporting."
+        },
+        "detailed": {
+          "name": "Dashboard Business",
+          "badge": "Most Popular",
+          "popular": true,
+          "desc": "Comprehensive business reports built from multiple data platforms.",
+          "price": 590000,
+          "priceFrom": true,
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Merging and mapping up to 3 distinct data sources",
+            "2-3 highly structured interactive dashboard tabs",
+            "Configuration of automated data refreshes",
+            "Advanced filters (timeline, category, territory)",
+            "Management sales, marketing, or financial KPIs",
+            "Detailed technical mapping and documentation"
+          ],
+          "duration_label": "Recommended for active SMBs requiring regular sales, inventory, or financial digests."
+        },
+        "complex": {
+          "name": "Analytics Pro",
+          "desc": "Complex enterprise-grade BI pipelines with monthly support.",
+          "price": 1200000,
+          "priceFrom": true,
+          "sub": "+ 150,000 HUF/month support (VAT-free)",
+          "features": [
+            "Unlimited data sources and intricate relationships",
+            "Advanced DAX modeling and proprietary metrics",
+            "Automated scheduled email PDF delivery flows",
+            "Row-Level Security (RLS) for departmental limits",
+            "Direct API connections to local/cloud databases",
+            "Continuous monthly updates, maintenance, and edits"
+          ],
+          "duration_label": "Recommended for data-driven companies building a robust BI infrastructure."
+        }
+      },
+      "how_we_work_title": "How we work?",
+      "how_we_work_desc": "We outline the ideal metrics, clean raw data tables, and craft beautiful, easy-to-read business reports.",
+      "how_we_work_steps": [
+        {
+          "title": "Discovery",
+          "description": "We audit your data storage (spreadsheets, SQL, CRM), study columns, and list executive needs."
+        },
+        {
+          "title": "UX Wireframing",
+          "description": "We prioritize the core KPIs and design the visual dashboard structure on paper."
+        },
+        {
+          "title": "Development",
+          "description": "We establish data integrations, write queries, model relationships, and build the visual elements."
+        },
+        {
+          "title": "Validation",
+          "description": "We audit dashboard totals against raw database queries, ensuring the refresh rates are stable."
+        },
+        {
+          "title": "Deployment",
+          "description": "We onboard your team, walk them through filters and exporting, and activate access permissions."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Important details about BI platforms and security.",
+      "faq_items": [
+        {
+          "question": "Is our private business data secure?",
+          "answer": "Yes. We design and build the dashboards inside your own secure Google or Microsoft organizational accounts. Access is restricted solely to users you explicitly authorize, with no third-party servers involved."
+        },
+        {
+          "question": "Are there monthly software costs for Power BI or Looker Studio?",
+          "answer": "Looker Studio is completely free. Power BI requires Power BI Pro licenses (around 10 USD/user/month) for secure report sharing and viewing across team members. License costs are billed directly by Microsoft."
+        },
+        {
+          "question": "Do the dashboard numbers update in real time?",
+          "answer": "This depends on the data source. We can configure automated refreshes (e.g., hourly, daily, or near real-time), ensuring your business indicators are always current."
+        },
+        {
+          "question": "What happens if we add new columns or rows to our sheets later?",
+          "answer": "We build our dashboards with dynamic data schemas. As long as you maintain the same column headers and structure, the system will automatically import and visualize any new entries."
+        }
+      ],
+      "cta_title": "Request a quote for this service"
+    },
+    "RemoteHelpdesk": {
+      "title": "Remote IT Helpdesk & Ticketing",
+      "description": "Remote IT support, ticketing, user issue resolution, employee onboarding and everyday IT assistance for small and medium-sized businesses.",
+      "keywords": "remote IT support, SMB system administration, helpdesk ticketing system, remote desktop assistance, IT support contract",
+      "hero_features": [
+        "Rapid remote IT troubleshooting & repair",
+        "Professional centralized ticketing system",
+        "Email, printer, and software error resolution",
+        "New employee onboarding and folder access setup",
+        "Microsoft 365 / Google Workspace administration",
+        "Predictable SLA-backed response times"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Immediate Support",
+          "description": "Your employees don't have to wait days for a technician. We launch remote desktop assistance within minutes of a request."
+        },
+        {
+          "title": "Predictable Costs",
+          "description": "Eliminate expensive, unexpected IT emergency bills. A flat monthly rate makes your technical budget transparent."
+        },
+        {
+          "title": "Transparent Logs",
+          "description": "Our helpdesk ticketing system keeps every support request logged, categorized, tracked, and searchable for review."
+        }
+      ],
+      "use_cases_title": "How we help?",
+      "use_cases_desc": "We supply swift, remote technical help to your team so IT issues don't slow down your business operations.",
+      "use_cases_items": [
+        {
+          "title": "End-User IT Care",
+          "description": "Fast remote diagnostics and fixes for daily workstation blockages.",
+          "example": "Fixing frozen Outlook profiles, printer connection issues, or VPN login failures.",
+          "roi": "Rapid restoration of user productivity"
+        },
+        {
+          "title": "Centralized Ticketing",
+          "description": "A clear, structured portal for team members to report and track errors.",
+          "example": "Users submit issues via email or widget, receive a ticket number, and see status updates live.",
+          "roi": "Fully transparent support logs"
+        },
+        {
+          "title": "Employee Onboarding",
+          "description": "Configuring corporate credentials and software access for new hires.",
+          "example": "Creating cloud mailboxes, mapping shared drives, assigning Teams groups, and walking them through logins.",
+          "roi": "Zignificantly faster time-to-work"
+        },
+        {
+          "title": "Account & Permissions Security",
+          "description": "Managing active user profiles, passwords, and security groups safely.",
+          "example": "Resetting forgotten passwords, auditing active logins, and securing leaving staff mailboxes.",
+          "roi": "Reduced threat of insider leaks"
+        }
+      ],
+      "pricing_title": "Packages & Pricing",
+      "pricing_desc": "Dependable KKV IT support plans. Prices are VAT-free and billed as predictable monthly subscriptions.",
+      "plans": {
+        "base": {
+          "name": "Helpdesk Start",
+          "desc": "Basic remote technical care for small offices.",
+          "price": 69000,
+          "priceFrom": true,
+          "sub": "/month (VAT-free, up to 5 users)",
+          "features": [
+            "Remote support for up to 5 active users",
+            "Centralized email-to-ticket support portal",
+            "Secure remote desktop access (AnyDesk/TeamViewer)",
+            "Email, Office suites, and browser diagnostics",
+            "Up to 10 helpdesk ticket resolutions per month",
+            "Standard business hours coverage (9:00 - 17:00)"
+          ],
+          "duration_label": "Recommended for micro-businesses and small offices with occasional IT issues."
+        },
+        "detailed": {
+          "name": "Helpdesk Business",
+          "badge": "Most Popular",
+          "popular": true,
+          "desc": "Regular remote IT support for growing businesses.",
+          "price": 159000,
+          "priceFrom": true,
+          "sub": "/month (VAT-free, up to 15 users)",
+          "features": [
+            "Remote support for up to 15 active users",
+            "Up to 30 helpdesk ticket resolutions per month",
+            "Full new employee IT onboarding & profiles setup",
+            "Microsoft 365 / Google Workspace administration",
+            "Priority ticket queuing for faster resolution",
+            "VPN and secure remote network setup & care"
+          ],
+          "duration_label": "Recommended for active SMBs wanting to outsource daily technical maintenance entirely."
+        },
+        "complex": {
+          "name": "Helpdesk Pro",
+          "desc": "Comprehensive remote IT support with strict SLA commitments and reporting.",
+          "price": 329000,
+          "priceFrom": true,
+          "sub": "/month (VAT-free, up to 40 users)",
+          "features": [
+            "Remote support for up to 40 active users",
+            "Contract-guaranteed SLA response time limits",
+            "Management access to ticketing dashboard & analytics",
+            "Hardware inventory & software license logs tracking",
+            "Detailed monthly helpdesk ticket analytics reports",
+            "Quarterly user permission & security compliance audits"
+          ],
+          "duration_label": "Recommended for larger teams requiring rapid, highly-predictable IT helpdesk care."
+        }
+      },
+      "how_we_work_title": "How we work?",
+      "how_we_work_desc": "Your team logs issues easily via email, and our engineers begin remote diagnostic and repair sessions instantly.",
+      "how_we_work_steps": [
+        {
+          "title": "Discovery",
+          "description": "We inventory your devices, active operating systems, network routers, and cloud directories."
+        },
+        {
+          "title": "Configuration",
+          "description": "We establish ticketing portals for your staff and install secure remote support software."
+        },
+        {
+          "title": "Launch",
+          "description": "We activate the remote queues, distribute contact instructions, and go live."
+        },
+        {
+          "title": "Verification",
+          "description": "We run test tickets and remote sessions to ensure quick response routes and clear logs."
+        },
+        {
+          "title": "Continuous Care",
+          "description": "We monitor incoming requests, solve employee blockages daily, and send monthly logs."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Important details about remote helpdesk scopes and security.",
+      "faq_items": [
+        {
+          "question": "How do my employees report an issue?",
+          "answer": "Users can submit tickets easily by emailing our support address or using the desktop launcher widget. The ticket is immediately registered, a receipt sent, and an engineer assigned."
+        },
+        {
+          "question": "What is remote desktop assistance? Is it safe?",
+          "answer": "We use encrypted, secure tools like AnyDesk and TeamViewer. An engineer can only access your screen if you supply the unique session ID and explicitly click 'Accept' on your screen. You can close the connection at any time."
+        },
+        {
+          "question": "What does SLA and guaranteed response times mean?",
+          "answer": "An SLA (Service Level Agreement) is our written contract guaranteeing the maximum timeframe within which we must start resolving your ticket. On Helpdesk Pro, this is typically under 1-2 hours for critical blockers."
+        },
+        {
+          "question": "Do helpdesk plans cover hardware repairs or physical parts?",
+          "answer": "No. Our monthly helpdesk plans cover remote software, OS, network, and cloud administration. If a physical part breaks (e.g., a screen or motherboard), we help coordinate the repair with manufacturer services, but hardware parts and physical callouts are billed separately."
+        }
+      ],
+      "cta_title": "Request a quote for this service"
     }
   },
   "ProductDetailPage": {

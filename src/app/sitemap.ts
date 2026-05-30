@@ -60,6 +60,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { path: '/szolgaltatasok/microsoft-365-google-workspace', priority: 0.8, changeFrequency: 'monthly' },
         { path: '/szolgaltatasok/backup-adatmentes', priority: 0.8, changeFrequency: 'monthly' },
         { path: '/szolgaltatasok/havidijas-rendszergazda', priority: 0.8, changeFrequency: 'monthly' },
+        { path: '/szolgaltatasok/felho-migracio-koltsegoptimalizalas', priority: 0.8, changeFrequency: 'monthly' },
+        { path: '/szolgaltatasok/ai-ugyfelszolgalat-weboldalra', priority: 0.8, changeFrequency: 'monthly' },
+        { path: '/szolgaltatasok/crm-lead-automatizacio', priority: 0.8, changeFrequency: 'monthly' },
+        { path: '/szolgaltatasok/webshop-meres-konverzio-noveles', priority: 0.8, changeFrequency: 'monthly' },
+        { path: '/szolgaltatasok/uzleti-dashboardok-riportok', priority: 0.8, changeFrequency: 'monthly' },
+        { path: '/szolgaltatasok/remote-it-helpdesk-ticketing', priority: 0.8, changeFrequency: 'monthly' },
         // Main pages
         { path: '/megoldasok', priority: 0.9, changeFrequency: 'weekly' },
         { path: '/referenciak', priority: 0.8, changeFrequency: 'monthly' },
