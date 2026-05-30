@@ -42,10 +42,10 @@ export const SERVICES_STRUCTURE: ServiceCategory[] = [
         descKey: "categories.growth_desc",
         items: [
             { key: "ai_support", href: "/szolgaltatasok/ai-ugyfelszolgalat-weboldalra", icon: Cpu, popular: true },
-            { key: "ai_auto", href: "/szolgaltatasok/ai-asszisztensek", icon: Cpu },
             { key: "crm_auto", href: "/szolgaltatasok/crm-lead-automatizacio", icon: Puzzle, popular: true },
             { key: "ecommerce_tracking", href: "/szolgaltatasok/webshop-meres-konverzio-noveles", icon: Activity },
             { key: "dashboards", href: "/szolgaltatasok/uzleti-dashboardok-riportok", icon: Layout, popular: true },
+            { key: "ai_auto", href: "/szolgaltatasok/ai-asszisztensek", icon: Cpu },
             { key: "webshop_auto", href: "/szolgaltatasok/webshop-automatizacio", icon: Zap }
         ]
     },

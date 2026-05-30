@@ -32,7 +32,7 @@ export function MegaMenu() {
     }))
 
     return (
-        <NavigationMenu>
+        <NavigationMenu className="static">
             <NavigationMenuList>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">
@@ -40,12 +40,11 @@ export function MegaMenu() {
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <div 
-                            className="relative overflow-hidden rounded-[2rem] shadow-2xl" 
+                            className="relative overflow-hidden rounded-[2rem] shadow-[0_0_50px_-12px_rgba(6,182,212,0.35)]" 
                             style={{ 
                                 background: "rgba(5, 12, 20, 0.97)", 
                                 backdropFilter: "blur(24px)", 
                                 border: "1px solid rgba(6, 182, 212, 0.15)",
-                                boxShadow: "0 0 40px -15px rgba(6, 182, 212, 0.2)"
                             }}
                         >
                             {/* Animated neural mesh background */}
@@ -54,15 +53,15 @@ export function MegaMenu() {
                             </div>
 
                             {/* Main Megamenu Grid */}
-                            <div className="relative z-10 grid grid-cols-[330px_1fr] md:w-[880px] lg:w-[1080px] min-h-[580px]">
+                            <div className="relative z-10 grid grid-cols-[280px_1fr] lg:grid-cols-[300px_1fr] xl:grid-cols-[330px_1fr] w-[95vw] md:w-[760px] lg:w-[960px] xl:w-[1080px] min-h-[460px] md:min-h-[480px] lg:min-h-[500px]">
                                 
                                 {/* Left Category Panel */}
-                                <div className="p-8 border-r border-white/5 flex flex-col justify-between bg-white/[0.01]">
-                                    <div className="space-y-6">
-                                        <div className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400/80 cursor-default">
+                                <div className="p-6 md:p-8 border-r border-white/5 flex flex-col justify-between bg-white/[0.01]">
+                                    <div className="space-y-5">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400/80 cursor-default px-2">
                                             {t("explore_services")}
                                         </div>
-                                        <div className="space-y-3">
+                                        <div className="space-y-2">
                                             {categories.map((cat) => {
                                                 const Icon = cat.icon
                                                 const isActive = activeCategory === cat.id
@@ -72,28 +71,31 @@ export function MegaMenu() {
                                                         onMouseEnter={() => setActiveCategory(cat.id)}
                                                         onClick={() => setActiveCategory(cat.id)}
                                                         className={cn(
-                                                            "w-full text-left p-4 rounded-2xl border transition-all duration-300 flex items-start gap-4 group/cat",
+                                                            "w-full text-left p-3.5 rounded-2xl border transition-all duration-300 flex items-start gap-4 group/cat",
                                                             isActive 
-                                                                ? "bg-cyan-500/5 border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.08)]"
+                                                                ? "bg-gradient-to-r from-cyan-500/10 via-cyan-500/[0.03] to-transparent border-cyan-500/35 shadow-[0_0_20px_-5px_rgba(6,182,212,0.15)]"
                                                                 : "bg-transparent border-transparent hover:bg-white/[0.02] hover:border-white/5"
                                                         )}
                                                     >
                                                         <div className={cn(
                                                             "h-10 w-10 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-300",
                                                             isActive
-                                                                ? "bg-cyan-500/10 border-cyan-500/25 text-cyan-400"
+                                                                ? "bg-cyan-500/15 border-cyan-500/30 text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.2)]"
                                                                 : "bg-white/[0.02] border-white/5 text-white/40 group-hover/cat:text-white/80 group-hover/cat:border-white/10"
                                                         )}>
                                                             <Icon className="h-5 w-5" />
                                                         </div>
-                                                        <div className="space-y-1">
+                                                        <div className="space-y-0.5">
                                                             <div className={cn(
                                                                 "text-sm font-black tracking-tight transition-colors leading-none",
                                                                 isActive ? "text-cyan-400" : "text-white/70 group-hover/cat:text-white"
                                                             )}>
                                                                 {cat.name}
                                                             </div>
-                                                            <div className="text-[11px] leading-snug text-white/40 font-medium group-hover/cat:text-white/50 transition-colors">
+                                                            <div className={cn(
+                                                                "text-[11px] leading-snug font-medium transition-colors mt-1",
+                                                                isActive ? "text-white/60" : "text-white/40 group-hover/cat:text-white/50"
+                                                            )}>
                                                                 {cat.desc}
                                                             </div>
                                                         </div>
@@ -107,9 +109,9 @@ export function MegaMenu() {
                                     <NavigationMenuLink asChild>
                                         <Link
                                             href="/demo"
-                                            className="flex select-none flex-col justify-end rounded-2xl bg-gradient-to-br from-cyan-500/15 via-blue-500/5 to-transparent p-5 no-underline outline-none border border-cyan-500/20 hover:border-cyan-500/40 shadow-lg group transition-all duration-500 mt-6"
+                                            className="flex select-none flex-col justify-end rounded-2xl bg-gradient-to-br from-cyan-500/15 via-blue-500/5 to-transparent p-5 no-underline outline-none border border-cyan-500/25 hover:border-cyan-500/40 shadow-lg group transition-all duration-500 mt-6"
                                         >
-                                            <div className="flex items-center gap-2 text-cyan-400 group-hover:scale-105 transition-transform duration-300">
+                                            <div className="flex items-center gap-2 text-cyan-400 group-hover:scale-[1.02] transition-transform duration-300">
                                                 <Sparkles className="h-5 w-5 text-cyan-400" />
                                                 <span className="text-[10px] font-black uppercase tracking-widest">{t("need_help_title")}</span>
                                             </div>
@@ -124,7 +126,7 @@ export function MegaMenu() {
                                 </div>
 
                                 {/* Right Service Grid Panel */}
-                                <div className="p-8 flex flex-col justify-center">
+                                <div className="p-6 md:p-8 flex flex-col justify-center bg-white/[0.002]">
                                     <AnimatePresence mode="wait">
                                         <motion.div
                                             key={activeCategory}
@@ -132,7 +134,7 @@ export function MegaMenu() {
                                             animate={{ opacity: 1, y: 0 }}
                                             exit={{ opacity: 0, y: -8 }}
                                             transition={{ duration: 0.2, ease: "easeOut" }}
-                                            className="grid grid-cols-2 gap-4"
+                                            className="grid grid-cols-1 md:grid-cols-2 gap-3.5"
                                         >
                                             {SERVICES_STRUCTURE.find(cat => cat.id === activeCategory)?.items.map((item) => {
                                                 const Icon = item.icon
@@ -142,32 +144,30 @@ export function MegaMenu() {
                                                     <NavigationMenuLink asChild key={item.key}>
                                                         <Link
                                                             href={item.href as any}
-                                                            className="block relative select-none rounded-[1.25rem] p-4 bg-white/[0.01] hover:bg-white/[0.03] border border-white/5 hover:border-cyan-500/30 shadow-sm transition-all duration-300 group outline-none hover:scale-[1.01]"
+                                                            className="flex items-center justify-between relative select-none rounded-[1.25rem] p-4 bg-white/[0.01] hover:bg-cyan-500/[0.02] border border-white/5 hover:border-cyan-500/30 shadow-sm transition-all duration-300 group outline-none hover:-translate-y-0.5 hover:shadow-[0_4px_25px_-5px_rgba(6,182,212,0.12)]"
                                                         >
-                                                            {/* Popular Badge */}
-                                                            {item.popular && (
-                                                                <div className="absolute top-4 right-4">
-                                                                    <span className="bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
-                                                                        {t("popular")}
-                                                                    </span>
-                                                                </div>
-                                                            )}
-
-                                                            <div className="flex items-start gap-4">
-                                                                <div className="h-10 w-10 shrink-0 rounded-xl bg-cyan-500/5 border border-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all duration-300">
+                                                            <div className="flex items-start gap-4 pr-3 flex-1 min-w-0">
+                                                                <div className="h-10 w-10 shrink-0 rounded-xl bg-cyan-500/5 border border-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500/15 group-hover:border-cyan-500/25 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.25)] transition-all duration-300">
                                                                     <Icon className="h-5 w-5" />
                                                                 </div>
-                                                                <div className="space-y-1.5 pr-6">
-                                                                    <div className="flex items-center gap-1.5">
-                                                                        <span className="text-sm font-black tracking-tight text-white/90 group-hover:text-cyan-400 transition-colors leading-none">
+                                                                <div className="space-y-1 min-w-0 flex-1">
+                                                                    <div className="flex items-center gap-2 flex-wrap">
+                                                                        <span className="text-sm font-black tracking-tight text-white/90 group-hover:text-white transition-colors leading-tight">
                                                                             {title}
                                                                         </span>
-                                                                        <ArrowRight className="h-3.5 w-3.5 text-cyan-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shrink-0" />
+                                                                        {item.popular && (
+                                                                            <span className="bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm whitespace-nowrap shrink-0">
+                                                                                {t("popular")}
+                                                                            </span>
+                                                                        )}
                                                                     </div>
-                                                                    <p className="line-clamp-2 text-xs leading-normal text-white/40 group-hover:text-white/60 transition-colors font-medium">
+                                                                    <p className="line-clamp-2 text-xs leading-normal text-white/50 group-hover:text-white/75 transition-colors font-medium">
                                                                         {desc}
                                                                     </p>
                                                                 </div>
+                                                            </div>
+                                                            <div className="shrink-0 flex items-center justify-center h-8 w-8 rounded-lg text-cyan-400/25 group-hover:text-cyan-400 group-hover:bg-cyan-500/10 border border-transparent group-hover:border-cyan-500/20 transition-all duration-300">
+                                                                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                                                             </div>
                                                         </Link>
                                                     </NavigationMenuLink>
