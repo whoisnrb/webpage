@@ -104,7 +104,23 @@ export async function processBooking(body: WebhookBody) {
     // 1. Save to Sheet
     await appendToSheet(GOOGLE_SHEET_IDS.BOOKING, [name || '', email || '', date || '', time || '', topic || '', message || '']);
 
-    // 2. Notify Admin
+    // 2. Save to Database
+    try {
+        await prisma.contactMessage.create({
+            data: {
+                name: name || 'Anonymous',
+                email: email || 'no-email@backlineit.hu',
+                phone: null,
+                subject: topic ? `Időpontfoglalás: ${topic}` : 'Kapcsolatfelvétel',
+                message: `Időpontfoglalási kérés:\nDátum: ${date || '-'}\nIdő: ${time || '-'}\n\nÜzenet:\n${message || '-'}`
+            }
+        });
+        console.log(`[processBooking] Saved to database as ContactMessage`);
+    } catch (dbError) {
+        console.error(`[processBooking] Error saving to database:`, dbError);
+    }
+
+    // 3. Notify Admin
     const adminEmail = process.env.ADMIN_EMAIL || 'whoisnrb@gmail.com';
     await sendEmail(
         adminEmail,
@@ -112,7 +128,7 @@ export async function processBooking(body: WebhookBody) {
         `Új foglalás érkezett:<br><br>Név: ${name}<br>Email: ${email}<br>Időpont: ${date} ${time || ''}<br>Téma: ${topic}<br>Üzenet: ${message}`
     );
 
-    // 3. Confirm to User
+    // 4. Confirm to User
     if (email) {
         await sendEmail(
             email,

@@ -1,43 +1,77 @@
-import { auth } from "@/auth"
 import { prisma } from "@/lib/db"
+import { auth } from "@/auth"
 import { headers } from "next/headers"
 
-type ActionType = "CREATE" | "UPDATE" | "DELETE" | "LOGIN" | "EXPORT" | "OTHER"
+export type ActionType = "CREATE" | "UPDATE" | "DELETE" | "LOGIN" | "EXPORT" | "OTHER"
 
-interface LogActionParams {
+export interface LogActionParams {
     action: ActionType
     entity: string
     entityId?: string
     details?: unknown
 }
 
+// Original helper for backwards compatibility
 export async function logAdminAction({ action, entity, entityId, details }: LogActionParams) {
     try {
-        const session = await auth()
+        const detailsString = details 
+            ? (typeof details === 'string' ? details : JSON.stringify(details)) 
+            : null
 
+        await createAuditLog({
+            action,
+            entity,
+            entityId,
+            details: detailsString
+        })
+    } catch (error) {
+        console.error("[logAdminAction] Error:", error)
+    }
+}
+
+// New helper for general text logs
+export async function createAuditLog({
+    action,
+    entity,
+    entityId,
+    details
+}: {
+    action: string
+    entity: string
+    entityId?: string
+    details?: string | null
+}) {
+    try {
+        const session = await auth()
         if (!session?.user?.id) {
-            console.warn("Attempted to log admin action without user session")
+            console.warn(`[AuditLog] Cannot log action "${action}" on ${entity}: No authenticated user.`)
             return
         }
 
-        // Get IP and User Agent safely
-        const headersList = await headers()
-        const ipAddress = headersList.get("x-forwarded-for") || "unknown"
-        const userAgent = headersList.get("user-agent") || "unknown"
+        let ipAddress = "unknown"
+        let userAgent = "unknown"
+
+        try {
+            const headersList = await headers()
+            ipAddress = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown"
+            userAgent = headersList.get("user-agent") || "unknown"
+        } catch (headerError) {
+            console.debug("[AuditLog] Failed to fetch headers, using fallback values.")
+        }
 
         await prisma.auditLog.create({
             data: {
                 action,
                 entity,
                 entityId,
-                details: details ? JSON.stringify(details) : null,
+                details: details || null,
                 userId: session.user.id,
                 ipAddress,
-                userAgent,
-            },
+                userAgent
+            }
         })
+        console.log(`[AuditLog] Action "${action}" on ${entity} logged successfully.`)
     } catch (error) {
-        console.error("Failed to create audit log:", error)
-        // Don't throw, just log the error so we don't break the main flow
+        console.error("[AuditLog] Failed to create audit log:", error)
     }
 }

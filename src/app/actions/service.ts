@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/db"
 import { revalidatePath } from "next/cache"
+import { createAuditLog } from "@/lib/audit"
 
 export type ServiceDTO = {
     id: string
@@ -60,7 +61,7 @@ export async function getServiceBySlug(slug: string): Promise<ServiceDTO | null>
 }
 
 export async function createService(data: Omit<ServiceDTO, 'id' | 'updatedAt'>) {
-    await prisma.service.create({
+    const service = await prisma.service.create({
         data: {
             name: data.name,
             nameEn: data.nameEn || null,
@@ -76,8 +77,17 @@ export async function createService(data: Omit<ServiceDTO, 'id' | 'updatedAt'>) 
             sortOrder: data.sortOrder,
         }
     })
+
+    await createAuditLog({
+        action: "CREATE_SERVICE",
+        entity: "Service",
+        entityId: service.id,
+        details: `Szolgáltatás létrehozva: ${service.name} (Slug: ${service.slug})`
+    })
+
     revalidatePath('/szolgaltatasok')
     revalidatePath('/admin/services')
+    return service
 }
 
 export async function updateService(id: string, data: Partial<ServiceDTO>) {
@@ -92,18 +102,36 @@ export async function updateService(id: string, data: Partial<ServiceDTO>) {
     delete updateData.id
     delete updateData.updatedAt
 
-    await prisma.service.update({
+    const service = await prisma.service.update({
         where: { id },
         data: updateData
     })
+
+    await createAuditLog({
+        action: "UPDATE_SERVICE",
+        entity: "Service",
+        entityId: id,
+        details: `Szolgáltatás módosítva: ${service.name} (Aktív: ${service.active})`
+    })
+
     revalidatePath('/szolgaltatasok')
     revalidatePath('/admin/services')
+    return service
 }
 
 export async function deleteService(id: string) {
-    await prisma.service.delete({
+    const service = await prisma.service.delete({
         where: { id }
     })
+
+    await createAuditLog({
+        action: "DELETE_SERVICE",
+        entity: "Service",
+        entityId: id,
+        details: `Szolgáltatás törölve: ${service.name}`
+    })
+
     revalidatePath('/szolgaltatasok')
     revalidatePath('/admin/services')
+    return service
 }

@@ -3,6 +3,8 @@
 import { prisma } from "@/lib/db"
 import { z } from "zod"
 import { processConsultation } from "@/lib/n8n/actions"
+import { createAuditLog } from "@/lib/audit"
+import { revalidatePath } from "next/cache"
 
 const consultationSchema = z.object({
     name: z.string().min(1, "Név kötelező"),
@@ -57,5 +59,48 @@ export async function submitConsultation(data: ConsultationInput) {
     } catch (error) {
         console.error("Consultation submission error:", error)
         return { success: false, error: "Hiba történt a kérés feldolgozása során." }
+    }
+}
+
+export async function updateConsultationStatus(id: string, status: string) {
+    try {
+        const consultation = await prisma.consultation.update({
+            where: { id },
+            data: { status }
+        })
+
+        await createAuditLog({
+            action: "UPDATE_CONSULTATION_STATUS",
+            entity: "Consultation",
+            entityId: id,
+            details: `Konzultáció státusza frissítve: ${status} (${consultation.name} - ${consultation.email})`
+        })
+
+        revalidatePath("/admin/consultations")
+        return { success: true }
+    } catch (error) {
+        console.error("updateConsultationStatus error:", error)
+        return { success: false }
+    }
+}
+
+export async function deleteConsultation(id: string) {
+    try {
+        const consultation = await prisma.consultation.delete({
+            where: { id }
+        })
+
+        await createAuditLog({
+            action: "DELETE_CONSULTATION",
+            entity: "Consultation",
+            entityId: id,
+            details: `Konzultáció törölve: ${consultation.name} (${consultation.email})`
+        })
+
+        revalidatePath("/admin/consultations")
+        return { success: true }
+    } catch (error) {
+        console.error("Error deleting consultation:", error)
+        return { success: false }
     }
 }

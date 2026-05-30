@@ -18,135 +18,176 @@ export default async function AdminLayout({
     }
 
     return (
-        <div className="flex min-h-screen">
+        <div className="flex min-h-screen bg-[#030712] text-slate-100 font-sans">
             {/* Sidebar */}
-            <aside className="w-64 bg-muted/30 border-r hidden md:flex flex-col">
-                <div className="p-6 border-b">
-                    <h1 className="text-xl font-bold tracking-tight">Admin Panel</h1>
-                    <p className="text-xs text-muted-foreground">BacklineIT</p>
+            <aside className="w-64 bg-[#090d16] border-r border-white/5 hidden md:flex flex-col shrink-0 shadow-[4px_0_24px_rgba(0,0,0,0.4)]">
+                {/* Header */}
+                <div className="p-6 border-b border-white/5 bg-[#0b101c]/40 backdrop-blur-md flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                        <div className="h-2.5 w-2.5 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_8px_#06b6d4]" />
+                        <h1 className="text-lg font-bold tracking-wider uppercase bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent">
+                            Admin Panel
+                        </h1>
+                    </div>
+                    <p className="text-[10px] uppercase tracking-widest text-cyan-400/70 font-semibold">
+                        BacklineIT Core v2.0
+                    </p>
                 </div>
-                <nav className="flex-1 p-4 space-y-2">
-                    <Link href={"/admin" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <LayoutDashboard className="mr-2 h-4 w-4" />
-                            Vezérlőpult
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/consultations" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <FileText className="mr-2 h-4 w-4" />
-                            Konzultációk
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/inquiries" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <MessageSquare className="mr-2 h-4 w-4" />
-                            Megkeresések
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/crm" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Briefcase className="mr-2 h-4 w-4" />
-                            CRM
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/leads" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Users className="mr-2 h-4 w-4" />
-                            Leads (Régi)
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/tickets" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Ticket className="mr-2 h-4 w-4" />
-                            Support Tickets
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/projects" as any}>
-                        <Button variant="ghost" className="w-full justify-start text-blue-500">
-                            <Folder className="mr-2 h-4 w-4" />
-                            Ügyfél Projektek
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/careers" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Briefcase className="mr-2 h-4 w-4" />
-                            Jelentkezések
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/products" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Package className="mr-2 h-4 w-4" />
-                            Megoldások
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/services" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Banknote className="mr-2 h-4 w-4" />
-                            Szolgáltatások
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/references" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <FileText className="mr-2 h-4 w-4" />
-                            Referenciák
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/blog" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <FileText className="mr-2 h-4 w-4" />
-                            Blog
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/audit-logs" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Activity className="mr-2 h-4 w-4" />
-                            Audit Log
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/cron-jobs" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Clock className="mr-2 h-4 w-4" />
-                            Cron Jobs
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/features" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <ToggleLeft className="mr-2 h-4 w-4" />
-                            Feature Flags
-                        </Button>
-                    </Link>
-                    <Link href={"/admin/analytics" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <BarChart3 className="mr-2 h-4 w-4" />
-                            Analytics
-                        </Button>
-                    </Link>
-                    <Link href={"/dashboard" as any}>
-                        <Button variant="ghost" className="w-full justify-start">
-                            <Settings className="mr-2 h-4 w-4" />
-                            Felhasználói fiók
-                        </Button>
-                    </Link>
+
+                {/* Navigation */}
+                <nav className="flex-1 p-4 space-y-6 overflow-y-auto custom-scrollbar">
+                    {/* Fő vezérlőpult */}
+                    <div className="space-y-1.5">
+                        <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Kezelőfelület</p>
+                        <Link href={"/admin" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <LayoutDashboard className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Vezérlőpult</span>
+                            </Button>
+                        </Link>
+                    </div>
+
+                    {/* Kapcsolatok és igények */}
+                    <div className="space-y-1.5">
+                        <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Ügyfélkapcsolatok</p>
+                        
+                        <Link href={"/admin/contact-messages" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-cyan-500/10 hover:border-cyan-500/20 border border-transparent rounded-xl transition-all duration-300">
+                                <MessageSquare className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Kapcsolat üzenetek</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/inquiries" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <FileText className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Megkeresések</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/consultations" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Clock className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Konzultációk</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/crm" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Users className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">CRM</span>
+                            </Button>
+                        </Link>
+                    </div>
+
+                    {/* Operatív */}
+                    <div className="space-y-1.5">
+                        <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Operáció</p>
+                        
+                        <Link href={"/admin/projects" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Folder className="h-4 w-4 text-blue-400" />
+                                <span className="text-sm font-medium">Ügyfél Projektek</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/careers" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Briefcase className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Jelentkezések</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/tickets" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Ticket className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Support Tickets</span>
+                            </Button>
+                        </Link>
+                    </div>
+
+                    {/* Tartalomkezelés */}
+                    <div className="space-y-1.5">
+                        <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Tartalom</p>
+                        
+                        <Link href={"/admin/services" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Banknote className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Szolgáltatások</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/products" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Package className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Megoldások</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/references" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <FileText className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Referenciák</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/blog" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <FileText className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Blog</span>
+                            </Button>
+                        </Link>
+                    </div>
+
+                    {/* Rendszer */}
+                    <div className="space-y-1.5">
+                        <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Rendszer</p>
+                        
+                        <Link href={"/admin/audit-logs" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Activity className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Audit Log</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/cron-jobs" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Clock className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Cron Jobs</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/features" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <ToggleLeft className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Feature Flags</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/analytics" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <BarChart3 className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Analytics</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/dashboard" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Settings className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Felhasználói fiók</span>
+                            </Button>
+                        </Link>
+                    </div>
                 </nav>
-                <div className="p-4 border-t">
+
+                {/* Footer */}
+                <div className="p-4 border-t border-white/5 bg-[#0b101c]/30">
                     <form action={async () => {
                         "use server"
-                        // Import signOut dynamically or use a client component for logout if needed
-                        // For now, redirecting to api/auth/signout is simplest
-                        // We need to handle locale in server action too, but getLocale works there
-                        // However, redirect in server action might need absolute path or just work
-                        // Let's try simple redirect first, but we need locale
-                        // const locale = await getLocale() // Cannot use await in sync server action if not async
-                        // But this is an async server action
-                        // redirect(`/${locale}/api/auth/signout`)
-                        // Actually api routes are not localized usually?
-                        // If /api/auth/signout is a NextAuth route, it might not be under [locale]
-                        // Let's assume /api is root.
                         redirect("/api/auth/signout")
                     }}>
-                        <Button variant="outline" className="w-full justify-start text-destructive hover:text-destructive">
-                            <LogOut className="mr-2 h-4 w-4" />
+                        <Button variant="outline" className="w-full justify-start gap-3 border-red-500/20 bg-red-500/5 text-red-400 hover:bg-red-500/10 hover:text-red-300 hover:border-red-500/40 rounded-xl transition-all duration-300">
+                            <LogOut className="h-4 w-4" />
                             Kijelentkezés
                         </Button>
                     </form>
@@ -154,8 +195,10 @@ export default async function AdminLayout({
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 p-8 overflow-y-auto">
-                {children}
+            <main className="flex-1 p-8 overflow-y-auto bg-gradient-to-br from-[#060814] via-[#090d1a] to-[#04060f]">
+                <div className="max-w-7xl mx-auto space-y-6">
+                    {children}
+                </div>
             </main>
         </div>
     )

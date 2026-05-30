@@ -15,8 +15,8 @@ import {
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { updateInquiryPaymentLink, updateInquiryStatus } from "@/app/actions/inquiry"
-import { ExternalLink, Mail, MessageSquare, CreditCard, Copy, Check } from "lucide-react"
+import { updateInquiryPaymentLink, updateInquiryStatus, deleteInquiry } from "@/app/actions/inquiry"
+import { ExternalLink, Mail, MessageSquare, CreditCard, Copy, Check, AlertTriangle, Trash2 } from "lucide-react"
 import { toast } from "sonner"
 
 interface InquiryManagerProps {
@@ -28,6 +28,19 @@ export function InquiryManager({ inquiry }: InquiryManagerProps) {
     const [paymentLink, setPaymentLink] = useState(inquiry.stripePaymentLink || "")
     const [status, setStatus] = useState(inquiry.status)
     const [copied, setCopied] = useState(false)
+    const [confirmDelete, setConfirmDelete] = useState(false)
+
+    const handleDeleteInquiry = async () => {
+        setIsPending(true)
+        const result = await deleteInquiry(inquiry.id)
+        setIsPending(false)
+        if (result.success) {
+            toast.success("Megkeresés sikeresen törölve!")
+            window.location.reload()
+        } else {
+            toast.error("Hiba történt a törlés során.")
+        }
+    }
 
     const handleUpdatePayment = async () => {
         setIsPending(true)
@@ -136,8 +149,32 @@ export function InquiryManager({ inquiry }: InquiryManagerProps) {
                     </div>
                 </div>
 
-                <DialogFooter>
-                    <Button onClick={handleUpdatePayment} disabled={isPending} className="w-full sm:w-auto">
+                <DialogFooter className="flex justify-between items-center w-full gap-2 sm:gap-0">
+                    {confirmDelete ? (
+                        <div className="flex items-center gap-2 bg-red-950/20 border border-red-500/20 px-3 py-1.5 rounded-xl">
+                            <span className="text-xs text-red-400 font-semibold flex items-center gap-1">
+                                <AlertTriangle className="h-3.5 w-3.5 text-red-500" />
+                                Biztos?
+                            </span>
+                            <Button size="sm" variant="destructive" className="h-7 px-2.5 text-xs rounded-lg" onClick={handleDeleteInquiry} disabled={isPending}>
+                                Igen
+                            </Button>
+                            <Button size="sm" variant="outline" className="h-7 px-2.5 text-xs rounded-lg border-white/10 hover:bg-white/5" onClick={() => setConfirmDelete(false)} disabled={isPending}>
+                                Nem
+                            </Button>
+                        </div>
+                    ) : (
+                        <Button 
+                            variant="ghost" 
+                            className="text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-xl"
+                            onClick={() => setConfirmDelete(true)}
+                            disabled={isPending}
+                        >
+                            <Trash2 className="h-4 w-4 mr-2" />
+                            Megkeresés Törlése
+                        </Button>
+                    )}
+                    <Button onClick={handleUpdatePayment} disabled={isPending} className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white rounded-xl h-10 px-4 font-semibold w-full sm:w-auto ml-auto">
                         Link Mentése & Email Küldése
                     </Button>
                 </DialogFooter>

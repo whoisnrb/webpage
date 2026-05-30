@@ -11,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ArrowLeft, Plus, Trash2, Save } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { createService, updateService, getServiceById, type ServiceDTO } from "@/app/actions/service"
+import { toast } from "sonner"
 
 const ICON_OPTIONS = [
     { value: "Code2", label: "Code (Scriptek)" },
@@ -92,14 +93,16 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
         try {
             if (isNew) {
                 await createService(data)
+                toast.success("Szolgáltatás sikeresen létrehozva!")
             } else {
                 await updateService(serviceId!, data)
+                toast.success("Szolgáltatás sikeresen módosítva!")
             }
             router.push("/admin/services")
             router.refresh()
         } catch (error) {
             console.error("Error saving service:", error)
-            alert("Hiba történt a mentés során!")
+            toast.error("Hiba történt a mentés során!")
         } finally {
             setLoading(false)
         }

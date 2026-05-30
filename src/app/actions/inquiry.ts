@@ -4,6 +4,7 @@ import { prisma } from "@/lib/db"
 import { z } from "zod"
 import { sendAdminInquiryNotification } from "@/lib/mail"
 import { revalidatePath } from "next/cache"
+import { createAuditLog } from "@/lib/audit"
 
 const inquirySchema = z.object({
     name: z.string().min(1, "Név kötelező"),
@@ -42,13 +43,22 @@ export async function submitInquiry(data: InquiryInput) {
 
 export async function updateInquiryStatus(id: string, status: string) {
     try {
-        await prisma.serviceInquiry.update({
+        const inquiry = await prisma.serviceInquiry.update({
             where: { id },
             data: { status }
         })
+
+        await createAuditLog({
+            action: "UPDATE_INQUIRY_STATUS",
+            entity: "ServiceInquiry",
+            entityId: id,
+            details: `Megkeresés státusza módosítva erre: ${status} (${inquiry.name} - ${inquiry.email})`
+        })
+
         revalidatePath("/admin/inquiries")
         return { success: true }
     } catch (error) {
+        console.error("updateInquiryStatus error:", error)
         return { success: false }
     }
 }
@@ -63,6 +73,13 @@ export async function updateInquiryPaymentLink(id: string, paymentLink: string) 
             }
         })
         
+        await createAuditLog({
+            action: "UPDATE_INQUIRY_PAYMENT",
+            entity: "ServiceInquiry",
+            entityId: id,
+            details: `Stripe fizetési link mentve ehhez a megkereséshez: ${inquiry.name} (${inquiry.email})`
+        })
+
         // This will be handled in the Admin UI or here
         // The user wants "auto-feedback", so let's trigger it if the link is not empty
         if (paymentLink) {
@@ -79,6 +96,27 @@ export async function updateInquiryPaymentLink(id: string, paymentLink: string) 
         return { success: true }
     } catch (error) {
         console.error("Error updating payment link:", error)
+        return { success: false }
+    }
+}
+
+export async function deleteInquiry(id: string) {
+    try {
+        const inquiry = await prisma.serviceInquiry.delete({
+            where: { id }
+        })
+
+        await createAuditLog({
+            action: "DELETE_INQUIRY",
+            entity: "ServiceInquiry",
+            entityId: id,
+            details: `Megkeresés törölve: ${inquiry.name} (${inquiry.email})`
+        })
+
+        revalidatePath("/admin/inquiries")
+        return { success: true }
+    } catch (error) {
+        console.error("Error deleting inquiry:", error)
         return { success: false }
     }
 }

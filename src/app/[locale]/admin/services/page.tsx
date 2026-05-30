@@ -1,95 +1,37 @@
-import { getServices, deleteService } from "@/app/actions/service"
+import { getServices } from "@/app/actions/service"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
-import { Plus, Pencil, Trash2, CheckCircle2, XCircle } from "lucide-react"
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
+import { Plus, ArrowLeft } from "lucide-react"
+import { ServiceList } from "./service-list"
+
+export const dynamic = 'force-dynamic'
 
 export default async function AdminServicesPage() {
     const services = await getServices()
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center">
-                <h1 className="text-3xl font-bold tracking-tight">Szolgáltatások</h1>
+            <div className="flex justify-between items-center bg-[#090d16]/30 border border-white/5 p-6 rounded-2xl backdrop-blur-sm">
+                <div className="flex items-center gap-4">
+                    <Link href={"/admin" as any}>
+                        <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white hover:bg-white/5 rounded-xl">
+                            <ArrowLeft className="h-4 w-4" />
+                        </Button>
+                    </Link>
+                    <div>
+                        <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent">Szolgáltatások</h1>
+                        <p className="text-slate-400 text-sm mt-1">BacklineIT nyilvános szolgáltatási portfóliójának kezelése.</p>
+                    </div>
+                </div>
                 <Link href={"/admin/services/new" as any}>
-                    <Button>
-                        <Plus className="mr-2 h-4 w-4" />
+                    <Button className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 shadow-lg shadow-cyan-500/20 text-white rounded-xl h-10 px-4 gap-2 font-semibold">
+                        <Plus className="h-4 w-4" />
                         Új szolgáltatás
                     </Button>
                 </Link>
             </div>
 
-            <div className="border rounded-lg">
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead>Sorrend</TableHead>
-                            <TableHead>Név</TableHead>
-                            <TableHead>Slug</TableHead>
-                            <TableHead>Ár</TableHead>
-                            <TableHead>Státusz</TableHead>
-                            <TableHead className="text-right">Műveletek</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {services.map((service) => (
-                            <TableRow key={service.id}>
-                                <TableCell className="text-muted-foreground">{service.sortOrder}</TableCell>
-                                <TableCell className="font-medium">{service.name}</TableCell>
-                                <TableCell className="text-muted-foreground">{service.slug}</TableCell>
-                                <TableCell>
-                                    {service.price > 0
-                                        ? new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(service.price)
-                                        : <span className="text-amber-500">Egyedi árazás</span>
-                                    }
-                                </TableCell>
-                                <TableCell>
-                                    {service.active ? (
-                                        <span className="inline-flex items-center gap-1 text-green-500 text-sm">
-                                            <CheckCircle2 className="h-4 w-4" /> Aktív
-                                        </span>
-                                    ) : (
-                                        <span className="inline-flex items-center gap-1 text-red-500 text-sm">
-                                            <XCircle className="h-4 w-4" /> Inaktív
-                                        </span>
-                                    )}
-                                </TableCell>
-                                <TableCell className="text-right">
-                                    <div className="flex justify-end gap-2">
-                                        <Link href={`/admin/services/${service.id}` as any}>
-                                            <Button variant="ghost" size="icon">
-                                                <Pencil className="h-4 w-4" />
-                                            </Button>
-                                        </Link>
-                                        <form action={async () => {
-                                            "use server"
-                                            await deleteService(service.id)
-                                        }}>
-                                            <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
-                                                <Trash2 className="h-4 w-4" />
-                                            </Button>
-                                        </form>
-                                    </div>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                        {services.length === 0 && (
-                            <TableRow>
-                                <TableCell colSpan={6} className="text-center py-10 text-muted-foreground">
-                                    Nincs megjeleníthető szolgáltatás.
-                                </TableCell>
-                            </TableRow>
-                        )}
-                    </TableBody>
-                </Table>
-            </div>
+            <ServiceList initialServices={services as any} />
         </div>
     )
 }
