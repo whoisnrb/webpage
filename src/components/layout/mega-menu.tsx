@@ -32,7 +32,7 @@ export function MegaMenu() {
     }))
 
     return (
-        <NavigationMenu className="static">
+        <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">
