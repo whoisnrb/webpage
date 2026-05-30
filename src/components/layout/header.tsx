@@ -11,6 +11,7 @@ import { ThemeCustomizer } from "@/components/theme/theme-customizer"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
 import { CurrencySwitcher } from "@/components/layout/currency-switcher"
 import { MegaMenu } from "@/components/layout/mega-menu"
+import { SERVICES_STRUCTURE } from "./services-config"
 import { DarkModeToggle } from "@/components/theme/dark-mode-toggle"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { NeuralBackground } from "@/components/neural-background"
@@ -170,38 +171,109 @@ export function Header() {
                             </div>
                             <div className="container mx-auto px-4 py-8 space-y-6 relative z-10">
                                 <nav>
-                                    <Accordion type="single" collapsible className="w-full">
-                                        {navCategories.map((category) => (
-                                            <AccordionItem key={category.name} value={category.name} className="border-white/5">
-                                                <AccordionTrigger className="text-lg font-bold text-white/90 hover:text-primary py-4 hover:no-underline">
-                                                    {category.name}
-                                                </AccordionTrigger>
-                                                <AccordionContent>
-                                                    <div className="flex flex-col gap-3 pl-4 pt-2 pb-4">
-                                                        {category.items.map((item) => {
-                                                            const href = typeof item.href === 'string' ? item.href : (item.href as { pathname: string }).pathname;
-                                                            const isActive = pathname === href;
-                                                            return (
-                                                                <Link
-                                                                    key={item.name}
-                                                                    href={item.href}
-                                                                    className={cn(
-                                                                        "text-sm font-medium transition-colors border-l-2 pl-4 py-1",
-                                                                        isActive
-                                                                            ? "text-primary border-primary bg-primary/5"
-                                                                            : "text-white/40 border-transparent hover:text-white hover:border-white/10"
-                                                                    )}
-                                                                    onClick={() => setMobileMenuOpen(false)}
-                                                                >
-                                                                    {item.name}
-                                                                </Link>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                </AccordionContent>
-                                            </AccordionItem>
-                                        ))}
-                                    </Accordion>
+                                     <Accordion type="single" collapsible className="w-full">
+                                         {navCategories.map((category) => {
+                                             const isServices = category.name === t("services")
+                                             return (
+                                                 <AccordionItem key={category.name} value={category.name} className="border-white/5">
+                                                     <AccordionTrigger className="text-lg font-bold text-white/90 hover:text-primary py-4 hover:no-underline">
+                                                         {category.name}
+                                                     </AccordionTrigger>
+                                                     <AccordionContent>
+                                                         {isServices ? (
+                                                             <div className="space-y-4">
+                                                                 <Accordion type="single" collapsible className="w-full pl-2 space-y-1">
+                                                                     {SERVICES_STRUCTURE.map((subCat) => {
+                                                                         const subCatName = tMega(subCat.nameKey)
+                                                                         const SubIcon = subCat.icon
+                                                                         return (
+                                                                             <AccordionItem key={subCat.id} value={subCat.id} className="border-white/5">
+                                                                                 <AccordionTrigger className="text-sm font-black text-white/80 hover:text-primary py-3 hover:no-underline flex items-center gap-2">
+                                                                                     <span className="flex items-center gap-2">
+                                                                                         <SubIcon className="h-4 w-4 text-cyan-400 shrink-0" />
+                                                                                         {subCatName}
+                                                                                     </span>
+                                                                                 </AccordionTrigger>
+                                                                                 <AccordionContent>
+                                                                                     <div className="flex flex-col gap-3 pl-6 pt-2 pb-4 border-l border-white/5 ml-2">
+                                                                                         {subCat.items.map((subItem) => {
+                                                                                             const subItemName = tMega(`nav_items.${subItem.key}`)
+                                                                                             const isActive = pathname === subItem.href
+                                                                                             return (
+                                                                                                 <Link
+                                                                                                     key={subItem.key}
+                                                                                                     href={subItem.href as any}
+                                                                                                     className={cn(
+                                                                                                         "text-xs font-semibold py-1 flex items-center justify-between group transition-colors",
+                                                                                                         isActive
+                                                                                                             ? "text-primary font-bold"
+                                                                                                             : "text-white/40 hover:text-white"
+                                                                                                     )}
+                                                                                                     onClick={() => setMobileMenuOpen(false)}
+                                                                                                 >
+                                                                                                     <span>{subItemName}</span>
+                                                                                                     {subItem.popular && (
+                                                                                                         <span className="bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full scale-90">
+                                                                                                             {tMega("popular")}
+                                                                                                         </span>
+                                                                                                     )}
+                                                                                                 </Link>
+                                                                                             )
+                                                                                         })}
+                                                                                     </div>
+                                                                                 </AccordionContent>
+                                                                             </AccordionItem>
+                                                                         )
+                                                                     })}
+                                                                 </Accordion>
+
+                                                                 {/* Mobile Services Left Panel CTA Card */}
+                                                                 <div className="pt-4 border-t border-white/5">
+                                                                     <Link
+                                                                         href="/demo"
+                                                                         className="flex select-none flex-col justify-end rounded-2xl bg-gradient-to-br from-cyan-500/15 via-blue-500/5 to-transparent p-5 no-underline border border-cyan-500/20 hover:border-cyan-500/40 shadow-lg group transition-all duration-300"
+                                                                         onClick={() => setMobileMenuOpen(false)}
+                                                                     >
+                                                                         <div className="flex items-center gap-2 text-cyan-400">
+                                                                             <span className="text-[10px] font-black uppercase tracking-widest">{tMega("need_help_title")}</span>
+                                                                         </div>
+                                                                         <p className="text-[11px] leading-relaxed text-white/50 font-medium mt-1 mb-3">
+                                                                             {tMega("need_help_desc")}
+                                                                         </p>
+                                                                         <div className="w-full py-2.5 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-xs font-black uppercase tracking-wider text-center border border-cyan-500/25 transition-all">
+                                                                             {tMega("need_help_cta_long")}
+                                                                         </div>
+                                                                     </Link>
+                                                                 </div>
+                                                             </div>
+                                                         ) : (
+                                                             <div className="flex flex-col gap-3 pl-4 pt-2 pb-4">
+                                                                 {category.items.map((item) => {
+                                                                     const href = typeof item.href === 'string' ? item.href : (item.href as { pathname: string }).pathname;
+                                                                     const isActive = pathname === href;
+                                                                     return (
+                                                                         <Link
+                                                                             key={item.name}
+                                                                             href={item.href}
+                                                                             className={cn(
+                                                                                 "text-sm font-medium transition-colors border-l-2 pl-4 py-1",
+                                                                                 isActive
+                                                                                     ? "text-primary border-primary bg-primary/5"
+                                                                                     : "text-white/40 border-transparent hover:text-white hover:border-white/10"
+                                                                             )}
+                                                                             onClick={() => setMobileMenuOpen(false)}
+                                                                         >
+                                                                             {item.name}
+                                                                         </Link>
+                                                                     );
+                                                                 })}
+                                                             </div>
+                                                         )}
+                                                     </AccordionContent>
+                                                 </AccordionItem>
+                                             )
+                                         })}
+                                     </Accordion>
                                     <div className="flex flex-col gap-4 mt-6">
                                         {singleLinks.map((item) => {
                                             const isActive = pathname === item.href;

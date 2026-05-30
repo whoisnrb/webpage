@@ -1929,6 +1929,17 @@
     "other": "Other"
   },
   "MegaMenu": {
+    "explore_services": "Explore services",
+    "popular": "Popular",
+    "need_help_cta_long": "Request assessment",
+    "categories": {
+      "growth": "Growth & Automation",
+      "growth_desc": "AI, CRM, ecommerce and reporting automation for growing companies.",
+      "core": "Core IT Services",
+      "core_desc": "Managed support, cloud, Microsoft 365 and secure daily operations.",
+      "infrastructure": "Infrastructure & Development",
+      "infrastructure_desc": "Web development, servers, networks, integrations and custom solutions."
+    },
     "services": "Services",
     "products": "Solutions",
     "knowledge": "Knowledge",

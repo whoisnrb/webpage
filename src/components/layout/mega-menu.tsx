@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Link } from "@/i18n/routing"
+import { Link, usePathname } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
 import {
     NavigationMenu,
@@ -12,204 +12,187 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { 
-    Code2, 
-    Server, 
-    Terminal, 
-    Globe, 
-    Network, 
-    Puzzle, 
-    LayoutGrid, 
-    Layout, 
-    Zap, 
-    Briefcase, 
-    FileText, 
-    MessageSquare, 
-    CreditCard,
-    Activity,
-    RefreshCw,
-    Cpu,
-    Cloud,
-    Database,
-    Search,
-    Headphones
-} from "lucide-react"
-import { useTranslations } from "next-intl"
+import { ArrowRight, Sparkles, Activity, Terminal, Layout, Zap } from "lucide-react"
+import { useTranslations, useLocale } from "next-intl"
 import { NeuralBackground } from "@/components/neural-background"
+import { SERVICES_STRUCTURE, ServiceCategory, ServiceItem } from "./services-config"
+import { motion, AnimatePresence } from "framer-motion"
 
 export function MegaMenu() {
     const t = useTranslations("MegaMenu")
+    const locale = useLocale()
+    const pathname = usePathname()
+    const [activeCategory, setActiveCategory] = React.useState<"growth" | "core" | "infrastructure">("growth")
 
-    const services: { 
-        title: string; 
-        href: React.ComponentProps<typeof Link>["href"]; 
-        description: string; 
-        icon: React.ComponentType<{ className?: string }> 
-    }[] = [
-        {
-            title: t("nav_items.cloud_migration"),
-            href: "/szolgaltatasok/felho-migracio-koltsegoptimalizalas",
-            description: t("nav_items.cloud_migration_desc"),
-            icon: Cloud,
-        },
-        {
-            title: t("nav_items.ai_support"),
-            href: "/szolgaltatasok/ai-ugyfelszolgalat-weboldalra",
-            description: t("nav_items.ai_support_desc"),
-            icon: Cpu,
-        },
-        {
-            title: t("nav_items.crm_auto"),
-            href: "/szolgaltatasok/crm-lead-automatizacio",
-            description: t("nav_items.crm_auto_desc"),
-            icon: Puzzle,
-        },
-        {
-            title: t("nav_items.ecommerce_tracking"),
-            href: "/szolgaltatasok/webshop-meres-konverzio-noveles",
-            description: t("nav_items.ecommerce_tracking_desc"),
-            icon: Activity,
-        },
-        {
-            title: t("nav_items.dashboards"),
-            href: "/szolgaltatasok/uzleti-dashboardok-riportok",
-            description: t("nav_items.dashboards_desc"),
-            icon: Layout,
-        },
-        {
-            title: t("nav_items.remote_helpdesk"),
-            href: "/szolgaltatasok/remote-it-helpdesk-ticketing",
-            description: t("nav_items.remote_helpdesk_desc"),
-            icon: Headphones,
-        },
-        {
-            title: t("nav_items.wordpress"),
-            href: "/szolgaltatasok/wordpress-woocommerce-karbantartas",
-            description: t("nav_items.wordpress_desc"),
-            icon: RefreshCw,
-        },
-        {
-            title: t("nav_items.webshop_auto"),
-            href: "/szolgaltatasok/webshop-automatizacio",
-            description: t("nav_items.webshop_auto_desc"),
-            icon: Zap,
-        },
-        {
-            title: t("nav_items.it_audit"),
-            href: "/szolgaltatasok/kkv-it-audit",
-            description: t("nav_items.it_audit_desc"),
-            icon: Search,
-        },
-        {
-            title: t("nav_items.managed_it"),
-            href: "/szolgaltatasok/havidijas-rendszergazda",
-            description: t("nav_items.managed_it_desc"),
-            icon: Activity,
-        },
-        {
-            title: t("nav_items.backup"),
-            href: "/szolgaltatasok/backup-adatmentes",
-            description: t("nav_items.backup_desc"),
-            icon: Database,
-        },
-        {
-            title: t("nav_items.office_suite"),
-            href: "/szolgaltatasok/microsoft-365-google-workspace",
-            description: t("nav_items.office_suite_desc"),
-            icon: Cloud,
-        },
-        {
-            title: t("nav_items.ai_auto"),
-            href: "/szolgaltatasok/ai-asszisztensek",
-            description: t("nav_items.ai_auto_desc"),
-            icon: Cpu,
-        },
-        {
-            title: t("nav_items.webdev"),
-            href: "/szolgaltatasok/webfejlesztes",
-            description: t("nav_items.webdev_desc"),
-            icon: Globe,
-        },
-        {
-            title: t("nav_items.scripts"),
-            href: "/szolgaltatasok/scriptek",
-            description: t("nav_items.scripts_desc"),
-            icon: Terminal,
-        },
-        {
-            title: t("nav_items.sysadmin"),
-            href: "/szolgaltatasok/rendszeruzemeltetes",
-            description: t("nav_items.sysadmin_desc"),
-            icon: Server,
-        },
-        {
-            title: t("nav_items.network"),
-            href: "/szolgaltatasok/halozat",
-            description: t("nav_items.network_desc"),
-            icon: Network,
-        },
-        {
-            title: t("nav_items.integrations"),
-            href: "/szolgaltatasok/integraciok",
-            description: t("nav_items.integrations_desc"),
-            icon: Puzzle,
-        },
-    ]
+    // Get categories with localized names and descriptions
+    const categories = SERVICES_STRUCTURE.map(cat => ({
+        ...cat,
+        name: t(cat.nameKey),
+        desc: t(cat.descKey)
+    }))
 
     return (
         <NavigationMenu>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("services")}</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">
+                        {t("services")}
+                    </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <div className="relative overflow-hidden rounded-[1.5rem] shadow-2xl" style={{ background: "rgba(5, 12, 20, 0.96)", backdropFilter: "blur(18px)", border: "1px solid rgba(0, 255, 255, 0.12)" }}>
-                            <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
+                        <div 
+                            className="relative overflow-hidden rounded-[2rem] shadow-2xl" 
+                            style={{ 
+                                background: "rgba(5, 12, 20, 0.97)", 
+                                backdropFilter: "blur(24px)", 
+                                border: "1px solid rgba(6, 182, 212, 0.15)",
+                                boxShadow: "0 0 40px -15px rgba(6, 182, 212, 0.2)"
+                            }}
+                        >
+                            {/* Animated neural mesh background */}
+                            <div className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none">
                                 <NeuralBackground />
                             </div>
-                            <ul className="relative z-10 grid gap-3 p-6 md:w-[700px] lg:w-[900px] md:grid-cols-[200px_1fr_1fr] lg:grid-cols-[250px_1fr_1fr]">
-                                <li className="row-span-6 md:row-span-6">
+
+                            {/* Main Megamenu Grid */}
+                            <div className="relative z-10 grid grid-cols-[330px_1fr] md:w-[880px] lg:w-[1080px] min-h-[580px]">
+                                
+                                {/* Left Category Panel */}
+                                <div className="p-8 border-r border-white/5 flex flex-col justify-between bg-white/[0.01]">
+                                    <div className="space-y-6">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400/80 cursor-default">
+                                            {t("explore_services")}
+                                        </div>
+                                        <div className="space-y-3">
+                                            {categories.map((cat) => {
+                                                const Icon = cat.icon
+                                                const isActive = activeCategory === cat.id
+                                                return (
+                                                    <button
+                                                        key={cat.id}
+                                                        onMouseEnter={() => setActiveCategory(cat.id)}
+                                                        onClick={() => setActiveCategory(cat.id)}
+                                                        className={cn(
+                                                            "w-full text-left p-4 rounded-2xl border transition-all duration-300 flex items-start gap-4 group/cat",
+                                                            isActive 
+                                                                ? "bg-cyan-500/5 border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.08)]"
+                                                                : "bg-transparent border-transparent hover:bg-white/[0.02] hover:border-white/5"
+                                                        )}
+                                                    >
+                                                        <div className={cn(
+                                                            "h-10 w-10 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-300",
+                                                            isActive
+                                                                ? "bg-cyan-500/10 border-cyan-500/25 text-cyan-400"
+                                                                : "bg-white/[0.02] border-white/5 text-white/40 group-hover/cat:text-white/80 group-hover/cat:border-white/10"
+                                                        )}>
+                                                            <Icon className="h-5 w-5" />
+                                                        </div>
+                                                        <div className="space-y-1">
+                                                            <div className={cn(
+                                                                "text-sm font-black tracking-tight transition-colors leading-none",
+                                                                isActive ? "text-cyan-400" : "text-white/70 group-hover/cat:text-white"
+                                                            )}>
+                                                                {cat.name}
+                                                            </div>
+                                                            <div className="text-[11px] leading-snug text-white/40 font-medium group-hover/cat:text-white/50 transition-colors">
+                                                                {cat.desc}
+                                                            </div>
+                                                        </div>
+                                                    </button>
+                                                )
+                                            })}
+                                        </div>
+                                    </div>
+
+                                    {/* Bottom Left CTA Card */}
                                     <NavigationMenuLink asChild>
                                         <Link
-                                            className="flex h-full w-full select-none flex-col justify-end rounded-2xl bg-gradient-to-br from-cyan-500/20 via-blue-500/5 to-transparent p-6 no-underline outline-none focus:shadow-md border border-white/5 group"
                                             href="/demo"
+                                            className="flex select-none flex-col justify-end rounded-2xl bg-gradient-to-br from-cyan-500/15 via-blue-500/5 to-transparent p-5 no-underline outline-none border border-cyan-500/20 hover:border-cyan-500/40 shadow-lg group transition-all duration-500 mt-6"
                                         >
-                                            <Code2 className="h-8 w-8 text-cyan-400 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500" />
-                                            <div className="mb-2 mt-4 text-[17px] font-black tracking-tighter text-white leading-tight">
-                                                {t("need_help_title")}
+                                            <div className="flex items-center gap-2 text-cyan-400 group-hover:scale-105 transition-transform duration-300">
+                                                <Sparkles className="h-5 w-5 text-cyan-400" />
+                                                <span className="text-[10px] font-black uppercase tracking-widest">{t("need_help_title")}</span>
                                             </div>
-                                            <p className="text-[11px] leading-tight text-white/50 font-medium group-hover:text-white/70 transition-colors mb-4 mt-2">
+                                            <p className="text-[11px] leading-relaxed text-white/50 font-medium group-hover:text-white/70 transition-colors mt-2 mb-3">
                                                 {t("need_help_desc")}
                                             </p>
-                                            <div className="mt-2 w-full py-2.5 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-xs font-black uppercase tracking-wider text-center border border-cyan-500/20 group-hover:border-cyan-500/40 transition-all duration-300">
-                                                {t("need_help_cta")}
+                                            <div className="w-full py-2.5 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-xs font-black uppercase tracking-wider text-center border border-cyan-500/25 group-hover:border-cyan-500/40 transition-all duration-300">
+                                                {t("need_help_cta_long")}
                                             </div>
                                         </Link>
                                     </NavigationMenuLink>
-                                </li>
-                                {services.map((component) => (
-                                    <ListItem
-                                        key={component.title}
-                                        title={component.title}
-                                        href={component.href}
-                                        icon={component.icon}
-                                    >
-                                        {component.description}
-                                    </ListItem>
-                                ))}
-                            </ul>
+                                </div>
+
+                                {/* Right Service Grid Panel */}
+                                <div className="p-8 flex flex-col justify-center">
+                                    <AnimatePresence mode="wait">
+                                        <motion.div
+                                            key={activeCategory}
+                                            initial={{ opacity: 0, y: 8 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -8 }}
+                                            transition={{ duration: 0.2, ease: "easeOut" }}
+                                            className="grid grid-cols-2 gap-4"
+                                        >
+                                            {SERVICES_STRUCTURE.find(cat => cat.id === activeCategory)?.items.map((item) => {
+                                                const Icon = item.icon
+                                                const title = t(`nav_items.${item.key}`)
+                                                const desc = t(`nav_items.${item.key}_desc`)
+                                                return (
+                                                    <NavigationMenuLink asChild key={item.key}>
+                                                        <Link
+                                                            href={item.href as any}
+                                                            className="block relative select-none rounded-[1.25rem] p-4 bg-white/[0.01] hover:bg-white/[0.03] border border-white/5 hover:border-cyan-500/30 shadow-sm transition-all duration-300 group outline-none hover:scale-[1.01]"
+                                                        >
+                                                            {/* Popular Badge */}
+                                                            {item.popular && (
+                                                                <div className="absolute top-4 right-4">
+                                                                    <span className="bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm">
+                                                                        {t("popular")}
+                                                                    </span>
+                                                                </div>
+                                                            )}
+
+                                                            <div className="flex items-start gap-4">
+                                                                <div className="h-10 w-10 shrink-0 rounded-xl bg-cyan-500/5 border border-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all duration-300">
+                                                                    <Icon className="h-5 w-5" />
+                                                                </div>
+                                                                <div className="space-y-1.5 pr-6">
+                                                                    <div className="flex items-center gap-1.5">
+                                                                        <span className="text-sm font-black tracking-tight text-white/90 group-hover:text-cyan-400 transition-colors leading-none">
+                                                                            {title}
+                                                                        </span>
+                                                                        <ArrowRight className="h-3.5 w-3.5 text-cyan-400 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 shrink-0" />
+                                                                    </div>
+                                                                    <p className="line-clamp-2 text-xs leading-normal text-white/40 group-hover:text-white/60 transition-colors font-medium">
+                                                                        {desc}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </Link>
+                                                    </NavigationMenuLink>
+                                                )
+                                            })}
+                                        </motion.div>
+                                    </AnimatePresence>
+                                </div>
+
+                            </div>
                         </div>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("products")}</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">
+                        {t("products")}
+                    </NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 shadow-2xl">
                             <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
                                 <NeuralBackground />
                             </div>
                             <ul className="relative z-10 grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                                <ListItem href="/megoldasok" title={t("all_products")} icon={LayoutGrid}>
+                                <ListItem href="/megoldasok" title={t("all_products")} icon={Activity}>
                                     {t("all_products_desc")}
                                 </ListItem>
                                 <ListItem href={{ pathname: "/megoldasok", query: { category: "scripts" } }} title={t("scripts")} icon={Terminal}>
@@ -227,7 +210,9 @@ export function MegaMenu() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                    <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">{t("knowledge")}</NavigationMenuTrigger>
+                    <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">
+                        {t("knowledge")}
+                    </NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 shadow-2xl">
                             <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
@@ -262,6 +247,20 @@ export function MegaMenu() {
         </NavigationMenu>
     )
 }
+
+// Simple Briefcase / FileText / MessageSquare / CreditCard placeholders
+const Briefcase = (props: any) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
+)
+const FileText = (props: any) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+)
+const MessageSquare = (props: any) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+)
+const CreditCard = (props: any) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+)
 
 const ListItem = React.forwardRef<
     HTMLAnchorElement,

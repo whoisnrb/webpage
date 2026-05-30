@@ -1912,6 +1912,17 @@
     "other": "Egyéb"
   },
   "MegaMenu": {
+    "explore_services": "Szolgáltatások áttekintése",
+    "popular": "Népszerű",
+    "need_help_cta_long": "Felmérést kérek",
+    "categories": {
+      "growth": "Növekedés és Automatizáció",
+      "growth_desc": "AI, CRM, webshop és riport automatizációk növekvő cégeknek.",
+      "core": "Alap IT Szolgáltatások",
+      "core_desc": "Havidíjas támogatás, felhő, Microsoft 365 és biztonságos működés.",
+      "infrastructure": "Infrastruktúra és Fejlesztés",
+      "infrastructure_desc": "Webfejlesztés, szerverek, hálózatok, integrációk és egyedi megoldások."
+    },
     "services": "Szolgáltatások",
     "products": "Megoldások",
     "knowledge": "Tudástár",
