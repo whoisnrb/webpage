@@ -8,9 +8,9 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, Plus, Trash2, Save } from "lucide-react"
+import { ArrowLeft, Plus, Trash2, Save, Package, Star, ChevronDown, ChevronUp } from "lucide-react"
 import { Link } from "@/i18n/routing"
-import { createService, updateService, getServiceById, type ServiceDTO } from "@/app/actions/service"
+import { createService, updateService, getServiceById, type ServiceDTO, type ServicePackage } from "@/app/actions/service"
 import { toast } from "sonner"
 
 const ICON_OPTIONS = [
@@ -20,6 +20,39 @@ const ICON_OPTIONS = [
     { value: "Shield", label: "Shield (Biztonság)" },
     { value: "Network", label: "Network (Hálózat)" },
     { value: "Plug", label: "Plug (Integrációk)" },
+    { value: "Cloud", label: "Cloud (Felhő)" },
+    { value: "Cpu", label: "CPU (AI)" },
+    { value: "Puzzle", label: "Puzzle (CRM)" },
+    { value: "Activity", label: "Activity (Analitika)" },
+    { value: "Layout", label: "Layout (Dashboard)" },
+    { value: "Headphones", label: "Headphones (Helpdesk)" },
+    { value: "Globe", label: "Globe (WordPress)" },
+    { value: "Database", label: "Database (Backup)" },
+    { value: "RefreshCw", label: "RefreshCw (Webshop Auto)" },
+    { value: "Search", label: "Search (IT Audit)" },
+]
+
+const DEFAULT_PACKAGE: ServicePackage = {
+    name: "",
+    nameEn: "",
+    desc: "",
+    descEn: "",
+    price: 0,
+    sub: "egyszeri díj (ÁFA-mentes)",
+    subEn: "one-time fee (VAT-free)",
+    badge: "",
+    badgeEn: "",
+    popular: false,
+    features: [""],
+    featuresEn: [""],
+    duration_label: "",
+    duration_labelEn: "",
+}
+
+const PACKAGE_LABELS = [
+    { key: "base", label: "Alap csomag (Base)", color: "border-white/10" },
+    { key: "detailed", label: "Üzleti csomag (Detailed) — Legnépszerűbb", color: "border-primary/40" },
+    { key: "complex", label: "Komplex csomag (Complex)", color: "border-purple-500/30" },
 ]
 
 interface ServiceFormProps {
@@ -32,6 +65,7 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
 
     const [loading, setLoading] = useState(false)
     const [initialLoading, setInitialLoading] = useState(!isNew)
+    const [packagesExpanded, setPackagesExpanded] = useState([true, true, true])
 
     // Form state
     const [name, setName] = useState("")
@@ -46,6 +80,11 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
     const [featuresEn, setFeaturesEn] = useState<string[]>([""])
     const [active, setActive] = useState(true)
     const [sortOrder, setSortOrder] = useState(0)
+    const [packages, setPackages] = useState<ServicePackage[]>([
+        { ...DEFAULT_PACKAGE, name: "Alap", nameEn: "Basic" },
+        { ...DEFAULT_PACKAGE, name: "Üzleti", nameEn: "Business", popular: true, badge: "Legnépszerűbb", badgeEn: "Most popular" },
+        { ...DEFAULT_PACKAGE, name: "Komplex", nameEn: "Complex" },
+    ])
 
     useEffect(() => {
         if (!isNew && serviceId) {
@@ -63,6 +102,13 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
                     setFeaturesEn(service.featuresEn && service.featuresEn.length > 0 ? service.featuresEn : [""])
                     setActive(service.active)
                     setSortOrder(service.sortOrder)
+                    if (service.packages && service.packages.length === 3) {
+                        setPackages(service.packages.map(p => ({
+                            ...p,
+                            features: p.features.length > 0 ? p.features : [""],
+                            featuresEn: p.featuresEn.length > 0 ? p.featuresEn : [""],
+                        })))
+                    }
                 }
                 setInitialLoading(false)
             })
@@ -72,6 +118,12 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         setLoading(true)
+
+        const cleanedPackages = packages.map(pkg => ({
+            ...pkg,
+            features: pkg.features.filter(f => f.trim() !== ""),
+            featuresEn: pkg.featuresEn.filter(f => f.trim() !== ""),
+        }))
 
         const data = {
             name,
@@ -86,6 +138,7 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
             featuresEn: featuresEn.filter(f => f.trim() !== "").length > 0
                 ? featuresEn.filter(f => f.trim() !== "")
                 : null,
+            packages: cleanedPackages,
             active,
             sortOrder,
         }
@@ -128,6 +181,43 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
             newFeatures[index] = value
             setFeaturesEn(newFeatures)
         }
+    }
+
+    // Package helpers
+    const updatePackage = (pkgIndex: number, field: keyof ServicePackage, value: any) => {
+        setPackages(prev => prev.map((pkg, i) => i === pkgIndex ? { ...pkg, [field]: value } : pkg))
+    }
+
+    const addPackageFeature = (pkgIndex: number, lang: "hu" | "en") => {
+        setPackages(prev => prev.map((pkg, i) => {
+            if (i !== pkgIndex) return pkg
+            if (lang === "hu") return { ...pkg, features: [...pkg.features, ""] }
+            return { ...pkg, featuresEn: [...pkg.featuresEn, ""] }
+        }))
+    }
+
+    const removePackageFeature = (pkgIndex: number, lang: "hu" | "en", featureIndex: number) => {
+        setPackages(prev => prev.map((pkg, i) => {
+            if (i !== pkgIndex) return pkg
+            if (lang === "hu") return { ...pkg, features: pkg.features.filter((_, j) => j !== featureIndex) }
+            return { ...pkg, featuresEn: pkg.featuresEn.filter((_, j) => j !== featureIndex) }
+        }))
+    }
+
+    const updatePackageFeature = (pkgIndex: number, lang: "hu" | "en", featureIndex: number, value: string) => {
+        setPackages(prev => prev.map((pkg, i) => {
+            if (i !== pkgIndex) return pkg
+            if (lang === "hu") {
+                const newF = [...pkg.features]; newF[featureIndex] = value
+                return { ...pkg, features: newF }
+            }
+            const newF = [...pkg.featuresEn]; newF[featureIndex] = value
+            return { ...pkg, featuresEn: newF }
+        }))
+    }
+
+    const togglePackageExpanded = (idx: number) => {
+        setPackagesExpanded(prev => prev.map((v, i) => i === idx ? !v : v))
     }
 
     // Auto-generate slug from name
@@ -219,7 +309,7 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
 
                         <div className="grid grid-cols-3 gap-4">
                             <div className="space-y-2">
-                                <Label htmlFor="price">Ár (HUF)</Label>
+                                <Label htmlFor="price">Alap ár (HUF)</Label>
                                 <Input
                                     id="price"
                                     type="number"
@@ -294,10 +384,249 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
                     </CardContent>
                 </Card>
 
+                {/* Packages / Pricing Tiers */}
+                <Card className="border-primary/20">
+                    <CardHeader>
+                        <div className="flex items-center gap-3">
+                            <Package className="h-5 w-5 text-primary" />
+                            <CardTitle>Csomagok és Árak</CardTitle>
+                        </div>
+                        <p className="text-sm text-muted-foreground mt-1">
+                            3 árazási csomag szerkesztése (Alap / Üzleti / Komplex). Ezek jelennek meg a szolgáltatás oldalán.
+                        </p>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        {packages.map((pkg, pkgIndex) => {
+                            const labelInfo = PACKAGE_LABELS[pkgIndex]
+                            const isExpanded = packagesExpanded[pkgIndex]
+                            return (
+                                <div key={pkgIndex} className={`border rounded-xl overflow-hidden ${labelInfo.color}`}>
+                                    {/* Package Header */}
+                                    <button
+                                        type="button"
+                                        onClick={() => togglePackageExpanded(pkgIndex)}
+                                        className="w-full flex items-center justify-between p-4 bg-white/[0.02] hover:bg-white/[0.04] transition-colors text-left"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            {pkgIndex === 1 && <Star className="h-4 w-4 text-primary fill-primary" />}
+                                            <span className="font-bold text-sm">
+                                                {labelInfo.label}
+                                            </span>
+                                            {pkg.name && (
+                                                <span className="text-xs text-muted-foreground">
+                                                    — {pkg.name} {pkg.price > 0 ? `• ${pkg.price.toLocaleString('hu-HU')} Ft` : ''}
+                                                </span>
+                                            )}
+                                        </div>
+                                        {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                                    </button>
+
+                                    {isExpanded && (
+                                        <div className="p-4 space-y-5 border-t border-white/5">
+                                            {/* Names */}
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Csomag neve (HU)</Label>
+                                                    <Input
+                                                        value={pkg.name}
+                                                        onChange={(e) => updatePackage(pkgIndex, "name", e.target.value)}
+                                                        placeholder="Pl. Alap"
+                                                    />
+                                                </div>
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Csomag neve (EN)</Label>
+                                                    <Input
+                                                        value={pkg.nameEn}
+                                                        onChange={(e) => updatePackage(pkgIndex, "nameEn", e.target.value)}
+                                                        placeholder="Pl. Basic"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            {/* Descriptions */}
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Csomag leírása (HU)</Label>
+                                                    <Textarea
+                                                        value={pkg.desc}
+                                                        onChange={(e) => updatePackage(pkgIndex, "desc", e.target.value)}
+                                                        rows={2}
+                                                        placeholder="Rövid leírás magyarul..."
+                                                    />
+                                                </div>
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Csomag leírása (EN)</Label>
+                                                    <Textarea
+                                                        value={pkg.descEn}
+                                                        onChange={(e) => updatePackage(pkgIndex, "descEn", e.target.value)}
+                                                        rows={2}
+                                                        placeholder="Short description in English..."
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            {/* Price & Sub */}
+                                            <div className="grid grid-cols-3 gap-4">
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Ár (HUF, ÁFA nélkül)</Label>
+                                                    <Input
+                                                        type="number"
+                                                        value={pkg.price}
+                                                        onChange={(e) => updatePackage(pkgIndex, "price", parseInt(e.target.value) || 0)}
+                                                        placeholder="0 = Egyedi"
+                                                    />
+                                                    <p className="text-[10px] text-muted-foreground">0 = Egyedi árazás</p>
+                                                </div>
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Ár alcím (HU)</Label>
+                                                    <Input
+                                                        value={pkg.sub}
+                                                        onChange={(e) => updatePackage(pkgIndex, "sub", e.target.value)}
+                                                        placeholder="egyszeri díj (ÁFA-mentes)"
+                                                    />
+                                                </div>
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Ár alcím (EN)</Label>
+                                                    <Input
+                                                        value={pkg.subEn}
+                                                        onChange={(e) => updatePackage(pkgIndex, "subEn", e.target.value)}
+                                                        placeholder="one-time fee (VAT-free)"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            {/* Badge & Popular */}
+                                            <div className="grid grid-cols-3 gap-4 items-end">
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Badge felirat (HU)</Label>
+                                                    <Input
+                                                        value={pkg.badge || ""}
+                                                        onChange={(e) => updatePackage(pkgIndex, "badge", e.target.value)}
+                                                        placeholder="Legnépszerűbb"
+                                                    />
+                                                </div>
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Badge felirat (EN)</Label>
+                                                    <Input
+                                                        value={pkg.badgeEn || ""}
+                                                        onChange={(e) => updatePackage(pkgIndex, "badgeEn", e.target.value)}
+                                                        placeholder="Most popular"
+                                                    />
+                                                </div>
+                                                <div className="flex items-center gap-2 pb-0.5">
+                                                    <Switch
+                                                        id={`popular-${pkgIndex}`}
+                                                        checked={!!pkg.popular}
+                                                        onCheckedChange={(v) => updatePackage(pkgIndex, "popular", v)}
+                                                    />
+                                                    <Label htmlFor={`popular-${pkgIndex}`} className="text-xs">Kiemelt csomag</Label>
+                                                </div>
+                                            </div>
+
+                                            {/* Target label */}
+                                            <div className="grid grid-cols-2 gap-4">
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Ajánlott célcsoport (HU)</Label>
+                                                    <Input
+                                                        value={pkg.duration_label}
+                                                        onChange={(e) => updatePackage(pkgIndex, "duration_label", e.target.value)}
+                                                        placeholder="Ajánlott: kisvállalkozásoknak..."
+                                                    />
+                                                </div>
+                                                <div className="space-y-1.5">
+                                                    <Label className="text-xs">Ajánlott célcsoport (EN)</Label>
+                                                    <Input
+                                                        value={pkg.duration_labelEn}
+                                                        onChange={(e) => updatePackage(pkgIndex, "duration_labelEn", e.target.value)}
+                                                        placeholder="Recommended for: small businesses..."
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            {/* Package Features HU */}
+                                            <div className="space-y-2">
+                                                <Label className="text-xs font-semibold">Csomag funkciók (HU)</Label>
+                                                <div className="space-y-2">
+                                                    {pkg.features.map((feature, fIdx) => (
+                                                        <div key={fIdx} className="flex gap-2">
+                                                            <Input
+                                                                value={feature}
+                                                                onChange={(e) => updatePackageFeature(pkgIndex, "hu", fIdx, e.target.value)}
+                                                                placeholder={`Funkció ${fIdx + 1}`}
+                                                                className="text-sm"
+                                                            />
+                                                            <Button
+                                                                type="button"
+                                                                variant="ghost"
+                                                                size="icon"
+                                                                onClick={() => removePackageFeature(pkgIndex, "hu", fIdx)}
+                                                                className="text-destructive shrink-0"
+                                                                disabled={pkg.features.length <= 1}
+                                                            >
+                                                                <Trash2 className="h-3.5 w-3.5" />
+                                                            </Button>
+                                                        </div>
+                                                    ))}
+                                                    <Button
+                                                        type="button"
+                                                        variant="outline"
+                                                        size="sm"
+                                                        onClick={() => addPackageFeature(pkgIndex, "hu")}
+                                                        className="text-xs"
+                                                    >
+                                                        <Plus className="mr-1.5 h-3 w-3" /> Funkció hozzáadása (HU)
+                                                    </Button>
+                                                </div>
+                                            </div>
+
+                                            {/* Package Features EN */}
+                                            <div className="space-y-2">
+                                                <Label className="text-xs font-semibold">Csomag funkciók (EN)</Label>
+                                                <div className="space-y-2">
+                                                    {pkg.featuresEn.map((feature, fIdx) => (
+                                                        <div key={fIdx} className="flex gap-2">
+                                                            <Input
+                                                                value={feature}
+                                                                onChange={(e) => updatePackageFeature(pkgIndex, "en", fIdx, e.target.value)}
+                                                                placeholder={`Feature ${fIdx + 1}`}
+                                                                className="text-sm"
+                                                            />
+                                                            <Button
+                                                                type="button"
+                                                                variant="ghost"
+                                                                size="icon"
+                                                                onClick={() => removePackageFeature(pkgIndex, "en", fIdx)}
+                                                                className="text-destructive shrink-0"
+                                                                disabled={pkg.featuresEn.length <= 1}
+                                                            >
+                                                                <Trash2 className="h-3.5 w-3.5" />
+                                                            </Button>
+                                                        </div>
+                                                    ))}
+                                                    <Button
+                                                        type="button"
+                                                        variant="outline"
+                                                        size="sm"
+                                                        onClick={() => addPackageFeature(pkgIndex, "en")}
+                                                        className="text-xs"
+                                                    >
+                                                        <Plus className="mr-1.5 h-3 w-3" /> Add feature (EN)
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </CardContent>
+                </Card>
+
                 {/* Features HU */}
                 <Card>
                     <CardHeader>
-                        <CardTitle>Funkciók (HU)</CardTitle>
+                        <CardTitle>Általános funkciók (HU)</CardTitle>
+                        <p className="text-sm text-muted-foreground">Rövid jellemzők a listás megjelenítéshez</p>
                     </CardHeader>
                     <CardContent className="space-y-3">
                         {features.map((feature, index) => (
@@ -328,7 +657,7 @@ export default function ServiceForm({ serviceId }: ServiceFormProps) {
                 {/* Features EN */}
                 <Card>
                     <CardHeader>
-                        <CardTitle>Funkciók (EN)</CardTitle>
+                        <CardTitle>Általános funkciók (EN)</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-3">
                         {featuresEn.map((feature, index) => (

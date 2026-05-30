@@ -4,6 +4,23 @@ import { prisma } from "@/lib/db"
 import { revalidatePath } from "next/cache"
 import { createAuditLog } from "@/lib/audit"
 
+export type ServicePackage = {
+    name: string
+    nameEn: string
+    desc: string
+    descEn: string
+    price: number
+    sub: string
+    subEn: string
+    badge?: string
+    badgeEn?: string
+    popular?: boolean
+    features: string[]
+    featuresEn: string[]
+    duration_label: string
+    duration_labelEn: string
+}
+
 export type ServiceDTO = {
     id: string
     name: string
@@ -16,6 +33,7 @@ export type ServiceDTO = {
     href: string
     features: string[]
     featuresEn: string[] | null
+    packages: ServicePackage[] | null
     active: boolean
     sortOrder: number
     updatedAt: Date
@@ -26,6 +44,7 @@ function mapService(s: any): ServiceDTO {
         ...s,
         features: typeof s.features === 'string' ? JSON.parse(s.features) : s.features,
         featuresEn: s.featuresEn ? (typeof s.featuresEn === 'string' ? JSON.parse(s.featuresEn) : s.featuresEn) : null,
+        packages: s.packages ? (typeof s.packages === 'string' ? JSON.parse(s.packages) : s.packages) : null,
     }
 }
 
@@ -73,6 +92,7 @@ export async function createService(data: Omit<ServiceDTO, 'id' | 'updatedAt'>) 
             href: data.href,
             features: JSON.stringify(data.features),
             featuresEn: data.featuresEn ? JSON.stringify(data.featuresEn) : null,
+            packages: data.packages ? JSON.stringify(data.packages) : null,
             active: data.active,
             sortOrder: data.sortOrder,
         }
@@ -96,6 +116,9 @@ export async function updateService(id: string, data: Partial<ServiceDTO>) {
     if (data.features) updateData.features = JSON.stringify(data.features)
     if (data.featuresEn !== undefined) {
         updateData.featuresEn = data.featuresEn ? JSON.stringify(data.featuresEn) : null
+    }
+    if (data.packages !== undefined) {
+        updateData.packages = data.packages ? JSON.stringify(data.packages) : null
     }
 
     // Remove fields that shouldn't be passed directly

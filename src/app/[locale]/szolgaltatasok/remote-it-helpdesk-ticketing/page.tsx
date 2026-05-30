@@ -2,8 +2,8 @@ import { GenericServiceContent } from "@/components/services/generic-service-con
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { Metadata } from 'next';
-import { Headphones } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { getServiceBySlug } from "@/app/actions/service";
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
@@ -42,5 +42,8 @@ export default async function RemoteHelpdeskPage({ params }: { params: Promise<{
         locale
     });
 
-    return <GenericServiceContent serviceKey="RemoteHelpdesk" />;
+    const service = await getServiceBySlug("remote-it-helpdesk-ticketing");
+    const dbPackages = service?.packages ?? null;
+
+    return <GenericServiceContent serviceKey="RemoteHelpdesk" dbPackages={dbPackages} />;
 }

@@ -25,9 +25,11 @@ import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { SpotlightCard } from "@/components/ui/spotlight-card"
 import { useCurrency } from "@/components/currency-provider"
 import { formatPrice } from "@/lib/currency"
+import type { ServicePackage } from "@/app/actions/service"
 
 interface GenericServiceContentProps {
     serviceKey: "CloudMigration" | "AICustomerSupport" | "CRMAutomation" | "EcommerceTracking" | "BusinessDashboards" | "RemoteHelpdesk"
+    dbPackages?: ServicePackage[] | null
 }
 
 const SERVICE_ICONS: Record<string, LucideIcon> = {
@@ -39,7 +41,7 @@ const SERVICE_ICONS: Record<string, LucideIcon> = {
     RemoteHelpdesk: Headphones,
 }
 
-export function GenericServiceContent({ serviceKey }: GenericServiceContentProps) {
+export function GenericServiceContent({ serviceKey, dbPackages }: GenericServiceContentProps) {
     const IconComponent = SERVICE_ICONS[serviceKey] || Cloud
     const t = useTranslations(`Services.${serviceKey}`)
     const tCommon = useTranslations("ServiceTemplate")
@@ -110,21 +112,35 @@ export function GenericServiceContent({ serviceKey }: GenericServiceContentProps
     const faqItems = getFaqItems()
 
     const planKeys = ["base", "detailed", "complex"] as const
-    const plans = planKeys.map((planKey) => {
-        const priceVal = parseInt(t(`plans.${planKey}.price`) || "0", 10)
-        return {
-            key: planKey,
-            name: t(`plans.${planKey}.name`),
-            desc: t(`plans.${planKey}.desc`),
-            price: priceVal,
-            priceFrom: t(`plans.${planKey}.priceFrom`) === "true" || true,
-            sub: t(`plans.${planKey}.sub`),
-            badge: planKey === "detailed" ? (t(`plans.${planKey}.badge`) || (locale === 'hu' ? 'Legnépszerűbb' : 'Most popular')) : undefined,
-            popular: planKey === "detailed",
-            features: getFeatures(planKey),
-            duration: t(`plans.${planKey}.duration_label`)
-        }
-    })
+    // Use DB packages if available, otherwise fall back to i18n
+    const plans = dbPackages && dbPackages.length === 3
+        ? dbPackages.map((pkg, i) => ({
+            key: planKeys[i],
+            name: locale === 'en' ? pkg.nameEn : pkg.name,
+            desc: locale === 'en' ? pkg.descEn : pkg.desc,
+            price: pkg.price,
+            priceFrom: true,
+            sub: locale === 'en' ? pkg.subEn : pkg.sub,
+            badge: pkg.badge ? (locale === 'en' ? pkg.badgeEn : pkg.badge) : undefined,
+            popular: !!pkg.popular,
+            features: locale === 'en' ? pkg.featuresEn : pkg.features,
+            duration: locale === 'en' ? pkg.duration_labelEn : pkg.duration_label,
+        }))
+        : planKeys.map((planKey) => {
+            const priceVal = parseInt(t(`plans.${planKey}.price`) || "0", 10)
+            return {
+                key: planKey,
+                name: t(`plans.${planKey}.name`),
+                desc: t(`plans.${planKey}.desc`),
+                price: priceVal,
+                priceFrom: t(`plans.${planKey}.priceFrom`) === "true" || true,
+                sub: t(`plans.${planKey}.sub`),
+                badge: planKey === "detailed" ? (t(`plans.${planKey}.badge`) || (locale === 'hu' ? 'Legnépszerűbb' : 'Most popular')) : undefined,
+                popular: planKey === "detailed",
+                features: getFeatures(planKey),
+                duration: t(`plans.${planKey}.duration_label`)
+            }
+        })
 
     const title = t("title")
     const description = t("description")

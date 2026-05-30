@@ -49,3 +49,4 @@ duplicates_report.txt
 tail_*.txt
 verify-*.js
 test-*.js
+.vercel
