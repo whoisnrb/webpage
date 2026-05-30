@@ -1956,6 +1956,8 @@
       "ai_auto_desc": "Custom AI assistants and n8n workflow integrations",
       "office_suite": "Microsoft 365 & Google Workspace",
       "office_suite_desc": "Office productivity cloud setup and data migration",
+      "backup": "Backup & Data Recovery",
+      "backup_desc": "3-2-1 backup strategy and disaster recovery",
       "managed_it": "Managed IT Services",
       "managed_it_desc": "Full-service SMB system administration and remote support",
       "cloud_migration": "Cloud Migration",
