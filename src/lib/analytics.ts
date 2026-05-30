@@ -1,6 +1,5 @@
-"use server"
-
 import { auth } from "@/auth"
+
 import { prisma } from "@/lib/db"
 
 type EventProperties = Record<string, string | number | boolean | null>
