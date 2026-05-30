@@ -24,7 +24,7 @@ export const products: Product[] = [
         price: 14990,
         category: "WordPress Plugin",
         slug: "woocommerce-szamlazz-hu",
-        image: "/images/products/woocommerce-szamlazz.jpg",
+        image: "/images/products/woocommerce-szamlazz.png",
         features: [
             "Automatikus díjbekérő és végszámla",
             "Sztornó számla kezelés visszatérítéskor",
@@ -46,7 +46,7 @@ export const products: Product[] = [
         price: 24990,
         category: "Automatizáció",
         slug: "n8n-lead-management",
-        image: "/images/products/n8n-workflow.jpg",
+        image: "/images/products/n8n-workflow.png",
         features: [
             "Email validáció",
             "Cégadat gazdagítás (Clearbit/Apollo)",
@@ -63,7 +63,7 @@ export const products: Product[] = [
         price: 11990,
         category: "Script",
         slug: "python-web-scraper",
-        image: "/images/products/python-scraper.jpg",
+        image: "/images/products/python-scraper.png",
         features: [
             "Proxy rotálás támogatás",
             "User-Agent hamisítás",
@@ -80,7 +80,7 @@ export const products: Product[] = [
         price: 4990,
         category: "E-book",
         slug: "security-audit-checklist",
-        image: "/images/products/security-audit.jpg",
+        image: "/images/products/security-audit.png",
         features: [
             "OWASP Top 10 lefedettség",
             "WordPress specifikus ellenőrzések",
@@ -97,7 +97,7 @@ export const products: Product[] = [
         price: 44990,
         category: "Template",
         slug: "nextjs-saas-boilerplate",
-        image: "/images/products/saas-boilerplate.jpg",
+        image: "/images/products/saas-boilerplate.png",
         features: [
             "Next.js 14 App Router",
             "Authentication & User Management",
