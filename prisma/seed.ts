@@ -8,6 +8,7 @@ async function main() {
     console.log('Starting master seed...')
 
     const seeds = [
+        'prisma/seed-services.ts',
         'prisma/seed-products.ts',
         'prisma/seed-blog.ts',
         'prisma/seed-metrics.ts',

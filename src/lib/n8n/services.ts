@@ -79,7 +79,7 @@ export async function sendEmail(to: string, subject: string, html: string) {
     try {
         const transporter = getTransporter();
         await transporter.sendMail({
-            from: `"IT Services" <${process.env.GMAIL_USER}>`,
+            from: `"BacklineIT" <${process.env.GMAIL_USER}>`,
             to,
             subject,
             html,
