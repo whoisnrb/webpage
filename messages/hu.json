@@ -3603,8 +3603,8 @@
         "base": {
           "name": "Start Audit",
           "desc": "Felhőre való alkalmassági vizsgálat és költségoptimalizálási terv.",
-          "price": 190000,
-          "priceFrom": true,
+          "price": "190000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "Jelenlegi IT rendszerek felmérése",
@@ -3620,8 +3620,8 @@
           "badge": "Legnépszerűbb",
           "popular": true,
           "desc": "E-mail, fájlok és alap üzleti rendszerek migrációja felhőbe.",
-          "price": 490000,
-          "priceFrom": true,
+          "price": "490000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "Maximum 15 felhasználó migrációja",
@@ -3635,8 +3635,8 @@
         "complex": {
           "name": "Cloud Pro",
           "desc": "Komplex felhőmigráció, jogosultságkezelés és biztonsági beállítások.",
-          "price": 990000,
-          "priceFrom": true,
+          "price": "990000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "Maximum 40 felhasználó teljes migrációja",
@@ -3755,8 +3755,8 @@
         "base": {
           "name": "AI Start",
           "desc": "Alap AI chatbot weboldalra gyakori kérdésekhez.",
-          "price": 390000,
-          "priceFrom": true,
+          "price": "390000",
+          "priceFrom": "true",
           "sub": "+ 49.000 Ft/hó üzemeltetés (ÁFA-mentes)",
           "features": [
             "1 weboldalra történő integráció és beállítás",
@@ -3772,8 +3772,8 @@
           "badge": "Legnépszerűbb",
           "popular": true,
           "desc": "Tudásbázis alapú AI asszisztens lead-előszűréssel.",
-          "price": 890000,
-          "priceFrom": true,
+          "price": "890000",
+          "priceFrom": "true",
           "sub": "+ 99.000 Ft/hó üzemeltetés (ÁFA-mentes)",
           "features": [
             "Dokumentumokból (PDF) és weboldalból betanítás",
@@ -3787,8 +3787,8 @@
         "complex": {
           "name": "AI Pro Automation",
           "desc": "Komplex AI ügyfélszolgálat CRM, e-mail és automatizációs integrációkkal.",
-          "price": 1790000,
-          "priceFrom": true,
+          "price": "1790000",
+          "priceFrom": "true",
           "sub": "+ 199.000 Ft/hó üzemeltetés (ÁFA-mentes)",
           "features": [
             "CRM és ticketing rendszerek (API) integrációja",
@@ -3907,8 +3907,8 @@
         "base": {
           "name": "CRM Start",
           "desc": "Alap CRM bevezetés kis csapatoknak.",
-          "price": 290000,
-          "priceFrom": true,
+          "price": "290000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "CRM szoftver kiválasztási tanácsadás",
@@ -3925,8 +3925,8 @@
           "badge": "Legnépszerűbb",
           "popular": true,
           "desc": "Teljes értékesítési folyamat és lead-kezelés automatizálása.",
-          "price": 690000,
-          "priceFrom": true,
+          "price": "690000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "Maximum 15 felhasználó beállítása",
@@ -3941,8 +3941,8 @@
         "complex": {
           "name": "CRM Scale",
           "desc": "CRM, marketing és ügyfélszolgálati folyamatok összekötése.",
-          "price": 1490000,
-          "priceFrom": true,
+          "price": "1490000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "Több külső szoftver (számlázó, n8n, naptár) integrációja",
@@ -4061,8 +4061,8 @@
         "base": {
           "name": "Tracking Start",
           "desc": "Alap mérési rendszer beállítása.",
-          "price": 180000,
-          "priceFrom": true,
+          "price": "180000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "Google Analytics 4 (GA4) alapbeállítás",
@@ -4079,8 +4079,8 @@
           "badge": "Legnépszerűbb",
           "popular": true,
           "desc": "Webshop konverziómérés és marketing pixelek teljes beállítása.",
-          "price": 390000,
-          "priceFrom": true,
+          "price": "390000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "Standard e-commerce események (View Item, Add To Cart)",
@@ -4095,8 +4095,8 @@
         "complex": {
           "name": "Conversion Pro",
           "desc": "Mérés, riportolás és konverzióoptimalizálási javaslatok.",
-          "price": 790000,
-          "priceFrom": true,
+          "price": "790000",
+          "priceFrom": "true",
           "sub": "+ 99.000 Ft/hó optimalizálás (ÁFA-mentes)",
           "features": [
             "Minden az Ecommerce Business csomagból",
@@ -4215,8 +4215,8 @@
         "base": {
           "name": "Dashboard Start",
           "desc": "Egyszerű vezetői dashboard egy adatforrással.",
-          "price": 240000,
-          "priceFrom": true,
+          "price": "240000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "1 adatforrás (pl. Google Sheets vagy GA4) bekötése",
@@ -4233,8 +4233,8 @@
           "badge": "Legnépszerűbb",
           "popular": true,
           "desc": "Több adatforrásból épített üzleti riport rendszer.",
-          "price": 590000,
-          "priceFrom": true,
+          "price": "590000",
+          "priceFrom": "true",
           "sub": "egyszeri díj (ÁFA-mentes)",
           "features": [
             "Maximum 3 adatforrás összekapcsolása",
@@ -4249,8 +4249,8 @@
         "complex": {
           "name": "Analytics Pro",
           "desc": "Komplex dashboard rendszer adatkapcsolatokkal és havi optimalizálással.",
-          "price": 1200000,
-          "priceFrom": true,
+          "price": "1200000",
+          "priceFrom": "true",
           "sub": "+ 150.000 Ft/hó támogatás (ÁFA-mentes)",
           "features": [
             "Korlátlan adatforrás és bonyolult adatmodell",
@@ -4369,8 +4369,8 @@
         "base": {
           "name": "Helpdesk Start",
           "desc": "Alap távoli támogatás kis csapatoknak.",
-          "price": 69000,
-          "priceFrom": true,
+          "price": "69000",
+          "priceFrom": "true",
           "sub": "/hó (ÁFA-mentes, max. 5 felhasználó)",
           "features": [
             "Maximum 5 aktív felhasználó támogatása",
@@ -4387,8 +4387,8 @@
           "badge": "Legnépszerűbb",
           "popular": true,
           "desc": "Rendszeres távoli IT támogatás növekvő cégeknek.",
-          "price": 159000,
-          "priceFrom": true,
+          "price": "159000",
+          "priceFrom": "true",
           "sub": "/hó (ÁFA-mentes, max. 15 felhasználó)",
           "features": [
             "Maximum 15 aktív felhasználó támogatása",
@@ -4403,8 +4403,8 @@
         "complex": {
           "name": "Helpdesk Pro",
           "desc": "Teljes remote IT helpdesk SLA-val és ticketing rendszerrel.",
-          "price": 329000,
-          "priceFrom": true,
+          "price": "329000",
+          "priceFrom": "true",
           "sub": "/hó (ÁFA-mentes, max. 40 felhasználó)",
           "features": [
             "Maximum 40 felhasználó teljes körű támogatása",

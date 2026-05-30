@@ -3618,8 +3618,8 @@
         "base": {
           "name": "Start Audit",
           "desc": "Cloud readiness check and cost optimization strategy.",
-          "price": 190000,
-          "priceFrom": true,
+          "price": "190000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Assessment of current IT infrastructure",
@@ -3635,8 +3635,8 @@
           "badge": "Most Popular",
           "popular": true,
           "desc": "Email, files, and basic business systems migration to the cloud.",
-          "price": 490000,
-          "priceFrom": true,
+          "price": "490000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Complete migration for up to 15 users",
@@ -3650,8 +3650,8 @@
         "complex": {
           "name": "Cloud Pro",
           "desc": "Complex cloud migration, permission systems, and security hardening.",
-          "price": 990000,
-          "priceFrom": true,
+          "price": "990000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Complete cloud migration for up to 40 users",
@@ -3770,8 +3770,8 @@
         "base": {
           "name": "AI Start",
           "desc": "Basic AI chatbot for website FAQ handling.",
-          "price": 390000,
-          "priceFrom": true,
+          "price": "390000",
+          "priceFrom": "true",
           "sub": "+ 49,000 HUF/month support (VAT-free)",
           "features": [
             "Implementation and configuration on 1 website",
@@ -3787,8 +3787,8 @@
           "badge": "Most Popular",
           "popular": true,
           "desc": "Knowledgebase-trained AI assistant with lead qualification.",
-          "price": 890000,
-          "priceFrom": true,
+          "price": "890000",
+          "priceFrom": "true",
           "sub": "+ 99,000 HUF/month support (VAT-free)",
           "features": [
             "Trained on custom PDFs, documents, and site URLs",
@@ -3802,8 +3802,8 @@
         "complex": {
           "name": "AI Pro Automation",
           "desc": "Comprehensive AI support agent with CRM and database integrations.",
-          "price": 1790000,
-          "priceFrom": true,
+          "price": "1790000",
+          "priceFrom": "true",
           "sub": "+ 199,000 HUF/month support (VAT-free)",
           "features": [
             "Integration with CRMs and ticketing systems via API",
@@ -3922,8 +3922,8 @@
         "base": {
           "name": "CRM Start",
           "desc": "Basic CRM setup for small sales teams.",
-          "price": 290000,
-          "priceFrom": true,
+          "price": "290000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Consulting for CRM software selection",
@@ -3940,8 +3940,8 @@
           "badge": "Most Popular",
           "popular": true,
           "desc": "Automated lead tracking and entire sales funnel configuration.",
-          "price": 690000,
-          "priceFrom": true,
+          "price": "690000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Setup for up to 15 CRM user accounts",
@@ -3956,8 +3956,8 @@
         "complex": {
           "name": "CRM Scale",
           "desc": "Connecting CRM, marketing campaigns, and customer support databases.",
-          "price": 1490000,
-          "priceFrom": true,
+          "price": "1490000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Integrations with invoicing, calendars, and n8n workflows",
@@ -4076,8 +4076,8 @@
         "base": {
           "name": "Tracking Start",
           "desc": "Basic tracking implementation for lead generation sites.",
-          "price": 180000,
-          "priceFrom": true,
+          "price": "180000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Google Analytics 4 (GA4) basic setup",
@@ -4094,8 +4094,8 @@
           "badge": "Most Popular",
           "popular": true,
           "desc": "Full ecommerce funnel and major advertising pixels integration.",
-          "price": 390000,
-          "priceFrom": true,
+          "price": "390000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Standard ecommerce event logging (add_to_cart, view_item)",
@@ -4110,8 +4110,8 @@
         "complex": {
           "name": "Conversion Pro",
           "desc": "Tracking, reporting, and continuous conversion rate optimization (CRO) reviews.",
-          "price": 790000,
-          "priceFrom": true,
+          "price": "790000",
+          "priceFrom": "true",
           "sub": "+ 99,000 HUF/month support (VAT-free)",
           "features": [
             "All features in the Ecommerce Business plan",
@@ -4230,8 +4230,8 @@
         "base": {
           "name": "Dashboard Start",
           "desc": "Simple executive dashboard with one data source.",
-          "price": 240000,
-          "priceFrom": true,
+          "price": "240000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Connection to 1 data source (e.g., Google Sheets or GA4)",
@@ -4248,8 +4248,8 @@
           "badge": "Most Popular",
           "popular": true,
           "desc": "Comprehensive business reports built from multiple data platforms.",
-          "price": 590000,
-          "priceFrom": true,
+          "price": "590000",
+          "priceFrom": "true",
           "sub": "one-time fee (VAT-free)",
           "features": [
             "Merging and mapping up to 3 distinct data sources",
@@ -4264,8 +4264,8 @@
         "complex": {
           "name": "Analytics Pro",
           "desc": "Complex enterprise-grade BI pipelines with monthly support.",
-          "price": 1200000,
-          "priceFrom": true,
+          "price": "1200000",
+          "priceFrom": "true",
           "sub": "+ 150,000 HUF/month support (VAT-free)",
           "features": [
             "Unlimited data sources and intricate relationships",
@@ -4384,8 +4384,8 @@
         "base": {
           "name": "Helpdesk Start",
           "desc": "Basic remote technical care for small offices.",
-          "price": 69000,
-          "priceFrom": true,
+          "price": "69000",
+          "priceFrom": "true",
           "sub": "/month (VAT-free, up to 5 users)",
           "features": [
             "Remote support for up to 5 active users",
@@ -4402,8 +4402,8 @@
           "badge": "Most Popular",
           "popular": true,
           "desc": "Regular remote IT support for growing businesses.",
-          "price": 159000,
-          "priceFrom": true,
+          "price": "159000",
+          "priceFrom": "true",
           "sub": "/month (VAT-free, up to 15 users)",
           "features": [
             "Remote support for up to 15 active users",
@@ -4418,8 +4418,8 @@
         "complex": {
           "name": "Helpdesk Pro",
           "desc": "Comprehensive remote IT support with strict SLA commitments and reporting.",
-          "price": 329000,
-          "priceFrom": true,
+          "price": "329000",
+          "priceFrom": "true",
           "sub": "/month (VAT-free, up to 40 users)",
           "features": [
             "Remote support for up to 40 active users",
