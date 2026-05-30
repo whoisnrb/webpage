@@ -42,5 +42,5 @@ export default async function CloudMigrationPage({ params }: { params: Promise<{
         locale
     });
 
-    return <GenericServiceContent serviceKey="CloudMigration" icon={Cloud} />;
+    return <GenericServiceContent serviceKey="CloudMigration" />;
 }

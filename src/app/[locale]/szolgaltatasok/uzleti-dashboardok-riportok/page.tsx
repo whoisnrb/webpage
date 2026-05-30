@@ -42,5 +42,5 @@ export default async function BusinessDashboardsPage({ params }: { params: Promi
         locale
     });
 
-    return <GenericServiceContent serviceKey="BusinessDashboards" icon={Layout} />;
+    return <GenericServiceContent serviceKey="BusinessDashboards" />;
 }

@@ -42,5 +42,5 @@ export default async function AICustomerSupportPage({ params }: { params: Promis
         locale
     });
 
-    return <GenericServiceContent serviceKey="AICustomerSupport" icon={Cpu} />;
+    return <GenericServiceContent serviceKey="AICustomerSupport" />;
 }

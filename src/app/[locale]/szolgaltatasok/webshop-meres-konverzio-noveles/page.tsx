@@ -42,5 +42,5 @@ export default async function EcommerceTrackingPage({ params }: { params: Promis
         locale
     });
 
-    return <GenericServiceContent serviceKey="EcommerceTracking" icon={Activity} />;
+    return <GenericServiceContent serviceKey="EcommerceTracking" />;
 }

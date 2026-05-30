@@ -42,5 +42,5 @@ export default async function CRMAutomationPage({ params }: { params: Promise<{ 
         locale
     });
 
-    return <GenericServiceContent serviceKey="CRMAutomation" icon={Puzzle} />;
+    return <GenericServiceContent serviceKey="CRMAutomation" />;
 }

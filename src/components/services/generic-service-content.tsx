@@ -11,7 +11,13 @@ import {
     ShieldCheck, 
     Trophy, 
     ChevronDown,
-    LucideIcon
+    LucideIcon,
+    Cloud,
+    Cpu,
+    Puzzle,
+    Activity,
+    Layout,
+    Headphones
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
@@ -22,10 +28,19 @@ import { formatPrice } from "@/lib/currency"
 
 interface GenericServiceContentProps {
     serviceKey: "CloudMigration" | "AICustomerSupport" | "CRMAutomation" | "EcommerceTracking" | "BusinessDashboards" | "RemoteHelpdesk"
-    icon: LucideIcon
 }
 
-export function GenericServiceContent({ serviceKey, icon: IconComponent }: GenericServiceContentProps) {
+const SERVICE_ICONS: Record<string, LucideIcon> = {
+    CloudMigration: Cloud,
+    AICustomerSupport: Cpu,
+    CRMAutomation: Puzzle,
+    EcommerceTracking: Activity,
+    BusinessDashboards: Layout,
+    RemoteHelpdesk: Headphones,
+}
+
+export function GenericServiceContent({ serviceKey }: GenericServiceContentProps) {
+    const IconComponent = SERVICE_ICONS[serviceKey] || Cloud
     const t = useTranslations(`Services.${serviceKey}`)
     const tCommon = useTranslations("ServiceTemplate")
     const tServices = useTranslations("ServicesPage")

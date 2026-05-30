@@ -42,5 +42,5 @@ export default async function RemoteHelpdeskPage({ params }: { params: Promise<{
         locale
     });
 
-    return <GenericServiceContent serviceKey="RemoteHelpdesk" icon={Headphones} />;
+    return <GenericServiceContent serviceKey="RemoteHelpdesk" />;
 }
