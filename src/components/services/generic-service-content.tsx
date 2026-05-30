@@ -49,81 +49,44 @@ export function GenericServiceContent({ serviceKey, icon: IconComponent }: Gener
 
     // Helper to get features dynamically
     const getFeatures = (planKey: string) => {
-        const list = []
-        for (let i = 0; i < 8; i++) {
-            // Check if feature key exists in translations
-            const key = `plans.${planKey}.features.${i}`
-            const val = t(key)
-            if (val && val !== `Services.${serviceKey}.${key}` && !val.includes(`plans.${planKey}.features`)) {
-                list.push(val)
-            }
-        }
-        return list
+        try {
+            const raw = t.raw(`plans.${planKey}.features`)
+            if (Array.isArray(raw)) return raw
+        } catch (e) {}
+        return []
     }
 
     // Helper to get array items safely
     const getBenefits = () => {
-        const list = []
-        for (let i = 0; i < 3; i++) {
-            const titleKey = `hero_benefits.${i}.title`
-            const descKey = `hero_benefits.${i}.description`
-            if (t(titleKey) && !t(titleKey).includes(`hero_benefits.`)) {
-                list.push({
-                    title: t(titleKey),
-                    description: t(descKey)
-                })
-            }
-        }
-        return list
+        try {
+            const raw = t.raw("hero_benefits")
+            if (Array.isArray(raw)) return raw
+        } catch (e) {}
+        return []
     }
 
     const getUseCases = () => {
-        const list = []
-        for (let i = 0; i < 6; i++) {
-            const titleKey = `use_cases_items.${i}.title`
-            const descKey = `use_cases_items.${i}.description`
-            const exKey = `use_cases_items.${i}.example`
-            const roiKey = `use_cases_items.${i}.roi`
-            if (t(titleKey) && !t(titleKey).includes(`use_cases_items.`)) {
-                list.push({
-                    title: t(titleKey),
-                    description: t(descKey),
-                    example: t(exKey),
-                    roi: t(roiKey)
-                })
-            }
-        }
-        return list
+        try {
+            const raw = t.raw("use_cases_items")
+            if (Array.isArray(raw)) return raw
+        } catch (e) {}
+        return []
     }
 
     const getSteps = () => {
-        const list = []
-        for (let i = 0; i < 5; i++) {
-            const titleKey = `how_we_work_steps.${i}.title`
-            const descKey = `how_we_work_steps.${i}.description`
-            if (t(titleKey) && !t(titleKey).includes(`how_we_work_steps.`)) {
-                list.push({
-                    title: t(titleKey),
-                    description: t(descKey)
-                })
-            }
-        }
-        return list
+        try {
+            const raw = t.raw("how_we_work_steps")
+            if (Array.isArray(raw)) return raw
+        } catch (e) {}
+        return []
     }
 
     const getFaqItems = () => {
-        const list = []
-        for (let i = 0; i < 5; i++) {
-            const qKey = `faq_items.${i}.question`
-            const aKey = `faq_items.${i}.answer`
-            if (t(qKey) && !t(qKey).includes(`faq_items.`)) {
-                list.push({
-                    question: t(qKey),
-                    answer: t(aKey)
-                })
-            }
-        }
-        return list
+        try {
+            const raw = t.raw("faq_items")
+            if (Array.isArray(raw)) return raw
+        } catch (e) {}
+        return []
     }
 
     const benefits = getBenefits()
