@@ -31,7 +31,9 @@ export async function POST(req: NextRequest) {
 
         if (status) updateData.status = status
         if (priority) updateData.priority = priority
-        if (assignedToId) updateData.assignedToId = assignedToId
+        if (assignedToId !== undefined) {
+            updateData.assignedToId = (assignedToId === "unassigned" || assignedToId === "" || assignedToId === null) ? null : assignedToId
+        }
 
         const ticket = await prisma.ticket.update({
             where: { id: ticketId },

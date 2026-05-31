@@ -30,6 +30,7 @@ interface Ticket {
         email: string
     }
     assignedTo: {
+        id: string
         name: string
     } | null
     _count: {
@@ -40,12 +41,14 @@ interface Ticket {
 export default function AdminTicketsPage() {
     const [tickets, setTickets] = useState<Ticket[]>([])
     const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([])
+    const [admins, setAdmins] = useState<Array<{ id: string; name: string }>>([])
     const [loading, setLoading] = useState(true)
     const [search, setSearch] = useState("")
     const [statusFilter, setStatusFilter] = useState("ALL")
 
     useEffect(() => {
         fetchTickets()
+        fetchAdmins()
     }, [])
 
     useEffect(() => {
@@ -80,6 +83,58 @@ export default function AdminTicketsPage() {
             console.error(error)
         } finally {
             setLoading(false)
+        }
+    }
+
+    const fetchAdmins = async () => {
+        try {
+            const response = await fetch('/api/admin/users')
+            const data = await response.json()
+            if (data.success) {
+                setAdmins(data.users)
+            }
+        } catch (error) {
+            console.error("Admins fetch error:", error)
+        }
+    }
+
+    const handleStatusChange = async (ticketId: string, newStatus: string) => {
+        try {
+            const response = await fetch('/api/admin/ticket/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ticketId, status: newStatus })
+            })
+            const data = await response.json()
+            if (data.success) {
+                setTickets(prev => prev.map(t => t.id === ticketId ? { ...t, status: newStatus } : t))
+            } else {
+                alert(data.error || "Hiba történt a státusz frissítésekor")
+            }
+        } catch (error) {
+            alert("Hálózati hiba")
+        }
+    }
+
+    const handleAssigneeChange = async (ticketId: string, newAssigneeId: string) => {
+        try {
+            const response = await fetch('/api/admin/ticket/update', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ ticketId, assignedToId: newAssigneeId })
+            })
+            const data = await response.json()
+            if (data.success) {
+                const assignedAdmin = admins.find(a => a.id === newAssigneeId)
+                setTickets(prev => prev.map(t => t.id === ticketId ? { 
+                    ...t, 
+                    assignedTo: assignedAdmin ? { id: assignedAdmin.id, name: assignedAdmin.name } : null 
+                } : t))
+            } else {
+                alert(data.error || "Hiba történt a felelős frissítésekor")
+            }
+        } catch (error) {
+            alert("Hálózati hiba")
         }
     }
 
@@ -155,18 +210,43 @@ export default function AdminTicketsPage() {
                                                 {ticket.subject}
                                             </Link>
                                         </TableCell>
-                                        <TableCell>
-                                            <TicketStatusBadge status={ticket.status} />
+                                        <TableCell onClick={(e) => e.stopPropagation()}>
+                                            <Select 
+                                                value={ticket.status} 
+                                                onValueChange={(val) => handleStatusChange(ticket.id, val)}
+                                            >
+                                                <SelectTrigger className="w-[145px] h-8 text-xs font-semibold py-0">
+                                                    <SelectValue />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="OPEN">Nyitott</SelectItem>
+                                                    <SelectItem value="IN_PROGRESS">Folyamatban</SelectItem>
+                                                    <SelectItem value="WAITING_FOR_CUSTOMER">Ügyfélre vár</SelectItem>
+                                                    <SelectItem value="RESOLVED">Megoldva</SelectItem>
+                                                    <SelectItem value="CLOSED">Lezárva</SelectItem>
+                                                </SelectContent>
+                                            </Select>
                                         </TableCell>
                                         <TableCell>
                                             <TicketPriorityBadge priority={ticket.priority} />
                                         </TableCell>
-                                        <TableCell>
-                                            {ticket.assignedTo ? (
-                                                <span className="text-sm">{ticket.assignedTo.name}</span>
-                                            ) : (
-                                                <span className="text-xs text-muted-foreground italic">Nincs hozzárendelve</span>
-                                            )}
+                                        <TableCell onClick={(e) => e.stopPropagation()}>
+                                            <Select 
+                                                value={ticket.assignedTo?.id || "unassigned"} 
+                                                onValueChange={(val) => handleAssigneeChange(ticket.id, val)}
+                                            >
+                                                <SelectTrigger className="w-[165px] h-8 text-xs py-0">
+                                                    <SelectValue placeholder="Nincs hozzárendelve" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="unassigned">Nincs hozzárendelve</SelectItem>
+                                                    {admins.map((admin) => (
+                                                        <SelectItem key={admin.id} value={admin.id}>
+                                                            {admin.name}
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectContent>
+                                            </Select>
                                         </TableCell>
                                         <TableCell className="text-sm">
                                             {new Date(ticket.updatedAt).toLocaleDateString('hu-HU')}

@@ -59,14 +59,29 @@ export default function AdminTicketDetailPage() {
     // Edit states
     const [status, setStatus] = useState("")
     const [priority, setPriority] = useState("")
+    const [assignedToId, setAssignedToId] = useState("")
+    const [admins, setAdmins] = useState<Array<{ id: string; name: string }>>([])
 
     const ticketId = params.id as string
 
     useEffect(() => {
         if (ticketId) {
             fetchTicket()
+            fetchAdmins()
         }
     }, [ticketId])
+
+    const fetchAdmins = async () => {
+        try {
+            const response = await fetch('/api/admin/users')
+            const data = await response.json()
+            if (data.success) {
+                setAdmins(data.users)
+            }
+        } catch (error) {
+            console.error("Admins fetch error:", error)
+        }
+    }
 
     useEffect(() => {
         scrollToBottom()
@@ -88,6 +103,7 @@ export default function AdminTicketDetailPage() {
                 setTicket(data.ticket)
                 setStatus(data.ticket.status)
                 setPriority(data.ticket.priority)
+                setAssignedToId(data.ticket.assignedTo?.id || "unassigned")
             }
         } catch (error) {
             console.error(error)
@@ -134,14 +150,21 @@ export default function AdminTicketDetailPage() {
                 body: JSON.stringify({
                     ticketId,
                     status,
-                    priority
+                    priority,
+                    assignedToId
                 })
             })
 
             const data = await response.json()
 
             if (data.success) {
-                setTicket(prev => prev ? { ...prev, status, priority } : null)
+                setTicket(prev => prev ? { 
+                    ...prev, 
+                    status, 
+                    priority, 
+                    assignedTo: data.ticket.assignedTo 
+                } : null)
+                setAssignedToId(data.ticket.assignedTo?.id || "unassigned")
                 alert("Ticket frissítve!")
             } else {
                 alert(data.error || "Hiba történt a frissítéskor")
@@ -331,16 +354,30 @@ export default function AdminTicketDetailPage() {
 
                         <div className="space-y-2">
                             <Label>Felelős</Label>
-                            <div className="flex items-center justify-between p-2 border rounded-md bg-muted/50">
-                                <span className="text-sm">
-                                    {ticket.assignedTo ? ticket.assignedTo.name : "Nincs hozzárendelve"}
-                                </span>
-                                {!ticket.assignedTo && (
-                                    <Button variant="link" size="sm" onClick={handleAssignSelf} disabled={updating}>
-                                        Átvétel
-                                    </Button>
-                                )}
-                            </div>
+                            <Select value={assignedToId} onValueChange={setAssignedToId}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Válasszon felelőst" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="unassigned">Nincs hozzárendelve</SelectItem>
+                                    {admins.map((admin) => (
+                                        <SelectItem key={admin.id} value={admin.id}>
+                                            {admin.name}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                            {!ticket.assignedTo && (
+                                <Button 
+                                    variant="outline" 
+                                    size="sm" 
+                                    className="w-full text-xs" 
+                                    onClick={handleAssignSelf} 
+                                    disabled={updating}
+                                >
+                                    Gyors átvétel (Saját magam)
+                                </Button>
+                            )}
                         </div>
 
                         <Button className="w-full" onClick={handleUpdate} disabled={updating}>
