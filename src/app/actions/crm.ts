@@ -49,7 +49,7 @@ export async function deleteLead(id: string) {
 }
 
 export async function createLead(data: {
-    name: string;
+    name?: string;
     companyName?: string;
     email: string;
     source: string;
