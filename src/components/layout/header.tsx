@@ -3,8 +3,9 @@
 import * as React from "react"
 import { Link, usePathname } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
-import { Menu, X, Code2 } from "lucide-react"
+import { Menu, X, Code2, ChevronDown, User, Settings, LogOut, LayoutDashboard } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useSession, signOut } from "next-auth/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Breadcrumbs } from "@/components/layout/breadcrumbs"
 import { ThemeCustomizer } from "@/components/theme/theme-customizer"
@@ -21,9 +22,17 @@ import { cn } from "@/lib/utils"
 
 export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+    const [profileMenuOpen, setProfileMenuOpen] = React.useState(false)
+    const { data: session, status } = useSession()
     const t = useTranslations("Navigation")
     const tMega = useTranslations("MegaMenu")
     const pathname = usePathname()
+
+    const userName = session?.user?.name || ""
+    const userEmail = session?.user?.email || ""
+    const initials = userName
+        ? userName.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)
+        : "U"
 
     if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
         return null;
@@ -128,9 +137,95 @@ export function Header() {
                                 <path d="m21 21-4.3-4.3" />
                             </svg>
                         </Button>
-                        <Button variant="ghost" size="sm" asChild>
-                            <Link href="/login">{t("client_portal")}</Link>
-                        </Button>
+                        {status === "authenticated" && session?.user ? (
+                            <div className="relative">
+                                <button
+                                    onClick={() => setProfileMenuOpen(!profileMenuOpen)}
+                                    className="flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/10 active:scale-95 transition-all duration-200 text-sm font-medium text-white/90 focus:outline-none cursor-pointer"
+                                >
+                                    {session.user.image ? (
+                                        <img
+                                            src={session.user.image}
+                                            alt={userName}
+                                            className="h-5 w-5 rounded-full object-cover ring-1 ring-cyan-500/30"
+                                        />
+                                    ) : (
+                                        <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/30 to-blue-600/20 text-[9px] font-bold text-cyan-400 ring-1 ring-cyan-500/25">
+                                            {initials}
+                                        </div>
+                                    )}
+                                    <span className="max-w-[100px] truncate text-white/90 font-semibold">{userName}</span>
+                                    <ChevronDown className={cn("h-3.5 w-3.5 text-white/40 transition-transform duration-200", profileMenuOpen && "rotate-180")} />
+                                </button>
+
+                                {/* Desktop Dropdown Menu */}
+                                <AnimatePresence>
+                                    {profileMenuOpen && (
+                                        <>
+                                            {/* Láthatatlan háttér a kattintás bezárásához */}
+                                            <div className="fixed inset-0 z-40" onClick={() => setProfileMenuOpen(false)} />
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                transition={{ duration: 0.15 }}
+                                                className="absolute right-0 mt-2 w-56 origin-top-right rounded-xl border border-white/10 bg-[#080812]/95 backdrop-blur-2xl p-1.5 shadow-2xl shadow-cyan-500/5 focus:outline-none z-50 overflow-hidden"
+                                            >
+                                                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent pointer-events-none" />
+                                                
+                                                <div className="px-3 py-2 border-b border-white/5 mb-1.5 relative z-10">
+                                                    <p className="text-[10px] text-cyan-400/70 font-black uppercase tracking-widest">{t("client_portal")}</p>
+                                                    <p className="text-xs text-white/80 font-bold truncate mt-0.5">{userName}</p>
+                                                    <p className="text-[10px] text-white/40 truncate">{userEmail}</p>
+                                                </div>
+                                                
+                                                <div className="space-y-0.5 relative z-10">
+                                                    <Link
+                                                        href={"/dashboard/settings" as any}
+                                                        onClick={() => setProfileMenuOpen(false)}
+                                                        className="flex w-full items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 hover:border-l-2 hover:border-cyan-400 pl-3 transition-all cursor-pointer"
+                                                    >
+                                                        <User className="h-3.5 w-3.5 text-white/40" />
+                                                        {t("profile")}
+                                                    </Link>
+                                                    <Link
+                                                        href={"/dashboard" as any}
+                                                        onClick={() => setProfileMenuOpen(false)}
+                                                        className="flex w-full items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 hover:border-l-2 hover:border-cyan-400 pl-3 transition-all cursor-pointer"
+                                                    >
+                                                        <LayoutDashboard className="h-3.5 w-3.5 text-white/40" />
+                                                        {t("dashboard_menu")}
+                                                    </Link>
+                                                    <Link
+                                                        href={"/dashboard/settings" as any}
+                                                        onClick={() => setProfileMenuOpen(false)}
+                                                        className="flex w-full items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 hover:border-l-2 hover:border-cyan-400 pl-3 transition-all cursor-pointer"
+                                                    >
+                                                        <Settings className="h-3.5 w-3.5 text-white/40" />
+                                                        {t("settings")}
+                                                    </Link>
+                                                    <div className="my-1 border-t border-white/5" />
+                                                    <button
+                                                        onClick={() => {
+                                                            setProfileMenuOpen(false);
+                                                            signOut({ callbackUrl: "/login" });
+                                                        }}
+                                                        className="flex w-full items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-lg text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all text-left cursor-pointer"
+                                                    >
+                                                        <LogOut className="h-3.5 w-3.5 text-red-400/80" />
+                                                        {t("logout")}
+                                                    </button>
+                                                </div>
+                                            </motion.div>
+                                        </>
+                                    )}
+                                </AnimatePresence>
+                            </div>
+                        ) : (
+                            <Button variant="ghost" size="sm" asChild>
+                                <Link href="/login">{t("client_portal")}</Link>
+                            </Button>
+                        )}
                         <Button size="sm" className="bg-accent hover:bg-accent/90 text-white" asChild>
                             <Link href="/demo">{t("free_consultation")}</Link>
                         </Button>
@@ -315,9 +410,73 @@ export function Header() {
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-1 gap-3 mt-4">
-                                        <Button variant="outline" asChild className="w-full bg-white/5 border-white/10 hover:bg-white/10 text-white">
-                                            <Link href="/login">{t("client_portal")}</Link>
-                                        </Button>
+                                        {status === "authenticated" && session?.user ? (
+                                            <div className="space-y-3 rounded-2xl border border-white/5 bg-white/[0.02] p-4 relative overflow-hidden">
+                                                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent pointer-events-none" />
+                                                
+                                                {/* User Info header card */}
+                                                <div className="flex items-center gap-3 pb-3 border-b border-white/5 relative z-10">
+                                                    {session.user.image ? (
+                                                        <img
+                                                            src={session.user.image}
+                                                            alt={userName}
+                                                            className="h-10 w-10 rounded-full object-cover ring-1 ring-cyan-500/30"
+                                                        />
+                                                    ) : (
+                                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500/30 to-blue-600/20 text-xs font-bold text-cyan-400 ring-1 ring-cyan-500/25">
+                                                            {initials}
+                                                        </div>
+                                                    )}
+                                                    <div className="min-w-0 flex-1">
+                                                        <p className="text-sm font-bold text-white truncate leading-snug">{userName}</p>
+                                                        <p className="text-[10px] text-white/40 truncate">{userEmail}</p>
+                                                    </div>
+                                                </div>
+
+                                                {/* Mobile User Menu Links */}
+                                                <div className="space-y-1 relative z-10 pt-1">
+                                                    <Link
+                                                        href={"/dashboard/settings" as any}
+                                                        className="flex w-full items-center gap-2.5 py-2 px-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 active:bg-white/5 transition-all cursor-pointer"
+                                                        onClick={() => setMobileMenuOpen(false)}
+                                                    >
+                                                        <User className="h-4 w-4 text-white/40" />
+                                                        {t("profile")}
+                                                    </Link>
+                                                    <Link
+                                                        href={"/dashboard" as any}
+                                                        className="flex w-full items-center gap-2.5 py-2 px-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 active:bg-white/5 transition-all cursor-pointer"
+                                                        onClick={() => setMobileMenuOpen(false)}
+                                                    >
+                                                        <LayoutDashboard className="h-4 w-4 text-white/40" />
+                                                        {t("dashboard_menu")}
+                                                    </Link>
+                                                    <Link
+                                                        href={"/dashboard/settings" as any}
+                                                        className="flex w-full items-center gap-2.5 py-2 px-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 active:bg-white/5 transition-all cursor-pointer"
+                                                        onClick={() => setMobileMenuOpen(false)}
+                                                    >
+                                                        <Settings className="h-4 w-4 text-white/40" />
+                                                        {t("settings")}
+                                                    </Link>
+                                                    <div className="h-px bg-white/5 my-2" />
+                                                    <button
+                                                        onClick={() => {
+                                                            setMobileMenuOpen(false);
+                                                            signOut({ callbackUrl: "/login" });
+                                                        }}
+                                                        className="flex w-full items-center gap-2.5 py-2 px-2 text-xs font-semibold rounded-lg text-red-400 hover:text-red-300 hover:bg-red-500/10 active:bg-red-500/10 transition-all text-left cursor-pointer"
+                                                    >
+                                                        <LogOut className="h-4 w-4 text-red-400/80" />
+                                                        {t("logout")}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <Button variant="outline" asChild className="w-full bg-white/5 border-white/10 hover:bg-white/10 text-white">
+                                                <Link href="/login">{t("client_portal")}</Link>
+                                            </Button>
+                                        )}
                                         <Button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:scale-[1.02] transition-transform text-white border-none shadow-lg shadow-cyan-500/20 font-bold h-12" asChild>
                                             <Link href="/demo">{t("free_consultation")}</Link>
                                         </Button>

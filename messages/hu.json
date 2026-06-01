@@ -555,7 +555,11 @@
     "search": "Keresés",
     "open_menu": "Menü megnyitása",
     "free_consultation": "Ingyenes konzultáció",
-    "reviews": "Vélemény"
+    "reviews": "Vélemény",
+    "profile": "Profilom",
+    "dashboard_menu": "Ügyfélportál / Dashboard",
+    "settings": "Beállítások",
+    "logout": "Kijelentkezés"
   },
   "Footer": {
     "description": "Professzionális informatikai szolgáltatások, scriptek és automatizációk vállalkozások számára. Spórolj időt és pénzt modern megoldásainkkal.",

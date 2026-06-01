@@ -555,7 +555,11 @@
     "search": "Search",
     "open_menu": "Open Menu",
     "free_consultation": "Free Consultation",
-    "reviews": "Reviews"
+    "reviews": "Reviews",
+    "profile": "My Profile",
+    "dashboard_menu": "Client Portal / Dashboard",
+    "settings": "Settings",
+    "logout": "Logout"
   },
   "Footer": {
     "description": "Professional IT services, scripts, and automation for businesses. Save time and money with our modern solutions.",
