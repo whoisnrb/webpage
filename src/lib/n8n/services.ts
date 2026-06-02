@@ -113,7 +113,14 @@ export async function generateAIResponse(prompt: string, systemPrompt?: string):
             }
         });
 
-        return response.text || "Nem sikerült választ generálni.";
+        let responseText = response.text || "Nem sikerült választ generálni.";
+        
+        // Remove markdown formatting if the model still returns it
+        if (responseText.startsWith('```html')) {
+            responseText = responseText.replace(/^```html\n?/, '').replace(/\n?```$/, '');
+        }
+
+        return responseText;
 
     } catch (error) {
         console.error("AI Generation failed:", error);
