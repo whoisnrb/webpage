@@ -47,9 +47,14 @@ async function main() {
 
     console.log('Seeding reviews...')
     for (const review of reviews) {
-        await prisma.review.create({
-            data: review
-        })
+        const existing = await prisma.review.findFirst({
+            where: { name: review.name, content: review.content }
+        });
+        if (!existing) {
+            await prisma.review.create({
+                data: review
+            })
+        }
     }
     console.log('Seeding finished.')
 }
