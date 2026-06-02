@@ -4,16 +4,17 @@ import { auth } from "@/auth"
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await context.params
         const session = await auth()
         if (!session?.user || session.user.role !== "ADMIN") {
             return new NextResponse("Unauthorized", { status: 401 })
         }
 
         const meeting = await prisma.salesMeeting.findUnique({
-            where: { id: params.id },
+            where: { id },
             select: {
                 documentFile: true,
                 documentFileName: true,
