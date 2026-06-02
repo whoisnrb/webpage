@@ -1,6 +1,7 @@
 import { google } from 'googleapis';
 import nodemailer from 'nodemailer';
 import { GOOGLE_SHEET_IDS } from './config';
+import { GoogleGenAI } from '@google/genai';
 
 // --- Google Sheets Service ---
 
@@ -94,36 +95,25 @@ export async function sendEmail(to: string, subject: string, html: string) {
 // --- AI Services ---
 
 export async function generateAIResponse(prompt: string, systemPrompt?: string): Promise<string> {
-    const apiKey = process.env.PERPLEXITY_API_KEY;
-    // Fallback to Perplexity for general chat as requested in n8n flow
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-        console.warn("No Perplexity API Key found, returning mock response");
+        console.warn("No Gemini API Key found, returning mock response");
         return "AI Service is temporarily unavailable (Missing Key).";
     }
 
     try {
-        const response = await fetch('https://api.perplexity.ai/chat/completions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${apiKey}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                model: 'sonar-pro', // matching the n8n config
-                messages: [
-                    { role: 'system', content: systemPrompt || 'You are a helpful assistant.' },
-                    { role: 'user', content: prompt }
-                ]
-            })
+        const ai = new GoogleGenAI({ apiKey });
+        
+        const response = await ai.models.generateContent({
+            model: 'gemini-1.5-flash',
+            contents: prompt,
+            config: {
+                systemInstruction: systemPrompt || 'You are a helpful assistant.',
+                tools: [{ googleSearch: {} }],
+            }
         });
 
-        if (!response.ok) {
-            const errText = await response.text();
-            throw new Error(`Perplexity API Error: ${response.status} ${errText}`);
-        }
-
-        const data = await response.json();
-        return data.choices[0].message.content;
+        return response.text || "Nem sikerült választ generálni.";
 
     } catch (error) {
         console.error("AI Generation failed:", error);
