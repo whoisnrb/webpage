@@ -27,7 +27,7 @@ export async function GET(
         }
 
         // Return the file as a response
-        return new NextResponse(meeting.documentFile, {
+        return new NextResponse(meeting.documentFile as unknown as BodyInit, {
             headers: {
                 "Content-Type": meeting.documentMimeType || "application/octet-stream",
                 "Content-Disposition": `attachment; filename="${meeting.documentFileName || 'document.pdf'}"`,
