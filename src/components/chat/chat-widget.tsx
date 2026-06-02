@@ -157,19 +157,20 @@ export function ChatWidget() {
                                                     {msg.role === "user" ? (
                                                         msg.content
                                                     ) : (
-                                                        <ReactMarkdown
-                                                            className="prose prose-invert prose-sm max-w-none"
-                                                            components={{
-                                                                p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
-                                                                strong: ({node, ...props}) => <strong className="font-semibold text-cyan-300" {...props} />,
-                                                                ul: ({node, ...props}) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
-                                                                ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
-                                                                li: ({node, ...props}) => <li className="text-slate-300" {...props} />,
-                                                                a: ({node, ...props}) => <a className="text-cyan-400 hover:underline underline-offset-2" {...props} />
-                                                            }}
-                                                        >
-                                                            {msg.content}
-                                                        </ReactMarkdown>
+                                                        <div className="prose prose-invert prose-sm max-w-none">
+                                                            <ReactMarkdown
+                                                                components={{
+                                                                    p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
+                                                                    strong: ({node, ...props}) => <strong className="font-semibold text-cyan-300" {...props} />,
+                                                                    ul: ({node, ...props}) => <ul className="list-disc pl-4 mb-2 space-y-1" {...props} />,
+                                                                    ol: ({node, ...props}) => <ol className="list-decimal pl-4 mb-2 space-y-1" {...props} />,
+                                                                    li: ({node, ...props}) => <li className="text-slate-300" {...props} />,
+                                                                    a: ({node, ...props}) => <a className="text-cyan-400 hover:underline underline-offset-2" {...props} />
+                                                                }}
+                                                            >
+                                                                {msg.content}
+                                                            </ReactMarkdown>
+                                                        </div>
                                                     )}
                                                 </div>
                                             </motion.div>
