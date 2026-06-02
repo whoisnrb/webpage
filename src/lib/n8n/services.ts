@@ -105,7 +105,7 @@ export async function generateAIResponse(prompt: string, systemPrompt?: string):
         const ai = new GoogleGenAI({ apiKey });
         
         const response = await ai.models.generateContent({
-            model: 'gemini-1.5-flash',
+            model: 'gemini-2.5-flash',
             contents: prompt,
             config: {
                 systemInstruction: systemPrompt || 'You are a helpful assistant.',
