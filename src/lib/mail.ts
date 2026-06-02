@@ -349,7 +349,7 @@ export const sendSalesMeetingNotification = async (toEmail: string, meetingDetai
 
     try {
         await transporter.sendMail(mailOptions);
-        console.log(\`[MAIL] Sales meeting notification sent successfully to \${toEmail}\`);
+        console.log(`[MAIL] Sales meeting notification sent successfully to ${toEmail}`);
     } catch (error) {
         console.error("[MAIL] Error sending sales meeting notification:", error);
     }
