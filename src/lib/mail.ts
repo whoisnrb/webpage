@@ -230,3 +230,127 @@ export const sendStatusUpdateEmail = async (email: string, name: string, project
         console.error("[MAIL] Error sending status update email:", error);
     }
 };
+
+export const sendSalesMeetingNotification = async (toEmail: string, meetingDetails: any) => {
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+        console.warn("[MAIL] Missing credentials for sendSalesMeetingNotification");
+        return;
+    }
+
+    const {
+        clientName,
+        clientEmail,
+        clientPhone,
+        meetingTime,
+        platform,
+        meetingLink,
+        status,
+        notes,
+        hasDocument
+    } = meetingDetails;
+
+    const formattedDate = new Date(meetingTime).toLocaleString('hu-HU', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    const mailOptions = {
+        from: `"BacklineIT Sales" <${process.env.GMAIL_USER}>`,
+        to: toEmail,
+        subject: `Új Értékesítési Meeting: ${clientName} - ${formattedDate}`,
+        html: `
+            <div style="font-family: 'Inter', sans-serif; max-width: 650px; margin: 0 auto; padding: 0; background-color: #0b101c; color: #f8fafc; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1);">
+                <!-- Header -->
+                <div style="background: linear-gradient(135deg, #0f172a 0%, #0891b2 100%); padding: 35px 30px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: #bae6fd; margin: 0 0 10px 0; font-weight: 600;">BacklineIT Sales System</p>
+                    <h1 style="margin: 0; font-size: 28px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">Új Meeting Rögzítve</h1>
+                </div>
+
+                <!-- Content -->
+                <div style="padding: 40px 30px;">
+                    <p style="font-size: 16px; line-height: 1.6; margin-top: 0; color: #cbd5e1;">
+                        Kedves Levente!<br><br>
+                        Egy új értékesítési találkozó lett rögzítve az admin felületen. Az alábbiakban találod a részleteket:
+                    </p>
+
+                    <!-- Details Card -->
+                    <div style="background-color: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 25px; margin: 30px 0;">
+                        
+                        <h3 style="color: #38bdf8; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Ügyfél Adatai</h3>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-size: 14px; width: 40%;">Ügyfél neve:</td>
+                                <td style="padding: 8px 0; font-weight: 600; font-size: 15px;">${clientName}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-size: 14px;">E-mail cím:</td>
+                                <td style="padding: 8px 0; font-weight: 600; font-size: 15px;">
+                                    ${clientEmail ? `<a href="mailto:${clientEmail}" style="color: #38bdf8; text-decoration: none;">${clientEmail}</a>` : 'Nincs megadva'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-size: 14px;">Telefonszám:</td>
+                                <td style="padding: 8px 0; font-weight: 600; font-size: 15px;">${clientPhone || 'Nincs megadva'}</td>
+                            </tr>
+                        </table>
+
+                        <h3 style="color: #38bdf8; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; margin: 0 0 20px 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Meeting Részletei</h3>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-size: 14px; width: 40%;">Időpont:</td>
+                                <td style="padding: 8px 0; font-weight: 600; font-size: 15px; color: #34d399;">${formattedDate}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-size: 14px;">Platform:</td>
+                                <td style="padding: 8px 0; font-weight: 600; font-size: 15px;">
+                                    <span style="background-color: rgba(56, 189, 248, 0.1); color: #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 13px;">${platform}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-size: 14px;">Link:</td>
+                                <td style="padding: 8px 0; font-weight: 600; font-size: 15px;">
+                                    ${meetingLink ? `<a href="${meetingLink}" style="color: #38bdf8; text-decoration: underline;">Csatlakozás a meetinghez</a>` : 'Nincs csatolva'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-size: 14px;">Státusz:</td>
+                                <td style="padding: 8px 0; font-weight: 600; font-size: 15px;">${status === 'SCHEDULED' ? 'Tervezett' : status}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px 0; color: #94a3b8; font-size: 14px;">Puska / Dokumentum:</td>
+                                <td style="padding: 8px 0; font-weight: 600; font-size: 15px;">${hasDocument ? '✅ Csatolva az admin felületen' : '❌ Nincs csatolva'}</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- Notes Section -->
+                    ${notes ? `
+                    <div style="background-color: rgba(6, 182, 212, 0.05); border-left: 4px solid #06b6d4; padding: 20px; border-radius: 0 8px 8px 0; margin-bottom: 30px;">
+                        <h4 style="margin: 0 0 10px 0; color: #06b6d4; font-size: 14px; text-transform: uppercase;">Megjegyzések:</h4>
+                        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #e2e8f0; white-space: pre-wrap;">${notes}</p>
+                    </div>
+                    ` : ''}
+
+                    <div style="text-align: center; margin-top: 40px;">
+                        <a href="https://backlineit.hu/admin/sales-meetings" style="display: inline-block; background-color: #06b6d4; color: #ffffff; padding: 14px 32px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 6px -1px rgba(6, 182, 212, 0.3);">Ugrás az Admin Felületre</a>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div style="background-color: rgba(0,0,0,0.2); padding: 25px 30px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+                    <p style="margin: 0; font-size: 12px; color: #64748b;">Ezt az üzenetet a BacklineIT automatikus rendszere küldte.</p>
+                </div>
+            </div>
+        `,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(\`[MAIL] Sales meeting notification sent successfully to \${toEmail}\`);
+    } catch (error) {
+        console.error("[MAIL] Error sending sales meeting notification:", error);
+    }
+};

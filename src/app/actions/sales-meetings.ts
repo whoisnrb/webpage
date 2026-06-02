@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/db"
 import { revalidatePath } from "next/cache"
+import { sendSalesMeetingNotification } from "@/lib/mail"
 
 export async function getSalesMeetings() {
     try {
@@ -59,6 +60,19 @@ export async function createSalesMeeting(formData: FormData) {
                 ...documentData,
             }
         })
+        
+        // E-mail értesítés küldése a sales-es kollégának
+        await sendSalesMeetingNotification("roha.levente@backlineit.hu", {
+            clientName,
+            clientEmail,
+            clientPhone,
+            meetingTime,
+            platform,
+            meetingLink,
+            status,
+            notes,
+            hasDocument: !!documentData.documentFile
+        });
         
         revalidatePath("/admin/sales-meetings")
         return { success: true }
