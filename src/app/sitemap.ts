@@ -95,18 +95,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             const path = getPathname({ locale, href: href as Parameters<typeof getPathname>[0]['href'] })
             return path === '/' ? '' : path
         } catch {
+            let path = ''
             if (typeof href === 'string') {
-                return href
+                path = href
             } else if (href && href.pathname) {
-                let p = href.pathname
+                path = href.pathname
                 if (href.params) {
                     for (const [key, val] of Object.entries(href.params)) {
-                        p = p.replace(`[${key}]`, String(val))
+                        path = path.replace(`[${key}]`, String(val))
                     }
                 }
-                return p
             }
-            return ''
+            return path ? `/${locale}${path}` : ''
         }
     }
 
@@ -115,7 +115,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const languages: Record<string, string> = {}
         for (const locale of locales) {
             const path = resolvePathname(locale, href)
-            languages[locale] = `${baseUrl}/${locale}${path}`
+            languages[locale] = `${baseUrl}${path}`
         }
         return { languages }
     }
@@ -125,7 +125,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         for (const route of staticRoutes) {
             const path = resolvePathname(locale, route.path)
             routes.push({
-                url: `${baseUrl}/${locale}${path}`,
+                url: `${baseUrl}${path}`,
                 lastModified: new Date(),
                 changeFrequency: route.changeFrequency,
                 priority: route.priority,
@@ -140,7 +140,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             const hrefObj = { pathname: '/blog/[slug]', params: { slug: post.slug } }
             const path = resolvePathname(locale, hrefObj)
             routes.push({
-                url: `${baseUrl}/${locale}${path}`,
+                url: `${baseUrl}${path}`,
                 lastModified: post.updatedAt ? new Date(post.updatedAt) : new Date(post.createdAt),
                 changeFrequency: 'monthly',
                 priority: 0.6,
@@ -154,7 +154,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         for (const s of series) {
             const path = `/blog/series/${s.slug}`
             routes.push({
-                url: `${baseUrl}/${locale}${path}`,
+                url: `${baseUrl}/${locale}${path}`, // Hardcoded fallback paths still need the locale prefix
                 lastModified: new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.5,
@@ -169,7 +169,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             const hrefObj = { pathname: '/megoldasok/[slug]', params: { slug: product.slug } }
             const path = resolvePathname(locale, hrefObj)
             routes.push({
-                url: `${baseUrl}/${locale}${path}`,
+                url: `${baseUrl}${path}`,
                 lastModified: product.updatedAt ? new Date(product.updatedAt) : new Date(),
                 changeFrequency: 'weekly',
                 priority: 0.9,
@@ -189,7 +189,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             const hrefObj = { pathname: '/referenciak/[slug]', params: { slug: study.slug } }
             const path = resolvePathname(locale, hrefObj)
             routes.push({
-                url: `${baseUrl}/${locale}${path}`,
+                url: `${baseUrl}${path}`,
                 lastModified: study.updatedAt,
                 changeFrequency: 'monthly',
                 priority: 0.6,
