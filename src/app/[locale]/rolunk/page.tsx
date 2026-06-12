@@ -6,6 +6,18 @@ import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { useTranslations } from "next-intl"
 import { routing } from '@/i18n/routing'
 
+import { getSeoMetadata } from "@/lib/seo"
+import type { Metadata } from "next"
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    return {
+        title: locale === 'en' ? 'About Us' : 'Rólunk',
+        description: locale === 'en' ? 'Learn more about the BacklineIT team, our values, and our mission.' : 'Ismerd meg a BacklineIT csapatát, értékeinket és küldetésünket.',
+        ...getSeoMetadata(locale, '/rolunk')
+    };
+}
+
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }

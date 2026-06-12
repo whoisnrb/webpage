@@ -12,6 +12,8 @@ type Props = {
     params: Promise<{ slug: string; locale: string }>
 }
 
+import { getSeoMetadata } from "@/lib/seo"
+
 export async function generateMetadata({ params }: Props) {
     const { slug, locale } = await params
     const post = await getBlogPostBySlug(slug) as any
@@ -28,6 +30,7 @@ export async function generateMetadata({ params }: Props) {
     return {
         title: `${title} | BacklineIT Blog`,
         description: excerpt,
+        ...getSeoMetadata(locale, '/blog/[slug]', { slug })
     }
 }
 

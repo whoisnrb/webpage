@@ -5,6 +5,20 @@ import { TrustSignals } from "@/components/ui/trust-signals"
 import { useTranslations } from "next-intl"
 import { routing } from '@/i18n/routing'
 
+import { getSeoMetadata } from "@/lib/seo"
+import type { Metadata } from "next"
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    return {
+        title: locale === 'en' ? 'Contact' : 'Kapcsolat',
+        description: locale === 'en' 
+            ? 'Get in touch with us, request a quote, or book a consultation.' 
+            : 'Vedd fel velünk a kapcsolatot, kérj ajánlatot vagy foglalj konzultációt.',
+        ...getSeoMetadata(locale, '/kapcsolat')
+    };
+}
+
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }

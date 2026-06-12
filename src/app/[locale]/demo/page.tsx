@@ -15,6 +15,8 @@ export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
 
+import { getSeoMetadata } from "@/lib/seo"
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'DemoPage.metadata' });
@@ -22,7 +24,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     return {
         title: t('title'),
         description: t('description'),
-        keywords: t('keywords').split(', ')
+        keywords: t('keywords').split(', '),
+        ...getSeoMetadata(locale, '/demo')
     }
 }
 

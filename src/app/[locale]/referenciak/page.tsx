@@ -11,12 +11,15 @@ export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
 
+import { getSeoMetadata } from "@/lib/seo"
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
     const t = await getTranslations('References')
     return {
         title: t('title'),
         description: t('description'),
+        ...getSeoMetadata(locale, '/referenciak')
     }
 }
 

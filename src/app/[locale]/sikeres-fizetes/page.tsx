@@ -17,6 +17,10 @@ export async function generateMetadata({ params }: Props) {
     return {
         title: `${t("title")} | BacklineIT`,
         description: t("description"),
+        robots: {
+            index: false,
+            follow: false
+        }
     }
 }
 

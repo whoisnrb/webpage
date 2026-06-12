@@ -13,6 +13,8 @@ import { ClientGallery } from './client-gallery'
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
+import { getSeoMetadata } from "@/lib/seo"
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }): Promise<Metadata> {
     const { slug, locale } = await params;
     const study = await getLocalizedReferenceBySlug(slug, locale)
@@ -33,7 +35,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             title: study.title,
             description: study.description,
             images: study.image ? [study.image] : [],
-        }
+        },
+        ...getSeoMetadata(locale, '/referenciak/[slug]', { slug })
     }
 }
 

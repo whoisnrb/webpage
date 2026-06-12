@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["localhost:3000"],
   async redirects() {
     return [
+      // Redirects for unused landing pages to homepage
+      { source: '/lp/:slug', destination: '/', permanent: true },
+      { source: '/hu/lp/:slug', destination: '/', permanent: true },
+      { source: '/en/lp/:slug', destination: '/en', permanent: true },
+
       { source: '/en/rolunk', destination: '/en/about-us', permanent: true },
       { source: '/en/referenciak', destination: '/en/references', permanent: true },
       { source: '/en/arak', destination: '/en/pricing', permanent: true },

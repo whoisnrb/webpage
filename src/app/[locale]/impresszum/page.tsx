@@ -1,10 +1,27 @@
-"use client"
-
 import { LegalLayout } from "@/components/layout/legal-layout"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
+import { routing } from '@/i18n/routing'
+import { getSeoMetadata } from "@/lib/seo"
+import type { Metadata } from "next"
 
-export default function ImpresszumPage() {
-    const t = useTranslations("Legal.Imprint");
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    return {
+        title: locale === 'en' ? 'Imprint' : 'Impresszum',
+        description: locale === 'en' 
+            ? 'Official company information and contact details of BacklineIT.' 
+            : 'A BacklineIT hivatalos cégadatai és elérhetőségei.',
+        ...getSeoMetadata(locale, '/impresszum')
+    };
+}
+
+export default async function ImpresszumPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: "Legal.Imprint" });
 
     return (
         <LegalLayout title={t("title")} lastUpdated="2024. január 1.">

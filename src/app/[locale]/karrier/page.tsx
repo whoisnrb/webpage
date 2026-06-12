@@ -6,6 +6,20 @@ import { Link } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
 import { routing } from '@/i18n/routing'
 
+import { getSeoMetadata } from "@/lib/seo"
+import type { Metadata } from "next"
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    return {
+        title: locale === 'en' ? 'Careers' : 'Karrier',
+        description: locale === 'en' 
+            ? 'Join the BacklineIT team and work on exciting IT projects.' 
+            : 'Csatlakozz a BacklineIT csapatához, és dolgozz izgalmas IT projekteken.',
+        ...getSeoMetadata(locale, '/karrier')
+    };
+}
+
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }

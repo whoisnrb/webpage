@@ -6,6 +6,20 @@ import { routing } from '@/i18n/routing'
 
 export const revalidate = 3600
 
+import { getSeoMetadata } from "@/lib/seo"
+import type { Metadata } from "next"
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const { locale } = await params;
+    return {
+        title: locale === 'en' ? 'Consultation' : 'Konzultáció',
+        description: locale === 'en' 
+            ? 'Book an appointment for a personal or online expert IT consultation.' 
+            : 'Foglalj időpontot személyes vagy online szakértői IT konzultációra.',
+        ...getSeoMetadata(locale, '/konzultacio')
+    };
+}
+
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }

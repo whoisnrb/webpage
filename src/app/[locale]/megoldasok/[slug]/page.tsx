@@ -15,6 +15,8 @@ interface PageProps {
 
 import { Metadata } from "next"
 
+import { getSeoMetadata } from "@/lib/seo"
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug, locale } = await params
     const product = await getLocalizedProductBySlug(slug, locale)
@@ -34,6 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             description: product.description,
             images: [product.image],
         },
+        ...getSeoMetadata(locale, '/megoldasok/[slug]', { slug })
     }
 }
 

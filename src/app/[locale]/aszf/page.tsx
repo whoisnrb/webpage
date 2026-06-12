@@ -1,11 +1,28 @@
-"use client"
-
 import { LegalLayout } from "@/components/layout/legal-layout"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
+import { routing } from '@/i18n/routing'
+import { getSeoMetadata } from "@/lib/seo"
+import type { Metadata } from "next"
 
-export default function AszfPage() {
-    const t = useTranslations("Legal.Terms");
-    const tImprint = useTranslations("Legal.Imprint"); // Reuse provider data keys if needed or use Terms specific ones. Terms has generic provider data section.
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    return {
+        title: locale === 'en' ? 'Terms and Conditions' : 'Általános Szerződési Feltételek',
+        description: locale === 'en' 
+            ? 'The Terms and Conditions (T&C) of BacklineIT.' 
+            : 'A BacklineIT Általános Szerződési Feltételei (ÁSZF).',
+        ...getSeoMetadata(locale, '/aszf')
+    };
+}
+
+export default async function AszfPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: "Legal.Terms" });
+    const tImprint = await getTranslations({ locale, namespace: "Legal.Imprint" });
 
     return (
         <LegalLayout title={t("title")} lastUpdated="2024. január 1.">
@@ -47,7 +64,6 @@ export default function AszfPage() {
             <p>
                 {t("contract_desc_1")}
             </p>
-            {/* Added a second paragraph in JSON? Check if I added it. I recall adding only keys for sections. I'll stick to what I have in JSON. If I missed a paragraph, it's better to omit than hardcode Hungarian. */}
 
             <h2>{t("services_title")}</h2>
             <p>
@@ -63,14 +79,12 @@ export default function AszfPage() {
                 <li><strong>{t("payment_list.transfer").split(':')[0]}:</strong>{t("payment_list.transfer").split(':')[1]}</li>
             </ul>
             <p>
-                {/* Invoice sentence was present in original but maybe not in JSON. Skipping to avoid hardcoded HU. */}
             </p>
 
             <h2>{t("withdrawal_title")}</h2>
             <p>
                 {t("withdrawal_desc")}
             </p>
-            {/* Detailed withdrawal instructions paragraph - checking if I have key. I have `withdrawal_digital_desc` but not the generic consumer one in detail. Skipping detailed instructions to avoid hardcoded HU. */}
 
             <h3>{t("withdrawal_digital_title")}</h3>
             <p>
