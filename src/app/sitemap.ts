@@ -44,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // All static routes with their priorities and change frequency
     const staticRoutes: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]['changeFrequency'] }[] = [
-        { path: '', priority: 1.0, changeFrequency: 'weekly' },
+        { path: '/', priority: 1.0, changeFrequency: 'weekly' },
         // Services (All 13 localized services)
         { path: '/szolgaltatasok', priority: 0.9, changeFrequency: 'monthly' },
         { path: '/szolgaltatasok/scriptek', priority: 0.8, changeFrequency: 'monthly' },
