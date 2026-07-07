@@ -75,7 +75,7 @@ export default async function ImpresszumPage({ params }: { params: Promise<{ loc
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("phone")}</dt>
-                            <dd className="font-medium">+36 30 542 8272</dd>
+                            <dd className="font-medium">+36 50 103 4140</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("website")}</dt>

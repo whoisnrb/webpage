@@ -269,7 +269,7 @@ export function ServiceLayout({
                             "@type": "ProfessionalService",
                             "name": "BacklineIT",
                             "url": "https://backlineit.hu",
-                            "telephone": "+36305428272",
+                            "telephone": "+36501034140",
                             "address": {
                                 "@type": "PostalAddress",
                                 "streetAddress": "Vörösmarty utca 11.",

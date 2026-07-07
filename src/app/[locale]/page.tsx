@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
             "image": "https://backlineit.hu/opengraph-image.png",
             "@id": "https://backlineit.hu/#organization",
             "url": "https://backlineit.hu",
-            "telephone": "+36305428272",
+            "telephone": "+36501034140",
             "priceRange": "$$",
             "address": {
                 "@type": "PostalAddress",
