@@ -8,6 +8,8 @@ export const routing = defineRouting({
     // Used when no locale matches
     defaultLocale: 'hu',
 
+    localePrefix: 'as-needed',
+
     pathnames: {
         '/': '/',
         '/rolunk': {

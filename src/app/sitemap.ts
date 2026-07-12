@@ -106,7 +106,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                     }
                 }
             }
-            return path ? `/${locale}${path}` : ''
+            return path ? (locale === 'hu' ? path : `/${locale}${path}`) : ''
         }
     }
 
@@ -154,7 +154,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         for (const s of series) {
             const path = `/blog/series/${s.slug}`
             routes.push({
-                url: `${baseUrl}/${locale}${path}`, // Hardcoded fallback paths still need the locale prefix
+                url: `${baseUrl}${locale === 'hu' ? path : `/${locale}${path}`}`,
                 lastModified: new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.5,
@@ -207,7 +207,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         for (const slug of lpSlugs) {
             const path = `/lp/${slug}`
             routes.push({
-                url: `${baseUrl}/${locale}${path}`,
+                url: `${baseUrl}${locale === 'hu' ? path : `/${locale}${path}`}`,
                 lastModified: new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.7,

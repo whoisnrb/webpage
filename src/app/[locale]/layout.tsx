@@ -65,11 +65,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     metadataBase: new URL("https://backlineit.hu"),
     alternates: {
-      canonical: `/${locale === 'hu' ? '' : 'en'}`,
-      languages: {
-        'hu': '/hu',
-        'en': '/en',
-      },
       types: {
         'application/rss+xml': '/rss.xml',
       },
