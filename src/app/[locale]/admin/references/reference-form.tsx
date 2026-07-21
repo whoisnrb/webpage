@@ -184,6 +184,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
             type: formData.get("type") as string,
             documentationFile: docFile,
             showDocumentation: formData.get("showDocumentation") === "on",
+            websiteUrl: (formData.get("websiteUrl") as string) || null,
             tags: tags,
             metrics: metrics.filter(m => m.value.trim() !== "" && m.label.trim() !== "").map(m => ({ value: m.value, label: m.label, labelEn: m.labelEn })),
             active: formData.get("active") === "on",
@@ -260,6 +261,12 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                             <Label htmlFor="clientEn">Client (EN)</Label>
                             <Input id="clientEn" name="clientEn" defaultValue={initialData?.clientEn || ""} />
                         </div>
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="websiteUrl">Ügyfél weboldala (URL)</Label>
+                        <Input id="websiteUrl" name="websiteUrl" defaultValue={initialData?.websiteUrl || ""} placeholder="https://www.pelda.hu" type="url" />
+                        <p className="text-xs text-muted-foreground">Az ügyfél weboldala linkje, ami kattinthatóan megjelenik a referencia oldalon.</p>
                     </div>
 
                     <div className="flex items-center space-x-2 pt-2">

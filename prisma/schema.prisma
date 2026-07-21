@@ -323,6 +323,7 @@ model Reference {
   updatedAt         DateTime @updatedAt
   documentationFile String?
   showDocumentation Boolean  @default(false)
+  websiteUrl        String?
 }
 model ServiceInquiry {
   id                String   @id @default(cuid())

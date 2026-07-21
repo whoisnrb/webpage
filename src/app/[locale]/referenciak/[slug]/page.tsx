@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { UpsellEngine } from '@/components/upsell/recommendations'
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ArrowLeft, Download } from "lucide-react"
+import { ArrowLeft, Download, ExternalLink } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
@@ -71,9 +71,20 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                         </div>
                         <Badge className="mb-4" variant="secondary">{study.category}</Badge>
                         <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight leading-tight">{study.title}</h1>
-                        <p className="text-xl text-muted-foreground mb-6 font-medium">
+                        <p className="text-xl text-muted-foreground mb-4 font-medium">
                             {study.client}
                         </p>
+                        {study.websiteUrl && (
+                            <a
+                                href={study.websiteUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium mb-6 transition-colors group"
+                            >
+                                <ExternalLink className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                                {study.websiteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                            </a>
+                        )}
                         <p className="text-lg text-muted-foreground mb-8">
                             {study.description}
                         </p>

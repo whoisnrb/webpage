@@ -33,6 +33,7 @@ export type ReferenceDTO = {
     type: string
     documentationFile: string | null
     showDocumentation: boolean
+    websiteUrl: string | null
     tags: string[]
     metrics: Metric[] | null
     active: boolean
@@ -55,6 +56,7 @@ export type LocalizedReferenceDTO = {
     type: string
     documentationFile: string | null
     showDocumentation: boolean
+    websiteUrl: string | null
     tags: string[]
     metrics: Metric[] | null
     updatedAt: Date
@@ -75,6 +77,7 @@ function mapReference(r: any): ReferenceDTO {
         metrics: r.metrics ? (typeof r.metrics === 'string' ? JSON.parse(r.metrics) : r.metrics) : null,
         documentationFile: r.documentationFile !== undefined ? r.documentationFile : null,
         showDocumentation: r.showDocumentation !== undefined ? r.showDocumentation : false,
+        websiteUrl: r.websiteUrl !== undefined ? r.websiteUrl : null,
     }
 }
 
@@ -96,6 +99,7 @@ function localizeReference(ref: ReferenceDTO, locale: string): LocalizedReferenc
         type: ref.type,
         documentationFile: ref.documentationFile,
         showDocumentation: ref.showDocumentation,
+        websiteUrl: ref.websiteUrl,
         tags: ref.tags,
         metrics: ref.metrics ? ref.metrics.map(m => ({
             value: m.value,
