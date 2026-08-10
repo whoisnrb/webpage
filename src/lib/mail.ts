@@ -249,6 +249,13 @@ export const sendSalesMeetingNotification = async (toEmail: string, meetingDetai
         hasDocument
     } = meetingDetails;
 
+    // Dinamikus megszólítás a címzett alapján
+    const recipientNameMap: Record<string, string> = {
+        'roha.levente@backlineit.hu': 'Levente',
+        'toka.gabor@backlineit.hu': 'Gábor',
+    };
+    const recipientFirstName = recipientNameMap[toEmail] || 'Kolléga';
+
     const formattedDate = new Date(meetingTime).toLocaleString('hu-HU', {
         year: 'numeric',
         month: 'long',
@@ -272,7 +279,7 @@ export const sendSalesMeetingNotification = async (toEmail: string, meetingDetai
                 <!-- Content -->
                 <div style="padding: 40px 30px;">
                     <p style="font-size: 16px; line-height: 1.6; margin-top: 0; color: #cbd5e1;">
-                        Kedves Levente!<br><br>
+                        Kedves ${recipientFirstName}!<br><br>
                         Egy új értékesítési találkozó lett rögzítve az admin felületen. Az alábbiakban találod a részleteket:
                     </p>
 

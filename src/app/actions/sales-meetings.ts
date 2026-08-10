@@ -33,6 +33,7 @@ export async function createSalesMeeting(formData: FormData) {
         const meetingLink = formData.get("meetingLink") as string | null
         const status = formData.get("status") as string
         const notes = formData.get("notes") as string | null
+        const notifyRecipient = formData.get("notifyRecipient") as string | null
         
         const document = formData.get("document") as File | null
         
@@ -61,8 +62,9 @@ export async function createSalesMeeting(formData: FormData) {
             }
         })
         
-        // E-mail értesítés küldése a sales-es kollégának
-        await sendSalesMeetingNotification("roha.levente@backlineit.hu", {
+        // E-mail értesítés küldése a kiválasztott sales-es kollégának
+        const recipientEmail = notifyRecipient || "roha.levente@backlineit.hu"
+        await sendSalesMeetingNotification(recipientEmail, {
             clientName,
             clientEmail,
             clientPhone,

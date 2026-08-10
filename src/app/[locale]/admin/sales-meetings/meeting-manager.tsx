@@ -172,6 +172,22 @@ export function MeetingManager({ meeting }: MeetingManagerProps) {
                         <Input id="meetingLink" name="meetingLink" type="url" defaultValue={meeting?.meetingLink} placeholder="https://" className="bg-white/5 border-white/10 focus-visible:ring-cyan-500" />
                     </div>
 
+                    {!isEditing && (
+                        <div className="space-y-2">
+                            <Label htmlFor="notifyRecipient">Értesítendő kolléga *</Label>
+                            <Select name="notifyRecipient" defaultValue="roha.levente@backlineit.hu" required>
+                                <SelectTrigger className="bg-white/5 border-white/10 focus:ring-cyan-500">
+                                    <SelectValue placeholder="Válassz személyt" />
+                                </SelectTrigger>
+                                <SelectContent className="bg-[#0b101c] border-white/10">
+                                    <SelectItem value="roha.levente@backlineit.hu">Roha Levente</SelectItem>
+                                    <SelectItem value="toka.gabor@backlineit.hu">Tóka Gábor</SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <p className="text-xs text-slate-500">A kiválasztott kolléga e-mail értesítést kap az új meetingről.</p>
+                        </div>
+                    )}
+
                     <div className="space-y-2">
                         <Label htmlFor="document" className="flex items-center gap-2">
                             <Upload className="h-4 w-4" />
