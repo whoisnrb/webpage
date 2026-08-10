@@ -181,7 +181,7 @@ export function MeetingManager({ meeting }: MeetingManagerProps) {
                                 </SelectTrigger>
                                 <SelectContent className="bg-[#0b101c] border-white/10">
                                     <SelectItem value="roha.levente@backlineit.hu">Roha Levente</SelectItem>
-                                    <SelectItem value="toka.gabor@backlineit.hu">Tóka Gábor</SelectItem>
+                                    <SelectItem value="toka.gabor@backlineit.hu">Toka Gábor</SelectItem>
                                 </SelectContent>
                             </Select>
                             <p className="text-xs text-slate-500">A kiválasztott kolléga e-mail értesítést kap az új meetingről.</p>
