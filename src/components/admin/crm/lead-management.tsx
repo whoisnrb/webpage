@@ -55,6 +55,7 @@ import {
     Sparkles,
     ArrowUpRight,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { EmptyState } from "@/components/ui/empty-state";
 import { formatDistanceToNow } from "date-fns";
 import { hu } from "date-fns/locale";
@@ -120,7 +121,7 @@ function StatCard({
     glowColor,
     index,
 }: {
-    icon: React.ElementType;
+    icon: LucideIcon;
     label: string;
     value: string | number;
     accentColor: string;
