@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp } from "lucide-react"
+import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp, BadgeCheck, Linkedin } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { useTranslations } from "next-intl"
@@ -30,25 +30,48 @@ export default function RolunkPage() {
             name: t('team_members.peter.name'),
             role: t('team_members.peter.role'),
             bio: t('team_members.peter.bio'),
-            icon: Code
+            icon: Code,
+            linkedin: "https://linkedin.com/in/whoisnrb",
+            certifications: [
+                t('team_members.peter.certs.0'),
+                t('team_members.peter.certs.1'),
+                t('team_members.peter.certs.2'),
+                t('team_members.peter.certs.3'),
+            ]
         },
         {
             name: t('team_members.anna.name'),
             role: t('team_members.anna.role'),
             bio: t('team_members.anna.bio'),
-            icon: Layout
+            icon: Layout,
+            certifications: [
+                t('team_members.anna.certs.0'),
+                t('team_members.anna.certs.1'),
+                t('team_members.anna.certs.2'),
+            ]
         },
         {
             name: t('team_members.gabor.name'),
             role: t('team_members.gabor.role'),
             bio: t('team_members.gabor.bio'),
-            icon: Database
+            icon: Database,
+            certifications: [
+                t('team_members.gabor.certs.0'),
+                t('team_members.gabor.certs.1'),
+                t('team_members.gabor.certs.2'),
+                t('team_members.gabor.certs.3'),
+            ]
         },
         {
             name: t('team_members.levente.name'),
             role: t('team_members.levente.role'),
             bio: t('team_members.levente.bio'),
-            icon: TrendingUp
+            icon: TrendingUp,
+            certifications: [
+                t('team_members.levente.certs.0'),
+                t('team_members.levente.certs.1'),
+                t('team_members.levente.certs.2'),
+            ]
         }
     ]
 
@@ -131,20 +154,60 @@ export default function RolunkPage() {
             <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4 text-center">
                     <SlideUp>
-                        <h2 className="text-3xl font-bold mb-12">{t('team_title')}</h2>
+                        <h2 className="text-3xl font-bold mb-4">{t('team_title')}</h2>
+                        <p className="text-muted-foreground/80 mb-12 max-w-2xl mx-auto">
+                            {t('team_subtitle')}
+                        </p>
                     </SlideUp>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
                         {team.map((member, i) => (
                             <ScaleIn key={i} delay={i * 0.1}>
-                                <div className="bg-white/5 border-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl hover:bg-white/10 transition-all h-full flex flex-col items-center group">
-                                    <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary group-hover:scale-110 transition-transform">
-                                        <member.icon className="h-10 w-10" />
+                                <div className="relative bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl hover:bg-white/[0.08] transition-all duration-300 h-full flex flex-col group overflow-hidden">
+                                    {/* Top gradient accent */}
+                                    <div className="h-1 w-full bg-gradient-to-r from-primary via-cyan-400 to-primary opacity-60 group-hover:opacity-100 transition-opacity" />
+                                    
+                                    {/* Profile section */}
+                                    <div className="p-6 pb-4 flex flex-col items-center">
+                                        <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
+                                            <member.icon className="h-9 w-9" />
+                                        </div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                            <h3 className="font-bold text-lg">{member.name}</h3>
+                                            {member.linkedin && (
+                                                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground/50 hover:text-primary transition-colors" aria-label={`${member.name} LinkedIn`}>
+                                                    <Linkedin className="h-4 w-4" />
+                                                </a>
+                                            )}
+                                        </div>
+                                        <p className="text-primary text-sm font-semibold tracking-wide uppercase">{member.role}</p>
                                     </div>
-                                    <h3 className="font-semibold text-lg">{member.name}</h3>
-                                    <p className="text-primary text-sm mb-4 font-medium">{member.role}</p>
-                                    <p className="text-muted-foreground/80 text-sm">
-                                        {member.bio}
-                                    </p>
+
+                                    {/* Bio */}
+                                    <div className="px-6 pb-4 flex-1">
+                                        <p className="text-muted-foreground/70 text-sm leading-relaxed">
+                                            {member.bio}
+                                        </p>
+                                    </div>
+
+                                    {/* Certifications */}
+                                    {member.certifications && member.certifications.length > 0 && (
+                                        <div className="px-6 pb-6 pt-2 border-t border-white/5">
+                                            <div className="flex items-center gap-1.5 mb-3">
+                                                <BadgeCheck className="h-3.5 w-3.5 text-primary/70" />
+                                                <span className="text-[11px] font-semibold text-muted-foreground/50 uppercase tracking-wider">{t('team_certs_label')}</span>
+                                            </div>
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {member.certifications.map((cert, j) => (
+                                                    <span
+                                                        key={j}
+                                                        className="inline-flex items-center text-[11px] font-medium text-muted-foreground/80 bg-white/5 border border-white/10 rounded-md px-2 py-1 hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors cursor-default"
+                                                    >
+                                                        {cert}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </ScaleIn>
                         ))}
