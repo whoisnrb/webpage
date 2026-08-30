@@ -34,6 +34,7 @@ export type ReferenceDTO = {
     documentationFile: string | null
     showDocumentation: boolean
     websiteUrl: string | null
+    clientLogo: string | null
     tags: string[]
     metrics: Metric[] | null
     active: boolean
@@ -57,6 +58,7 @@ export type LocalizedReferenceDTO = {
     documentationFile: string | null
     showDocumentation: boolean
     websiteUrl: string | null
+    clientLogo: string | null
     tags: string[]
     metrics: Metric[] | null
     updatedAt: Date
@@ -78,6 +80,7 @@ function mapReference(r: any): ReferenceDTO {
         documentationFile: r.documentationFile !== undefined ? r.documentationFile : null,
         showDocumentation: r.showDocumentation !== undefined ? r.showDocumentation : false,
         websiteUrl: r.websiteUrl !== undefined ? r.websiteUrl : null,
+        clientLogo: r.clientLogo !== undefined ? r.clientLogo : null,
     }
 }
 
@@ -100,6 +103,7 @@ function localizeReference(ref: ReferenceDTO, locale: string): LocalizedReferenc
         documentationFile: ref.documentationFile,
         showDocumentation: ref.showDocumentation,
         websiteUrl: ref.websiteUrl,
+        clientLogo: ref.clientLogo,
         tags: ref.tags,
         metrics: ref.metrics ? ref.metrics.map(m => ({
             value: m.value,
@@ -128,13 +132,14 @@ const getCachedReferences = unstable_cache(
                 type: true,
                 tags: true,
                 active: true,
+                clientLogo: true,
                 updatedAt: true,
                 createdAt: true
             }
         })
         return references.map(mapReference)
     },
-    ['all-references-v3'],
+    ['all-references-v4'],
     { revalidate: 3600, tags: ['references'] }
 )
 
@@ -173,7 +178,8 @@ export async function createReference(data: Omit<ReferenceDTO, 'id' | 'updatedAt
                 ...data,
                 metrics: data.metrics ? JSON.stringify(data.metrics) : null,
                 documentationFile: data.documentationFile,
-                showDocumentation: data.showDocumentation
+                showDocumentation: data.showDocumentation,
+                clientLogo: data.clientLogo,
             }
         })
         revalidateTag('references', 'default')
@@ -198,6 +204,7 @@ export async function updateReference(id: string, data: Partial<ReferenceDTO>) {
                 ...updateData,
                 documentationFile: data.documentationFile !== undefined ? data.documentationFile : undefined,
                 showDocumentation: data.showDocumentation !== undefined ? data.showDocumentation : undefined,
+                clientLogo: data.clientLogo !== undefined ? data.clientLogo : undefined,
             }
         })
         revalidateTag('references', 'default')

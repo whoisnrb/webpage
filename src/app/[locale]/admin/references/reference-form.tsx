@@ -63,6 +63,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
     const [imagePreview, setImagePreview] = useState<string | null>(initialData?.image || null)
     const [galleryPreviews, setGalleryPreviews] = useState<string[]>(initialData?.galleryImages || [])
     const [docFile, setDocFile] = useState<string | null>(initialData?.documentationFile || null)
+    const [clientLogo, setClientLogo] = useState<string | null>(initialData?.clientLogo || null)
     const [metrics, setMetrics] = useState<Metric[]>(initialData?.metrics || [{ value: '', label: '', labelEn: '' }])
     const [tags, setTags] = useState<string[]>(initialData?.tags || [])
     const [newTag, setNewTag] = useState("")
@@ -120,6 +121,57 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                 setDocFile(reader.result as string)
             }
             reader.readAsDataURL(file)
+        }
+    }
+
+    const handleLogoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) {
+                toast.error("A logó mérete nem haladhatja meg az 5MB-ot!")
+                e.target.value = ""
+                return
+            }
+
+            // SVG files: read directly as data URI
+            if (file.type === 'image/svg+xml') {
+                const reader = new FileReader()
+                reader.onloadend = () => {
+                    setClientLogo(reader.result as string)
+                }
+                reader.readAsDataURL(file)
+                return
+            }
+
+            // Raster images: optimize
+            try {
+                const reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = (event) => {
+                    const img = new Image()
+                    img.src = event.target?.result as string
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas')
+                        let width = img.width
+                        let height = img.height
+
+                        const MAX_WIDTH = 400
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width
+                            width = MAX_WIDTH
+                        }
+
+                        canvas.width = width
+                        canvas.height = height
+                        const ctx = canvas.getContext('2d')
+                        ctx?.drawImage(img, 0, 0, width, height)
+                        setClientLogo(canvas.toDataURL('image/png', 0.9))
+                    }
+                }
+            } catch (error) {
+                console.error("Logo optimization failed:", error)
+                toast.error("Hiba történt a logó feldolgozása során")
+            }
         }
     }
 
@@ -185,6 +237,7 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
             documentationFile: docFile,
             showDocumentation: formData.get("showDocumentation") === "on",
             websiteUrl: (formData.get("websiteUrl") as string) || null,
+            clientLogo: clientLogo,
             tags: tags,
             metrics: metrics.filter(m => m.value.trim() !== "" && m.label.trim() !== "").map(m => ({ value: m.value, label: m.label, labelEn: m.labelEn })),
             active: formData.get("active") === "on",
@@ -267,6 +320,41 @@ export function ReferenceForm({ initialData }: ReferenceFormProps) {
                         <Label htmlFor="websiteUrl">Ügyfél weboldala (URL)</Label>
                         <Input id="websiteUrl" name="websiteUrl" defaultValue={initialData?.websiteUrl || ""} placeholder="https://www.pelda.hu" type="url" />
                         <p className="text-xs text-muted-foreground">Az ügyfél weboldala linkje, ami kattinthatóan megjelenik a referencia oldalon.</p>
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label>Ügyfél Logó</Label>
+                        <div className="border-2 border-dashed rounded-lg p-4 text-center space-y-3">
+                            {clientLogo ? (
+                                <div className="flex items-center justify-between p-3 bg-muted rounded-md border border-primary/20">
+                                    <div className="flex items-center gap-3">
+                                        <div className="bg-white rounded-lg p-2 border">
+                                            <img src={clientLogo} alt="Ügyfél logó" className="max-h-[60px] max-w-[180px] object-contain" />
+                                        </div>
+                                        <div className="text-left">
+                                            <p className="text-sm font-medium">Logó feltöltve</p>
+                                            <p className="text-xs text-muted-foreground">PNG/SVG/JPEG</p>
+                                        </div>
+                                    </div>
+                                    <Button 
+                                        type="button" 
+                                        variant="destructive" 
+                                        size="icon" 
+                                        className="h-8 w-8"
+                                        onClick={() => setClientLogo(null)}
+                                    >
+                                        <Trash className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                            ) : (
+                                <div className="py-4 flex flex-col items-center justify-center text-muted-foreground">
+                                    <ImageIcon className="h-8 w-8 mb-2 opacity-20" />
+                                    <p className="text-sm">Ügyfél logó feltöltése (opcionális)</p>
+                                    <p className="text-xs text-muted-foreground">PNG, SVG, JPEG – max 400px szélességre optimalizálva</p>
+                                </div>
+                            )}
+                            <Input type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp" onChange={handleLogoChange} className="cursor-pointer" />
+                        </div>
                     </div>
 
                     <div className="flex items-center space-x-2 pt-2">

@@ -324,6 +324,7 @@ model Reference {
   documentationFile String?
   showDocumentation Boolean  @default(false)
   websiteUrl        String?
+  clientLogo        String?
 }
 model ServiceInquiry {
   id                String   @id @default(cuid())

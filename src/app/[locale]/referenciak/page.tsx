@@ -71,7 +71,14 @@ export default async function ReferenciakPage({ params }: { params: Promise<{ lo
                                             <Badge variant="secondary" className="mb-2">{study.category}</Badge>
                                         </div>
                                         <CardTitle className="text-2xl mb-2 group-hover:text-primary transition-colors">{study.title}</CardTitle>
-                                        <CardDescription className="font-medium text-foreground/80">{study.client}</CardDescription>
+                                        <CardDescription className="font-medium text-foreground/80 flex items-center gap-2">
+                                            {study.clientLogo && (
+                                                <span className="inline-flex items-center bg-white rounded-md p-1 border border-border/50 shadow-sm shrink-0">
+                                                    <img src={study.clientLogo} alt={study.client} className="h-5 w-auto max-w-[80px] object-contain" />
+                                                </span>
+                                            )}
+                                            {study.client}
+                                        </CardDescription>
                                     </CardHeader>
                                     <CardContent className="flex-1 flex flex-col">
                                         <p className="text-muted-foreground mb-8 flex-1 leading-relaxed">

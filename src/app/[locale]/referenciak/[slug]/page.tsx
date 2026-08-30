@@ -71,7 +71,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                         </div>
                         <Badge className="mb-4" variant="secondary">{study.category}</Badge>
                         <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight leading-tight">{study.title}</h1>
-                        <p className="text-xl text-muted-foreground mb-4 font-medium">
+                        <p className="text-xl text-muted-foreground mb-4 font-medium flex items-center gap-3">
+                            {study.clientLogo && (
+                                <span className="inline-flex items-center bg-white rounded-lg p-2 border border-border/50 shadow-sm shrink-0">
+                                    <img src={study.clientLogo} alt={study.client} className="h-8 w-auto max-w-[120px] object-contain" />
+                                </span>
+                            )}
                             {study.client}
                         </p>
                         {study.websiteUrl && (
