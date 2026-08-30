@@ -31,7 +31,7 @@ export default function RolunkPage() {
             role: t('team_members.peter.role'),
             bio: t('team_members.peter.bio'),
             icon: Code,
-            linkedin: "https://linkedin.com/in/whoisnrb",
+            linkedin: "https://www.linkedin.com/in/norbert-t%C3%B6r%C3%B6k-a2641b354/",
         },
         {
             name: t('team_members.anna.name'),
@@ -166,7 +166,6 @@ export default function RolunkPage() {
                                             {member.bio}
                                         </p>
                                     </div>
-                                </div>
                                 </div>
                             </ScaleIn>
                         ))}
