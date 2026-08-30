@@ -68,44 +68,22 @@
       "peter": {
         "name": "Török Norbert",
         "role": "Lead Developer & CEO",
-        "bio": "Full-stack developer with 5+ years of experience in Next.js, React, TypeScript and Node.js. Advocate for clean code, scalable architectures and automation. Founded BacklineIT to make modern IT solutions accessible to Hungarian SMBs.",
-        "certs": [
-          "Meta Front-End Developer",
-          "AWS Cloud Practitioner",
-          "Google IT Automation with Python",
-          "Vercel Certified Developer"
-        ]
+        "bio": "Full-stack developer with 5+ years of experience in Next.js, React, TypeScript and Node.js. Advocate for clean code, scalable architectures and automation. Founded BacklineIT to make modern IT solutions accessible to Hungarian SMBs."
       },
       "anna": {
         "name": "Anna Nagy",
         "role": "UI/UX Designer",
-        "bio": "Pixel-perfect designer who owns the entire design process – from user research to high-fidelity prototypes. Specializes in Figma, Adobe Creative Suite and design system engineering. Strives for conversion-optimized, accessible user experiences in every project.",
-        "certs": [
-          "Google UX Design Professional",
-          "Figma UI/UX Certification",
-          "Adobe Certified Expert"
-        ]
+        "bio": "Pixel-perfect designer who owns the entire design process – from user research to high-fidelity prototypes. Specializes in Figma, Adobe Creative Suite and design system engineering. Strives for conversion-optimized, accessible user experiences in every project."
       },
       "gabor": {
         "name": "Toka Gábor",
         "role": "DevOps Engineer",
-        "bio": "Expert in CI/CD pipelines, containerization and cloud infrastructure. Extensive experience with Docker, Kubernetes, Terraform and Linux server administration. His motto: automate everything you can – and everything you can't.",
-        "certs": [
-          "AWS Solutions Architect",
-          "Kubernetes Administrator (CKA)",
-          "HashiCorp Terraform Associate",
-          "Linux Professional Institute (LPIC-1)"
-        ]
+        "bio": "Expert in CI/CD pipelines, containerization and cloud infrastructure. Extensive experience with Docker, Kubernetes, Terraform and Linux server administration. His motto: automate everything you can – and everything you can't."
       },
       "levente": {
         "name": "Levente Roha",
         "role": "Sales Manager",
-        "bio": "Outstanding experience in B2B sales and client relationship management within the IT sector. Helps partners select the right solutions and guides them through their digital transformation journey – from initial consultation to go-live.",
-        "certs": [
-          "HubSpot Inbound Sales",
-          "Google Digital Marketing",
-          "Salesforce Administrator"
-        ]
+        "bio": "Outstanding experience in B2B sales and client relationship management within the IT sector. Helps partners select the right solutions and guides them through their digital transformation journey – from initial consultation to go-live."
       }
     },
     "cta_badge": "Partnership for success",

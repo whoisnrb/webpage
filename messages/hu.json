@@ -68,44 +68,22 @@
       "peter": {
         "name": "Török Norbert",
         "role": "Lead Developer & CEO",
-        "bio": "Full-stack fejlesztő 5+ év tapasztalattal Next.js, React, TypeScript és Node.js technológiákban. A tiszta kód, a skálázható architektúrák és az automatizáció híve. Alapította a BacklineIT-t, hogy a modern IT megoldásokat elérhetővé tegye a magyar KKV-k számára.",
-        "certs": [
-          "Meta Front-End Developer",
-          "AWS Cloud Practitioner",
-          "Google IT Automation with Python",
-          "Vercel Certified Developer"
-        ]
+        "bio": "Full-stack fejlesztő 5+ év tapasztalattal Next.js, React, TypeScript és Node.js technológiákban. A tiszta kód, a skálázható architektúrák és az automatizáció híve. Alapította a BacklineIT-t, hogy a modern IT megoldásokat elérhetővé tegye a magyar KKV-k számára."
       },
       "anna": {
         "name": "Nagy Anna",
         "role": "UI/UX Designer",
-        "bio": "Pixel-perfect szemléletű designer, aki a felhasználói kutatástól a high-fidelity prototípusig mindent kézben tart. Figma, Adobe Creative Suite és design system építés a szakterülete. Minden projektben a konverzió-optimalizált, akadálymentes felhasználói élményre törekszik.",
-        "certs": [
-          "Google UX Design Professional",
-          "Figma UI/UX Certification",
-          "Adobe Certified Expert"
-        ]
+        "bio": "Pixel-perfect szemléletű designer, aki a felhasználói kutatástól a high-fidelity prototípusig mindent kézben tart. Figma, Adobe Creative Suite és design system építés a szakterülete. Minden projektben a konverzió-optimalizált, akadálymentes felhasználói élményre törekszik."
       },
       "gabor": {
         "name": "Toka Gábor",
         "role": "DevOps Engineer",
-        "bio": "A CI/CD pipeline-ok, konténerizáció és felhő infrastruktúra szakértője. Docker, Kubernetes, Terraform és Linux szerver-adminisztráció területén szerzett széleskörű tapasztalatot. Mottója: amit lehet, automatizálni kell – és amit nem lehet, azt is.",
-        "certs": [
-          "AWS Solutions Architect",
-          "Kubernetes Administrator (CKA)",
-          "HashiCorp Terraform Associate",
-          "Linux Professional Institute (LPIC-1)"
-        ]
+        "bio": "A CI/CD pipeline-ok, konténerizáció és felhő infrastruktúra szakértője. Docker, Kubernetes, Terraform és Linux szerver-adminisztráció területén szerzett széleskörű tapasztalatot. Mottója: amit lehet, automatizálni kell – és amit nem lehet, azt is."
       },
       "levente": {
         "name": "Roha Levente",
         "role": "Sales Manager",
-        "bio": "Kiemelkedő tapasztalat az IT szektoron belüli B2B értékesítésben és ügyfélkapcsolat-kezelésben. Segíti partnereinket a legmegfelelőbb megoldás kiválasztásában, és végigkíséri őket a digitális transzformáció útján – az első konzultációtól az éles indulásig.",
-        "certs": [
-          "HubSpot Inbound Sales",
-          "Google Digital Marketing",
-          "Salesforce Administrator"
-        ]
+        "bio": "Kiemelkedő tapasztalat az IT szektoron belüli B2B értékesítésben és ügyfélkapcsolat-kezelésben. Segíti partnereinket a legmegfelelőbb megoldás kiválasztásában, és végigkíséri őket a digitális transzformáció útján – az első konzultációtól az éles indulásig."
       }
     },
     "cta_badge": "Partnerség a sikerért",

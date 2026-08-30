@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp, BadgeCheck, Linkedin } from "lucide-react"
+import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp, Linkedin } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { useTranslations } from "next-intl"
@@ -32,46 +32,24 @@ export default function RolunkPage() {
             bio: t('team_members.peter.bio'),
             icon: Code,
             linkedin: "https://linkedin.com/in/whoisnrb",
-            certifications: [
-                t('team_members.peter.certs.0'),
-                t('team_members.peter.certs.1'),
-                t('team_members.peter.certs.2'),
-                t('team_members.peter.certs.3'),
-            ]
         },
         {
             name: t('team_members.anna.name'),
             role: t('team_members.anna.role'),
             bio: t('team_members.anna.bio'),
             icon: Layout,
-            certifications: [
-                t('team_members.anna.certs.0'),
-                t('team_members.anna.certs.1'),
-                t('team_members.anna.certs.2'),
-            ]
         },
         {
             name: t('team_members.gabor.name'),
             role: t('team_members.gabor.role'),
             bio: t('team_members.gabor.bio'),
             icon: Database,
-            certifications: [
-                t('team_members.gabor.certs.0'),
-                t('team_members.gabor.certs.1'),
-                t('team_members.gabor.certs.2'),
-                t('team_members.gabor.certs.3'),
-            ]
         },
         {
             name: t('team_members.levente.name'),
             role: t('team_members.levente.role'),
             bio: t('team_members.levente.bio'),
             icon: TrendingUp,
-            certifications: [
-                t('team_members.levente.certs.0'),
-                t('team_members.levente.certs.1'),
-                t('team_members.levente.certs.2'),
-            ]
         }
     ]
 
@@ -188,26 +166,7 @@ export default function RolunkPage() {
                                             {member.bio}
                                         </p>
                                     </div>
-
-                                    {/* Certifications */}
-                                    {member.certifications && member.certifications.length > 0 && (
-                                        <div className="px-6 pb-6 pt-2 border-t border-white/5">
-                                            <div className="flex items-center gap-1.5 mb-3">
-                                                <BadgeCheck className="h-3.5 w-3.5 text-primary/70" />
-                                                <span className="text-[11px] font-semibold text-muted-foreground/50 uppercase tracking-wider">{t('team_certs_label')}</span>
-                                            </div>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {member.certifications.map((cert, j) => (
-                                                    <span
-                                                        key={j}
-                                                        className="inline-flex items-center text-[11px] font-medium text-muted-foreground/80 bg-white/5 border border-white/10 rounded-md px-2 py-1 hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-colors cursor-default"
-                                                    >
-                                                        {cert}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
+                                </div>
                                 </div>
                             </ScaleIn>
                         ))}
