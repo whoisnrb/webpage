@@ -8,9 +8,34 @@ import { ArrowLeft, BookOpen, Clock, Play } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 import { FadeIn, FadeInStagger, FadeInStaggerItem } from "@/components/ui/motion-wrapper"
 import { Badge } from "@/components/ui/badge"
-import { routing } from '@/i18n/routing'
+import { Metadata } from 'next'
+import { getSeoMetadata } from "@/lib/seo"
 
 export const revalidate = 3600
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }): Promise<Metadata> {
+    const { slug, locale } = await params
+    const series = await getSeriesBySlug(slug) as any
+
+    if (!series) {
+        return {
+            title: 'Not Found | BacklineIT Blog',
+        }
+    }
+
+    const title = locale === 'en' ? (series.titleEn || series.title) : series.title
+    const description = locale === 'en' ? (series.descriptionEn || series.description) : series.description
+
+    return {
+        title: `${title} | BacklineIT Blog Sorozat`,
+        description,
+        ...getSeoMetadata(locale, '/blog/series/[slug]', { slug }),
+        openGraph: {
+            title: `${title} | BacklineIT`,
+            description,
+        }
+    }
+}
 
 export default async function SeriesPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
     const { slug, locale } = await params

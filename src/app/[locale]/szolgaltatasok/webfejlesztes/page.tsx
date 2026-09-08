@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { WebDevelopmentClient } from "@/components/templates/service-pages/web-development";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
@@ -12,13 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t("title") + " | BacklineIT",
         description: t("description"),
         keywords: ["egyedi weboldal", "webshop készítés", "Next.js fejlesztés", "React fejlesztő", "modern webdesign"],
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/webfejlesztes' : '/services/web-development'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/webfejlesztes',
-                'en': 'https://backlineit.hu/en/services/web-development',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/webfejlesztes"),
         openGraph: {
             title: t("title"),
             description: t("description"),

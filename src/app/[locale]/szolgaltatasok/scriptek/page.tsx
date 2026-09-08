@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { ScriptsClient } from "@/components/templates/service-pages/scripts";
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
@@ -12,13 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t("title") + " | BacklineIT",
         description: t("description"),
         keywords: ["python script", "automatizáció", "adatbányászat", "web scraping", "egyedi fejlesztés"],
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/scriptek' : '/services/scripts'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/scriptek',
-                'en': 'https://backlineit.hu/en/services/scripts',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/scriptek"),
         openGraph: {
             title: t("title"),
             description: t("description"),

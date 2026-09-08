@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { ManagedITContent } from "@/components/services/managed-it-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -17,13 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: t('keywords').split(','),
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/havidijas-rendszergazda' : '/services/managed-it-services'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/havidijas-rendszergazda',
-                'en': 'https://backlineit.hu/en/services/managed-it-services',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/havidijas-rendszergazda"),
         openGraph: {
             title: t('title'),
             description: t('description'),

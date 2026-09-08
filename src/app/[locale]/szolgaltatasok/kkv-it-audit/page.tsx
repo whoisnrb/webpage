@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { ITAuditContent } from "@/components/services/it-audit-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -17,13 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: t('keywords').split(','),
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/kkv-it-audit' : '/services/smb-it-audit'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/kkv-it-audit',
-                'en': 'https://backlineit.hu/en/services/smb-it-audit',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/kkv-it-audit"),
         openGraph: {
             title: t('title'),
             description: t('description'),

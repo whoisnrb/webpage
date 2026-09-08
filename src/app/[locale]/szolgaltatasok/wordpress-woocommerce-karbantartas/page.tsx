@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { WordPressContent } from "@/components/services/wordpress-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -17,13 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: t('keywords').split(','),
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/wordpress-woocommerce-karbantartas' : '/services/wordpress-woocommerce-maintenance'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/wordpress-woocommerce-karbantartas',
-                'en': 'https://backlineit.hu/en/services/wordpress-woocommerce-maintenance',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/wordpress-woocommerce-karbantartas"),
         openGraph: {
             title: t('title'),
             description: t('description'),

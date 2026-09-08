@@ -20,6 +20,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Redirects for unused landing pages to homepage
+      { source: '/lp', destination: '/', permanent: true },
+      { source: '/hu/lp', destination: '/', permanent: true },
+      { source: '/en/lp', destination: '/en', permanent: true },
       { source: '/lp/:slug', destination: '/', permanent: true },
       { source: '/hu/lp/:slug', destination: '/', permanent: true },
       { source: '/en/lp/:slug', destination: '/en', permanent: true },

@@ -4,6 +4,16 @@ import { RegisterForm } from "@/components/auth/register-form"
 import { useTranslations } from "next-intl"
 import { routing } from '@/i18n/routing'
 
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: 'Regisztráció | BacklineIT',
+    robots: {
+        index: false,
+        follow: false,
+    },
+}
+
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }

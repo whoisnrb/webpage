@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { SysAdminContent } from "@/components/services/sysadmin-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -57,13 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: ["rendszerüzemeltetés", "devops", "szerver karbantartás", "linux", "cloud", "aws", "kubernetes"],
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/rendszeruzemeltetes' : '/services/system-administration'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/rendszeruzemeltetes',
-                'en': 'https://backlineit.hu/en/services/system-administration',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/rendszeruzemeltetes"),
         other: {
             'script:ld+json': JSON.stringify(jsonLd),
         }

@@ -1,6 +1,7 @@
 import { HomeContent } from "@/components/home/home-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { getSeoMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
@@ -63,13 +64,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     return {
         title: t('title'),
         description: t('description'),
-        alternates: {
-            canonical: `https://backlineit.hu/${locale === 'hu' ? '' : 'en'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/',
-                'en': 'https://backlineit.hu/en',
-            },
-        },
+        ...getSeoMetadata(locale, '/'),
         other: {
             'script:ld+json': JSON.stringify(jsonLd),
         }

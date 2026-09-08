@@ -4,8 +4,6 @@ import { getProducts } from '@/app/actions/product'
 import { routing, getPathname } from '@/i18n/routing'
 import { getReferences } from '@/app/actions/reference'
 import { caseStudies as staticCaseStudies } from '@/lib/case-studies-data'
-import { industries } from '@/lib/industry-data'
-import { landingPages } from '@/config/landing-pages'
 
 export const revalidate = 3600
 
@@ -78,6 +76,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { path: '/ajanlatkeres', priority: 0.7, changeFrequency: 'monthly' },
         { path: '/karrier', priority: 0.5, changeFrequency: 'monthly' },
         { path: '/karrier/jelentkezes', priority: 0.4, changeFrequency: 'monthly' },
+        { path: '/velemeny', priority: 0.7, changeFrequency: 'monthly' },
         // Legal
         { path: '/impresszum', priority: 0.3, changeFrequency: 'yearly' },
         { path: '/aszf', priority: 0.3, changeFrequency: 'yearly' },
@@ -110,13 +109,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     }
 
-    // Helper: generate hreflang alternates for a given path
+    // Helper: generate hreflang alternates for a given path including x-default
     function getAlternates(href: string | { pathname: string; params?: Record<string, string | number> }) {
         const languages: Record<string, string> = {}
         for (const locale of locales) {
             const path = resolvePathname(locale, href)
             languages[locale] = `${baseUrl}${path}`
         }
+        // Set Hungarian as default locale for international search engines
+        const defaultPath = resolvePathname('hu', href)
+        languages['x-default'] = `${baseUrl}${defaultPath}`
         return { languages }
     }
 
@@ -152,13 +154,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Blog series
     for (const locale of locales) {
         for (const s of series) {
-            const path = `/blog/series/${s.slug}`
+            const hrefObj = { pathname: '/blog/series/[slug]', params: { slug: s.slug } }
+            const path = resolvePathname(locale, hrefObj)
             routes.push({
-                url: `${baseUrl}${locale === 'hu' ? path : `/${locale}${path}`}`,
+                url: `${baseUrl}${path}`,
                 lastModified: new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.5,
-                alternates: getAlternates(path),
+                alternates: getAlternates(hrefObj),
             })
         }
     }
@@ -194,24 +197,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 changeFrequency: 'monthly',
                 priority: 0.6,
                 alternates: getAlternates(hrefObj),
-            })
-        }
-    }
-
-    // Industry & landing pages
-    const lpSlugs = [
-        ...industries.map(i => i.slug),
-        ...Object.keys(landingPages),
-    ]
-    for (const locale of locales) {
-        for (const slug of lpSlugs) {
-            const path = `/lp/${slug}`
-            routes.push({
-                url: `${baseUrl}${locale === 'hu' ? path : `/${locale}${path}`}`,
-                lastModified: new Date(),
-                changeFrequency: 'monthly',
-                priority: 0.7,
-                alternates: getAlternates(path),
             })
         }
     }

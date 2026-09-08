@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { BiztonsagContent } from "@/components/services/biztonsag-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -57,13 +58,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: ["kiberbiztonság", "biztonsági audit", "penetration testing", "sérülékenységvizsgálat", "GDPR", "ISO 27001"],
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/biztonsag' : '/services/security'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/biztonsag',
-                'en': 'https://backlineit.hu/en/services/security',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/biztonsag"),
         other: {
             'script:ld+json': JSON.stringify(jsonLd),
         }

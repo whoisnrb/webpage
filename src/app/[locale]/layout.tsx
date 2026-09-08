@@ -64,6 +64,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       creator: "@backlineit",
     },
     metadataBase: new URL("https://backlineit.hu"),
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     alternates: {
       types: {
         'application/rss+xml': '/rss.xml',

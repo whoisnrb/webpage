@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { WebshopAutoContent } from "@/components/services/webshop-auto-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -17,13 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: t('keywords').split(','),
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/webshop-automatizacio' : '/services/webshop-automation'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/webshop-automatizacio',
-                'en': 'https://backlineit.hu/en/services/webshop-automation',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/webshop-automatizacio"),
         openGraph: {
             title: t('title'),
             description: t('description'),

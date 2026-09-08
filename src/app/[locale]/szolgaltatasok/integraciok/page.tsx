@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { IntegraciokContent } from "@/components/services/integraciok-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -16,13 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: ["API integráció", "rendszerösszekötés", "automatizáció", "adatbázis szinkronizáció", "webhook"],
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/integraciok' : '/services/integrations'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/integraciok',
-                'en': 'https://backlineit.hu/en/services/integrations',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/integraciok"),
     };
 }
 

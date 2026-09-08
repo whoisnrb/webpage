@@ -3,6 +3,28 @@ import { ReviewSection } from "@/components/sections/review-section"
 
 import { getApprovedReviews } from "@/app/actions/feedback"
 import { getTranslations } from "next-intl/server"
+import { Metadata } from "next"
+import { getSeoMetadata } from "@/lib/seo"
+import { routing } from "@/i18n/routing"
+
+export function generateStaticParams() {
+    return routing.locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: "Feedback" });
+
+    return {
+        title: `${t("title")} | BacklineIT`,
+        description: t("description"),
+        ...getSeoMetadata(locale, '/velemeny'),
+        openGraph: {
+            title: `${t("title")} | BacklineIT`,
+            description: t("description"),
+        },
+    };
+}
 
 export default async function FeedbackPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params

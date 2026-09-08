@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { HalozatContent } from "@/components/services/halozat-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -30,13 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: ["hálózat építés", "VPN", "tűzfal", "wifi rendszer", "SOHO", "vállalati hálózat"],
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/halozat' : '/services/network'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/halozat',
-                'en': 'https://backlineit.hu/en/services/network',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/halozat"),
         other: {
             'script:ld+json': JSON.stringify(jsonLd),
         }

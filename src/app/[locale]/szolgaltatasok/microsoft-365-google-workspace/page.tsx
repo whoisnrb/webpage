@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { OfficeSuiteContent } from "@/components/services/office-suite-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -17,13 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: t('keywords').split(','),
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/microsoft-365-google-workspace' : '/services/microsoft-365-google-workspace'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/microsoft-365-google-workspace',
-                'en': 'https://backlineit.hu/en/services/microsoft-365-google-workspace',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/microsoft-365-google-workspace"),
         openGraph: {
             title: t('title'),
             description: t('description'),

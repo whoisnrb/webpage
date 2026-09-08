@@ -1,3 +1,4 @@
+import { getSeoMetadata } from "@/lib/seo";
 import { GenericServiceContent } from "@/components/services/generic-service-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
@@ -19,13 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('title') + " | BacklineIT",
         description: t('description'),
         keywords: t('keywords').split(','),
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok/webshop-meres-konverzio-noveles' : '/services/ecommerce-tracking-conversion-optimization'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok/webshop-meres-konverzio-noveles',
-                'en': 'https://backlineit.hu/en/services/ecommerce-tracking-conversion-optimization',
-            },
-        },
+        ...getSeoMetadata(locale, "/szolgaltatasok/webshop-meres-konverzio-noveles"),
         openGraph: {
             title: t('title'),
             description: t('description'),

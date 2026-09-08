@@ -29,6 +29,8 @@ const IconMap: Record<string, any> = {
     Puzzle,
 }
 
+import { getSeoMetadata } from '@/lib/seo';
+
 // Metadata generation for multilingual support
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -38,12 +40,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         title: t('hero_badge') + " | BacklineIT",
         description: t('hero_desc'),
         keywords: ["IT szolgáltatások", "webfejlesztés", "rendszerüzemeltetés", "kiberbiztonság", "egyedi szoftver", "backlineit"],
-        alternates: {
-            canonical: `https://backlineit.hu${locale === 'hu' ? '' : '/en'}${locale === 'hu' ? '/szolgaltatasok' : '/services'}`,
-            languages: {
-                'hu': 'https://backlineit.hu/szolgaltatasok',
-                'en': 'https://backlineit.hu/en/services',
-            },
+        ...getSeoMetadata(locale, '/szolgaltatasok'),
+        openGraph: {
+            title: t('hero_badge') + " | BacklineIT",
+            description: t('hero_desc'),
         },
     };
 }
