@@ -44,12 +44,14 @@ export default function RolunkPage() {
             role: t('team_members.gabor.role'),
             bio: t('team_members.gabor.bio'),
             icon: Database,
+            linkedin: "https://www.linkedin.com/in/toka-gabor-86335a406/",
         },
         {
             name: t('team_members.levente.name'),
             role: t('team_members.levente.role'),
             bio: t('team_members.levente.bio'),
             icon: TrendingUp,
+            linkedin: "https://www.linkedin.com/in/levente-roha-98091a433/",
         }
     ]
 
