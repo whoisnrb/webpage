@@ -13,6 +13,10 @@ export default function robots(): MetadataRoute.Robots {
                     '/api/',
                     '/login',
                     '/register',
+                    // Block query-parameterized quote request URLs from indexing
+                    // These are form pre-fill variants (e.g. ?service=..., ?serviceInterest=..., ?subject=...)
+                    '/ajanlatkeres?',
+                    '/en/request-a-quote?',
                 ],
             },
             {

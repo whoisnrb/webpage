@@ -28,20 +28,30 @@ const authMiddleware = auth((req) => {
 })
 
 export default function middleware(req: NextRequest, event: NextFetchEvent) {
-    const { pathname } = req.nextUrl;
+    const { pathname, search } = req.nextUrl;
 
     // 1. API útvonalak azonnali átengedése
     if (pathname.startsWith('/api/')) {
         return NextResponse.next();
     }
 
-    // 2. Auth/Admin oldalak - auth middleware szükséges
+    // 2. Query-paraméteres ajánlatkérés URL-ek: noindex (SEO)
+    // Google ne indexelje a ?service=..., ?serviceInterest=..., ?subject=... variánsokat
+    const isQuoteRequest = pathname === '/ajanlatkeres' || pathname === '/hu/ajanlatkeres' 
+        || pathname === '/en/request-a-quote';
+    if (isQuoteRequest && search && search.length > 1) {
+        const response = intlMiddleware(req);
+        response.headers.set('X-Robots-Tag', 'noindex, follow');
+        return response;
+    }
+
+    // 3. Auth/Admin oldalak - auth middleware szükséges
     if (pathname.includes("/login") || pathname.includes("/register") ||
         pathname.includes("/admin") || pathname.includes("/dashboard")) {
         return (authMiddleware as any)(req, event);
     }
 
-    // 3. Minden más - csak intl middleware
+    // 4. Minden más - csak intl middleware
     return intlMiddleware(req);
 }
 
