@@ -123,18 +123,18 @@ export async function processBooking(body: WebhookBody) {
     const formattedDT = formatDateTime(date, time);
     const bookingTopic = topic || 'Kapcsolatfelvétel';
 
-    // 3. Notify Admin
+    // 3. Notify Admin (Kapcsolat üzenetek)
     const adminEmail = process.env.ADMIN_EMAIL || 'whoisnrb@gmail.com';
-    const adminHtml = getAdminNotificationEmailHtml(
-        name || 'Anonymous',
-        email || 'no-email@backlineit.hu',
-        formattedDT,
-        bookingTopic,
-        message || ''
-    );
+    const adminHtml = getAdminContactBookingEmailHtml({
+        name: name || 'Anonymous',
+        email: email || 'no-email@backlineit.hu',
+        formattedDateTime: formattedDT,
+        topic: bookingTopic,
+        message: message || ''
+    });
     await sendEmail(
         adminEmail,
-        'Új Időpontfoglalás Érkezett',
+        `[Kapcsolat üzenetek] Új üzenet / időpontfoglalás: ${name || 'Anonymous'} (${bookingTopic})`,
         adminHtml
     );
 
@@ -148,7 +148,7 @@ export async function processBooking(body: WebhookBody) {
         );
         await sendEmail(
             email,
-            'Időpontfoglalás Visszaigazolása',
+            'Időpontfoglalás Visszaigazolása - BacklineIT',
             clientHtml
         );
     }
@@ -201,23 +201,21 @@ export async function processConsultation(body: WebhookBody) {
 
     const formattedDT = `${date} ${time}`;
 
-    // 2. Notify Admin
+    // 2. Notify Admin (Konzultációk)
     const adminEmail = process.env.ADMIN_EMAIL || 'whoisnrb@gmail.com';
-    const extraFields = [
-        { label: 'Cég', value: company || '-' },
-        { label: 'Telefon', value: phone || '-' }
-    ];
-    const adminHtml = getAdminNotificationEmailHtml(
-        name || 'Anonymous',
-        email || 'no-email@backlineit.hu',
-        formattedDT,
-        topic,
-        description || '',
-        extraFields
-    );
+    const adminHtml = getAdminConsultationEmailHtml({
+        name: name || 'Anonymous',
+        email: email || 'no-email@backlineit.hu',
+        company: company || 'Nincs megadva',
+        phone: phone || 'Nincs megadva',
+        productName: productName || 'Általános megoldás',
+        packageName: packageName || 'Nincs kiválasztva',
+        formattedDateTime: formattedDT,
+        description: description || ''
+    });
     await sendEmail(
         adminEmail,
-        'Új Konzultációs Igény',
+        `[Konzultációk] Új megoldás konzultációs igény: ${name || 'Anonymous'} (${productName || 'Általános'})`,
         adminHtml
     );
 
@@ -231,7 +229,7 @@ export async function processConsultation(body: WebhookBody) {
         );
         await sendEmail(
             email,
-            'Konzultációs igényét fogadtuk',
+            'Konzultációs igényét fogadtuk - BacklineIT',
             clientHtml
         );
     }
@@ -408,16 +406,14 @@ function getClientConfirmationEmailHtml(name: string, formattedDateTime: string,
 `;
 }
 
-function getAdminNotificationEmailHtml(name: string, email: string, formattedDateTime: string, topic: string, message: string, extraFields?: Array<{label: string, value: string}>): string {
-    let extraRowsHtml = '';
-    if (extraFields && extraFields.length > 0) {
-        extraRowsHtml = extraFields.map(f => `
-            <tr>
-                <td style="padding: 6px 0; font-size: 13px; color: #64748B;" width="35%">${f.label}</td>
-                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${f.value}</td>
-            </tr>
-        `).join('');
-    }
+function getAdminContactBookingEmailHtml(params: {
+    name: string;
+    email: string;
+    formattedDateTime: string;
+    topic: string;
+    message: string;
+}): string {
+    const { name, email, formattedDateTime, topic, message } = params;
 
     return `
 <!DOCTYPE html>
@@ -425,16 +421,16 @@ function getAdminNotificationEmailHtml(name: string, email: string, formattedDat
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Új Megkeresés Érkezett</title>
+    <title>Új Kapcsolat Üzenet / Időpontfoglalás</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #1E293B;">
     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F8FAFC; padding: 40px 20px;">
         <tr>
             <td align="center">
                 <table role="presentation" width="100%" max-width="600px" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 16px; border: 1px solid #E2E8F0; overflow: hidden; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);">
-                    <!-- Header Accent Bar -->
+                    <!-- Header Accent Bar (Emerald-Cyan for Kapcsolat üzenetek) -->
                     <tr>
-                        <td height="6" style="background: linear-gradient(90deg, #F59E0B 0%, #3B82F6 50%, #06B6D4 100%);"></td>
+                        <td height="6" style="background: linear-gradient(90deg, #10B981 0%, #06B6D4 100%);"></td>
                     </tr>
                     
                     <!-- Header Branding -->
@@ -448,8 +444,8 @@ function getAdminNotificationEmailHtml(name: string, email: string, formattedDat
                                         </div>
                                     </td>
                                     <td style="text-align: right;">
-                                        <span style="display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #D97706; background-color: #FEF3C7; border: 1px solid #FDE68A; padding: 4px 10px; border-radius: 9999px;">
-                                            Új megkeresés
+                                        <span style="display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #059669; background-color: #ECFDF5; border: 1px solid #A7F3D0; padding: 5px 12px; border-radius: 9999px;">
+                                            Kapcsolat üzenetek
                                         </span>
                                     </td>
                                 </tr>
@@ -462,18 +458,22 @@ function getAdminNotificationEmailHtml(name: string, email: string, formattedDat
                         <td style="padding: 40px 40px 32px 40px;">
                             <h1 style="font-size: 20px; font-weight: 700; color: #0F172A; margin: 0 0 8px 0; line-height: 1.3;">Szia Norbert!</h1>
                             <p style="font-size: 15px; color: #475569; margin: 0 0 24px 0; line-height: 1.6;">
-                                Új megkeresés/foglalás érkezett a BacklineIT weboldaláról. Az alábbiakban találod a beérkezett adatokat:
+                                Új <strong>kapcsolatfelvételi üzenet / időpontfoglalás</strong> érkezett a weboldalról. Ezt a beérkezett tételt az Admin felületen a <strong>Kapcsolat üzenetek</strong> menüpontban találod.
                             </p>
                             
-                            <!-- Customer and Booking Details Table -->
+                            <!-- Details Table -->
                             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; margin-bottom: 24px; overflow: hidden;">
                                 <tr>
                                     <td style="padding: 24px;">
-                                        <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748B; margin-bottom: 16px; border-bottom: 1px solid #E2E8F0; padding-bottom: 8px;">Megkeresés Adatai</div>
+                                        <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #059669; margin-bottom: 16px; border-bottom: 1px solid #E2E8F0; padding-bottom: 8px;">Kapcsolat & Időpontfoglalás Adatai</div>
                                         
                                         <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                                             <tr>
-                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;" width="35%">Név</td>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;" width="35%">Admin menüpont</td>
+                                                <td style="padding: 6px 0; font-size: 13px; font-weight: 700; color: #059669;">Ügyfélkapcsolatok &rarr; Kapcsolat üzenetek</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Név</td>
                                                 <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${name}</td>
                                             </tr>
                                             <tr>
@@ -481,39 +481,38 @@ function getAdminNotificationEmailHtml(name: string, email: string, formattedDat
                                                 <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #2563EB;"><a href="mailto:${email}" style="color: #2563EB; text-decoration: none;">${email}</a></td>
                                             </tr>
                                             <tr>
-                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Időpont</td>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Kért időpont</td>
                                                 <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${formattedDateTime}</td>
                                             </tr>
                                             <tr>
-                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Téma / Megoldás</td>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Választott téma</td>
                                                 <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">
                                                     <span style="background-color: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 600;">
                                                         ${topic}
                                                     </span>
                                                 </td>
                                             </tr>
-                                            ${extraRowsHtml}
                                         </table>
                                     </td>
                                 </tr>
                             </table>
                             
                             <!-- Customer Message Block -->
-                            <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748B; margin-bottom: 8px; margin-left: 4px;">Leírás / Üzenet:</div>
-                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #FFFBEB; border-left: 4px solid #F59E0B; border-radius: 0 8px 8px 0; margin-bottom: 32px;">
+                            <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748B; margin-bottom: 8px; margin-left: 4px;">Üzenet / Megjegyzés:</div>
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #ECFDF5; border-left: 4px solid #10B981; border-radius: 0 8px 8px 0; margin-bottom: 32px;">
                                 <tr>
-                                    <td style="padding: 16px 20px; font-size: 14px; line-height: 1.5; color: #451A03; font-style: italic;">
+                                    <td style="padding: 16px 20px; font-size: 14px; line-height: 1.5; color: #064E3B; font-style: italic;">
                                         "${message || 'Nem adott meg külön üzenetet.'}"
                                     </td>
                                 </tr>
                             </table>
                             
-                            <!-- Call to Action Button to Open Admin Dashboard -->
+                            <!-- Call to Action Button to Open Contact Messages -->
                             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 24px;">
                                 <tr>
                                     <td align="center">
-                                        <a href="https://backlineit.hu/hu/admin" style="display: inline-block; background-color: #3B82F6; color: #FFFFFF; font-weight: 700; font-size: 14px; text-decoration: none; padding: 14px 32px; border-radius: 8px; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.15); transition: background-color 0.2s;">
-                                            Megnyitás az Admin Felületen
+                                        <a href="https://backlineit.hu/hu/admin/contact-messages" style="display: inline-block; background-color: #059669; color: #FFFFFF; font-weight: 700; font-size: 14px; text-decoration: none; padding: 14px 32px; border-radius: 8px; box-shadow: 0 4px 6px rgba(5, 150, 105, 0.2);">
+                                            Megnyitás a Kapcsolat üzeneteknél
                                         </a>
                                     </td>
                                 </tr>
@@ -528,7 +527,7 @@ function getAdminNotificationEmailHtml(name: string, email: string, formattedDat
                     <!-- Footer Section -->
                     <tr>
                         <td style="padding: 20px 40px; background-color: #F8FAFC; border-top: 1px solid #E2E8F0; text-align: center; font-size: 11px; color: #94A3B8; line-height: 1.4;">
-                            Ez egy automatikus rendszerüzenet a BacklineIT platformról.<br>
+                            Ez egy automatikus rendszerüzenet a BacklineIT platformról (Kapcsolat üzenetek csatorna).<br>
                             &copy; 2026 BacklineIT. Minden jog fenntartva.
                         </td>
                     </tr>
@@ -540,3 +539,153 @@ function getAdminNotificationEmailHtml(name: string, email: string, formattedDat
 </html>
 `;
 }
+
+function getAdminConsultationEmailHtml(params: {
+    name: string;
+    email: string;
+    company: string;
+    phone: string;
+    productName: string;
+    packageName: string;
+    formattedDateTime: string;
+    description: string;
+}): string {
+    const { name, email, company, phone, productName, packageName, formattedDateTime, description } = params;
+
+    return `
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Új Konzultációs Igény Érkezett</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #1E293B;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F8FAFC; padding: 40px 20px;">
+        <tr>
+            <td align="center">
+                <table role="presentation" width="100%" max-width="600px" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 16px; border: 1px solid #E2E8F0; overflow: hidden; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);">
+                    <!-- Header Accent Bar (Amber-Orange for Konzultációk) -->
+                    <tr>
+                        <td height="6" style="background: linear-gradient(90deg, #F59E0B 0%, #EA580C 100%);"></td>
+                    </tr>
+                    
+                    <!-- Header Branding -->
+                    <tr>
+                        <td style="padding: 32px 40px 24px 40px; text-align: left; border-bottom: 1px solid #F1F5F9;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: #0F172A;">
+                                            <span style="color: #06B6D4;">Backline</span>IT <span style="font-weight: 300; color: #64748B; font-size: 16px;">Admin</span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span style="display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #D97706; background-color: #FEF3C7; border: 1px solid #FDE68A; padding: 5px 12px; border-radius: 9999px;">
+                                            Konzultációk
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Main Body Content -->
+                    <tr>
+                        <td style="padding: 40px 40px 32px 40px;">
+                            <h1 style="font-size: 20px; font-weight: 700; color: #0F172A; margin: 0 0 8px 0; line-height: 1.3;">Szia Norbert!</h1>
+                            <p style="font-size: 15px; color: #475569; margin: 0 0 24px 0; line-height: 1.6;">
+                                Új <strong>megoldás / csomag konzultációs igény</strong> érkezett a weboldalról. Ezt a beérkezett tételt az Admin felületen a <strong>Konzultációk</strong> menüpontban találod.
+                            </p>
+                            
+                            <!-- Consultation Details Table -->
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; margin-bottom: 24px; overflow: hidden;">
+                                <tr>
+                                    <td style="padding: 24px;">
+                                        <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #D97706; margin-bottom: 16px; border-bottom: 1px solid #E2E8F0; padding-bottom: 8px;">Konzultációs Igény Adatai</div>
+                                        
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;" width="35%">Admin menüpont</td>
+                                                <td style="padding: 6px 0; font-size: 13px; font-weight: 700; color: #D97706;">Ügyfélkapcsolatok &rarr; Konzultációk</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Érdeklődő neve</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">E-mail</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #2563EB;"><a href="mailto:${email}" style="color: #2563EB; text-decoration: none;">${email}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Cég</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${company}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Telefonszám</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${phone}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Kiválasztott Megoldás</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">
+                                                    <span style="background-color: #FEF3C7; border: 1px solid #FDE68A; color: #92400E; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 600;">
+                                                        ${productName}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Csomag</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${packageName}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Beküldés ideje</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${formattedDateTime}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Customer Description Block -->
+                            <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748B; margin-bottom: 8px; margin-left: 4px;">Ügyfél elképzelése / Leírás:</div>
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #FFFBEB; border-left: 4px solid #F59E0B; border-radius: 0 8px 8px 0; margin-bottom: 32px;">
+                                <tr>
+                                    <td style="padding: 16px 20px; font-size: 14px; line-height: 1.5; color: #451A03; font-style: italic;">
+                                        "${description || 'Nem adott meg külön leírást.'}"
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Call to Action Button to Open Consultations -->
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 24px;">
+                                <tr>
+                                    <td align="center">
+                                        <a href="https://backlineit.hu/hu/admin/consultations" style="display: inline-block; background-color: #D97706; color: #FFFFFF; font-weight: 700; font-size: 14px; text-decoration: none; padding: 14px 32px; border-radius: 8px; box-shadow: 0 4px 6px rgba(217, 119, 6, 0.2);">
+                                            Megnyitás a Konzultációknál
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <p style="font-size: 13px; color: #94A3B8; text-align: center; margin: 0;">
+                                A válaszadáshoz válaszolj erre az e-mailre, vagy vedd fel a kapcsolatot az ügyféllel a megadott elérhetőségeken.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer Section -->
+                    <tr>
+                        <td style="padding: 20px 40px; background-color: #F8FAFC; border-top: 1px solid #E2E8F0; text-align: center; font-size: 11px; color: #94A3B8; line-height: 1.4;">
+                            Ez egy automatikus rendszerüzenet a BacklineIT platformról (Konzultációk csatorna).<br>
+                            &copy; 2026 BacklineIT. Minden jog fenntartva.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+`;
+}
+

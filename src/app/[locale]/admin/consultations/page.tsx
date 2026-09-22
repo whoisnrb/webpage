@@ -17,13 +17,7 @@ import { ConsultationManager } from "./consultation-manager"
 export const dynamic = 'force-dynamic'
 
 export default async function AdminConsultationsPage() {
-    // Only fetch consultations where productId is not null (linked to a Solution/Megoldás)
     const consultations = await prisma.consultation.findMany({
-        where: {
-            productId: {
-                not: null
-            }
-        },
         orderBy: {
             createdAt: 'desc'
         },

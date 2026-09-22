@@ -46,30 +46,156 @@ export const sendVerificationEmail = async (email: string, token: string) => {
 };
 
 export const sendAdminInquiryNotification = async (inquiry: any) => {
-    const adminEmail = process.env.GMAIL_USER;
-    if (!adminEmail) return;
+    const adminEmail = process.env.ADMIN_EMAIL || 'whoisnrb@gmail.com';
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+        console.warn("[MAIL] Missing GMAIL credentials for sendAdminInquiryNotification");
+        return;
+    }
+
+    const formattedDate = new Date(inquiry.createdAt || Date.now()).toLocaleString('hu-HU', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
 
     const mailOptions = {
-        from: `"BacklineIT System" <${process.env.GMAIL_USER}>`,
+        from: `"BacklineIT Admin" <${process.env.GMAIL_USER}>`,
         to: adminEmail,
-        subject: `ÚJ AJÁNLATKÉRÉS: ${inquiry.name} - ${inquiry.serviceType}`,
+        subject: `[Megkeresések] Új szolgáltatás árajánlatkérés: ${inquiry.name} (${inquiry.serviceType})`,
         html: `
-            <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #1a1a1a; background-color: #050810; color: #fff; border-radius: 15px;">
-                <h2 style="color: #06b6d4; border-bottom: 1px solid #333; padding-bottom: 10px;">Új Ajánlatkérés Érkezett</h2>
-                <div style="margin: 20px 0;">
-                    <p><strong>Név:</strong> ${inquiry.name}</p>
-                    <p><strong>Email:</strong> ${inquiry.email}</p>
-                    <p><strong>Telefon:</strong> ${inquiry.phone || 'Nincs megadva'}</p>
-                    <p><strong>Cég:</strong> ${inquiry.company || 'Nincs megadva'}</p>
-                    <p><strong>Típus:</strong> ${inquiry.serviceType}</p>
-                    <p><strong>Büdzsé:</strong> ${inquiry.budget || 'Nincs megadva'}</p>
-                </div>
-                <div style="background-color: #0f172a; padding: 15px; border-radius: 10px; border: 1px solid #1e293b;">
-                    <h3 style="margin-top: 0; color: #06b6d4; font-size: 14px;">Leírás:</h3>
-                    <p style="white-space: pre-wrap;">${inquiry.description}</p>
-                </div>
-                <p style="margin-top: 20px; font-size: 12px; color: #64748b;">Ezt az üzenetet a BacklineIT automatikus rendszere küldte.</p>
-            </div>
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Új Szolgáltatás Megkeresés (Árajánlatkérés)</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #1E293B;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F8FAFC; padding: 40px 20px;">
+        <tr>
+            <td align="center">
+                <table role="presentation" width="100%" max-width="600px" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 16px; border: 1px solid #E2E8F0; overflow: hidden; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);">
+                    <!-- Header Accent Bar (Blue-Indigo for Megkeresések) -->
+                    <tr>
+                        <td height="6" style="background: linear-gradient(90deg, #2563EB 0%, #6366F1 100%);"></td>
+                    </tr>
+                    
+                    <!-- Header Branding -->
+                    <tr>
+                        <td style="padding: 32px 40px 24px 40px; text-align: left; border-bottom: 1px solid #F1F5F9;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <div style="font-size: 24px; font-weight: 800; letter-spacing: -0.5px; color: #0F172A;">
+                                            <span style="color: #06B6D4;">Backline</span>IT <span style="font-weight: 300; color: #64748B; font-size: 16px;">Admin</span>
+                                        </div>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <span style="display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #2563EB; background-color: #EFF6FF; border: 1px solid #BFDBFE; padding: 5px 12px; border-radius: 9999px;">
+                                            Megkeresések
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <!-- Main Body Content -->
+                    <tr>
+                        <td style="padding: 40px 40px 32px 40px;">
+                            <h1 style="font-size: 20px; font-weight: 700; color: #0F172A; margin: 0 0 8px 0; line-height: 1.3;">Szia Norbert!</h1>
+                            <p style="font-size: 15px; color: #475569; margin: 0 0 24px 0; line-height: 1.6;">
+                                Új <strong>szolgáltatás megkeresés (projekt árajánlatkérés)</strong> érkezett a weboldalról. Ezt a beérkezett tételt az Admin felületen a <strong>Megkeresések</strong> menüpontban találod.
+                            </p>
+                            
+                            <!-- Inquiry Details Table -->
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F8FAFC; border-radius: 12px; border: 1px solid #E2E8F0; margin-bottom: 24px; overflow: hidden;">
+                                <tr>
+                                    <td style="padding: 24px;">
+                                        <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #2563EB; margin-bottom: 16px; border-bottom: 1px solid #E2E8F0; padding-bottom: 8px;">Szolgáltatás Megkeresés Adatai</div>
+                                        
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;" width="35%">Admin menüpont</td>
+                                                <td style="padding: 6px 0; font-size: 13px; font-weight: 700; color: #2563EB;">Ügyfélkapcsolatok &rarr; Megkeresések</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Ügyfél neve</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${inquiry.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">E-mail</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #2563EB;"><a href="mailto:${inquiry.email}" style="color: #2563EB; text-decoration: none;">${inquiry.email}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Telefonszám</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${inquiry.phone || 'Nincs megadva'}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Cégnév</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${inquiry.company || 'Nincs megadva'}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Szolgáltatás típusa</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">
+                                                    <span style="background-color: #EFF6FF; border: 1px solid #BFDBFE; color: #1E40AF; font-size: 12px; padding: 2px 8px; border-radius: 4px; font-weight: 600;">
+                                                        ${inquiry.serviceType}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Becsült büdzsé</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 700; color: #059669;">${inquiry.budget || 'Nincs megadva'}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">Beküldés ideje</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${formattedDate}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Customer Project Description Block -->
+                            <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748B; margin-bottom: 8px; margin-left: 4px;">Projekt leírása & specifikáció:</div>
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #EFF6FF; border-left: 4px solid #2563EB; border-radius: 0 8px 8px 0; margin-bottom: 32px;">
+                                <tr>
+                                    <td style="padding: 16px 20px; font-size: 14px; line-height: 1.5; color: #1E3A8A; white-space: pre-wrap;">${inquiry.description || 'Nem adott meg külön leírást.'}</td>
+                                </tr>
+                            </table>
+                            
+                            <!-- Call to Action Button to Open Inquiries -->
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 24px;">
+                                <tr>
+                                    <td align="center">
+                                        <a href="https://backlineit.hu/hu/admin/inquiries" style="display: inline-block; background-color: #2563EB; color: #FFFFFF; font-weight: 700; font-size: 14px; text-decoration: none; padding: 14px 32px; border-radius: 8px; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);">
+                                            Megnyitás a Megkereséseknél
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            
+                            <p style="font-size: 13px; color: #94A3B8; text-align: center; margin: 0;">
+                                A válaszadáshoz válaszolj erre az e-mailre, vagy küldj fizetési hivatkozást közvetlenül a Megkeresések felületéről.
+                            </p>
+                        </td>
+                    </tr>
+                    
+                    <!-- Footer Section -->
+                    <tr>
+                        <td style="padding: 20px 40px; background-color: #F8FAFC; border-top: 1px solid #E2E8F0; text-align: center; font-size: 11px; color: #94A3B8; line-height: 1.4;">
+                            Ez egy automatikus rendszerüzenet a BacklineIT platformról (Szolgáltatás Megkeresések csatorna).<br>
+                            &copy; 2026 BacklineIT. Minden jog fenntartva.
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
         `,
     };
 

@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MessageSquare, Clock, FileText, Briefcase, Banknote, Activity } from "lucide-react"
 import { prisma } from "@/lib/db"
 import { DashboardCharts } from "@/components/admin/dashboard-charts"
+import { Link } from "@/i18n/routing"
 
 async function getStats() {
     // 1. Megkeresések (ServiceInquiry)
@@ -12,10 +13,8 @@ async function getStats() {
         where: { status: "NEW" }
     })
     
-    // 3. Konzultációk (Belongs to solutions only)
-    const consultationCount = await prisma.consultation.count({
-        where: { productId: { not: null } }
-    })
+    // 3. Konzultációk (Consultation)
+    const consultationCount = await prisma.consultation.count()
 
     // 4. Jelentkezések (JobApplication)
     const applicationCount = await prisma.jobApplication.count()
@@ -136,71 +135,83 @@ export default async function AdminPage() {
 
             {/* Stat Cards */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <Card className="border border-white/5 bg-[#090d16]/40 hover:bg-[#0b111e]/40 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 hover:shadow-cyan-500/5">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Összes megkeresés</span>
-                        <FileText className="h-5 w-5 text-cyan-400" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-white">{stats.inquiriesCount}</div>
-                        <p className="text-xs text-cyan-400/80 mt-1 font-medium">Beérkezett projekt kérések</p>
-                    </CardContent>
-                </Card>
+                <Link href={"/admin/inquiries" as any} className="block group">
+                    <Card className="border border-white/5 bg-[#090d16]/40 group-hover:bg-[#0b111e]/60 group-hover:border-cyan-500/30 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 group-hover:shadow-cyan-500/5 cursor-pointer">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2">
+                            <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Összes megkeresés</span>
+                            <FileText className="h-5 w-5 text-cyan-400" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-black text-white">{stats.inquiriesCount}</div>
+                            <p className="text-xs text-cyan-400/80 mt-1 font-medium">Beérkezett projekt árajánlatkérések</p>
+                        </CardContent>
+                    </Card>
+                </Link>
 
-                <Card className="border border-white/5 bg-[#090d16]/40 hover:bg-[#0b111e]/40 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 hover:shadow-cyan-500/5">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Új kapcsolat üzenet</span>
-                        <MessageSquare className="h-5 w-5 text-emerald-400" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-white">{stats.newContactsCount}</div>
-                        <p className="text-xs text-emerald-400/80 mt-1 font-medium">Olvasatlan megkeresések</p>
-                    </CardContent>
-                </Card>
+                <Link href={"/admin/contact-messages" as any} className="block group">
+                    <Card className="border border-white/5 bg-[#090d16]/40 group-hover:bg-[#0b111e]/60 group-hover:border-emerald-500/30 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 group-hover:shadow-emerald-500/5 cursor-pointer">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2">
+                            <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Új kapcsolat üzenet</span>
+                            <MessageSquare className="h-5 w-5 text-emerald-400" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-black text-white">{stats.newContactsCount}</div>
+                            <p className="text-xs text-emerald-400/80 mt-1 font-medium">Olvasatlan üzenetek & foglalások</p>
+                        </CardContent>
+                    </Card>
+                </Link>
 
-                <Card className="border border-white/5 bg-[#090d16]/40 hover:bg-[#0b111e]/40 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 hover:shadow-cyan-500/5">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Konzultációs igények</span>
-                        <Clock className="h-5 w-5 text-yellow-400" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-white">{stats.consultationCount}</div>
-                        <p className="text-xs text-yellow-400/80 mt-1 font-medium">Megoldás alapú egyeztetések</p>
-                    </CardContent>
-                </Card>
+                <Link href={"/admin/consultations" as any} className="block group">
+                    <Card className="border border-white/5 bg-[#090d16]/40 group-hover:bg-[#0b111e]/60 group-hover:border-yellow-500/30 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 group-hover:shadow-yellow-500/5 cursor-pointer">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2">
+                            <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Konzultációs igények</span>
+                            <Clock className="h-5 w-5 text-yellow-400" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-black text-white">{stats.consultationCount}</div>
+                            <p className="text-xs text-yellow-400/80 mt-1 font-medium">Megoldás alapú egyeztetések</p>
+                        </CardContent>
+                    </Card>
+                </Link>
 
-                <Card className="border border-white/5 bg-[#090d16]/40 hover:bg-[#0b111e]/40 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 hover:shadow-cyan-500/5">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Jelentkezések</span>
-                        <Briefcase className="h-5 w-5 text-blue-400" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-white">{stats.applicationCount}</div>
-                        <p className="text-xs text-blue-400/80 mt-1 font-medium">Állásra jelentkező szakemberek</p>
-                    </CardContent>
-                </Card>
+                <Link href={"/admin/careers" as any} className="block group">
+                    <Card className="border border-white/5 bg-[#090d16]/40 group-hover:bg-[#0b111e]/60 group-hover:border-blue-500/30 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 group-hover:shadow-blue-500/5 cursor-pointer">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2">
+                            <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Jelentkezések</span>
+                            <Briefcase className="h-5 w-5 text-blue-400" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-black text-white">{stats.applicationCount}</div>
+                            <p className="text-xs text-blue-400/80 mt-1 font-medium">Állásra jelentkező szakemberek</p>
+                        </CardContent>
+                    </Card>
+                </Link>
 
-                <Card className="border border-white/5 bg-[#090d16]/40 hover:bg-[#0b111e]/40 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 hover:shadow-cyan-500/5">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Szolgáltatások száma</span>
-                        <Banknote className="h-5 w-5 text-purple-400" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-white">{stats.serviceCount}</div>
-                        <p className="text-xs text-purple-400/80 mt-1 font-medium">Aktív portfólió elemek</p>
-                    </CardContent>
-                </Card>
+                <Link href={"/admin/services" as any} className="block group">
+                    <Card className="border border-white/5 bg-[#090d16]/40 group-hover:bg-[#0b111e]/60 group-hover:border-purple-500/30 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 group-hover:shadow-purple-500/5 cursor-pointer">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2">
+                            <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Szolgáltatások száma</span>
+                            <Banknote className="h-5 w-5 text-purple-400" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-black text-white">{stats.serviceCount}</div>
+                            <p className="text-xs text-purple-400/80 mt-1 font-medium">Aktív portfólió elemek</p>
+                        </CardContent>
+                    </Card>
+                </Link>
 
-                <Card className="border border-white/5 bg-[#090d16]/40 hover:bg-[#0b111e]/40 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 hover:shadow-cyan-500/5">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Aktivitások</span>
-                        <Activity className="h-5 w-5 text-orange-400" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-3xl font-black text-white">{stats.auditLogCount}</div>
-                        <p className="text-xs text-orange-400/80 mt-1 font-medium">Naplózott admin események</p>
-                    </CardContent>
-                </Card>
+                <Link href={"/admin/audit-logs" as any} className="block group">
+                    <Card className="border border-white/5 bg-[#090d16]/40 group-hover:bg-[#0b111e]/60 group-hover:border-orange-500/30 transition-all duration-300 rounded-2xl shadow-lg shadow-black/20 group-hover:shadow-orange-500/5 cursor-pointer">
+                        <CardHeader className="flex flex-row items-center justify-between pb-2">
+                            <span className="text-sm font-semibold tracking-wide text-slate-400 uppercase">Aktivitások</span>
+                            <Activity className="h-5 w-5 text-orange-400" />
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-3xl font-black text-white">{stats.auditLogCount}</div>
+                            <p className="text-xs text-orange-400/80 mt-1 font-medium">Naplózott admin események</p>
+                        </CardContent>
+                    </Card>
+                </Link>
             </div>
 
             {/* Dynamic Charts */}
