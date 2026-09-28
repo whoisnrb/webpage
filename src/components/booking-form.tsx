@@ -122,9 +122,13 @@ export function BookingForm() {
             }
 
             setStatus("success")
-            if (typeof window !== "undefined" && (window as any).ttq) {
-                (window as any).ttq.track('Contact')
-                (window as any).ttq.track('SubmitForm')
+            try {
+                if (typeof window !== "undefined" && (window as any).ttq) {
+                    (window as any).ttq.track('Contact')
+                    (window as any).ttq.track('SubmitForm')
+                }
+            } catch (ttqErr) {
+                console.warn("TikTok tracking error:", ttqErr)
             }
             setFormData({ name: "", email: "", topic: "", time: "", message: "" })
             setDate(undefined)

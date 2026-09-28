@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CheckCircle2, Send, Sparkles, Rocket, Code, Smartphone, Globe } from "lucide-react"
 import { motion } from "framer-motion"
 import { useTranslations, useLocale } from "next-intl"
+import { submitInquiry } from "@/app/actions/inquiry"
 
 export default function QuoteRequestPage() {
     return (
@@ -103,7 +104,6 @@ Nyelv: ${formData.language || locale}
 Forrás oldal: ${formData.sourcePage || "N/A"}`;
 
         try {
-            const { submitInquiry } = await import("@/app/actions/inquiry")
             const result = await submitInquiry({
                 name: formData.name,
                 email: formData.email,
@@ -115,16 +115,20 @@ Forrás oldal: ${formData.sourcePage || "N/A"}`;
             })
 
             if (result.success) {
-                if (typeof window !== "undefined" && (window as any).ttq) {
-                    (window as any).ttq.track('SubmitForm')
-                    (window as any).ttq.track('Contact')
+                try {
+                    if (typeof window !== "undefined" && (window as any).ttq) {
+                        (window as any).ttq.track('SubmitForm')
+                        (window as any).ttq.track('Contact')
+                    }
+                } catch (ttqError) {
+                    console.warn("TikTok tracking error:", ttqError)
                 }
                 setSubmitted(true)
             } else {
                 alert(result.error || "Hiba történt a beküldés során.")
             }
         } catch (error) {
-            console.error(error)
+            console.error("Submission error:", error)
             alert("Váratlan hiba történt.")
         } finally {
             setLoading(false)
@@ -393,7 +397,7 @@ Forrás oldal: ${formData.sourcePage || "N/A"}`;
                                                 </Button>
                                                 <Button type="submit" className="bg-primary hover:bg-primary/90" disabled={loading}>
                                                     {loading ? (
-                                                        <>{t("form.processing")}</>
+                                                        <>{t("form.sending")}</>
                                                     ) : (
                                                         <>
                                                             {t("form.submit")} <Send className="ml-2 h-4 w-4" />
