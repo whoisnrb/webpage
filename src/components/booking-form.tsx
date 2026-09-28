@@ -124,6 +124,9 @@ export function BookingForm() {
             setStatus("success")
             try {
                 if (typeof window !== "undefined" && (window as any).ttq) {
+                    (window as any).ttq.track('CompleteRegistration')
+                    (window as any).ttq.track('Schedule')
+                    (window as any).ttq.track('ClickButton')
                     (window as any).ttq.track('Contact')
                     (window as any).ttq.track('SubmitForm')
                 }

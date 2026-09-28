@@ -117,6 +117,8 @@ Forrás oldal: ${formData.sourcePage || "N/A"}`;
             if (result.success) {
                 try {
                     if (typeof window !== "undefined" && (window as any).ttq) {
+                        (window as any).ttq.track('CompleteRegistration')
+                        (window as any).ttq.track('ClickButton')
                         (window as any).ttq.track('SubmitForm')
                         (window as any).ttq.track('Contact')
                     }
