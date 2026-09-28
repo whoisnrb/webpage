@@ -122,6 +122,10 @@ export function BookingForm() {
             }
 
             setStatus("success")
+            if (typeof window !== "undefined" && (window as any).ttq) {
+                (window as any).ttq.track('Contact')
+                (window as any).ttq.track('SubmitForm')
+            }
             setFormData({ name: "", email: "", topic: "", time: "", message: "" })
             setDate(undefined)
         } catch (error) {

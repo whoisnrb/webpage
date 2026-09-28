@@ -115,6 +115,10 @@ Forrás oldal: ${formData.sourcePage || "N/A"}`;
             })
 
             if (result.success) {
+                if (typeof window !== "undefined" && (window as any).ttq) {
+                    (window as any).ttq.track('SubmitForm')
+                    (window as any).ttq.track('Contact')
+                }
                 setSubmitted(true)
             } else {
                 alert(result.error || "Hiba történt a beküldés során.")
