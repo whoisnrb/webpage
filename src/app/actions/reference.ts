@@ -152,6 +152,22 @@ export async function getReferences(): Promise<ReferenceDTO[]> {
     }
 }
 
+export async function getReferenceSlugs(): Promise<{ slug: string; updatedAt: Date; active: boolean }[]> {
+    try {
+        const references = await (prisma as any).reference.findMany({
+            select: {
+                slug: true,
+                updatedAt: true,
+                active: true,
+            }
+        });
+        return references;
+    } catch (error) {
+        console.warn("Could not fetch reference slugs:", error);
+        return [];
+    }
+}
+
 export async function getLocalizedReferences(locale: string = 'hu'): Promise<LocalizedReferenceDTO[]> {
     const refs = await getReferences()
     return refs.filter(r => r.active).map(r => localizeReference(r, locale))

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { getBlogPosts, getBlogSeries } from '@/app/actions/blog'
 import { getProducts } from '@/app/actions/product'
 import { routing, getPathname } from '@/i18n/routing'
-import { getReferences } from '@/app/actions/reference'
+import { getReferenceSlugs } from '@/app/actions/reference'
 import { caseStudies as staticCaseStudies } from '@/lib/case-studies-data'
 
 export const revalidate = 3600
@@ -14,10 +14,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     let products: Awaited<ReturnType<typeof getProducts>> = []
     let posts: Awaited<ReturnType<typeof getBlogPosts>> = []
     let series: Awaited<ReturnType<typeof getBlogSeries>> = []
-    let dbReferences: Awaited<ReturnType<typeof getReferences>> = []
+    let dbReferences: Awaited<ReturnType<typeof getReferenceSlugs>> = []
 
     try {
-        dbReferences = await getReferences()
+        dbReferences = await getReferenceSlugs()
     } catch (error) {
         console.warn('Could not fetch references for sitemap generation:', error)
     }
