@@ -2,6 +2,8 @@ import { getSeoMetadata } from "@/lib/seo";
 import { BiztonsagContent } from "@/components/services/biztonsag-content";
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld";
+import { trackEvent } from "@/lib/analytics";
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
@@ -13,18 +15,42 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'Services.Security' });
 
-    // Service Structured Data
+    return {
+        title: t('title'),
+        description: t('description'),
+        keywords: ["kiberbiztonság", "biztonsági audit", "penetration testing", "sérülékenységvizsgálat", "GDPR", "ISO 27001"],
+        ...getSeoMetadata(locale, "/szolgaltatasok/biztonsag"),
+        openGraph: {
+            title: `${t('title')} | BacklineIT`,
+            description: t('description'),
+        }
+    };
+}
+
+export default async function BiztonsagPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Services.Security' });
+
+    // Track service view
+    trackEvent("view_service", "engagement", {
+        service: "biztonsag",
+        locale
+    });
+
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Service",
         "name": t('title'),
         "description": t('description'),
         "provider": {
-            "@type": "Organization",
-            "name": "BacklineIT",
-            "url": "https://backlineit.hu"
+            "@type": "ProfessionalService",
+            "@id": "https://backlineit.hu/#organization"
         },
-        "areaServed": "HU",
+        "areaServed": {
+            "@type": "Country",
+            "name": "Hungary"
+        },
+        "url": "https://backlineit.hu/szolgaltatasok/biztonsag",
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Kiberbiztonsági Csomagok",
@@ -52,29 +78,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                 }
             ]
         }
-    }
-
-    return {
-        title: t('title') + " | BacklineIT",
-        description: t('description'),
-        keywords: ["kiberbiztonság", "biztonsági audit", "penetration testing", "sérülékenységvizsgálat", "GDPR", "ISO 27001"],
-        ...getSeoMetadata(locale, "/szolgaltatasok/biztonsag"),
-        other: {
-            'script:ld+json': JSON.stringify(jsonLd),
-        }
     };
-}
 
-import { trackEvent } from "@/lib/analytics";
-
-export default async function BiztonsagPage({ params }: { params: Promise<{ locale: string }> }) {
-    const { locale } = await params;
-
-    // Track service view
-    trackEvent("view_service", "engagement", {
-        service: "biztonsag",
-        locale
-    });
-
-    return <BiztonsagContent />;
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <BreadcrumbJsonLd
+                items={[
+                    { name: locale === 'en' ? 'Home' : 'Kezdőlap', href: locale === 'en' ? '/en' : '/' },
+                    { name: locale === 'en' ? 'Services' : 'Szolgáltatások', href: locale === 'en' ? '/en/services' : '/szolgaltatasok' },
+                    { name: t('title'), href: locale === 'en' ? '/en/services/security' : '/szolgaltatasok/biztonsag' },
+                ]}
+            />
+            <BiztonsagContent />
+        </>
+    );
 }

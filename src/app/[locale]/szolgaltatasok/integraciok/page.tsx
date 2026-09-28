@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const t = await getTranslations({ locale, namespace: 'Services.Integrations' });
 
     return {
-        title: t('title') + " | BacklineIT",
+        title: t('title'),
         description: t('description'),
         keywords: ["API integráció", "rendszerösszekötés", "automatizáció", "adatbázis szinkronizáció", "webhook"],
         ...getSeoMetadata(locale, "/szolgaltatasok/integraciok"),

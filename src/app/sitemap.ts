@@ -201,5 +201,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         }
     }
 
-    return routes
+    // Filter out any URLs with unresolved dynamic route segments (e.g. [slug])
+    const filteredRoutes = routes.filter(route => !route.url.includes('[') && !route.url.includes(']'));
+
+    // Deduplicate URLs, keeping the first occurrence
+    const seen = new Set<string>();
+    const deduplicatedRoutes = filteredRoutes.filter(route => {
+        if (seen.has(route.url)) return false;
+        seen.add(route.url);
+        return true;
+    });
+
+    return deduplicatedRoutes;
 }

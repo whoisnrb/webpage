@@ -2,7 +2,7 @@ import { NewVerificationForm } from "@/components/auth/new-verification-form";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Email megerősítés | BacklineIT",
+    title: "Email megerősítés",
     robots: {
         index: false,
         follow: false,

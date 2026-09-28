@@ -32,10 +32,12 @@ export function RecaptchaProvider({ children }: { children: React.ReactNode }) {
 
     return (
         <RecaptchaContext.Provider value={{ executeRecaptcha, siteKey: RECAPTCHA_SITE_KEY }}>
-            <Script
-                src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
-                strategy="afterInteractive"
-            />
+            {RECAPTCHA_SITE_KEY ? (
+                <Script
+                    src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+                    strategy="lazyOnload"
+                />
+            ) : null}
             {children}
         </RecaptchaContext.Provider>
     );

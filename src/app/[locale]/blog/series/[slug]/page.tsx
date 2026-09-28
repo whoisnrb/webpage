@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
     if (!series) {
         return {
-            title: 'Not Found | BacklineIT Blog',
+            title: locale === 'en' ? 'Series Not Found' : 'Sorozat nem található',
         }
     }
 
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const description = locale === 'en' ? (series.descriptionEn || series.description) : series.description
 
     return {
-        title: `${title} | BacklineIT Blog Sorozat`,
+        title: locale === 'en' ? `${title} - Blog Series` : `${title} - Blog Sorozat`,
         description,
         ...getSeoMetadata(locale, '/blog/series/[slug]', { slug }),
         openGraph: {

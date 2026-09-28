@@ -8,15 +8,27 @@ import { routing } from '@/i18n/routing'
 
 import { getSeoMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
+    const title = locale === 'en' ? 'IT Service Pricing & Packages' : 'IT Szolgáltatás Árak & Csomagok';
+    const description = locale === 'en' 
+        ? 'Transparent monthly and project-based IT service packages for businesses: web development, maintenance, and automation.' 
+        : 'Átlátható havidíjas és projektalapú IT szolgáltatási csomagok cégeknek: webfejlesztés, üzemeltetés és automatizáció.';
+
     return {
-        title: locale === 'en' ? 'Pricing' : 'Árak',
-        description: locale === 'en' 
-            ? 'Check out our transparent monthly and project-based IT service packages.' 
-            : 'Tekintsd meg átlátható havidíjas és projektalapú IT szolgáltatási csomagjainkat.',
-        ...getSeoMetadata(locale, '/arak')
+        title,
+        description,
+        ...getSeoMetadata(locale, '/arak'),
+        openGraph: {
+            title: `${title} | BacklineIT`,
+            description,
+            url: locale === 'en' ? 'https://backlineit.hu/en/pricing' : 'https://backlineit.hu/arak',
+            siteName: 'BacklineIT',
+            locale: locale === 'hu' ? 'hu_HU' : 'en_US',
+            type: 'website',
+        }
     };
 }
 
@@ -64,6 +76,12 @@ export default function ArakPage() {
 
     return (
         <div className="flex min-h-screen flex-col">
+            <BreadcrumbJsonLd
+                items={[
+                    { name: 'Kezdőlap', href: '/' },
+                    { name: 'Árak', href: '/arak' },
+                ]}
+            />
             <main className="flex-1">
                 {/* Hero Section */}
                 <section className="py-16 md:py-24">

@@ -12,15 +12,29 @@ export const revalidate = 3600
 
 import { getSeoMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
+    const title = locale === 'en' 
+        ? 'IT, Web Development & Automation Blog' 
+        : 'IT, Webfejlesztés & Automatizáció Blog';
+    const description = locale === 'en' 
+        ? 'Professional articles, guides, and news from the world of automation, software development, and IT security.' 
+        : 'Szakmai cikkek, útmutatók és hírek az automatizáció, szoftverfejlesztés és IT biztonság világából.';
+
     return {
-        title: 'Blog',
-        description: locale === 'en' 
-            ? 'Professional articles, guides, and news from the world of automation, software development, and IT security.' 
-            : 'Szakmai cikkek, útmutatók és hírek az automatizáció, szoftverfejlesztés és IT biztonság világából.',
-        ...getSeoMetadata(locale, '/blog')
+        title,
+        description,
+        ...getSeoMetadata(locale, '/blog'),
+        openGraph: {
+            title: `${title} | BacklineIT`,
+            description,
+            url: locale === 'en' ? 'https://backlineit.hu/en/blog' : 'https://backlineit.hu/blog',
+            siteName: 'BacklineIT',
+            locale: locale === 'hu' ? 'hu_HU' : 'en_US',
+            type: 'website',
+        },
     };
 }
 
@@ -47,6 +61,12 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
 
     return (
         <div className="min-h-screen bg-transparent">
+            <BreadcrumbJsonLd
+                items={[
+                    { name: locale === 'en' ? 'Home' : 'Kezdőlap', href: locale === 'en' ? '/en' : '/' },
+                    { name: 'Blog', href: locale === 'en' ? '/en/blog' : '/blog' },
+                ]}
+            />
             {/* Hero Section */}
             <section className="relative py-24 overflow-hidden">
                 <div className="container relative z-10 mx-auto px-4 text-center">

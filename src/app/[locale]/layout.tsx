@@ -83,9 +83,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     verification: {
       google: "w5GusFwWrjuwRjB6Et93XNbdps97gw7pOuMeX4a5pbY",
     },
-    itunes: {
-      appId: "my-app-id",
-    },
     appleWebApp: {
       title: "BacklineIT",
       statusBarStyle: "black-translucent",
@@ -96,6 +93,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://backlineit.hu/#organization",
   "name": "BacklineIT",
   "url": "https://backlineit.hu",
   "logo": "https://backlineit.hu/logo.png",
@@ -105,10 +103,17 @@ const jsonLd = {
   ],
   "contactPoint": {
     "@type": "ContactPoint",
-    "telephone": "+36-30-123-4567",
+    "telephone": "+36501034140",
     "contactType": "customer service",
     "areaServed": "HU",
-    "availableLanguage": "Hungarian"
+    "availableLanguage": ["Hungarian", "English"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Vörösmarty utca 11.",
+    "addressLocality": "Csömör",
+    "postalCode": "2141",
+    "addressCountry": "HU"
   }
 }
 

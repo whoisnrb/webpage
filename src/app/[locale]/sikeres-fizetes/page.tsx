@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props) {
     const t = await getTranslations({ locale, namespace: "SuccessPage" })
 
     return {
-        title: `${t("title")} | BacklineIT`,
+        title: t("title"),
         description: t("description"),
         robots: {
             index: false,

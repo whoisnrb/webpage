@@ -14,6 +14,7 @@ export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
 import { getSeoMetadata } from "@/lib/seo"
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }): Promise<Metadata> {
     const { slug, locale } = await params;
@@ -58,6 +59,13 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
     return (
         <div className="min-h-screen flex flex-col">
+            <BreadcrumbJsonLd
+                items={[
+                    { name: locale === 'en' ? 'Home' : 'Kezdőlap', href: locale === 'en' ? '/en' : '/' },
+                    { name: locale === 'en' ? 'References' : 'Referenciák', href: locale === 'en' ? '/en/references' : '/referenciak' },
+                    { name: study.title, href: locale === 'en' ? `/en/references/${slug}` : `/referenciak/${slug}` },
+                ]}
+            />
             <div className="container mx-auto px-4 py-8">
                 {/* Hero */}
                 <div className="grid lg:grid-cols-2 gap-12 mb-16 items-center">
@@ -202,12 +210,13 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify({
                             "@context": "https://schema.org",
-                            "@type": "CaseStudy",
-                            "name": study.title,
+                            "@type": "Article",
+                            "headline": study.title,
                             "description": study.description,
                             "image": study.image,
                             "publisher": {
                                 "@type": "Organization",
+                                "@id": "https://backlineit.hu/#organization",
                                 "name": "BacklineIT",
                                 "logo": {
                                     "@type": "ImageObject",

@@ -28,7 +28,6 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: '/',
             },
         ],
-        host: 'https://backlineit.hu',
         sitemap: 'https://backlineit.hu/sitemap.xml',
     }
 }

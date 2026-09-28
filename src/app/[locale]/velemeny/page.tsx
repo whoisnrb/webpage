@@ -16,11 +16,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const t = await getTranslations({ locale, namespace: "Feedback" });
 
     return {
-        title: `${t("title")} | BacklineIT`,
+        title: t("title"),
         description: t("description"),
         ...getSeoMetadata(locale, '/velemeny'),
         openGraph: {
-            title: `${t("title")} | BacklineIT`,
+            title: t("title"),
             description: t("description"),
         },
     };

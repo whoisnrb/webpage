@@ -1,3 +1,5 @@
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld";
+
 export default function ServicesLayout({
     children,
 }: {
@@ -5,6 +7,12 @@ export default function ServicesLayout({
 }) {
     return (
         <div className="flex min-h-screen flex-col">
+            <BreadcrumbJsonLd
+                items={[
+                    { name: "Kezdőlap", href: "/" },
+                    { name: "Szolgáltatások", href: "/szolgaltatasok" },
+                ]}
+            />
             <main className="flex-1">
                 {children}
             </main>

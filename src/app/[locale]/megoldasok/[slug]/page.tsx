@@ -16,6 +16,7 @@ interface PageProps {
 import { Metadata } from "next"
 
 import { getSeoMetadata } from "@/lib/seo"
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug, locale } = await params
@@ -82,6 +83,13 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
     return (
         <>
+            <BreadcrumbJsonLd
+                items={[
+                    { name: locale === 'en' ? 'Home' : 'Kezdőlap', href: locale === 'en' ? '/en' : '/' },
+                    { name: locale === 'en' ? 'Solutions' : 'Megoldások', href: locale === 'en' ? '/en/solutions' : '/megoldasok' },
+                    { name: product.title, href: locale === 'en' ? `/en/solutions/${slug}` : `/megoldasok/${slug}` },
+                ]}
+            />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

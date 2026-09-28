@@ -7,7 +7,7 @@ import { routing } from '@/i18n/routing'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-    title: 'Bejelentkezés | BacklineIT',
+    title: 'Bejelentkezés',
     robots: {
         index: false,
         follow: false,

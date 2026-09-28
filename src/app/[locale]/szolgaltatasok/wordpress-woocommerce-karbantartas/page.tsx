@@ -15,12 +15,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const t = await getTranslations({ locale, namespace: 'Services.WordPressMaintenance' });
 
     return {
-        title: t('title') + " | BacklineIT",
+        title: t('title'),
         description: t('description'),
         keywords: t('keywords').split(','),
         ...getSeoMetadata(locale, "/szolgaltatasok/wordpress-woocommerce-karbantartas"),
         openGraph: {
-            title: t('title'),
+            title: `${t('title')} | BacklineIT`,
             description: t('description'),
         }
     };

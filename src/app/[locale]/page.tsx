@@ -10,67 +10,70 @@ export function generateStaticParams() {
 // Cache the page for 24 hours to reduce CPU usage
 export const revalidate = 86400;
 
+// Multi-schema: WebSite and ProfessionalService
+const jsonLd = [
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "BacklineIT",
+        "url": "https://backlineit.hu",
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "BacklineIT",
+        "image": "https://backlineit.hu/opengraph-image.png",
+        "@id": "https://backlineit.hu/#organization",
+        "url": "https://backlineit.hu",
+        "telephone": "+36501034140",
+        "priceRange": "$$",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Vörösmarty utca 11.",
+            "addressLocality": "Csömör",
+            "postalCode": "2141",
+            "addressCountry": "HU"
+        },
+        "areaServed": {
+            "@type": "Country",
+            "name": "Hungary"
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+        }
+    }
+]
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'Metadata' });
 
-    // Multi-schema: WebSite and ProfessionalService
-    const jsonLd = [
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "BacklineIT",
-            "url": "https://backlineit.hu",
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": {
-                    "@type": "EntryPoint",
-                    "urlTemplate": "https://backlineit.hu/search?q={search_term_string}"
-                },
-                "query-input": "required name=search_term_string"
-            }
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "ProfessionalService",
-            "name": "BacklineIT",
-            "image": "https://backlineit.hu/opengraph-image.png",
-            "@id": "https://backlineit.hu/#organization",
-            "url": "https://backlineit.hu",
-            "telephone": "+36501034140",
-            "priceRange": "$$",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Vörösmarty utca 11.",
-                "addressLocality": "Csömör",
-                "postalCode": "2141",
-                "addressCountry": "HU"
-            },
-            "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": [
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday"
-                ],
-                "opens": "09:00",
-                "closes": "17:00"
-            }
-        }
-    ]
-
     return {
-        title: t('title'),
+        title: {
+            absolute: t('title'),
+        },
         description: t('description'),
         ...getSeoMetadata(locale, '/'),
-        other: {
-            'script:ld+json': JSON.stringify(jsonLd),
-        }
     };
 }
 
 export default function Home() {
-    return <HomeContent />;
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <HomeContent />
+        </>
+    );
 }

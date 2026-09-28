@@ -10,12 +10,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const t = await getTranslations({ locale, namespace: "Services.Scripts" });
 
     return {
-        title: t("title") + " | BacklineIT",
+        title: t("title"),
         description: t("description"),
         keywords: ["python script", "automatizáció", "adatbányászat", "web scraping", "egyedi fejlesztés"],
         ...getSeoMetadata(locale, "/szolgaltatasok/scriptek"),
         openGraph: {
-            title: t("title"),
+            title: `${t("title")} | BacklineIT`,
             description: t("description"),
         }
     };

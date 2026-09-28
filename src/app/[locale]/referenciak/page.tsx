@@ -12,6 +12,7 @@ export function generateStaticParams() {
 }
 
 import { getSeoMetadata } from "@/lib/seo"
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
@@ -19,7 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     return {
         title: t('title'),
         description: t('description'),
-        ...getSeoMetadata(locale, '/referenciak')
+        ...getSeoMetadata(locale, '/referenciak'),
+        openGraph: {
+            title: `${t('title')} | BacklineIT`,
+            description: t('description'),
+        }
     }
 }
 
@@ -32,6 +37,12 @@ export default async function ReferenciakPage({ params }: { params: Promise<{ lo
 
     return (
         <div className="min-h-screen flex flex-col">
+            <BreadcrumbJsonLd
+                items={[
+                    { name: locale === 'en' ? 'Home' : 'Kezdőlap', href: locale === 'en' ? '/en' : '/' },
+                    { name: locale === 'en' ? 'References' : 'Referenciák', href: locale === 'en' ? '/en/references' : '/referenciak' },
+                ]}
+            />
             <section className="py-20 md:py-32 relative overflow-hidden">
                 <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-800/50" />
                 <div className="container relative mx-auto px-4 text-center">

@@ -7,15 +7,27 @@ import { routing } from '@/i18n/routing'
 
 import { getSeoMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
+    const title = locale === 'en' ? 'Contact' : 'Kapcsolat';
+    const description = locale === 'en' 
+        ? 'Get in touch with us, request a quote, or book a consultation.' 
+        : 'Vedd fel velünk a kapcsolatot, kérj ajánlatot vagy foglalj konzultációt.';
+
     return {
-        title: locale === 'en' ? 'Contact' : 'Kapcsolat',
-        description: locale === 'en' 
-            ? 'Get in touch with us, request a quote, or book a consultation.' 
-            : 'Vedd fel velünk a kapcsolatot, kérj ajánlatot vagy foglalj konzultációt.',
-        ...getSeoMetadata(locale, '/kapcsolat')
+        title,
+        description,
+        ...getSeoMetadata(locale, '/kapcsolat'),
+        openGraph: {
+            title: `${title} | BacklineIT`,
+            description,
+            url: locale === 'en' ? 'https://backlineit.hu/en/contact' : 'https://backlineit.hu/kapcsolat',
+            siteName: 'BacklineIT',
+            locale: locale === 'hu' ? 'hu_HU' : 'en_US',
+            type: 'website',
+        }
     };
 }
 
@@ -25,11 +37,55 @@ export function generateStaticParams() {
 
 export const revalidate = 86400; // 24 hours
 
+const contactJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": "https://backlineit.hu/#organization",
+    "name": "BacklineIT",
+    "url": "https://backlineit.hu",
+    "logo": "https://backlineit.hu/logo.png",
+    "telephone": "+36501034140",
+    "email": "hello@backlineit.hu",
+    "priceRange": "$$",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Vörösmarty utca 11.",
+        "addressLocality": "Csömör",
+        "postalCode": "2141",
+        "addressCountry": "HU"
+    },
+    "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.5469,
+        "longitude": 19.2274
+    },
+    "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "17:00"
+    },
+    "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Budapest" },
+        { "@type": "Country", "name": "Hungary" }
+    ]
+};
+
 export default function ContactPage() {
     const t = useTranslations('Contact')
 
     return (
         <div className="min-h-screen flex flex-col">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+            />
+            <BreadcrumbJsonLd
+                items={[
+                    { name: 'Kezdőlap', href: '/' },
+                    { name: 'Kapcsolat', href: '/kapcsolat' },
+                ]}
+            />
             {/* Hero Section */}
             <section className="relative py-20 md:py-28 overflow-hidden">
                 {/* Background Effects */}

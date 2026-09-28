@@ -37,12 +37,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const t = await getTranslations({ locale, namespace: 'ServicesPage' });
 
     return {
-        title: t('hero_badge') + " | BacklineIT",
+        title: t('hero_badge'),
         description: t('hero_desc'),
         keywords: ["IT szolgáltatások", "webfejlesztés", "rendszerüzemeltetés", "kiberbiztonság", "egyedi szoftver", "backlineit"],
         ...getSeoMetadata(locale, '/szolgaltatasok'),
         openGraph: {
-            title: t('hero_badge') + " | BacklineIT",
+            title: `${t('hero_badge')} | BacklineIT`,
             description: t('hero_desc'),
         },
     };

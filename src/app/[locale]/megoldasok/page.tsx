@@ -8,15 +8,27 @@ export const revalidate = 3600
 
 import { getSeoMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { locale } = await params;
+    const title = locale === 'en' ? 'IT Solutions & Digital Products' : 'IT Megoldások & Digitális Termékek';
+    const description = locale === 'en' 
+        ? 'Discover our ready-made tools, scripts, and custom IT solutions for businesses.' 
+        : 'Fedezd fel kész eszközeinket, scriptjeinket és egyedi IT megoldásainkat vállalkozások részére.';
+
     return {
-        title: locale === 'en' ? 'Solutions' : 'Megoldások',
-        description: locale === 'en' 
-            ? 'Discover our ready-made products and custom IT solutions for businesses.' 
-            : 'Fedezd fel kész termékeinket és egyedi IT megoldásainkat vállalkozások részére.',
-        ...getSeoMetadata(locale, '/megoldasok')
+        title,
+        description,
+        ...getSeoMetadata(locale, '/megoldasok'),
+        openGraph: {
+            title: `${title} | BacklineIT`,
+            description,
+            url: locale === 'en' ? 'https://backlineit.hu/en/solutions' : 'https://backlineit.hu/megoldasok',
+            siteName: 'BacklineIT',
+            locale: locale === 'hu' ? 'hu_HU' : 'en_US',
+            type: 'website',
+        }
     };
 }
 
@@ -35,6 +47,12 @@ export default async function ProductsPage({ params }: PageProps) {
 
     return (
         <>
+            <BreadcrumbJsonLd
+                items={[
+                    { name: locale === 'en' ? 'Home' : 'Kezdőlap', href: locale === 'en' ? '/en' : '/' },
+                    { name: locale === 'en' ? 'Solutions' : 'Megoldások', href: locale === 'en' ? '/en/solutions' : '/megoldasok' },
+                ]}
+            />
             <section className="relative overflow-hidden py-20 border-b border-border/40">
                 {/* Background gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none" />

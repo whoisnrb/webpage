@@ -8,19 +8,65 @@ import { routing } from '@/i18n/routing'
 
 import { getSeoMetadata } from "@/lib/seo"
 import type { Metadata } from "next"
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
     const { locale } = await params;
+    const title = locale === 'en' ? 'About Us' : 'Rólunk';
+    const description = locale === 'en' 
+        ? 'Learn more about the BacklineIT team, our values, our experienced developers, and our mission.' 
+        : 'Ismerd meg a BacklineIT csapatát, értékeinket, tapasztalt fejlesztőinket és küldetésünket.';
+
     return {
-        title: locale === 'en' ? 'About Us' : 'Rólunk',
-        description: locale === 'en' ? 'Learn more about the BacklineIT team, our values, and our mission.' : 'Ismerd meg a BacklineIT csapatát, értékeinket és küldetésünket.',
-        ...getSeoMetadata(locale, '/rolunk')
+        title,
+        description,
+        ...getSeoMetadata(locale, '/rolunk'),
+        openGraph: {
+            title: `${title} | BacklineIT`,
+            description,
+            url: locale === 'en' ? 'https://backlineit.hu/en/about-us' : 'https://backlineit.hu/rolunk',
+            siteName: 'BacklineIT',
+            locale: locale === 'hu' ? 'hu_HU' : 'en_US',
+            type: 'website',
+        }
     };
 }
 
 export function generateStaticParams() {
     return routing.locales.map((locale) => ({ locale }));
 }
+
+const aboutJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "Rólunk | BacklineIT",
+    "description": "Ismerd meg a BacklineIT csapatát, értékeinket és küldetésünket.",
+    "mainEntity": {
+        "@type": "Organization",
+        "@id": "https://backlineit.hu/#organization",
+        "name": "BacklineIT",
+        "founder": {
+            "@type": "Person",
+            "name": "Török Norbert",
+            "jobTitle": "Lead Developer & Founder",
+            "sameAs": "https://www.linkedin.com/in/norbert-t%C3%B6r%C3%B6k-a2641b354/"
+        },
+        "employee": [
+            {
+                "@type": "Person",
+                "name": "Tóka Gábor",
+                "jobTitle": "DevOps & Infrastructure Engineer",
+                "sameAs": "https://www.linkedin.com/in/toka-gabor-86335a406/"
+            },
+            {
+                "@type": "Person",
+                "name": "Roha Levente",
+                "jobTitle": "Business Development & Automation Specialist",
+                "sameAs": "https://www.linkedin.com/in/levente-roha-98091a433/"
+            }
+        ]
+    }
+};
 
 export default function RolunkPage() {
     const t = useTranslations('AboutPage')
@@ -57,6 +103,16 @@ export default function RolunkPage() {
 
     return (
         <div className="min-h-screen flex flex-col relative overflow-hidden">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+            />
+            <BreadcrumbJsonLd
+                items={[
+                    { name: 'Kezdőlap', href: '/' },
+                    { name: 'Rólunk', href: '/rolunk' },
+                ]}
+            />
             {/* Background elements removed for global background uniformity */}
             {/* Hero */}
             <section className="pt-24 pb-16 md:pt-32 md:pb-24">

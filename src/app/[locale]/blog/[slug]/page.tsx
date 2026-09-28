@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Link } from "@/i18n/routing"
 import { routing } from '@/i18n/routing'
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
+import { getSeoMetadata } from "@/lib/seo"
 
 export const revalidate = 3600
 
@@ -13,15 +15,13 @@ type Props = {
     params: Promise<{ slug: string; locale: string }>
 }
 
-import { getSeoMetadata } from "@/lib/seo"
-
 export async function generateMetadata({ params }: Props) {
     const { slug, locale } = await params
     const post = await getBlogPostBySlug(slug) as any
 
     if (!post) {
         return {
-            title: 'Not Found',
+            title: locale === 'en' ? 'Not Found' : 'Cikk nem található',
         }
     }
 
@@ -29,9 +29,18 @@ export async function generateMetadata({ params }: Props) {
     const excerpt = locale === 'en' ? (post.excerptEn || post.excerpt) : post.excerpt
 
     return {
-        title: `${title} | BacklineIT Blog`,
+        title: title,
         description: excerpt,
-        ...getSeoMetadata(locale, '/blog/[slug]', { slug })
+        ...getSeoMetadata(locale, '/blog/[slug]', { slug }),
+        openGraph: {
+            title: `${title} | BacklineIT Blog`,
+            description: excerpt,
+            type: 'article',
+            publishedTime: post.createdAt,
+            modifiedTime: post.updatedAt || post.createdAt,
+            authors: [post.author || 'BacklineIT Team'],
+            images: post.coverImage ? [post.coverImage] : undefined,
+        }
     }
 }
 
@@ -53,8 +62,47 @@ export default async function BlogPostPage({ params }: Props) {
         day: 'numeric'
     });
 
+    const articleJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "description": post.excerptEn || post.excerpt,
+        "image": post.coverImage || "https://backlineit.hu/opengraph-image.png",
+        "datePublished": post.createdAt,
+        "dateModified": post.updatedAt || post.createdAt,
+        "author": {
+            "@type": "Person",
+            "name": post.author || "BacklineIT Team"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "@id": "https://backlineit.hu/#organization",
+            "name": "BacklineIT",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://backlineit.hu/logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://backlineit.hu${locale === 'en' ? '/en' : ''}/blog/${slug}`
+        }
+    };
+
     return (
         <article className="min-h-screen pb-20">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+            />
+            <BreadcrumbJsonLd
+                items={[
+                    { name: locale === 'en' ? 'Home' : 'Kezdőlap', href: locale === 'en' ? '/en' : '/' },
+                    { name: 'Blog', href: locale === 'en' ? '/en/blog' : '/blog' },
+                    { name: title, href: locale === 'en' ? `/en/blog/${slug}` : `/blog/${slug}` },
+                ]}
+            />
+
             {/* Hero Section with Cover Image */}
             <div className="relative w-full h-[50vh] md:h-[60vh] lg:h-[70vh] mb-16 bg-muted overflow-hidden">
                 {post.coverImage ? (
@@ -112,6 +160,30 @@ export default async function BlogPostPage({ params }: Props) {
                         prose-blockquote:border-l-primary prose-blockquote:bg-primary/5 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
                         prose-li:marker:text-primary">
                         <ReactMarkdown>{content || ''}</ReactMarkdown>
+                    </div>
+
+                    {/* SEO / Conversion CTA linking to relevant services */}
+                    <div className="mt-16 p-8 rounded-2xl border border-primary/20 bg-primary/5 backdrop-blur-sm">
+                        <h3 className="text-2xl font-bold mb-3">
+                            {locale === 'hu' ? 'Szeretné automatizálni vagy megújítani vállalkozása IT rendszereit?' : 'Looking to automate or modernize your business IT systems?'}
+                        </h3>
+                        <p className="text-muted-foreground mb-6 leading-relaxed">
+                            {locale === 'hu'
+                                ? 'Vegye fel velünk a kapcsolatot ingyenes konzultációért, vagy tekintse meg egyedi webfejlesztési és automatizációs szolgáltatásainkat!'
+                                : 'Contact us for a free consultation or check out our custom web development and automation services!'}
+                        </p>
+                        <div className="flex flex-wrap gap-4">
+                            <Button asChild>
+                                <Link href="/ajanlatkeres">
+                                    {locale === 'hu' ? 'Ajánlatkérés' : 'Request a Quote'}
+                                </Link>
+                            </Button>
+                            <Button variant="outline" asChild>
+                                <Link href="/szolgaltatasok">
+                                    {locale === 'hu' ? 'Szolgáltatásaink' : 'Our Services'}
+                                </Link>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -91,12 +91,12 @@ export function SplitHero() {
                             />
                         </motion.div>
 
-                        <h2 className="text-3xl md:text-6xl font-black mb-4 md:mb-6 tracking-tighter leading-tight md:leading-[0.85]">
+                        <h1 className="text-3xl md:text-6xl font-black mb-4 md:mb-6 tracking-tighter leading-tight md:leading-[0.85]">
                             <span className="block opacity-70 group-hover/left:opacity-100 transition-opacity">{t('left_title_1')}</span>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-primary/80 animate-gradient-x bg-[length:200%_auto] block">
                                 {t('left_title_2')}
                             </span>
-                        </h2>
+                        </h1>
 
                         <p className="text-muted-foreground text-base md:text-xl mb-8 md:mb-10 leading-relaxed font-medium">
                             {t('left_desc')}
