@@ -219,21 +219,21 @@ export default function RolunkPage() {
                                     {/* Profile section */}
                                     <div className="p-6 pb-4 flex flex-col items-center">
                                         {member.image ? (
-                                            <div className="relative w-24 h-24 mb-4 rounded-full p-[2.5px] bg-gradient-to-tr from-primary via-cyan-400 to-primary shadow-lg shadow-primary/20 group-hover:shadow-[0_0_30px_rgba(16,185,129,0.45)] group-hover:scale-105 transition-all duration-300">
+                                            <div className="relative w-28 h-28 sm:w-32 sm:h-32 mb-5 rounded-full p-[2.5px] bg-gradient-to-tr from-primary via-cyan-400 to-primary shadow-lg shadow-primary/20 group-hover:shadow-[0_0_35px_rgba(16,185,129,0.5)] group-hover:scale-105 transition-all duration-300">
                                                 <div className="relative w-full h-full rounded-full overflow-hidden bg-background">
                                                     <Image
                                                         src={member.image}
                                                         alt={member.name}
                                                         fill
-                                                        sizes="96px"
+                                                        unoptimized
                                                         className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
                                                         priority
                                                     />
                                                 </div>
                                             </div>
                                         ) : (
-                                            <div className="w-24 h-24 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center mb-4 text-primary group-hover:scale-105 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
-                                                <member.icon className="h-10 w-10" />
+                                            <div className="w-28 h-28 sm:w-32 sm:h-32 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center mb-5 text-primary group-hover:scale-105 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
+                                                <member.icon className="h-12 w-12" />
                                             </div>
                                         )}
                                         <div className="flex items-center gap-2 mb-1">
