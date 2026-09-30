@@ -64,12 +64,14 @@ const aboutJsonLd = {
                 "@type": "Person",
                 "name": "Tóka Gábor",
                 "jobTitle": "DevOps & Infrastructure Engineer",
+                "image": "https://backlineit.hu/images/team/toka-gabor.webp",
                 "sameAs": "https://www.linkedin.com/in/toka-gabor-86335a406/"
             },
             {
                 "@type": "Person",
                 "name": "Roha Levente",
                 "jobTitle": "Business Development & Automation Specialist",
+                "image": "https://backlineit.hu/images/team/roha-levente.webp",
                 "sameAs": "https://www.linkedin.com/in/levente-roha-98091a433/"
             }
         ]
@@ -99,6 +101,7 @@ export default function RolunkPage() {
             name: t('team_members.gabor.name'),
             role: t('team_members.gabor.role'),
             bio: t('team_members.gabor.bio'),
+            image: "/images/team/toka-gabor.webp",
             icon: Database,
             linkedin: "https://www.linkedin.com/in/toka-gabor-86335a406/",
         },
@@ -106,6 +109,7 @@ export default function RolunkPage() {
             name: t('team_members.levente.name'),
             role: t('team_members.levente.role'),
             bio: t('team_members.levente.bio'),
+            image: "/images/team/roha-levente.webp",
             icon: TrendingUp,
             linkedin: "https://www.linkedin.com/in/levente-roha-98091a433/",
         }
