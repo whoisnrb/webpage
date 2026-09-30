@@ -56,6 +56,12 @@ const aboutJsonLd = {
         "employee": [
             {
                 "@type": "Person",
+                "name": "Nagy Anna",
+                "jobTitle": "UI/UX Designer",
+                "image": "https://backlineit.hu/images/team/nagy-anna.webp"
+            },
+            {
+                "@type": "Person",
                 "name": "Tóka Gábor",
                 "jobTitle": "DevOps & Infrastructure Engineer",
                 "sameAs": "https://www.linkedin.com/in/toka-gabor-86335a406/"
@@ -86,6 +92,7 @@ export default function RolunkPage() {
             name: t('team_members.anna.name'),
             role: t('team_members.anna.role'),
             bio: t('team_members.anna.bio'),
+            image: "/images/team/nagy-anna.webp",
             icon: Layout,
         },
         {
