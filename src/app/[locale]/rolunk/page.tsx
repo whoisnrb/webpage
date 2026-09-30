@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp, Linkedin } from "lucide-react"
@@ -49,6 +50,7 @@ const aboutJsonLd = {
             "@type": "Person",
             "name": "Török Norbert",
             "jobTitle": "Lead Developer & Founder",
+            "image": "https://backlineit.hu/images/team/torok-norbert.webp",
             "sameAs": "https://www.linkedin.com/in/norbert-t%C3%B6r%C3%B6k-a2641b354/"
         },
         "employee": [
@@ -76,6 +78,7 @@ export default function RolunkPage() {
             name: t('team_members.peter.name'),
             role: t('team_members.peter.role'),
             bio: t('team_members.peter.bio'),
+            image: "/images/team/torok-norbert.webp",
             icon: Code,
             linkedin: "https://www.linkedin.com/in/norbert-t%C3%B6r%C3%B6k-a2641b354/",
         },
@@ -204,9 +207,24 @@ export default function RolunkPage() {
                                     
                                     {/* Profile section */}
                                     <div className="p-6 pb-4 flex flex-col items-center">
-                                        <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4 text-primary group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
-                                            <member.icon className="h-9 w-9" />
-                                        </div>
+                                        {member.image ? (
+                                            <div className="relative w-24 h-24 mb-4 rounded-full p-[2.5px] bg-gradient-to-tr from-primary via-cyan-400 to-primary shadow-lg shadow-primary/20 group-hover:shadow-[0_0_30px_rgba(16,185,129,0.45)] group-hover:scale-105 transition-all duration-300">
+                                                <div className="relative w-full h-full rounded-full overflow-hidden bg-background">
+                                                    <Image
+                                                        src={member.image}
+                                                        alt={member.name}
+                                                        fill
+                                                        sizes="96px"
+                                                        className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
+                                                        priority
+                                                    />
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div className="w-24 h-24 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center mb-4 text-primary group-hover:scale-105 group-hover:bg-primary/20 group-hover:border-primary/40 transition-all duration-300">
+                                                <member.icon className="h-10 w-10" />
+                                            </div>
+                                        )}
                                         <div className="flex items-center gap-2 mb-1">
                                             <h3 className="font-bold text-lg">{member.name}</h3>
                                             {member.linkedin && (
