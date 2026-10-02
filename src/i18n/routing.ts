@@ -10,6 +10,9 @@ export const routing = defineRouting({
 
     localePrefix: 'as-needed',
 
+    // Prevent automatic browser-language redirects from hijacking Hungarian pages
+    localeDetection: false,
+
     pathnames: {
         '/': '/',
         '/rolunk': {

@@ -18,6 +18,9 @@ export function LanguageSwitcher() {
     const pathname = usePathname()
 
     const handleLocaleChange = (newLocale: "hu" | "en") => {
+        if (typeof document !== "undefined") {
+            document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=lax`;
+        }
         router.replace(pathname as any, { locale: newLocale })
     }
 
