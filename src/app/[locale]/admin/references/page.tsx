@@ -98,7 +98,7 @@ function ReferenceTable({ references }: { references: ReferenceDTO[] }) {
 export default async function AdminReferencesPage() {
     const references = await getReferences()
     const services = references.filter(r => r.type === 'SERVICE')
-    const websites = references.filter(r => r.type === 'WEBSITE')
+    const websites = references.filter(r => r.type !== 'SERVICE')
 
     return (
         <div className="space-y-6">
