@@ -9,6 +9,7 @@ import { getTranslations } from 'next-intl/server'
 import { getLocalizedReferenceBySlug } from '@/app/actions/reference'
 import { ClientGallery } from './client-gallery'
 import { KlimaSalesBotDemo } from "@/components/demo/klima-sales-bot-demo"
+import { InvoiceVisionDemo } from "@/components/demo/invoice-vision-demo"
 
 // Force dynamic rendering — Prisma nem érhető el build-time-on (Vercel)
 export const dynamic = 'force-dynamic'
@@ -141,6 +142,26 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                             </p>
                         </div>
                         <KlimaSalesBotDemo locale={locale} />
+                    </div>
+                )}
+
+                {/* Interaktív AI Demó Szekció a Számla Vision AI-hoz */}
+                {study.slug === 'szamla-es-dokumentum-elemzo-ai' && (
+                    <div className="mb-20 pt-6">
+                        <div className="text-center max-w-3xl mx-auto mb-10">
+                            <Badge className="mb-3 bg-primary/10 text-primary border-primary/20" variant="outline">
+                                {locale === 'en' ? '✨ Live Interactive Azure GPT-4o Vision' : '✨ Élőben Tesztelhető Azure GPT-4o Vision'}
+                            </Badge>
+                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+                                {locale === 'en' ? 'Test Multimodal Document Extraction Live!' : 'Tesztelje a Multimodális Dokumentumfeldolgozást Élőben!'}
+                            </h2>
+                            <p className="text-muted-foreground text-base md:text-lg">
+                                {locale === 'en' 
+                                    ? 'Select a realistic pre-loaded sample receipt or upload your own invoice. Watch how Microsoft Azure GPT-4o Vision instantly reads and extracts vendor info, line items, and VAT totals with 1-click Excel export!' 
+                                    : 'Válasszon az előre betöltött élethű minták közül, vagy töltsön fel egy saját számlát! Figyelje meg, ahogy a Microsoft Azure GPT-4o Vision azonnal kinyeri a szállítói adatokat, tételsorokat és ÁFA végösszegeket 1 kattintásos Excel exporttal!'}
+                            </p>
+                        </div>
+                        <InvoiceVisionDemo locale={locale} />
                     </div>
                 )}
 
