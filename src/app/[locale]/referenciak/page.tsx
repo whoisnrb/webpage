@@ -44,18 +44,18 @@ export default async function ReferenciakPage({ params }: { params: Promise<{ lo
                     { name: locale === 'en' ? 'References' : 'Referenciák', href: locale === 'en' ? '/en/references' : '/referenciak' },
                 ]}
             />
-            <section className="py-20 md:py-32 relative overflow-hidden">
+            <section className="pt-16 md:pt-24 pb-6 md:pb-8 relative overflow-hidden">
                 <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-800/50" />
                 <div className="container relative mx-auto px-4 text-center">
                     <Badge className="mb-4" variant="outline">{t('badge')}</Badge>
                     <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">{t('title')}</h1>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
                         {t('description')}
                     </p>
                 </div>
             </section>
 
-            <section className="py-16 md:py-24">
+            <section className="pt-2 md:pt-4 pb-20 md:pb-32">
                 <div className="container mx-auto px-4">
                     <ReferenceFilterGrid studies={studies} locale={locale} />
                 </div>

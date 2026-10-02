@@ -27,7 +27,7 @@ export function ReferenceFilterGrid({ studies, locale }: ReferenceFilterGridProp
     });
 
     return (
-        <div className="space-y-12">
+        <div className="space-y-8 md:space-y-10">
             {/* Filter Pills / Tabs */}
             <div className="flex flex-wrap items-center justify-center gap-3">
                 <button
