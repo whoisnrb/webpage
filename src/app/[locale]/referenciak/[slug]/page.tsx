@@ -10,6 +10,7 @@ import { getLocalizedReferenceBySlug } from '@/app/actions/reference'
 import { ClientGallery } from './client-gallery'
 import { KlimaSalesBotDemo } from "@/components/demo/klima-sales-bot-demo"
 import { InvoiceVisionDemo } from "@/components/demo/invoice-vision-demo"
+import { KnowledgeHubDemo } from "@/components/demo/knowledge-hub-demo"
 
 // Force dynamic rendering — Prisma nem érhető el build-time-on (Vercel)
 export const dynamic = 'force-dynamic'
@@ -162,6 +163,26 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                             </p>
                         </div>
                         <InvoiceVisionDemo locale={locale} />
+                    </div>
+                )}
+
+                {/* Interaktív AI Demó Szekció a Vállalati RAG Tudásbázishoz */}
+                {study.slug === 'vallalati-tudasbazis-es-szabalyzat-kereso-ai' && (
+                    <div className="mb-20 pt-6">
+                        <div className="text-center max-w-3xl mx-auto mb-10">
+                            <Badge className="mb-3 bg-primary/10 text-primary border-primary/20" variant="outline">
+                                {locale === 'en' ? '✨ Live Interactive Enterprise RAG Solution' : '✨ Élőben Tesztelhető Vállalati RAG Rendszer'}
+                            </Badge>
+                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+                                {locale === 'en' ? 'Try the Corporate Policy AI Search Live!' : 'Tesztelje a Vállalati Szabályzat-Keresőt Élőben!'}
+                            </h2>
+                            <p className="text-muted-foreground text-base md:text-lg">
+                                {locale === 'en' 
+                                    ? 'Select a corporate policy (HR & Remote Work, ISO 27001 IT Security, or Procurement) and ask any question. Watch how Azure GPT-4o delivers 100% grounded answers with verified paragraph citations!' 
+                                    : 'Válasszon egy céges szabályzatot (HR & Munkarend, ISO 27001 IT Biztonság vagy Beszerzés), és tegyen fel egy kérdést! Figyelje meg, hogyan ad az Azure GPT-4o 100%-os pontosságú választ hivatalos bekezdéshivatkozásokkal!'}
+                            </p>
+                        </div>
+                        <KnowledgeHubDemo locale={locale} />
                     </div>
                 )}
 
