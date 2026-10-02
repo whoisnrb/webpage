@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { getLocalizedReferences } from "@/app/actions/reference"
+import { ReferenceFilterGrid } from "@/components/references/reference-filter-grid"
 import { getTranslations } from "next-intl/server"
 import { routing } from '@/i18n/routing'
 
@@ -54,62 +55,9 @@ export default async function ReferenciakPage({ params }: { params: Promise<{ lo
                 </div>
             </section>
 
-            <section className="py-20 md:py-32">
+            <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-                        {studies.map((study, index) => (
-                            <Link href={`/referenciak/${study.slug}` as any} key={index} className="group h-full">
-                                <Card className="flex flex-col h-full overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/20 cursor-pointer">
-                                    <div className={`h-56 w-full flex items-center justify-center relative overflow-hidden ${!(study.image.startsWith('/') || study.image.startsWith('data:image') || study.image.startsWith('http')) ? study.image : ''}`}>
-                                        {(study.image.startsWith('/') || study.image.startsWith('data:image') || study.image.startsWith('http')) ? (
-                                            <img
-                                                src={study.image}
-                                                alt={study.title}
-                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                            />
-                                        ) : (
-                                            <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors" />
-                                        )}
-                                        {/* Placeholder text only if no image */}
-                                        {!(study.image.startsWith('/') || study.image.startsWith('data:image') || study.image.startsWith('http')) && (
-                                            <div className="text-center p-6 relative z-10">
-                                                <div className="font-bold text-2xl opacity-20 uppercase tracking-widest text-foreground">{study.client.split(' ')[0]}</div>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <CardHeader>
-                                        <div className="flex justify-between items-start mb-3">
-                                            <Badge variant="secondary" className="mb-2">{study.category}</Badge>
-                                        </div>
-                                        <CardTitle className="text-2xl mb-2 group-hover:text-primary transition-colors">{study.title}</CardTitle>
-                                        <CardDescription className="font-medium text-foreground/80 flex items-center gap-2">
-                                            {study.clientLogo && (
-                                                <span className="inline-flex items-center bg-white rounded-md p-1 border border-border/50 shadow-sm shrink-0">
-                                                    <img src={study.clientLogo} alt={study.client} className="h-5 w-auto max-w-[80px] object-contain" />
-                                                </span>
-                                            )}
-                                            {study.client}
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="flex-1 flex flex-col">
-                                        <p className="text-muted-foreground mb-8 flex-1 leading-relaxed">
-                                            {study.description}
-                                        </p>
-                                        <div className="flex flex-wrap gap-2 mb-8">
-                                            {study.tags.map((tag, i) => (
-                                                <span key={i} className="text-xs bg-muted px-2.5 py-1 rounded-md font-medium text-muted-foreground border">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                        <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                                            {t('view_details')} <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                                        </Button>
-                                    </CardContent>
-                                </Card>
-                            </Link>
-                        ))}
-                    </div>
+                    <ReferenceFilterGrid studies={studies} locale={locale} />
                 </div>
             </section>
 

@@ -97,8 +97,9 @@ function ReferenceTable({ references }: { references: ReferenceDTO[] }) {
 
 export default async function AdminReferencesPage() {
     const references = await getReferences()
+    const demos = references.filter(r => r.type === 'DEMO')
     const services = references.filter(r => r.type === 'SERVICE')
-    const websites = references.filter(r => r.type !== 'SERVICE')
+    const websites = references.filter(r => r.type === 'WEBSITE' || (!['SERVICE', 'DEMO'].includes(r.type)))
 
     return (
         <div className="space-y-6">
@@ -119,6 +120,9 @@ export default async function AdminReferencesPage() {
                 <TabsList>
                     <TabsTrigger value="websites">Weboldalak ({websites.length})</TabsTrigger>
                     <TabsTrigger value="services">Szolgáltatások ({services.length})</TabsTrigger>
+                    <TabsTrigger value="demos" className="flex items-center gap-1.5">
+                        <span className="text-amber-500">✨</span> Interaktív Demók ({demos.length})
+                    </TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="websites" className="border rounded-lg bg-card">
@@ -127,6 +131,10 @@ export default async function AdminReferencesPage() {
                 
                 <TabsContent value="services" className="border rounded-lg bg-card">
                     <ReferenceTable references={services} />
+                </TabsContent>
+
+                <TabsContent value="demos" className="border rounded-lg bg-card">
+                    <ReferenceTable references={demos} />
                 </TabsContent>
             </Tabs>
         </div>
