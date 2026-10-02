@@ -61,6 +61,30 @@
         "desc": "Together we are capable of more."
       }
     },
+    "partnership_badge": "Official Technology Partnership",
+    "partnership_title": "Microsoft for Startups",
+    "partnership_title_highlight": "Founders Hub Partner",
+    "partnership_desc": "BacklineIT is a verified member of the Microsoft for Startups Founders Hub. This partnership provides us with direct access to Microsoft Azure enterprise cloud infrastructure and Azure OpenAI – delivering tier-1 AI technology and rigorous security standards to our clients.",
+    "partnership_features": {
+      "azure_ai": {
+        "title": "Dedicated Azure OpenAI (GPT-4o)",
+        "desc": "Enterprise-grade generative AI in private, dedicated cloud instances. Client data is never used for training and strictly stays within EU regions."
+      },
+      "security": {
+        "title": "GDPR & Banking-Grade Security",
+        "desc": "Backed by Microsoft Azure's SOC 2, ISO 27001, and HIPAA compliance, ensuring that all deployed automations meet the strictest data protection criteria."
+      },
+      "scale": {
+        "title": "Enterprise Power on SMB Budgets",
+        "desc": "Direct Microsoft cloud backing and engineering resources allow us to provide multinational-tier infrastructure at accessible SMB cost structures."
+      }
+    },
+    "partnership_tags": {
+      "eu": "EU Data Residency (GDPR)",
+      "enterprise": "Enterprise Azure OpenAI",
+      "sla": "99.9% Enterprise Cloud SLA",
+      "iso": "ISO 27001 & SOC 2 Verified"
+    },
     "team_title": "Meet the Team",
     "team_subtitle": "Experienced professionals versed in cutting-edge technologies – and continuously leveling up.",
     "team_certs_label": "Certifications",

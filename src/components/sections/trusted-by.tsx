@@ -6,6 +6,16 @@ import { useTranslations } from "next-intl"
 
 const technologies = [
     {
+        name: 'Microsoft for Startups',
+        logo: 'https://cdn.simpleicons.org/microsoft/white',
+        category: 'Founders Hub Partner'
+    },
+    {
+        name: 'Microsoft Azure',
+        logo: 'https://cdn.simpleicons.org/microsoftazure/0078D4',
+        category: 'Enterprise AI Cloud'
+    },
+    {
         name: 'Vercel',
         logo: 'https://cdn.simpleicons.org/vercel/white',
         category: 'Infrastructure'
@@ -141,7 +151,7 @@ export function TrustedBy() {
                 </motion.div>
             </div>
 
-            <div className="mt-16 text-center">
+            <div className="mt-16 flex flex-wrap justify-center items-center gap-4 px-4 text-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -152,6 +162,21 @@ export function TrustedBy() {
                         <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     {t('security_badge')}
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="inline-flex items-center px-6 py-2.5 rounded-full bg-gradient-to-r from-blue-500/10 via-cyan-500/10 to-transparent backdrop-blur-xl border border-blue-500/30 text-blue-300 text-[10px] font-black uppercase tracking-[0.18em] shadow-2xl hover:border-blue-400/50 transition-colors cursor-default gap-2.5"
+                >
+                    <svg className="w-3.5 h-3.5" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="10.8" height="10.8" fill="#F25022"/>
+                        <rect x="12.2" width="10.8" height="10.8" fill="#7FBA00"/>
+                        <rect y="12.2" width="10.8" height="10.8" fill="#00A4EF"/>
+                        <rect x="12.2" y="12.2" width="10.8" height="10.8" fill="#FFB900"/>
+                    </svg>
+                    <span>Microsoft for Startups Founders Hub Partner</span>
                 </motion.div>
             </div>
         </section>

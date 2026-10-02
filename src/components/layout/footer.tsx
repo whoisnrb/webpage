@@ -84,9 +84,21 @@ export function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-xs text-white/20">
-                        {tStats("rights", { year: new Date().getFullYear() })}
-                    </p>
+                    <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
+                        <p className="text-xs text-white/20">
+                            {tStats("rights", { year: new Date().getFullYear() })}
+                        </p>
+                        <span className="hidden sm:inline text-white/10">•</span>
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/5 text-[11px] text-white/50">
+                            <svg className="w-3 h-3 shrink-0" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="10.8" height="10.8" fill="#F25022"/>
+                                <rect x="12.2" width="10.8" height="10.8" fill="#7FBA00"/>
+                                <rect y="12.2" width="10.8" height="10.8" fill="#00A4EF"/>
+                                <rect x="12.2" y="12.2" width="10.8" height="10.8" fill="#FFB900"/>
+                            </svg>
+                            <span>Microsoft for Startups Founders Hub</span>
+                        </div>
+                    </div>
                     <div className="flex gap-6 items-center">
                         <Link href="/adatvedelem" className="text-xs text-white/40 hover:text-white transition-colors">{tNav("privacy")}</Link>
                         <Link href="/aszf" className="text-xs text-white/40 hover:text-white transition-colors">{tNav("terms")}</Link>

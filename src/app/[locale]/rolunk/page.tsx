@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp, Linkedin } from "lucide-react"
+import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp, Linkedin, Cpu, ShieldCheck, Sparkles, CheckCircle2 } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { useTranslations } from "next-intl"
@@ -197,6 +197,125 @@ export default function RolunkPage() {
                             </ScaleIn>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* Microsoft for Startups Founders Hub Section */}
+            <section className="py-12 md:py-20 relative overflow-hidden">
+                <div className="container mx-auto px-4">
+                    <SlideUp>
+                        <div className="relative rounded-3xl bg-gradient-to-b from-blue-950/25 via-white/[0.02] to-transparent border border-blue-500/20 backdrop-blur-xl p-8 md:p-14 overflow-hidden shadow-2xl">
+                            {/* Decorative background glows */}
+                            <div className="absolute -top-32 -right-32 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
+                            <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
+                            <div className="absolute top-0 left-12 right-12 h-px bg-gradient-to-r from-transparent via-blue-500/40 to-transparent" />
+
+                            <div className="relative z-10">
+                                {/* Top Badge & Partner Tag */}
+                                <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+                                    <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs font-bold uppercase tracking-wider">
+                                        <svg className="w-4 h-4 shrink-0" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="10.8" height="10.8" fill="#F25022"/>
+                                            <rect x="12.2" width="10.8" height="10.8" fill="#7FBA00"/>
+                                            <rect y="12.2" width="10.8" height="10.8" fill="#00A4EF"/>
+                                            <rect x="12.2" y="12.2" width="10.8" height="10.8" fill="#FFB900"/>
+                                        </svg>
+                                        <span>{t('partnership_badge')}</span>
+                                    </div>
+
+                                    <div className="flex flex-wrap items-center gap-2 text-xs text-white/60">
+                                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/5">
+                                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                            Active Member
+                                        </span>
+                                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/5 font-mono text-[11px]">
+                                            Tier: Founders Hub
+                                        </span>
+                                    </div>
+                                </div>
+
+                                {/* Main Headline & Description */}
+                                <div className="max-w-3xl mb-12">
+                                    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
+                                        {t('partnership_title')}{" "}
+                                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">
+                                            {t('partnership_title_highlight')}
+                                        </span>
+                                    </h2>
+                                    <p className="text-base md:text-lg text-muted-foreground/90 leading-relaxed">
+                                        {t('partnership_desc')}
+                                    </p>
+                                </div>
+
+                                {/* 3 Core Value Pillars */}
+                                <div className="grid md:grid-cols-3 gap-6 mb-10">
+                                    {/* Pillar 1: Dedicated Azure AI */}
+                                    <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-blue-500/40 hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
+                                        <div>
+                                            <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-5 group-hover:scale-110 group-hover:bg-blue-500/20 transition-all duration-300">
+                                                <Cpu className="w-6 h-6" />
+                                            </div>
+                                            <h3 className="font-bold text-lg text-white mb-2">{t('partnership_features.azure_ai.title')}</h3>
+                                            <p className="text-sm text-muted-foreground/80 leading-relaxed">
+                                                {t('partnership_features.azure_ai.desc')}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Pillar 2: Security & Compliance */}
+                                    <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-cyan-500/40 hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
+                                        <div>
+                                            <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-5 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300">
+                                                <ShieldCheck className="w-6 h-6" />
+                                            </div>
+                                            <h3 className="font-bold text-lg text-white mb-2">{t('partnership_features.security.title')}</h3>
+                                            <p className="text-sm text-muted-foreground/80 leading-relaxed">
+                                                {t('partnership_features.security.desc')}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Pillar 3: Scale & Cost Efficiency */}
+                                    <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-indigo-500/40 hover:bg-white/[0.05] transition-all duration-300 flex flex-col justify-between group">
+                                        <div>
+                                            <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-5 group-hover:scale-110 group-hover:bg-indigo-500/20 transition-all duration-300">
+                                                <Sparkles className="w-6 h-6" />
+                                            </div>
+                                            <h3 className="font-bold text-lg text-white mb-2">{t('partnership_features.scale.title')}</h3>
+                                            <p className="text-sm text-muted-foreground/80 leading-relaxed">
+                                                {t('partnership_features.scale.desc')}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Bottom Compliance Tags */}
+                                <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-white/70">
+                                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                                            <span>{t('partnership_tags.eu')}</span>
+                                        </div>
+                                        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-white/70">
+                                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                                            <span>{t('partnership_tags.enterprise')}</span>
+                                        </div>
+                                        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-white/70">
+                                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                                            <span>{t('partnership_tags.sla')}</span>
+                                        </div>
+                                        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-white/70">
+                                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                                            <span>{t('partnership_tags.iso')}</span>
+                                        </div>
+                                    </div>
+                                    <div className="text-xs text-muted-foreground/60 font-mono">
+                                        Azure Cloud ID: Verified
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </SlideUp>
                 </div>
             </section>
 

@@ -61,6 +61,30 @@
         "desc": "Együtt többre vagyunk képesek."
       }
     },
+    "partnership_badge": "Hivatalos Technológiai Partnerség",
+    "partnership_title": "Microsoft for Startups",
+    "partnership_title_highlight": "Founders Hub Partner",
+    "partnership_desc": "A BacklineIT a Microsoft globális startup programjának elismert tagja. Ez a partnerség közvetlen hozzáférést biztosít számunkra a Microsoft Azure felhőinfrastruktúrájához és az Azure OpenAI vállalati környezetéhez – így ügyfeleink a világ legfejlettebb technológiáját kapják maximális adatbiztonság mellett.",
+    "partnership_features": {
+      "azure_ai": {
+        "title": "Dedikált Azure OpenAI (GPT-4o)",
+        "desc": "Vállalati szintű mesterséges intelligencia privát környezetben. Ügyfeleink adatai sosem szolgálnak modelltanításra, és nem hagyják el az EU-s felhőrégiót."
+      },
+      "security": {
+        "title": "GDPR & Banki Szintű Biztonság",
+        "desc": "A Microsoft Azure SOC 2, ISO 27001 és GDPR megfelelősége garantálja, hogy a fejlesztett szoftverek és AI rendszerek megfelelnek a legszigorúbb adatvédelmi követelményeknek."
+      },
+      "scale": {
+        "title": "Enterprise Erő KKV Költségvetésből",
+        "desc": "A hivatalos felhőtámogatásnak köszönhetően a multinacionális nagyvállalatok prémium infrastruktúráját tesszük elérhetővé a növekvő hazai KKV-k számára."
+      }
+    },
+    "partnership_tags": {
+      "eu": "EU Adatrezidensek (GDPR)",
+      "enterprise": "Enterprise Azure OpenAI",
+      "sla": "99.9% Vállalati Felhő SLA",
+      "iso": "ISO 27001 & SOC 2 Garancia"
+    },
     "team_title": "Ismerd meg a csapatot",
     "team_subtitle": "Tapasztalt szakemberek, akik a legmodernebb technológiákban járatosak – és folyamatosan képzik magukat.",
     "team_certs_label": "Tanúsítványok",
