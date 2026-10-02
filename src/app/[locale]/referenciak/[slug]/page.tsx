@@ -8,6 +8,7 @@ import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 import { getLocalizedReferenceBySlug } from '@/app/actions/reference'
 import { ClientGallery } from './client-gallery'
+import { KlimaSalesBotDemo } from "@/components/demo/klima-sales-bot-demo"
 
 // Force dynamic rendering — Prisma nem érhető el build-time-on (Vercel)
 export const dynamic = 'force-dynamic'
@@ -122,6 +123,24 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                         )}
                     </div>
                 </div>
+
+                {/* Interaktív AI Demó Szekció a Klíma AI-hoz */}
+                {study.slug === 'klima-ai-asszisztens' && (
+                    <div className="mb-20 pt-6">
+                        <div className="text-center max-w-3xl mx-auto mb-10">
+                            <Badge className="mb-3 bg-primary/10 text-primary border-primary/20" variant="outline">
+                                ✨ Élőben Tesztelhető Azure AI Megoldás
+                            </Badge>
+                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+                                Próbálja ki a működő rendszert élőben!
+                            </h2>
+                            <p className="text-muted-foreground text-base md:text-lg">
+                                Az alábbi interaktív felületen valós időben beszélgethet a Microsoft Azure felhőben futó GPT-4o értékesítővel. Figyelje meg a jobb oldali Lead Radaron, hogyan strukturálja a vevői adatokat a háttérben!
+                            </p>
+                        </div>
+                        <KlimaSalesBotDemo />
+                    </div>
+                )}
 
                 {/* Details Grid */}
                 <div className="grid md:grid-cols-3 gap-8 mb-16">
