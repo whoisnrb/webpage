@@ -1041,12 +1041,12 @@ export function InvoiceVisionDemo({ locale = "hu" }: { locale?: string }) {
                         </CardContent>
                     </Card>
 
-                    {/* Infrastructure & Cost Monitor (Azure Credit Proof) */}
+                    {/* Infrastructure & Cost Monitor (Kliens szemszögből) */}
                     <Card className="bg-muted/30 border">
                         <CardHeader className="py-3 px-4">
                             <CardTitle className="text-xs uppercase tracking-wider text-muted-foreground font-semibold flex items-center justify-between">
-                                <span>{isEn ? "Infrastructure & Azure Cost" : "Infrastruktúra & Azure Költség"}</span>
-                                <Badge variant="secondary" className="text-[10px]">Azure Sweden Central (GPT-4o Vision)</Badge>
+                                <span>{isEn ? "Enterprise Resource & Cost" : "Vállalati Erőforrás & Költség"}</span>
+                                <Badge variant="secondary" className="text-[10px]">Microsoft Azure GPT-4o Vision</Badge>
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="px-4 pb-4 pt-0 grid grid-cols-2 gap-4 text-center">
@@ -1063,7 +1063,7 @@ export function InvoiceVisionDemo({ locale = "hu" }: { locale?: string }) {
                                     ~{usageStats.approxHuf !== "0.00" ? usageStats.approxHuf : "0.91"} Ft
                                 </div>
                                 <div className="text-[11px] text-muted-foreground">
-                                    {isEn ? "Covered by Azure credit ($0 card cost)" : "Azure kreditből fedezve (0 Ft bankkártya)"}
+                                    {isEn ? "Est. processing cost / invoice" : "Becsült költség / bizonylat"}
                                 </div>
                             </div>
                         </CardContent>

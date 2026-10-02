@@ -394,22 +394,22 @@ export function KlimaSalesBotDemo({ locale = "hu" }: { locale?: string }) {
                     </CardContent>
                 </Card>
 
-                {/* TOKEN & KÖLTSÉG METRIKA (A Microsoft Kredit bizonyítéka) */}
+                {/* TOKEN & KÖLTSÉG METRIKA (Kliens szemszögből) */}
                 <Card className="bg-muted/30 border">
                     <CardHeader className="py-3 px-4">
                         <CardTitle className="text-xs uppercase tracking-wider text-muted-foreground font-semibold flex items-center justify-between">
-                            <span>{isEn ? "Infrastructure & Cost" : "Infrastruktúra & Költség"}</span>
-                            <Badge variant="secondary" className="text-[10px]">Azure Sweden Central</Badge>
+                            <span>{isEn ? "Enterprise Resource & Cost" : "Vállalati Erőforrás & Költség"}</span>
+                            <Badge variant="secondary" className="text-[10px]">Microsoft Azure GPT-4o</Badge>
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="px-4 pb-4 pt-0 grid grid-cols-2 gap-4 text-center">
                         <div className="p-3 bg-background rounded-lg border">
                             <div className="text-xl font-bold font-mono">{usageStats.totalTokens}</div>
-                            <div className="text-[11px] text-muted-foreground">{isEn ? "Tokens used" : "Felhasznált token"}</div>
+                            <div className="text-[11px] text-muted-foreground">{isEn ? "Tokens processed" : "Feldolgozott token"}</div>
                         </div>
                         <div className="p-3 bg-background rounded-lg border">
                             <div className="text-xl font-bold font-mono text-emerald-600">~{usageStats.approxHuf} Ft</div>
-                            <div className="text-[11px] text-muted-foreground">{isEn ? "Covered by Azure credit" : "Azure kreditből fedezve"}</div>
+                            <div className="text-[11px] text-muted-foreground">{isEn ? "Est. operational cost / msg" : "Becsült üzemeltetés / üzenet"}</div>
                         </div>
                     </CardContent>
                 </Card>
