@@ -37,18 +37,32 @@ interface LeadData {
     status: "érdeklődő" | "igényfelmérés" | "árajánlat_előkészítve" | "lead_rögzítve";
 }
 
-const QUICK_PROMPTS = [
+const QUICK_PROMPTS_HU = [
     "35 m²-es nappaliba keresek klímát fűtésre is",
     "Mennyibe kerül egy 3.5 kW-os klíma beszereléssel?",
     "H-tarifára alkalmas gépet szeretnék",
     "Ingyenes felmérést kérnék, Kovács Péter vagyok: +36 30 555 1234, Győr"
 ];
 
-export function KlimaSalesBotDemo() {
+const QUICK_PROMPTS_EN = [
+    "Looking for an AC for a 35 m² living room with heating support",
+    "How much does a 3.5 kW AC cost installed?",
+    "I need an energy-efficient unit for winter heating",
+    "I'd like a free survey. I'm Peter Smith: +36 30 555 1234, Győr"
+];
+
+const WELCOME_HU = "Üdvözlöm! A KlímaTech Pro virtuális szakértője vagyok. Szívesen segítek a tökéletes klíma vagy hőszivattyú kiválasztásában, és azonnali tájékoztató árakat is tudok adni.\n\nMekkora helyiség hűtését vagy fűtését tervezi?";
+const WELCOME_EN = "Welcome! I am the virtual consultant for KlímaTech Pro. I'm here to help you choose the ideal AC or heat pump system and provide instant indicative pricing.\n\nWhat is the size of the room or property you are looking to cool or heat?";
+
+export function KlimaSalesBotDemo({ locale = "hu" }: { locale?: string }) {
+    const isEn = locale === "en";
+    const quickPrompts = isEn ? QUICK_PROMPTS_EN : QUICK_PROMPTS_HU;
+    const welcomeMessage = isEn ? WELCOME_EN : WELCOME_HU;
+
     const [messages, setMessages] = useState<Message[]>([
         {
             role: "assistant",
-            content: "Üdvözlöm! A KlímaTech Pro virtuális szakértője vagyok. Szívesen segítek a tökéletes klíma vagy hőszivattyú kiválasztásában, és azonnali tájékoztató árakat is tudok adni.\n\nMekkora helyiség hűtését vagy fűtését tervezi?"
+            content: welcomeMessage
         }
     ]);
     const [input, setInput] = useState("");
@@ -60,6 +74,17 @@ export function KlimaSalesBotDemo() {
     });
 
     const scrollRef = useRef<HTMLDivElement>(null);
+
+    // Update greeting when locale changes
+    useEffect(() => {
+        setMessages([
+            {
+                role: "assistant",
+                content: isEn ? WELCOME_EN : WELCOME_HU
+            }
+        ]);
+        setLead({ status: "érdeklődő" });
+    }, [isEn]);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -82,7 +107,8 @@ export function KlimaSalesBotDemo() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     message: messageText,
-                    history: messages
+                    history: messages,
+                    locale: isEn ? "en" : "hu"
                 })
             });
 
@@ -114,7 +140,9 @@ export function KlimaSalesBotDemo() {
                 ...prev,
                 {
                     role: "assistant",
-                    content: "Elnézést, pillanatnyi hiba lépett fel az Azure OpenAI kapcsolódásban. Kérjük, próbálja újra!"
+                    content: isEn 
+                        ? "Sorry, a temporary network error occurred with Azure OpenAI. Please try again!"
+                        : "Elnézést, pillanatnyi hiba lépett fel az Azure OpenAI kapcsolódásban. Kérjük, próbálja újra!"
                 }
             ]);
         } finally {
@@ -126,7 +154,7 @@ export function KlimaSalesBotDemo() {
         setMessages([
             {
                 role: "assistant",
-                content: "Üdvözlöm! A KlímaTech Pro virtuális szakértője vagyok. Szívesen segítek a tökéletes klíma vagy hőszivattyú kiválasztásában, és azonnali tájékoztató árakat is tudok adni.\n\nMekkora helyiség hűtését vagy fűtését tervezi?"
+                content: isEn ? WELCOME_EN : WELCOME_HU
             }
         ]);
         setLead({ status: "érdeklődő" });
@@ -136,13 +164,29 @@ export function KlimaSalesBotDemo() {
     const getStatusBadge = (status: LeadData["status"]) => {
         switch (status) {
             case "lead_rögzítve":
-                return <Badge className="bg-emerald-600 text-white flex items-center gap-1"><CheckCircle2 className="w-3 h-3" /> Minősített Lead Rögzítve</Badge>;
+                return (
+                    <Badge className="bg-emerald-600 text-white flex items-center gap-1">
+                        <CheckCircle2 className="w-3 h-3" /> {isEn ? "Qualified Lead Captured" : "Minősített Lead Rögzítve"}
+                    </Badge>
+                );
             case "árajánlat_előkészítve":
-                return <Badge className="bg-blue-600 text-white flex items-center gap-1"><Zap className="w-3 h-3" /> Ajánlat Előkészítve</Badge>;
+                return (
+                    <Badge className="bg-blue-600 text-white flex items-center gap-1">
+                        <Zap className="w-3 h-3" /> {isEn ? "Quote Prepared" : "Ajánlat Előkészítve"}
+                    </Badge>
+                );
             case "igényfelmérés":
-                return <Badge className="bg-amber-600 text-white flex items-center gap-1"><Clock className="w-3 h-3" /> Igényfelmérés folyamatban</Badge>;
+                return (
+                    <Badge className="bg-amber-600 text-white flex items-center gap-1">
+                        <Clock className="w-3 h-3" /> {isEn ? "Needs Assessment" : "Igényfelmérés folyamatban"}
+                    </Badge>
+                );
             default:
-                return <Badge variant="outline" className="text-muted-foreground">Kezdeti Érdeklődő</Badge>;
+                return (
+                    <Badge variant="outline" className="text-muted-foreground">
+                        {isEn ? "Initial Inquirer" : "Kezdeti Érdeklődő"}
+                    </Badge>
+                );
         }
     };
 
@@ -158,7 +202,7 @@ export function KlimaSalesBotDemo() {
                         </div>
                         <div>
                             <div className="font-semibold text-sm flex items-center gap-2">
-                                KlímaTech Pro Tanácsadó
+                                {isEn ? "KlímaTech Pro Consultant" : "KlímaTech Pro Tanácsadó"}
                                 <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                             </div>
                             <div className="text-xs text-muted-foreground flex items-center gap-1">
@@ -166,8 +210,8 @@ export function KlimaSalesBotDemo() {
                             </div>
                         </div>
                     </div>
-                    <Button variant="ghost" size="sm" onClick={handleReset} title="Beszélgetés újrakezdése">
-                        <RotateCcw className="w-4 h-4 mr-1" /> Újra
+                    <Button variant="ghost" size="sm" onClick={handleReset} title={isEn ? "Reset conversation" : "Beszélgetés újrakezdése"}>
+                        <RotateCcw className="w-4 h-4 mr-1" /> {isEn ? "Reset" : "Újra"}
                     </Button>
                 </div>
 
@@ -206,7 +250,7 @@ export function KlimaSalesBotDemo() {
                                 <Bot className="w-4 h-4 animate-spin" />
                             </div>
                             <div className="bg-muted px-4 py-2 rounded-xl border animate-pulse">
-                                Az Azure GPT-4o épp gépeli a választ...
+                                {isEn ? "Azure GPT-4o is typing a response..." : "Az Azure GPT-4o épp gépeli a választ..."}
                             </div>
                         </div>
                     )}
@@ -214,7 +258,7 @@ export function KlimaSalesBotDemo() {
 
                 {/* Gyors kérdések */}
                 <div className="px-4 py-2 border-t bg-muted/20 flex gap-2 overflow-x-auto text-xs scrollbar-none">
-                    {QUICK_PROMPTS.map((prompt, idx) => (
+                    {quickPrompts.map((prompt, idx) => (
                         <button
                             key={idx}
                             onClick={() => handleSendMessage(prompt)}
@@ -237,7 +281,7 @@ export function KlimaSalesBotDemo() {
                     <Input
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        placeholder="Írja be az igényeit vagy a szobaméretet..."
+                        placeholder={isEn ? "Enter your requirements or room size..." : "Írja be az igényeit vagy a szobaméretet..."}
                         disabled={isLoading}
                         className="flex-1"
                     />
@@ -254,12 +298,14 @@ export function KlimaSalesBotDemo() {
                         <div className="flex items-center justify-between">
                             <CardTitle className="text-lg flex items-center gap-2">
                                 <Zap className="w-5 h-5 text-amber-500" />
-                                Élő Lead Radar (CRM)
+                                {isEn ? "Live Lead Radar (CRM)" : "Élő Lead Radar (CRM)"}
                             </CardTitle>
                             {getStatusBadge(lead.status)}
                         </div>
                         <CardDescription>
-                            Az AI a beszélgetés közben háttérben valós időben strukturálja a vevői adatokat.
+                            {isEn 
+                                ? "The AI structures customer requirements and contact info in real-time in the background."
+                                : "Az AI a beszélgetés közben háttérben valós időben strukturálja a vevői adatokat."}
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -268,10 +314,10 @@ export function KlimaSalesBotDemo() {
                             <div className="flex items-center justify-between p-2.5 rounded-lg bg-muted/50 border text-sm">
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                     <User className="w-4 h-4" />
-                                    <span>Ügyfél neve:</span>
+                                    <span>{isEn ? "Customer Name:" : "Ügyfél neve:"}</span>
                                 </div>
                                 <span className={`font-semibold ${lead.name ? "text-primary" : "text-muted-foreground italic"}`}>
-                                    {lead.name || "Még nem adta meg"}
+                                    {lead.name || (isEn ? "Not provided yet" : "Még nem adta meg")}
                                 </span>
                             </div>
 
@@ -279,10 +325,10 @@ export function KlimaSalesBotDemo() {
                             <div className="flex items-center justify-between p-2.5 rounded-lg bg-muted/50 border text-sm">
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                     <Phone className="w-4 h-4" />
-                                    <span>Telefonszám:</span>
+                                    <span>{isEn ? "Phone Number:" : "Telefonszám:"}</span>
                                 </div>
                                 <span className={`font-semibold ${lead.phone ? "text-emerald-600 dark:text-emerald-400 font-mono" : "text-muted-foreground italic"}`}>
-                                    {lead.phone || "Még nem adta meg"}
+                                    {lead.phone || (isEn ? "Not provided yet" : "Még nem adta meg")}
                                 </span>
                             </div>
 
@@ -290,10 +336,10 @@ export function KlimaSalesBotDemo() {
                             <div className="flex items-center justify-between p-2.5 rounded-lg bg-muted/50 border text-sm">
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                     <MapPin className="w-4 h-4" />
-                                    <span>Helyszín:</span>
+                                    <span>{isEn ? "Location:" : "Helyszín:"}</span>
                                 </div>
                                 <span className={`font-semibold ${lead.city ? "text-foreground" : "text-muted-foreground italic"}`}>
-                                    {lead.city || "Nem ismert"}
+                                    {lead.city || (isEn ? "Unknown" : "Nem ismert")}
                                 </span>
                             </div>
 
@@ -301,10 +347,10 @@ export function KlimaSalesBotDemo() {
                             <div className="flex items-center justify-between p-2.5 rounded-lg bg-muted/50 border text-sm">
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                     <Home className="w-4 h-4" />
-                                    <span>Alapterület:</span>
+                                    <span>{isEn ? "Property Size:" : "Alapterület:"}</span>
                                 </div>
                                 <span className={`font-semibold ${lead.propertySize ? "text-foreground" : "text-muted-foreground italic"}`}>
-                                    {lead.propertySize || "Folyamatban..."}
+                                    {lead.propertySize || (isEn ? "Pending..." : "Folyamatban...")}
                                 </span>
                             </div>
 
@@ -312,10 +358,10 @@ export function KlimaSalesBotDemo() {
                             <div className="flex items-center justify-between p-2.5 rounded-lg bg-muted/50 border text-sm">
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                     <ThermometerSnowflake className="w-4 h-4" />
-                                    <span>Felhasználási cél:</span>
+                                    <span>{isEn ? "Intended Use:" : "Felhasználási cél:"}</span>
                                 </div>
                                 <span className={`font-semibold ${lead.needType ? "text-foreground" : "text-muted-foreground italic"}`}>
-                                    {lead.needType || "Hűtés / Fűtés felmérése"}
+                                    {lead.needType || (isEn ? "Cooling / Heating assessment" : "Hűtés / Fűtés felmérése")}
                                 </span>
                             </div>
 
@@ -323,10 +369,10 @@ export function KlimaSalesBotDemo() {
                             <div className="flex items-center justify-between p-2.5 rounded-lg bg-muted/50 border text-sm">
                                 <div className="flex items-center gap-2 text-muted-foreground">
                                     <Coins className="w-4 h-4" />
-                                    <span>Becsült keretösszeg:</span>
+                                    <span>{isEn ? "Estimated Budget:" : "Becsült keretösszeg:"}</span>
                                 </div>
                                 <span className={`font-semibold ${lead.estimatedBudget ? "text-primary" : "text-muted-foreground italic"}`}>
-                                    {lead.estimatedBudget || "Kalkuláció alatt"}
+                                    {lead.estimatedBudget || (isEn ? "Calculating..." : "Kalkuláció alatt")}
                                 </span>
                             </div>
                         </div>
@@ -336,9 +382,11 @@ export function KlimaSalesBotDemo() {
                             <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs text-emerald-800 dark:text-emerald-200 flex items-start gap-2">
                                 <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                                 <div>
-                                    <strong>Azonnali Lead Riasztás aktív!</strong>
+                                    <strong>{isEn ? "Instant Lead Alert Active!" : "Azonnali Lead Riasztás aktív!"}</strong>
                                     <p className="mt-0.5 text-muted-foreground">
-                                        Éles környezetben ez azonnal SMS-t vagy e-mailt küld az értékesítőnek a telefonszámmal.
+                                        {isEn 
+                                            ? "In production, this automatically dispatches an SMS or email notification to your sales rep."
+                                            : "Éles környezetben ez azonnal SMS-t vagy e-mailt küld az értékesítőnek a telefonszámmal."}
                                     </p>
                                 </div>
                             </div>
@@ -350,18 +398,18 @@ export function KlimaSalesBotDemo() {
                 <Card className="bg-muted/30 border">
                     <CardHeader className="py-3 px-4">
                         <CardTitle className="text-xs uppercase tracking-wider text-muted-foreground font-semibold flex items-center justify-between">
-                            <span>Infrastruktúra & Költség</span>
+                            <span>{isEn ? "Infrastructure & Cost" : "Infrastruktúra & Költség"}</span>
                             <Badge variant="secondary" className="text-[10px]">Azure Sweden Central</Badge>
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="px-4 pb-4 pt-0 grid grid-cols-2 gap-4 text-center">
                         <div className="p-3 bg-background rounded-lg border">
                             <div className="text-xl font-bold font-mono">{usageStats.totalTokens}</div>
-                            <div className="text-[11px] text-muted-foreground">Felhasznált token</div>
+                            <div className="text-[11px] text-muted-foreground">{isEn ? "Tokens used" : "Felhasznált token"}</div>
                         </div>
                         <div className="p-3 bg-background rounded-lg border">
                             <div className="text-xl font-bold font-mono text-emerald-600">~{usageStats.approxHuf} Ft</div>
-                            <div className="text-[11px] text-muted-foreground">Azure kreditből fedezve</div>
+                            <div className="text-[11px] text-muted-foreground">{isEn ? "Covered by Azure credit" : "Azure kreditből fedezve"}</div>
                         </div>
                     </CardContent>
                 </Card>

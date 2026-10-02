@@ -129,16 +129,18 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     <div className="mb-20 pt-6">
                         <div className="text-center max-w-3xl mx-auto mb-10">
                             <Badge className="mb-3 bg-primary/10 text-primary border-primary/20" variant="outline">
-                                ✨ Élőben Tesztelhető Azure AI Megoldás
+                                {locale === 'en' ? '✨ Live Interactive Azure AI Solution' : '✨ Élőben Tesztelhető Azure AI Megoldás'}
                             </Badge>
                             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                                Próbálja ki a működő rendszert élőben!
+                                {locale === 'en' ? 'Try the Live AI System Right Now!' : 'Próbálja ki a működő rendszert élőben!'}
                             </h2>
                             <p className="text-muted-foreground text-base md:text-lg">
-                                Az alábbi interaktív felületen valós időben beszélgethet a Microsoft Azure felhőben futó GPT-4o értékesítővel. Figyelje meg a jobb oldali Lead Radaron, hogyan strukturálja a vevői adatokat a háttérben!
+                                {locale === 'en' 
+                                    ? 'In the interactive interface below, you can chat in real time with the GPT-4o sales consultant running on Microsoft Azure. Watch the Live Lead Radar on the right as it structures customer data in the background!' 
+                                    : 'Az alábbi interaktív felületen valós időben beszélgethet a Microsoft Azure felhőben futó GPT-4o értékesítővel. Figyelje meg a jobb oldali Lead Radaron, hogyan strukturálja a vevői adatokat a háttérben!'}
                             </p>
                         </div>
-                        <KlimaSalesBotDemo />
+                        <KlimaSalesBotDemo locale={locale} />
                     </div>
                 )}
 
