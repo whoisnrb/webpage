@@ -21,6 +21,7 @@ import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 import { SessionProvider } from "@/components/auth/session-provider";
 import { Analytics } from "@vercel/analytics/react";
+import { AppInsights } from "@/components/analytics/app-insights";
 import { SWRegistration } from "@/components/sw-registration";
 import Script from "next/script";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
@@ -191,6 +192,7 @@ export default async function RootLayout({
                   <ChatWidget />
                   <MobileFab />
                   <Analytics />
+                  <AppInsights />
                   <Toaster position="bottom-right" theme="dark" />
                 </CartProvider>
               </CurrencyProvider>
