@@ -591,9 +591,13 @@
   "Footer": {
     "description": "Professional IT services, scripts, and automation for businesses. Save time and money with our modern solutions.",
     "company": "Company",
+    "services": "Services",
+    "dev_and_auto": "Development & Automation",
+    "ops_and_cloud": "Operations & Managed IT",
     "newsletter": "Newsletter",
+    "newsletter_badge": "1 weekly IT insight • Zero spam • Unsubscribe anytime",
     "signals": {
-      "ssl": "SSL Security",
+      "ssl": "SSL Encryption",
       "gdpr": "GDPR Compliant",
       "experts": "Certified Experts"
     },
@@ -844,16 +848,32 @@
       "types": {
         "web": "Website Development",
         "shop": "Webshop Creation",
+        "automation": "Automation & n8n / CRM Integration",
+        "managed": "Managed IT & Sysadmin",
+        "ai": "AI Assistant & Intelligent Bot",
+        "cloud": "M365 & Cloud Migration",
         "app": "Custom Software / App",
-        "marketing": "Online Marketing",
+        "marketing": "Online Marketing & SEO",
         "design": "UI/UX Design",
-        "other": "Other"
+        "other": "Other Custom Request"
       },
       "budgets": {
-        "small": "Under 500.000 Ft",
-        "medium": "500.000 Ft - 1.500.000 Ft",
-        "large": "1.500.000 Ft - 5.000.000 Ft",
-        "enterprise": "Over 5.000.000 Ft"
+        "tier1": "Under 300.000 HUF",
+        "tier2": "300.000 HUF - 750.000 HUF",
+        "tier3": "750.000 HUF - 1.500.000 HUF",
+        "tier4": "1.500.000 HUF - 3.000.000 HUF",
+        "tier5": "Over 3.000.000 HUF",
+        "flexible": "Not yet determined / Need advice",
+        "small": "Under 500.000 HUF",
+        "medium": "500.000 HUF - 1.500.000 HUF",
+        "large": "1.500.000 HUF - 5.000.000 HUF",
+        "enterprise": "Over 5.000.000 HUF"
+      },
+      "deadlines": {
+        "urgent": "Immediately / within 2 weeks",
+        "month": "Within 1 month",
+        "quarter": "Within 1-3 months",
+        "flexible": "Flexible timeline"
       },
       "privacy_disclaimer": "By clicking 'Send Quote Request', you accept our Privacy Policy.",
       "next": "Next",
@@ -866,24 +886,24 @@
       }
     },
     "sidebar": {
-      "title": "Why choose us?",
-      "feature_1_title": "Fast Implementation",
-      "feature_1_desc": "Efficient processes, met deadlines.",
-      "feature_2_title": "Modern Tech",
-      "feature_2_desc": "We use the latest technologies.",
-      "feature_3_title": "Responsive Design",
-      "feature_3_desc": "Perfect look on every device.",
-      "step_1": "Basic Info",
+      "title": "Why BacklineIT?",
+      "feature_1_title": "Agile & Fast Delivery",
+      "feature_1_desc": "Transparent sprints and rock-solid deadlines.",
+      "feature_2_title": "Modern Cloud & AI Stack",
+      "feature_2_desc": "Next.js, n8n, Azure, and modern toolsets.",
+      "feature_3_title": "Warranty & Ongoing Support",
+      "feature_3_desc": "We keep supporting you after launch.",
+      "step_1": "Service",
       "step_2": "Project Details",
-      "step_3": "Summary"
+      "step_3": "Contact Info"
     },
     "steps": {
-      "1_title": "Let's start with the basics",
-      "1_desc": "Provide your contact details so we can reach you.",
-      "2_title": "Tell us about the project",
-      "2_desc": "The more details you share, the accurate quote we can give.",
-      "3_title": "Review and Send",
-      "3_desc": "Review the data, and if everything is correct, send your request."
+      "1_title": "How can we help your business?",
+      "1_desc": "Choose the solution category that best fits your goals.",
+      "2_title": "Budget & Project Overview",
+      "2_desc": "Share key details with us so we can prepare an accurate calculation.",
+      "3_title": "Where should we send the proposal?",
+      "3_desc": "Enter your contact info, and we will get back to you within 24 hours."
     }
   },
   "Legal": {
@@ -1606,6 +1626,12 @@
     "PricingTable": {
       "title": "Choose the right package for you",
       "desc": "Transparent pricing, no hidden costs. Every package includes the tools needed for a successful launch.",
+      "billing_monthly": "Monthly Billing",
+      "billing_yearly": "Annual Billing",
+      "save_20": "SAVE 20%",
+      "billed_annually": "billed annually",
+      "view_matrix": "View Detailed Package Comparison",
+      "hide_matrix": "Hide Comparison",
       "packages": {
         "starter": {
           "name": "Starter",

@@ -591,10 +591,14 @@
   "Footer": {
     "description": "Professzionális informatikai szolgáltatások, scriptek és automatizációk vállalkozások számára. Spórolj időt és pénzt modern megoldásainkkal.",
     "company": "Cég",
+    "services": "Szolgáltatások",
+    "dev_and_auto": "Fejlesztés & Automatizáció",
+    "ops_and_cloud": "Üzemeltetés & Rendszergazda",
     "newsletter": "Hírlevél",
+    "newsletter_badge": "Heti 1 exkluzív IT tipp • Zéró spam • Bármikor leiratkozhatsz",
     "signals": {
-      "ssl": "SSL Biztonság",
-      "gdpr": "GDPR Kompatibilis",
+      "ssl": "SSL Titkosítás",
+      "gdpr": "GDPR Megfelelőség",
       "experts": "Minősített Szakértők"
     },
     "rights": "© {year} BacklineIT. Minden jog fenntartva."
@@ -832,16 +836,32 @@
       "types": {
         "web": "Weboldal fejlesztés",
         "shop": "Webshop készítés",
+        "automation": "Automatizáció & n8n / CRM integráció",
+        "managed": "Havidíjas IT Rendszergazda",
+        "ai": "AI Asszisztens & Intelligens Bot",
+        "cloud": "M365 & Felhő Migráció",
         "app": "Egyedi szoftver / App",
-        "marketing": "Online Marketing",
+        "marketing": "Online Marketing & SEO",
         "design": "UI/UX Design",
-        "other": "Egyéb"
+        "other": "Egyéb egyedi igény"
       },
       "budgets": {
+        "tier1": "300.000 Ft alatt",
+        "tier2": "300.000 Ft - 750.000 Ft",
+        "tier3": "750.000 Ft - 1.500.000 Ft",
+        "tier4": "1.500.000 Ft - 3.000.000 Ft",
+        "tier5": "3.000.000 Ft felett",
+        "flexible": "Még nincs meghatározva / Tanácsot kérek",
         "small": "500.000 Ft alatt",
         "medium": "500.000 Ft - 1.500.000 Ft",
         "large": "1.500.000 Ft - 5.000.000 Ft",
         "enterprise": "5.000.000 Ft felett"
+      },
+      "deadlines": {
+        "urgent": "Azonnal / 2 héten belül",
+        "month": "1 hónapon belül",
+        "quarter": "1-3 hónapon belül",
+        "flexible": "Rugalmas határidő"
       },
       "privacy_disclaimer": "Az \"Ajánlatkérés küldése\" gombra kattintva elfogadod az Adatvédelmi tájékoztatónkat.",
       "next": "Tovább",
@@ -854,24 +874,24 @@
       }
     },
     "sidebar": {
-      "title": "Miért válassz minket?",
-      "feature_1_title": "Gyors Megvalósítás",
-      "feature_1_desc": "Hatékony folyamatok, tartott határidők.",
-      "feature_2_title": "Modern Tech",
-      "feature_2_desc": "A legújabb technológiákat használjuk.",
-      "feature_3_title": "Responsive Design",
-      "feature_3_desc": "Minden eszközön tökéletes megjelenés.",
-      "step_1": "Alapadatok",
-      "step_2": "Projekt részletei",
-      "step_3": "Összegzés"
+      "title": "Miért a BacklineIT?",
+      "feature_1_title": "Agilis & Gyors Megvalósítás",
+      "feature_1_desc": "Átlátható sprintek, sziklaszilárd határidők.",
+      "feature_2_title": "Modern Cloud & AI Stack",
+      "feature_2_desc": "Next.js, n8n, Azure és legújabb technológiák.",
+      "feature_3_title": "Garancia & Teljes Támogatás",
+      "feature_3_desc": "Az élesítés után is biztos háttérként segítünk.",
+      "step_1": "Szolgáltatás",
+      "step_2": "Projekt Részletek",
+      "step_3": "Kapcsolattartás"
     },
     "steps": {
-      "1_title": "Kezdjük az alapokkal",
-      "1_desc": "Add meg az elérhetőségeidet, hogy felvehessük veled a kapcsolatot.",
-      "2_title": "Mesélj a projektről",
-      "2_desc": "Minél több részletet osztasz meg, annál pontosabb ajánlatot tudunk adni.",
-      "3_title": "Ellenőrzés és küldés",
-      "3_desc": "Nézd át az adatokat, és ha minden rendben, küldd el az igényedet."
+      "1_title": "Milyen területen segíthetünk?",
+      "1_desc": "Válaszd ki a céljaidnak leginkább megfelelő megoldást.",
+      "2_title": "Tervezett keret és elképzelés",
+      "2_desc": "Oszd meg velünk a részleteket a legpontosabb kalkulációhoz.",
+      "3_title": "Hová küldhetjük a részleteket?",
+      "3_desc": "Add meg elérhetőségeidet, és 24 órán belül felvesszük veled a kapcsolatot."
     }
   },
   "Legal": {
@@ -1589,6 +1609,12 @@
     "PricingTable": {
       "title": "Válaszd ki a neked megfelelő csomagot",
       "desc": "Átlátható árazás, rejtett költségek nélkül. Minden csomag tartalmazza a sikeres induláshoz szükséges eszközöket.",
+      "billing_monthly": "Havi elszámolás",
+      "billing_yearly": "Éves elszámolás",
+      "save_20": "-20% KEDVEZMÉNY",
+      "billed_annually": "éves számlázással",
+      "view_matrix": "Részletes csomag-összehasonlítás megtekintése",
+      "hide_matrix": "Összehasonlítás bezárása",
       "packages": {
         "starter": {
           "name": "Starter",

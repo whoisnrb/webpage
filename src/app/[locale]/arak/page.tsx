@@ -1,9 +1,9 @@
 import { PricingTable } from "@/components/sections/pricing-table"
 import { PricingFAQ } from "@/components/sections/pricing-faq"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Check, Globe, Zap, Shield, Cloud, Database, Activity } from "lucide-react"
+import { ArrowRight, Check, Globe, Zap, Shield, Cloud, Database, Activity, Sparkles } from "lucide-react"
 import { Link } from "@/i18n/routing"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { routing } from '@/i18n/routing'
 
 import { getSeoMetadata } from "@/lib/seo"
@@ -40,6 +40,7 @@ export const revalidate = 86400; // 24 hours
 
 export default function ArakPage() {
     const t = useTranslations('PricingPage');
+    const locale = useLocale();
 
     const pricingCategories = [
         {
@@ -84,26 +85,33 @@ export default function ArakPage() {
             />
             <main className="flex-1">
                 {/* Hero Section */}
-                <section className="py-16 md:py-24">
-                    <div className="container mx-auto px-4 text-center">
-                        <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+                <section className="relative py-20 md:py-28 overflow-hidden bg-transparent">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+                    <div className="container relative mx-auto px-4 text-center z-10">
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-xs font-black tracking-widest uppercase mb-6">
+                            <Sparkles className="h-3.5 w-3.5" />
+                            {locale === 'hu' ? "Átlátható IT Szolgáltatások" : "Transparent IT Services"}
+                        </div>
+                        <h1 className="text-4xl md:text-7xl font-black tracking-tight mb-6 text-white">
                             {t('hero_title')}<br />
-                            <span className="text-primary">{t('hero_title_highlight')}</span>
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300">
+                                {t('hero_title_highlight')}
+                            </span>
                         </h1>
-                        <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+                        <p className="text-lg md:text-xl text-white/50 max-w-3xl mx-auto mb-8 font-medium leading-relaxed">
                             {t('hero_desc')}
                         </p>
                         <div className="flex flex-wrap gap-4 justify-center">
-                            <div className="flex items-center gap-2 text-muted-foreground">
-                                <Check className="h-5 w-5 text-primary" />
+                            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/5 text-white/70 text-xs md:text-sm font-semibold">
+                                <Check className="h-4 w-4 text-cyan-400" />
                                 <span>{t('features.no_hidden_fees')}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-muted-foreground">
-                                <Check className="h-5 w-5 text-primary" />
+                            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/5 text-white/70 text-xs md:text-sm font-semibold">
+                                <Check className="h-4 w-4 text-cyan-400" />
                                 <span>{t('features.free_consultation')}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-muted-foreground">
-                                <Check className="h-5 w-5 text-primary" />
+                            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.03] border border-white/5 text-white/70 text-xs md:text-sm font-semibold">
+                                <Check className="h-4 w-4 text-cyan-400" />
                                 <span>{t('features.money_back')}</span>
                             </div>
                         </div>
@@ -188,93 +196,102 @@ export default function ArakPage() {
                 </section>
 
                 {/* Comparison Table */}
-                <section className="py-16 md:py-24 bg-muted/30">
-                    <div className="container mx-auto px-4">
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+                <section className="py-20 md:py-28 relative bg-transparent overflow-hidden border-t border-white/5">
+                    <div className="container mx-auto px-4 relative z-10">
+                        <div className="text-center mb-16">
+                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-xs font-black tracking-widest uppercase mb-4">
+                                <Sparkles className="h-3.5 w-3.5" />
+                                {locale === 'hu' ? "Összehasonlítás" : "Comparison"}
+                            </div>
+                            <h2 className="text-3xl md:text-5xl font-black tracking-tight mb-4 text-white">
                                 {t('comparison_title')}
                             </h2>
-                            <p className="text-muted-foreground text-lg">
+                            <p className="text-white/50 text-base md:text-lg max-w-2xl mx-auto">
                                 {t('comparison_desc')}
                             </p>
                         </div>
 
-                        <div className="max-w-5xl mx-auto overflow-x-auto">
-                            <table className="w-full border-collapse bg-card rounded-lg overflow-hidden shadow-md">
+                        <div className="max-w-5xl mx-auto overflow-x-auto rounded-3xl border border-white/10 bg-[#06101c]/90 backdrop-blur-2xl shadow-[0_0_50px_-15px_rgba(6,182,212,0.15)]">
+                            <table className="w-full border-collapse">
                                 <thead>
-                                    <tr className="border-b bg-muted/50">
-                                        <th className="text-left p-4 font-semibold">{t('table.service')}</th>
-                                        <th className="text-center p-4 font-semibold">{t('table.starter')}</th>
-                                        <th className="text-center p-4 font-semibold bg-primary/5">{t('table.pro')}</th>
-                                        <th className="text-center p-4 font-semibold">{t('table.enterprise')}</th>
+                                    <tr className="border-b border-white/10 bg-white/[0.02]">
+                                        <th className="text-left p-5 text-sm font-bold text-white/70">{t('table.service')}</th>
+                                        <th className="text-center p-5 text-sm font-bold text-white/70">{t('table.starter')}</th>
+                                        <th className="text-center p-5 text-sm font-black text-cyan-400 bg-cyan-500/10 border-x border-cyan-500/20">
+                                            <div className="inline-flex items-center gap-1.5">
+                                                <span>{t('table.pro')}</span>
+                                                <span className="text-[9px] bg-cyan-400 text-slate-950 px-1.5 py-0.5 rounded-full font-black uppercase">Top</span>
+                                            </div>
+                                        </th>
+                                        <th className="text-center p-5 text-sm font-bold text-white/70">{t('table.enterprise')}</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y">
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.webdev')}</td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
-                                        <td className="text-center p-4 bg-primary/5"><Check className="h-5 w-5 text-primary mx-auto" /></td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
+                                <tbody className="divide-y divide-white/5 text-sm text-white/70">
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.webdev')}</td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.responsive')}</td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
-                                        <td className="text-center p-4 bg-primary/5"><Check className="h-5 w-5 text-primary mx-auto" /></td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.responsive')}</td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.seo')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">{t('table.values.basic')}</td>
-                                        <td className="text-center p-4 bg-primary/5 text-muted-foreground">{t('table.values.advanced')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">{t('table.values.full')}</td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.seo')}</td>
+                                        <td className="text-center p-4 text-white/50">{t('table.values.basic')}</td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10 font-bold text-cyan-300">{t('table.values.advanced')}</td>
+                                        <td className="text-center p-4 text-emerald-400 font-bold">{t('table.values.full')}</td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.shop')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">-</td>
-                                        <td className="text-center p-4 bg-primary/5"><Check className="h-5 w-5 text-primary mx-auto" /></td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.shop')}</td>
+                                        <td className="text-center p-4 text-white/20">-</td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.automation')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">-</td>
-                                        <td className="text-center p-4 bg-primary/5"><Check className="h-5 w-5 text-primary mx-auto" /></td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.automation')}</td>
+                                        <td className="text-center p-4 text-white/20">-</td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.security')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">-</td>
-                                        <td className="text-center p-4 bg-primary/5"><Check className="h-5 w-5 text-primary mx-auto" /></td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.security')}</td>
+                                        <td className="text-center p-4 text-white/20">-</td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.devops')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">-</td>
-                                        <td className="text-center p-4 bg-primary/5"><Check className="h-5 w-5 text-primary mx-auto" /></td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.devops')}</td>
+                                        <td className="text-center p-4 text-white/20">-</td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.hosting')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">{t('table.values.year_shared')}</td>
-                                        <td className="text-center p-4 bg-primary/5 text-muted-foreground">{t('table.values.year_vps')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">{t('table.values.dedicated')}</td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.hosting')}</td>
+                                        <td className="text-center p-4 text-white/50">{t('table.values.year_shared')}</td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10 font-bold text-cyan-300">{t('table.values.year_vps')}</td>
+                                        <td className="text-center p-4 text-violet-300 font-bold">{t('table.values.dedicated')}</td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.support')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">3 {t('table.values.months')}</td>
-                                        <td className="text-center p-4 bg-primary/5 text-muted-foreground">6 {t('table.values.months')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">12 {t('table.values.months')}</td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.support')}</td>
+                                        <td className="text-center p-4 text-white/50">3 {t('table.values.months')}</td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10 font-bold text-cyan-300">6 {t('table.values.months')}</td>
+                                        <td className="text-center p-4 text-emerald-400 font-bold">12 {t('table.values.months')}</td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.monitoring')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">-</td>
-                                        <td className="text-center p-4 bg-primary/5 text-muted-foreground">-</td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.monitoring')}</td>
+                                        <td className="text-center p-4 text-white/20">-</td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10 text-white/20">-</td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
                                     </tr>
-                                    <tr>
-                                        <td className="p-4 font-medium">{t('table.rows.engineer')}</td>
-                                        <td className="text-center p-4 text-muted-foreground">-</td>
-                                        <td className="text-center p-4 bg-primary/5 text-muted-foreground">-</td>
-                                        <td className="text-center p-4"><Check className="h-5 w-5 text-primary mx-auto" /></td>
+                                    <tr className="hover:bg-white/[0.02] transition-colors">
+                                        <td className="p-4 font-semibold text-white">{t('table.rows.engineer')}</td>
+                                        <td className="text-center p-4 text-white/20">-</td>
+                                        <td className="text-center p-4 bg-cyan-500/[0.03] border-x border-cyan-500/10 text-white/20">-</td>
+                                        <td className="text-center p-4"><Check className="h-4 w-4 text-cyan-400 mx-auto stroke-[3]" /></td>
                                     </tr>
                                 </tbody>
                             </table>
