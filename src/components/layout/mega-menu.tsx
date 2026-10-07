@@ -12,7 +12,7 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { ArrowRight, Sparkles, Activity, Terminal, Layout, Zap, Briefcase, FileText, MessageSquare, CreditCard, Package, Star } from "lucide-react"
+import { ArrowRight, Sparkles, Activity, Terminal, Layout, Zap, Briefcase, FileText, MessageSquare, CreditCard, Package, Star, Puzzle, BookOpen } from "lucide-react"
 import { useTranslations, useLocale } from "next-intl"
 import { NeuralBackground } from "@/components/neural-background"
 import { SERVICES_STRUCTURE, ServiceCategory, ServiceItem } from "./services-config"
@@ -208,18 +208,59 @@ export function MegaMenu() {
                                             {t("products_heading")}
                                         </div>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                            {/* 1. WordPress Plugin */}
                                             <NavigationMenuLink asChild>
                                                 <Link
-                                                    href={{ pathname: "/megoldasok", query: { category: "scripts" } }}
-                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                    href={{ pathname: "/megoldasok", query: { category: "wordpress" } }}
+                                                    className="p-2.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
                                                 >
-                                                    <div className="h-9 w-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
+                                                    <div className="h-8 w-8 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-blue-500/20 transition-all mt-0.5">
+                                                        <Puzzle className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5 min-w-0">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                                            {t("wordpress")}
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            {t("wordpress_desc")}
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+
+                                            {/* 2. Automatizáció */}
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href={{ pathname: "/megoldasok", query: { category: "automation" } }}
+                                                    className="p-2.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-emerald-500/20 transition-all mt-0.5">
+                                                        <Zap className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5 min-w-0">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                                                            <span>{t("automation")}</span>
+                                                            <span className="text-[8px] bg-cyan-500/20 text-cyan-300 font-extrabold px-1.5 py-0.2 rounded-full uppercase">Hot</span>
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            {t("automation_desc")}
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+
+                                            {/* 3. Script */}
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href={{ pathname: "/megoldasok", query: { category: "script" } }}
+                                                    className="p-2.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-8 w-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all mt-0.5">
                                                         <Terminal className="h-4 w-4" />
                                                     </div>
-                                                    <div className="space-y-0.5">
-                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center gap-1.5">
-                                                            <span>{t("scripts")}</span>
-                                                            <span className="text-[8px] bg-cyan-500/20 text-cyan-300 font-extrabold px-1.5 py-0.2 rounded-full uppercase">Hot</span>
+                                                    <div className="space-y-0.5 min-w-0">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                                            {t("scripts")}
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
                                                             {t("scripts_desc")}
@@ -228,53 +269,56 @@ export function MegaMenu() {
                                                 </Link>
                                             </NavigationMenuLink>
 
+                                            {/* 4. Template */}
                                             <NavigationMenuLink asChild>
                                                 <Link
-                                                    href={{ pathname: "/megoldasok", query: { category: "web" } }}
-                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                    href={{ pathname: "/megoldasok", query: { category: "template" } }}
+                                                    className="p-2.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
                                                 >
-                                                    <div className="h-9 w-9 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-blue-500/20 transition-all">
+                                                    <div className="h-8 w-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-indigo-500/20 transition-all mt-0.5">
                                                         <Layout className="h-4 w-4" />
                                                     </div>
-                                                    <div className="space-y-0.5">
+                                                    <div className="space-y-0.5 min-w-0">
                                                         <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
-                                                            {t("web")}
+                                                            {t("templates")}
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            {t("web_desc")}
+                                                            {t("templates_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
                                             </NavigationMenuLink>
 
+                                            {/* 5. E-book */}
                                             <NavigationMenuLink asChild>
                                                 <Link
-                                                    href={{ pathname: "/megoldasok", query: { category: "plugins" } }}
-                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                    href={{ pathname: "/megoldasok", query: { category: "ebook" } }}
+                                                    className="p-2.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
                                                 >
-                                                    <div className="h-9 w-9 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-teal-500/20 transition-all">
-                                                        <Zap className="h-4 w-4" />
+                                                    <div className="h-8 w-8 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-amber-500/20 transition-all mt-0.5">
+                                                        <BookOpen className="h-4 w-4" />
                                                     </div>
-                                                    <div className="space-y-0.5">
+                                                    <div className="space-y-0.5 min-w-0">
                                                         <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
-                                                            {t("plugins")}
+                                                            {t("ebooks")}
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            {t("plugins_desc")}
+                                                            {t("ebooks_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
                                             </NavigationMenuLink>
 
+                                            {/* 6. Összes megoldás */}
                                             <NavigationMenuLink asChild>
                                                 <Link
                                                     href="/megoldasok"
-                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                    className="p-2.5 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
                                                 >
-                                                    <div className="h-9 w-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
+                                                    <div className="h-8 w-8 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-teal-500/20 transition-all mt-0.5">
                                                         <Package className="h-4 w-4" />
                                                     </div>
-                                                    <div className="space-y-0.5">
+                                                    <div className="space-y-0.5 min-w-0">
                                                         <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
                                                             {t("all_products")}
                                                         </div>

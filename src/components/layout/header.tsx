@@ -67,9 +67,11 @@ export function Header() {
             href: "/megoldasok",
             items: [
                 { name: tMega("all_products"), href: "/megoldasok" },
-                { name: tMega("scripts"), href: { pathname: "/megoldasok", query: { category: "scripts" } } },
-                { name: tMega("web"), href: { pathname: "/megoldasok", query: { category: "web" } } },
-                { name: tMega("plugins"), href: { pathname: "/megoldasok", query: { category: "plugins" } } },
+                { name: tMega("wordpress"), href: { pathname: "/megoldasok", query: { category: "wordpress" } } },
+                { name: tMega("automation"), href: { pathname: "/megoldasok", query: { category: "automation" } } },
+                { name: tMega("scripts"), href: { pathname: "/megoldasok", query: { category: "script" } } },
+                { name: tMega("templates"), href: { pathname: "/megoldasok", query: { category: "template" } } },
+                { name: tMega("ebooks"), href: { pathname: "/megoldasok", query: { category: "ebook" } } },
             ]
         },
         {

@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { getLocalizedProducts } from "@/app/actions/product"
 import { getTranslations } from "next-intl/server"
 import { ProductBrowser } from "./product-browser"
@@ -94,7 +95,9 @@ export default async function ProductsPage({ params }: PageProps) {
                 </div>
             </section>
 
-            <ProductBrowser initialProducts={products} />
+            <Suspense fallback={<div className="min-h-[400px]" />}>
+                <ProductBrowser initialProducts={products} />
+            </Suspense>
         </>
     )
 }

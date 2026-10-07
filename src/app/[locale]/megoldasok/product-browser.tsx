@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { ProductCard } from "@/components/ecommerce/product-card"
 import { Button } from "@/components/ui/button"
 import { Link } from "@/i18n/routing"
@@ -13,11 +14,50 @@ interface ProductBrowserProps {
     initialProducts: LocalizedProductDTO[]
 }
 
+const parseCategoryParam = (param: string | null): string => {
+    if (!param) return "all"
+    const p = param.toLowerCase().trim()
+    if (p === "wordpress" || p === "plugins" || p === "wordpress plugin") return "WordPress Plugin"
+    if (p === "automation" || p === "automatizacio" || p === "automatizáció") return "Automatizáció"
+    if (p === "script" || p === "scripts") return "Script"
+    if (p === "template" || p === "templates") return "Template"
+    if (p === "ebook" || p === "ebooks" || p === "e-book") return "E-book"
+    return "all"
+}
+
 export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
     const t = useTranslations("Products")
-    const [activeCategory, setActiveCategory] = useState("all")
+    const searchParams = useSearchParams()
+    const [activeCategory, setActiveCategory] = useState<string>(() =>
+        parseCategoryParam(searchParams.get("category"))
+    )
     const [quickViewData, setQuickViewData] = useState<any | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
+
+    useEffect(() => {
+        const param = searchParams.get("category")
+        setActiveCategory(parseCategoryParam(param))
+    }, [searchParams])
+
+    const handleCategoryClick = (catId: string) => {
+        setActiveCategory(catId)
+        if (typeof window !== "undefined") {
+            const url = new URL(window.location.href)
+            if (catId === "all") {
+                url.searchParams.delete("category")
+            } else {
+                const paramMap: Record<string, string> = {
+                    "WordPress Plugin": "wordpress",
+                    "Automatizáció": "automation",
+                    "Script": "script",
+                    "Template": "template",
+                    "E-book": "ebook"
+                }
+                url.searchParams.set("category", paramMap[catId] || catId.toLowerCase())
+            }
+            window.history.replaceState(null, "", url.toString())
+        }
+    }
 
     const categories = [
         { id: "all", label: t("categories.all") },
@@ -43,7 +83,7 @@ export function ProductBrowser({ initialProducts }: ProductBrowserProps) {
                             return (
                                 <button
                                     key={cat.id}
-                                    onClick={() => setActiveCategory(cat.id)}
+                                    onClick={() => handleCategoryClick(cat.id)}
                                     className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
                                         }`}
                                 >
