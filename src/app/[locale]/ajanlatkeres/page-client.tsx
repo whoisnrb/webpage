@@ -305,7 +305,7 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                                 className="h-12 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-bold transition-all shadow-[0_0_25px_rgba(16,185,129,0.3)]"
                                 asChild
                             >
-                                <Link href="/konzultacio">
+                                <Link href="/demo">
                                     <Calendar className="mr-2 h-4 w-4" />
                                     {locale === 'hu' ? "Online Konzultáció foglalása" : "Book Online Call"}
                                 </Link>
@@ -848,7 +848,7 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                                 className="w-full mt-2 h-10 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/10"
                                 asChild
                             >
-                                <Link href="/konzultacio">
+                                <Link href="/demo">
                                     <Calendar className="mr-2 h-3.5 w-3.5 text-cyan-400" />
                                     {locale === 'hu' ? "Naptár megnyitása" : "Open Calendar"}
                                 </Link>
