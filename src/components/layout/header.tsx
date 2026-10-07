@@ -3,17 +3,15 @@
 import * as React from "react"
 import { Link, usePathname } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
-import { Menu, X, Code2, ChevronDown, User, Settings, LogOut, LayoutDashboard } from "lucide-react"
+import { Menu, X, Code2, ChevronDown, User, Settings, LogOut, LayoutDashboard, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useSession, signOut } from "next-auth/react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Breadcrumbs } from "@/components/layout/breadcrumbs"
-import { ThemeCustomizer } from "@/components/theme/theme-customizer"
 import { LanguageSwitcher } from "@/components/layout/language-switcher"
 import { CurrencySwitcher } from "@/components/layout/currency-switcher"
 import { MegaMenu } from "@/components/layout/mega-menu"
 import { SERVICES_STRUCTURE } from "./services-config"
-import { DarkModeToggle } from "@/components/theme/dark-mode-toggle"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { NeuralBackground } from "@/components/neural-background"
 import { cn } from "@/lib/utils"
@@ -95,7 +93,7 @@ export function Header() {
 
     return (
         <>
-            <header className="sticky top-0 z-[100] w-full bg-background/50 backdrop-blur-3xl">
+            <header className="sticky top-0 z-[100] w-full border-b border-white/[0.08] bg-[#040714]/85 backdrop-blur-2xl transition-all shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
                 <div className="container mx-auto flex h-16 items-center justify-between px-4 relative">
                     <div className="flex items-center gap-2">
                         <Link href="/" className="flex items-center gap-2">
@@ -226,13 +224,23 @@ export function Header() {
                                 <Link href="/login">{t("client_portal")}</Link>
                             </Button>
                         )}
-                        <Button size="sm" className="bg-accent hover:bg-accent/90 text-white" asChild>
-                            <Link href="/demo">{t("free_consultation")}</Link>
+                        <Button
+                            size="sm"
+                            className="relative overflow-hidden group bg-gradient-to-r from-cyan-400 via-cyan-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-extrabold px-4 py-2 rounded-xl shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_28px_rgba(6,182,212,0.6)] transition-all duration-300 active:scale-95"
+                            asChild
+                        >
+                            <Link href="/demo" className="flex items-center gap-1.5">
+                                <Sparkles className="h-3.5 w-3.5 text-black" />
+                                <span>{t("free_consultation")}</span>
+                            </Link>
                         </Button>
-                        <DarkModeToggle />
-                        <ThemeCustomizer />
-                        <CurrencySwitcher />
-                        <LanguageSwitcher />
+
+                        {/* Currency & Language Capsule */}
+                        <div className="flex items-center rounded-full bg-white/[0.04] border border-white/10 p-0.5 hover:border-white/20 transition-colors shadow-sm">
+                            <CurrencySwitcher />
+                            <div className="h-3.5 w-[1px] bg-white/10" />
+                            <LanguageSwitcher />
+                        </div>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -389,22 +397,13 @@ export function Header() {
                                     </div>
                                 </nav>
                                 <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
-                                    <div className="flex justify-between items-center px-2">
-                                        <div className="flex items-center gap-4 sm:gap-8">
-                                            <div className="flex flex-col gap-1.5 items-center">
-                                                <DarkModeToggle />
-                                                <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">Mode</span>
-                                            </div>
-                                            <div className="flex flex-col gap-1.5 items-center">
-                                                <ThemeCustomizer />
-                                                <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">{tMega("theme")}</span>
-                                            </div>
-                                            <div className="flex flex-col gap-1.5 items-center">
-                                                <LanguageSwitcher />
-                                                <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">{tMega("language")}</span>
-                                            </div>
+                                    <div className="flex justify-around items-center px-4 py-2.5 rounded-xl bg-white/[0.03] border border-white/10">
+                                        <div className="flex flex-col gap-1 items-center">
+                                            <LanguageSwitcher />
+                                            <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">{tMega("language")}</span>
                                         </div>
-                                        <div className="flex flex-col gap-1.5 items-center">
+                                        <div className="h-6 w-px bg-white/10" />
+                                        <div className="flex flex-col gap-1 items-center">
                                             <CurrencySwitcher />
                                             <span className="text-[10px] text-white/40 uppercase font-bold tracking-widest whitespace-nowrap">{tMega("currency")}</span>
                                         </div>

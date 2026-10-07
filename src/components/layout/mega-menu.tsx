@@ -12,7 +12,7 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { ArrowRight, Sparkles, Activity, Terminal, Layout, Zap } from "lucide-react"
+import { ArrowRight, Sparkles, Activity, Terminal, Layout, Zap, Briefcase, FileText, MessageSquare, CreditCard, Package, Star } from "lucide-react"
 import { useTranslations, useLocale } from "next-intl"
 import { NeuralBackground } from "@/components/neural-background"
 import { SERVICES_STRUCTURE, ServiceCategory, ServiceItem } from "./services-config"
@@ -182,56 +182,297 @@ export function MegaMenu() {
                     </NavigationMenuContent>
                 </NavigationMenuItem>
 
+                {/* MEGOLDÁSOK MEGAMENÜ */}
                 <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">
                         {t("products")}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 shadow-2xl">
-                            <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
+                        <div
+                            className="relative overflow-hidden rounded-[2rem] shadow-[0_0_50px_-12px_rgba(6,182,212,0.35)]"
+                            style={{
+                                background: "rgba(5, 12, 20, 0.97)",
+                                backdropFilter: "blur(24px)",
+                                border: "1px solid rgba(6, 182, 212, 0.15)",
+                            }}
+                        >
+                            <div className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none">
                                 <NeuralBackground />
                             </div>
-                            <ul className="relative z-10 grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                                <ListItem href="/megoldasok" title={t("all_products")} icon={Activity}>
-                                    {t("all_products_desc")}
-                                </ListItem>
-                                <ListItem href={{ pathname: "/megoldasok", query: { category: "scripts" } }} title={t("scripts")} icon={Terminal}>
-                                    {t("scripts_desc")}
-                                </ListItem>
-                                <ListItem href={{ pathname: "/megoldasok", query: { category: "web" } }} title={t("web")} icon={Layout}>
-                                    {t("web_desc")}
-                                </ListItem>
-                                <ListItem href={{ pathname: "/megoldasok", query: { category: "plugins" } }} title={t("plugins")} icon={Zap}>
-                                    {t("plugins_desc")}
-                                </ListItem>
-                            </ul>
+
+                            <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_290px] lg:grid-cols-[1fr_320px] w-[95vw] md:w-[720px] lg:w-[820px] xl:w-[880px] min-h-[380px]">
+                                {/* Bal oldal: Termékek & Csomagok */}
+                                <div className="p-6 md:p-7 flex flex-col justify-between">
+                                    <div className="space-y-4">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400/80 cursor-default px-2">
+                                            Kész IT Megoldások & Csomagok
+                                        </div>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href={{ pathname: "/megoldasok", query: { category: "scripts" } }}
+                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-9 w-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
+                                                        <Terminal className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                                                            <span>{t("scripts")}</span>
+                                                            <span className="text-[8px] bg-cyan-500/20 text-cyan-300 font-extrabold px-1.5 py-0.2 rounded-full uppercase">Hot</span>
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            n8n és Python automatizációk, webhookok és adatkinyerő scriptek.
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href={{ pathname: "/megoldasok", query: { category: "web" } }}
+                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-9 w-9 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-blue-500/20 transition-all">
+                                                        <Layout className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                                            {t("web")}
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            Modern Next.js weboldal sablonok, portálok és digitális felületek.
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href={{ pathname: "/megoldasok", query: { category: "plugins" } }}
+                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-9 w-9 rounded-lg bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-teal-500/20 transition-all">
+                                                        <Zap className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                                            {t("plugins")}
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            Egyedi integrációs bővítmények, számlázó és CRM csatolók.
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href="/megoldasok"
+                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-9 w-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
+                                                        <Package className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                                            {t("all_products")}
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            Böngészd át az összes elérhető megoldást és szolgáltatáscsomagot.
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+                                        </div>
+                                    </div>
+
+                                    {/* Alsó link */}
+                                    <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+                                        <span className="text-white/40">Egyedi rendszerre van szükséged?</span>
+                                        <Link href="/demo" className="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 group">
+                                            <span>Kérj ingyenes felmérést</span>
+                                            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                {/* Jobb oldal: Kiemelt Termék Spotlight Kártya */}
+                                <div className="p-6 border-t md:border-t-0 md:border-l border-white/5 bg-gradient-to-b from-cyan-500/[0.08] via-blue-500/[0.03] to-transparent flex flex-col justify-between">
+                                    <div className="space-y-3">
+                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-400/15 border border-cyan-400/30 text-cyan-300 text-[10px] font-black uppercase tracking-wider">
+                                            <Sparkles className="h-3 w-3 text-cyan-400" />
+                                            Kiemelt Megoldás
+                                        </div>
+                                        <h4 className="text-sm font-extrabold text-white leading-snug">
+                                            n8n Számlázz.hu & CRM Automatizáció
+                                        </h4>
+                                        <p className="text-[12px] text-white/60 leading-relaxed">
+                                            Automatikus számlakiállítás, banki párosítás és CRM státuszfrissítés emberi beavatkozás nélkül.
+                                        </p>
+                                        <div className="p-2.5 rounded-lg bg-[#040812]/70 border border-white/5 text-[11px] text-slate-300 flex items-center gap-2">
+                                            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                                            <span>Akár 80%-kal kevesebb adminisztráció</span>
+                                        </div>
+                                    </div>
+
+                                    <Link
+                                        href="/megoldasok"
+                                        className="mt-4 w-full py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-sm group"
+                                    >
+                                        <span>Részletek megtekintése</span>
+                                        <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
 
+                {/* TUDÁSTÁR MEGAMENÜ */}
                 <NavigationMenuItem>
                     <NavigationMenuTrigger className="bg-transparent text-white/70 hover:text-white hover:bg-white/5 transition-all text-sm font-bold">
                         {t("knowledge")}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                        <div className="relative overflow-hidden rounded-[1.5rem] bg-[#050810]/95 backdrop-blur-3xl border border-white/10 shadow-2xl">
-                            <div className="absolute inset-0 z-0 opacity-[0.15] pointer-events-none">
+                        <div
+                            className="relative overflow-hidden rounded-[2rem] shadow-[0_0_50px_-12px_rgba(6,182,212,0.35)]"
+                            style={{
+                                background: "rgba(5, 12, 20, 0.97)",
+                                backdropFilter: "blur(24px)",
+                                border: "1px solid rgba(6, 182, 212, 0.15)",
+                            }}
+                        >
+                            <div className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none">
                                 <NeuralBackground />
                             </div>
-                            <ul className="relative z-10 grid w-[400px] gap-3 p-6 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                                <ListItem href="/referenciak" title={t("references")} icon={Briefcase}>
-                                    {t("references_desc")}
-                                </ListItem>
-                                <ListItem href="/blog" title={t("blog")} icon={FileText}>
-                                    {t("blog_desc")}
-                                </ListItem>
-                                <ListItem href="/velemeny" title={t("reviews")} icon={MessageSquare}>
-                                    {t("reviews_desc")}
-                                </ListItem>
-                                <ListItem href="/arak" title={t("prices")} icon={CreditCard}>
-                                    {t("prices_desc")}
-                                </ListItem>
-                            </ul>
+
+                            <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_290px] lg:grid-cols-[1fr_320px] w-[95vw] md:w-[720px] lg:w-[820px] xl:w-[880px] min-h-[380px]">
+                                {/* Bal oldal: Tudásbázis & Anyagok */}
+                                <div className="p-6 md:p-7 flex flex-col justify-between">
+                                    <div className="space-y-4">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400/80 cursor-default px-2">
+                                            Szakmai Tudásbázis & Eredmények
+                                        </div>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href="/referenciak"
+                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-9 w-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
+                                                        <Briefcase className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                                                            <span>{t("references")}</span>
+                                                            <span className="text-[8px] bg-emerald-500/20 text-emerald-300 font-extrabold px-1.5 py-0.2 rounded-full uppercase">Esettanulmányok</span>
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            Valós sikertörténetek és konkrét üzleti eredmények partnereinktől.
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href="/blog"
+                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-9 w-9 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-blue-500/20 transition-all">
+                                                        <FileText className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                                            {t("blog")}
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            Gyakorlati IT útmutatók, automatizáció és felhő infrastruktúra cikkek.
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href="/velemeny"
+                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-9 w-9 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-amber-500/20 transition-all">
+                                                        <MessageSquare className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center gap-1.5">
+                                                            <span>{t("reviews")}</span>
+                                                            <span className="text-[8px] bg-amber-500/20 text-amber-300 font-extrabold px-1.5 py-0.2 rounded-full uppercase">5.0 ★</span>
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            Mit mondanak rólunk korábbi és aktív ügyfeleink?
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+
+                                            <NavigationMenuLink asChild>
+                                                <Link
+                                                    href="/arak"
+                                                    className="p-3 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.04] hover:border-cyan-500/30 transition-all duration-300 group flex items-start gap-3"
+                                                >
+                                                    <div className="h-9 w-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:bg-cyan-500/20 transition-all">
+                                                        <CreditCard className="h-4 w-4" />
+                                                    </div>
+                                                    <div className="space-y-0.5">
+                                                        <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors">
+                                                            {t("prices")}
+                                                        </div>
+                                                        <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
+                                                            Átlátható csomagok és havidíjak rejtett költségek nélkül.
+                                                        </p>
+                                                    </div>
+                                                </Link>
+                                            </NavigationMenuLink>
+                                        </div>
+                                    </div>
+
+                                    {/* Alsó sáv */}
+                                    <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+                                        <span className="text-white/40">Kérdésed maradt a részletekről?</span>
+                                        <Link href="/kapcsolat" className="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 group">
+                                            <span>Lépj velünk kapcsolatba</span>
+                                            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                {/* Jobb oldal: Kiemelt Esettanulmány Spotlight Kártya */}
+                                <div className="p-6 border-t md:border-t-0 md:border-l border-white/5 bg-gradient-to-b from-blue-500/[0.08] via-cyan-500/[0.03] to-transparent flex flex-col justify-between">
+                                    <div className="space-y-3">
+                                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-400/15 border border-blue-400/30 text-blue-300 text-[10px] font-black uppercase tracking-wider">
+                                            <Sparkles className="h-3 w-3 text-cyan-400" />
+                                            Kiemelt Sikersztori
+                                        </div>
+                                        <h4 className="text-sm font-extrabold text-white leading-snug">
+                                            4x-es rendelésfeldolgozási sebesség elérése
+                                        </h4>
+                                        <p className="text-[12px] text-white/60 leading-relaxed">
+                                            Hogyan modernizáltuk partnerünk webshop és vállalatirányítási folyamatait felhő architektúrával?
+                                        </p>
+                                        <div className="p-2.5 rounded-lg bg-[#040812]/70 border border-white/5 text-[11px] text-slate-300 flex items-center gap-2">
+                                            <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
+                                            <span>99.99% Uptime &bull; -70% hibázás</span>
+                                        </div>
+                                    </div>
+
+                                    <Link
+                                        href="/referenciak"
+                                        className="mt-4 w-full py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-blue-500/20 to-cyan-500/20 hover:from-blue-500/30 hover:to-cyan-500/30 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-sm group"
+                                    >
+                                        <span>Esettanulmány elolvasása</span>
+                                        <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -247,20 +488,6 @@ export function MegaMenu() {
         </NavigationMenu>
     )
 }
-
-// Simple Briefcase / FileText / MessageSquare / CreditCard placeholders
-const Briefcase = (props: any) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
-)
-const FileText = (props: any) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
-)
-const MessageSquare = (props: any) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-)
-const CreditCard = (props: any) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
-)
 
 const ListItem = React.forwardRef<
     HTMLAnchorElement,
