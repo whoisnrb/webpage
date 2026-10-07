@@ -385,3 +385,28 @@ model SalesMeeting {
   updatedAt        DateTime @updatedAt
 }
 
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  active    Boolean  @default(true)
+  source    String   @default("website")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([email])
+}
+
+model NewsletterCampaign {
+  id             String    @id @default(cuid())
+  subject        String
+  previewText    String?
+  content        String    @db.Text
+  status         String    @default("DRAFT") // DRAFT, SENT, SENDING, FAILED
+  recipientCount Int       @default(0)
+  sentAt         DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+

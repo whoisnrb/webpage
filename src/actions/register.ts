@@ -21,7 +21,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     }
 
     try {
-        const { email, password, name } = validatedFields.data;
+        const { email, password, name, newsletter } = validatedFields.data;
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const existingUser = await getUserByEmail(email);
@@ -40,6 +40,20 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
 
         const verificationToken = await generateVerificationToken(email);
         await sendVerificationEmail(verificationToken.identifier, verificationToken.token);
+
+        // If user opted in to newsletter, subscribe them automatically!
+        if (newsletter) {
+            try {
+                const { processNewsletter } = await import("@/lib/n8n/actions");
+                await processNewsletter({
+                    email,
+                    name,
+                    action: "newsletter",
+                });
+            } catch (nlError) {
+                console.error("Newsletter subscription error during register:", nlError);
+            }
+        }
 
         // Sync to CRM via n8n
         try {

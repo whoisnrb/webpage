@@ -11,7 +11,7 @@ export const LoginSchema = z.object({
 
 export const RegisterSchema = z.object({
     email: z.string().email({
-        message: "Email megadása kötelező",
+        message: "Érvényes e-mail cím megadása kötelező",
     }),
     password: z.string().min(6, {
         message: "A jelszónak legalább 6 karakternek kell lennie",
@@ -19,4 +19,8 @@ export const RegisterSchema = z.object({
     name: z.string().min(1, {
         message: "Név megadása kötelező",
     }),
+    terms: z.boolean().refine((val) => val === true, {
+        message: "Az ÁSZF és az Adatkezelési tájékoztató elfogadása kötelező!",
+    }),
+    newsletter: z.boolean().default(false).optional(),
 });

@@ -82,18 +82,60 @@ export async function processFeedback(body: WebhookBody) {
 }
 
 export async function processNewsletter(body: WebhookBody) {
-    const { email } = body;
+    const { email, name } = body;
     if (!email) throw new Error('Missing email');
+    const normalizedEmail = email.trim().toLowerCase();
 
-    // 1. Save to Sheet
-    await appendToSheet(GOOGLE_SHEET_IDS.NEWSLETTER, [email]);
+    // 1. Save to Database (NewsletterSubscriber & Lead)
+    try {
+        await prisma.newsletterSubscriber.upsert({
+            where: { email: normalizedEmail },
+            create: {
+                email: normalizedEmail,
+                name: name || null,
+                active: true,
+                source: 'website',
+            },
+            update: {
+                active: true,
+                name: name || undefined,
+            },
+        });
 
-    // 2. Send Welcome Email
-    await sendEmail(
-        email,
-        'Sikeres feliratkozás! 🚀',
-        `Kedves Feliratkozó!<br><br>Köszönjük, hogy feliratkoztál hírlevelünkre. Hamarosan küldjük a legfrissebb IT tippeket.<br><br>Üdvözlettel,<br>BacklineIT Csapata`
-    );
+        const existingLead = await prisma.lead.findUnique({
+            where: { email: normalizedEmail },
+        });
+        if (!existingLead) {
+            await prisma.lead.create({
+                data: {
+                    email: normalizedEmail,
+                    name: name || null,
+                    source: 'Hírlevél',
+                    status: 'LEAD',
+                },
+            });
+        }
+    } catch (dbError) {
+        console.error('[Newsletter] Database save error:', dbError);
+    }
+
+    // 2. Save to Sheet
+    try {
+        await appendToSheet(GOOGLE_SHEET_IDS.NEWSLETTER, [normalizedEmail]);
+    } catch (sheetError) {
+        console.error('[Newsletter] Sheet append error:', sheetError);
+    }
+
+    // 3. Send Welcome Email
+    try {
+        await sendEmail(
+            normalizedEmail,
+            'Sikeres feliratkozás! 🚀',
+            `Kedves Feliratkozó!<br><br>Köszönjük, hogy feliratkoztál hírlevelünkre. Hamarosan küldjük a legfrissebb IT tippeket.<br><br>Üdvözlettel,<br>BacklineIT Csapata`
+        );
+    } catch (emailError) {
+        console.error('[Newsletter] Email send error:', emailError);
+    }
 
     return { success: true };
 }
