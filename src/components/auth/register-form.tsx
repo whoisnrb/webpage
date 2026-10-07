@@ -1,11 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { RegisterSchema } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -27,22 +26,36 @@ import {
     Lock,
     Eye,
     EyeOff,
-    CheckCircle2,
     Loader2,
     ArrowRight,
-    Sparkles,
-    ShieldCheck,
 } from "lucide-react";
 
 export const RegisterForm = () => {
     const router = useRouter();
     const t = useTranslations("Auth.Register");
-    const tForm = useTranslations("Auth.Form");
     const [isPending, startTransition] = useTransition();
     const [showPassword, setShowPassword] = useState(false);
 
-    const form = useForm<z.infer<typeof RegisterSchema>>({
-        resolver: zodResolver(RegisterSchema),
+    const localizedSchema = useMemo(() => {
+        return z.object({
+            email: z.string().email({
+                message: t("validation_email_valid"),
+            }),
+            password: z.string().min(6, {
+                message: t("validation_password_min"),
+            }),
+            name: z.string().min(1, {
+                message: t("validation_name_required"),
+            }),
+            terms: z.boolean().refine((val) => val === true, {
+                message: t("validation_terms_required"),
+            }),
+            newsletter: z.boolean().default(false).optional(),
+        });
+    }, [t]);
+
+    const form = useForm<z.infer<typeof localizedSchema>>({
+        resolver: zodResolver(localizedSchema),
         defaultValues: {
             email: "",
             password: "",
@@ -54,7 +67,7 @@ export const RegisterForm = () => {
 
     // Password strength calculation
     const watchPassword = form.watch("password") || "";
-    const passwordStrength = React.useMemo(() => {
+    const passwordStrength = useMemo(() => {
         if (!watchPassword) return 0;
         let score = 0;
         if (watchPassword.length >= 6) score += 1;
@@ -64,36 +77,36 @@ export const RegisterForm = () => {
         return score;
     }, [watchPassword]);
 
-    const strengthLabel = React.useMemo(() => {
+    const strengthLabel = useMemo(() => {
         if (!watchPassword) return "";
-        if (passwordStrength <= 1) return "Gyenge";
-        if (passwordStrength === 2) return "Közepes";
-        if (passwordStrength === 3) return "Jó";
-        return "Nagyon erős";
-    }, [watchPassword, passwordStrength]);
+        if (passwordStrength <= 1) return t("strength_weak");
+        if (passwordStrength === 2) return t("strength_medium");
+        if (passwordStrength === 3) return t("strength_good");
+        return t("strength_strong");
+    }, [watchPassword, passwordStrength, t]);
 
-    const strengthColor = React.useMemo(() => {
+    const strengthColor = useMemo(() => {
         if (passwordStrength <= 1) return "bg-red-500 text-red-400";
         if (passwordStrength === 2) return "bg-amber-500 text-amber-400";
         if (passwordStrength === 3) return "bg-cyan-500 text-cyan-400";
         return "bg-emerald-500 text-emerald-400";
     }, [passwordStrength]);
 
-    const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
+    const onSubmit = (values: z.infer<typeof localizedSchema>) => {
         startTransition(() => {
             register(values)
                 .then((data) => {
-                    if (data.error) {
+                    if (data?.error) {
                         toast.error(data.error);
                     }
-                    if (data.success) {
-                        toast.success("Sikeres regisztráció! Megerősítő e-mailt küldtünk.");
+                    if (data?.success) {
+                        toast.success(t("success"));
                         router.push("/auth/new-verification" as any);
                     }
                 })
                 .catch((err) => {
                     console.error("Hiba a regisztráció során:", err);
-                    toast.error("Váratlan hiba történt. Kérjük próbáld újra később.");
+                    toast.error(t("unexpected_error"));
                 });
         });
     };
@@ -103,9 +116,9 @@ export const RegisterForm = () => {
             <form
                 onSubmit={form.handleSubmit(onSubmit, (errors) => {
                     if (errors.terms) {
-                        toast.error("Az ÁSZF elfogadása kötelező a regisztrációhoz!");
+                        toast.error(t("terms_required_error"));
                     } else {
-                        toast.error("Kérjük töltsd ki megfelelően az összes kötelező mezőt!");
+                        toast.error(t("form_invalid_error"));
                     }
                 })}
                 className="space-y-4"
@@ -117,14 +130,14 @@ export const RegisterForm = () => {
                     render={({ field }) => (
                         <FormItem className="space-y-1.5">
                             <FormLabel className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
-                                Teljes név *
+                                {t("name_label")}
                             </FormLabel>
                             <FormControl>
                                 <div className="relative group">
                                     <User className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 group-focus-within:text-cyan-400 transition-colors pointer-events-none" />
                                     <Input
                                         {...field}
-                                        placeholder="Kovács János"
+                                        placeholder={t("name_placeholder")}
                                         disabled={isPending}
                                         className="h-11 pl-10 bg-[#060a15] border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all text-sm"
                                     />
@@ -142,14 +155,14 @@ export const RegisterForm = () => {
                     render={({ field }) => (
                         <FormItem className="space-y-1.5">
                             <FormLabel className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
-                                E-mail cím *
+                                {t("email_label")}
                             </FormLabel>
                             <FormControl>
                                 <div className="relative group">
                                     <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 group-focus-within:text-cyan-400 transition-colors pointer-events-none" />
                                     <Input
                                         {...field}
-                                        placeholder="janos@cegnev.hu"
+                                        placeholder={t("email_placeholder")}
                                         type="email"
                                         disabled={isPending}
                                         className="h-11 pl-10 bg-[#060a15] border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all text-sm"
@@ -169,7 +182,7 @@ export const RegisterForm = () => {
                         <FormItem className="space-y-1.5">
                             <div className="flex items-center justify-between">
                                 <FormLabel className="text-xs font-semibold text-slate-300 uppercase tracking-wider">
-                                    Jelszó *
+                                    {t("password_label")}
                                 </FormLabel>
                                 {watchPassword && (
                                     <span className={`text-[11px] font-medium ${strengthColor.split(" ")[1]}`}>
@@ -182,7 +195,7 @@ export const RegisterForm = () => {
                                     <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 group-focus-within:text-cyan-400 transition-colors pointer-events-none" />
                                     <Input
                                         {...field}
-                                        placeholder="Minimum 6 karakter..."
+                                        placeholder={t("password_placeholder")}
                                         type={showPassword ? "text" : "password"}
                                         disabled={isPending}
                                         className="h-11 pl-10 pr-10 bg-[#060a15] border-white/10 text-white placeholder:text-slate-500 rounded-xl focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all text-sm"
@@ -241,23 +254,23 @@ export const RegisterForm = () => {
                                         />
                                     </FormControl>
                                     <div className="text-xs leading-relaxed text-slate-300">
-                                        Elfogadom az{" "}
+                                        {t("terms_prefix")}
                                         <Link
                                             href="/aszf"
                                             target="_blank"
                                             className="text-cyan-400 font-medium underline underline-offset-2 hover:text-cyan-300 transition-colors"
                                         >
-                                            Általános Szerződési Feltételeket
-                                        </Link>{" "}
-                                        és az{" "}
+                                            {t("terms_link")}
+                                        </Link>
+                                        {t("terms_and")}
                                         <Link
                                             href="/adatvedelem"
                                             target="_blank"
                                             className="text-cyan-400 font-medium underline underline-offset-2 hover:text-cyan-300 transition-colors"
                                         >
-                                            Adatkezelési Tájékoztatót
+                                            {t("privacy_link")}
                                         </Link>
-                                        . <span className="text-cyan-400 font-bold">*</span>
+                                        {t("terms_suffix")} <span className="text-cyan-400 font-bold">*</span>
                                     </div>
                                 </div>
                                 <FormMessage className="text-xs text-red-400 pl-1" />
@@ -282,13 +295,13 @@ export const RegisterForm = () => {
                                     </FormControl>
                                     <div className="space-y-0.5">
                                         <div className="text-xs font-medium text-slate-200 flex items-center gap-1.5">
-                                            <span>Feliratkozom a BacklineIT heti hírlevelére</span>
+                                            <span>{t("newsletter_label")}</span>
                                             <span className="text-[10px] bg-cyan-400/15 text-cyan-300 font-semibold px-1.5 py-0.2 rounded border border-cyan-400/20">
-                                                Ajánlott
+                                                {t("newsletter_badge")}
                                             </span>
                                         </div>
                                         <p className="text-[11px] text-slate-400 leading-tight">
-                                            Heti 1 szakmai összefoglaló IT trendekről és gyakorlati automatizációs tippekről. Bármikor leiratkozhatsz.
+                                            {t("newsletter_desc")}
                                         </p>
                                     </div>
                                 </div>
@@ -306,11 +319,11 @@ export const RegisterForm = () => {
                     {isPending ? (
                         <>
                             <Loader2 className="h-4 w-4 animate-spin text-black" />
-                            <span>Fiók létrehozása...</span>
+                            <span>{t("processing")}</span>
                         </>
                     ) : (
                         <>
-                            <span>Fiók létrehozása</span>
+                            <span>{t("submit")}</span>
                             <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                         </>
                     )}

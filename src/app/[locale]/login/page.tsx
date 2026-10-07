@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/routing"
 import { LoginForm } from "@/components/auth/login-form"
 import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { routing } from '@/i18n/routing'
 import { Metadata } from 'next'
 import {
@@ -12,13 +13,18 @@ import {
     Server,
 } from "lucide-react"
 
-export const metadata: Metadata = {
-    title: 'Bejelentkezés | BacklineIT Ügyfélportál',
-    description: 'Jelentkezz be a BacklineIT ügyfélrendszerébe és kezeld IT projektjeidet, feladataidat és hibajegyeidet egy helyen.',
-    robots: {
-        index: false,
-        follow: false,
-    },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Auth.Login' });
+
+    return {
+        title: t('meta_title'),
+        description: t('meta_description'),
+        robots: {
+            index: false,
+            follow: false,
+        },
+    };
 }
 
 export function generateStaticParams() {
@@ -26,6 +32,9 @@ export function generateStaticParams() {
 }
 
 export default function LoginPage() {
+    const tPortal = useTranslations("Auth.Portal");
+    const tLogin = useTranslations("Auth.Login");
+
     return (
         <div className="min-h-[calc(100vh-80px)] flex items-center justify-center py-12 px-4 sm:px-6 relative z-10">
             {/* Ambient background glows */}
@@ -39,19 +48,19 @@ export default function LoginPage() {
                     {/* Eyebrow badge */}
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-xs font-semibold uppercase tracking-widest">
                         <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-                        BacklineIT Ügyfélportál
+                        {tPortal("badge")}
                     </div>
 
                     {/* Headline */}
                     <div className="space-y-3">
                         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-[1.15]">
-                            Üdvözlünk újra a{" "}
+                            {tPortal("login_headline_start")}
                             <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500 bg-clip-text text-transparent">
-                                rendszerünkben!
+                                {tPortal("login_headline_gradient")}
                             </span>
                         </h1>
                         <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-                            Lépj be fiókodba a folyamatban lévő fejlesztési projektek, hibajegyek és automatizációs kimutatások eléréséhez.
+                            {tPortal("login_desc")}
                         </p>
                     </div>
 
@@ -62,9 +71,9 @@ export default function LoginPage() {
                                 <BarChart3 className="h-4 w-4" />
                             </div>
                             <div>
-                                <h3 className="text-sm font-bold text-white">Azonnali Projekt Dashboard</h3>
+                                <h3 className="text-sm font-bold text-white">{tPortal("login_benefit1_title")}</h3>
                                 <p className="text-xs text-slate-400 mt-0.5">
-                                    Kövesd nyomon mérföldköveidet, készültségi fokodat és az élesítéseket.
+                                    {tPortal("login_benefit1_desc")}
                                 </p>
                             </div>
                         </div>
@@ -74,9 +83,9 @@ export default function LoginPage() {
                                 <Ticket className="h-4 w-4" />
                             </div>
                             <div>
-                                <h3 className="text-sm font-bold text-white">Kiemelt Ügyféltámogatás</h3>
+                                <h3 className="text-sm font-bold text-white">{tPortal("login_benefit2_title")}</h3>
                                 <p className="text-xs text-slate-400 mt-0.5">
-                                    Nyiss hibajegyet vagy kérj új fejlesztést dedikált SLA válaszidővel.
+                                    {tPortal("login_benefit2_desc")}
                                 </p>
                             </div>
                         </div>
@@ -86,9 +95,9 @@ export default function LoginPage() {
                                 <Zap className="h-4 w-4" />
                             </div>
                             <div>
-                                <h3 className="text-sm font-bold text-white">Automatizáció & Rendszerek</h3>
+                                <h3 className="text-sm font-bold text-white">{tPortal("login_benefit3_title")}</h3>
                                 <p className="text-xs text-slate-400 mt-0.5">
-                                    Közvetlen hozzáférés folyamataidhoz, webhookjaidhoz és szervereidhez.
+                                    {tPortal("login_benefit3_desc")}
                                 </p>
                             </div>
                         </div>
@@ -98,17 +107,17 @@ export default function LoginPage() {
                     <div className="pt-3 border-t border-white/10 flex flex-wrap items-center gap-y-2 gap-x-4 text-xs text-slate-400">
                         <div className="flex items-center gap-1.5">
                             <Lock className="h-3.5 w-3.5 text-cyan-400" />
-                            <span>256-bit SSL</span>
+                            <span>{tPortal("ssl")}</span>
                         </div>
                         <div className="h-1 w-1 rounded-full bg-slate-600" />
                         <div className="flex items-center gap-1.5">
                             <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-                            <span>GDPR Kompatibilis</span>
+                            <span>{tPortal("gdpr")}</span>
                         </div>
                         <div className="h-1 w-1 rounded-full bg-slate-600" />
                         <div className="flex items-center gap-1.5">
                             <Server className="h-3.5 w-3.5 text-blue-400" />
-                            <span>99.9% Uptime</span>
+                            <span>{tPortal("uptime")}</span>
                         </div>
                     </div>
                 </div>
@@ -122,10 +131,10 @@ export default function LoginPage() {
                         {/* Card Header */}
                         <div className="mb-6 space-y-1.5 text-left">
                             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                                Bejelentkezés
+                                {tLogin("title")}
                             </h2>
                             <p className="text-sm text-slate-400">
-                                Add meg adataidat az ügyfélfiókod eléréséhez.
+                                {tLogin("subtitle")}
                             </p>
                         </div>
 
@@ -134,12 +143,12 @@ export default function LoginPage() {
 
                         {/* Footer link to Register */}
                         <div className="mt-6 pt-5 border-t border-white/10 text-center text-sm text-slate-400">
-                            Nincs még ügyfélfiókod?{" "}
+                            {tLogin("no_account")}{" "}
                             <Link
                                 href="/register"
                                 className="font-semibold text-cyan-400 hover:text-cyan-300 underline underline-offset-4 transition-colors"
                             >
-                                Regisztráció &rarr;
+                                {tLogin("register_link")}
                             </Link>
                         </div>
                     </div>

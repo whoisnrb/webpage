@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/routing"
 import { RegisterForm } from "@/components/auth/register-form"
 import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { routing } from '@/i18n/routing'
 import { Metadata } from 'next'
 import {
@@ -8,20 +9,22 @@ import {
     Lock,
     Zap,
     Ticket,
-    CheckCircle2,
     BarChart3,
-    Sparkles,
-    ArrowRight,
     Server,
 } from "lucide-react"
 
-export const metadata: Metadata = {
-    title: 'Regisztráció | BacklineIT Ügyfélportál',
-    description: 'Hozz létre ingyenes fiókot a BacklineIT ügyfélrendszerében és kövesd nyomon projektjeidet valós időben.',
-    robots: {
-        index: false,
-        follow: false,
-    },
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'Auth.Register' });
+
+    return {
+        title: t('meta_title'),
+        description: t('meta_description'),
+        robots: {
+            index: false,
+            follow: false,
+        },
+    };
 }
 
 export function generateStaticParams() {
@@ -29,6 +32,9 @@ export function generateStaticParams() {
 }
 
 export default function RegisterPage() {
+    const tPortal = useTranslations("Auth.Portal");
+    const tRegister = useTranslations("Auth.Register");
+
     return (
         <div className="min-h-[calc(100vh-80px)] flex items-center justify-center py-12 px-4 sm:px-6 relative z-10">
             {/* Ambient background glows */}
@@ -42,19 +48,19 @@ export default function RegisterPage() {
                     {/* Eyebrow badge */}
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-xs font-semibold uppercase tracking-widest">
                         <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-                        BacklineIT Ügyfélportál
+                        {tPortal("badge")}
                     </div>
 
                     {/* Headline */}
                     <div className="space-y-3">
                         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-[1.15]">
-                            Minden IT folyamatod{" "}
+                            {tPortal("register_headline_start")}
                             <span className="bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500 bg-clip-text text-transparent">
-                                egyetlen kézben.
+                                {tPortal("register_headline_gradient")}
                             </span>
                         </h1>
                         <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-                            Hozz létre fiókot, kövesd nyomon projektjeidet percrekészen, és kommunikálj közvetlenül dedikált mérnökcsapatunkkal.
+                            {tPortal("register_desc")}
                         </p>
                     </div>
 
@@ -65,9 +71,9 @@ export default function RegisterPage() {
                                 <BarChart3 className="h-4 w-4" />
                             </div>
                             <div>
-                                <h3 className="text-sm font-bold text-white">Valós idejű projektkövetés</h3>
+                                <h3 className="text-sm font-bold text-white">{tPortal("register_benefit1_title")}</h3>
                                 <p className="text-xs text-slate-400 mt-0.5">
-                                    Lásd a mérföldköveket, feladatokat és készültségi fokot transzparensen.
+                                    {tPortal("register_benefit1_desc")}
                                 </p>
                             </div>
                         </div>
@@ -77,9 +83,9 @@ export default function RegisterPage() {
                                 <Ticket className="h-4 w-4" />
                             </div>
                             <div>
-                                <h3 className="text-sm font-bold text-white">Kiemelt Ügyféltámogatás</h3>
+                                <h3 className="text-sm font-bold text-white">{tPortal("register_benefit2_title")}</h3>
                                 <p className="text-xs text-slate-400 mt-0.5">
-                                    Integrált ticketing rendszer gyors, SLA-garantált válaszidővel.
+                                    {tPortal("register_benefit2_desc")}
                                 </p>
                             </div>
                         </div>
@@ -89,9 +95,9 @@ export default function RegisterPage() {
                                 <Zap className="h-4 w-4" />
                             </div>
                             <div>
-                                <h3 className="text-sm font-bold text-white">Automatizáció & Rendszerek</h3>
+                                <h3 className="text-sm font-bold text-white">{tPortal("register_benefit3_title")}</h3>
                                 <p className="text-xs text-slate-400 mt-0.5">
-                                    Hozzáférés folyamataidhoz, n8n webhookokhoz és dokumentációkhoz.
+                                    {tPortal("register_benefit3_desc")}
                                 </p>
                             </div>
                         </div>
@@ -101,17 +107,17 @@ export default function RegisterPage() {
                     <div className="pt-3 border-t border-white/10 flex flex-wrap items-center gap-y-2 gap-x-4 text-xs text-slate-400">
                         <div className="flex items-center gap-1.5">
                             <Lock className="h-3.5 w-3.5 text-cyan-400" />
-                            <span>256-bit SSL</span>
+                            <span>{tPortal("ssl")}</span>
                         </div>
                         <div className="h-1 w-1 rounded-full bg-slate-600" />
                         <div className="flex items-center gap-1.5">
                             <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-                            <span>GDPR Kompatibilis</span>
+                            <span>{tPortal("gdpr")}</span>
                         </div>
                         <div className="h-1 w-1 rounded-full bg-slate-600" />
                         <div className="flex items-center gap-1.5">
                             <Server className="h-3.5 w-3.5 text-blue-400" />
-                            <span>99.9% Uptime</span>
+                            <span>{tPortal("uptime")}</span>
                         </div>
                     </div>
                 </div>
@@ -125,10 +131,10 @@ export default function RegisterPage() {
                         {/* Card Header */}
                         <div className="mb-6 space-y-1.5 text-left">
                             <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                                Regisztráció
+                                {tRegister("title")}
                             </h2>
                             <p className="text-sm text-slate-400">
-                                Hozz létre új fiókot néhány egyszerű lépésben.
+                                {tRegister("subtitle")}
                             </p>
                         </div>
 
@@ -137,12 +143,12 @@ export default function RegisterPage() {
 
                         {/* Footer link to Login */}
                         <div className="mt-6 pt-5 border-t border-white/10 text-center text-sm text-slate-400">
-                            Már van ügyfélfiókod?{" "}
+                            {tRegister("has_account")}{" "}
                             <Link
                                 href="/login"
                                 className="font-semibold text-cyan-400 hover:text-cyan-300 underline underline-offset-4 transition-colors"
                             >
-                                Bejelentkezés &rarr;
+                                {tRegister("login_link")}
                             </Link>
                         </div>
                     </div>

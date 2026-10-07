@@ -205,7 +205,7 @@ export function MegaMenu() {
                                 <div className="p-6 md:p-7 flex flex-col justify-between">
                                     <div className="space-y-4">
                                         <div className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400/80 cursor-default px-2">
-                                            Kész IT Megoldások & Csomagok
+                                            {t("products_heading")}
                                         </div>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                             <NavigationMenuLink asChild>
@@ -222,7 +222,7 @@ export function MegaMenu() {
                                                             <span className="text-[8px] bg-cyan-500/20 text-cyan-300 font-extrabold px-1.5 py-0.2 rounded-full uppercase">Hot</span>
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            n8n és Python automatizációk, webhookok és adatkinyerő scriptek.
+                                                            {t("scripts_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -241,7 +241,7 @@ export function MegaMenu() {
                                                             {t("web")}
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            Modern Next.js weboldal sablonok, portálok és digitális felületek.
+                                                            {t("web_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -260,7 +260,7 @@ export function MegaMenu() {
                                                             {t("plugins")}
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            Egyedi integrációs bővítmények, számlázó és CRM csatolók.
+                                                            {t("plugins_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -279,7 +279,7 @@ export function MegaMenu() {
                                                             {t("all_products")}
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            Böngészd át az összes elérhető megoldást és szolgáltatáscsomagot.
+                                                            {t("all_products_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -289,9 +289,9 @@ export function MegaMenu() {
 
                                     {/* Alsó link */}
                                     <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                                        <span className="text-white/40">Egyedi rendszerre van szükséged?</span>
+                                        <span className="text-white/40">{t("products_custom_prompt")}</span>
                                         <Link href="/demo" className="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 group">
-                                            <span>Kérj ingyenes felmérést</span>
+                                            <span>{t("products_custom_cta")}</span>
                                             <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </div>
@@ -302,17 +302,17 @@ export function MegaMenu() {
                                     <div className="space-y-3">
                                         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-cyan-400/15 border border-cyan-400/30 text-cyan-300 text-[10px] font-black uppercase tracking-wider">
                                             <Sparkles className="h-3 w-3 text-cyan-400" />
-                                            Kiemelt Megoldás
+                                            {t("spotlight_solution_badge")}
                                         </div>
                                         <h4 className="text-sm font-extrabold text-white leading-snug">
-                                            n8n Számlázz.hu & CRM Automatizáció
+                                            {t("spotlight_solution_title")}
                                         </h4>
                                         <p className="text-[12px] text-white/60 leading-relaxed">
-                                            Automatikus számlakiállítás, banki párosítás és CRM státuszfrissítés emberi beavatkozás nélkül.
+                                            {t("spotlight_solution_desc")}
                                         </p>
                                         <div className="p-2.5 rounded-lg bg-[#040812]/70 border border-white/5 text-[11px] text-slate-300 flex items-center gap-2">
                                             <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-                                            <span>Akár 80%-kal kevesebb adminisztráció</span>
+                                            <span>{t("spotlight_solution_stat")}</span>
                                         </div>
                                     </div>
 
@@ -320,7 +320,7 @@ export function MegaMenu() {
                                         href="/megoldasok"
                                         className="mt-4 w-full py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-sm group"
                                     >
-                                        <span>Részletek megtekintése</span>
+                                        <span>{t("spotlight_solution_cta")}</span>
                                         <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                 </div>
@@ -352,7 +352,7 @@ export function MegaMenu() {
                                 <div className="p-6 md:p-7 flex flex-col justify-between">
                                     <div className="space-y-4">
                                         <div className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400/80 cursor-default px-2">
-                                            Szakmai Tudásbázis & Eredmények
+                                            {t("knowledge_heading")}
                                         </div>
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                             <NavigationMenuLink asChild>
@@ -366,10 +366,10 @@ export function MegaMenu() {
                                                     <div className="space-y-0.5">
                                                         <div className="text-xs font-bold text-white group-hover:text-cyan-400 transition-colors flex items-center gap-1.5">
                                                             <span>{t("references")}</span>
-                                                            <span className="text-[8px] bg-emerald-500/20 text-emerald-300 font-extrabold px-1.5 py-0.2 rounded-full uppercase">Esettanulmányok</span>
+                                                            <span className="text-[8px] bg-emerald-500/20 text-emerald-300 font-extrabold px-1.5 py-0.2 rounded-full uppercase">{t("knowledge_badge_cases")}</span>
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            Valós sikertörténetek és konkrét üzleti eredmények partnereinktől.
+                                                            {t("references_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -388,7 +388,7 @@ export function MegaMenu() {
                                                             {t("blog")}
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            Gyakorlati IT útmutatók, automatizáció és felhő infrastruktúra cikkek.
+                                                            {t("blog_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -408,7 +408,7 @@ export function MegaMenu() {
                                                             <span className="text-[8px] bg-amber-500/20 text-amber-300 font-extrabold px-1.5 py-0.2 rounded-full uppercase">5.0 ★</span>
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            Mit mondanak rólunk korábbi és aktív ügyfeleink?
+                                                            {t("reviews_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -427,7 +427,7 @@ export function MegaMenu() {
                                                             {t("prices")}
                                                         </div>
                                                         <p className="text-[11px] text-white/50 group-hover:text-white/80 line-clamp-2 leading-snug">
-                                                            Átlátható csomagok és havidíjak rejtett költségek nélkül.
+                                                            {t("prices_desc")}
                                                         </p>
                                                     </div>
                                                 </Link>
@@ -437,9 +437,9 @@ export function MegaMenu() {
 
                                     {/* Alsó sáv */}
                                     <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
-                                        <span className="text-white/40">Kérdésed maradt a részletekről?</span>
+                                        <span className="text-white/40">{t("knowledge_custom_prompt")}</span>
                                         <Link href="/kapcsolat" className="text-cyan-400 hover:text-cyan-300 font-bold flex items-center gap-1 group">
-                                            <span>Lépj velünk kapcsolatba</span>
+                                            <span>{t("knowledge_custom_cta")}</span>
                                             <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </div>
@@ -450,17 +450,17 @@ export function MegaMenu() {
                                     <div className="space-y-3">
                                         <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-400/15 border border-blue-400/30 text-blue-300 text-[10px] font-black uppercase tracking-wider">
                                             <Sparkles className="h-3 w-3 text-cyan-400" />
-                                            Kiemelt Sikersztori
+                                            {t("spotlight_story_badge")}
                                         </div>
                                         <h4 className="text-sm font-extrabold text-white leading-snug">
-                                            4x-es rendelésfeldolgozási sebesség elérése
+                                            {t("spotlight_story_title")}
                                         </h4>
                                         <p className="text-[12px] text-white/60 leading-relaxed">
-                                            Hogyan modernizáltuk partnerünk webshop és vállalatirányítási folyamatait felhő architektúrával?
+                                            {t("spotlight_story_desc")}
                                         </p>
                                         <div className="p-2.5 rounded-lg bg-[#040812]/70 border border-white/5 text-[11px] text-slate-300 flex items-center gap-2">
                                             <span className="h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-                                            <span>99.99% Uptime &bull; -70% hibázás</span>
+                                            <span>{t("spotlight_story_stat")}</span>
                                         </div>
                                     </div>
 
@@ -468,7 +468,7 @@ export function MegaMenu() {
                                         href="/referenciak"
                                         className="mt-4 w-full py-2.5 px-3.5 rounded-xl bg-gradient-to-r from-blue-500/20 to-cyan-500/20 hover:from-blue-500/30 hover:to-cyan-500/30 border border-cyan-500/30 text-cyan-300 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-sm group"
                                     >
-                                        <span>Esettanulmány elolvasása</span>
+                                        <span>{t("spotlight_story_cta")}</span>
                                         <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                 </div>
