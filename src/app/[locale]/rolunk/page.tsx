@@ -341,9 +341,9 @@ export default function RolunkPage() {
                             {t('team_subtitle')}
                         </p>
                     </SlideUp>
-                    <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
+                    <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
                         {team.map((member, i) => (
-                            <ScaleIn key={i} delay={i * 0.1} className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(20%-1.2rem)] flex">
+                            <ScaleIn key={i} delay={i * 0.1} className="w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex">
                                 <div className="relative bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl hover:bg-white/[0.08] transition-all duration-300 h-full w-full flex flex-col group overflow-hidden">
                                     {/* Top gradient accent */}
                                     <div className="h-1 w-full bg-gradient-to-r from-primary via-cyan-400 to-primary opacity-60 group-hover:opacity-100 transition-opacity" />
