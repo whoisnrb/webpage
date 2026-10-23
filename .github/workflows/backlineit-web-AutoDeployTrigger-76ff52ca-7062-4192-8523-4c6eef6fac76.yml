@@ -6,9 +6,6 @@ on:
   push:
     branches: 
       [ main ]
-    paths:
-    - '**'
-    - '.github/workflows/backlineit-web-AutoDeployTrigger-76ff52ca-7062-4192-8523-4c6eef6fac76.yml'
 
   # Allow manual trigger 
   workflow_dispatch:      
@@ -17,12 +14,12 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions: 
-      id-token: write #This is required for requesting the OIDC JWT Token
-      contents: read #Required when GH token is used to authenticate with private repo
+      id-token: write # This is required for requesting the OIDC JWT Token
+      contents: read # Required when GH token is used to authenticate with private repo
 
     steps:
       - name: Checkout to the branch
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Azure Login
         uses: azure/login@v2
@@ -34,16 +31,11 @@ jobs:
       - name: Build and push container image to registry
         uses: azure/container-apps-deploy-action@v2
         with:
-          appSourcePath: ${{ github.workspace }}Dockerfile
-          _dockerfilePathKey_: _dockerfilePath_
-          _targetLabelKey_: _targetLabel_
+          appSourcePath: ${{ github.workspace }}
+          dockerfilePath: Dockerfile
           registryUrl: backlineitcr.azurecr.io
           registryUsername: ${{ secrets.BACKLINEITWEB_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.BACKLINEITWEB_REGISTRY_PASSWORD }}
           containerAppName: backlineit-web
           resourceGroup: backlineit-rg
           imageToBuild: backlineitcr.azurecr.io/backlineit-web:${{ github.sha }}
-          _buildArgumentsKey_: |
-            _buildArgumentsValues_
-
-
