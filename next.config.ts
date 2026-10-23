@@ -27,6 +27,13 @@ const nextConfig: NextConfig = {
       { source: '/lp/:slug', destination: '/', permanent: true },
       { source: '/hu/lp/:slug', destination: '/', permanent: true },
       { source: '/en/lp/:slug', destination: '/en', permanent: true },
+      // Redirects for legacy /termekek URLs to /megoldasok
+      { source: '/termekek', destination: '/megoldasok', permanent: true },
+      { source: '/hu/termekek', destination: '/megoldasok', permanent: true },
+      { source: '/en/termekek', destination: '/en/solutions', permanent: true },
+      { source: '/termekek/:slug', destination: '/megoldasok/:slug', permanent: true },
+      { source: '/hu/termekek/:slug', destination: '/megoldasok/:slug', permanent: true },
+      { source: '/en/termekek/:slug', destination: '/en/solutions/:slug', permanent: true },
 
       { source: '/en/rolunk', destination: '/en/about-us', permanent: true },
       { source: '/en/referenciak', destination: '/en/references', permanent: true },

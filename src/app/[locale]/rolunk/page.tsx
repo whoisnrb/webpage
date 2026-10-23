@@ -1,7 +1,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp, Linkedin, Cpu, ShieldCheck, Sparkles, CheckCircle2 } from "lucide-react"
+import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp, Linkedin, Megaphone, Cpu, ShieldCheck, Sparkles, CheckCircle2 } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
 import { useTranslations } from "next-intl"
@@ -73,6 +73,12 @@ const aboutJsonLd = {
                 "jobTitle": "Business Development & Automation Specialist",
                 "image": "https://backlineit.hu/images/team/roha-levente.webp",
                 "sameAs": "https://www.linkedin.com/in/levente-roha-98091a433/"
+            },
+            {
+                "@type": "Person",
+                "name": "Szabó Ábel",
+                "jobTitle": "Marketing Manager",
+                "image": "https://backlineit.hu/images/team/szabo-abel.webp"
             }
         ]
     }
@@ -112,6 +118,13 @@ export default function RolunkPage() {
             image: "/images/team/roha-levente.webp",
             icon: TrendingUp,
             linkedin: "https://www.linkedin.com/in/levente-roha-98091a433/",
+        },
+        {
+            name: t('team_members.abel.name'),
+            role: t('team_members.abel.role'),
+            bio: t('team_members.abel.bio'),
+            image: "/images/team/szabo-abel.webp",
+            icon: Megaphone,
         }
     ]
 
@@ -328,10 +341,10 @@ export default function RolunkPage() {
                             {t('team_subtitle')}
                         </p>
                     </SlideUp>
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                    <div className="flex flex-wrap justify-center gap-6 max-w-7xl mx-auto">
                         {team.map((member, i) => (
-                            <ScaleIn key={i} delay={i * 0.1}>
-                                <div className="relative bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl hover:bg-white/[0.08] transition-all duration-300 h-full flex flex-col group overflow-hidden">
+                            <ScaleIn key={i} delay={i * 0.1} className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(20%-1.2rem)] flex">
+                                <div className="relative bg-white/5 border border-white/10 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl hover:bg-white/[0.08] transition-all duration-300 h-full w-full flex flex-col group overflow-hidden">
                                     {/* Top gradient accent */}
                                     <div className="h-1 w-full bg-gradient-to-r from-primary via-cyan-400 to-primary opacity-60 group-hover:opacity-100 transition-opacity" />
                                     
