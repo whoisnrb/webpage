@@ -8,6 +8,8 @@ const transporter = nodemailer.createTransport({
     },
 });
 
+const defaultSenderEmail = process.env.EMAIL_FROM || process.env.GMAIL_USER || "noreply@backlineit.hu";
+
 export const sendVerificationEmail = async (email: string, token: string) => {
     console.log(`[MAIL] Attempting to send verification email to: ${email}`);
 
@@ -18,7 +20,7 @@ export const sendVerificationEmail = async (email: string, token: string) => {
     }
 
     const mailOptions = {
-        from: `"BacklineIT Team" <${process.env.GMAIL_USER}>`,
+        from: `"BacklineIT Team" <${defaultSenderEmail}>`,
         to: email,
         subject: "Fiók megerősítése - BacklineIT",
         html: `
@@ -61,7 +63,7 @@ export const sendAdminInquiryNotification = async (inquiry: any) => {
     });
 
     const mailOptions = {
-        from: `"BacklineIT Admin" <${process.env.GMAIL_USER}>`,
+        from: `"BacklineIT Admin" <${defaultSenderEmail}>`,
         to: adminEmail,
         subject: `[Megkeresések] Új szolgáltatás árajánlatkérés: ${inquiry.name} (${inquiry.serviceType})`,
         html: `
@@ -211,7 +213,7 @@ export const sendPaymentLinkEmail = async (email: string, name: string, serviceT
     if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) return;
 
     const mailOptions = {
-        from: `"BacklineIT Team" <${process.env.GMAIL_USER}>`,
+        from: `"BacklineIT Team" <${defaultSenderEmail}>`,
         to: email,
         subject: `Fizetési hivatkozás: ${serviceType} - BacklineIT`,
         html: `
@@ -253,7 +255,7 @@ export const sendAccountCreatedEmail = async (email: string, name: string, gener
     if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) return;
 
     const mailOptions = {
-        from: `"BacklineIT Team" <${process.env.GMAIL_USER}>`,
+        from: `"BacklineIT Team" <${defaultSenderEmail}>`,
         to: email,
         subject: `Sikeres megrendelés és fiók létrehozása - BacklineIT`,
         html: `
@@ -315,7 +317,7 @@ export const sendStatusUpdateEmail = async (email: string, name: string, project
         : `A(z) <strong>${projectName}</strong> projekted új fázisba lépett.`;
 
     const mailOptions = {
-        from: `"BacklineIT Team" <${process.env.GMAIL_USER}>`,
+        from: `"BacklineIT Team" <${defaultSenderEmail}>`,
         to: email,
         subject: isCompleted ? `A projekted elkészült! 🎉 - BacklineIT` : `Projekt állapotfrissítés: ${friendlyStatus} - BacklineIT`,
         html: `
@@ -391,7 +393,7 @@ export const sendSalesMeetingNotification = async (toEmail: string, meetingDetai
     });
 
     const mailOptions = {
-        from: `"BacklineIT Sales" <${process.env.GMAIL_USER}>`,
+        from: `"BacklineIT Sales" <${defaultSenderEmail}>`,
         to: toEmail,
         subject: `Új Értékesítési Meeting: ${clientName} - ${formattedDate}`,
         html: `
