@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const defaultSenderEmail = process.env.EMAIL_FROM || process.env.GMAIL_USER || "noreply@backlineit.hu";
+const defaultSenderEmail = process.env.EMAIL_FROM || "noreply@backlineit.hu";
 
 export const sendVerificationEmail = async (email: string, token: string) => {
     console.log(`[MAIL] Attempting to send verification email to: ${email}`);

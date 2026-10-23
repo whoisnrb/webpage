@@ -309,7 +309,7 @@ export async function sendNewsletterCampaign(params: {
     try {
         const { campaignId, subject, previewText, content, ctaText, ctaUrl, testEmail } = params;
         const transporter = getEmailTransporter();
-        const senderEmail = process.env.EMAIL_FROM || process.env.GMAIL_USER || "noreply@backlineit.hu";
+        const senderEmail = process.env.EMAIL_FROM || "noreply@backlineit.hu";
         const fromAddress = `"BacklineIT" <${senderEmail}>`;
 
         // Case 1: Test Email
@@ -326,6 +326,7 @@ export async function sendNewsletterCampaign(params: {
 
             await transporter.sendMail({
                 from: fromAddress,
+                replyTo: senderEmail,
                 to: normalizedTestEmail,
                 subject: `[TESZT] ${subject}`,
                 html,
@@ -367,6 +368,7 @@ export async function sendNewsletterCampaign(params: {
 
                 await transporter.sendMail({
                     from: fromAddress,
+                    replyTo: senderEmail,
                     to: sub.email,
                     subject,
                     html,

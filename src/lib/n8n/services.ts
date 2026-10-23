@@ -80,7 +80,7 @@ export async function sendEmail(to: string, subject: string, html: string) {
     try {
         const transporter = getTransporter();
         await transporter.sendMail({
-            from: `"BacklineIT" <${process.env.EMAIL_FROM || process.env.GMAIL_USER || "noreply@backlineit.hu"}>`,
+            from: `"BacklineIT" <${process.env.EMAIL_FROM || "noreply@backlineit.hu"}>`,
             to,
             subject,
             html,
