@@ -48,5 +48,12 @@ tsc_output.txt
 duplicates_report.txt
 tail_*.txt
 verify-*.js
+deploy-env-to-azure.ps1
+azure-env-variables.json
+compare-env.js
+merge-env.js
 test-*.js
 .vercel
+
+azure-env-variables.json
+.env*
