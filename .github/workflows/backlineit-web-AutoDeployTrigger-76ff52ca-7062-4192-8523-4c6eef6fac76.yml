@@ -14,8 +14,29 @@ jobs:
       contents: read
 
     steps:
-      - name: Checkout to the branch
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js application
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+          NODE_ENV: production
+          DATABASE_URL: "postgresql://build:build@localhost:5432/build"
+          DIRECT_URL: "postgresql://build:build@localhost:5432/build"
+          NEXTAUTH_SECRET: "build_secret_must_be_at_least_32_characters_long_for_auth"
+          NEXTAUTH_URL: "https://backlineit.hu"
+        run: |
+          npx prisma generate
+          npm run build
 
       - name: Azure Login
         uses: azure/login@v2
