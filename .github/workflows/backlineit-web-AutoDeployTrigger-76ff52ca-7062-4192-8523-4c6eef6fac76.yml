@@ -34,6 +34,9 @@ jobs:
           DIRECT_URL: "postgresql://build:build@localhost:5432/build"
           NEXTAUTH_SECRET: "build_secret_must_be_at_least_32_characters_long_for_auth"
           NEXTAUTH_URL: "https://backlineit.hu"
+          NEXT_PUBLIC_APP_URL: "https://backlineit.hu"
+          STRIPE_SECRET_KEY: "sk_test_build_placeholder"
+          STRIPE_WEBHOOK_SECRET: "whsec_build_placeholder"
         run: |
           npx prisma generate
           npm run build
