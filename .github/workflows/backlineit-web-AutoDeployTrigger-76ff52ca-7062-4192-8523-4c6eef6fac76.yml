@@ -58,8 +58,18 @@ jobs:
           docker push backlineitcr.azurecr.io/backlineit-web:${{ github.sha }}
           docker push backlineitcr.azurecr.io/backlineit-web:latest
 
-      - name: Deploy to Azure Container App
+      - name: Configure Container App Registry and Deploy
         run: |
+          ACR_USERNAME=$(az acr credential show --name backlineitcr --query username -o tsv)
+          ACR_PASSWORD=$(az acr credential show --name backlineitcr --query "passwords[0].value" -o tsv)
+
+          az containerapp registry set \
+            --name backlineit-web \
+            --resource-group backlineit-rg \
+            --server backlineitcr.azurecr.io \
+            --username "$ACR_USERNAME" \
+            --password "$ACR_PASSWORD"
+
           az containerapp update \
             --name backlineit-web \
             --resource-group backlineit-rg \
