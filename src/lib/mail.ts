@@ -489,3 +489,127 @@ export const sendSalesMeetingNotification = async (toEmail: string, meetingDetai
         console.error("[MAIL] Error sending sales meeting notification:", error);
     }
 };
+
+export const sendAbelOutreachEmail = async (params: {
+    to: string;
+    clientName?: string;
+    companyName?: string;
+    customIntro?: string;
+    subject?: string;
+}) => {
+    const { to, clientName, companyName, customIntro, subject } = params;
+
+    const emailSubject = subject || `${companyName ? `${companyName} – ` : ''}Weboldal hatékonyság & automatizáció | Backline IT`;
+    const greeting = clientName ? `Kedves ${clientName}!` : 'Tisztelt Cégvezetés!';
+
+    const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #1e293b; background-color: #f8fafc; margin: 0; padding: 20px; }
+  .container { max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+  .header { background: linear-gradient(135deg, #0f172a, #1e293b); padding: 24px 30px; color: #ffffff; }
+  .header h2 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .header span { font-size: 11px; color: #38bdf8; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; display: block; margin-top: 4px; }
+  .content { padding: 30px; font-size: 15px; color: #334155; }
+  .intro { font-size: 15px; margin-bottom: 20px; line-height: 1.6; }
+  .box { background: #f0f9ff; border: 1.5px solid #bae6fd; border-radius: 10px; padding: 18px 20px; margin: 24px 0; }
+  .box-title { font-weight: 800; font-size: 13px; color: #0284c7; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+  .point { margin-bottom: 12px; }
+  .point-title { font-weight: 700; color: #0f172a; display: block; }
+  .cta-btn { display: inline-block; background: #2563eb; color: #ffffff !important; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 15px; margin: 20px 0; box-shadow: 0 4px 10px rgba(37,99,235,0.25); text-align: center; }
+  .signature { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 14px; color: #475569; }
+  .signature strong { color: #0f172a; font-size: 15px; display: block; }
+  .footer { background: #f8fafc; padding: 16px 30px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #e2e8f0; }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Backline IT</h2>
+      <span>Digital & Automation Agency • Microsoft for Startups Partner</span>
+    </div>
+    <div class="content">
+      <p class="intro"><strong>${greeting}</strong></p>
+      
+      ${customIntro ? `
+      <p style="background: #f8fafc; border-left: 3px solid #2563eb; padding: 10px 14px; font-style: italic; color: #1e293b; margin-bottom: 20px;">
+        ${customIntro}
+      </p>
+      ` : `
+      <p class="intro">
+        A ${companyName ? `<strong>${companyName}</strong>` : 'vállalkozásuk'} online jelenlétét vizsgálva közvetlenül keresem Önöket. A Backline IT-nál növekedésben lévő hazai KKV-knak segítünk villámgyors Next.js weboldalakkal és n8n folyamatautomatizációval csökkenteni a kézi adminisztrációt és a kieső vevők számát.
+      </p>
+      `}
+
+      <div class="box">
+        <div class="box-title">Miért érdemes velünk dolgozni?</div>
+        
+        <div class="point">
+          <span class="point-title">⭐ Nemzetközileg elismert szakmai háttér:</span>
+          Büszkék vagyunk rá, hogy a <strong>Microsoft által hivatalosan elismert és támogatott startup vagyunk</strong>, ami garantálja a modern technológiai hátteret, a maximális stabilitást és a magas minőséget.
+        </div>
+
+        <div class="point">
+          <span class="point-title">💰 Áfamentes számlázás (AAM):</span>
+          Szolgáltatásainkról alanyi adómentes számlát állítunk ki, így a munkadíjunkat <strong>nem terheli +27%-os áfa</strong> – ez jelentős, azonnali költségelőnyt jelent az Önök számára.
+        </div>
+
+        <div class="point">
+          <span class="point-title">🚀 Működő referenciáink:</span>
+          Korábbi munkáinkat és interaktív esettanulmányainkat közvetlenül megtekinthetik itt:<br>
+          👉 <a href="https://backlineit.hu/referenciak" style="color: #2563eb; font-weight: 700; text-decoration: underline;">https://backlineit.hu/referenciak</a>
+        </div>
+      </div>
+
+      <p>
+        Minden egyedi fejlesztésünkre <strong>90 napos díjmentes hibajavítási garanciát</strong> vállalunk, és soha nem kérjük el előre a projekt 100%-át (fair, mérföldköves fizetéssel dolgozunk).
+      </p>
+
+      <p>
+        Szívesen felajánlok Önnek egy <strong>30 perces, kötetlen és díjmentes online szakmai konzultációt</strong>, ahol átvilágítjuk a jelenlegi rendszereiket és konkrét megtakarítási lehetőségeket mutatunk be.
+      </p>
+
+      <div style="text-align: center;">
+        <a href="https://backlineit.hu/demo" class="cta-btn">Időpontfoglalás a 30 perces konzultációra</a>
+      </div>
+
+      <p style="font-size: 14px; color: #64748b; text-align: center;">
+        Alkalmas lenne Önnek egy rövid, 15-20 perces egyeztetés a héten?
+      </p>
+
+      <div class="signature">
+        <strong>Szabó Ábel</strong>
+        Business Development Specialist | Backline IT<br>
+        E-mail: <a href="mailto:szabo.abel@backlineit.hu" style="color: #2563eb;">szabo.abel@backlineit.hu</a><br>
+        Web: <a href="https://backlineit.hu" style="color: #2563eb;">https://backlineit.hu</a>
+      </div>
+    </div>
+    <div class="footer">
+      Backline IT • Microsoft for Startups elismert partner • Minden jog fenntartva.
+    </div>
+  </div>
+</body>
+</html>
+    `;
+
+    const mailOptions = {
+        from: `"Szabó Ábel | Backline IT" <noreply@backlineit.hu>`,
+        replyTo: "szabo.abel@backlineit.hu",
+        to,
+        bcc: "szabo.abel@backlineit.hu, whoisnrb@gmail.com",
+        subject: emailSubject,
+        html: htmlContent,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(`[OUTREACH] Email successfully sent to ${to} from szabo.abel@backlineit.hu`);
+        return { success: true };
+    } catch (error) {
+        console.error("[OUTREACH] Error sending outreach email:", error);
+        return { success: false, error: "Hiba az e-mail kiküldésekor" };
+    }
+};

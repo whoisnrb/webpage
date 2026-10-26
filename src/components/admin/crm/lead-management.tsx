@@ -36,7 +36,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { updateLead, deleteLead, createLead } from "@/app/actions/crm";
+import { updateLead, deleteLead, createLead, sendOutreachEmailAction, generateAiLeadPitchAction } from "@/app/actions/crm";
 import { toast } from "sonner";
 import {
     Users,
@@ -54,6 +54,13 @@ import {
     Copy,
     Sparkles,
     ArrowUpRight,
+    Send,
+    ExternalLink,
+    MessageSquare,
+    Loader2,
+    CheckCircle2,
+    Share2,
+    Check,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -171,6 +178,13 @@ export function LeadManagement({ initialLeads }: { initialLeads: Lead[] }) {
     const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [statusFilter, setStatusFilter] = useState("ALL");
+    const [outreachLead, setOutreachLead] = useState<Lead | null>(null);
+    const [isOutreachOpen, setIsOutreachOpen] = useState(false);
+    const [outreachSubject, setOutreachSubject] = useState("");
+    const [outreachIntro, setOutreachIntro] = useState("");
+    const [isGeneratingPitch, setIsGeneratingPitch] = useState(false);
+    const [isSendingEmail, setIsSendingEmail] = useState(false);
+    const [copiedChannel, setCopiedChannel] = useState<string | null>(null);
     const [newLead, setNewLead] = useState({
         name: "",
         companyName: "",
@@ -296,6 +310,123 @@ export function LeadManagement({ initialLeads }: { initialLeads: Lead[] }) {
         } catch {
             return "—";
         }
+    };
+
+    const openOutreach = (lead: Lead) => {
+        setOutreachLead(lead);
+        const nameOrCompany = lead.companyName || lead.name || "Partnerek";
+        setOutreachSubject(`Együttműködés webfejlesztésben – Backline IT & ${nameOrCompany}`);
+        const greeting = lead.name ? `Kedves ${lead.name}!` : (lead.companyName ? `Tisztelt ${lead.companyName} Csapat!` : "Üdvözlöm!");
+        setOutreachIntro(
+            `${greeting}\n\nSzabó Ábel vagyok a Backline IT növekedési és marketing menedzsere. A vállalkozásotok online jelenlétét figyelve úgy látjuk, hogy modern webes és felhő alapú rendszereinkkel érdemben tudnánk támogatni az ügyfélszerzéseteket és a belső digitális folyamataitok automatizálását.`
+        );
+        setIsOutreachOpen(true);
+    };
+
+    const handleGenerateAiPitch = async () => {
+        if (!outreachLead) return;
+        setIsGeneratingPitch(true);
+        try {
+            const res = await generateAiLeadPitchAction(outreachLead.id);
+            if (res.success && res.intro) {
+                setOutreachIntro(res.intro);
+                toast.success("AI nyitószöveg sikeresen elkészült (Azure GPT-4o)!");
+            } else if (res.fallback) {
+                setOutreachIntro(res.fallback);
+                toast.info("Alapértelmezett értékesítési sablon betöltve.");
+            } else {
+                toast.error(res.error || "Nem sikerült az AI szöveg generálása.");
+            }
+        } catch {
+            toast.error("Hiba történt az AI generálás során.");
+        } finally {
+            setIsGeneratingPitch(false);
+        }
+    };
+
+    const handleSendOutreachEmail = async () => {
+        if (!outreachLead) return;
+        setIsSendingEmail(true);
+        try {
+            const res = await sendOutreachEmailAction(
+                outreachLead.id,
+                outreachIntro,
+                outreachSubject
+            );
+
+            if (res.success && res.lead) {
+                toast.success("Megkereső e-mail sikeresen elküldve Szabó Ábel nevében!");
+                setLeads((prev) =>
+                    prev.map((l) => (l.id === outreachLead.id ? (res.lead as Lead) : l))
+                );
+                setIsOutreachOpen(false);
+            } else {
+                toast.error(res.error || "Nem sikerült az e-mail elküldése.");
+            }
+        } catch (err: any) {
+            toast.error(err?.message || "Váratlan hiba a küldés során.");
+        } finally {
+            setIsSendingEmail(false);
+        }
+    };
+
+    const handleCopyLinkedIn = async () => {
+        if (!outreachLead) return;
+        const nameGreeting = outreachLead.name ? `Szia ${outreachLead.name}!` : "Szia!";
+        const target = outreachLead.companyName ? `a ${outreachLead.companyName}` : "a vállalkozásotok";
+        const msg = `${nameGreeting} Szabó Ábel vagyok a Backline IT-tól.
+
+Észrevettem ${target} online jelenlétét, és nagyon inspiráló az irány!
+
+A Backline IT-nál (hivatalos Microsoft for Startups partnerek vagyunk) modern, villámgyors egyedi weboldalakat és felhős rendszereket fejlesztünk hazai kkv-knak.
+Két dolog, amiben kiemelten tudunk segíteni:
+1. Áfamentes számlázás (AAM): Díjainkat nem terheli +27% áfa, így azonnali 27% költségmegtakarítást biztosítunk.
+2. 90 napos garancia & Microsoft felhős háttér.
+
+Nézd meg néhány friss munkánkat és élő demónkat itt:
+👉 https://backlineit.hu/referenciak
+
+Lenne kedved egy kötetlen 15 perces beszélgetéshez valamikor ezen a héten, hogy átfussuk, hol tudnánk azonnali növekedést hozni nektek?
+
+Üdvözlettel,
+Szabó Ábel
+szabo.abel@backlineit.hu | Backline IT`;
+
+        await navigator.clipboard.writeText(msg);
+        setCopiedChannel("linkedin");
+        setTimeout(() => setCopiedChannel(null), 2500);
+        toast.success("LinkedIn DM szöveg kimásolva! Megnyitjuk a keresőt...");
+
+        const query = outreachLead.companyName || outreachLead.name || "";
+        const searchUrl = query
+            ? `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(query)}`
+            : "https://www.linkedin.com";
+        window.open(searchUrl, "_blank", "noopener,noreferrer");
+
+        handleMarkContacted(outreachLead);
+    };
+
+    const handleCopyFacebook = async () => {
+        if (!outreachLead) return;
+        const msg = `Szia! Láttam a posztodat a csoportban. Szabó Ábel vagyok a Backline IT-tól (a Microsoft által hivatalosan elismert és támogatott hazai szoftverfejlesztő csapat).
+
+Szívesen segítünk a projekted / weboldalad profi megvalósításában:
+✅ Áfamentes számlázás (AAM): Nincs +27% áfa a munkadíjon (27%-kal kedvezőbb ár)
+✅ 90 napos teljes körű hibajavítási garancia
+✅ Microsoft felhős technológia és villámgyors betöltés
+
+Korábbi munkáinkat és élő demóinkat itt tudod megnézni:
+👉 https://backlineit.hu/referenciak
+
+Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30 perces konzultáción:
+📞 https://backlineit.hu/kapcsolat`;
+
+        await navigator.clipboard.writeText(msg);
+        setCopiedChannel("facebook");
+        setTimeout(() => setCopiedChannel(null), 2500);
+        toast.success("Facebook válasz szöveg vágólapra másolva!");
+
+        handleMarkContacted(outreachLead);
     };
 
     // ─── Filter Tabs Config ──────────────────────────────────────
@@ -525,24 +656,41 @@ export function LeadManagement({ initialLeads }: { initialLeads: Lead[] }) {
 
                                             {/* Actions */}
                                             <TableCell className="py-4 pr-6 text-right">
-                                                <DropdownMenu>
-                                                    <DropdownMenuTrigger asChild>
-                                                        <Button
-                                                            variant="ghost"
-                                                            size="icon"
-                                                            className="h-8 w-8 text-slate-500 hover:text-white hover:bg-white/[0.08] rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-200"
-                                                        >
-                                                            <MoreVertical className="h-4 w-4" />
-                                                        </Button>
-                                                    </DropdownMenuTrigger>
-                                                    <DropdownMenuContent align="end" className="w-48 bg-[#0c1222] border-white/[0.08] rounded-xl shadow-2xl">
-                                                        <DropdownMenuItem
-                                                            onClick={() => { setEditingLead(lead); setIsDialogOpen(true); }}
-                                                            className="text-slate-300 hover:text-white focus:text-white focus:bg-white/[0.06] rounded-lg cursor-pointer"
-                                                        >
-                                                            <Pencil className="h-4 w-4 mr-2 text-cyan-400" />
-                                                            Szerkesztés
-                                                        </DropdownMenuItem>
+                                                <div className="flex items-center justify-end gap-2">
+                                                    <Button
+                                                        size="sm"
+                                                        onClick={() => openOutreach(lead)}
+                                                        className="h-8 gap-1.5 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 hover:from-cyan-500/30 hover:to-blue-500/30 text-cyan-300 border border-cyan-500/30 hover:border-cyan-400/50 rounded-lg text-xs font-semibold px-2.5 transition-all shadow-sm"
+                                                        title="Megkeresés indítása (Email, LinkedIn, FB)"
+                                                    >
+                                                        <Send className="h-3.5 w-3.5 text-cyan-400" />
+                                                        <span className="hidden sm:inline">Megkeresés</span>
+                                                    </Button>
+                                                    <DropdownMenu>
+                                                        <DropdownMenuTrigger asChild>
+                                                            <Button
+                                                                variant="ghost"
+                                                                size="icon"
+                                                                className="h-8 w-8 text-slate-500 hover:text-white hover:bg-white/[0.08] rounded-lg transition-all duration-200"
+                                                            >
+                                                                <MoreVertical className="h-4 w-4" />
+                                                            </Button>
+                                                        </DropdownMenuTrigger>
+                                                        <DropdownMenuContent align="end" className="w-52 bg-[#0c1222] border-white/[0.08] rounded-xl shadow-2xl">
+                                                            <DropdownMenuItem
+                                                                onClick={() => openOutreach(lead)}
+                                                                className="text-cyan-300 hover:text-white focus:text-white focus:bg-white/[0.06] rounded-lg cursor-pointer font-medium"
+                                                            >
+                                                                <Send className="h-4 w-4 mr-2 text-cyan-400" />
+                                                                Megkeresés indítása
+                                                            </DropdownMenuItem>
+                                                            <DropdownMenuItem
+                                                                onClick={() => { setEditingLead(lead); setIsDialogOpen(true); }}
+                                                                className="text-slate-300 hover:text-white focus:text-white focus:bg-white/[0.06] rounded-lg cursor-pointer"
+                                                            >
+                                                                <Pencil className="h-4 w-4 mr-2 text-cyan-400" />
+                                                                Szerkesztés
+                                                            </DropdownMenuItem>
                                                         <DropdownMenuItem
                                                             onClick={() => handleMarkContacted(lead)}
                                                             className="text-slate-300 hover:text-white focus:text-white focus:bg-white/[0.06] rounded-lg cursor-pointer"
@@ -567,6 +715,7 @@ export function LeadManagement({ initialLeads }: { initialLeads: Lead[] }) {
                                                         </DropdownMenuItem>
                                                     </DropdownMenuContent>
                                                 </DropdownMenu>
+                                                </div>
                                             </TableCell>
                                         </motion.tr>
                                     ))}
@@ -834,6 +983,204 @@ export function LeadManagement({ initialLeads }: { initialLeads: Lead[] }) {
                             </DialogFooter>
                         </form>
                     )}
+                </DialogContent>
+            </Dialog>
+
+            {/* ─── Outreach Dialog (Szabó Ábel B2B Outreach Engine) ─── */}
+            <Dialog open={isOutreachOpen} onOpenChange={setIsOutreachOpen}>
+                <DialogContent className="sm:max-w-[720px] max-h-[92vh] overflow-y-auto bg-[#0a0f1e] border-white/[0.08] rounded-2xl shadow-2xl p-0">
+                    {/* Dialog Header */}
+                    <div className="relative px-6 pt-6 pb-4 bg-gradient-to-br from-cyan-500/15 via-blue-600/10 to-transparent border-b border-white/[0.06]">
+                        <div className="flex items-center gap-3">
+                            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/25 shrink-0">
+                                <Send className="h-5 w-5 text-white" />
+                            </div>
+                            <div className="min-w-0">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                    <DialogTitle className="text-lg font-bold text-white">
+                                        B2B Lead Megkeresés & Outreach
+                                    </DialogTitle>
+                                    <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 text-[10px] font-semibold">
+                                        Szabó Ábel
+                                    </Badge>
+                                </div>
+                                <p className="text-xs text-slate-400 truncate">
+                                    Címzett: <span className="text-slate-200 font-semibold">{outreachLead?.companyName || outreachLead?.name || outreachLead?.email}</span> ({outreachLead?.email}) • Forrás: {outreachLead?.source || "Nincs adat"}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="p-6 space-y-6">
+                        {/* 1-Click Multi-Channel Quick Outreach Cards */}
+                        <div className="space-y-2">
+                            <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                                <Share2 className="h-3.5 w-3.5 text-cyan-400" />
+                                Gyors Megkeresés Közösségi Csatornákon
+                            </label>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <button
+                                    type="button"
+                                    onClick={handleCopyLinkedIn}
+                                    className="flex items-start gap-3 p-3.5 rounded-xl border border-[#0077b5]/30 bg-[#0077b5]/10 hover:bg-[#0077b5]/20 text-left transition-all duration-200 group"
+                                >
+                                    <div className="h-8 w-8 rounded-lg bg-[#0077b5] flex items-center justify-center shrink-0 shadow-md">
+                                        <ExternalLink className="h-4 w-4 text-white" />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-xs font-bold text-white group-hover:text-cyan-200">
+                                                LinkedIn DM Másolás & Megnyitás
+                                            </p>
+                                            {copiedChannel === "linkedin" && (
+                                                <span className="text-[10px] text-emerald-400 font-bold flex items-center gap-0.5">
+                                                    <Check className="h-3 w-3" /> Másolva!
+                                                </span>
+                                            )}
+                                        </div>
+                                        <p className="text-[11px] text-slate-400 line-clamp-1">
+                                            Profil keresése és személyre szabott üzenet vágólapra
+                                        </p>
+                                    </div>
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={handleCopyFacebook}
+                                    className="flex items-start gap-3 p-3.5 rounded-xl border border-blue-600/30 bg-blue-600/10 hover:bg-blue-600/20 text-left transition-all duration-200 group"
+                                >
+                                    <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center shrink-0 shadow-md">
+                                        <MessageSquare className="h-4 w-4 text-white" />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-xs font-bold text-white group-hover:text-blue-200">
+                                                Facebook Csoport / DM Válasz
+                                            </p>
+                                            {copiedChannel === "facebook" && (
+                                                <span className="text-[10px] text-emerald-400 font-bold flex items-center gap-0.5">
+                                                    <Check className="h-3 w-3" /> Másolva!
+                                                </span>
+                                            )}
+                                        </div>
+                                        <p className="text-[11px] text-slate-400 line-clamp-1">
+                                            ÁFA-mentes & referenciás válasz másolása posztokhoz
+                                        </p>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Direct Email Outreach Section */}
+                        <div className="space-y-4 pt-2 border-t border-white/[0.06]">
+                            <div className="flex items-center justify-between flex-wrap gap-2">
+                                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                                    <Mail className="h-3.5 w-3.5 text-cyan-400" />
+                                    Közvetlen Hideg E-mail (szabo.abel@backlineit.hu)
+                                </label>
+                                <Button
+                                    type="button"
+                                    size="sm"
+                                    variant="outline"
+                                    disabled={isGeneratingPitch}
+                                    onClick={handleGenerateAiPitch}
+                                    className="h-7 text-xs border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/10 rounded-lg gap-1.5"
+                                >
+                                    {isGeneratingPitch ? (
+                                        <>
+                                            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                                            <span>AI generálás folyamatban...</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+                                            <span>✨ AI Nyitószöveg (Azure GPT-4o)</span>
+                                        </>
+                                    )}
+                                </Button>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-[11px] text-slate-500 font-medium">E-mail Tárgy</label>
+                                <Input
+                                    value={outreachSubject}
+                                    onChange={(e) => setOutreachSubject(e.target.value)}
+                                    placeholder="Tárgy..."
+                                    className="bg-white/[0.03] border-white/[0.08] text-white focus:border-cyan-500/40 rounded-xl text-sm"
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-[11px] text-slate-500 font-medium">Személyre Szabott Nyitó Bekezdés</label>
+                                <Textarea
+                                    rows={4}
+                                    value={outreachIntro}
+                                    onChange={(e) => setOutreachIntro(e.target.value)}
+                                    placeholder="Írd ide a nyitó bekezdést, vagy használd az AI generálót..."
+                                    className="bg-white/[0.03] border-white/[0.08] text-white focus:border-cyan-500/40 rounded-xl text-sm resize-none"
+                                />
+                            </div>
+
+                            {/* Live Email Value Proposition Preview */}
+                            <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 space-y-3">
+                                <p className="text-[10px] uppercase font-bold tracking-wider text-slate-500">
+                                    Az e-mailbe automatikusan beágyazott kiemelt értékajánlataink:
+                                </p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                    <div className="flex items-center gap-2 p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
+                                        <CheckCircle2 className="h-4 w-4 shrink-0" />
+                                        <span>Áfamentes számlázás (0% ÁFA, 27% megtakarítás)</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
+                                        <CheckCircle2 className="h-4 w-4 shrink-0" />
+                                        <span>Microsoft által támogatott startup garancia</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 p-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-300">
+                                        <CheckCircle2 className="h-4 w-4 shrink-0" />
+                                        <span>Referenciák & demók: backlineit.hu/referenciak</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 p-2 rounded-lg bg-violet-500/10 border border-violet-500/20 text-violet-300">
+                                        <CheckCircle2 className="h-4 w-4 shrink-0" />
+                                        <span>30 perces ingyenes konzultáció & 90 nap garancia</span>
+                                    </div>
+                                </div>
+                                <div className="text-[11px] text-slate-400 pt-1 border-t border-white/[0.04] flex items-center justify-between flex-wrap gap-1">
+                                    <span>Hivatalos céges aláírás: <strong className="text-slate-200">Szabó Ábel</strong> (Backline IT)</span>
+                                    <span className="font-mono text-cyan-400">szabo.abel@backlineit.hu</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Dialog Action Buttons */}
+                        <DialogFooter className="pt-2 gap-2">
+                            <Button
+                                type="button"
+                                variant="outline"
+                                onClick={() => setIsOutreachOpen(false)}
+                                className="border-white/[0.08] text-slate-300 hover:bg-white/[0.05] rounded-xl"
+                            >
+                                Mégse
+                            </Button>
+                            <Button
+                                type="button"
+                                disabled={isSendingEmail}
+                                onClick={handleSendOutreachEmail}
+                                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/20 rounded-xl px-6 gap-2"
+                            >
+                                {isSendingEmail ? (
+                                    <>
+                                        <Loader2 className="h-4 w-4 animate-spin" />
+                                        <span>Kiküldés folyamatban...</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Send className="h-4 w-4" />
+                                        <span>E-mail Küldése (szabo.abel@backlineit.hu)</span>
+                                    </>
+                                )}
+                            </Button>
+                        </DialogFooter>
+                    </div>
                 </DialogContent>
             </Dialog>
         </div>
