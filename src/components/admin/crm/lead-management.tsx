@@ -36,7 +36,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { updateLead, deleteLead, createLead, sendOutreachEmailAction, generateAiLeadPitchAction } from "@/app/actions/crm";
+import { updateLead, deleteLead, createLead, sendOutreachEmailAction, generateAiLeadPitchAction, searchLiveLeadsAction, importHuntedLeadAction, analyzeFacebookLeadAction, type HuntedLead } from "@/app/actions/crm";
 import { toast } from "sonner";
 import {
     Users,
@@ -61,6 +61,11 @@ import {
     CheckCircle2,
     Share2,
     Check,
+    Target,
+    Compass,
+    Globe,
+    Building,
+    Phone,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -185,6 +190,31 @@ export function LeadManagement({ initialLeads }: { initialLeads: Lead[] }) {
     const [isGeneratingPitch, setIsGeneratingPitch] = useState(false);
     const [isSendingEmail, setIsSendingEmail] = useState(false);
     const [copiedChannel, setCopiedChannel] = useState<string | null>(null);
+
+    // ─── Lead Hunter States ───────────────────────────────────────
+    const [isHunterOpen, setIsHunterOpen] = useState(false);
+    const [hunterTab, setHunterTab] = useState<"google" | "facebook" | "linkedin">("google");
+    const [hunterCity, setHunterCity] = useState("Budapest");
+    const [hunterCategory, setHunterCategory] = useState("Fogászat");
+    const [isSearchingLeads, setIsSearchingLeads] = useState(false);
+    const [huntedLeads, setHuntedLeads] = useState<HuntedLead[]>([]);
+    const [importedLeadEmails, setImportedLeadEmails] = useState<Set<string>>(new Set());
+
+    // Facebook Hunter State
+    const [fbPostText, setFbPostText] = useState("");
+    const [fbPosterName, setFbPosterName] = useState("");
+    const [isAnalyzingFb, setIsAnalyzingFb] = useState(false);
+    const [fbAnalysisResult, setFbAnalysisResult] = useState<{ detectedNeed: string; suggestedComment: string } | null>(null);
+
+    // LinkedIn Hunter State
+    const [linkedInRole, setLinkedInRole] = useState("Ügyvezető");
+    const [linkedInCity, setLinkedInCity] = useState("Budapest");
+    const [linkedInIndustry, setLinkedInIndustry] = useState("Webáruház");
+    const [liName, setLiName] = useState("");
+    const [liCompany, setLiCompany] = useState("");
+    const [liEmail, setLiEmail] = useState("");
+    const [liUrl, setLiUrl] = useState("");
+    const [isSavingLi, setIsSavingLi] = useState(false);
     const [newLead, setNewLead] = useState({
         name: "",
         companyName: "",
@@ -429,6 +459,126 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
         handleMarkContacted(outreachLead);
     };
 
+    // ─── Lead Hunter Handlers ────────────────────────────────────
+    const handleSearchLiveLeads = async () => {
+        if (!hunterCity || !hunterCategory) {
+            toast.error("Add meg a várost és az iparágot!");
+            return;
+        }
+        setIsSearchingLeads(true);
+        try {
+            const res = await searchLiveLeadsAction(hunterCity, hunterCategory);
+            if (res.success && res.leads) {
+                setHuntedLeads(res.leads);
+                toast.success(`${res.leads.length} valós vállalkozás megtalálva!`);
+            } else {
+                toast.error(res.error || "Nem sikerült a leadek lekérése.");
+            }
+        } catch {
+            toast.error("Hiba történt a keresés során.");
+        } finally {
+            setIsSearchingLeads(false);
+        }
+    };
+
+    const handleImportHuntedLead = async (item: HuntedLead, openOutreachImmediately = false) => {
+        try {
+            const res = await importHuntedLeadAction({
+                companyName: item.companyName,
+                name: item.name || undefined,
+                email: item.email,
+                source: item.source || "Google Maps Vadász",
+                notes: `[Web: ${item.website || 'Nincs'}] [Tel: ${item.phone || 'Nincs'}] ${item.painPoint || ''}`,
+            });
+
+            if (res.success && res.lead) {
+                setImportedLeadEmails((prev) => new Set(prev).add(item.email.toLowerCase()));
+                setLeads((prev) => {
+                    if (prev.some((l) => l.id === res.lead.id)) return prev;
+                    return [res.lead as Lead, ...prev];
+                });
+                toast.success(res.alreadyExisted ? "Ügyfél már szerepel a CRM-ben!" : "Lead sikeresen beimportálva a CRM-be!");
+
+                if (openOutreachImmediately) {
+                    setIsHunterOpen(false);
+                    openOutreach(res.lead as Lead);
+                }
+            } else {
+                toast.error(res.error || "Nem sikerült az importálás.");
+            }
+        } catch {
+            toast.error("Hiba az importálás során.");
+        }
+    };
+
+    const handleAnalyzeFbPost = async () => {
+        if (!fbPostText.trim()) {
+            toast.error("Illeszd be a poszt szövegét!");
+            return;
+        }
+        setIsAnalyzingFb(true);
+        try {
+            const res = await analyzeFacebookLeadAction(fbPostText, fbPosterName);
+            if (res.success && res.analysis) {
+                setFbAnalysisResult(res.analysis);
+                toast.success("Poszt sikeresen elemezve!");
+
+                const dummyEmail = `facebook.${Date.now()}@backlineit-lead.hu`;
+                const importRes = await importHuntedLeadAction({
+                    companyName: fbPosterName ? `${fbPosterName} (Facebook)` : "Facebook Megkereső",
+                    name: fbPosterName || "Facebook Érdeklődő",
+                    email: dummyEmail,
+                    source: "Facebook Csoport",
+                    notes: `[Facebook Poszt]: ${fbPostText.substring(0, 300)}... [Igény]: ${res.analysis.detectedNeed}`,
+                });
+
+                if (importRes.success && importRes.lead) {
+                    setLeads((prev) => [importRes.lead as Lead, ...prev]);
+                }
+            }
+        } catch {
+            toast.error("Hiba a poszt elemzése során.");
+        } finally {
+            setIsAnalyzingFb(false);
+        }
+    };
+
+    const handleOpenLinkedInSearch = () => {
+        const query = `site:linkedin.com/in/ "${linkedInRole}" "${linkedInCity}" "${linkedInIndustry}"`;
+        const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        window.open(googleUrl, "_blank", "noopener,noreferrer");
+        toast.info("Google X-Ray keresés megnyitva új lapon!");
+    };
+
+    const handleSaveLinkedInLead = async () => {
+        if (!liName && !liCompany) {
+            toast.error("Adj meg egy nevet vagy cégnevet!");
+            return;
+        }
+        setIsSavingLi(true);
+        try {
+            const email = liEmail.trim() || `linkedin.${Date.now()}@backlineit-lead.hu`;
+            const res = await importHuntedLeadAction({
+                companyName: liCompany || undefined,
+                name: liName || undefined,
+                email: email,
+                source: "LinkedIn X-Ray",
+                notes: `[LinkedIn Profil]: ${liUrl || 'Nincs megadva'} [Pozíció]: ${linkedInRole} (${linkedInCity})`,
+            });
+
+            if (res.success && res.lead) {
+                setLeads((prev) => [res.lead as Lead, ...prev]);
+                toast.success("LinkedIn lead elmentve a CRM-be!");
+                setIsHunterOpen(false);
+                openOutreach(res.lead as Lead);
+            }
+        } catch {
+            toast.error("Hiba a mentés során.");
+        } finally {
+            setIsSavingLi(false);
+        }
+    };
+
     // ─── Filter Tabs Config ──────────────────────────────────────
     const filterTabs = [
         { key: "ALL", label: "Összes", count: leads.length },
@@ -519,14 +669,23 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                     ))}
                 </div>
 
-                {/* Add Button */}
-                <Button
-                    onClick={() => setIsCreateDialogOpen(true)}
-                    className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 rounded-xl px-5 transition-all duration-300 shrink-0"
-                >
-                    <Plus className="h-4 w-4 mr-2" />
-                    Új Ügyfél
-                </Button>
+                {/* Action Buttons */}
+                <div className="flex items-center gap-2.5 flex-wrap">
+                    <Button
+                        onClick={() => setIsHunterOpen(true)}
+                        className="bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/35 rounded-xl px-5 transition-all duration-300 shrink-0 gap-2 border border-emerald-400/30"
+                    >
+                        <Compass className="h-4 w-4 text-emerald-200" />
+                        <span>🎯 Lead Vadász (Google & Social)</span>
+                    </Button>
+                    <Button
+                        onClick={() => setIsCreateDialogOpen(true)}
+                        className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 rounded-xl px-5 transition-all duration-300 shrink-0"
+                    >
+                        <Plus className="h-4 w-4 mr-2" />
+                        Új Ügyfél
+                    </Button>
+                </div>
             </motion.div>
 
             {/* ─── Data Table ──────────────────────────────────── */}
@@ -1178,6 +1337,480 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                                         <span>E-mail Küldése (szabo.abel@backlineit.hu)</span>
                                     </>
                                 )}
+                            </Button>
+                        </DialogFooter>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+            {/* ─── Lead Hunter Dialog (Google Maps, Facebook & LinkedIn) ─── */}
+            <Dialog open={isHunterOpen} onOpenChange={setIsHunterOpen}>
+                <DialogContent className="sm:max-w-[850px] max-h-[92vh] overflow-y-auto bg-[#0a0f1e] border-white/[0.08] rounded-2xl shadow-2xl p-0">
+                    {/* Header */}
+                    <div className="relative px-6 pt-6 pb-4 bg-gradient-to-br from-emerald-500/15 via-teal-600/10 to-transparent border-b border-white/[0.06]">
+                        <div className="flex items-center gap-3">
+                            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/25 shrink-0">
+                                <Compass className="h-5 w-5 text-white" />
+                            </div>
+                            <div className="min-w-0">
+                                <div className="flex items-center gap-2 flex-wrap">
+                                    <DialogTitle className="text-lg font-bold text-white">
+                                        🎯 B2B Lead Vadász Motor
+                                    </DialogTitle>
+                                    <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-[10px] font-semibold">
+                                        Google Maps • FB • LinkedIn
+                                    </Badge>
+                                </div>
+                                <p className="text-xs text-slate-400">
+                                    Kutasd fel a legértékesebb új potenciális ügyfeleket, és importáld őket egyetlen kattintással a CRM-be.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Navigation Tabs */}
+                        <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/[0.06]">
+                            <button
+                                type="button"
+                                onClick={() => setHunterTab("google")}
+                                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                                    hunterTab === "google"
+                                        ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/25"
+                                        : "bg-white/[0.04] text-slate-400 hover:text-white hover:bg-white/[0.08]"
+                                }`}
+                            >
+                                <Globe className="h-3.5 w-3.5" />
+                                <span>Google & Web Cégkereső</span>
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setHunterTab("facebook")}
+                                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                                    hunterTab === "facebook"
+                                        ? "bg-blue-600 text-white shadow-lg shadow-blue-600/25"
+                                        : "bg-white/[0.04] text-slate-400 hover:text-white hover:bg-white/[0.08]"
+                                }`}
+                            >
+                                <MessageSquare className="h-3.5 w-3.5" />
+                                <span>Facebook Csoport Vadász</span>
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setHunterTab("linkedin")}
+                                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+                                    hunterTab === "linkedin"
+                                        ? "bg-[#0077b5] text-white shadow-lg shadow-[#0077b5]/25"
+                                        : "bg-white/[0.04] text-slate-400 hover:text-white hover:bg-white/[0.08]"
+                                }`}
+                            >
+                                <ExternalLink className="h-3.5 w-3.5" />
+                                <span>LinkedIn Döntéshozó Kereső</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="p-6">
+                        {/* ── TAB 1: GOOGLE & WEB CÉGKERESŐ ── */}
+                        {hunterTab === "google" && (
+                            <div className="space-y-5">
+                                {/* Search filters */}
+                                <div className="space-y-3 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-semibold text-slate-300">Város / Régió kiválasztása</label>
+                                        <div className="flex flex-wrap gap-1.5 mb-2">
+                                            {["Budapest", "Debrecen", "Szeged", "Győr", "Pécs", "Székesfehérvár", "Miskolc", "Kecskemét"].map((c) => (
+                                                <button
+                                                    key={c}
+                                                    type="button"
+                                                    onClick={() => setHunterCity(c)}
+                                                    className={`text-[11px] px-2.5 py-1 rounded-lg border transition-all ${
+                                                        hunterCity === c
+                                                            ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+                                                            : "bg-white/[0.03] text-slate-400 border-white/[0.06] hover:bg-white/[0.06]"
+                                                    }`}
+                                                >
+                                                    {c}
+                                                </button>
+                                            ))}
+                                        </div>
+                                        <Input
+                                            value={hunterCity}
+                                            onChange={(e) => setHunterCity(e.target.value)}
+                                            placeholder="Vagy írj be egy másik várost..."
+                                            className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-sm h-9"
+                                        />
+                                    </div>
+
+                                    <div className="space-y-1.5">
+                                        <label className="text-xs font-semibold text-slate-300">Iparág / Szakterület</label>
+                                        <div className="flex flex-wrap gap-1.5 mb-2">
+                                            {["Fogászat", "Ügyvédi Iroda", "Könyvelőiroda", "Autószerviz", "Webáruház", "Magánrendelő", "Építőipar"].map((cat) => (
+                                                <button
+                                                    key={cat}
+                                                    type="button"
+                                                    onClick={() => setHunterCategory(cat)}
+                                                    className={`text-[11px] px-2.5 py-1 rounded-lg border transition-all ${
+                                                        hunterCategory === cat
+                                                            ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
+                                                            : "bg-white/[0.03] text-slate-400 border-white/[0.06] hover:bg-white/[0.06]"
+                                                    }`}
+                                                >
+                                                    {cat}
+                                                </button>
+                                            ))}
+                                        </div>
+                                        <Input
+                                            value={hunterCategory}
+                                            onChange={(e) => setHunterCategory(e.target.value)}
+                                            placeholder="Vagy írj be egy másik kategóriát..."
+                                            className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-sm h-9"
+                                        />
+                                    </div>
+
+                                    <Button
+                                        type="button"
+                                        disabled={isSearchingLeads}
+                                        onClick={handleSearchLiveLeads}
+                                        className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold rounded-xl h-10 shadow-lg shadow-emerald-500/20 gap-2"
+                                    >
+                                        {isSearchingLeads ? (
+                                            <>
+                                                <Loader2 className="h-4 w-4 animate-spin" />
+                                                <span>Élő cégadatok és elérhetőségek gyűjtése...</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Search className="h-4 w-4" />
+                                                <span>Leadek Vadászata (Google & Web)</span>
+                                            </>
+                                        )}
+                                    </Button>
+                                </div>
+
+                                {/* Results display */}
+                                {huntedLeads.length > 0 && (
+                                    <div className="space-y-3 pt-2">
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+                                                <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
+                                                Talált Leadek ({huntedLeads.length} cég)
+                                            </p>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            {huntedLeads.map((item, idx) => {
+                                                const isImported = importedLeadEmails.has(item.email.toLowerCase());
+                                                return (
+                                                    <div
+                                                        key={idx}
+                                                        className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.04] transition-all space-y-3"
+                                                    >
+                                                        <div className="flex items-start justify-between gap-3">
+                                                            <div>
+                                                                <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                                                                    {item.companyName}
+                                                                    {item.name && (
+                                                                        <span className="text-xs font-normal text-slate-400">
+                                                                            ({item.name})
+                                                                        </span>
+                                                                    )}
+                                                                </h4>
+                                                                <div className="flex items-center gap-3 text-xs text-slate-400 mt-1 flex-wrap">
+                                                                    <span className="font-mono text-cyan-300">{item.email}</span>
+                                                                    {item.phone && (
+                                                                        <span className="text-slate-300 flex items-center gap-1">
+                                                                            <Phone className="h-3 w-3 text-slate-500" />
+                                                                            {item.phone}
+                                                                        </span>
+                                                                    )}
+                                                                    {item.website && (
+                                                                        <a
+                                                                            href={`https://${item.website.replace(/^https?:\/\//, '')}`}
+                                                                            target="_blank"
+                                                                            rel="noreferrer"
+                                                                            className="text-blue-400 hover:underline flex items-center gap-1"
+                                                                        >
+                                                                            <Globe className="h-3 w-3" />
+                                                                            {item.website}
+                                                                        </a>
+                                                                    )}
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="flex items-center gap-2 shrink-0">
+                                                                <Button
+                                                                    type="button"
+                                                                    size="sm"
+                                                                    variant="outline"
+                                                                    disabled={isImported}
+                                                                    onClick={() => handleImportHuntedLead(item, false)}
+                                                                    className={`h-8 text-xs rounded-lg ${
+                                                                        isImported
+                                                                            ? "border-emerald-500/40 text-emerald-400 bg-emerald-500/10"
+                                                                            : "border-white/10 text-slate-300 hover:bg-white/5"
+                                                                    }`}
+                                                                >
+                                                                    {isImported ? "✓ Importálva" : "📥 CRM-be"}
+                                                                </Button>
+                                                                <Button
+                                                                    type="button"
+                                                                    size="sm"
+                                                                    onClick={() => handleImportHuntedLead(item, true)}
+                                                                    className="h-8 text-xs bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-lg shadow-sm gap-1.5"
+                                                                >
+                                                                    <Send className="h-3 w-3" />
+                                                                    <span>Megkeresés</span>
+                                                                </Button>
+                                                            </div>
+                                                        </div>
+
+                                                        {item.painPoint && (
+                                                            <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs flex items-center gap-2">
+                                                                <span className="font-semibold shrink-0">💡 Lehetőség:</span>
+                                                                <span>{item.painPoint}</span>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* ── TAB 2: FACEBOOK CSOPORT VADÁSZ ── */}
+                        {hunterTab === "facebook" && (
+                            <div className="space-y-5">
+                                {/* Hot FB Groups */}
+                                <div className="space-y-2">
+                                    <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                                        <MessageSquare className="h-3.5 w-3.5 text-blue-400" />
+                                        Kiemelt Magyar Vállalkozói Csoportok (Kattints a megnyitáshoz)
+                                    </label>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                                        <a
+                                            href="https://www.facebook.com/groups/search/groups/?q=v%C3%A1llalkoz%C3%B3k"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="p-3 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] transition-all flex items-center justify-between group"
+                                        >
+                                            <span className="font-medium text-slate-200 group-hover:text-blue-300">👥 Magyar Vállalkozók & Cégvezetők</span>
+                                            <ExternalLink className="h-3.5 w-3.5 text-slate-500 group-hover:text-white" />
+                                        </a>
+                                        <a
+                                            href="https://www.facebook.com/groups/search/groups/?q=weboldal%20k%C3%A9sz%C3%ADt%C3%A9s"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="p-3 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] transition-all flex items-center justify-between group"
+                                        >
+                                            <span className="font-medium text-slate-200 group-hover:text-blue-300">🌐 Weboldal készítés & IT kereső</span>
+                                            <ExternalLink className="h-3.5 w-3.5 text-slate-500 group-hover:text-white" />
+                                        </a>
+                                        <a
+                                            href="https://www.facebook.com/groups/search/groups/?q=kkv%20sz%C3%B6vets%C3%A9g"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="p-3 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] transition-all flex items-center justify-between group"
+                                        >
+                                            <span className="font-medium text-slate-200 group-hover:text-blue-300">📈 KKV Szövetség & Vállalkozói Klub</span>
+                                            <ExternalLink className="h-3.5 w-3.5 text-slate-500 group-hover:text-white" />
+                                        </a>
+                                        <a
+                                            href="https://www.facebook.com/groups/search/groups/?q=web%C3%A1ruh%C3%A1z%20tulajdonosok"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="p-3 rounded-xl border border-white/[0.08] bg-white/[0.02] hover:bg-white/[0.05] transition-all flex items-center justify-between group"
+                                        >
+                                            <span className="font-medium text-slate-200 group-hover:text-blue-300">🛒 Webáruház Tulajdonosok</span>
+                                            <ExternalLink className="h-3.5 w-3.5 text-slate-500 group-hover:text-white" />
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {/* AI Post Analyzer Form */}
+                                <div className="space-y-3 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
+                                    <h4 className="text-xs font-bold text-slate-200 flex items-center gap-1.5 uppercase tracking-wider">
+                                        <Sparkles className="h-3.5 w-3.5 text-blue-400" />
+                                        AI Poszt Elemző & Megkeresés Készítő
+                                    </h4>
+                                    <div className="space-y-1.5">
+                                        <label className="text-[11px] text-slate-400">Posztoló neve vagy Facebook profil neve</label>
+                                        <Input
+                                            value={fbPosterName}
+                                            onChange={(e) => setFbPosterName(e.target.value)}
+                                            placeholder="Pl. Kovács Gergő"
+                                            className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-sm"
+                                        />
+                                    </div>
+                                    <div className="space-y-1.5">
+                                        <label className="text-[11px] text-slate-400">Facebook poszt kimásolt szövege</label>
+                                        <Textarea
+                                            rows={3}
+                                            value={fbPostText}
+                                            onChange={(e) => setFbPostText(e.target.value)}
+                                            placeholder="Illeszd be ide a posztot, amit a csoportban láttál..."
+                                            className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-sm resize-none"
+                                        />
+                                    </div>
+
+                                    <Button
+                                        type="button"
+                                        disabled={isAnalyzingFb}
+                                        onClick={handleAnalyzeFbPost}
+                                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold rounded-xl h-10 shadow-lg shadow-blue-600/20 gap-2"
+                                    >
+                                        {isAnalyzingFb ? (
+                                            <>
+                                                <Loader2 className="h-4 w-4 animate-spin" />
+                                                <span>Poszt elemzése és CRM mentés...</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Sparkles className="h-4 w-4" />
+                                                <span>✨ Poszt Elemzése & Lead Rögzítése</span>
+                                            </>
+                                        )}
+                                    </Button>
+                                </div>
+
+                                {fbAnalysisResult && (
+                                    <div className="p-4 rounded-xl border border-blue-500/30 bg-blue-500/10 space-y-3">
+                                        <div className="flex items-center justify-between">
+                                            <span className="text-xs font-bold text-blue-300">
+                                                Azonosított igény: {fbAnalysisResult.detectedNeed}
+                                            </span>
+                                            <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-500/30 text-[10px]">
+                                                ✓ CRM-be rögzítve
+                                            </Badge>
+                                        </div>
+                                        <div className="p-3 rounded-lg bg-black/40 border border-white/10 text-xs text-slate-200 whitespace-pre-line font-sans">
+                                            {fbAnalysisResult.suggestedComment}
+                                        </div>
+                                        <Button
+                                            type="button"
+                                            onClick={() => {
+                                                navigator.clipboard.writeText(fbAnalysisResult.suggestedComment);
+                                                toast.success("Ajánlott válasz vágólapra másolva!");
+                                            }}
+                                            className="w-full bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold rounded-lg h-9 gap-1.5"
+                                        >
+                                            <Copy className="h-3.5 w-3.5" />
+                                            <span>Válasz Másolása a Facebookra</span>
+                                        </Button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+
+                        {/* ── TAB 3: LINKEDIN DÖNTÉSHOZÓ VADÁSZ ── */}
+                        {hunterTab === "linkedin" && (
+                            <div className="space-y-5">
+                                <div className="space-y-3 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
+                                    <h4 className="text-xs font-bold text-slate-200 flex items-center gap-1.5 uppercase tracking-wider">
+                                        <Target className="h-3.5 w-3.5 text-[#0077b5]" />
+                                        LinkedIn X-Ray Döntéshozó Kereső (Ingyenes Sales Navigator)
+                                    </h4>
+                                    <p className="text-xs text-slate-400">
+                                        Közvetlenül a Google adatbázisán keresztül szűrheted le a magyar cégvezetőket fizetős előfizetés nélkül.
+                                    </p>
+
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                        <div className="space-y-1">
+                                            <label className="text-[11px] text-slate-400">Pozíció / Szerepkör</label>
+                                            <Input
+                                                value={linkedInRole}
+                                                onChange={(e) => setLinkedInRole(e.target.value)}
+                                                placeholder="Pl. Ügyvezető"
+                                                className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-xs h-9"
+                                            />
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="text-[11px] text-slate-400">Város / Helyszín</label>
+                                            <Input
+                                                value={linkedInCity}
+                                                onChange={(e) => setLinkedInCity(e.target.value)}
+                                                placeholder="Pl. Budapest"
+                                                className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-xs h-9"
+                                            />
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="text-[11px] text-slate-400">Iparág / Cégtípus</label>
+                                            <Input
+                                                value={linkedInIndustry}
+                                                onChange={(e) => setLinkedInIndustry(e.target.value)}
+                                                placeholder="Pl. Webáruház"
+                                                className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-xs h-9"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <Button
+                                        type="button"
+                                        onClick={handleOpenLinkedInSearch}
+                                        className="w-full bg-[#0077b5] hover:bg-[#006097] text-white font-bold rounded-xl h-10 shadow-lg shadow-[#0077b5]/25 gap-2"
+                                    >
+                                        <ExternalLink className="h-4 w-4" />
+                                        <span>Döntéshozók Megnyitása a LinkedInen (Google X-Ray)</span>
+                                    </Button>
+                                </div>
+
+                                {/* Quick save LinkedIn lead */}
+                                <div className="space-y-3 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02]">
+                                    <h4 className="text-xs font-bold text-slate-200 flex items-center gap-1.5 uppercase tracking-wider">
+                                        <Plus className="h-3.5 w-3.5 text-cyan-400" />
+                                        Megtalált LinkedIn Profil Gyorsrögzítése
+                                    </h4>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <Input
+                                            value={liName}
+                                            onChange={(e) => setLiName(e.target.value)}
+                                            placeholder="Kapcsolattartó neve (pl. Kiss Péter)"
+                                            className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-xs h-9"
+                                        />
+                                        <Input
+                                            value={liCompany}
+                                            onChange={(e) => setLiCompany(e.target.value)}
+                                            placeholder="Cégnév (pl. Webshop Kft.)"
+                                            className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-xs h-9"
+                                        />
+                                        <Input
+                                            value={liUrl}
+                                            onChange={(e) => setLiUrl(e.target.value)}
+                                            placeholder="LinkedIn profil URL linkje"
+                                            className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-xs h-9"
+                                        />
+                                        <Input
+                                            value={liEmail}
+                                            onChange={(e) => setLiEmail(e.target.value)}
+                                            placeholder="E-mail (ha ismert, vagy hagyd üresen)"
+                                            className="bg-white/[0.03] border-white/[0.08] text-white rounded-xl text-xs h-9"
+                                        />
+                                    </div>
+                                    <Button
+                                        type="button"
+                                        disabled={isSavingLi}
+                                        onClick={handleSaveLinkedInLead}
+                                        className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold rounded-xl h-10 shadow-lg shadow-cyan-500/20 gap-2"
+                                    >
+                                        {isSavingLi ? (
+                                            <Loader2 className="h-4 w-4 animate-spin" />
+                                        ) : (
+                                            <Send className="h-4 w-4" />
+                                        )}
+                                        <span>Mentés a CRM-be & Azonnali Megkeresés</span>
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
+
+                        <DialogFooter className="pt-4 border-t border-white/[0.06]">
+                            <Button
+                                type="button"
+                                variant="outline"
+                                onClick={() => setIsHunterOpen(false)}
+                                className="border-white/[0.08] text-slate-300 hover:bg-white/[0.05] rounded-xl"
+                            >
+                                Bezárás
                             </Button>
                         </DialogFooter>
                     </div>
