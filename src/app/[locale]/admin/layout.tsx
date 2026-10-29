@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -116,6 +116,26 @@ export default async function AdminLayout({
                             <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
                                 <Ticket className="h-4 w-4 text-cyan-400" />
                                 <span className="text-sm font-medium">Support Tickets</span>
+                            </Button>
+                        </Link>
+                    </div>
+
+                    {/* AI & Marketing */}
+                    <div className="space-y-1.5">
+                        <div className="flex items-center justify-between px-3">
+                            <p className="text-[10px] font-bold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
+                                <Sparkles className="h-3 w-3 text-purple-400 animate-pulse" />
+                                AI & Marketing
+                            </p>
+                            <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-semibold border border-purple-500/30">
+                                GPT-4o
+                            </span>
+                        </div>
+                        
+                        <Link href={"/admin/marketing" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-purple-500/15 via-pink-500/10 to-transparent hover:from-purple-500/25 hover:to-pink-500/20 border border-purple-500/30 hover:border-purple-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] group">
+                                <Sparkles className="h-4 w-4 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                                <span className="text-sm font-medium">Marketing Autopilot</span>
                             </Button>
                         </Link>
                     </div>

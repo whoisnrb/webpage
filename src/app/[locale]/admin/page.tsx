@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { MessageSquare, Clock, FileText, Briefcase, Banknote, Activity } from "lucide-react"
+import { MessageSquare, Clock, FileText, Briefcase, Banknote, Activity, Sparkles, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { prisma } from "@/lib/db"
 import { DashboardCharts } from "@/components/admin/dashboard-charts"
 import { Link } from "@/i18n/routing"
@@ -130,6 +131,32 @@ export default async function AdminPage() {
                 </div>
                 <div className="text-xs font-mono text-cyan-400 bg-cyan-950/30 border border-cyan-800/30 rounded-full px-3 py-1 animate-pulse">
                     Live Syncing
+                </div>
+            </div>
+
+            {/* AI Marketing Autopilot Banner */}
+            <div className="relative overflow-hidden rounded-2xl border border-purple-500/30 bg-gradient-to-r from-purple-950/40 via-[#0d1024] to-cyan-950/30 p-6 shadow-xl backdrop-blur-sm">
+                <div className="absolute top-0 right-0 -mt-10 -mr-10 h-40 w-40 rounded-full bg-purple-500/10 blur-3xl pointer-events-none" />
+                <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div className="space-y-1.5">
+                        <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/30 flex items-center gap-1.5 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                                <Sparkles className="h-3 w-3 text-purple-400 animate-pulse" />
+                                Új Funkció • Azure OpenAI GPT-4o
+                            </span>
+                        </div>
+                        <h3 className="text-xl font-bold text-white tracking-tight">AI Marketing Autopilot</h3>
+                        <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
+                            Generálj egyetlen kattintással SEO-optimalizált szakmai blogcikkeket, azonnal másolható LinkedIn posztokat és DALL-E képi koncepciókat a BacklineIT brandjéhez igazítva.
+                        </p>
+                    </div>
+                    <Link href={"/admin/marketing" as any} className="shrink-0">
+                        <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-purple-500/25 border border-purple-400/40 rounded-xl px-5 py-2.5 flex items-center gap-2 transition-all duration-300 cursor-pointer">
+                            <Sparkles className="h-4 w-4" />
+                            Autopilot megnyitása
+                            <ArrowRight className="h-4 w-4" />
+                        </Button>
+                    </Link>
                 </div>
             </div>
 
