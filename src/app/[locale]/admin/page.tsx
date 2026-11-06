@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { MessageSquare, Clock, FileText, Briefcase, Banknote, Activity, Sparkles, ArrowRight } from "lucide-react"
+import { MessageSquare, Clock, FileText, Briefcase, Banknote, Activity, Sparkles, ArrowRight, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { prisma } from "@/lib/db"
 import { DashboardCharts } from "@/components/admin/dashboard-charts"
@@ -150,13 +150,21 @@ export default async function AdminPage() {
                             Generálj egyetlen kattintással SEO-optimalizált szakmai blogcikkeket, azonnal másolható LinkedIn posztokat és DALL-E képi koncepciókat a BacklineIT brandjéhez igazítva.
                         </p>
                     </div>
-                    <Link href={"/admin/marketing" as any} className="shrink-0">
-                        <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-purple-500/25 border border-purple-400/40 rounded-xl px-5 py-2.5 flex items-center gap-2 transition-all duration-300 cursor-pointer">
-                            <Sparkles className="h-4 w-4" />
-                            Autopilot megnyitása
-                            <ArrowRight className="h-4 w-4" />
-                        </Button>
-                    </Link>
+                    <div className="flex flex-wrap items-center gap-3 shrink-0">
+                        <Link href={"/admin/marketing" as any}>
+                            <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-purple-500/25 border border-purple-400/40 rounded-xl px-4 py-2.5 flex items-center gap-2 transition-all duration-300 cursor-pointer text-xs">
+                                <Sparkles className="h-4 w-4" />
+                                Marketing Autopilot
+                            </Button>
+                        </Link>
+                        <Link href={"/admin/security-audit" as any}>
+                            <Button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/25 border border-cyan-400/40 rounded-xl px-4 py-2.5 flex items-center gap-2 transition-all duration-300 cursor-pointer text-xs">
+                                <ShieldCheck className="h-4 w-4" />
+                                Biztonsági Audit Robot
+                                <ArrowRight className="h-4 w-4" />
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </div>
 
