@@ -21,6 +21,7 @@ if (githubId && githubSecret) {
         GitHub({
             clientId: githubId,
             clientSecret: githubSecret,
+            issuer: "https://github.com/login/oauth",
         })
     )
 }

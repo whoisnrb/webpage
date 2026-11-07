@@ -591,7 +591,8 @@
     "profile": "Profilom",
     "dashboard_menu": "Ügyfélportál / Dashboard",
     "settings": "Beállítások",
-    "logout": "Kijelentkezés"
+    "logout": "Kijelentkezés",
+    "prices": "Árak"
   },
   "Footer": {
     "description": "Professzionális informatikai szolgáltatások, scriptek és automatizációk vállalkozások számára. Spórolj időt és pénzt modern megoldásainkkal.",

@@ -591,7 +591,8 @@
     "profile": "My Profile",
     "dashboard_menu": "Client Portal / Dashboard",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "prices": "Pricing"
   },
   "Footer": {
     "description": "Professional IT services, scripts, and automation for businesses. Save time and money with our modern solutions.",
