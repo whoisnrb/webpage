@@ -12,7 +12,7 @@ export default async function DashboardPage() {
     const t = await getTranslations('Dashboard')
 
     if (!session?.user?.email) {
-        redirect(`/${locale}/api/auth/signin`)
+        redirect("/login")
     }
 
     let openTickets = 0

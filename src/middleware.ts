@@ -11,15 +11,9 @@ const authMiddleware = auth((req) => {
     const { nextUrl } = req;
     const isLoggedIn = !!req.auth;
 
-    const isAuthPage = nextUrl.pathname.includes("/login") || nextUrl.pathname.includes("/register");
-    const isAdminPage = nextUrl.pathname.includes("/admin") || nextUrl.pathname.includes("/dashboard");
+    const isProtectedPage = nextUrl.pathname.includes("/admin") || nextUrl.pathname.includes("/dashboard");
 
-    // Auth logika — CSAK admin/dashboard oldalakra
-    if (isAuthPage && isLoggedIn) {
-        return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
-    }
-
-    if (isAdminPage && !isLoggedIn) {
+    if (isProtectedPage && !isLoggedIn) {
         return NextResponse.redirect(new URL("/login", req.nextUrl));
     }
 
@@ -45,13 +39,13 @@ export default function middleware(req: NextRequest, event: NextFetchEvent) {
         return response;
     }
 
-    // 3. Auth/Admin oldalak - auth middleware szükséges
-    if (pathname.includes("/login") || pathname.includes("/register") ||
-        pathname.includes("/admin") || pathname.includes("/dashboard")) {
+    // 3. CSAK védett oldalak (admin és dashboard) menjenek át az auth middleware-en
+    // A /login és /register publikus, nem szabad auth-csapdába / redirect loopba vinni!
+    if (pathname.includes("/admin") || pathname.includes("/dashboard")) {
         return (authMiddleware as any)(req, event);
     }
 
-    // 4. Minden más - csak intl middleware
+    // 4. Minden más (beleértve a /login és /register-t) - csak tiszta intl middleware
     return intlMiddleware(req);
 }
 
@@ -69,4 +63,3 @@ export const config = {
         '/((?!_next/static|_next/image|assets|favicon.ico|sitemap.xml|robots.txt|sw.js|.*\\..*).*)',
     ],
 };
-
