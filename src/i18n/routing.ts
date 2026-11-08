@@ -178,6 +178,34 @@ export const routing = defineRouting({
         '/checkout': {
             hu: '/checkout',
             en: '/checkout'
+        },
+        '/dashboard': {
+            hu: '/dashboard',
+            en: '/dashboard'
+        },
+        '/dashboard/settings': {
+            hu: '/dashboard/settings',
+            en: '/dashboard/settings'
+        },
+        '/dashboard/projects': {
+            hu: '/dashboard/projects',
+            en: '/dashboard/projects'
+        },
+        '/dashboard/tickets': {
+            hu: '/dashboard/tickets',
+            en: '/dashboard/tickets'
+        },
+        '/dashboard/tickets/new': {
+            hu: '/dashboard/tickets/new',
+            en: '/dashboard/tickets/new'
+        },
+        '/dashboard/tickets/[id]': {
+            hu: '/dashboard/tickets/[id]',
+            en: '/dashboard/tickets/[id]'
+        },
+        '/admin': {
+            hu: '/admin',
+            en: '/admin'
         }
     }
 });

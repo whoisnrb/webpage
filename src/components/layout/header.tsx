@@ -181,7 +181,7 @@ export function Header() {
                                                 
                                                 <div className="space-y-0.5 relative z-10">
                                                     <Link
-                                                        href={"/dashboard/settings" as any}
+                                                        href="/dashboard/settings"
                                                         onClick={() => setProfileMenuOpen(false)}
                                                         className="flex w-full items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 hover:border-l-2 hover:border-cyan-400 pl-3 transition-all cursor-pointer"
                                                     >
@@ -189,7 +189,7 @@ export function Header() {
                                                         {t("profile")}
                                                     </Link>
                                                     <Link
-                                                        href={"/dashboard" as any}
+                                                        href="/dashboard"
                                                         onClick={() => setProfileMenuOpen(false)}
                                                         className="flex w-full items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 hover:border-l-2 hover:border-cyan-400 pl-3 transition-all cursor-pointer"
                                                     >
@@ -197,7 +197,7 @@ export function Header() {
                                                         {t("dashboard_menu")}
                                                     </Link>
                                                     <Link
-                                                        href={"/dashboard/settings" as any}
+                                                        href="/dashboard/settings"
                                                         onClick={() => setProfileMenuOpen(false)}
                                                         className="flex w-full items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 hover:border-l-2 hover:border-cyan-400 pl-3 transition-all cursor-pointer"
                                                     >
@@ -437,7 +437,7 @@ export function Header() {
                                                 {/* Mobile User Menu Links */}
                                                 <div className="space-y-1 relative z-10 pt-1">
                                                     <Link
-                                                        href={"/dashboard/settings" as any}
+                                                        href="/dashboard/settings"
                                                         className="flex w-full items-center gap-2.5 py-2 px-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 active:bg-white/5 transition-all cursor-pointer"
                                                         onClick={() => setMobileMenuOpen(false)}
                                                     >
@@ -445,7 +445,7 @@ export function Header() {
                                                         {t("profile")}
                                                     </Link>
                                                     <Link
-                                                        href={"/dashboard" as any}
+                                                        href="/dashboard"
                                                         className="flex w-full items-center gap-2.5 py-2 px-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 active:bg-white/5 transition-all cursor-pointer"
                                                         onClick={() => setMobileMenuOpen(false)}
                                                     >
@@ -453,7 +453,7 @@ export function Header() {
                                                         {t("dashboard_menu")}
                                                     </Link>
                                                     <Link
-                                                        href={"/dashboard/settings" as any}
+                                                        href="/dashboard/settings"
                                                         className="flex w-full items-center gap-2.5 py-2 px-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 active:bg-white/5 transition-all cursor-pointer"
                                                         onClick={() => setMobileMenuOpen(false)}
                                                     >

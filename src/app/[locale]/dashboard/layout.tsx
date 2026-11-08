@@ -4,7 +4,7 @@ import { MobileNav } from "@/components/dashboard/mobile-nav"
 import { Link } from "@/i18n/routing"
 import { Code2 } from "lucide-react"
 import { auth } from "@/auth"
-
+import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 export default async function DashboardLayout({
@@ -17,6 +17,10 @@ export default async function DashboardLayout({
     const { locale } = await params;
     const tDash = await getTranslations({ locale, namespace: 'Dashboard' })
     const session = await auth()
+
+    if (!session?.user) {
+        redirect("/login")
+    }
 
     return (
         <div className="min-h-screen flex flex-col md:flex-row bg-[#070711]">
