@@ -13,12 +13,15 @@ const sidebarItems = [
     { name: "settings", href: "/dashboard/settings", icon: Settings,        color: "text-slate-400",  bg: "bg-slate-400/10",  hoverBorder: "hover:border-slate-400/30", activeBorder: "border-slate-400/30",  activeBg: "bg-slate-400/10",  activeText: "text-slate-300" },
 ]
 
-export function Sidebar({ hideLogo = false }: { hideLogo?: boolean }) {
+export function Sidebar({ hideLogo = false, userRole }: { hideLogo?: boolean; userRole?: string }) {
     const pathname = usePathname()
     const { data: session } = useSession()
     const tNav   = useTranslations('Navigation')
     const tDash  = useTranslations('Dashboard')
     const tTickets = useTranslations('Tickets')
+
+    const role = userRole || session?.user?.role || ''
+    const isStaff = ["ADMIN", "SUPER_ADMIN", "DEVELOPER", "SALES"].includes(role)
 
     const userName = session?.user?.name || tDash('anonymous_user')
     const userEmail = session?.user?.email || ''
@@ -84,27 +87,27 @@ export function Sidebar({ hideLogo = false }: { hideLogo?: boolean }) {
                 })}
 
                 {/* Admin section */}
-                {session?.user?.role === "ADMIN" && (
+                {isStaff && (
                     <>
                         <div className="my-3 border-t border-white/5" />
-                        <p className="px-3 mb-3 text-[10px] font-semibold uppercase tracking-widest text-red-400/50">
-                            Admin
+                        <p className="px-3 mb-3 text-[10px] font-semibold uppercase tracking-widest text-cyan-400/70 font-mono">
+                            Adminisztráció
                         </p>
                         <Link
-                            href={"/admin/tickets" as any}
+                            href={"/admin" as any}
                             className={cn(
                                 "group flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium border transition-all duration-200",
                                 pathname.startsWith("/admin")
-                                    ? "border-red-500/20 bg-red-500/10 text-red-400"
-                                    : "border-transparent text-muted-foreground hover:text-red-400 hover:bg-red-500/5 hover:border-red-500/20"
+                                    ? "border-cyan-500/30 bg-cyan-500/10 text-cyan-300"
+                                    : "border-transparent text-muted-foreground hover:text-cyan-300 hover:bg-cyan-500/10 hover:border-cyan-500/20"
                             )}
                         >
                             <div className="flex items-center gap-3">
                                 <div className={cn(
                                     "flex h-7 w-7 items-center justify-center rounded-md transition-all",
-                                    pathname.startsWith("/admin") ? "bg-red-500/10" : "bg-white/5 group-hover:bg-red-500/10"
+                                    pathname.startsWith("/admin") ? "bg-cyan-500/20 text-cyan-300" : "bg-white/5 group-hover:bg-cyan-500/10 text-cyan-400"
                                 )}>
-                                    <ShieldAlert className="h-3.5 w-3.5 text-red-400" />
+                                    <ShieldAlert className="h-3.5 w-3.5" />
                                 </div>
                                 {tDash('administration')}
                             </div>

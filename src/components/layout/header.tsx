@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Link, usePathname } from "@/i18n/routing"
 import { useTranslations } from "next-intl"
-import { Menu, X, Code2, ChevronDown, User, Settings, LogOut, LayoutDashboard, Sparkles } from "lucide-react"
+import { Menu, X, Code2, ChevronDown, User, Settings, LogOut, LayoutDashboard, Sparkles, ShieldAlert } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useSession, signOut } from "next-auth/react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -180,6 +180,16 @@ export function Header() {
                                                 </div>
                                                 
                                                 <div className="space-y-0.5 relative z-10">
+                                                    {["ADMIN", "SUPER_ADMIN", "DEVELOPER", "SALES"].includes(session?.user?.role || "") && (
+                                                        <Link
+                                                            href="/admin"
+                                                            onClick={() => setProfileMenuOpen(false)}
+                                                            className="flex w-full items-center gap-2.5 px-3 py-2 text-xs font-semibold rounded-lg text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 transition-all cursor-pointer border border-cyan-500/20 mb-1"
+                                                        >
+                                                            <ShieldAlert className="h-3.5 w-3.5 text-cyan-400" />
+                                                            Adminisztráció
+                                                        </Link>
+                                                    )}
                                                     <Link
                                                         href="/dashboard/settings"
                                                         onClick={() => setProfileMenuOpen(false)}
@@ -436,6 +446,16 @@ export function Header() {
 
                                                 {/* Mobile User Menu Links */}
                                                 <div className="space-y-1 relative z-10 pt-1">
+                                                    {["ADMIN", "SUPER_ADMIN", "DEVELOPER", "SALES"].includes(session?.user?.role || "") && (
+                                                        <Link
+                                                            href="/admin"
+                                                            className="flex w-full items-center gap-2.5 py-2 px-2 text-xs font-semibold rounded-lg text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 active:bg-cyan-500/10 transition-all cursor-pointer border border-cyan-500/20 mb-1"
+                                                            onClick={() => setMobileMenuOpen(false)}
+                                                        >
+                                                            <ShieldAlert className="h-4 w-4 text-cyan-400" />
+                                                            Adminisztráció
+                                                        </Link>
+                                                    )}
                                                     <Link
                                                         href="/dashboard/settings"
                                                         className="flex w-full items-center gap-2.5 py-2 px-2 text-xs font-semibold rounded-lg text-white/70 hover:text-white hover:bg-white/5 active:bg-white/5 transition-all cursor-pointer"

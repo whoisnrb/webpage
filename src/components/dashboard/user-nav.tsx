@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { User, LogOut } from "lucide-react"
+import { User, LogOut, ShieldAlert } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
     DropdownMenu,
@@ -12,16 +12,20 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { signOut } from "next-auth/react"
+import { Link } from "@/i18n/routing"
 
 interface UserNavProps {
     user?: {
         name?: string | null
         email?: string | null
         image?: string | null
+        role?: string | null
     }
 }
 
 export function UserNav({ user }: UserNavProps) {
+    const isStaff = user?.role && ["ADMIN", "SUPER_ADMIN", "DEVELOPER", "SALES"].includes(user.role)
+
     return (
         <div className="flex items-center gap-4">
             <div className="text-sm text-right hidden md:block">
@@ -47,6 +51,17 @@ export function UserNav({ user }: UserNavProps) {
                         </div>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
+                    {isStaff && (
+                        <>
+                            <DropdownMenuItem asChild className="cursor-pointer text-cyan-400 focus:text-cyan-300 focus:bg-cyan-500/10 font-medium">
+                                <Link href={"/admin" as any} className="flex items-center w-full">
+                                    <ShieldAlert className="mr-2 h-4 w-4 text-cyan-400" />
+                                    <span>Adminisztráció</span>
+                                </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                        </>
+                    )}
                     <DropdownMenuItem onSelect={() => signOut({ callbackUrl: "/login" })} className="cursor-pointer text-red-500 focus:text-red-500">
                         <LogOut className="mr-2 h-4 w-4" />
                         <span>Kijelentkezés</span>

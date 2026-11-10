@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Sidebar } from "./sidebar"
 import { Button } from "@/components/ui/button"
 
-export function MobileNav() {
+export function MobileNav({ userRole }: { userRole?: string }) {
     const [isOpen, setIsOpen] = React.useState(false)
 
     // Close menu when clicking a link (since sidebar links are client-side)
@@ -57,7 +57,7 @@ export function MobileNav() {
                                     </Button>
                                 </div>
                                 <div className="flex-1 overflow-y-auto" onClick={() => setIsOpen(false)}>
-                                    <Sidebar hideLogo={true} />
+                                    <Sidebar hideLogo={true} userRole={userRole} />
                                 </div>
                             </div>
                         </motion.div>

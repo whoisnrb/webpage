@@ -28,7 +28,7 @@ export default async function DashboardLayout({
             {/* Mobile Header */}
             <div className="md:hidden border-b border-white/5 px-4 py-3 flex items-center justify-between bg-[#080812] sticky top-0 z-50">
                 <div className="flex items-center gap-3">
-                    <MobileNav />
+                    <MobileNav userRole={session?.user?.role} />
                     <Link href="/" className="flex items-center gap-2">
                         <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary/10 ring-1 ring-primary/20">
                             <Code2 className="h-3.5 w-3.5 text-primary" />
@@ -41,7 +41,7 @@ export default async function DashboardLayout({
 
             {/* Sidebar — Desktop */}
             <div className="hidden md:flex md:w-60 md:shrink-0 md:flex-col md:fixed md:inset-y-0 md:left-0 z-30">
-                <Sidebar />
+                <Sidebar userRole={session?.user?.role} />
             </div>
 
             {/* Main Content */}
