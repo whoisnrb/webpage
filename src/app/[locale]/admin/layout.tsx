@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -43,6 +43,18 @@ export default async function AdminLayout({
                             <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
                                 <LayoutDashboard className="h-4 w-4 text-cyan-400" />
                                 <span className="text-sm font-medium">Vezérlőpult</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/mission-control" as any}>
+                            <Button variant="ghost" className="w-full justify-between gap-2 text-cyan-300 hover:text-white bg-gradient-to-r from-cyan-950/60 via-cyan-900/40 to-transparent hover:from-cyan-900/80 hover:to-cyan-800/60 border border-cyan-500/40 hover:border-cyan-400/70 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] group">
+                                <div className="flex items-center gap-3">
+                                    <Radio className="h-4 w-4 text-cyan-400 group-hover:animate-pulse" />
+                                    <span className="text-sm font-bold tracking-wide">Mission Control</span>
+                                </div>
+                                <span className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 animate-pulse">
+                                    WAR ROOM
+                                </span>
                             </Button>
                         </Link>
                     </div>

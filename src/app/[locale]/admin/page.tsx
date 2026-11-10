@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { MessageSquare, Clock, FileText, Briefcase, Banknote, Activity, Sparkles, ArrowRight, ShieldCheck } from "lucide-react"
+import { MessageSquare, Clock, FileText, Briefcase, Banknote, Activity, Sparkles, ArrowRight, ShieldCheck, Radio } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { prisma } from "@/lib/db"
 import { DashboardCharts } from "@/components/admin/dashboard-charts"
@@ -131,6 +131,39 @@ export default async function AdminPage() {
                 </div>
                 <div className="text-xs font-mono text-cyan-400 bg-cyan-950/30 border border-cyan-800/30 rounded-full px-3 py-1 animate-pulse">
                     Live Syncing
+                </div>
+            </div>
+
+            {/* Mission Control // War Room Banner */}
+            <div className="relative overflow-hidden rounded-2xl border border-cyan-500/30 bg-gradient-to-r from-cyan-950/50 via-[#070b16] to-purple-950/40 p-6 shadow-[0_0_30px_rgba(6,182,212,0.15)] backdrop-blur-sm">
+                <div className="absolute top-0 right-0 -mt-10 -mr-10 h-44 w-44 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
+                <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div className="space-y-1.5">
+                        <div className="flex items-center gap-2">
+                            <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 flex items-center gap-1.5 shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+                                <Radio className="h-3 w-3 text-cyan-400 animate-pulse" />
+                                LIVE INFRASTRUCTURE • DEFCON 5
+                            </span>
+                            <span className="text-[11px] font-mono text-slate-400">
+                                Azure Managed Redis • Container Apps • Cloudflare Anycast
+                            </span>
+                        </div>
+                        <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                            Mission Control // War Room
+                        </h3>
+                        <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
+                            Kövesd élőben másodpercről másodpercre a BacklineIT szervereit, a felhő topológiát, az in-memory gyorsítótár sebességét (&lt;1ms) és a globális hálózati állapotot.
+                        </p>
+                    </div>
+                    <div className="flex items-center gap-3 shrink-0">
+                        <Link href={"/admin/mission-control" as any}>
+                            <Button className="bg-gradient-to-r from-cyan-500 via-blue-600 to-cyan-500 hover:from-cyan-400 hover:to-blue-500 text-white font-bold shadow-lg shadow-cyan-500/30 border border-cyan-400/50 rounded-xl px-5 py-3 flex items-center gap-2.5 transition-all duration-300 cursor-pointer text-sm">
+                                <Radio className="h-4 w-4 animate-pulse" />
+                                Belépés a War Roomba
+                                <ArrowRight className="h-4 w-4" />
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </div>
 

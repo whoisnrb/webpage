@@ -149,3 +149,40 @@ export async function cached<T>(
 
   return fresh;
 }
+
+/**
+ * Leméri a Redis ping válaszidejét milliszekundumban.
+ */
+export async function redisPing(): Promise<{ ok: boolean; latencyMs: number; info?: string }> {
+  const client = getRedisClient();
+  if (!client) return { ok: false, latencyMs: 0, info: "Nincs beállítva REDIS kapcsolat" };
+
+  try {
+    const start = performance.now();
+    const res = await client.ping();
+    const latencyMs = Math.round((performance.now() - start) * 10) / 10;
+    return { ok: res === "PONG", latencyMs, info: "PONG" };
+  } catch (err: any) {
+    return { ok: false, latencyMs: 0, info: err.message };
+  }
+}
+
+/**
+ * Lekéri a Redis alapvető adatait és a kulcsok számát.
+ */
+export async function redisInfo(): Promise<{ usedMemory?: string; totalKeys?: number } | null> {
+  const client = getRedisClient();
+  if (!client) return null;
+
+  try {
+    const rawInfo = await client.info("memory");
+    const keys = await client.dbsize();
+    const match = rawInfo.match(/used_memory_human:([^\r\n]+)/);
+    return {
+      usedMemory: match ? match[1].trim() : undefined,
+      totalKeys: keys,
+    };
+  } catch {
+    return null;
+  }
+}
