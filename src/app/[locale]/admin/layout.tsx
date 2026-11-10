@@ -12,11 +12,17 @@ export default async function AdminLayout({
 }) {
     const session = await auth()
 
+    const userRole = session?.user?.role || 'USER'
     const staffRoles = ["ADMIN", "SUPER_ADMIN", "DEVELOPER", "SALES"]
-    if (!session?.user || !staffRoles.includes(session.user.role || '')) {
+    if (!session?.user || !staffRoles.includes(userRole)) {
         const locale = await getLocale()
         redirect(`/${locale}/`)
     }
+
+    const isSuperAdmin = userRole === 'SUPER_ADMIN'
+    const isAdmin = userRole === 'ADMIN' || isSuperAdmin
+    const isDeveloper = userRole === 'DEVELOPER' || isAdmin
+    const isSales = userRole === 'SALES' || isAdmin
 
     return (
         <div className="flex min-h-screen bg-[#030712] text-slate-100 font-sans">
@@ -24,15 +30,22 @@ export default async function AdminLayout({
             <aside className="w-64 bg-[#090d16] border-r border-white/5 hidden md:flex flex-col shrink-0 shadow-[4px_0_24px_rgba(0,0,0,0.4)]">
                 {/* Header */}
                 <div className="p-6 border-b border-white/5 bg-[#0b101c]/40 backdrop-blur-md flex flex-col gap-1">
-                    <div className="flex items-center gap-2">
-                        <div className="h-2.5 w-2.5 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_8px_#06b6d4]" />
-                        <h1 className="text-lg font-bold tracking-wider uppercase bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent">
-                            Admin Panel
-                        </h1>
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <div className="h-2.5 w-2.5 rounded-full bg-cyan-500 animate-pulse shadow-[0_0_8px_#06b6d4]" />
+                            <h1 className="text-lg font-bold tracking-wider uppercase bg-gradient-to-r from-white via-slate-200 to-cyan-400 bg-clip-text text-transparent">
+                                Admin Panel
+                            </h1>
+                        </div>
                     </div>
-                    <p className="text-[10px] uppercase tracking-widest text-cyan-400/70 font-semibold">
-                        BacklineIT Core v2.0
-                    </p>
+                    <div className="flex items-center justify-between mt-0.5">
+                        <p className="text-[10px] uppercase tracking-widest text-cyan-400/70 font-semibold">
+                            BacklineIT Core v2.0
+                        </p>
+                        <span className="text-[9px] font-mono font-bold px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                            {userRole}
+                        </span>
+                    </div>
                 </div>
 
                 {/* Navigation */}
@@ -47,17 +60,19 @@ export default async function AdminLayout({
                             </Button>
                         </Link>
 
-                        <Link href={"/admin/mission-control" as any}>
-                            <Button variant="ghost" className="w-full justify-between gap-2 text-cyan-300 hover:text-white bg-gradient-to-r from-cyan-950/60 via-cyan-900/40 to-transparent hover:from-cyan-900/80 hover:to-cyan-800/60 border border-cyan-500/40 hover:border-cyan-400/70 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] group">
-                                <div className="flex items-center gap-3">
-                                    <Radio className="h-4 w-4 text-cyan-400 group-hover:animate-pulse" />
-                                    <span className="text-sm font-bold tracking-wide">Mission Control</span>
-                                </div>
-                                <span className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 animate-pulse">
-                                    WAR ROOM
-                                </span>
-                            </Button>
-                        </Link>
+                        {isDeveloper && (
+                            <Link href={"/admin/mission-control" as any}>
+                                <Button variant="ghost" className="w-full justify-between gap-2 text-cyan-300 hover:text-white bg-gradient-to-r from-cyan-950/60 via-cyan-900/40 to-transparent hover:from-cyan-900/80 hover:to-cyan-800/60 border border-cyan-500/40 hover:border-cyan-400/70 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.2)] group">
+                                    <div className="flex items-center gap-3">
+                                        <Radio className="h-4 w-4 text-cyan-400 group-hover:animate-pulse" />
+                                        <span className="text-sm font-bold tracking-wide">Mission Control</span>
+                                    </div>
+                                    <span className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 animate-pulse">
+                                        WAR ROOM
+                                    </span>
+                                </Button>
+                            </Link>
+                        )}
 
                         <Link href={"/admin/live-map" as any}>
                             <Button variant="ghost" className="w-full justify-between gap-2 text-slate-300 hover:text-white hover:bg-cyan-500/10 hover:border-cyan-500/20 border border-transparent rounded-xl transition-all duration-300">
@@ -117,17 +132,19 @@ export default async function AdminLayout({
                         </Link>
                     </div>
 
-                    {/* Munkatársak & Csapat */}
-                    <div className="space-y-1.5">
-                        <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Munkatársak</p>
-                        
-                        <Link href={"/admin/team" as any}>
-                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
-                                <Users className="h-4 w-4 text-cyan-400" />
-                                <span className="text-sm font-medium">Csapat & Jogosultságok</span>
-                            </Button>
-                        </Link>
-                    </div>
+                    {/* Munkatársak & Csapat (Csak Rendszergazda) */}
+                    {isAdmin && (
+                        <div className="space-y-1.5">
+                            <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Munkatársak</p>
+                            
+                            <Link href={"/admin/team" as any}>
+                                <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                    <Users className="h-4 w-4 text-cyan-400" />
+                                    <span className="text-sm font-medium">Csapat & Jogosultságok</span>
+                                </Button>
+                            </Link>
+                        </div>
+                    )}
 
                     {/* Operatív */}
                     <div className="space-y-1.5">
