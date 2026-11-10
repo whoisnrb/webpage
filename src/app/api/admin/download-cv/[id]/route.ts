@@ -10,7 +10,7 @@ export async function GET(
         const session = await auth()
 
         // 1. Check Auth (Admin only)
-        if (!session?.user || session.user.role !== "ADMIN") {
+        if (!session?.user || !["ADMIN", "SUPER_ADMIN", "SALES"].includes(session.user.role || "")) {
             return new NextResponse("Unauthorized", { status: 401 })
         }
 

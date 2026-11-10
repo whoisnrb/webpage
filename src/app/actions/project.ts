@@ -7,8 +7,9 @@ import { sendStatusUpdateEmail } from "@/lib/mail"
 
 export async function updateProjectStatus(projectId: string, status: string, progress: number) {
     const session = await auth()
+    const role = session?.user?.role || ""
     
-    if (!session?.user || session.user.role !== "ADMIN") {
+    if (!session?.user || !["ADMIN", "SUPER_ADMIN", "DEVELOPER"].includes(role)) {
         throw new Error("Unauthorized")
     }
 

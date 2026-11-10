@@ -7,8 +7,9 @@ import { createAuditLog } from "@/lib/audit"
 
 async function checkAdmin() {
     const session = await auth()
-    if (!session?.user || session.user.role !== "ADMIN") {
-        throw new Error("Unauthorized: Admin role required.")
+    const role = session?.user?.role || ""
+    if (!session?.user || !["ADMIN", "SUPER_ADMIN", "SALES"].includes(role)) {
+        throw new Error("Unauthorized: Admin or Sales role required.")
     }
 }
 

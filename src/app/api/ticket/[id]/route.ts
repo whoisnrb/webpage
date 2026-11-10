@@ -53,7 +53,7 @@ export async function GET(
 
         // Check access rights
         const isOwner = ticket.userId === session.user.id
-        const isAdmin = session.user.role === "ADMIN"
+        const isAdmin = ["ADMIN", "SUPER_ADMIN", "DEVELOPER"].includes(session.user.role || "")
 
         if (!isOwner && !isAdmin) {
             return NextResponse.json(

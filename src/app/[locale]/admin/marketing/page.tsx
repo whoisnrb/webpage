@@ -11,7 +11,7 @@ export const metadata = {
 export default async function AdminMarketingPage() {
     const session = await auth()
 
-    if (!session?.user || session.user.role !== "ADMIN") {
+    if (!session?.user || !["ADMIN", "SUPER_ADMIN", "SALES"].includes(session.user.role || "")) {
         const locale = await getLocale()
         redirect(`/${locale}/`)
     }

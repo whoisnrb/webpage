@@ -6,17 +6,17 @@ export async function GET(req: NextRequest) {
     try {
         const session = await auth()
 
-        if (!session?.user?.id || session.user.role !== "ADMIN") {
+        if (!session?.user?.id || !["ADMIN", "SUPER_ADMIN", "DEVELOPER"].includes(session.user.role || "")) {
             return NextResponse.json(
                 { error: "Nincs jogosultsága" },
                 { status: 403 }
             )
         }
 
-        // Return users with role ADMIN as potential ticket assignees
+        // Return users with staff roles as potential ticket assignees
         const users = await prisma.user.findMany({
             where: {
-                role: "ADMIN"
+                role: { in: ["ADMIN", "SUPER_ADMIN", "DEVELOPER"] }
             },
             select: {
                 id: true,

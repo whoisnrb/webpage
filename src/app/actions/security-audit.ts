@@ -158,7 +158,8 @@ export async function runSecurityScan(rawDomain: string): Promise<{
 }> {
     try {
         const session = await auth()
-        if (!session?.user || session.user.role !== "ADMIN") {
+        const role = session?.user?.role || ""
+        if (!session?.user || !["ADMIN", "SUPER_ADMIN", "DEVELOPER"].includes(role)) {
             return {
                 success: false,
                 error: "Nem engedélyezett művelet: Csak adminisztrátor futtathat biztonsági auditot."

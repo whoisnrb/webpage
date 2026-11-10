@@ -6,7 +6,7 @@ import { logAdminAction } from "@/lib/audit"
 export async function POST(req: NextRequest) {
     try {
         const session = await auth()
-        if (!session?.user || session.user.role !== "ADMIN") {
+        if (!session?.user || !["ADMIN", "SUPER_ADMIN", "DEVELOPER"].includes(session.user.role || "")) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 403 })
         }
 

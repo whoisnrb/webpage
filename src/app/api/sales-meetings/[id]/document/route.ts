@@ -9,7 +9,7 @@ export async function GET(
     try {
         const { id } = await context.params
         const session = await auth()
-        if (!session?.user || session.user.role !== "ADMIN") {
+        if (!session?.user || !["ADMIN", "SUPER_ADMIN", "SALES"].includes(session.user.role || "")) {
             return new NextResponse("Unauthorized", { status: 401 })
         }
 

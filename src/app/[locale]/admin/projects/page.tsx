@@ -10,7 +10,7 @@ export default async function AdminProjectsPage() {
     const session = await auth()
     const locale = await getLocale()
 
-    if (!session?.user || session.user.role !== "ADMIN") {
+    if (!session?.user || !["ADMIN", "SUPER_ADMIN", "DEVELOPER"].includes(session.user.role || "")) {
         redirect(`/${locale}/`)
     }
 

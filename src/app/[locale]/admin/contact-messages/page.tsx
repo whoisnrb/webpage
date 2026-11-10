@@ -7,7 +7,12 @@ import { Link } from "@/i18n/routing"
 export const dynamic = 'force-dynamic'
 
 export default async function AdminContactMessagesPage() {
-    const messages = await getContactMessages()
+    let messages: any[] = []
+    try {
+        messages = await getContactMessages()
+    } catch (e) {
+        console.error("AdminContactMessagesPage error:", e)
+    }
 
     return (
         <div className="space-y-6">
