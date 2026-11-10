@@ -1,7 +1,8 @@
 'use server'
 
 import { prisma } from "@/lib/db"
-import { revalidatePath, revalidateTag, unstable_cache } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
+import { cached, redisDelPattern } from "@/lib/redis"
 
 export type Variant = {
     name: string
@@ -52,7 +53,7 @@ function mapProduct(p: any): ProductDTO {
 
     if (Array.isArray(rawPrices)) {
         prices = rawPrices
-    } else {
+    } else if (rawPrices) {
         // Migration for old object structure
         prices = [
             { name: 'Personal', price: rawPrices.personal || 0, description: '1 weboldalhoz' },
@@ -63,14 +64,15 @@ function mapProduct(p: any): ProductDTO {
 
     return {
         ...p,
-        title: p.name,
-        titleEn: p.nameEn || null,
+        title: p.name || p.title,
+        titleEn: p.nameEn || p.titleEn || null,
         descriptionEn: p.descriptionEn || null,
         longDescriptionEn: p.longDescriptionEn || null,
-        features: typeof p.features === 'string' ? JSON.parse(p.features) : p.features,
+        features: typeof p.features === 'string' ? JSON.parse(p.features) : (p.features || []),
         featuresEn: p.featuresEn ? (typeof p.featuresEn === 'string' ? JSON.parse(p.featuresEn) : p.featuresEn) : null,
         prices: prices,
-        demoVideoUrl: p.demoVideoUrl || null
+        demoVideoUrl: p.demoVideoUrl || null,
+        updatedAt: p.updatedAt ? new Date(p.updatedAt) : new Date()
     }
 }
 
@@ -97,20 +99,15 @@ function localizeProduct(product: ProductDTO, locale: string): LocalizedProductD
     }
 }
 
-const getCachedProducts = unstable_cache(
-    async () => {
-        const products = await prisma.product.findMany({
-            orderBy: { createdAt: 'desc' }
-        })
-        return products.map(mapProduct)
-    },
-    ['all-products'],
-    { revalidate: 3600, tags: ['products'] }
-)
-
 export async function getProducts(): Promise<ProductDTO[]> {
     try {
-        return await getCachedProducts()
+        const raw = await cached("products:all", 3600, async () => {
+            const products = await prisma.product.findMany({
+                orderBy: { createdAt: 'desc' }
+            })
+            return products
+        })
+        return raw.map(mapProduct)
     } catch (error) {
         console.error('Error fetching products:', error)
         return []
@@ -123,21 +120,15 @@ export async function getLocalizedProducts(locale: string = 'hu'): Promise<Local
     return products.map(p => localizeProduct(p, locale))
 }
 
-const getCachedProductBySlug = unstable_cache(
-    async (slug: string) => {
-        const product = await prisma.product.findUnique({
-            where: { slug }
+export async function getProductBySlug(slug: string): Promise<ProductDTO | null> {
+    try {
+        const product = await cached(`products:slug:${slug}`, 3600, async () => {
+            return await prisma.product.findUnique({
+                where: { slug }
+            })
         })
         if (!product) return null
         return mapProduct(product)
-    },
-    ['product-by-slug'],
-    { revalidate: 3600, tags: ['products'] }
-)
-
-export async function getProductBySlug(slug: string): Promise<ProductDTO | null> {
-    try {
-        return await getCachedProductBySlug(slug)
     } catch (error) {
         console.error('Error fetching product by slug:', error)
         return null
@@ -166,6 +157,7 @@ export async function createProduct(data: Omit<ProductDTO, 'id' | 'updatedAt'>) 
             demoVideoUrl: demoVideoUrl || null
         }
     })
+    await redisDelPattern("products:*")
     revalidateTag('products', 'default')
     revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
@@ -203,6 +195,7 @@ export async function updateProduct(id: string, data: Partial<ProductDTO>) {
         where: { id },
         data: updateData
     })
+    await redisDelPattern("products:*")
     revalidateTag('products', 'default')
     revalidatePath('/megoldasok')
     revalidatePath('/admin/products')
@@ -212,6 +205,7 @@ export async function deleteProduct(id: string) {
     await prisma.product.delete({
         where: { id }
     })
+    await redisDelPattern("products:*")
     revalidateTag('products', 'default')
     revalidatePath('/megoldasok')
     revalidatePath('/admin/products')

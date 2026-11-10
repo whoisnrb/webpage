@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/db"
 import { revalidatePath } from "next/cache"
 import { createAuditLog } from "@/lib/audit"
+import { cached, redisDelPattern } from "@/lib/redis"
 
 export type ServicePackage = {
     name: string
@@ -42,41 +43,70 @@ export type ServiceDTO = {
 function mapService(s: any): ServiceDTO {
     return {
         ...s,
-        features: typeof s.features === 'string' ? JSON.parse(s.features) : s.features,
+        updatedAt: s.updatedAt ? new Date(s.updatedAt) : new Date(),
+        features: typeof s.features === 'string' ? JSON.parse(s.features) : (s.features || []),
         featuresEn: s.featuresEn ? (typeof s.featuresEn === 'string' ? JSON.parse(s.featuresEn) : s.featuresEn) : null,
         packages: s.packages ? (typeof s.packages === 'string' ? JSON.parse(s.packages) : s.packages) : null,
     }
 }
 
 export async function getServices(): Promise<ServiceDTO[]> {
-    const services = await prisma.service.findMany({
-        orderBy: { sortOrder: 'asc' }
-    })
-    return services.map(mapService)
+    try {
+        const raw = await cached("services:all", 3600, async () => {
+            return await prisma.service.findMany({
+                orderBy: { sortOrder: 'asc' }
+            })
+        })
+        return raw.map(mapService)
+    } catch (error) {
+        console.error("Error fetching services:", error)
+        return []
+    }
 }
 
 export async function getActiveServices(): Promise<ServiceDTO[]> {
-    const services = await prisma.service.findMany({
-        where: { active: true },
-        orderBy: { sortOrder: 'asc' }
-    })
-    return services.map(mapService)
+    try {
+        const raw = await cached("services:active", 3600, async () => {
+            return await prisma.service.findMany({
+                where: { active: true },
+                orderBy: { sortOrder: 'asc' }
+            })
+        })
+        return raw.map(mapService)
+    } catch (error) {
+        console.error("Error fetching active services:", error)
+        return []
+    }
 }
 
 export async function getServiceById(id: string): Promise<ServiceDTO | null> {
-    const service = await prisma.service.findUnique({
-        where: { id }
-    })
-    if (!service) return null
-    return mapService(service)
+    try {
+        const raw = await cached(`services:id:${id}`, 3600, async () => {
+            return await prisma.service.findUnique({
+                where: { id }
+            })
+        })
+        if (!raw) return null
+        return mapService(raw)
+    } catch (error) {
+        console.error("Error fetching service by id:", error)
+        return null
+    }
 }
 
 export async function getServiceBySlug(slug: string): Promise<ServiceDTO | null> {
-    const service = await prisma.service.findUnique({
-        where: { slug }
-    })
-    if (!service) return null
-    return mapService(service)
+    try {
+        const raw = await cached(`services:slug:${slug}`, 3600, async () => {
+            return await prisma.service.findUnique({
+                where: { slug }
+            })
+        })
+        if (!raw) return null
+        return mapService(raw)
+    } catch (error) {
+        console.error("Error fetching service by slug:", error)
+        return null
+    }
 }
 
 export async function createService(data: Omit<ServiceDTO, 'id' | 'updatedAt'>) {
@@ -105,6 +135,7 @@ export async function createService(data: Omit<ServiceDTO, 'id' | 'updatedAt'>) 
         details: `Szolgáltatás létrehozva: ${service.name} (Slug: ${service.slug})`
     })
 
+    await redisDelPattern("services:*")
     revalidatePath('/szolgaltatasok')
     revalidatePath('/admin/services')
     return service
@@ -137,6 +168,7 @@ export async function updateService(id: string, data: Partial<ServiceDTO>) {
         details: `Szolgáltatás módosítva: ${service.name} (Aktív: ${service.active})`
     })
 
+    await redisDelPattern("services:*")
     revalidatePath('/szolgaltatasok')
     revalidatePath('/admin/services')
     return service
@@ -154,6 +186,7 @@ export async function deleteService(id: string) {
         details: `Szolgáltatás törölve: ${service.name}`
     })
 
+    await redisDelPattern("services:*")
     revalidatePath('/szolgaltatasok')
     revalidatePath('/admin/services')
     return service

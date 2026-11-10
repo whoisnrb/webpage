@@ -1,7 +1,8 @@
 'use server'
 
 import { prisma } from "@/lib/db"
-import { revalidatePath, revalidateTag, unstable_cache } from "next/cache"
+import { revalidatePath, revalidateTag } from "next/cache"
+import { cached, redisDelPattern } from "@/lib/redis"
 
 export type Metric = {
     value: string
@@ -67,6 +68,7 @@ export type LocalizedReferenceDTO = {
 function mapReference(r: any): ReferenceDTO {
     return {
         ...r,
+        updatedAt: r.updatedAt ? new Date(r.updatedAt) : new Date(),
         content: r.content !== undefined ? r.content : null,
         contentEn: r.contentEn !== undefined ? r.contentEn : null,
         challenge: r.challenge !== undefined ? r.challenge : '',
@@ -113,39 +115,33 @@ function localizeReference(ref: ReferenceDTO, locale: string): LocalizedReferenc
     }
 }
 
-const getCachedReferences = unstable_cache(
-    async () => {
-        const references = await (prisma as any).reference.findMany({
-            orderBy: { createdAt: 'desc' },
-            select: {
-                id: true,
-                slug: true,
-                title: true,
-                titleEn: true,
-                client: true,
-                clientEn: true,
-                category: true,
-                categoryEn: true,
-                description: true,
-                descriptionEn: true,
-                image: true,
-                type: true,
-                tags: true,
-                active: true,
-                clientLogo: true,
-                updatedAt: true,
-                createdAt: true
-            }
-        })
-        return references.map(mapReference)
-    },
-    ['all-references-v4'],
-    { revalidate: 3600, tags: ['references'] }
-)
-
 export async function getReferences(): Promise<ReferenceDTO[]> {
     try {
-        return await getCachedReferences()
+        const raw = await cached("references:all", 3600, async () => {
+            return await (prisma as any).reference.findMany({
+                orderBy: { createdAt: 'desc' },
+                select: {
+                    id: true,
+                    slug: true,
+                    title: true,
+                    titleEn: true,
+                    client: true,
+                    clientEn: true,
+                    category: true,
+                    categoryEn: true,
+                    description: true,
+                    descriptionEn: true,
+                    image: true,
+                    type: true,
+                    tags: true,
+                    active: true,
+                    clientLogo: true,
+                    updatedAt: true,
+                    createdAt: true
+                }
+            })
+        })
+        return raw.map(mapReference)
     } catch (error) {
         console.error("Error fetching references:", error)
         return []
@@ -174,11 +170,18 @@ export async function getLocalizedReferences(locale: string = 'hu'): Promise<Loc
 }
 
 export async function getReferenceBySlug(slug: string) {
-    const reference = await (prisma as any).reference.findUnique({
-        where: { slug }
-    })
-    if (!reference) return null
-    return mapReference(reference)
+    try {
+        const raw = await cached(`references:slug:${slug}`, 3600, async () => {
+            return await (prisma as any).reference.findUnique({
+                where: { slug }
+            })
+        })
+        if (!raw) return null
+        return mapReference(raw)
+    } catch (error) {
+        console.error("Error fetching reference by slug:", error)
+        return null
+    }
 }
 
 export async function getLocalizedReferenceBySlug(slug: string, locale: string = 'hu'): Promise<LocalizedReferenceDTO | null> {
@@ -198,6 +201,7 @@ export async function createReference(data: Omit<ReferenceDTO, 'id' | 'updatedAt
                 clientLogo: data.clientLogo,
             }
         })
+        await redisDelPattern("references:*")
         revalidateTag('references', 'default')
         revalidatePath('/referenciak')
         revalidatePath('/admin/references')
@@ -223,6 +227,7 @@ export async function updateReference(id: string, data: Partial<ReferenceDTO>) {
                 clientLogo: data.clientLogo !== undefined ? data.clientLogo : undefined,
             }
         })
+        await redisDelPattern("references:*")
         revalidateTag('references', 'default')
         revalidatePath('/referenciak')
         revalidatePath('/admin/references')
@@ -236,6 +241,7 @@ export async function deleteReference(id: string) {
     await (prisma as any).reference.delete({
         where: { id }
     })
+    await redisDelPattern("references:*")
     revalidateTag('references', 'default')
     revalidatePath('/referenciak')
     revalidatePath('/admin/references')

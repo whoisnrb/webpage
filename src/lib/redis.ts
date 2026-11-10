@@ -94,14 +94,32 @@ export async function redisSet(
 }
 
 /**
- * Töröl egy kulcsot a Redisből.
+ * Töröl egy vagy több kulcsot a Redisből.
  */
-export async function redisDel(key: string): Promise<boolean> {
+export async function redisDel(...keys: string[]): Promise<boolean> {
+  const client = getRedisClient();
+  if (!client || keys.length === 0) return false;
+
+  try {
+    await client.del(...keys);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Törli az összes megadott mintára illeszkedő kulcsot a Redisből (pl. "products:*").
+ */
+export async function redisDelPattern(pattern: string): Promise<boolean> {
   const client = getRedisClient();
   if (!client) return false;
 
   try {
-    await client.del(key);
+    const keys = await client.keys(pattern);
+    if (keys.length > 0) {
+      await client.del(...keys);
+    }
     return true;
   } catch {
     return false;
