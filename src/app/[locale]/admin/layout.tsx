@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -12,7 +12,8 @@ export default async function AdminLayout({
 }) {
     const session = await auth()
 
-    if (!session?.user || session.user.role !== "ADMIN") {
+    const staffRoles = ["ADMIN", "SUPER_ADMIN", "DEVELOPER", "SALES"]
+    if (!session?.user || !staffRoles.includes(session.user.role || '')) {
         const locale = await getLocale()
         redirect(`/${locale}/`)
     }
@@ -55,6 +56,16 @@ export default async function AdminLayout({
                                 <span className="text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 animate-pulse">
                                     WAR ROOM
                                 </span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/live-map" as any}>
+                            <Button variant="ghost" className="w-full justify-between gap-2 text-slate-300 hover:text-white hover:bg-cyan-500/10 hover:border-cyan-500/20 border border-transparent rounded-xl transition-all duration-300">
+                                <div className="flex items-center gap-3">
+                                    <Globe className="h-4 w-4 text-cyan-400" />
+                                    <span className="text-sm font-medium">Élő Látogató Térkép</span>
+                                </div>
+                                <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
                             </Button>
                         </Link>
                     </div>
@@ -102,6 +113,18 @@ export default async function AdminLayout({
                             <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
                                 <PhoneCall className="h-4 w-4 text-cyan-400" />
                                 <span className="text-sm font-medium">Értékesítési Meetingek</span>
+                            </Button>
+                        </Link>
+                    </div>
+
+                    {/* Munkatársak & Csapat */}
+                    <div className="space-y-1.5">
+                        <p className="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-500">Munkatársak</p>
+                        
+                        <Link href={"/admin/team" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
+                                <Users className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Csapat & Jogosultságok</span>
                             </Button>
                         </Link>
                     </div>
