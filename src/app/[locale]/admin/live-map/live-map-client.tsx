@@ -5,16 +5,47 @@ import {
     Globe, MapPin, Eye, Monitor, Smartphone, Navigation, 
     Layers, Zap, RefreshCw, Radio, Flame, ArrowUpRight
 } from "lucide-react"
-import { LiveTrafficData, VisitorSession } from "@/app/actions/live-traffic"
+import { LiveTrafficData, VisitorSession, getLiveTrafficData } from "@/app/actions/live-traffic"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 export function LiveMapClient({ initialData }: { initialData: LiveTrafficData }) {
     const [data, setData] = useState<LiveTrafficData>(initialData)
     const [selectedVisitor, setSelectedVisitor] = useState<VisitorSession | null>(initialData.visitors[0] || null)
     const [viewMode, setViewMode] = useState<'3D' | '2D'>('3D')
     const [autoRotate, setAutoRotate] = useState(true)
+    const [isRefreshing, setIsRefreshing] = useState(false)
+    const [lastSyncTime, setLastSyncTime] = useState<string>("Épp most")
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const rotationRef = useRef<number>(0.3)
+
+    const refreshTraffic = async () => {
+        try {
+            setIsRefreshing(true)
+            const fresh = await getLiveTrafficData()
+            setData(fresh)
+            setLastSyncTime(new Date().toLocaleTimeString('hu-HU'))
+            if (selectedVisitor) {
+                const match = fresh.visitors.find(v => v.id === selectedVisitor.id)
+                if (match) setSelectedVisitor(match)
+                else if (fresh.visitors.length > 0) setSelectedVisitor(fresh.visitors[0])
+            } else if (fresh.visitors.length > 0) {
+                setSelectedVisitor(fresh.visitors[0])
+            }
+        } catch (e) {
+            console.error("Traffic refresh error:", e)
+        } finally {
+            setIsRefreshing(false)
+        }
+    }
+
+    // Automatikus háttér szinkronizáció 8 másodpercenként
+    useEffect(() => {
+        const interval = setInterval(() => {
+            refreshTraffic()
+        }, 8000)
+        return () => clearInterval(interval)
+    }, [selectedVisitor])
 
     // 3D Canvas Globe Renderelése
     useEffect(() => {
@@ -186,6 +217,14 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3">
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-mono text-[11px]">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                        </span>
+                        <span>Élő szinkron: <strong className="text-white">{lastSyncTime}</strong></span>
+                    </div>
+
                     <div className="flex items-center gap-2 bg-[#060913] border border-white/10 p-1 rounded-xl text-xs font-mono">
                         <button
                             onClick={() => setViewMode('3D')}
@@ -207,8 +246,19 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
 
                     <Button
                         size="sm"
+                        variant="outline"
+                        onClick={refreshTraffic}
+                        disabled={isRefreshing}
+                        className="h-9 px-3 rounded-xl bg-white/5 border-white/10 hover:bg-white/10 text-white text-xs gap-1.5 font-mono cursor-pointer"
+                    >
+                        <RefreshCw className={cn("w-3.5 h-3.5 text-cyan-400", isRefreshing && "animate-spin")} />
+                        <span>Frissítés</span>
+                    </Button>
+
+                    <Button
+                        size="sm"
                         onClick={handleSimulateVisitor}
-                        className="h-9 px-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 text-cyan-300 text-xs gap-1.5 font-mono"
+                        className="h-9 px-3 rounded-xl bg-cyan-500/10 border border-cyan-500/30 hover:bg-cyan-500/20 text-cyan-300 text-xs gap-1.5 font-mono cursor-pointer"
                     >
                         <Zap className="w-3.5 h-3.5" />
                         Látogató Szimulálása
