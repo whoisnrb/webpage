@@ -12,17 +12,22 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { ArrowRight, Sparkles, Activity, Terminal, Layout, Zap, Briefcase, FileText, MessageSquare, CreditCard, Package, Star, Puzzle, BookOpen } from "lucide-react"
+import { ArrowRight, Sparkles, Activity, Terminal, Layout, Zap, Briefcase, FileText, MessageSquare, CreditCard, Package, Star, Puzzle, BookOpen, Search, X } from "lucide-react"
 import { useTranslations, useLocale } from "next-intl"
-import { NeuralBackground } from "@/components/neural-background"
 import { SERVICES_STRUCTURE, ServiceCategory, ServiceItem } from "./services-config"
 import { motion, AnimatePresence } from "framer-motion"
+
+const MEGAMENU_SURFACE_STYLE: React.CSSProperties = {
+    background: "#050a15",
+    border: "1px solid rgba(6, 182, 212, 0.22)",
+}
 
 export function MegaMenu() {
     const t = useTranslations("MegaMenu")
     const locale = useLocale()
     const pathname = usePathname()
     const [activeCategory, setActiveCategory] = React.useState<"growth" | "security_cloud" | "core" | "infrastructure">("growth")
+    const [searchQuery, setSearchQuery] = React.useState("")
 
     // Get categories with localized names and descriptions
     const categories = SERVICES_STRUCTURE.map(cat => ({
@@ -30,6 +35,39 @@ export function MegaMenu() {
         name: t(cat.nameKey),
         desc: t(cat.descKey)
     }))
+
+    const allServiceItems = React.useMemo(
+        () =>
+            SERVICES_STRUCTURE.flatMap((cat) =>
+                cat.items.map((item) => ({
+                    ...item,
+                    categoryId: cat.id,
+                }))
+            ),
+        []
+    )
+
+    const trimmedQuery = searchQuery.trim().toLowerCase()
+    const visibleItems = React.useMemo(() => {
+        if (!trimmedQuery) {
+            return SERVICES_STRUCTURE.find((cat) => cat.id === activeCategory)?.items || []
+        }
+        return allServiceItems
+            .filter((item) => {
+                const title = t(`nav_items.${item.key}`).toLowerCase()
+                const desc = t(`nav_items.${item.key}_desc`).toLowerCase()
+                const slug = item.href.toLowerCase()
+                return (
+                    title.includes(trimmedQuery) ||
+                    desc.includes(trimmedQuery) ||
+                    slug.includes(trimmedQuery) ||
+                    item.key.toLowerCase().includes(trimmedQuery)
+                )
+            })
+            .slice(0, 12)
+    }, [trimmedQuery, activeCategory, allServiceItems, t])
+
+    const activeCategoryObj = categories.find((c) => c.id === activeCategory)
 
     return (
         <NavigationMenu>
@@ -40,64 +78,74 @@ export function MegaMenu() {
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <div 
-                            className="relative overflow-hidden rounded-[2rem] shadow-[0_0_50px_-12px_rgba(6,182,212,0.35)]" 
-                            style={{ 
-                                background: "rgba(5, 12, 20, 0.97)", 
-                                backdropFilter: "blur(24px)", 
-                                border: "1px solid rgba(6, 182, 212, 0.15)",
-                            }}
+                            className="relative overflow-hidden rounded-3xl shadow-[0_28px_80px_-15px_rgba(0,0,0,0.95),0_0_50px_-12px_rgba(6,182,212,0.25)]" 
+                            style={MEGAMENU_SURFACE_STYLE}
                         >
-                            {/* Animated neural mesh background */}
-                            <div className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none">
-                                <NeuralBackground />
-                            </div>
+                            {/* Subtle top cyan highlight hairline & radial glow */}
+                            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent pointer-events-none" />
+                            <div className="absolute -top-24 right-1/4 w-96 h-48 bg-cyan-500/[0.06] blur-3xl rounded-full pointer-events-none" />
 
-                            {/* Main Megamenu Grid */}
-                            <div className="relative z-10 grid grid-cols-[270px_1fr] lg:grid-cols-[295px_1fr] xl:grid-cols-[320px_1fr] w-[95vw] md:w-[760px] lg:w-[980px] xl:w-[1140px] min-h-[460px] max-h-[82vh]">
+                            {/* Main Megamenu Grid — fits cleanly in viewport with ZERO scrollbars */}
+                            <div className="relative z-10 grid grid-cols-[260px_1fr] lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] w-[96vw] md:w-[780px] lg:w-[1000px] xl:w-[1160px]">
                                 
-                                {/* Left Category Panel */}
-                                <div className="p-5 md:p-6 border-r border-white/5 flex flex-col justify-between bg-white/[0.01]">
-                                    <div className="space-y-4">
-                                        <div className="text-[10px] font-black uppercase tracking-[0.35em] text-cyan-400/80 cursor-default px-2">
+                                {/* Left Category Sidebar */}
+                                <div className="p-4 lg:p-5 border-r border-white/[0.06] flex flex-col justify-between bg-[#070d1c]">
+                                    <div className="space-y-3">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.28em] text-cyan-400/80 cursor-default px-2.5 pt-1">
                                             {t("explore_services")}
                                         </div>
-                                        <div className="space-y-1.5">
+                                        <div className="space-y-1">
                                             {categories.map((cat) => {
                                                 const Icon = cat.icon
-                                                const isActive = activeCategory === cat.id
+                                                const isActive = !trimmedQuery && activeCategory === cat.id
                                                 return (
                                                     <button
                                                         key={cat.id}
-                                                        onMouseEnter={() => setActiveCategory(cat.id)}
-                                                        onClick={() => setActiveCategory(cat.id)}
+                                                        type="button"
+                                                        onMouseEnter={() => {
+                                                            setSearchQuery("")
+                                                            setActiveCategory(cat.id)
+                                                        }}
+                                                        onClick={() => {
+                                                            setSearchQuery("")
+                                                            setActiveCategory(cat.id)
+                                                        }}
                                                         className={cn(
-                                                            "w-full text-left p-3 rounded-2xl border transition-all duration-300 flex items-start gap-3.5 group/cat",
+                                                            "w-full text-left px-3 py-2.5 rounded-xl border transition-all duration-200 flex items-center gap-3 group/cat relative",
                                                             isActive 
-                                                                ? "bg-gradient-to-r from-cyan-500/10 via-cyan-500/[0.03] to-transparent border-cyan-500/35 shadow-[0_0_20px_-5px_rgba(6,182,212,0.15)]"
-                                                                : "bg-transparent border-transparent hover:bg-white/[0.02] hover:border-white/5"
+                                                                ? "bg-cyan-500/[0.09] border-cyan-500/35 shadow-[0_0_20px_-6px_rgba(6,182,212,0.25)]"
+                                                                : "bg-transparent border-transparent hover:bg-white/[0.03]"
                                                         )}
                                                     >
                                                         <div className={cn(
-                                                            "h-9 w-9 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-300",
+                                                            "h-8 w-8 rounded-lg flex items-center justify-center shrink-0 border transition-all duration-200",
                                                             isActive
-                                                                ? "bg-cyan-500/15 border-cyan-500/30 text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.2)]"
-                                                                : "bg-white/[0.02] border-white/5 text-white/40 group-hover/cat:text-white/80 group-hover/cat:border-white/10"
+                                                                ? "bg-cyan-500/20 border-cyan-400/40 text-cyan-300"
+                                                                : "bg-white/[0.03] border-white/5 text-white/45 group-hover/cat:text-white/80"
                                                         )}>
-                                                            <Icon className="h-4.5 w-4.5" />
+                                                            <Icon className="h-4 w-4" />
                                                         </div>
-                                                        <div className="space-y-0.5">
-                                                            <div className={cn(
-                                                                "text-xs md:text-sm font-black tracking-tight transition-colors leading-tight",
-                                                                isActive ? "text-cyan-400" : "text-white/70 group-hover/cat:text-white"
-                                                            )}>
-                                                                {cat.name}
+                                                        <div className="min-w-0 flex-1">
+                                                            <div className="flex items-center justify-between gap-1.5">
+                                                                <span className={cn(
+                                                                    "text-[13px] font-bold tracking-tight transition-colors truncate",
+                                                                    isActive ? "text-cyan-300" : "text-white/80 group-hover/cat:text-white"
+                                                                )}>
+                                                                    {cat.name}
+                                                                </span>
+                                                                <span className={cn(
+                                                                    "text-[10px] font-mono px-1.5 py-0.5 rounded-md shrink-0",
+                                                                    isActive ? "bg-cyan-500/20 text-cyan-300" : "bg-white/5 text-white/40"
+                                                                )}>
+                                                                    {cat.items.length}
+                                                                </span>
                                                             </div>
-                                                            <div className={cn(
-                                                                "text-[10.5px] leading-snug font-medium transition-colors mt-0.5 line-clamp-2",
-                                                                isActive ? "text-white/60" : "text-white/40 group-hover/cat:text-white/50"
+                                                            <p className={cn(
+                                                                "text-[11px] leading-tight line-clamp-1 mt-0.5",
+                                                                isActive ? "text-white/60" : "text-white/40"
                                                             )}>
                                                                 {cat.desc}
-                                                            </div>
+                                                            </p>
                                                         </div>
                                                     </button>
                                                 )
@@ -109,72 +157,171 @@ export function MegaMenu() {
                                     <NavigationMenuLink asChild>
                                         <Link
                                             href="/demo"
-                                            className="flex select-none flex-col justify-end rounded-2xl bg-gradient-to-br from-cyan-500/15 via-blue-500/5 to-transparent p-4 no-underline outline-none border border-cyan-500/25 hover:border-cyan-500/40 shadow-lg group transition-all duration-500 mt-4"
+                                            className="flex select-none flex-col justify-end rounded-xl bg-gradient-to-br from-cyan-500/15 via-blue-500/5 to-transparent p-3.5 no-underline outline-none border border-cyan-500/25 hover:border-cyan-400/50 transition-all duration-300 group mt-4"
                                         >
-                                            <div className="flex items-center gap-2 text-cyan-400 group-hover:scale-[1.02] transition-transform duration-300">
-                                                <Sparkles className="h-4 w-4 text-cyan-400" />
-                                                <span className="text-[10px] font-black uppercase tracking-widest">{t("need_help_title")}</span>
+                                            <div className="flex items-center gap-1.5 text-cyan-400">
+                                                <Sparkles className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+                                                <span className="text-[10px] font-black uppercase tracking-wider truncate">{t("need_help_title")}</span>
                                             </div>
-                                            <p className="text-[10.5px] leading-relaxed text-white/50 font-medium group-hover:text-white/70 transition-colors mt-1.5 mb-2.5">
+                                            <p className="text-[11px] leading-snug text-white/55 group-hover:text-white/75 transition-colors mt-1 mb-2.5 line-clamp-2">
                                                 {t("need_help_desc")}
                                             </p>
-                                            <div className="w-full py-2 px-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 text-[11px] font-black uppercase tracking-wider text-center border border-cyan-500/25 group-hover:border-cyan-500/40 transition-all duration-300">
+                                            <div className="w-full py-1.5 px-3 rounded-lg bg-cyan-500/15 group-hover:bg-cyan-500/25 text-cyan-300 text-[11px] font-bold uppercase tracking-wider text-center border border-cyan-500/30 transition-all">
                                                 {t("need_help_cta_long")}
                                             </div>
                                         </Link>
                                     </NavigationMenuLink>
                                 </div>
 
-                                {/* Right Service Grid Panel */}
-                                <div className="p-5 md:p-6 flex flex-col justify-start bg-white/[0.002] max-h-[540px] overflow-y-auto">
-                                    <AnimatePresence mode="wait">
-                                        <motion.div
-                                            key={activeCategory}
-                                            initial={{ opacity: 0, y: 8 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: -8 }}
-                                            transition={{ duration: 0.2, ease: "easeOut" }}
-                                            className="grid grid-cols-1 md:grid-cols-2 gap-3"
-                                        >
-                                            {SERVICES_STRUCTURE.find(cat => cat.id === activeCategory)?.items.map((item) => {
-                                                const Icon = item.icon
-                                                const title = t(`nav_items.${item.key}`)
-                                                const desc = t(`nav_items.${item.key}_desc`)
-                                                return (
-                                                    <NavigationMenuLink asChild key={item.key}>
-                                                        <Link
-                                                            href={item.href as any}
-                                                            className="flex items-center justify-between relative select-none rounded-2xl p-3 bg-white/[0.01] hover:bg-cyan-500/[0.02] border border-white/5 hover:border-cyan-500/30 shadow-sm transition-all duration-300 group outline-none hover:-translate-y-0.5 hover:shadow-[0_4px_25px_-5px_rgba(6,182,212,0.12)]"
+                                {/* Right 3-Column Borderless Bento Grid + Quick Search */}
+                                <div className="p-5 lg:p-6 flex flex-col justify-between bg-[#050a15]">
+                                    <div>
+                                        {/* Top Bar: Category Title + Quick Search + All Services CTA */}
+                                        <div className="flex flex-wrap items-center justify-between gap-3 pb-3.5 mb-3.5 border-b border-white/[0.06]">
+                                            <div className="flex items-center gap-2 min-w-0">
+                                                <span className="text-sm font-extrabold text-white tracking-tight truncate">
+                                                    {trimmedQuery
+                                                        ? (locale === "hu" ? `Keresési találatok (${visibleItems.length})` : `Search Results (${visibleItems.length})`)
+                                                        : activeCategoryObj?.name}
+                                                </span>
+                                                {!trimmedQuery && (
+                                                    <span className="text-[10px] font-mono text-cyan-400/80 bg-cyan-500/10 border border-cyan-500/20 px-2 py-0.5 rounded-full">
+                                                        {visibleItems.length} {locale === "hu" ? "megoldás" : "services"}
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            <div className="flex items-center gap-2.5">
+                                                {/* Inline Quick Search Input */}
+                                                <div className="relative">
+                                                    <Search className="h-3.5 w-3.5 text-white/35 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                                    <input
+                                                        type="text"
+                                                        value={searchQuery}
+                                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                                        onClick={(e) => e.stopPropagation()}
+                                                        onKeyDown={(e) => {
+                                                            if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) {
+                                                                e.stopPropagation()
+                                                            }
+                                                        }}
+                                                        placeholder={locale === "hu" ? "Gyorskeresés (pl. NIS2, AI)..." : "Quick find (e.g. NIS2, AI)..."}
+                                                        className="h-8 w-44 xl:w-56 pl-8 pr-7 rounded-lg bg-white/[0.04] border border-white/10 focus:border-cyan-400/50 focus:bg-white/[0.06] text-xs text-white placeholder:text-white/35 outline-none transition-all"
+                                                    />
+                                                    {searchQuery && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation()
+                                                                setSearchQuery("")
+                                                            }}
+                                                            className="absolute right-2 top-1/2 -translate-y-1/2 text-white/40 hover:text-white"
+                                                            aria-label="Clear search"
                                                         >
-                                                            <div className="flex items-start gap-4 pr-3 flex-1 min-w-0">
-                                                                <div className="h-10 w-10 shrink-0 rounded-xl bg-cyan-500/5 border border-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500/15 group-hover:border-cyan-500/25 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.25)] transition-all duration-300">
-                                                                    <Icon className="h-5 w-5" />
-                                                                </div>
-                                                                <div className="space-y-1 min-w-0 flex-1">
-                                                                    <div className="flex items-center gap-2 flex-wrap">
-                                                                        <span className="text-sm font-black tracking-tight text-white/90 group-hover:text-white transition-colors leading-tight">
-                                                                            {title}
-                                                                        </span>
-                                                                        {item.popular && (
-                                                                            <span className="bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full shadow-sm whitespace-nowrap shrink-0">
-                                                                                {t("popular")}
-                                                                            </span>
-                                                                        )}
+                                                            <X className="h-3 w-3" />
+                                                        </button>
+                                                    )}
+                                                </div>
+
+                                                <NavigationMenuLink asChild>
+                                                    <Link
+                                                        href="/szolgaltatasok"
+                                                        className="h-8 px-3 rounded-lg bg-white/[0.04] hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-500/35 text-[11px] font-bold text-cyan-300 hover:text-white flex items-center gap-1.5 transition-all shrink-0"
+                                                    >
+                                                        <span>{locale === "hu" ? "Összes (32)" : "View All (32)"}</span>
+                                                        <ArrowRight className="h-3 w-3" />
+                                                    </Link>
+                                                </NavigationMenuLink>
+                                            </div>
+                                        </div>
+
+                                        {/* 3-Column Clean Borderless Service Grid */}
+                                        <AnimatePresence mode="wait">
+                                            <motion.div
+                                                key={trimmedQuery ? `search-${trimmedQuery}` : activeCategory}
+                                                initial={{ opacity: 0, y: 4 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -4 }}
+                                                transition={{ duration: 0.15, ease: "easeOut" }}
+                                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1.5"
+                                            >
+                                                {visibleItems.length === 0 ? (
+                                                    <div className="col-span-full py-12 text-center space-y-2">
+                                                        <p className="text-sm font-semibold text-white/70">
+                                                            {locale === "hu"
+                                                                ? `Nincs találat a(z) "${searchQuery}" keresésre.`
+                                                                : `No services matched "${searchQuery}".`}
+                                                        </p>
+                                                        <p className="text-xs text-white/40">
+                                                            {locale === "hu"
+                                                                ? "Próbálj más kulcsszót, vagy kérj egyedi ajánlatot az alábbi gombbal!"
+                                                                : "Try another keyword or request a custom solution below."}
+                                                        </p>
+                                                    </div>
+                                                ) : (
+                                                    visibleItems.map((item) => {
+                                                        const Icon = item.icon
+                                                        const title = t(`nav_items.${item.key}`)
+                                                        const desc = t(`nav_items.${item.key}_desc`)
+                                                        return (
+                                                            <NavigationMenuLink asChild key={item.key}>
+                                                                <Link
+                                                                    href={item.href as any}
+                                                                    className="flex items-start gap-2.5 p-2.5 rounded-xl border border-transparent hover:border-cyan-500/25 hover:bg-white/[0.04] transition-all duration-200 group outline-none"
+                                                                >
+                                                                    <div className="h-8 w-8 mt-0.5 shrink-0 rounded-lg bg-cyan-500/[0.08] border border-cyan-500/15 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500/20 group-hover:border-cyan-400/40 group-hover:scale-105 transition-all">
+                                                                        <Icon className="h-4 w-4" />
                                                                     </div>
-                                                                    <p className="line-clamp-2 text-xs leading-normal text-white/50 group-hover:text-white/75 transition-colors font-medium">
-                                                                        {desc}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div className="shrink-0 flex items-center justify-center h-8 w-8 rounded-lg text-cyan-400/25 group-hover:text-cyan-400 group-hover:bg-cyan-500/10 border border-transparent group-hover:border-cyan-500/20 transition-all duration-300">
-                                                                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                                                            </div>
-                                                        </Link>
-                                                    </NavigationMenuLink>
-                                                )
-                                            })}
-                                        </motion.div>
-                                    </AnimatePresence>
+                                                                    <div className="min-w-0 flex-1">
+                                                                        <div className="flex items-center gap-1.5">
+                                                                            <span className="text-[12.5px] font-bold tracking-tight text-white/90 group-hover:text-cyan-300 transition-colors truncate">
+                                                                                {title}
+                                                                            </span>
+                                                                            {item.isNew ? (
+                                                                                <span className="bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[8px] font-black uppercase tracking-wider px-1.5 py-[1px] rounded-full shrink-0">
+                                                                                    {locale === "hu" ? "Új" : "New"}
+                                                                                </span>
+                                                                            ) : item.popular ? (
+                                                                                <span className="bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-[8px] font-black uppercase tracking-wider px-1.5 py-[1px] rounded-full shrink-0">
+                                                                                    Top
+                                                                                </span>
+                                                                            ) : null}
+                                                                            <ArrowRight className="h-3 w-3 text-cyan-400 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0 ml-auto" />
+                                                                        </div>
+                                                                        <p className="line-clamp-1 text-[11px] leading-snug text-white/45 group-hover:text-white/70 transition-colors mt-0.5">
+                                                                            {desc}
+                                                                        </p>
+                                                                    </div>
+                                                                </Link>
+                                                            </NavigationMenuLink>
+                                                        )
+                                                    })
+                                                )}
+                                            </motion.div>
+                                        </AnimatePresence>
+                                    </div>
+
+                                    {/* Clean Bottom Footer Bar */}
+                                    <div className="pt-3 mt-4 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-2 text-xs">
+                                        <span className="text-white/45 text-[11.5px]">
+                                            {locale === "hu"
+                                                ? "Egyedi vállalati architektúrát vagy csomagajánlatot keresel?"
+                                                : "Need a tailored enterprise setup or custom package?"}
+                                        </span>
+                                        <div className="flex items-center gap-4">
+                                            <NavigationMenuLink asChild>
+                                                <Link href="/arak" className="text-white/60 hover:text-white font-semibold text-[11.5px] transition-colors">
+                                                    {t("prices")}
+                                                </Link>
+                                            </NavigationMenuLink>
+                                            <NavigationMenuLink asChild>
+                                                <Link href="/ajanlatkeres" className="text-cyan-400 hover:text-cyan-300 font-bold text-[11.5px] flex items-center gap-1 group">
+                                                    <span>{locale === "hu" ? "Egyedi ajánlatkérés" : "Custom Quote"}</span>
+                                                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                                                </Link>
+                                            </NavigationMenuLink>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -189,16 +336,10 @@ export function MegaMenu() {
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <div
-                            className="relative overflow-hidden rounded-[2rem] shadow-[0_0_50px_-12px_rgba(6,182,212,0.35)]"
-                            style={{
-                                background: "rgba(5, 12, 20, 0.97)",
-                                backdropFilter: "blur(24px)",
-                                border: "1px solid rgba(6, 182, 212, 0.15)",
-                            }}
+                            className="relative overflow-hidden rounded-3xl shadow-[0_28px_80px_-15px_rgba(0,0,0,0.95),0_0_50px_-12px_rgba(6,182,212,0.25)]"
+                            style={MEGAMENU_SURFACE_STYLE}
                         >
-                            <div className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none">
-                                <NeuralBackground />
-                            </div>
+                            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent pointer-events-none" />
 
                             <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_290px] lg:grid-cols-[1fr_320px] w-[95vw] md:w-[720px] lg:w-[820px] xl:w-[880px] min-h-[380px]">
                                 {/* Bal oldal: Termékek & Csomagok */}
@@ -380,16 +521,10 @@ export function MegaMenu() {
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <div
-                            className="relative overflow-hidden rounded-[2rem] shadow-[0_0_50px_-12px_rgba(6,182,212,0.35)]"
-                            style={{
-                                background: "rgba(5, 12, 20, 0.97)",
-                                backdropFilter: "blur(24px)",
-                                border: "1px solid rgba(6, 182, 212, 0.15)",
-                            }}
+                            className="relative overflow-hidden rounded-3xl shadow-[0_28px_80px_-15px_rgba(0,0,0,0.95),0_0_50px_-12px_rgba(6,182,212,0.25)]"
+                            style={MEGAMENU_SURFACE_STYLE}
                         >
-                            <div className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none">
-                                <NeuralBackground />
-                            </div>
+                            <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent pointer-events-none" />
 
                             <div className="relative z-10 grid grid-cols-1 md:grid-cols-[1fr_290px] lg:grid-cols-[1fr_320px] w-[95vw] md:w-[720px] lg:w-[820px] xl:w-[880px] min-h-[380px]">
                                 {/* Bal oldal: Tudásbázis & Anyagok */}
