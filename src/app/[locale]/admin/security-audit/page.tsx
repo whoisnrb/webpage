@@ -11,7 +11,7 @@ export const metadata = {
 export default async function AdminSecurityAuditPage() {
     const session = await auth()
 
-    if (!session?.user || !["ADMIN", "SUPER_ADMIN", "DEVELOPER"].includes(session.user.role || "")) {
+    if (!session?.user || !["ADMIN", "SUPER_ADMIN", "DEVELOPER", "SALES"].includes(session.user.role || "")) {
         const locale = await getLocale()
         redirect(`/${locale}/`)
     }

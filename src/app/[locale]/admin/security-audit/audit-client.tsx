@@ -27,6 +27,7 @@ import {
     Copy,
     Check,
     Printer,
+    FileDown,
     ArrowRight,
     Zap,
     Bot,
@@ -46,6 +47,7 @@ export function AuditClient() {
     const [report, setReport] = useState<AuditReport | null>(null)
     const [scanStep, setScanStep] = useState<string>("")
     const [copied, setCopied] = useState(false)
+    const [isGeneratingPdf, setIsGeneratingPdf] = useState(false)
 
     const handleRunScan = () => {
         if (!domain.trim()) {
@@ -113,6 +115,45 @@ ${report.backlineProposal.pitch}
             toast.success("Teljes audit jelentés másolva a vágólapra!")
         } catch {
             toast.error("Nem sikerült másolni a vágólapra.")
+        }
+    }
+
+    const handleDownloadPdf = async () => {
+        if (!report || isGeneratingPdf) return
+        setIsGeneratingPdf(true)
+        toast.loading("Profi vezetői PDF jelentés generálása...", { id: "audit-pdf" })
+
+        try {
+            const response = await fetch("/api/admin/security-audit/pdf", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(report),
+            })
+
+            if (!response.ok) {
+                const errData = await response.json().catch(() => ({}))
+                throw new Error(errData.error || "Nem sikerült legenerálni a PDF-et.")
+            }
+
+            const blob = await response.blob()
+            const url = window.URL.createObjectURL(blob)
+            const a = document.createElement("a")
+            const safeDomain = report.domain.replace(/[^a-zA-Z0-9.-]/g, "_")
+            const dateStamp = new Date().toISOString().slice(0, 10)
+            a.href = url
+            a.download = `BacklineIT-Biztonsagi-Audit-${safeDomain}-${dateStamp}.pdf`
+            document.body.appendChild(a)
+            a.click()
+            a.remove()
+            window.URL.revokeObjectURL(url)
+
+            toast.dismiss("audit-pdf")
+            toast.success("✨ Vezetői PDF jelentés sikeresen letöltve!")
+        } catch (err: any) {
+            toast.dismiss("audit-pdf")
+            toast.error(err?.message || "Hiba történt a PDF letöltése közben.")
+        } finally {
+            setIsGeneratingPdf(false)
         }
     }
 
@@ -353,7 +394,7 @@ ${report.backlineProposal.pitch}
                                 </CardDescription>
                             </div>
 
-                            <div className="flex items-center gap-2.5">
+                            <div className="flex flex-wrap items-center gap-2.5">
                                 <Button
                                     type="button"
                                     variant="outline"
@@ -366,11 +407,31 @@ ${report.backlineProposal.pitch}
 
                                 <Button
                                     type="button"
+                                    variant="outline"
                                     onClick={() => window.print()}
-                                    className="bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-xl border border-white/10 flex items-center gap-1.5 cursor-pointer"
+                                    className="border-white/10 hover:border-white/20 bg-white/5 text-slate-300 hover:text-white text-xs rounded-xl flex items-center gap-1.5 cursor-pointer"
                                 >
-                                    <Printer className="h-3.5 w-3.5 text-cyan-400" />
-                                    Nyomtatás / PDF
+                                    <Printer className="h-3.5 w-3.5 text-slate-400" />
+                                    Nyomtatás
+                                </Button>
+
+                                <Button
+                                    type="button"
+                                    onClick={handleDownloadPdf}
+                                    disabled={isGeneratingPdf}
+                                    className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white text-xs font-bold rounded-xl border border-cyan-400/40 shadow-lg shadow-cyan-500/20 flex items-center gap-1.5 cursor-pointer"
+                                >
+                                    {isGeneratingPdf ? (
+                                        <>
+                                            <RefreshCw className="h-3.5 w-3.5 animate-spin" />
+                                            PDF Készül...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <FileDown className="h-3.5 w-3.5 text-cyan-200" />
+                                            Profi PDF Letöltése
+                                        </>
+                                    )}
                                 </Button>
                             </div>
                         </CardHeader>
