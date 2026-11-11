@@ -1,479 +1,409 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Code2, Server, Shield, ShoppingCart, ArrowRight, CheckCircle2, Globe, Search, RefreshCw, Cpu, Cloud, Database, Activity, HelpCircle, Network, Plug, Headphones, Layout, Puzzle, Radar, MailCheck, Bot, FileText, Mic, Gauge, Monitor, FolderLock, BarChart3, Building2, Zap, ShieldCheck } from "lucide-react"
-import { Link } from "@/i18n/routing"
-import { Badge } from "@/components/ui/badge"
-import { getTranslations, getLocale } from "next-intl/server"
-import { PriceDisplay } from "@/components/price-display"
-import { ServicesHero } from "@/components/sections/services-hero"
+import { Suspense } from "react"
+import { ArrowRight, CheckCircle2, Code2, Server, Shield } from "lucide-react"
+import { Link, routing } from "@/i18n/routing"
+import { getLocale, getTranslations } from "next-intl/server"
+import { getSeoMetadata } from "@/lib/seo"
+import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
 import { getActiveServices } from "@/app/actions/service"
+import { SERVICES_STRUCTURE } from "@/components/layout/services-config"
+import { ServicesHero } from "@/components/sections/services-hero"
+import { ServicesCatalog } from "@/components/services/services-catalog"
+import {
+    FALLBACK_BASE_SERVICES,
+    FALLBACK_EXTRA_PRICES,
+    getServiceMetaByHref,
+    inferPricingKind,
+    type CatalogServiceItem,
+    type ServiceCategoryId,
+} from "@/components/services/service-catalog-helpers"
 
-import { routing } from '@/i18n/routing';
-
-const IconMap: Record<string, any> = {
-    Code2,
-    ShoppingCart,
-    Server,
-    Shield,
-    ShieldCheck,
-    Globe,
-    Search,
-    RefreshCw,
-    Cpu,
-    Cloud,
-    Database,
-    Activity,
-    Network,
-    Plug,
-    Headphones,
-    Layout,
-    Puzzle,
-    Radar,
-    MailCheck,
-    Bot,
-    FileText,
-    Mic,
-    Gauge,
-    Monitor,
-    FolderLock,
-    BarChart3,
-    Building2,
-    Zap,
-}
-
-import { getSeoMetadata } from '@/lib/seo';
-
-// Metadata generation for multilingual support
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
-    const { locale } = await params;
-    const t = await getTranslations({ locale, namespace: 'ServicesPage' });
+    const { locale } = await params
+    const t = await getTranslations({ locale, namespace: "ServicesPage" })
 
     return {
-        title: t('hero_badge'),
-        description: t('hero_desc'),
-        keywords: ["IT szolgáltatások", "webfejlesztés", "rendszerüzemeltetés", "kiberbiztonság", "egyedi szoftver", "backlineit"],
-        ...getSeoMetadata(locale, '/szolgaltatasok'),
+        title: t("hero_badge"),
+        description: t("hero_desc"),
+        keywords: [
+            "IT szolgáltatások",
+            "webfejlesztés",
+            "rendszerüzemeltetés",
+            "kiberbiztonság",
+            "egyedi szoftver",
+            "backlineit",
+        ],
+        ...getSeoMetadata(locale, "/szolgaltatasok"),
         openGraph: {
-            title: `${t('hero_badge')} | BacklineIT`,
-            description: t('hero_desc'),
+            title: `${t("hero_badge")} | BacklineIT`,
+            description: t("hero_desc"),
         },
-    };
+    }
 }
 
 export function generateStaticParams() {
-    return routing.locales.map((locale) => ({ locale }));
+    return routing.locales.map((locale) => ({ locale }))
 }
 
 export default async function SzolgaltatasokPage() {
-    const t = await getTranslations('ServicesPage')
+    const t = await getTranslations("ServicesPage")
+    const tMega = await getTranslations("MegaMenu")
+    const tStats = await getTranslations("Stats")
     const locale = await getLocale()
-    const tCTA = await getTranslations('CTA')
-    const tStats = await getTranslations('Stats')
+    const isHu = locale === "hu"
 
     const dbServices = await getActiveServices()
 
-    let services = dbServices.map(service => {
-        const title = locale === 'en' ? (service.nameEn || service.name) : service.name
-        const description = locale === 'en' ? (service.descriptionEn || service.description) : service.description
-        const features = locale === 'en' ? (service.featuresEn || service.features) : service.features
-        
+    let services: CatalogServiceItem[] = dbServices.map((service) => {
+        const title = locale === "en" ? service.nameEn || service.name : service.name
+        const description =
+            locale === "en" ? service.descriptionEn || service.description : service.description
+        const featuresRaw = locale === "en" ? service.featuresEn || service.features : service.features
+        const features = Array.isArray(featuresRaw) ? featuresRaw : []
+        const meta = getServiceMetaByHref(service.href)
+
         return {
+            id: service.id,
+            slug: service.slug,
+            href: service.href,
             title,
             description,
-            icon: IconMap[service.icon] || Code2,
-            href: service.href,
+            iconName: service.icon || "Code2",
             pricing: service.price,
-            features: Array.isArray(features) ? features : []
+            pricingKind: inferPricingKind(service.price, service.slug, service.packages),
+            packageCount: Array.isArray(service.packages) ? service.packages.length : 0,
+            features,
+            categoryId: meta.categoryId,
+            isNew: meta.isNew,
+            popular: meta.popular,
+            orderIndex: meta.orderIndex,
         }
     })
 
     if (services.length === 0) {
-        services = [
-            {
-                title: t('items.scripts.title'),
-                description: t('items.scripts.desc'),
-                icon: Code2,
-                href: "/szolgaltatasok/scriptek",
-                pricing: 50000,
+        const seenHrefs = new Set<string>()
+        const baseFallback: CatalogServiceItem[] = FALLBACK_BASE_SERVICES.map((spec) => {
+            seenHrefs.add(spec.href)
+            const meta = getServiceMetaByHref(spec.href)
+            const slug = spec.href.split("/").pop() || spec.tKey
+            return {
+                id: `fallback-${spec.tKey}`,
+                slug,
+                href: spec.href,
+                title: t(`items.${spec.tKey}.title`),
+                description: t(`items.${spec.tKey}.desc`),
+                iconName: spec.iconName,
+                pricing: spec.pricing,
+                pricingKind: inferPricingKind(spec.pricing, slug),
+                packageCount: 0,
                 features: [
-                    t('items.scripts.features.0'),
-                    t('items.scripts.features.1'),
-                    t('items.scripts.features.2'),
-                    t('items.scripts.features.3')
-                ]
-            },
-            {
-                title: t('items.webdev.title'),
-                description: t('items.webdev.desc'),
-                icon: ShoppingCart,
-                href: "/szolgaltatasok/webfejlesztes",
-                pricing: 150000,
-                features: [
-                    t('items.webdev.features.0'),
-                    t('items.webdev.features.1'),
-                    t('items.webdev.features.2'),
-                    t('items.webdev.features.3')
-                ]
-            },
-            {
-                title: t('items.devops.title'),
-                description: t('items.devops.desc'),
-                icon: Server,
-                href: "/szolgaltatasok/rendszeruzemeltetes",
-                pricing: 0, // 0 indicates request quote
-                features: [
-                    t('items.devops.features.0'),
-                    t('items.devops.features.1'),
-                    t('items.devops.features.2'),
-                    t('items.devops.features.3')
-                ]
-            },
-            {
-                title: t('items.security.title'),
-                description: t('items.security.desc'),
-                icon: Shield,
-                href: "/szolgaltatasok/biztonsag",
-                pricing: 80000,
-                features: [
-                    t('items.security.features.0'),
-                    t('items.security.features.1'),
-                    t('items.security.features.2'),
-                    t('items.security.features.3')
-                ]
-            },
-            {
-                title: t('items.network.title'),
-                description: t('items.network.desc'),
-                icon: Server, // Using Server icon temporarily, can be changed
-                href: "/szolgaltatasok/halozat",
-                pricing: 0, // 0 indicates request quote
-                features: [
-                    t('items.network.features.0'),
-                    t('items.network.features.1'),
-                    t('items.network.features.2'),
-                    t('items.network.features.3')
-                ]
-            },
-            {
-                title: t('items.wordpress.title'),
-                description: t('items.wordpress.desc'),
-                icon: Globe,
-                href: "/szolgaltatasok/wordpress-woocommerce-karbantartas",
-                pricing: 15000,
-                features: [
-                    t('items.wordpress.features.0'),
-                    t('items.wordpress.features.1'),
-                    t('items.wordpress.features.2'),
-                    t('items.wordpress.features.3')
-                ]
-            },
-            {
-                title: t('items.it_audit.title'),
-                description: t('items.it_audit.desc'),
-                icon: Search,
-                href: "/szolgaltatasok/kkv-it-audit",
-                pricing: 75000,
-                features: [
-                    t('items.it_audit.features.0'),
-                    t('items.it_audit.features.1'),
-                    t('items.it_audit.features.2'),
-                    t('items.it_audit.features.3')
-                ]
-            },
-            {
-                title: t('items.webshop_auto.title'),
-                description: t('items.webshop_auto.desc'),
-                icon: RefreshCw,
-                href: "/szolgaltatasok/webshop-automatizacio",
-                pricing: 120000,
-                features: [
-                    t('items.webshop_auto.features.0'),
-                    t('items.webshop_auto.features.1'),
-                    t('items.webshop_auto.features.2'),
-                    t('items.webshop_auto.features.3')
-                ]
-            },
-            {
-                title: t('items.ai_auto.title'),
-                description: t('items.ai_auto.desc'),
-                icon: Cpu,
-                href: "/szolgaltatasok/ai-asszisztensek",
-                pricing: 150000,
-                features: [
-                    t('items.ai_auto.features.0'),
-                    t('items.ai_auto.features.1'),
-                    t('items.ai_auto.features.2'),
-                    t('items.ai_auto.features.3')
-                ]
-            },
-            {
-                title: t('items.office_suite.title'),
-                description: t('items.office_suite.desc'),
-                icon: Cloud,
-                href: "/szolgaltatasok/microsoft-365-google-workspace",
-                pricing: 85000,
-                features: [
-                    t('items.office_suite.features.0'),
-                    t('items.office_suite.features.1'),
-                    t('items.office_suite.features.2'),
-                    t('items.office_suite.features.3')
-                ]
-            },
-            {
-                title: t('items.backup.title'),
-                description: t('items.backup.desc'),
-                icon: Database,
-                href: "/szolgaltatasok/backup-adatmentes",
-                pricing: 10000,
-                features: [
-                    t('items.backup.features.0'),
-                    t('items.backup.features.1'),
-                    t('items.backup.features.2'),
-                    t('items.backup.features.3')
-                ]
-            },
-            {
-                title: t('items.managed_it.title'),
-                description: t('items.managed_it.desc'),
-                icon: Activity,
-                href: "/szolgaltatasok/havidijas-rendszergazda",
-                pricing: 39000,
-                features: [
-                    t('items.managed_it.features.0'),
-                    t('items.managed_it.features.1'),
-                    t('items.managed_it.features.2'),
-                    t('items.managed_it.features.3')
-                ]
-            },
-            {
-                title: t('items.cloud_migration.title'),
-                description: t('items.cloud_migration.desc'),
-                icon: Cloud,
-                href: "/szolgaltatasok/felho-migracio-koltsegoptimalizalas",
-                pricing: 190000,
-                features: [
-                    t('items.cloud_migration.features.0'),
-                    t('items.cloud_migration.features.1'),
-                    t('items.cloud_migration.features.2'),
-                    t('items.cloud_migration.features.3')
-                ]
-            },
-            {
-                title: t('items.ai_support.title'),
-                description: t('items.ai_support.desc'),
-                icon: Cpu,
-                href: "/szolgaltatasok/ai-ugyfelszolgalat-weboldalra",
-                pricing: 390000,
-                features: [
-                    t('items.ai_support.features.0'),
-                    t('items.ai_support.features.1'),
-                    t('items.ai_support.features.2'),
-                    t('items.ai_support.features.3')
-                ]
-            },
-            {
-                title: t('items.crm_auto.title'),
-                description: t('items.crm_auto.desc'),
-                icon: Puzzle,
-                href: "/szolgaltatasok/crm-lead-automatizacio",
-                pricing: 290000,
-                features: [
-                    t('items.crm_auto.features.0'),
-                    t('items.crm_auto.features.1'),
-                    t('items.crm_auto.features.2'),
-                    t('items.crm_auto.features.3')
-                ]
-            },
-            {
-                title: t('items.ecommerce_tracking.title'),
-                description: t('items.ecommerce_tracking.desc'),
-                icon: Activity,
-                href: "/szolgaltatasok/webshop-meres-konverzio-noveles",
-                pricing: 180000,
-                features: [
-                    t('items.ecommerce_tracking.features.0'),
-                    t('items.ecommerce_tracking.features.1'),
-                    t('items.ecommerce_tracking.features.2'),
-                    t('items.ecommerce_tracking.features.3')
-                ]
-            },
-            {
-                title: t('items.dashboards.title'),
-                description: t('items.dashboards.desc'),
-                icon: Layout,
-                href: "/szolgaltatasok/uzleti-dashboardok-riportok",
-                pricing: 240000,
-                features: [
-                    t('items.dashboards.features.0'),
-                    t('items.dashboards.features.1'),
-                    t('items.dashboards.features.2'),
-                    t('items.dashboards.features.3')
-                ]
-            },
-            {
-                title: t('items.remote_helpdesk.title'),
-                description: t('items.remote_helpdesk.desc'),
-                icon: Headphones,
-                href: "/szolgaltatasok/remote-it-helpdesk-ticketing",
-                pricing: 69000,
-                features: [
-                    t('items.remote_helpdesk.features.0'),
-                    t('items.remote_helpdesk.features.1'),
-                    t('items.remote_helpdesk.features.2'),
-                    t('items.remote_helpdesk.features.3')
-                ]
+                    t(`items.${spec.tKey}.features.0`),
+                    t(`items.${spec.tKey}.features.1`),
+                    t(`items.${spec.tKey}.features.2`),
+                    t(`items.${spec.tKey}.features.3`),
+                ],
+                categoryId: meta.categoryId,
+                isNew: meta.isNew,
+                popular: meta.popular,
+                orderIndex: meta.orderIndex,
             }
-        ]
+        })
+
+        const extraFallback: CatalogServiceItem[] = SERVICES_STRUCTURE.flatMap((cat) =>
+            cat.items
+                .filter((item) => !seenHrefs.has(item.href))
+                .map((item) => {
+                    const extra = FALLBACK_EXTRA_PRICES[item.href]
+                    const meta = getServiceMetaByHref(item.href)
+                    const slug = item.href.split("/").pop() || item.key
+                    return {
+                        id: `fallback-${item.key}`,
+                        slug,
+                        href: item.href,
+                        title: tMega(`nav_items.${item.key}`),
+                        description: tMega(`nav_items.${item.key}_desc`),
+                        iconName: extra?.iconName || "Code2",
+                        pricing: extra?.pricing ?? 0,
+                        pricingKind: extra?.pricingKind ?? "custom",
+                        packageCount: extra?.packageCount ?? 0,
+                        features: [],
+                        categoryId: meta.categoryId,
+                        isNew: meta.isNew,
+                        popular: meta.popular,
+                        orderIndex: meta.orderIndex,
+                    }
+                })
+        )
+
+        services = [...baseFallback, ...extraFallback]
     }
+
+    services.sort((a, b) => a.orderIndex - b.orderIndex)
+
+    const categoryCounts: Record<ServiceCategoryId, number> = {
+        growth: 0,
+        security_cloud: 0,
+        core: 0,
+        infrastructure: 0,
+    }
+    for (const svc of services) {
+        categoryCounts[svc.categoryId] = (categoryCounts[svc.categoryId] ?? 0) + 1
+    }
+
+    const entryPaths = [
+        {
+            code: "01 · AUDIT",
+            title: isHu ? "IT & Biztonsági Átvilágítás" : "IT & Security Audit",
+            desc: isHu
+                ? "Teljes hálózati, szerver- és jogosultsági diagnosztika 1–2 héten belül, prioritizált javítási tervvel."
+                : "Full infrastructure, server, and access audit delivered in 1–2 weeks with an actionable remediation roadmap.",
+            href: "/szolgaltatasok/kkv-it-audit" as const,
+            cta: isHu ? "Audit részletek" : "Explore Audit",
+        },
+        {
+            code: "02 · AI & AUTOMATION",
+            title: isHu ? "Privát AI & Automatizáció" : "Private AI & Automation",
+            desc: isHu
+                ? "Belső tudásbázis, dokumentumfeldolgozás vagy CRM munkafolyamatok bevezetése 2–4 hetes PoC sprintben."
+                : "Private enterprise RAG knowledge base, document OCR, or CRM workflow automation shipped in a 2–4 week sprint.",
+            href: "/szolgaltatasok/privat-vallalati-ai-tudasbazis-rag" as const,
+            cta: isHu ? "AI megoldások" : "Explore AI",
+        },
+        {
+            code: "03 · SLA & SECURITY",
+            title: isHu ? "Folyamatos Védelem & Managed IT" : "24/7 Protection & Managed IT",
+            desc: isHu
+                ? "0–24 NIS2 felügyelet, WAF, katasztrófa-helyreállítás és kiszámítható havidíjas rendszergazdai háttér."
+                : "Continuous NIS2 monitoring, WAF shielding, disaster recovery, and predictable monthly engineering support.",
+            href: "/szolgaltatasok/folyamatos-kibervedelmi-monitoring-nis2" as const,
+            cta: isHu ? "Monitoring csomagok" : "View Monitoring",
+        },
+    ]
+
+    const deliverySteps = isHu
+        ? [
+              {
+                  step: "01",
+                  title: "Műszaki felmérés & igénytisztázás",
+                  desc: "30 perces mérnöki konzultáción átnézzük a jelenlegi rendszereket és szűk keresztmetszeteket.",
+              },
+              {
+                  step: "02",
+                  title: "Architektúra terv & fix tételes ajánlat",
+                  desc: "Átlátható műszaki specifikáció, költségbecslés (Azure/üzemeltetés külön bontva) és határidők.",
+              },
+              {
+                  step: "03",
+                  title: "Implementáció & terheléses ellenőrzés",
+                  desc: "Staging környezetben tesztelt bevezetés, automatizált mentéssel és biztonsági kontrollokkal.",
+              },
+              {
+                  step: "04",
+                  title: "Dokumentált átadás & opcionális SLA",
+                  desc: "Teljes kód- és hozzáférés-tulajdonjog, csapatbetanítás és választható folyamatos felügyelet.",
+              },
+          ]
+        : [
+              {
+                  step: "01",
+                  title: "Technical Discovery & Scoping",
+                  desc: "In a 30-minute engineering review, we map your current stack, bottlenecks, and compliance needs.",
+              },
+              {
+                  step: "02",
+                  title: "Architecture Blueprint & Fixed Proposal",
+                  desc: "Clear technical specification, transparent pricing (cloud ops vs. delivery separated), and milestones.",
+              },
+              {
+                  step: "03",
+                  title: "Staging Delivery & Verification",
+                  desc: "Hardened implementation tested in staging with automated backups and security guardrails.",
+              },
+              {
+                  step: "04",
+                  title: "Documented Handover & Optional SLA",
+                  desc: "Full repository and infrastructure ownership, team onboarding, and optional 24/7 managed ops.",
+              },
+          ]
 
     return (
         <>
-            {/* Hero Section */}
-            <ServicesHero
-                badge={t('hero_badge')}
-                title={t('hero_title')}
-                titleHighlight={t('hero_title_highlight')}
-                description={t('hero_desc')}
-                ctaQuote={t('cta_quote')}
-                ctaServices={t('cta_services')}
+            <BreadcrumbJsonLd
+                items={[
+                    { name: isHu ? "Kezdőlap" : "Home", href: isHu ? "/" : "/en" },
+                    {
+                        name: isHu ? "Szolgáltatások" : "Services",
+                        href: isHu ? "/szolgaltatasok" : "/en/services",
+                    },
+                ]}
             />
 
-            {/* Services Grid */}
-            <section id="szolgaltatasok" className="py-20 md:py-32">
+            {/* Editorial Enterprise Header */}
+            <ServicesHero
+                badge={t("hero_badge")}
+                title={t("hero_title")}
+                titleHighlight={t("hero_title_highlight")}
+                description={t("hero_desc")}
+                ctaQuote={t("cta_quote")}
+                totalCount={services.length}
+                categoryCounts={categoryCounts}
+            />
+
+            {/* Interactive 4-Pillar Bento Catalog with Sticky Toolbar */}
+            <Suspense
+                fallback={
+                    <div className="container mx-auto px-4 py-16">
+                        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                            {[...Array(6)].map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="h-72 rounded-2xl border border-white/[0.06] bg-[#070c18] animate-pulse"
+                                />
+                            ))}
+                        </div>
+                    </div>
+                }
+            >
+                <ServicesCatalog services={services} />
+            </Suspense>
+
+            {/* Recommended Entry Points */}
+            <section className="border-t border-white/[0.06] bg-[#040812]/70 py-14 md:py-20">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                            {t('list_title')}
-                        </h2>
-                        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                            {t('list_desc')}
+                    <div className="mb-10 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                        <div>
+                            <span className="mb-2 block font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-400">
+                                {isHu ? "BELÉPÉSI PONTOK" : "STARTING POINTS"}
+                            </span>
+                            <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">
+                                {isHu
+                                    ? "Nem tudod, melyik szolgáltatással érdemes kezdeni?"
+                                    : "Not sure where to start?"}
+                            </h2>
+                        </div>
+                        <p className="max-w-md text-sm text-slate-400">
+                            {isHu
+                                ? "Három bevált induló konstrukció meglévő vállalati infrastruktúrához."
+                                : "Three proven entry engagements tailored to existing company stacks."}
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                        {services.map((service, index) => {
-                            const Icon = service.icon
-                            return (
-                                <Card key={index} className="flex flex-col border-2 hover:border-primary/50 transition-all hover:shadow-lg group">
-                                    <CardHeader>
-                                        <div className="flex items-start justify-between">
-                                            <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                                                <Icon className="h-7 w-7" />
-                                            </div>
-                                            <Badge variant="outline" className="text-primary border-primary/20">
-                                                {service.pricing > 0 ? (
-                                                    <div className="flex items-center gap-1">
-                                                        {locale === 'hu' ? (
-                                                            <>
-                                                                <PriceDisplay amount={service.pricing} className="font-bold" />
-                                                                <span className="text-[10px] opacity-70">{t('item_labels.pricing_from')}</span>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <span className="text-[10px] opacity-70">{t('item_labels.pricing_from')}</span>
-                                                                <PriceDisplay amount={service.pricing} className="font-bold" />
-                                                            </>
-                                                        )}
-                                                    </div>
-                                                ) : (
-                                                    t('item_labels.pricing_custom')
-                                                )}
-                                            </Badge>
-                                        </div>
-                                        <CardTitle className="text-2xl mb-2">{service.title}</CardTitle>
-                                        <CardDescription className="text-base leading-relaxed">
-                                            {service.description}
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent className="flex-1 flex flex-col">
-                                        <div className="flex-1">
-                                            <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider text-muted-foreground">{t('item_labels.whats_included')}</h4>
-                                            <ul className="space-y-3 mb-8">
-                                                {service.features.map((feature, idx) => (
-                                                    <li key={idx} className="flex items-start gap-3 text-sm">
-                                                        <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
-                                                        <span>{feature}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        <Link href={service.href as any} className="mt-auto">
-                                            <Button className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors" variant="outline">
-                                                {t('item_labels.details_and_order')} <ArrowRight className="ml-2 h-4 w-4" />
-                                            </Button>
-                                        </Link>
-                                    </CardContent>
-                                </Card>
-                            )
-                        })}
+                    <div className="grid gap-5 md:grid-cols-3">
+                        {entryPaths.map((path) => (
+                            <Link
+                                key={path.code}
+                                href={path.href}
+                                className="group flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-[#070c18] p-6 transition-colors hover:border-cyan-500/40 hover:bg-[#091020]"
+                            >
+                                <div>
+                                    <span className="mb-3 block font-mono text-[11px] font-semibold tracking-[0.16em] text-cyan-400">
+                                        {path.code}
+                                    </span>
+                                    <h3 className="mb-2 text-lg font-bold text-white transition-colors group-hover:text-cyan-300">
+                                        {path.title}
+                                    </h3>
+                                    <p className="mb-6 text-sm leading-relaxed text-slate-400">
+                                        {path.desc}
+                                    </p>
+                                </div>
+                                <div className="flex items-center gap-1.5 border-t border-white/[0.06] pt-4 text-xs font-semibold text-cyan-400">
+                                    <span>{path.cta}</span>
+                                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                                </div>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* Tech Stack / Why Us */}
-            <section className="py-20 md:py-32 bg-slate-950 text-white overflow-hidden relative">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black opacity-80" />
-                <div className="container relative mx-auto px-4">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
-                                {t('why_us_title')}
+            {/* Engineering Commitments & 4-Step Delivery Process */}
+            <section className="border-t border-white/[0.06] py-16 md:py-24">
+                <div className="container mx-auto px-4">
+                    <div className="grid items-start gap-12 lg:grid-cols-12">
+                        {/* Left: Engineering Principles */}
+                        <div className="lg:col-span-6">
+                            <span className="mb-2 block font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-400">
+                                {isHu ? "MÉRNÖKI ALAPELVEK" : "ENGINEERING STANDARDS"}
+                            </span>
+                            <h2 className="mb-4 text-2xl font-bold tracking-tight text-white md:text-3xl">
+                                {t("why_us_title")}
                             </h2>
-                            <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                                {t('why_us_lead')}
+                            <p className="mb-8 text-base leading-relaxed text-slate-400">
+                                {t("why_us_lead")}
                             </p>
 
-                            <div className="space-y-6">
-                                <div className="flex gap-4">
-                                    <div className="h-12 w-12 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0">
-                                        <Code2 className="h-6 w-6 text-blue-400" />
+                            <div className="space-y-4">
+                                <div className="flex gap-4 rounded-xl border border-white/[0.06] bg-[#070c18] p-4">
+                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04] text-cyan-400">
+                                        <Code2 className="h-5 w-5" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl mb-1">{t('reasons.tech.title')}</h3>
-                                        <p className="text-slate-400">{t('reasons.tech.desc')}</p>
+                                        <h3 className="mb-1 text-base font-bold text-white">
+                                            {t("reasons.tech.title")}
+                                        </h3>
+                                        <p className="text-sm leading-relaxed text-slate-400">
+                                            {t("reasons.tech.desc")}
+                                        </p>
                                     </div>
                                 </div>
-                                <div className="flex gap-4">
-                                    <div className="h-12 w-12 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
-                                        <Shield className="h-6 w-6 text-green-400" />
+
+                                <div className="flex gap-4 rounded-xl border border-white/[0.06] bg-[#070c18] p-4">
+                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04] text-cyan-400">
+                                        <Shield className="h-5 w-5" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl mb-1">{t('reasons.security.title')}</h3>
-                                        <p className="text-slate-400">{t('reasons.security.desc')}</p>
+                                        <h3 className="mb-1 text-base font-bold text-white">
+                                            {t("reasons.security.title")}
+                                        </h3>
+                                        <p className="text-sm leading-relaxed text-slate-400">
+                                            {t("reasons.security.desc")}
+                                        </p>
                                     </div>
                                 </div>
-                                <div className="flex gap-4">
-                                    <div className="h-12 w-12 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0">
-                                        <Server className="h-6 w-6 text-purple-400" />
+
+                                <div className="flex gap-4 rounded-xl border border-white/[0.06] bg-[#070c18] p-4">
+                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04] text-cyan-400">
+                                        <Server className="h-5 w-5" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl mb-1">{t('reasons.scale.title')}</h3>
-                                        <p className="text-slate-400">{t('reasons.scale.desc')}</p>
+                                        <h3 className="mb-1 text-base font-bold text-white">
+                                            {t("reasons.scale.title")}
+                                        </h3>
+                                        <p className="text-sm leading-relaxed text-slate-400">
+                                            {t("reasons.scale.desc")}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="relative">
-                            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur-2xl opacity-30" />
-                            <div className="relative bg-slate-900 border border-slate-800 rounded-2xl p-8">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-slate-800/50 p-6 rounded-xl text-center">
-                                        <div className="text-4xl font-bold text-blue-400 mb-2">100%</div>
-                                        <div className="text-sm text-slate-400">{t('stats.deadline')}</div>
-                                    </div>
-                                    <div className="bg-slate-800/50 p-6 rounded-xl text-center">
-                                        <div className="text-4xl font-bold text-purple-400 mb-2">24/7</div>
-                                        <div className="text-sm text-slate-400">{t('stats.monitoring')}</div>
-                                    </div>
-                                    <div className="bg-slate-800/50 p-6 rounded-xl text-center">
-                                        <div className="text-4xl font-bold text-green-400 mb-2">50+</div>
-                                        <div className="text-sm text-slate-400">{t('stats.projects')}</div>
-                                    </div>
-                                    <div className="bg-slate-800/50 p-6 rounded-xl text-center">
-                                        <div className="text-4xl font-bold text-yellow-400 mb-2">5.0</div>
-                                        <div className="text-sm text-slate-400">{t('stats.rating')}</div>
-                                    </div>
+
+                        {/* Right: 4-Step Delivery Workflow */}
+                        <div className="lg:col-span-6">
+                            <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070c18]">
+                                <div className="flex items-center justify-between border-b border-white/[0.06] bg-[#0a101f] px-6 py-4">
+                                    <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-300">
+                                        {isHu ? "Együttműködési folyamat" : "Delivery Workflow"}
+                                    </span>
+                                    <span className="font-mono text-[11px] text-slate-500">
+                                        01 → 04
+                                    </span>
+                                </div>
+
+                                <div className="divide-y divide-white/[0.06]">
+                                    {deliverySteps.map((item) => (
+                                        <div key={item.step} className="flex gap-4 px-6 py-5">
+                                            <span className="mt-0.5 font-mono text-xs font-semibold text-cyan-400">
+                                                {item.step}
+                                            </span>
+                                            <div>
+                                                <h3 className="mb-1 text-sm font-bold text-white sm:text-base">
+                                                    {item.title}
+                                                </h3>
+                                                <p className="text-sm leading-relaxed text-slate-400">
+                                                    {item.desc}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -481,159 +411,54 @@ export default async function SzolgaltatasokPage() {
                 </div>
             </section>
 
-            {/* CTA Section - Neural Network Compatible Premium Design */}
-            <section className="relative py-24 md:py-40 overflow-hidden">
-                {/* Transparent to blend with neural background - just subtle overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/50 to-transparent" />
+            {/* Clean Architectural Closing CTA */}
+            <section className="pb-20 pt-4">
+                <div className="container mx-auto px-4">
+                    <div className="relative overflow-hidden rounded-2xl border border-white/[0.1] bg-[#070d1b] p-8 md:p-12">
+                        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
 
-                {/* Animated hexagon grid pattern */}
-                <div className="absolute inset-0 opacity-[0.03]" style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%2306b6d4' stroke-width='1'/%3E%3C/svg%3E")`,
-                    backgroundSize: '60px 60px'
-                }} />
+                        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
+                            <div className="max-w-2xl">
+                                <span className="mb-2 block font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-400">
+                                    {isHu ? "KÖVETKEZŐ LÉPÉS" : "NEXT STEP"}
+                                </span>
+                                <h2 className="mb-3 text-2xl font-bold tracking-tight text-white md:text-4xl">
+                                    {t("cta_bottom_title")}
+                                </h2>
+                                <p className="text-base leading-relaxed text-slate-400">
+                                    {t("cta_bottom_desc")}
+                                </p>
+                            </div>
 
-                {/* Animated gradient orbs that match neural colors */}
-                <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-
-                {/* Floating particles */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    {[...Array(6)].map((_, i) => (
-                        <div
-                            key={i}
-                            className="absolute w-1 h-1 bg-cyan-400 rounded-full animate-float opacity-60"
-                            style={{
-                                left: `${15 + i * 15}%`,
-                                top: `${20 + (i % 3) * 25}%`,
-                                animationDelay: `${i * 0.5}s`,
-                                animationDuration: `${3 + i * 0.5}s`
-                            }}
-                        />
-                    ))}
-                </div>
-
-                <div className="container mx-auto px-4 relative z-10">
-                    <div className="max-w-5xl mx-auto">
-                        {/* Main holographic card */}
-                        <div className="relative group">
-                            {/* Animated border gradient */}
-                            <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-500 via-violet-500 to-cyan-500 rounded-3xl opacity-75 blur-sm group-hover:opacity-100 transition-opacity duration-500 animate-gradient-x bg-[length:200%_auto]" />
-
-                            {/* Card content */}
-                            <div className="relative bg-slate-950/90 backdrop-blur-2xl rounded-3xl border border-white/5 overflow-hidden">
-                                {/* Top accent line */}
-                                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
-
-                                {/* Inner glow */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-violet-500/5" />
-
-                                <div className="relative p-10 md:p-16 lg:p-20">
-                                    {/* Status indicator */}
-                                    <div className="flex justify-center mb-10">
-                                        <div className="inline-flex items-center gap-3 bg-cyan-500/10 backdrop-blur-sm border border-cyan-500/20 rounded-full px-6 py-3">
-                                            <div className="relative">
-                                                <div className="w-3 h-3 bg-cyan-400 rounded-full" />
-                                                <div className="absolute inset-0 w-3 h-3 bg-cyan-400 rounded-full animate-ping" />
-                                            </div>
-                                            <span className="text-sm font-semibold text-cyan-300 tracking-wide uppercase">{tCTA('available_capacity')}</span>
-                                            <div className="w-px h-4 bg-cyan-500/30" />
-                                            <span className="text-sm text-cyan-400/80">2 {tCTA('project_slots')}</span>
-                                        </div>
-                                    </div>
-
-                                    {/* Main headline */}
-                                    <h2 className="text-center mb-8">
-                                        <span className="block text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-white mb-2">
-                                            {t('cta_bottom_title')}
-                                        </span>
-                                        <span className="block text-2xl md:text-3xl font-light text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400">
-                                            {tCTA('build_future')}
-                                        </span>
-                                    </h2>
-
-                                    <p className="text-center text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-                                        {t('cta_bottom_desc')}
-                                    </p>
-
-                                    {/* CTA Buttons */}
-                                    <div className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-16">
-                                        {/* Primary - Glowing cyan button */}
-                                        <Link href="/demo">
-                                            <Button size="lg" className="group relative h-16 px-12 text-lg font-bold overflow-hidden">
-                                                {/* Button glow */}
-                                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-cyan-400 transition-all duration-300 group-hover:scale-105" />
-                                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-cyan-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                                <div className="absolute inset-0 shadow-[0_0_40px_rgba(6,182,212,0.5)] group-hover:shadow-[0_0_60px_rgba(6,182,212,0.7)] transition-shadow duration-300" />
-                                                <span className="relative flex items-center text-slate-950 font-bold">
-                                                    {t('cta_consultation')}
-                                                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
-                                                </span>
-                                            </Button>
-                                        </Link>
-
-                                        {/* Secondary - Ghost button with border animation */}
-                                        <Link href="/arak">
-                                            <Button size="lg" className="group relative h-16 px-12 text-lg font-bold bg-transparent overflow-hidden">
-                                                {/* Animated border */}
-                                                <div className="absolute inset-0 rounded-md">
-                                                    <div className="absolute inset-0 rounded-md border-2 border-violet-500/50 group-hover:border-violet-400 transition-colors duration-300" />
-                                                    <div className="absolute inset-[-2px] rounded-md bg-gradient-to-r from-violet-500 to-cyan-500 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300" />
-                                                </div>
-                                                <span className="relative flex items-center text-white">
-                                                    {t('cta_packages')}
-                                                    <svg className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                    </svg>
-                                                </span>
-                                            </Button>
-                                        </Link>
-                                    </div>
-
-                                    {/* Stats with animated counters look */}
-                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t border-white/5">
-                                        <div className="text-center group/stat">
-                                            <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 to-cyan-500 mb-2 group-hover/stat:scale-110 transition-transform">50+</div>
-                                            <div className="text-sm text-slate-500 uppercase tracking-wider">{tStats('successful_projects')}</div>
-                                        </div>
-                                        <div className="text-center group/stat">
-                                            <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-violet-300 to-violet-500 mb-2 group-hover/stat:scale-110 transition-transform">100%</div>
-                                            <div className="text-sm text-slate-500 uppercase tracking-wider">{tStats('satisfaction')}</div>
-                                        </div>
-                                        <div className="text-center group/stat">
-                                            <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 to-cyan-500 mb-2 group-hover/stat:scale-110 transition-transform">&lt;24h</div>
-                                            <div className="text-sm text-slate-500 uppercase tracking-wider">{tStats('response_time')}</div>
-                                        </div>
-                                        <div className="text-center group/stat">
-                                            <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-violet-300 to-violet-500 mb-2 group-hover/stat:scale-110 transition-transform">5.0★</div>
-                                            <div className="text-sm text-slate-500 uppercase tracking-wider">{tStats('rating')}</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Bottom accent line */}
-                                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent" />
+                            <div className="flex flex-wrap items-center gap-3 shrink-0">
+                                <Link
+                                    href="/demo"
+                                    className="inline-flex h-12 items-center gap-2 rounded-xl bg-cyan-500 px-6 text-sm font-semibold text-slate-950 transition-colors hover:bg-cyan-400"
+                                >
+                                    <span>{t("cta_consultation")}</span>
+                                    <ArrowRight className="h-4 w-4" />
+                                </Link>
+                                <Link
+                                    href="/arak"
+                                    className="inline-flex h-12 items-center gap-2 rounded-xl border border-white/15 bg-white/[0.03] px-5 text-sm font-medium text-white transition-colors hover:border-white/25 hover:bg-white/[0.07]"
+                                >
+                                    <span>{t("cta_packages")}</span>
+                                </Link>
                             </div>
                         </div>
 
-                        {/* Trust badges below */}
-                        <div className="mt-12 flex flex-wrap justify-center gap-6 text-slate-500 text-sm">
-                            <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm rounded-full px-4 py-2">
-                                <svg className="h-4 w-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
-                                <span>{tStats('ssl_security')}</span>
+                        <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/[0.06] pt-6 text-xs text-slate-400">
+                            <div className="flex items-center gap-2">
+                                <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" />
+                                <span>{tStats("ssl_security")}</span>
                             </div>
-                            <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm rounded-full px-4 py-2">
-                                <svg className="h-4 w-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
-                                <span>{tStats('gdpr_compliant')}</span>
+                            <div className="flex items-center gap-2">
+                                <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" />
+                                <span>{tStats("gdpr_compliant")}</span>
                             </div>
-                            <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm rounded-full px-4 py-2">
-                                <svg className="h-4 w-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                </svg>
-                                <span>{tStats('no_hidden_costs')}</span>
+                            <div className="flex items-center gap-2">
+                                <CheckCircle2 className="h-3.5 w-3.5 text-cyan-400" />
+                                <span>{tStats("no_hidden_costs")}</span>
                             </div>
                         </div>
                     </div>
