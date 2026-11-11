@@ -127,6 +127,33 @@ export async function redisDelPattern(pattern: string): Promise<boolean> {
 }
 
 /**
+ * Lekéri az összes megadott mintára illeszkedő kulcs JSON értékét a Redisből (pl. "live:visitor:*").
+ */
+export async function redisGetPattern<T>(pattern: string): Promise<T[]> {
+  const client = getRedisClient();
+  if (!client) return [];
+
+  try {
+    const keys = await client.keys(pattern);
+    if (keys.length === 0) return [];
+    const values = await client.mget(...keys);
+    const parsed: T[] = [];
+    for (const val of values) {
+      if (val) {
+        try {
+          parsed.push(JSON.parse(val) as T);
+        } catch {
+          // skip invalid JSON
+        }
+      }
+    }
+    return parsed;
+  } catch {
+    return [];
+  }
+}
+
+/**
  * Okos gyorsítótárazó segédfüggvény:
  * Ha a kulcs benne van a Redisben, onnan adja vissza.
  * Ha nincs (vagy Redis hiba van), meghívja a `fetcher` függvényt, elmenti a gyorsítótárba és visszaadja.

@@ -27,10 +27,9 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
             setLastSyncTime(new Date().toLocaleTimeString('hu-HU'))
             if (selectedVisitor) {
                 const match = fresh.visitors.find(v => v.id === selectedVisitor.id)
-                if (match) setSelectedVisitor(match)
-                else if (fresh.visitors.length > 0) setSelectedVisitor(fresh.visitors[0])
-            } else if (fresh.visitors.length > 0) {
-                setSelectedVisitor(fresh.visitors[0])
+                setSelectedVisitor(match || fresh.visitors[0] || null)
+            } else {
+                setSelectedVisitor(fresh.visitors[0] || null)
             }
         } catch (e) {
             console.error("Traffic refresh error:", e)
@@ -188,8 +187,9 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
             lng: randomCity.lng,
             page: randomCity.page,
             device: randomCity.device,
-            referrer: 'Közvetlen (Direct)',
+            referrer: 'Szimulált Teszt',
             timeOnSite: '10mp',
+            durationSec: 10,
             status: 'ACTIVE'
         }
         setData(prev => ({
@@ -280,23 +280,27 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
 
                 <div className="p-5 rounded-2xl bg-[#070b16] border border-purple-500/20">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
-                        Mai Forgalmi Csúcs (Peak)
+                        Mai Forgalmi Csúcs / Napi Összes
                     </span>
                     <div className="flex items-baseline gap-2">
                         <span className="text-3xl font-black font-mono text-purple-300">{data.peakToday}</span>
-                        <span className="text-xs font-mono text-slate-500">látogató / óra</span>
+                        <span className="text-xs font-mono text-slate-500">esemény / óra (Ma: {data.totalEventsToday})</span>
                     </div>
                 </div>
 
                 <div className="p-5 rounded-2xl bg-[#070b16] border border-emerald-500/20">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
-                        Átlagos Munkamenet Idő
+                        Átlagos Élő Munkamenet Idő
                     </span>
                     <div className="flex items-baseline gap-2">
                         <span className="text-3xl font-black font-mono text-emerald-400">
-                            {Math.floor(data.avgDurationSec / 60)}p {data.avgDurationSec % 60}mp
+                            {data.avgDurationSec > 0
+                                ? `${Math.floor(data.avgDurationSec / 60)}p ${data.avgDurationSec % 60}mp`
+                                : "0mp"}
                         </span>
-                        <span className="text-xs font-mono text-slate-500">átlag</span>
+                        <span className="text-xs font-mono text-slate-500">
+                            {data.visitors.length > 0 ? "valós élő átlag" : "nincs élő látogató"}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -376,7 +380,7 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                 {/* Jobb oldal: Kiválasztott Látogató Adatlapja & Legnépszerűbb Oldalak (5 oszlop) */}
                 <div className="lg:col-span-5 space-y-6">
                     {/* Kiválasztott látogató kártya */}
-                    {selectedVisitor && (
+                    {selectedVisitor ? (
                         <div className="p-5 rounded-2xl bg-[#070b16] border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.08)] space-y-4">
                             <div className="flex items-center justify-between pb-3 border-b border-white/5">
                                 <div className="flex items-center gap-2">
@@ -416,6 +420,15 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                                 </div>
                             </div>
                         </div>
+                    ) : (
+                        <div className="p-5 rounded-2xl bg-[#070b16] border border-white/10 space-y-2 font-mono">
+                            <span className="text-xs font-bold text-cyan-400 uppercase tracking-wider block">
+                                Élő Radar Állapot
+                            </span>
+                            <p className="text-xs text-slate-300 leading-relaxed">
+                                A Redis jelenlét-figyelő készenlétben áll. Amint egy külső látogató böngészi a publikus oldalt, itt jelennek meg az adatai.
+                            </p>
+                        </div>
                     )}
 
                     {/* Top Oldalak Rangsora */}
@@ -423,28 +436,32 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                         <span className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold block">
                             Leglátogatottabb Oldalak (Ma)
                         </span>
-                        <div className="space-y-2 font-mono text-xs">
-                            {data.topPages.map((tp, idx) => (
-                                <div key={tp.page} className="flex items-center justify-between p-2 rounded-lg bg-slate-900/40 border border-white/5">
-                                    <div className="flex items-center gap-2 truncate">
-                                        <span className="text-[10px] font-bold text-cyan-400 w-4">#{idx + 1}</span>
-                                        <span className="text-slate-300 truncate">{tp.page}</span>
+                        {data.topPages.length === 0 ? (
+                            <p className="text-xs font-mono text-slate-500 py-2">Még nincs rögzített oldalletöltés ma.</p>
+                        ) : (
+                            <div className="space-y-2 font-mono text-xs">
+                                {data.topPages.map((tp, idx) => (
+                                    <div key={tp.page} className="flex items-center justify-between p-2 rounded-lg bg-slate-900/40 border border-white/5">
+                                        <div className="flex items-center gap-2 truncate">
+                                            <span className="text-[10px] font-bold text-cyan-400 w-4">#{idx + 1}</span>
+                                            <span className="text-slate-300 truncate">{tp.page}</span>
+                                        </div>
+                                        <span className="text-white font-bold shrink-0">{tp.count} megtekintés</span>
                                     </div>
-                                    <span className="text-white font-bold shrink-0">{tp.count} megtekintés</span>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
 
-            {/* Alsó táblázat: Élő látogatói munkamenetek */}
+            {/* Alsó táblázat 1: Valódi aktív élő látogatói munkamenetek */}
             <div className="rounded-2xl border border-white/5 bg-[#070b16] overflow-hidden">
                 <div className="p-4 border-b border-white/5 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <Radio className="w-4 h-4 text-cyan-400 animate-pulse" />
                         <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
-                            Aktív Látogatói Munkamenetek Listája
+                            Valós Idejű Aktív Munkamenetek (Az Elmúlt 75 Másodpercben)
                         </h3>
                     </div>
                     <span className="text-[11px] font-mono text-slate-400">
@@ -452,35 +469,86 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                     </span>
                 </div>
 
+                {data.visitors.length === 0 ? (
+                    <div className="p-8 text-center text-xs font-mono text-slate-400 space-y-2">
+                        <p className="text-slate-300 font-semibold">
+                            Jelenleg ebben a másodpercben nincs aktív külső böngésző-munkamenet az oldalon.
+                        </p>
+                        <p className="text-[11px] text-slate-500">
+                            Amint bárki megnyitja a publikus weboldalt, a Cloudflare geo-adatokkal és valós időtartammal azonnal megjelenik itt.
+                        </p>
+                    </div>
+                ) : (
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-left text-xs font-sans">
+                            <thead className="bg-[#0b101e] border-b border-white/5 text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                                <tr>
+                                    <th className="p-3.5">Helyszín</th>
+                                    <th className="p-3.5">Jelenlegi Oldal</th>
+                                    <th className="p-3.5">Eszköz</th>
+                                    <th className="p-3.5">Forrás</th>
+                                    <th className="p-3.5 text-right">Oldalon Töltött Idő</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-white/5 font-mono text-[11px] text-slate-300">
+                                {data.visitors.map((v) => (
+                                    <tr 
+                                        key={v.id} 
+                                        onClick={() => setSelectedVisitor(v)}
+                                        className={`cursor-pointer transition-colors ${
+                                            selectedVisitor?.id === v.id ? 'bg-cyan-500/10' : 'hover:bg-white/[0.02]'
+                                        }`}
+                                    >
+                                        <td className="p-3.5 flex items-center gap-2">
+                                            <span className="text-base">{v.flag}</span>
+                                            <span className="font-bold text-white">{v.city}</span>
+                                            <span className="text-slate-500">({v.countryCode})</span>
+                                        </td>
+                                        <td className="p-3.5 text-cyan-300 font-semibold">{v.page}</td>
+                                        <td className="p-3.5 text-slate-400">{v.device}</td>
+                                        <td className="p-3.5 text-purple-300">{v.referrer}</td>
+                                        <td className="p-3.5 text-right text-emerald-400 font-bold">{v.timeOnSite}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
+
+            {/* Alsó táblázat 2: Mai korábbi látogatások / események naplója */}
+            <div className="rounded-2xl border border-white/5 bg-[#070b16] overflow-hidden">
+                <div className="p-4 border-b border-white/5 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <Eye className="w-4 h-4 text-purple-400" />
+                        <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-white">
+                            Mai Korábbi Oldalletöltések &amp; Események (Napló)
+                        </h3>
+                    </div>
+                    <span className="text-[11px] font-mono text-slate-400">
+                        Összesen ma: {data.totalEventsToday} esemény
+                    </span>
+                </div>
+
                 <div className="overflow-x-auto">
                     <table className="w-full text-left text-xs font-sans">
                         <thead className="bg-[#0b101e] border-b border-white/5 text-[11px] font-mono uppercase tracking-wider text-slate-400">
                             <tr>
-                                <th className="p-3.5">Helyszín</th>
+                                <th className="p-3.5">Időpont</th>
                                 <th className="p-3.5">Megtekintett Oldal</th>
-                                <th className="p-3.5">Eszköz</th>
-                                <th className="p-3.5">Forrás</th>
-                                <th className="p-3.5 text-right">Időtartam</th>
+                                <th className="p-3.5">Esemény</th>
+                                <th className="p-3.5">Forrás / Hely</th>
+                                <th className="p-3.5 text-right">Eltelt idő</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-white/5 font-mono text-[11px] text-slate-300">
-                            {data.visitors.map((v) => (
-                                <tr 
-                                    key={v.id} 
-                                    onClick={() => setSelectedVisitor(v)}
-                                    className={`cursor-pointer transition-colors ${
-                                        selectedVisitor?.id === v.id ? 'bg-cyan-500/10' : 'hover:bg-white/[0.02]'
-                                    }`}
-                                >
-                                    <td className="p-3.5 flex items-center gap-2">
-                                        <span className="text-base">{v.flag}</span>
-                                        <span className="font-bold text-white">{v.city}</span>
-                                        <span className="text-slate-500">({v.countryCode})</span>
-                                    </td>
-                                    <td className="p-3.5 text-cyan-300 font-semibold">{v.page}</td>
-                                    <td className="p-3.5 text-slate-400">{v.device}</td>
-                                    <td className="p-3.5 text-purple-300">{v.referrer}</td>
-                                    <td className="p-3.5 text-right text-emerald-400 font-bold">{v.timeOnSite}</td>
+                            {data.recentVisits.map((rv) => (
+                                <tr key={rv.id} className="hover:bg-white/[0.02]">
+                                    <td className="p-3.5 text-white font-bold">{rv.timeStr}</td>
+                                    <td className="p-3.5 text-cyan-300">{rv.page}</td>
+                                    <td className="p-3.5 text-slate-400">{rv.eventType}</td>
+                                    <td className="p-3.5 text-slate-400">{rv.location}</td>
+                                    <td className="p-3.5 text-right text-slate-400">{rv.timeAgo}</td>
                                 </tr>
                             ))}
                         </tbody>
