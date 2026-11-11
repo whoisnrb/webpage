@@ -27,9 +27,19 @@ const ICON_OPTIONS = [
     { value: "Layout", label: "Layout (Dashboard)" },
     { value: "Headphones", label: "Headphones (Helpdesk)" },
     { value: "Globe", label: "Globe (WordPress)" },
-    { value: "Database", label: "Database (Backup)" },
+    { value: "Database", label: "Database (Backup / DRaaS)" },
     { value: "RefreshCw", label: "RefreshCw (Webshop Auto)" },
-    { value: "Search", label: "Search (IT Audit)" },
+    { value: "Search", label: "Search (Audit / Tender Radar)" },
+    { value: "Radar", label: "Radar (0–24 Security / NIS2)" },
+    { value: "MailCheck", label: "MailCheck (Phishing Teszt)" },
+    { value: "Bot", label: "Bot (Vállalati AI / RAG)" },
+    { value: "FileText", label: "FileText (Dokumentum OCR)" },
+    { value: "Mic", label: "Mic (Hívás & Meeting AI)" },
+    { value: "Gauge", label: "Gauge (Terheléstesztelés)" },
+    { value: "Monitor", label: "Monitor (Felhős Asztal / VDI)" },
+    { value: "FolderLock", label: "FolderLock (Ügyfélportál)" },
+    { value: "BarChart3", label: "BarChart3 (GDPR Analitika)" },
+    { value: "Building2", label: "Building2 (Cégadat / Adószám API)" },
 ]
 
 const DEFAULT_PACKAGE: ServicePackage = {

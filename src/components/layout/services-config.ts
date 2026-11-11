@@ -1,21 +1,32 @@
-import { 
-    Cloud, 
-    Cpu, 
-    Puzzle, 
-    Activity, 
-    Layout, 
-    Headphones, 
-    RefreshCw, 
-    Zap, 
-    Search, 
-    Database, 
-    Globe, 
-    Terminal, 
-    Server, 
+import {
+    Cloud,
+    Cpu,
+    Puzzle,
+    Activity,
+    Layout,
+    Headphones,
+    RefreshCw,
+    Zap,
+    Search,
+    Database,
+    Globe,
+    Terminal,
+    Server,
     Network,
     Sparkles,
     ShieldCheck,
     Code2,
+    Radar,
+    MailCheck,
+    Shield,
+    Bot,
+    FileText,
+    Mic,
+    Gauge,
+    Monitor,
+    FolderLock,
+    BarChart3,
+    Building2,
     LucideIcon
 } from "lucide-react"
 
@@ -27,7 +38,7 @@ export interface ServiceItem {
 }
 
 export interface ServiceCategory {
-    id: "growth" | "core" | "infrastructure";
+    id: "growth" | "security_cloud" | "core" | "infrastructure";
     icon: LucideIcon;
     nameKey: string;
     descKey: string;
@@ -42,16 +53,33 @@ export const SERVICES_STRUCTURE: ServiceCategory[] = [
         descKey: "categories.growth_desc",
         items: [
             { key: "ai_support", href: "/szolgaltatasok/ai-ugyfelszolgalat-weboldalra", icon: Cpu, popular: true },
-            { key: "crm_auto", href: "/szolgaltatasok/crm-lead-automatizacio", icon: Puzzle, popular: true },
-            { key: "ecommerce_tracking", href: "/szolgaltatasok/webshop-meres-konverzio-noveles", icon: Activity },
-            { key: "dashboards", href: "/szolgaltatasok/uzleti-dashboardok-riportok", icon: Layout, popular: true },
+            { key: "enterprise_rag", href: "/szolgaltatasok/privat-vallalati-ai-tudasbazis-rag", icon: Bot, popular: true },
+            { key: "doc_ocr", href: "/szolgaltatasok/ai-dokumentum-es-szamlafeldolgozo-ocr", icon: FileText },
+            { key: "voice_ai", href: "/szolgaltatasok/ai-hivas-es-targyalaselemzo-asszisztens", icon: Mic },
+            { key: "tender_monitor", href: "/szolgaltatasok/automatizalt-palyazat-es-kozbeszerzes-figyelo", icon: Search },
             { key: "ai_auto", href: "/szolgaltatasok/ai-asszisztensek", icon: Cpu },
-            { key: "webshop_auto", href: "/szolgaltatasok/webshop-automatizacio", icon: Zap }
+            { key: "crm_auto", href: "/szolgaltatasok/crm-lead-automatizacio", icon: Puzzle, popular: true },
+            { key: "gdpr_analytics", href: "/szolgaltatasok/gdpr-kompatibilis-cookie-mentes-webanalitika", icon: BarChart3 },
+        ]
+    },
+    {
+        id: "security_cloud",
+        icon: ShieldCheck,
+        nameKey: "categories.security_cloud",
+        descKey: "categories.security_cloud_desc",
+        items: [
+            { key: "sec_monitoring", href: "/szolgaltatasok/folyamatos-kibervedelmi-monitoring-nis2", icon: Radar, popular: true },
+            { key: "phishing_sim", href: "/szolgaltatasok/adathalaszat-szimulacio-biztonsagi-oktatas", icon: MailCheck },
+            { key: "managed_waf", href: "/szolgaltatasok/menedzselt-enterprise-waf-vedelem", icon: Shield },
+            { key: "draas", href: "/szolgaltatasok/zsarolovirus-vedett-katasztrofa-helyreallitas-draas", icon: Database, popular: true },
+            { key: "synthetic_mon", href: "/szolgaltatasok/szintetikus-webshop-es-fizetes-monitoring", icon: Activity },
+            { key: "load_testing", href: "/szolgaltatasok/kampany-elotti-terhelesteszteles-load-testing", icon: Gauge },
+            { key: "vdi_desktop", href: "/szolgaltatasok/felhos-virtualis-munkaallomasok-vdi", icon: Monitor },
         ]
     },
     {
         id: "core",
-        icon: ShieldCheck,
+        icon: Server,
         nameKey: "categories.core",
         descKey: "categories.core_desc",
         items: [
@@ -71,6 +99,11 @@ export const SERVICES_STRUCTURE: ServiceCategory[] = [
         items: [
             { key: "webdev", href: "/szolgaltatasok/webfejlesztes", icon: Globe },
             { key: "wordpress", href: "/szolgaltatasok/wordpress-woocommerce-karbantartas", icon: RefreshCw },
+            { key: "webshop_auto", href: "/szolgaltatasok/webshop-automatizacio", icon: Zap },
+            { key: "ecommerce_tracking", href: "/szolgaltatasok/webshop-meres-konverzio-noveles", icon: Activity },
+            { key: "dashboards", href: "/szolgaltatasok/uzleti-dashboardok-riportok", icon: Layout, popular: true },
+            { key: "client_portal_wl", href: "/szolgaltatasok/white-label-titkositott-ugyfelportal", icon: FolderLock },
+            { key: "tax_api", href: "/szolgaltatasok/magyar-adoszam-ceginformacio-validalo-api", icon: Building2 },
             { key: "scripts", href: "/szolgaltatasok/scriptek", icon: Terminal },
             { key: "sysadmin", href: "/szolgaltatasok/rendszeruzemeltetes", icon: Server },
             { key: "network", href: "/szolgaltatasok/halozat", icon: Network },

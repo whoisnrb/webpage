@@ -52,10 +52,9 @@ function mapService(s: any): ServiceDTO {
 
 export async function getServices(): Promise<ServiceDTO[]> {
     try {
-        const raw = await cached("services:all", 3600, async () => {
-            return await prisma.service.findMany({
-                orderBy: { sortOrder: 'asc' }
-            })
+        // Admin services list should always reflect live DB records immediately
+        const raw = await prisma.service.findMany({
+            orderBy: { sortOrder: 'asc' }
         })
         return raw.map(mapService)
     } catch (error) {
@@ -66,7 +65,7 @@ export async function getServices(): Promise<ServiceDTO[]> {
 
 export async function getActiveServices(): Promise<ServiceDTO[]> {
     try {
-        const raw = await cached("services:active", 3600, async () => {
+        const raw = await cached("services:v2:active", 3600, async () => {
             return await prisma.service.findMany({
                 where: { active: true },
                 orderBy: { sortOrder: 'asc' }
@@ -81,7 +80,7 @@ export async function getActiveServices(): Promise<ServiceDTO[]> {
 
 export async function getServiceById(id: string): Promise<ServiceDTO | null> {
     try {
-        const raw = await cached(`services:id:${id}`, 3600, async () => {
+        const raw = await cached(`services:v2:id:${id}`, 3600, async () => {
             return await prisma.service.findUnique({
                 where: { id }
             })
@@ -96,7 +95,7 @@ export async function getServiceById(id: string): Promise<ServiceDTO | null> {
 
 export async function getServiceBySlug(slug: string): Promise<ServiceDTO | null> {
     try {
-        const raw = await cached(`services:slug:${slug}`, 3600, async () => {
+        const raw = await cached(`services:v2:slug:${slug}`, 3600, async () => {
             return await prisma.service.findUnique({
                 where: { slug }
             })

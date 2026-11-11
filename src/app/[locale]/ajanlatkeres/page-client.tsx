@@ -100,16 +100,24 @@ function QuoteRequestContent() {
         },
         {
             id: "ai",
-            title: locale === 'hu' ? "AI Asszisztens & Botok" : "AI Assistants & Bots",
-            desc: locale === 'hu' ? "Egyedi belső tudásbázis, Gemini/GPT integrációk és ügyfélszolgálati botok" : "Custom knowledge base, Gemini/GPT integration and support bots",
+            title: locale === 'hu' ? "Vállalati AI, RAG & OCR" : "Enterprise AI, RAG & OCR",
+            desc: locale === 'hu' ? "Privát belső AI tudásbázis, számla OCR, hang-elemző, pályázatfigyelő és botok" : "Private knowledge base, invoice OCR, voice intelligence and custom AI bots",
             icon: Bot,
             badge: "AI 2.0",
             color: "violet"
         },
         {
+            id: "security",
+            title: locale === 'hu' ? "Kibervédelem, NIS2 & DRaaS" : "Cybersecurity, NIS2 & DRaaS",
+            desc: locale === 'hu' ? "0–24 biztonsági monitoring, phishing szimuláció, WAF pajzs és DRaaS" : "24/7 security monitoring, phishing drills, WAF shield & ransomware DRaaS",
+            icon: Shield,
+            badge: "NIS2",
+            color: "rose"
+        },
+        {
             id: "cloud",
-            title: locale === 'hu' ? "M365 & Felhő Migráció" : "M365 & Cloud Migration",
-            desc: locale === 'hu' ? "Microsoft 365, Google Workspace, Azure infrastruktúra és adatmentés" : "Microsoft 365, Google Workspace, Azure infrastructure and backup",
+            title: locale === 'hu' ? "Felhő, VDI & Adatvédelem" : "Cloud, VDI & Analytics",
+            desc: locale === 'hu' ? "Microsoft 365, Azure VDI munkaállomás, White-label portál és GDPR analitika" : "Microsoft 365, Azure VDI, white-label client portal & cookieless analytics",
             icon: Cloud,
             color: "blue"
         },
@@ -144,8 +152,25 @@ function QuoteRequestContent() {
         const sourceParam = searchParams.get('sourcePage') || searchParams.get('source') || ''
 
         if (serviceParam) {
+            const lower = serviceParam.toLowerCase()
+            let detectedType = "other"
+            if (lower.includes("ai") || lower.includes("rag") || lower.includes("ocr") || lower.includes("hívás") || lower.includes("call") || lower.includes("pályázat") || lower.includes("tender")) {
+                detectedType = "ai"
+            } else if (lower.includes("nis2") || lower.includes("waf") || lower.includes("phishing") || lower.includes("adathalász") || lower.includes("draas") || lower.includes("kiber") || lower.includes("security") || lower.includes("biztonság")) {
+                detectedType = "security"
+            } else if (lower.includes("vdi") || lower.includes("munkaállomás") || lower.includes("workstation") || lower.includes("felhő") || lower.includes("cloud") || lower.includes("portál") || lower.includes("portal") || lower.includes("analitika") || lower.includes("analytics")) {
+                detectedType = "cloud"
+            } else if (lower.includes("webshop") || lower.includes("wordpress") || lower.includes("webfejlesz")) {
+                detectedType = "web"
+            } else if (lower.includes("crm") || lower.includes("automatiz") || lower.includes("adószám") || lower.includes("tax")) {
+                detectedType = "automation"
+            } else if (lower.includes("rendszergazda") || lower.includes("monitoring") || lower.includes("helpdesk") || lower.includes("audit") || lower.includes("terhelés") || lower.includes("load")) {
+                detectedType = "managed"
+            }
+
             setFormData(prev => ({
                 ...prev,
+                projectType: detectedType,
                 serviceInterest: serviceParam,
                 language: langParam,
                 sourcePage: sourceParam,

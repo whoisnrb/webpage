@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Code2, Server, Shield, ShoppingCart, ArrowRight, CheckCircle2, Globe, Search, RefreshCw, Cpu, Cloud, Database, Activity, HelpCircle, Network, Plug, Headphones, Layout, Puzzle } from "lucide-react"
+import { Code2, Server, Shield, ShoppingCart, ArrowRight, CheckCircle2, Globe, Search, RefreshCw, Cpu, Cloud, Database, Activity, HelpCircle, Network, Plug, Headphones, Layout, Puzzle, Radar, MailCheck, Bot, FileText, Mic, Gauge, Monitor, FolderLock, BarChart3, Building2, Zap, ShieldCheck } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { Badge } from "@/components/ui/badge"
 import { getTranslations, getLocale } from "next-intl/server"
@@ -15,6 +15,7 @@ const IconMap: Record<string, any> = {
     ShoppingCart,
     Server,
     Shield,
+    ShieldCheck,
     Globe,
     Search,
     RefreshCw,
@@ -27,6 +28,17 @@ const IconMap: Record<string, any> = {
     Headphones,
     Layout,
     Puzzle,
+    Radar,
+    MailCheck,
+    Bot,
+    FileText,
+    Mic,
+    Gauge,
+    Monitor,
+    FolderLock,
+    BarChart3,
+    Building2,
+    Zap,
 }
 
 import { getSeoMetadata } from '@/lib/seo';

@@ -115,6 +115,62 @@ export const routing = defineRouting({
             hu: '/szolgaltatasok/remote-it-helpdesk-ticketing',
             en: '/services/remote-it-helpdesk-ticketing'
         },
+        '/szolgaltatasok/folyamatos-kibervedelmi-monitoring-nis2': {
+            hu: '/szolgaltatasok/folyamatos-kibervedelmi-monitoring-nis2',
+            en: '/services/continuous-security-monitoring-nis2'
+        },
+        '/szolgaltatasok/adathalaszat-szimulacio-biztonsagi-oktatas': {
+            hu: '/szolgaltatasok/adathalaszat-szimulacio-biztonsagi-oktatas',
+            en: '/services/phishing-simulation-security-training'
+        },
+        '/szolgaltatasok/menedzselt-enterprise-waf-vedelem': {
+            hu: '/szolgaltatasok/menedzselt-enterprise-waf-vedelem',
+            en: '/services/managed-enterprise-waf-shield'
+        },
+        '/szolgaltatasok/privat-vallalati-ai-tudasbazis-rag': {
+            hu: '/szolgaltatasok/privat-vallalati-ai-tudasbazis-rag',
+            en: '/services/private-enterprise-ai-knowledge-base'
+        },
+        '/szolgaltatasok/ai-dokumentum-es-szamlafeldolgozo-ocr': {
+            hu: '/szolgaltatasok/ai-dokumentum-es-szamlafeldolgozo-ocr',
+            en: '/services/ai-document-invoice-processing'
+        },
+        '/szolgaltatasok/ai-hivas-es-targyalaselemzo-asszisztens': {
+            hu: '/szolgaltatasok/ai-hivas-es-targyalaselemzo-asszisztens',
+            en: '/services/ai-call-meeting-intelligence'
+        },
+        '/szolgaltatasok/automatizalt-palyazat-es-kozbeszerzes-figyelo': {
+            hu: '/szolgaltatasok/automatizalt-palyazat-es-kozbeszerzes-figyelo',
+            en: '/services/automated-tender-procurement-monitor'
+        },
+        '/szolgaltatasok/zsarolovirus-vedett-katasztrofa-helyreallitas-draas': {
+            hu: '/szolgaltatasok/zsarolovirus-vedett-katasztrofa-helyreallitas-draas',
+            en: '/services/ransomware-proof-disaster-recovery-draas'
+        },
+        '/szolgaltatasok/szintetikus-webshop-es-fizetes-monitoring': {
+            hu: '/szolgaltatasok/szintetikus-webshop-es-fizetes-monitoring',
+            en: '/services/synthetic-webshop-checkout-monitoring'
+        },
+        '/szolgaltatasok/kampany-elotti-terhelesteszteles-load-testing': {
+            hu: '/szolgaltatasok/kampany-elotti-terhelesteszteles-load-testing',
+            en: '/services/campaign-load-testing-performance-audit'
+        },
+        '/szolgaltatasok/felhos-virtualis-munkaallomasok-vdi': {
+            hu: '/szolgaltatasok/felhos-virtualis-munkaallomasok-vdi',
+            en: '/services/cloud-virtual-workstations-vdi'
+        },
+        '/szolgaltatasok/white-label-titkositott-ugyfelportal': {
+            hu: '/szolgaltatasok/white-label-titkositott-ugyfelportal',
+            en: '/services/white-label-encrypted-client-portal'
+        },
+        '/szolgaltatasok/gdpr-kompatibilis-cookie-mentes-webanalitika': {
+            hu: '/szolgaltatasok/gdpr-kompatibilis-cookie-mentes-webanalitika',
+            en: '/services/gdpr-compliant-cookieless-analytics'
+        },
+        '/szolgaltatasok/magyar-adoszam-ceginformacio-validalo-api': {
+            hu: '/szolgaltatasok/magyar-adoszam-ceginformacio-validalo-api',
+            en: '/services/company-tax-id-validation-api'
+        },
         '/megoldasok': {
             hu: '/megoldasok',
             en: '/solutions'

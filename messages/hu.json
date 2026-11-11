@@ -2046,7 +2046,9 @@
       "core": "Alap IT Szolgáltatások",
       "core_desc": "Havidíjas támogatás, felhő, Microsoft 365 és biztonságos működés.",
       "infrastructure": "Infrastruktúra és Fejlesztés",
-      "infrastructure_desc": "Webfejlesztés, szerverek, hálózatok, integrációk és egyedi megoldások."
+      "infrastructure_desc": "Webfejlesztés, szerverek, hálózatok, integrációk és egyedi megoldások.",
+      "security_cloud": "Kibervédelem & Felhő Biztonság",
+      "security_cloud_desc": "0–24 NIS2 monitoring, WAF pajzs, DRaaS, phishing teszt és felhős VDI."
     },
     "services": "Szolgáltatások",
     "products": "Megoldások",
@@ -2090,7 +2092,35 @@
       "dashboards": "Üzleti Dashboardok",
       "dashboards_desc": "Power BI, Looker Studio és automatikus riportok",
       "remote_helpdesk": "Remote Helpdesk",
-      "remote_helpdesk_desc": "Távoli IT támogatás és hibajegykezelés"
+      "remote_helpdesk_desc": "Távoli IT támogatás és hibajegykezelés",
+      "sec_monitoring": "0–24 Kibervédelmi Monitoring & NIS2",
+      "sec_monitoring_desc": "Folyamatos támadásifelület-figyelés és havi vezetői PDF audit",
+      "phishing_sim": "Adathalászat-Szimuláció",
+      "phishing_sim_desc": "Élethű magyar tesztlevelek és automatizált biztonsági oktatás",
+      "managed_waf": "Menedzselt Enterprise WAF Pajzs",
+      "managed_waf_desc": "Azure Front Door webes tűzfal, DDoS és botvédelem",
+      "enterprise_rag": "Privát Vállalati AI Tudásbázis",
+      "enterprise_rag_desc": "GDPR-biztos céges GPT saját dokumentumokhoz (RAG)",
+      "doc_ocr": "AI Számla & Dokumentum OCR",
+      "doc_ocr_desc": "Bejövő számlák, szállítólevelek és szerződések feldolgozása",
+      "voice_ai": "AI Hívás- & Meeting Elemző",
+      "voice_ai_desc": "Magyar hangátirat, tárgyalási jegyzőkönyv és CRM szinkron",
+      "tender_monitor": "AI Pályázat- & Közbeszerzés Figyelő",
+      "tender_monitor_desc": "Automata figyelés és GPT-4o jogosultsági előszűrés",
+      "draas": "Zsarolóvírus-Védett DRaaS",
+      "draas_desc": "Törölhetetlen WORM backup & 30 perces felhős szerver-átállás",
+      "synthetic_mon": "0–24 Webshop & Pénztár Figyelő",
+      "synthetic_mon_desc": "Automata vásárlói robot-tesztek és AI hiba-elemzés",
+      "load_testing": "Terheléstesztelés (Load Testing)",
+      "load_testing_desc": "Black Friday & kampány előtti stresszteszt 15.000 főig",
+      "vdi_desktop": "Felhős Munkaállomások (VDI)",
+      "vdi_desktop_desc": "Biztonságos távmunka-környezet az Azure felhőben",
+      "client_portal_wl": "White-Label Ügyfélportál",
+      "client_portal_wl_desc": "Saját márkás, titkosított dokumentumcsere és ügyfélkapu",
+      "gdpr_analytics": "Cookie-Mentes GDPR Analitika",
+      "gdpr_analytics_desc": "EU-s GA4 alternatíva süti-banner és adatvesztés nélkül",
+      "tax_api": "Adószám & Céginformáció API",
+      "tax_api_desc": "Automatikus cégadat-kitöltés webshopokba és CRM-be"
     },
     "need_help_title": "Nem tudod, mire van szükséged?",
     "need_help_desc": "Kérj gyors IT felmérést, és segítünk kiválasztani a megfelelő megoldást.",
@@ -4623,6 +4653,2021 @@
         }
       ],
       "cta_title": "Kérj ajánlatot erre a szolgáltatásra"
+    },
+    "SecurityMonitoringNIS2": {
+      "title": "0–24 Kibervédelmi Monitoring & NIS2",
+      "description": "Folyamatos automatizált biztonsági felügyelet cégeknek: SSL/DNS/port figyelés, NIS2 megfelelőségi ellenőrzés, azonnali riasztások és havi vezetői PDF audit jelentés.",
+      "keywords": "nis2 megfelelőség, kiberbiztonsági monitoring, ssl figyelés, dmarc ellenőrzés, havi it biztonsági riport, sebezhetőség figyelő",
+      "hero_features": [
+        "Napi SSL, DNS, SPF/DMARC és nyitott port szkennelés",
+        "Azonnali riasztás adatbázis- vagy adminport kitettségnél",
+        "NIS2 előkészítő kontrollok és dokumentált naplózás",
+        "Domain- és IP-hírnév, darknet adatszivárgás ellenőrzés",
+        "Automatikusan kiküldött márkázott vezetői PDF riport",
+        "Zero érintéses működés az Azure felhőből"
+      ],
+      "hero_benefits": [
+        {
+          "title": "NIS2 Audit Nyugalom",
+          "description": "Rendszeres, dokumentált bizonyítékot kap a vezetőség és a hatósági auditor a külső sérülékenységek ellenőrzéséről."
+        },
+        {
+          "title": "Azonnali Korai Riasztás",
+          "description": "Ha lejár egy tanúsítvány, eltűnik a DMARC, vagy véletlenül nyitva marad egy port, perceken belül riasztást kapsz."
+        },
+        {
+          "title": "Vezetői PDF Jelentések",
+          "description": "Érthető, cégvezetőknek szánt havi összesítő konkrét teendőkkel — technikai zsargon nélkül."
+        }
+      ],
+      "use_cases_title": "Miben segít a folyamatos védelem?",
+      "use_cases_desc": "A támadók nem évente egyszer keresnek rést — ezért a védelemnek is folyamatosan figyelnie kell",
+      "use_cases_items": [
+        {
+          "title": "NIS2 Előkészítés & Dokumentáció",
+          "description": "Az EU NIS2 irányelv előírja a rendszerek rendszeres kockázatelemzését és biztonsági felülvizsgálatát.",
+          "example": "A cég havonta kézhez kapja a BacklineIT automatizált biztonsági riportját, ami igazolja a kontrollok működését.",
+          "roi": "Audit-kész dokumentáció 0 mérnöki túlórával"
+        },
+        {
+          "title": "Véletlen Konfigurációs Hibák Elkapása",
+          "description": "Egy frissítés vagy tűzfal-módosítás után nyitva maradt adatbázis- vagy RDP port komoly betörési pont.",
+          "example": "A rendszer 24 órán belül észleli a nyitott 3306/3389 portot, és azonnal értesíti az üzemeltetést.",
+          "roi": "Zsarolóvírus-támadások megelőzése"
+        },
+        {
+          "title": "Márkahamisítás & Email Biztonság",
+          "description": "SPF, DKIM, DMARC és feketelista állapot figyelése, hogy a számlázó leveleid ne a spambe essenek.",
+          "example": "Riasztás küldése, ha egy marketing DNS-módosítás elrontotta az érvényes DMARC szabályt.",
+          "roi": "Magasabb email kézbesíthetőség és márka-bizalom"
+        },
+        {
+          "title": "Adatszivárgás & Jelszó-kitettség",
+          "description": "Céges email címek monitorozása nyilvánosságra került adatbázisokban.",
+          "example": "Azonnali jelszócsere-értesítés, ha egy munkatárs regisztrációja külső portálon kiszivárgott.",
+          "roi": "Fiókátvételek megakadályozása"
+        }
+      ],
+      "pricing_title": "Kibervédelmi Monitoring Csomagok",
+      "pricing_desc": "Átlátható havidíjas előfizetéses csomagok folyamatos felügyelettel. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Domain Guard Start",
+          "desc": "Alap külső támadásifelület-figyelés 1 fő domainhez.",
+          "price": "29000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "features": [
+            "1 fő domain + maximum 3 aldomain figyelése",
+            "Napi SSL tanúsítvány és DNS/DMARC ellenőrzés",
+            "Veszélyes portok folyamatos monitorozása",
+            "Havi automatikus vezetői PDF biztonsági riport",
+            "Azonnali e-mail riasztás kritikus eltéréskor"
+          ],
+          "duration_label": "Ajánlott: kisebb cégeknek, webshopoknak, irodáknak."
+        },
+        "detailed": {
+          "name": "NIS2 Shield Business",
+          "desc": "Teljes körű külső monitoring és NIS2 megfelelőségi riportálás.",
+          "price": "59000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Akár 5 domain és 20 aldomain / szerver IP figyelése",
+            "Fekete-lista és darknet szivárgás monitorozás",
+            "HTTP biztonsági fejléc és CMS sérülékenység ellenőrzés",
+            "Munkavállalói kiszivárgott jelszó-ellenőrzés",
+            "Részletes havi AI + mérnöki PDF jelentés & javítási terv"
+          ],
+          "duration_label": "Ajánlott: középvállalatoknak és NIS2 érintett cégeknek."
+        },
+        "complex": {
+          "name": "Enterprise SecOps",
+          "desc": "Dedikált több-telephelyes védelem SIEM és ticket integrációval.",
+          "price": "119000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "features": [
+            "Korlátlan céges domain, IP tartomány és felhő végpont",
+            "Teams / Slack / Helpdesk azonnali riasztási webhookok",
+            "Microsoft Defender / Sentinel esemény-korreláció",
+            "Negyedéves élő biztonsági konzultáció cégvezetővel",
+            "Prioritásos incidenskezelési SLA (< 2 óra)"
+          ],
+          "duration_label": "Ajánlott: pénzügyi, gyártó és több telephelyes cégeknek."
+        }
+      },
+      "how_we_work_title": "Hogyan működik a bevezetés?",
+      "how_we_work_desc": "Akár 24 órán belül élesítjük a folyamatos figyelést az infrastruktúrád megzavarása nélkül.",
+      "how_we_work_steps": [
+        {
+          "title": "Célpontok felvétele",
+          "description": "Összeírjuk a céges domaineket, szerver IP-ket és levelezési rendszereket."
+        },
+        {
+          "title": "Alapállapot Audit",
+          "description": "Lefuttatunk egy kezdeti mélyszkennelést és felállítjuk a zéró pontot."
+        },
+        {
+          "title": "Riasztások bekötése",
+          "description": "Beállítjuk az e-mail / Teams értesítési csatornákat az illetékeseknek."
+        },
+        {
+          "title": "0–24 Automatizálás",
+          "description": "Az Azure motor napi és heti ciklusokban folyamatosan ellenőrzi a végpontokat."
+        },
+        {
+          "title": "Havi Riportolás",
+          "description": "Minden hónap elején megérkezik az audit-kész vezetői PDF dokumentum."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Tudnivalók a folyamatos biztonsági felügyeletről",
+      "faq_items": [
+        {
+          "question": "Lassítja vagy leterheli a weboldalunkat a napi vizsgálat?",
+          "answer": "Egyáltalán nem. A felügyelet célzott, kíméletes infrastruktúra-ellenőrzéseket végez (TLS handshake, DNS TXT rekordok, HTTP headerek), nem terheli a kiszolgálót."
+        },
+        {
+          "question": "Elfogadható a havi PDF riport NIS2 vagy ügyfél-audit során?",
+          "answer": "Igen, a jelentések pontos időbélyeggel, technikai bizonyítékokkal és prioritizált intézkedési naplóval készülnek, így kiváló mellékletei a belső IT biztonsági nyilvántartásnak."
+        },
+        {
+          "question": "Mi történik, ha a monitor hibát vagy nyitott portot talál?",
+          "answer": "Azonnal értesítünk téged vagy a rendszergazdádat a pontos javítási lépésekkel, igény esetén pedig a BacklineIT mérnökei el is hárítják a problémát."
+        },
+        {
+          "question": "Kell hozzá szoftvert telepíteni a szerverünkre?",
+          "answer": "Az alap és Business csomagokhoz nincs szükség semmilyen ügynökprogram (agent) telepítésére; mindent kívülről, a nyilvános támadási felület felől ellenőrzünk."
+        }
+      ],
+      "cta_title": "Indítsd el a 0–24 biztonsági felügyeletet"
+    },
+    "PhishingSimulation": {
+      "title": "Adathalászat-Szimuláció & Dolgozói Képzés",
+      "description": "Magyar nyelvű, AI-vezérelt adathalász tesztkampányok és automatizált munkavállalói biztonságtudatossági oktatás cégeknek — a leggyengébb láncszem megerősítésére.",
+      "keywords": "adathalászat szimuláció, phishing teszt, kiberbiztonsági oktatás dolgozóknak, security awareness képzés, nis2 dolgozói oktatás",
+      "hero_features": [
+        "Élethű magyar üzleti és futár/bank/IT témájú tesztlevelek",
+        "Részletes kattintási és jelszómegadási statisztikák",
+        "Azonnali interaktív gyorstalpaló hibázó kollégáknak",
+        "Kiemelt vezetői / NIS2 oktatási megfelelőségi jegyzőkönyv",
+        "Dolgozói adatvédelemre és pozitív tanulásra optimalizálva",
+        "0 manuális szervezés az ügyfél HR / IT oldaláról"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Valódi Védelem",
+          "description": "A kibertámadások 82%-a emberi hibával indul — a szimuláció megtanítja a csapatot felismerni a gyanús leveleket."
+        },
+        {
+          "title": "Magyar Kontextus",
+          "description": "Nem angol sablonokat küldünk, hanem magyar nyelvű NAV, banki, M365 és csomagküldő szituációkat."
+        },
+        {
+          "title": "NIS2 Dokumentáció",
+          "description": "Minden kampány végén tanúsított részvételi és eredményességi riportot kaptok az auditokhoz."
+        }
+      ],
+      "use_cases_title": "Miért nélkülözhetetlen a dolgozói teszt?",
+      "use_cases_desc": "Hiába drága a tűzfal, ha egy munkatárs véletlenül megadja a céges jelszavát egy hamis belépő oldalon",
+      "use_cases_items": [
+        {
+          "title": "M365 & Céges Fiók Védelem",
+          "description": "Hamis „lejárt a Microsoft 365 jelszavad” tesztek küldése éles jelszórögzítés nélkül.",
+          "example": "Ha valaki kattint, nem valódi adatlopás történik, hanem egy barátságos 2 perces oktatóoldal jelenik meg.",
+          "roi": "Akár 75%-kal kevesebb sikeres adathalászat fél év alatt"
+        },
+        {
+          "title": "Vezetői Áll-levelek (CEO Fraud) Szűrése",
+          "description": "Pénzügyesek felkészítése a sürgős utalást kérő hamis ügyvezetői emailekre.",
+          "example": "Szimulált számlamódosítási kérés, ami megtanítja a telefonos visszaigazolás rutinját.",
+          "roi": "Milliós utalási csalások megelőzése"
+        },
+        {
+          "title": "Negyedéves NIS2 / ISO 27001 Képzés",
+          "description": "Kötelező biztonságtudatossági oktatás egyszerű, online elvégezhető formában.",
+          "example": "Automatikus kvíz kitöltése és letölthető névre szóló igazolás a HR mappába.",
+          "roi": "Audit-megfelelőség órák alatt"
+        },
+        {
+          "title": "Új Belépők Gyors Képzése",
+          "description": "Minden új kolléga automatikusan kap egy interaktív biztonsági gyorstalpalót.",
+          "example": "10 perces vizsga a biztonságos jelszókezelésről és kétfaktoros belépésről.",
+          "roi": "Egységes céges biztonsági kultúra"
+        }
+      ],
+      "pricing_title": "Phishing Szimuláció Csomagok",
+      "pricing_desc": "Skálázható csomagok kis csapatoktól nagyvállalatokig. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Awareness Check (Egyszeri)",
+          "desc": "Egyszeri felmérő phishing tesztkampány max. 25 főre.",
+          "price": "45000",
+          "priceFrom": "true",
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Maximum 25 munkavállalói postafiók tesztelése",
+            "2 különböző élethű magyar adathalász sablon",
+            "Részletes kattintási és sebezhetőségi jelentés",
+            "Ajánlott belső szabályzati javaslatok a vezetésnek"
+          ],
+          "duration_label": "Ajánlott: azonnali állapotfelméréshez és biztonsági nyitányhoz."
+        },
+        "detailed": {
+          "name": "PhishGuard Pro",
+          "desc": "Folyamatos negyedéves szimuláció és automatikus dolgozói képzés.",
+          "price": "89000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Akár 100 munkavállaló folyamatos tesztelése",
+            "Havi / negyedéves rotáló AI-testreszabott kampányok",
+            "Interaktív magyar oktatóvideók és azonnali mini-tesztek",
+            "NIS2 kompatibilis képzési jegyzőkönyv és riport",
+            "Pénzügyi / HR részlegekre célzott speciális forgatókönyvek"
+          ],
+          "duration_label": "Ajánlott: 20–100 fős cégeknek és NIS2 kötelezetteknek."
+        },
+        "complex": {
+          "name": "Enterprise Cyber Culture",
+          "desc": "Korlátlan létszám, egyedi arculatos oktatóportál és mély elemzés.",
+          "price": "179000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "features": [
+            "Korlátlan munkavállaló és több leányvállalat kezelése",
+            "Microsoft Entra ID automatikus dolgozó-szinkronizáció",
+            "Vállalatspecifikus (pl. belső ERP/HR másolat) szimulációk",
+            "Részlegenkénti kockázati rangsor és vezetői workshop",
+            "Dedikált biztonsági oktatási tanácsadó"
+          ],
+          "duration_label": "Ajánlott: nagyvállalatoknak, banki, logisztikai és IT szektornak."
+        }
+      },
+      "how_we_work_title": "Hogyan zajlik egy kampány?",
+      "how_we_work_desc": "Teljesen diszkréten, zéró adatgyűjtési kockázattal futtatjuk le a szimulációkat.",
+      "how_we_work_steps": [
+        {
+          "title": "Forgatókönyv kiválasztása",
+          "description": "Egyeztetjük, milyen témájú (IT, futár, számla) levelekkel teszteljünk."
+        },
+        {
+          "title": "Allowlist beállítása",
+          "description": "M365/Google Workspace oldalon gondoskodunk róla, hogy célba érjenek a tesztek."
+        },
+        {
+          "title": "Fokozatos kiküldés",
+          "description": "Nem egyszerre, hanem elszórtan érkeznek a levelek a valósághű hatásért."
+        },
+        {
+          "title": "Azonnali edukáció",
+          "description": "Kattintás esetén rögtön egy segítő magyar oktatóoldal jelenik meg."
+        },
+        {
+          "title": "Vezetői értékelés",
+          "description": "Átadjuk a százalékos riportot és a további javaslatokat."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Tudnivalók a munkavállalói tesztelésről",
+      "faq_items": [
+        {
+          "question": "Eltárolják a dolgozók beírt valódi jelszavait a teszt során?",
+          "answer": "Soha! A tesztoldalak technikai szinten is le vannak tiltva jelszavak mentéséről: kizárólag a beküldés tényét naplózzuk, magát a karaktersort nem tároljuk."
+        },
+        {
+          "question": "Nem sértődnek meg a kollégák a teszt miatt?",
+          "answer": "A hangsúlyt nem a megszégyenítésre, hanem a támogató tanulásra helyezzük — érthetően bemutatva a trükköket, amikre figyelniük kell."
+        },
+        {
+          "question": "Működik Microsoft 365 és Google Workspace mellett is?",
+          "answer": "Igen, mindkét levelezőrendszerhez percek alatt beállítható biztonságos kézbesítéssel."
+        }
+      ],
+      "cta_title": "Erősítsd meg a csapatod védelmét"
+    },
+    "ManagedWAF": {
+      "title": "Menedzselt Enterprise WAF & Webes Pajzs",
+      "description": "Vállalati tűzfalpajzs (Azure Front Door WAF) sérülékeny webshopok, régi rendszerek és API-k elé — DDoS, bot-támadás, SQL injection és XSS szűrés szervercsere nélkül.",
+      "keywords": "enterprise waf, azure front door waf, webshop támadásvédelem, ddos védelem cégeknek, owasp védelem",
+      "hero_features": [
+        "OWASP Top 10 (SQLi, XSS, RFI) aktív támadásszűrés",
+        "Ártalmas scraper és brute-force botok automatikus blokkolása",
+        "Régi vagy már nem frissíthető rendszerek azonnali bepajzsolása",
+        "Globális peremhálózati gyorsítótárazás és SSL terminálás",
+        "Ország-alapú (Geo-blocking) és IP korlátozási szabályok",
+        "0–24 menedzselt szabályhangolás téves riasztások nélkül"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Védelem Kódcsere Nélkül",
+          "description": "Elavult PHP/WordPress vagy egyedi céges alkalmazások elé telepítve azonnal blokkolja az ismert támadási mintákat."
+        },
+        {
+          "title": "Bot- & Terhelésmentesítés",
+          "description": "Kiszűri a szervert lelassító kéretlen adatbányász botokat és bejelentkezési próbálkozásokat."
+        },
+        {
+          "title": "Gyorsabb Oldalbetöltés",
+          "description": "Az Azure globális Edge csomópontjai felgyorsítják az oldalt és leveszik a terhet a központi gépről."
+        }
+      ],
+      "use_cases_title": "Mikor életmentő a menedzselt WAF?",
+      "use_cases_desc": "Védőbástya az internet és a céges szervereid között",
+      "use_cases_items": [
+        {
+          "title": "Legacy Rendszerek Megmentése",
+          "description": "Régi, nehezen frissíthető belső adminportálok és ERP felületek külső elérésének védelme.",
+          "example": "A kritikus sebezhetőségeket a WAF hálózati rétegen megfogja még a szoftver-átállás előtt.",
+          "roi": "Azonnali kockázatcsökkentés hónapokig tartó átírás nélkül"
+        },
+        {
+          "title": "Webshop Készlet- és Ár-lopás Megállítása",
+          "description": "Konkurensek és árellenőrző botok blokkolása, akik feleslegesen pörgetik az adatbázist.",
+          "example": "Rate-limiting szabályokkal megfogjuk az agresszív scrape-forgalmat, így a valódi vevőknek villámgyors marad az oldal.",
+          "roi": "Alacsonyabb szerverköltség és stabilabb checkout"
+        },
+        {
+          "title": "Bejelentkezési & API Támadások Kivédése",
+          "description": "Brute-force jelszófeltörési kísérletek és kártyatesztelő botok megállítása a fizetésnél.",
+          "example": "Gyanús országokból vagy adatközpontokból érkező checkout kérések automatikus szűrése.",
+          "roi": "Stripe/SimplePay csalások és díjbüntetések elkerülése"
+        },
+        {
+          "title": "Geo-Fencing Belső Felületekre",
+          "description": "Adminisztrációs és számlázó felületek korlátozása kizárólag magyar vagy irodai IP-kre.",
+          "example": "A `/wp-admin` vagy `/admin` kizárólag a cég VPN-jéről vagy hazai hálózatból nyitható meg.",
+          "roi": "99%-os támadási felület csökkenés"
+        }
+      ],
+      "pricing_title": "Enterprise WAF Csomagok",
+      "pricing_desc": "Teljes körűen menedzselt peremhálózati védelem az Azure Front Door / WAF infrastruktúrán.",
+      "plans": {
+        "base": {
+          "name": "Edge Shield Start",
+          "desc": "Alap OWASP WAF + DDoS védelem 1 weboldalhoz.",
+          "price": "39000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (+ 49.000 Ft egyszeri beállítás)",
+          "features": [
+            "1 domain / webalkalmazás védelme",
+            "Menedzselt OWASP Top 10 támadásszűrés",
+            "L3/L4/L7 alap DDoS védelem és SSL offload",
+            "Ország-alapú forgalomszűrés (Geo-blocking)",
+            "Havi blokkolási összefoglaló riport"
+          ],
+          "duration_label": "Ajánlott: céges weboldalaknak és kisebb webshopoknak."
+        },
+        "detailed": {
+          "name": "Pro Bot & Shop Shield",
+          "desc": "Aktív bot-ellenes védelem és egyedi WAF szabálykezelés.",
+          "price": "79000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (+ 69.000 Ft beállítás)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Akár 3 domain / webshop + API védelem",
+            "Fejlett botvédelem és checkout rate-limiting",
+            "Admin útvonalak IP/Geo korlátozása",
+            "Folyamatos finomhangolás false-positive nélkül",
+            "Globális Edge gyorsítás és kézbesítés"
+          ],
+          "duration_label": "Ajánlott: nagy forgalmú webshopoknak és B2B portáloknak."
+        },
+        "complex": {
+          "name": "Enterprise Zero-Trust Edge",
+          "desc": "Teljes vállalati WAF klaszter, privát origin és SLA.",
+          "price": "159000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (egyedi kiépítéssel)",
+          "features": [
+            "Több domain és mikroszolgáltatás központi védelme",
+            "Privát hálózati összeköttetés (Private Link)",
+            "Zero-day sebezhetőségek azonnali virtuális patchelése",
+            "Részletes SIEM / log export és riasztások",
+            "99.99% rendelkezésreállási garancia"
+          ],
+          "duration_label": "Ajánlott: fintech, ERP és nagyvállalati rendszerekhez."
+        }
+      },
+      "how_we_work_title": "Így kapcsoljuk be a pajzsot",
+      "how_we_work_desc": "A beüzemelés leállás nélkül, DNS-szinten történik.",
+      "how_we_work_steps": [
+        {
+          "title": "Forgalom-felmérés",
+          "description": "Elemezzük a jelenlegi végpontokat, API-kat és legitim botokat (pl. Googlebot)."
+        },
+        {
+          "title": "WAF Konfiguráció",
+          "description": "Felállítjuk a Front Door / WAF profilt kezdetben naplózó (Detection) módban."
+        },
+        {
+          "title": "Finomhangolás",
+          "description": "Kiszűrjük az esetleges téves riasztásokat, hogy valódi ügyfelek ne akadjanak el."
+        },
+        {
+          "title": "Élesítés (Prevention)",
+          "description": "Átváltjuk aktív blokkolásra, a támadások azonnal elakadnak a hálózat szélén."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Műszaki tudnivalók a webes tűzfalról",
+      "faq_items": [
+        {
+          "question": "Le kell állítani a szerverünket a telepítéshez?",
+          "answer": "Nem! A forgalom átirányítása tiszta DNS CNAME váltással, észrevétlenül, nulla másodperc leállással történik."
+        },
+        {
+          "question": "Nem fogja letiltani a Googlebotot vagy a Számlázz.hu webhookokat?",
+          "answer": "Kifejezetten figyelünk rá: bevezetés előtt tesztüzemben naplózzuk a forgalmat, és fehérlistára tesszük a legitim partnereket."
+        },
+        {
+          "question": "Tényleg gyorsabb is lesz tőle a weboldal?",
+          "answer": "Igen, mert a WAF előtti globális peremszerver (Edge) kiszolgálja a statikus képeket, CSS/JS fájlokat és lezárja az SSL-t."
+        }
+      ],
+      "cta_title": "Védd meg a webes rendszereidet"
+    },
+    "EnterpriseRAG": {
+      "title": "Privát Vállalati AI Tudásbázis (RAG)",
+      "description": "Zárt, GDPR-kompatibilis céges AI asszisztens (Azure OpenAI + Vector DB): dolgozóid másodpercek alatt kérdezhetnek a belső PDF-ekből, SharePointból, szerződésekből és kézikönyvekből.",
+      "keywords": "vállalati chatgpt, privát ai tudásbázis, céges rag rendszer, azure openai magyar, belső dokumentum kereső ai",
+      "hero_features": [
+        "100% zárt EU-s Azure OpenAI — NEM tanul az adataidból",
+        "SharePoint, Google Drive, OneDrive és PDF fájlok indexelése",
+        "Pontos forrásmegjelölés minden AI válasz végén",
+        "Szerepkör-alapú jogosultságkezelés (Microsoft Entra ID)",
+        "Több ezer oldalnyi szabályzatból azonnali magyar válasz",
+        "Saját céges arculatos webes és Teams felület"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Zéró Adatszivárgás",
+          "description": "A nyilvános ChatGPT-vel ellentétben a céges fájlok az EU-n belül, elszigetelt Azure környezetben maradnak."
+        },
+        {
+          "title": "Azonnali Betanítás",
+          "description": "Új kollégák és értékesítők többé nem kérdezgetik a szeniorokat — az AI minden folyamatot fejből tud."
+        },
+        {
+          "title": "Ellenőrizhető Források",
+          "description": "Minden válasz mellett ott a kattintható PDF/oldalszám hivatkozás, így nulla a hallucinációs kockázat."
+        }
+      ],
+      "use_cases_title": "Kik használják a leghatékonyabban?",
+      "use_cases_desc": "Tedd azonnal kereshetővé a cégben felhalmozott évtizedes tudást",
+      "use_cases_items": [
+        {
+          "title": "Ügyvédi & Tanácsadó Irodák",
+          "description": "Korábbi szerződések, beadványok és jogszabályi értelmezések villámgyors keresése.",
+          "example": "„Keress rá, milyen kötbérfeltételt adtunk tavaly az X Kft. szállítási szerződésében!”",
+          "roi": "Napi 1–2 óra kutatási idő megtakarítása ügyvédenként"
+        },
+        {
+          "title": "Gyártó, Mérnöki & Építőipari Cégek",
+          "description": "Műszaki leírások, géphasználati utasítások és minőségbiztosítási (ISO) leírások elérése.",
+          "example": "A szerviztechnikus mobilon kérdezi le a gép hibakódjának pontos elhárítását magyarul.",
+          "roi": "Gyorsabb hibaelhárítás, kevesebb állásidő"
+        },
+        {
+          "title": "Sales & Ügyfélszolgálati Csapatok",
+          "description": "Árlisták, termék-specifikációk és gyakori kifogások azonnali lekérése telefonálás közben.",
+          "example": "„Melyik csomagunk támogatja a kétirányú SAP szinkront és mennyi a szállítási határidő?”",
+          "roi": "Magabiztosabb értékesítők, gyorsabb ajánlatadás"
+        },
+        {
+          "title": "HR & Belső Folyamatok (SOP)",
+          "description": "Munkavállalói kézikönyvek, szabadságolási szabályok és onboarding segédletek.",
+          "example": "Új belépők önállóan kapnak pontos választ a belső rendszerek használatáról.",
+          "roi": "Tehermentesített HR és menedzsment"
+        }
+      ],
+      "pricing_title": "Vállalati AI Tudásbázis Csomagok",
+      "pricing_desc": "Kulcsrakész, EU-s adatközpontban futó privát RAG rendszerek. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Team AI Vault",
+          "desc": "Zárt céges AI asszisztens kisebb dokumentumtárral.",
+          "price": "290000",
+          "priceFrom": "true",
+          "sub": "+ 49.000 Ft/hó Azure üzemeltetés (ÁFA-mentes)",
+          "features": [
+            "Maximum 1 000 dokumentum (PDF, DOCX, TXT) indexelése",
+            "Zárt EU-s Azure OpenAI + Vector adatbázis",
+            "Forráshivatkozás (fájlnév + részlet) minden válaszhoz",
+            "Bejelentkezéses védett webes felület (max. 15 fő)",
+            "Havi automatikus tudásbázis-újraindexelés"
+          ],
+          "duration_label": "Ajánlott: 5–15 fős irodáknak, ügynökségeknek."
+        },
+        "detailed": {
+          "name": "Enterprise RAG Pro",
+          "desc": "SharePoint/Drive szinkron és jogosultságkezelés (Entra ID).",
+          "price": "590000",
+          "priceFrom": "true",
+          "sub": "+ 89.000 Ft/hó üzemeltetés (ÁFA-mentes)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "10 000+ dokumentum és élő SharePoint / Google Drive szinkron",
+            "Microsoft Entra ID (SSO) belépés + mappa-jogosultságok",
+            "Munkatársi visszajelző gombok és keresési statisztikák",
+            "Slack / Microsoft Teams bot integráció",
+            "Dedikált havi prompt-hangolás és új források bekötése"
+          ],
+          "duration_label": "Ajánlott: 15–100 fős cégeknek és több részleges csapatoknak."
+        },
+        "complex": {
+          "name": "Corporate AI Core",
+          "desc": "Többrészleges tudásbázis ERP/CRM élő adatlekérdezéssel.",
+          "price": "1190000",
+          "priceFrom": "true",
+          "sub": "+ 149.000 Ft/hó üzemeltetés (ÁFA-mentes)",
+          "features": [
+            "Korlátlan dokumentum, táblázatos (Excel/SQL) adatbázisok",
+            "Élő API lekérdezés céges CRM/ERP rendszerekből",
+            "Egyedi biztonsági audit és magánhálózati (VNet) izoláció",
+            "Külön tudásbázisok részlegenként (HR, Jogi, Műszaki)",
+            "Helyszíni csapatoktatás és dedikált mérnöki támogatás"
+          ],
+          "duration_label": "Ajánlott: közép- és nagyvállalatoknak szigorú adatbiztonsággal."
+        }
+      },
+      "how_we_work_title": "A bevezetés menete",
+      "how_we_work_desc": "A tiszta adatforrásoktól a kulcsrakész vállalati AI felületig 2–4 hét alatt.",
+      "how_we_work_steps": [
+        {
+          "title": "Adatforrás-audit",
+          "description": "Felmérjük, hol és milyen formátumban vannak a céges dokumentumok."
+        },
+        {
+          "title": "Adatisztítás & Jogosultság",
+          "description": "Beállítjuk, hogy ki melyik mappához férhet hozzá biztonságosan."
+        },
+        {
+          "title": "RAG Motor Kiépítése",
+          "description": "Felhúzzuk az Azure AI Search vektor-adatbázist és a GPT-4o modellt."
+        },
+        {
+          "title": "Tesztelés a Csapattal",
+          "description": "Kulcsfelhasználókkal validáljuk a válaszok pontosságát."
+        },
+        {
+          "title": "Élesítés & Oktatás",
+          "description": "Átadjuk a rendszert és betanítjuk a kollégákat a legjobb promptokra."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Adatvédelem és működés a privát vállalati AI-nál",
+      "faq_items": [
+        {
+          "question": "Biztosan nem tanul az OpenAI a feltöltött bizalmas szerződéseinkből?",
+          "answer": "Garantáltan nem. Az Azure OpenAI Enterprise szolgáltatás szerződéses garanciát ad rá, hogy az adatok az EU adatközpontban maradnak és sosem kerülnek modelltanításra."
+        },
+        {
+          "question": "Láthatja egy gyakornok a vezetőségi pénzügyi dokumentumokat?",
+          "answer": "Nem. A Pro és Enterprise csomagokban az Entra ID / Google jogosultságokat örökli az AI, így mindenki csak abból kap választ, amire olvasási joga van."
+        },
+        {
+          "question": "Milyen fájlformátumokat tud kezelni?",
+          "answer": "PDF, Word (DOCX), Excel, PowerPoint, Markdown, HTML és Google Docs/SharePoint oldalak egyaránt támogatottak."
+        }
+      ],
+      "cta_title": "Építs saját privát vállalati AI-t"
+    },
+    "DocumentOCR": {
+      "title": "AI Számla-, Szerződés- & Dokumentum-feldolgozó",
+      "description": "Automatizált dokumentum-felismerés (Azure AI Document Intelligence + GPT-4o): bejövő számlák, szállítólevelek és szerződések kiolvasása és beküldése közvetlenül az ERP/könyvelő rendszerbe.",
+      "keywords": "ai számlafeldolgozás, dokumentum ocr automatizáció, szállítólevél beolvasás, szerződés elemzés ai, könyvelés automatizálás",
+      "hero_features": [
+        "Magyar nyelvű számlák és táblázatos tételek pontos kiolvasása",
+        "Szállítólevelek, menetlevelek és munkalapok digitalizálása",
+        "Közvetlen export Számlázz.hu, Billingo, SAP, Odoo vagy Excel felé",
+        "Automatikus számszaki, ÁFA és adószám validáció",
+        "Szerződések kockázati és határidő-kivonatolása GPT-4o-val",
+        "Email mellékletek és szkennelt mappák automatikus figyelése"
+      ],
+      "hero_benefits": [
+        {
+          "title": "90%-kal Kevesebb Adatrögzítés",
+          "description": "A kollégáknak többé nem kell PDF-ekből számsorokat másolgatniuk — a rendszer másodpercek alatt rögzíti."
+        },
+        {
+          "title": "Nulla Elgépelés",
+          "description": "A rendszer automatikusan ellenőrzi a nettó+ÁFA=bruttó egyenletet és kiszűri a hibás dokumentumokat."
+        },
+        {
+          "title": "Azonnali Kereshetőség",
+          "description": "Minden beérkezett papír és PDF strukturált, visszakereshető adatbázisba kerül."
+        }
+      ],
+      "use_cases_title": "Mit tudunk automatizálni?",
+      "use_cases_desc": "Minden papír- és PDF-alapú adminisztráció kiváltható AI adatkinyeréssel",
+      "use_cases_items": [
+        {
+          "title": "Bejövő Számlák & Könyvelési Előkészítés",
+          "description": "E-mailben érkező PDF számlák tételszintű kiolvasása és költséghely-kategorizálása.",
+          "example": "A rendszer felismeri a szállítót, dátumot, ÁFA-kulcsokat és betölti a jóváhagyó táblába.",
+          "roi": "Havi több tucat munkaóra megtakarítása a pénzügyön"
+        },
+        {
+          "title": "Logisztikai Szállítólevelek & CMR",
+          "description": "Raklapmennyiségek, cikkszámok és aláírások ellenőrzése szkennelt vagy mobillal fotózott lapokról.",
+          "example": "A raktáros lefotózza a papírt, a rendszer azonnal összeveti a rendeléssel.",
+          "roi": "Gyorsabb áruátvétel, azonnali eltérésjelzés"
+        },
+        {
+          "title": "Szerződés-ellenőrzés & Határidők",
+          "description": "Hosszú partneri szerződések kulcsadatainak (felmondási idő, kötbér, árindexálás) kinyerése.",
+          "example": "Feltöltött 40 oldalas szerződésből 10 másodperc alatt készít 1 oldalas vezetői összefoglalót.",
+          "roi": "Elfelejtett megújítások és rejtett kötbérek elkerülése"
+        },
+        {
+          "title": "HR Önéletrajz & Belépési Nyomtatványok",
+          "description": "Jelentkezők CV-inek egységes adatbázisba rendezése és előszűrése.",
+          "example": "Automatizált kompetencia-táblázat készítése 200 beérkezett önéletrajzból.",
+          "roi": "5x gyorsabb toborzási előszűrés"
+        }
+      ],
+      "pricing_title": "AI Dokumentum-feldolgozó Csomagok",
+      "pricing_desc": "Skálázható megoldások havi dokumentumszámhoz igazítva. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "OCR Start",
+          "desc": "Automatikus számla- vagy űrlapfeldolgozó 1 munkafolyamathoz.",
+          "price": "190000",
+          "priceFrom": "true",
+          "sub": "+ 39.000 Ft/hó (max. 1 000 oldal/hó)",
+          "features": [
+            "E-mail fiók vagy Google Drive / OneDrive figyelés",
+            "PDF és fotózott számlák kulcsadatainak kiolvasása",
+            "Matematikai & ÁFA ellenőrzési szabályok",
+            "Export Excel / Google Sheets vagy Webhook felé",
+            "Azure AI Document Intelligence + GPT-4o motor"
+          ],
+          "duration_label": "Ajánlott: könyvelőirodáknak és kisebb kereskedőknek."
+        },
+        "detailed": {
+          "name": "DocFlow Business",
+          "desc": "Teljes tételsoros számla-, szállítólevél- és ERP integráció.",
+          "price": "440000",
+          "priceFrom": "true",
+          "sub": "+ 79.000 Ft/hó (max. 5 000 oldal/hó)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Összetett táblázatok és tételsorok felismerése",
+            "Kétirányú API integráció (CRM, ERP, Számlázz.hu, MiniCRM)",
+            "Jóváhagyási felület bizonytalan tételek ellenőrzésére",
+            "Automatikus költséghely & főkönyvi szám javaslat AI-val",
+            "Havi karbantartás és új sablonok betanítása"
+          ],
+          "duration_label": "Ajánlott: logisztikai, gyártó és építőipari KKV-knak."
+        },
+        "complex": {
+          "name": "Enterprise IDP Core",
+          "desc": "Egyedi szerződéselemző, kézírás-olvasó és SAP/Navision pipeline.",
+          "price": "890000",
+          "priceFrom": "true",
+          "sub": "+ 149.000 Ft/hó (nagy volumen)",
+          "features": [
+            "Több dokumentumtípus (szerződés, CMR, számla, jegyzőkönyv)",
+            "Jogi/pénzügyi kockázatelemző GPT-4o réteg",
+            "Közvetlen SAP / Navision / Microsoft BC API összekötés",
+            "Audit naplózás és 5 évig visszakereshető archívum",
+            "Dedikált fejlesztői SLA és teljesítménygarancia"
+          ],
+          "duration_label": "Ajánlott: nagyvállalatoknak és magas dokumentumszámhoz."
+        }
+      },
+      "how_we_work_title": "Hogyan vezetjük be?",
+      "how_we_work_desc": "Valódi céges mintadokumentumokon kalibrálva adjuk át a rendszert.",
+      "how_we_work_steps": [
+        {
+          "title": "Minták bekérése",
+          "description": "Megvizsgálunk 15–20 valódi számlát, szállítólevelet vagy szerződést."
+        },
+        {
+          "title": "Adatséma tervezése",
+          "description": "Rögzítjük, pontosan milyen mezők és milyen formátumban kellenek az ERP-nek."
+        },
+        {
+          "title": "Azure Pipeline építése",
+          "description": "Összekötjük az OCR motort és a GPT-4o validátort a célrendszerrel."
+        },
+        {
+          "title": "Pontossági teszt",
+          "description": "99%+ pontosság eléréséig finomhangoljuk a kivételeket és értesítéseket."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Tudnivalók az AI dokumentumfeldolgozásról",
+      "faq_items": [
+        {
+          "question": "Megbirkózik a gyenge minőségű, mobillal fotózott vagy ferde számlákkal is?",
+          "answer": "Igen! Az Azure AI Document Intelligence kifejezetten alkalmas ferde, árnyékos fotók, bélyegzők és összetett táblázatok pontos kiolvasására is."
+        },
+        {
+          "question": "Működik magyar ékezetes szavakkal és magyar ÁFA szabályokkal?",
+          "answer": "Tökéletesen. A GPT-4o validációs réteg ismeri a magyar adószám-formátumot és ellenőrző algoritmusokat is futtat."
+        },
+        {
+          "question": "Mi történik, ha egy dokumentum olvashatatlan?",
+          "answer": "Ha egy sor bizonytalansága meghaladja a küszöböt, a rendszer automatikusan megjelöli emberi jóváhagyásra, így sosem kerül hibás adat a könyvelésbe."
+        }
+      ],
+      "cta_title": "Automatizáld a dokumentumaidat"
+    },
+    "MeetingVoiceAI": {
+      "title": "AI Hívás- & Tárgyalás-elemző Asszisztens",
+      "description": "Magyar nyelvű hangfelismerés és AI értékesítési/ügyfélszolgálati elemzés (Azure Speech + GPT-4o): automatikus jegyzőkönyvek, teendőlisták, ügyfélhangulat-mérés és CRM szinkron.",
+      "keywords": "ai híváselemző, magyar beszédfelismerés ai, meeting jegyzőkönyv generátor, értékesítési hívás elemzés, call center ai",
+      "hero_features": [
+        "Kiváló pontosságú magyar nyelvű beszéd-szöveg (Azure Whisper/Speech)",
+        "Beszélő-elkülönítés (ügyfél vs. értékesítő/support)",
+        "Automatikus strukturált jegyzőkönyv és teendőlista (Action Items)",
+        "Ügyfélhangulat (Sentiment) és leggyakoribb kifogások felismerése",
+        "Közvetlen mentés CRM-be (HubSpot, Pipedrive, MiniCRM, saját admin)",
+        "Zárt EU-s Azure hangfeldolgozás adatvédelmi garanciával"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Soha Többé Elfelejtett Ígéret",
+          "description": "Minden telefonhívás és online megbeszélés után pontos lista készül arról, ki mit vállalt határidőre."
+        },
+        {
+          "title": "Sales Hatékonyság Növelése",
+          "description": "A vezetők látják, melyik érv működik jól a telefonban és hol akad el a legtöbb érdeklődő."
+        },
+        {
+          "title": "Nulla Jegyzőkönyvezési Idő",
+          "description": "Az értékesítő 100%-ban az ügyfélre figyelhet — a jegyzetet és a CRM összefoglalót az AI megírja."
+        }
+      ],
+      "use_cases_title": "Hogyan termel bevételt a hang-elemzés?",
+      "use_cases_desc": "A telefonban és tárgyalásokon elhangzó információ a cég legértékesebb, mégis leggyakrabban elvesző adata",
+      "use_cases_items": [
+        {
+          "title": "Sales Tárgyalások & Discovery Hívások",
+          "description": "Online meetek és rögzített üzleti hívások automatikus feldolgozása az ajánlatadás előtt.",
+          "example": "A meeting után 1 perccel kész a vázlat az ügyfél igényeiről, költségvetéséről és a következő lépésről.",
+          "roi": "2x gyorsabb ajánlatkiküldés és magasabb zárási arány"
+        },
+        {
+          "title": "Ügyfélszolgálati Minőségbiztosítás",
+          "description": "Beérkező telefonos reklamációk és hibajegyek automatikus kategorizálása.",
+          "example": "A rendszer jelzi a vezetőnek azokat a hívásokat, ahol elégedetlen vagy dühös hangulatot észlelt.",
+          "roi": "Ügyfél-elvándorlás azonnali csökkentése"
+        },
+        {
+          "title": "Belső Projekt-megbeszélések Jegyzőkönyve",
+          "description": "Heti státuszokból pontos feladatlista generálása felelősökkel és dátumokkal.",
+          "example": "A Teams felvételből egy kattintással létrejönnek a Jira/Trello kártyák.",
+          "roi": "Évi több száz mérnöki és vezetői munkaóra megspórolása"
+        },
+        {
+          "title": "Következő Lépés Email Vázlat",
+          "description": "Azonnali, személyre szabott köszönő és összefoglaló e-mail vázlat az ügyfélnek.",
+          "example": "„Kedves Péter, ahogy az iménti beszélgetésen egyeztettük, küldöm a 3 pontot...”",
+          "roi": "Professzionális ügyfélélmény minden hívás után"
+        }
+      ],
+      "pricing_title": "AI Hang- & Meeting Elemző Csomagok",
+      "pricing_desc": "Rugalmas havi csomagok feldolgozott hangóra szerint. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Meeting Assistant",
+          "desc": "Automatikus magyar átirat és jegyzőkönyv kisebb csapatnak.",
+          "price": "240000",
+          "priceFrom": "true",
+          "sub": "+ 45.000 Ft/hó (havi 20 óra hanganyag)",
+          "features": [
+            "MP3 / WAV / MP4 / WebM feltöltés és mappaszinkron",
+            "Magyar + angol beszédfelismerés beszélő-szétválasztással",
+            "Strukturált PDF/Markdown jegyzőkönyv + teendők",
+            "Automatikus ügyfél-visszaigazoló email vázlat",
+            "Zárt EU-s Azure hangfeldolgozás"
+          ],
+          "duration_label": "Ajánlott: vezetőknek, tanácsadóknak, kisebb sales csapatoknak."
+        },
+        "detailed": {
+          "name": "Sales Call Intelligence",
+          "desc": "CRM integráció, kifogás-elemzés és VoIP/Meet összekötés.",
+          "price": "490000",
+          "priceFrom": "true",
+          "sub": "+ 89.000 Ft/hó (havi 80 óra hanganyag)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "VoIP központ / Google Meet / Teams automatikus feldolgozás",
+            "Kétirányú szinkron CRM-be (jegyzetek és teendők)",
+            "Ügyfélhangulat (Sentiment) és értékesítési KPI pontozás",
+            "Kifogás-könyvtár és értékesítési coaching riportok",
+            "Egyedi adminisztrátori keresőfelület a hívásokban"
+          ],
+          "duration_label": "Ajánlott: aktív B2B értékesítő csapatoknak és ügynökségeknek."
+        },
+        "complex": {
+          "name": "Contact Center Enterprise",
+          "desc": "Teljes ügyfélszolgálati QA automatizálás korlátlan agentre.",
+          "price": "980000",
+          "priceFrom": "true",
+          "sub": "+ 169.000 Ft/hó (egyedi volumen)",
+          "features": [
+            "Nagy volumenű ügyfélszolgálati hanganyagok 100%-os auditja",
+            "Automatikus eszkalációs riasztás kritikus hangvételkor",
+            "Személyes adatok (PII) automatikus maszkolása a szövegben",
+            "Power BI / egyedi BI vezetői trend-dashboardok",
+            "Dedikált mérnöki támogatás és finomhangolás"
+          ],
+          "duration_label": "Ajánlott: call centereknek és nagy ügyfélszolgálatoknak."
+        }
+      },
+      "how_we_work_title": "Hogyan építjük be?",
+      "how_we_work_desc": "A meglévő telefonközpontodhoz vagy meeting rendszeredhez illesztve.",
+      "how_we_work_steps": [
+        {
+          "title": "Hangforrás bekötése",
+          "description": "Felmérjük, honnan érkeznek a felvételek (VoIP, Teams, Google Meet)."
+        },
+        {
+          "title": "Magyar Szakszótár",
+          "description": "Betanítjuk a saját céges termékneveitekre és rövidítéseitekre a felismerést."
+        },
+        {
+          "title": "Prompt & CRM Sablon",
+          "description": "Kialakítjuk pontosan milyen jegyzőkönyv és milyen CRM mezők töltsenek fel."
+        },
+        {
+          "title": "Élesítés & Coaching",
+          "description": "Átadjuk a felületet és finomítjuk a vezetői riasztási szabályokat."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Minden a magyar nyelvű AI hangfeldolgozásról",
+      "faq_items": [
+        {
+          "question": "Mennyire érti a magyar nyelvet és a szakmai kifejezéseket?",
+          "answer": "Az Azure AI Speech + GPT-4o utókorrekció még zajszűrt telefonos felvételeken és magyar szakszavakkal is kiemelkedő pontossággal dolgozik."
+        },
+        {
+          "question": "Hogyan van megoldva a GDPR és a hangfelvételek törlése?",
+          "answer": "Beállítható, hogy az átirat és az összefoglaló elkészülte után magát a nyers hangfájlt a rendszer automatikusan és véglegesen törölje."
+        },
+        {
+          "question": "Össze tudjátok kötni a saját VoIP központunkkal?",
+          "answer": "Igen, szinte minden felhős VoIP (pl. Voovox, Microcall, 3CX, Asterisk) támogat webhookos vagy SFTP felvétel-továbbítást."
+        }
+      ],
+      "cta_title": "Alakítsd értékké a hívásaidat"
+    },
+    "TenderMonitor": {
+      "title": "AI Pályázat- & Közbeszerzés-figyelő",
+      "description": "Folyamatos magyar és EU pályázati/közbeszerzési figyelés AI előminősítéssel: az Azure robot naponta átnézi az új kiírásokat és személyre szabott összefoglalót küld arról, mire érdemes beadni.",
+      "keywords": "pályázat figyelő ai, közbeszerzés figyelő, automatikus pályázati értesítő, ekr figyelő, szechenyi terv ai szűrő",
+      "hero_features": [
+        "Magyar és EU-s pályázatok, EKR és TED közbeszerzések figyelése",
+        "GPT-4o előminősítés a saját TEÁOR, árbevétel és létszám alapján",
+        "100 oldalas kiírások összefoglalása 5 áttekinthető pontba",
+        "Automatikus értesítő emailben, Teamsben vagy CRM feladatként",
+        "Beadási határidők és szükséges mellékletek automatikus listázása",
+        "Havi akár tucatnyi elszalasztott üzleti lehetőség megfogása"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Elsőként Értesülsz",
+          "description": "Nem egy keretszám kimerülése előtt 2 nappal hallasz a pályázatról, hanem a megjelenés napján."
+        },
+        {
+          "title": "Nincs Felesleges Olvasgatás",
+          "description": "Az AI kiszűri azokat a kiírásokat, amikre a céged jogosult és releváns referenciával bír."
+        },
+        {
+          "title": "Azonnali Előkészítő Checklist",
+          "description": "Minden találathoz megkapod a várható támogatási intenzitást, határidőt és a hiánypótlási buktatókat."
+        }
+      ],
+      "use_cases_title": "Kinek hoz azonnal milliókat?",
+      "use_cases_desc": "Egyetlen megnyert közbeszerzés vagy vissza nem térítendő pályázat évekre kifizeti a rendszert",
+      "use_cases_items": [
+        {
+          "title": "Közbeszerzésen Induló Beszállítók",
+          "description": "Napi EKR / TED kiírások figyelése iparági kulcsszavak és CPV kódok alapján.",
+          "example": "Az AI jelzi, melyik önkormányzati tenderben szerepel a te szakterületed és mekkora a minimum referencia-elvárás.",
+          "roi": "Több megnyert tender, zéró manuális böngészés"
+        },
+        {
+          "title": "Fejlesztésre Készülő KKV-k",
+          "description": "GINOP Plusz, DIMOP és egyéb vissza nem térítendő támogatások azonnali figyelése.",
+          "example": "A cég árbevétele és székhelye alapján azonnal szűri a választható technológiai pályázatokat.",
+          "roi": "Magasabb sikeres pályázati esély"
+        },
+        {
+          "title": "Pályázatíró & Tanácsadó Irodák",
+          "description": "Több tucat ügyfélprofil egyidejű monitorozása fehér listás napi riporttal.",
+          "example": "Reggel 8-kor az iroda CRM-jében ott várja a lista: melyik ügyfelet kell ma felhívni egy új pályázattal.",
+          "roi": "Proaktív ügyfélkiszolgálás és extra sikerdíjak"
+        },
+        {
+          "title": "Versenytárs- & Iparági Figyelés",
+          "description": "Kihirdetett nyertesek, szerződéses árak és piaci mozgások követése.",
+          "example": "Havi összesítő arról, kik és milyen áron nyertek hasonló tendereket a szektorban.",
+          "roi": "Pontosabb árazási stratégia"
+        }
+      ],
+      "pricing_title": "Pályázat- & Tender Figyelő Csomagok",
+      "pricing_desc": "Havidíjas automatizált figyelő és AI előszűrő csomagok. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Monitor Start",
+          "desc": "Heti automatizált AI összefoglaló 1 cégprofilra.",
+          "price": "29000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "features": [
+            "1 cégprofil (max. 10 kulcsszó / CPV kód)",
+            "Heti AI válogatás és 5 pontos kiírás-összefoglaló",
+            "Határidők és minimum jogosultsági feltételek kiemelése",
+            "Email értesítés a releváns új megjelenésekről"
+          ],
+          "duration_label": "Ajánlott: pályázati lehetőségeket kereső KKV-knak."
+        },
+        "detailed": {
+          "name": "Tender Radar Pro",
+          "desc": "Napi figyelés, PDF dokumentum-elemzés és GPT-4o illeszkedési pontszám.",
+          "price": "59000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Napi EKR / TED / magyar és EU pályázati portál figyelés",
+            "Kiírási PDF mellékletek mély elemzése AI-val",
+            "0–100% cégre szabott illeszkedési pontszám (Match Score)",
+            "Automatikus feladat-létrehozás CRM-ben / Teamsben",
+            "Releváns beadási checklist generálása minden találathoz"
+          ],
+          "duration_label": "Ajánlott: közbeszerzéseken induló cégeknek és beszállítóknak."
+        },
+        "complex": {
+          "name": "Agency / Enterprise Multi-Monitor",
+          "desc": "Több ügyfélprofil, teljes dokumentum-vázlat és piaci riport.",
+          "price": "119000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "features": [
+            "Akár 25 külön cégprofil / ügyfél párhuzamos figyelése",
+            "Márkázott ügyfélértesítő e-mail küldés tanácsadóknak",
+            "Nyertesek és konkurens árak havi statisztikai elemzése",
+            "Automatikus pályázati nyilatkozat / vázlat előkészítés",
+            "Egyedi webhook & API kimenet belső rendszerekhez"
+          ],
+          "duration_label": "Ajánlott: pályázatíró irodáknak és vállalatcsoportoknak."
+        }
+      },
+      "how_we_work_title": "Hogyan indul el?",
+      "how_we_work_desc": "Néhány nap alatt beállítjuk a szűrési paramétereket és az AI profilt.",
+      "how_we_work_steps": [
+        {
+          "title": "Cégprofil felvétele",
+          "description": "Rögzítjük a tevékenységi köröket, referenciákat és támogatási célokat."
+        },
+        {
+          "title": "Források bekötése",
+          "description": "Konfiguráljuk az állami, EU-s és szakmai adatbázis-figyelőket."
+        },
+        {
+          "title": "AI Prompt Finomhangolás",
+          "description": "Beállítjuk, mi alapján pontozza a GPT-4o a relevancia szintjét."
+        },
+        {
+          "title": "Napi Éles Üzem",
+          "description": "Az Azure robot naponta szállítja a megszűrt, érthető összefoglalókat."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Tudnivalók a tender figyelő rendszerről",
+      "faq_items": [
+        {
+          "question": "Melyik adatbázisokat figyeli a rendszer?",
+          "answer": "Az EKR-t (Elektronikus Közbeszerzési Rendszer), a magyar pályázati portálokat (palyazat.gov.hu) és az EU-s TED közbeszerzési értesítőt egyaránt."
+        },
+        {
+          "question": "Meg tudja állapítani a rendszer, hogy megfelelünk-e a feltételeknek?",
+          "answer": "Igen! A letöltött felhívás PDF-ekből az AI kinyeri az árbevételi, létszám- és referenciakövetelményeket, majd összeveti a cégadataiddal."
+        },
+        {
+          "question": "Pályázatírást is vállaltok?",
+          "answer": "Mi a technológiai szűrést, az AI elemzést és a dokumentum-előkészítést adjuk; igény esetén bevonjuk partner pályázatíró szakértőinket is."
+        }
+      ],
+      "cta_title": "Ne maradj le a következő tenderedről"
+    },
+    "DisasterRecoveryDRaaS": {
+      "title": "Zsarolóvírus-Védett DRaaS Helyreállítás",
+      "description": "Nem csak adatmentés, hanem azonnali üzletmenet-folytonosság (Azure Site Recovery + Immutable WORM Storage): támadás vagy szerverleállás esetén 30 percen belül elindul a teljes szervered az Azure felhőben.",
+      "keywords": "draas szolgáltatás, katasztrófa helyreállítás felhő, zsarolóvírus elleni backup, immutable backup azure, azure site recovery",
+      "hero_features": [
+        "Immutable (WORM) tárhely: még rendszergazdai jelszóval sem törölhető",
+        "Folyamatos virtuális gép / szerver replikáció Azure-ba",
+        "Katasztrófa esetén < 30 perces szerverindítás a felhőben (RTO)",
+        "Titkosított VPN összeköttetés az irodai hálózattal (Site-to-Site)",
+        "Negyedéves izolált próba-visszaállítás (DR Drill) jegyzőkönyvvel",
+        "Valós védelem zsarolóvírus, tűzeset vagy hardverhalál ellen"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Zsarolóvírus-Álló Mentés",
+          "description": "A támadók először mindig a biztonsági mentést törlik — a WORM zárolt Azure tárhelyhez viszont fizikailag sem férnek hozzá."
+        },
+        {
+          "title": "Nincs Többhetes Leállás",
+          "description": "Ha leáll a fizikai szervered vagy megsérül az ERP gép, nem vársz napokat új vasra: az Azure klón átveszi a munkát."
+        },
+        {
+          "title": "Tesztelt Garancia",
+          "description": "Nem csak reménykedünk, hogy működik a mentés: negyedévente éles izolált teszten bizonyítjuk a visszaállíthatóságot."
+        }
+      ],
+      "use_cases_title": "Miben több a DRaaS a sima backupnál?",
+      "use_cases_desc": "A mentés csak másolat — a DRaaS maga a bekapcsolható tartalék erőmű",
+      "use_cases_items": [
+        {
+          "title": "Zsarolóvírus Elleni Védelem (WORM)",
+          "description": "Ha mégis betörne egy vírus a belső hálózatra, a felhőben zárolt korábbi állapot érintetlen marad.",
+          "example": "A fertőzés előtti 1 órával korábbi tiszta szerverkép visszaállítása izolált felhő zónába.",
+          "roi": "Nulla váltságdíj-fizetés, biztos túlélés"
+        },
+        {
+          "title": "Irodai Szerver & ERP Failover",
+          "description": "Helyi Hyper-V, VMware vagy fizikai Windows/Linux szerverek folyamatos replikációja.",
+          "example": "Áramszünet vagy RAID hiba esetén a dolgozók VPN-en keresztül azonnal az Azure-ban futó ERP-re csatlakoznak.",
+          "roi": "Akár milliós kieső árbevétel megmentése órák alatt"
+        },
+        {
+          "title": "Auditált DR Tesztek (ISO / NIS2)",
+          "description": "Hatósági vagy partneri elvárás az igazolt üzletmenet-folytonossági terv (BCP).",
+          "example": "Izolált homokozóban elindított szerver, dokumentált visszaállítási időkkel PDF-ben.",
+          "roi": "Teljes NIS2 üzletmenet-folytonossági megfelelés"
+        },
+        {
+          "title": "Visszaállás Eredeti Hardverre",
+          "description": "Miután az irodai hálózat megtisztult vagy megjött az új szerver, vissza-szinkronizáljuk a friss adatokat.",
+          "example": "Zökkenőmentes visszaállás a felhőben keletkezett új számlák és rendelések elvesztése nélkül.",
+          "roi": "Teljes adat-integritás oda-vissza"
+        }
+      ],
+      "pricing_title": "DRaaS & Immutable Mentés Csomagok",
+      "pricing_desc": "Megbízható felhős helyreállítás EU-s Azure adatközpontban. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Immutable WORM Vault",
+          "desc": "Törölhetetlen, zsarolóvírus-védett felhős biztonsági mentés.",
+          "price": "49000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (1 TB Immutable Azure Storage)",
+          "features": [
+            "1 TB WORM (Write-Once-Read-Many) zárolt tárhely",
+            "Napi automatikus titkosított mentés (szerver + DB)",
+            "Módosítás és törlés elleni zárolási szabályzat",
+            "Sikeres/sikertelen mentés napi monitorozása",
+            "Havi automatikus helyreállítási státusz riport"
+          ],
+          "duration_label": "Ajánlott: kisebb szerverrel, NAS-szal rendelkező cégeknek."
+        },
+        "detailed": {
+          "name": "Rapid Cloud Failover (DRaaS)",
+          "desc": "Folyamatos VM replikáció és 30 perces Azure szerver-átkapcsolás.",
+          "price": "129000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (max. 2 kritikus szerver VM)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Akár 2 db üzletkritikus szerver élő Azure replikációja",
+            "< 30 perces visszaállítási idő (RTO) felhőben indítva",
+            "Immutable WORM mentési réteg beépítve",
+            "Előre kiépített Site-to-Site VPN failover hálózat",
+            "Negyedéves izolált próba-visszaállítási jegyzőkönyv"
+          ],
+          "duration_label": "Ajánlott: saját ERP/számlázó/fájlszervert futtató KKV-knak."
+        },
+        "complex": {
+          "name": "Enterprise Zero-Loss Cluster",
+          "desc": "Többszerveres infrastruktúra < 15 perces RPO/RTO SLA-val.",
+          "price": "249000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (egyedi szerverszám szerint)",
+          "features": [
+            "Korlátlan VM / SQL klaszter folyamatos replikációja",
+            "< 15 perces RPO/RTO katasztrófa-terv és automatizált boot-sorrend",
+            "Dedikált izolált felhő-hálózat és tűzfal failover",
+            "0–24 mérnöki beavatkozás katasztrófahelyzet esetén",
+            "Teljes NIS2 / ISO 27001 BCP dokumentáció"
+          ],
+          "duration_label": "Ajánlott: gyártó, logisztikai és közepes nagyvállalatoknak."
+        }
+      },
+      "how_we_work_title": "Hogyan építjük ki a tartalék rendszert?",
+      "how_we_work_desc": "A meglévő működés lassítása nélkül húzzuk fel a háttérben a replikációt.",
+      "how_we_work_steps": [
+        {
+          "title": "Függőség-térkép",
+          "description": "Felmérjük a szervereket, adatbázisokat és a VPN / DNS útvonalakat."
+        },
+        {
+          "title": "WORM & Replikáció",
+          "description": "Bekötjük a titkosított replikációt és a törölhetetlen tárhelyet."
+        },
+        {
+          "title": "Failover Hálózat",
+          "description": "Felkonfiguráljuk az Azure VNet + VPN kapcsolatot az azonnali eléréshez."
+        },
+        {
+          "title": "Első Éles Próba",
+          "description": "Elkülönített hálózatban leteszteljük az éles indítást és átadjuk a tervet."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Minden a felhős katasztrófa-helyreállításról",
+      "faq_items": [
+        {
+          "question": "Miben különbözik ez egy külső merevlemezes vagy sima felhős mentéstől?",
+          "answer": "Ha egy zsarolóvírus megfertőzi a hálózatodat, a rácsatlakoztatott NAS-t és a sima felhőfiókot is titkosítja. Az Immutable tárhely viszont matematikailag zárolt, ráadásul a DRaaS egy gombnyomásra el is indítja a működő szervereket helyetted."
+        },
+        {
+          "question": "Működik Hyper-V, VMware és fizikai szerverekről is?",
+          "answer": "Igen, az Azure Site Recovery és a modern replikációs motorunk Windows és Linux virtuális vagy fizikai gépeket is támogat."
+        },
+        {
+          "question": "Csak vészhelyzetben indulnak el a drága felhős szerverek?",
+          "answer": "Igen! Normál üzemben csak replikált tárhely fut alacsony költséggel, a teljes számítási kapacitás csak éles leállás vagy negyedéves próba idején pörög fel."
+        }
+      ],
+      "cta_title": "Tedd elpusztíthatatlanná a céges rendszereidet"
+    },
+    "SyntheticMonitoring": {
+      "title": "0–24 Webshop & Pénztár Szintetikus Monitoring",
+      "description": "Nem csak a szerver pinget nézi: robotböngészőnk 5 percenként végigkattintja a termékoldalt, kosárba tesz és ellenőrzi a pénztár/fizetés/számlázó API működését — AI hibanapló elemzéssel.",
+      "keywords": "webshop monitoring, fizetés tesztelés automatikus, szintetikus monitoring playwright, downtime riasztás, uptime monitoring",
+      "hero_features": [
+        "Valódi böngészős (Playwright) kosár- és pénztár-folyamat teszt",
+        "Fizetési átjárók (Stripe, SimplePay, Barion) válaszidő-figyelése",
+        "Azonnali riasztás SMS, Telegram, Slack vagy Teams csatornán",
+        "Képernyőfotó és konzolhiba-mentés a leállás pillanatában",
+        "AI alapú gyökérok-összefoglaló (pl. lejárt API kulcs, lassú DB)",
+        "Havi rendelkezésreállási (SLA) és sebesség-grafikon riport"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Tudsz Róla a Vevők Előtt",
+          "description": "Vasárnap este egy elakadt pénztár gombot előbb vesz észre a robotunk 5 perc alatt, mint hogy az első vevő elmenekülne."
+        },
+        {
+          "title": "Több Mint Sima Ping",
+          "description": "Egy weblap mutathat '200 OK'-t úgy is, hogy a Kosár gomb JS hiba miatt már nem működik — mi a valódi gombnyomást teszteljük."
+        },
+        {
+          "title": "Kampányidőszaki Nyugalom",
+          "description": "Fizetett Facebook/Google Ads hirdetések alatt garantáltan nem égeted a pénzt törött checkout oldalra."
+        }
+      ],
+      "use_cases_title": "Milyen rejtett hibákat fog meg?",
+      "use_cases_desc": "A webshopok legnagyobb bevételkiesése nem a teljes leállás, hanem a törött fizetési vagy bejelentkezési lépések",
+      "use_cases_items": [
+        {
+          "title": "WordPress / Plugin Frissítés Utáni Pénztár-hiba",
+          "description": "Egy éjszakai plugin-frissítés gyakran észrevétlenül eltöri a 'Tovább a fizetéshez' gombot.",
+          "example": "A robot teszteli a kosárba helyezést és a pénztár betöltését; ha nem találja a gombot, azonnal képernyőfotóval riaszt.",
+          "roi": "Azonnali megmentett kampánybüdzsé"
+        },
+        {
+          "title": "Számlázó & Futárszolgálati API Figyelés",
+          "description": "Számlázz.hu, Foxpost, GLS és fizetési webhook végpontok elérhetőségének monitorozása.",
+          "example": "Figyeljük, ha valamelyik külső partner API-ja időtúllépéssel válaszol és leblokkolja a pénztárat.",
+          "roi": "0 beragadt vagy kiállítatlan rendelés"
+        },
+        {
+          "title": "SaaS Alkalmazás Bejelentkezési Teszt",
+          "description": "Ügyfélportálok és webes szoftverek login + dashboard betöltési idejének mérése.",
+          "example": "Percre pontos riasztás, ha a bejelentkezési API 5 másodpercnél lassabbra romlik.",
+          "roi": "Magasabb ügyfélmegtartás és gyorsabb reakció"
+        },
+        {
+          "title": "Adatbázis & Memória Lassulás Korai Jelei",
+          "description": "LCP / TTFB válaszidő trendek figyelése, hogy még az összeomlás előtt lássuk a túlterhelést.",
+          "example": "Figyelmeztetés, amikor az átlagos válaszidő 300 ms-ról 2.5 másodpercre kúszik fel.",
+          "roi": "Megelőzött szerverösszeomlás csúcsidőben"
+        }
+      ],
+      "pricing_title": "Szintetikus Monitoring Csomagok",
+      "pricing_desc": "24/7 felügyelet közvetlenül az Azure felhőcsomópontjainkról. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Uptime Pulse",
+          "desc": "1 perces alap URL, API és SSL elérhetőségi figyelés.",
+          "price": "19900",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "features": [
+            "Maximum 5 URL / API végpont 1 perces figyelése",
+            "Azonnali riasztás e-mailben és Telegram/Slack-en",
+            "SSL lejárat és DNS változás figyelés",
+            "Lassulási küszöbérték riasztás (pl. > 3 mp)",
+            "Havi Uptime SLA % statisztika"
+          ],
+          "duration_label": "Ajánlott: bemutatkozó oldalaknak, portáloknak."
+        },
+        "detailed": {
+          "name": "Checkout Guard Robot",
+          "desc": "Valódi böngészős vásárlási út + AI hiba-diagnosztika.",
+          "price": "39900",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "5 percenkénti Playwright robot kosár + pénztár teszt",
+            "Képernyőfotó és JS konzolhiba rögzítése hiba esetén",
+            "AI hibaelemző összefoglaló a gyors javításhoz",
+            "SMS / Telefonos hívás riasztás kritikus kiesésnél",
+            "Fizetési & számlázó végpontok ellenőrzése"
+          ],
+          "duration_label": "Ajánlott: WooCommerce, Shopify és egyedi webshopoknak."
+        },
+        "complex": {
+          "name": "Multi-Flow Enterprise QA",
+          "desc": "Több régiós tesztek, belépés + egyedi üzleti folyamatok.",
+          "price": "89000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (ÁFA-mentes)",
+          "features": [
+            "Akár 10 komplex bejelentkezéses / vásárlási forgatókönyv",
+            "Párhuzamos tesztelés EU és globális régiókból",
+            "Teljesítmény-trendek (Core Web Vitals) folyamatos mérése",
+            "Automata hiba-jegy nyitás a fejlesztőcsapat felé",
+            "Dedikált havi optimalizálási konzultáció"
+          ],
+          "duration_label": "Ajánlott: nagy forgalmú SaaS rendszereknek és nagy webáruházaknak."
+        }
+      },
+      "how_we_work_title": "Hogyan működik a robot?",
+      "how_we_work_desc": "Valódi vevőként, tesztadatokkal ellenőrzi a rendszert — valós rendelés és bankkártya-terhelés nélkül.",
+      "how_we_work_steps": [
+        {
+          "title": "Útvonalak kijelölése",
+          "description": "Megjelöljük a legkritikusabb konverziós lépéseket (kosár, pénztár, login)."
+        },
+        {
+          "title": "Playwright Szkript",
+          "description": "Megírjuk a böngésző-automatizációs robotot teszt-termékekre."
+        },
+        {
+          "title": "Riasztás Bekötése",
+          "description": "Összekötjük Telegrammal, Teamszel, emaillel vagy SMS kapuval."
+        },
+        {
+          "title": "24/7 Őrszolgálat",
+          "description": "A rendszer éjjel-nappal őrködik és azonnal rögzíti a hibák okát."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Tudnivalók a szintetikus tesztelő robotról",
+      "faq_items": [
+        {
+          "question": "Nem fogja teleszemetelni a Google Analyticsemet és a megrendeléseimet a tesztrobot?",
+          "answer": "Nem! Kizárólag a pénztár lépésig tesztelünk (fizetés indítása előtt megállunk), illetve speciális URL/User-Agent paraméterrel kiszűrhető az analitikából."
+        },
+        {
+          "question": "Látjuk majd pontosan, mi okozta a leállást?",
+          "answer": "Igen, hiba pillanatában a robot elmenti a böngésző képernyőfotóját, a hálózati HTTP hibakódokat, a JS konzolüzeneteket és az AI összefoglalóját."
+        },
+        {
+          "question": "Mennyi idő alatt állítható be egy webshopra?",
+          "answer": "Tipikusan 24–48 órán belül megírjuk a testreszabott kosár- és pénztártesztet és élesítjük a riasztást."
+        }
+      ],
+      "cta_title": "Védd meg a webshopod bevételét"
+    },
+    "LoadTesting": {
+      "title": "Kampány Előtti Terheléstesztelés (Load Testing)",
+      "description": "Black Friday, TV-megjelenés vagy nagy hirdetési kampány előtt szimulálunk 1.000–15.000 egyidejű virtuális felhasználót (Azure Load Testing), és megmutatjuk pontosan, hol akad el a szervered.",
+      "keywords": "terheléstesztelés, load testing webshop, black friday felkészítés, teljesítmény audit, azure load testing",
+      "hero_features": [
+        "Több ezer egyidejű virtuális vásárló szimulálása Azure-ból",
+        "Valósághű forgatókönyvek: böngészés, szűrés, kosár, pénztár",
+        "Adatbázis, CPU, RAM és külső API szűk keresztmetszetek feltárása",
+        "Részletes vezetői és fejlesztői PDF teljesítmény-jelentés",
+        "Konkrét gyorsítási javaslatok (Redis cache, DB indexek, CDN)",
+        "Ütemezett éjszakai tesztfutás ügyfelek zavarása nélkül"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Nulla Összeomlás Csúcsidőben",
+          "description": "Ne az év legnagyobb akciójának első percében derüljön ki, hogy 200 egyidejű kosárnál elfogy az adatbázis-kapcsolat."
+        },
+        {
+          "title": "Pontos Kapacitáshatár",
+          "description": "Feketén-fehéren látni fogod: jelenleg hány egyidejű felhasználót bír el a rendszered lassulás nélkül."
+        },
+        {
+          "title": "Mérhető Gyorsítás",
+          "description": "A teszt alapján elvégzett optimalizálások után ismételt teszttel igazoljuk a 3–10x nagyobb teherbírást."
+        }
+      ],
+      "use_cases_title": "Mikor kötelező a terhelésteszt?",
+      "use_cases_desc": "Egy összeomló webshop több millió forint elmaradt forgalmat és elégetett hirdetést jelent",
+      "use_cases_items": [
+        {
+          "title": "Black Friday & Szezonális Akciók",
+          "description": "Webáruházak felkészítése a normál forgalom 5–20-szorosára.",
+          "example": "Szimuláljuk a hírlevél-kiküldés utáni 15 perces rohamot 3 000 egyidejű vásárlóval.",
+          "roi": "Zökkenőmentes csúcsforgalmi bevétel"
+        },
+        {
+          "title": "Új Szoftver / Portál Élesítése Előtt",
+          "description": "Frissen fejlesztett egyedi rendszerek és API-k vizsgáztatása éles indulás előtt.",
+          "example": "Megtaláljuk a N+1 adatbázis lekérdezéseket és memória-szivárgásokat még az átadás előtt.",
+          "roi": "Megbízható indulás, elégedett első felhasználók"
+        },
+        {
+          "title": "TV-Szereplés (pl. Cápák Között)",
+          "description": "Médiaszereplés másodpercében egyszerre több tízezer látogató zúdul az oldalra.",
+          "example": "Előzetes Cloudflare caching + stresszteszt, hogy egyetlen néző se kapjon 502-es hibát.",
+          "roi": "A média-figyelem 100%-os konverziója"
+        },
+        {
+          "title": "Belső Rendszerek & Jegyértékesítés",
+          "description": "Rendezvény-regisztrációk, iskolai/sport nevezések és jegyportálok nyitási csúcsa.",
+          "example": "Az egyszerre történő bejelentkezések és foglalási zárások (race condition) ellenőrzése.",
+          "roi": "Hiba- és összeomlásmentes regisztráció"
+        }
+      ],
+      "pricing_title": "Terheléstesztelés Csomagok",
+      "pricing_desc": "Projektalapú stressztesztek részletes mérnöki diagnosztikával. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Stress Check Start",
+          "desc": "Célzott terhelésteszt max. 1.000 egyidejű felhasználóval.",
+          "price": "149000",
+          "priceFrom": "true",
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "features": [
+            "Max. 1 000 egyidejű virtuális felhasználó szimulálása",
+            "Főoldal + kulcs aloldalak / API végpontok tesztelése",
+            "Válaszidő, hibaarány és áteresztőképesség grafikonok",
+            "Összefoglaló PDF teljesítmény-jelentés javaslatokkal"
+          ],
+          "duration_label": "Ajánlott: kampányra készülő kisebb cégeknek, landing oldalaknak."
+        },
+        "detailed": {
+          "name": "Campaign Ready Audit",
+          "desc": "Teljes vásárlási folyamat teszt 5.000 egyidejű felhasználóval.",
+          "price": "290000",
+          "priceFrom": "true",
+          "sub": "egyszeri díj (ÁFA-mentes)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Akár 5 000 egyidejű virtuális felhasználó Azure-ból",
+            "Valós böngészős/API kosár + pénztár forgatókönyv",
+            "Szerveroldali CPU/RAM/DB szűk keresztmetszet elemzés",
+            "Konkrét Redis/Cloudflare/DB optimalizálási terv",
+            "1 db kontroll-teszt a javítások ellenőrzésére"
+          ],
+          "duration_label": "Ajánlott: közepes és nagyobb webáruházaknak."
+        },
+        "complex": {
+          "name": "Enterprise Scale & Tuning",
+          "desc": "15.000+ felhasználó tesztelése + teljes mérnöki gyorsítás.",
+          "price": "590000",
+          "priceFrom": "true",
+          "sub": "egyszeri projekt díj (ÁFA-mentes)",
+          "features": [
+            "15 000+ egyidejű felhasználó több régióból",
+            "Teljesítmény-szűk keresztmetszetek közvetlen elhárítása általunk",
+            "Auto-scaling, CDN és cache réteg éles implementációja",
+            "Ismételt terheléspróba 99.9%+ sikeres válasszal",
+            "Élő kampány-ügyelet igény szerint"
+          ],
+          "duration_label": "Ajánlott: TV-kampányok, portálok és enterprise platformok."
+        }
+      },
+      "how_we_work_title": "Hogyan tesztelünk biztonságosan?",
+      "how_we_work_desc": "Kontrollált, fokozatos terheléssel — vészleállító kapcsolóval.",
+      "how_we_work_steps": [
+        {
+          "title": "Forgatókönyv Tervezés",
+          "description": "Kijelöljük a valós felhasználói útvonalakat és a célterhelést."
+        },
+        {
+          "title": "Szkript & Staging",
+          "description": "Elkészítjük a terhelő robotokat éjszakai vagy staging futtatásra."
+        },
+        {
+          "title": "Fokozatos Terhelés",
+          "description": "100 főtől lépcsőzetesen emeljük a nyomást a határpontig."
+        },
+        {
+          "title": "Diagnosztika & Jelentés",
+          "description": "Átadjuk a pontos számokat és végrehajtható gyorsítási tervet."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Tudnivalók a terheléstesztekről",
+      "faq_items": [
+        {
+          "question": "Leállhat az élő webshopunk a teszt közben?",
+          "answer": "Mindig javasoljuk staging környezet vagy hajnali idősáv használatát, és fokozatosan emeljük a terhelést az azonnali leállító gombbal, hogy kárt ne okozzunk."
+        },
+        {
+          "question": "Meg tudjátok mondani, pontosan melyik kódsor vagy bővítmény lassít?",
+          "answer": "Igen! A terheléssel párhuzamosan monitorozzuk a szerver CPU/memória/adatbázis lekérdezéseit is, így tűpontosan látszik a szűk keresztmetszet."
+        },
+        {
+          "question": "Segítetek a gyorsítás megvalósításában is?",
+          "answer": "Természetesen — nem csak a hibalistát adjuk át, kérésre be is állítjuk a Cloudflare-t, Redisszel és DB indexekkel."
+        }
+      ],
+      "cta_title": "Tudd meg, mennyit bír a rendszered"
+    },
+    "VirtualDesktop": {
+      "title": "Felhős Virtuális Munkaállomások (VDI)",
+      "description": "Központilag védett Windows 11 felhő-munkaállomások (Azure Virtual Desktop) távmunkásoknak, könyvelőknek és mérnököknek — céges adat sosem hagyja el a védett adatközpontot.",
+      "keywords": "azure virtual desktop, vdi munkaállomás, távmunka biztonságos desktop, felhős windows munkaállomás, könyvelői felhő szerver",
+      "hero_features": [
+        "Teljes értékű Windows 11 munkaállomás böngészőből vagy távoli asztalról",
+        "Szigorú adatvédelem: vágólap, USB és helyi letöltés tiltható",
+        "Villámgyors hozzáférés az Azure-ban futó ERP/könyvelő programokhoz",
+        "Microsoft Entra ID + kötelező kétfaktoros (MFA) védelem",
+        "GPU-s opció mérnöki CAD / 3D / videós munkához is",
+        "Új távmunkás gépének kiosztása 5 perc alatt postázás nélkül"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Céges Adat a Felhőben Marad",
+          "description": "A dolgozó akár saját laptopjáról vagy tabletjéről is dolgozhat — egyetlen ügyfélfájl sem kerül lementésre az eszközére."
+        },
+        {
+          "title": "Nulla Hardver-logisztika",
+          "description": "Új külsős kolléga vagy könyvelő belépésekor nem kell drága laptopot vásárolni és konfigurálni, azonnal kap felhő-asztalt."
+        },
+        {
+          "title": "Gyors ERP & Hálózati Elérés",
+          "description": "Minden munkatárs közvetlen gigabites adatközponti sávszélességen éri el a közös adatbázisokat és fájlokat."
+        }
+      ],
+      "use_cases_title": "Hol verhetetlen a felhős VDI?",
+      "use_cases_desc": "Maximális rugalmasság a dolgozóknak, banki szintű kontroll a cégvezetésnek",
+      "use_cases_items": [
+        {
+          "title": "Távmunkás Pénzügyi & Könyvelő Csapatok",
+          "description": "Érzékeny bér- és számlázási programok (pl. RLB, Kulcs-Soft, SAP) biztonságos futtatása otthonról.",
+          "example": "A könyvelő otthonról belép MFA-val, dolgozik a közös adatbázisban, de fájlt nem tud kimenteni a saját gépére.",
+          "roi": "Teljes GDPR védelem távmunkában is"
+        },
+        {
+          "title": "Külső Alvállalkozók & Projekt-fejlesztők",
+          "description": "Időszakos külső partnerek gyors bekötése és projektzáráskor 1 kattintásos tiltása.",
+          "example": "A projekt végén visszavonod a belépést, a forráskód és a rajzok 100%-a nálad marad.",
+          "roi": "0 szellemi tulajdon-vesztés"
+        },
+        {
+          "title": "Több Telephelyes Kiskereskedelem / Irodák",
+          "description": "Egységes, központilag frissített munkakörnyezet drága lokális szerverek nélkül.",
+          "example": "Központi Windows frissítések és automatikus éjszakai mentés minden asztalra.",
+          "roi": "Kevesebb rendszergazdai kiszállás"
+        },
+        {
+          "title": "Mérnöki / CAD Tervező Csapatok",
+          "description": "Nagy memória- és GPU-igényű programok futtatása vékony kliensekről.",
+          "example": "Erőművi Azure GPU munkaállomás, amit csak munkaidőben számláz a rendszer.",
+          "roi": "Drága munkaállomás-vásárlások kiváltása"
+        }
+      ],
+      "pricing_title": "Felhős Munkaállomás (VDI) Csomagok",
+      "pricing_desc": "Kezelt Azure Virtual Desktop környezetek bevezetéssel és havi üzemeltetéssel. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "VDI Team (1–5 fő)",
+          "desc": "Gyors, biztonságos felhő munkaállomás kis csapatnak.",
+          "price": "69000",
+          "priceFrom": "true",
+          "sub": "bevezetés (+ 24.900 Ft/fő/hó üzemeltetés)",
+          "features": [
+            "1–5 felhasználói Windows 11 felhős munkaállomás",
+            "Microsoft Entra ID belépés & kötelező MFA",
+            "Közös céges fájltárhely (FSLogix profilokkal)",
+            "Helyi letöltés és USB átirányítás tiltása opcionálisan",
+            "Napi automatikus mentés és frissítés"
+          ],
+          "duration_label": "Ajánlott: könyvelőknek, kisebb irodáknak, ügyvédeknek."
+        },
+        "detailed": {
+          "name": "VDI Business (6–25 fő)",
+          "desc": "Automatikusan skálázódó host pool & munkaidő-optimalizálás.",
+          "price": "149000",
+          "priceFrom": "true",
+          "sub": "bevezetés (+ 19.900 Ft/fő/hó üzemeltetés)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "6–25 felhasználó támogatása multi-session hostokon",
+            "Munkaidős Auto-Start / Stop (akár 50% Azure költségmegtakarítás)",
+            "Belső ERP / pénzügyi alkalmazások központi telepítése",
+            "DLP szabályok (képernyőkép, vágólap, USB védelem)",
+            "Menedzselt Helpdesk támogatás munkaidőben"
+          ],
+          "duration_label": "Ajánlott: növekvő KKV csapatoknak és távmunkás irodáknak."
+        },
+        "complex": {
+          "name": "Enterprise & GPU Workstation",
+          "desc": "Dedikált CAD/GPU gépek, privát irodai VPN és VDI klaszter.",
+          "price": "290000",
+          "priceFrom": "true",
+          "sub": "bevezetés (egyedi / fő havidíjjal)",
+          "features": [
+            "NVIDIA GPU-gyorsított tervezői/mérnöki munkaállomások",
+            "Site-to-Site VPN vagy ExpressRoute meglévő irodához",
+            "Szigorú Conditional Access & Zero-Trust biztonság",
+            "Egyedi automatizált arculati lemezkép-kezelés",
+            "Dedikált cloud rendszermérnök"
+          ],
+          "duration_label": "Ajánlott: mérnökirodáknak és nagyvállalati csapatoknak."
+        }
+      },
+      "how_we_work_title": "A bevezetés menete",
+      "how_we_work_desc": "Akár egy hét alatt átköltöztetjük az irodai alkalmazásaitokat a felhőbe.",
+      "how_we_work_steps": [
+        {
+          "title": "Alkalmazás Audit",
+          "description": "Felmérjük, milyen programok (ERP, Office, CAD) és adatok kellenek."
+        },
+        {
+          "title": "Arany Lemezkép",
+          "description": "Összeállítjuk az előtelepített, optimalizált Windows 11 környezetet."
+        },
+        {
+          "title": "Entra ID & Biztonság",
+          "description": "Bekötjük a kétfaktoros védelmet és az adatvédelmi tilalmakat."
+        },
+        {
+          "title": "Átadás & Üzemeltetés",
+          "description": "Mindenki kap egy belépési linket és azonnal dolgozhat."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Tudnivalók a felhős Windows munkaállomásokról",
+      "faq_items": [
+        {
+          "question": "Szükséges drága számítógép a dolgozó oldalán a csatlakozáshoz?",
+          "answer": "Nem! Bármilyen olcsó laptopról, MacBookról vagy akár böngészőből akadásmentesen futtatható, mert minden számítás az Azure adatközpontban történik."
+        },
+        {
+          "question": "Működik rajta a helyi könyvelő- vagy számlázóprogramunk?",
+          "answer": "Igen, teljes értékű Windows 11 környezet fut, így bármilyen meglévő magyar ügyviteli, könyvelő vagy ERP szoftver futtatható benne."
+        },
+        {
+          "question": "Mi van, ha valaki otthonról Macet vagy Linuxot használ?",
+          "answer": "A Microsoft Windows App kliensen vagy modern böngészőn keresztül Macről, iPadről, Linuxról és Windowsról is tökéletesen elérhető."
+        }
+      ],
+      "cta_title": "Válts biztonságos felhő-irodára"
+    },
+    "WhiteLabelPortal": {
+      "title": "White-Label Titkosított Ügyfélportál",
+      "description": "Saját céges logóval és domainnel (ugyfelkapu.ceged.hu) működő biztonságos ügyfélkapu könyvelőknek, ügyvédeknek és tanácsadóknak — felejtsd el a WeTransfert és a Gmailen elkallódó PDF-eket!",
+      "keywords": "white label ügyfélportál, biztonságos fájlmegosztó cégeknek, könyvelői ügyfélkapu, titkosított dokumentumtár",
+      "hero_features": [
+        "Saját domain (portal.ceged.hu) és 100%-os céges arculat",
+        "Titkosított EU Azure fájltárolás lejárati dátumok és WeTransfer nélkül",
+        "Külön mappák ügyfelenként + tömeges számla/szerződés feltöltés",
+        "Automatikus e-mail értesítő új dokumentum feltöltésekor",
+        "Letöltési napló: pontosan látod, az ügyfél mikor nyitotta meg",
+        "Beépített projekt-státusz és kérdés/jegykezelő felület"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Professzionális Márkaépítés",
+          "description": "Az ügyfeleid nem ingyenes fájlküldő linkeket kapnak, hanem egy elegáns, saját névre szóló üzleti portált."
+        },
+        {
+          "title": "Teljes GDPR Megfelelőség",
+          "description": "A bizalmas szerződések és bérpapírok nem e-mail szervereken csücsülnek, hanem titkosított EU tárolóban."
+        },
+        {
+          "title": "Visszakövethető Átadás",
+          "description": "Minden dokumentum megtekintése és letöltése időbélyeggel naplózva van — nincs több „nem kaptam meg” vita."
+        }
+      ],
+      "use_cases_title": "Mely szakmáknak aranybánya?",
+      "use_cases_desc": "Váltsd ki a kaotikus email-láncokat egy elegáns, kereshető ügyfélkapuval",
+      "use_cases_items": [
+        {
+          "title": "Könyvelő & Bérszámfejtő Irodák",
+          "description": "Havi bizonylatok, bevallások és bérlisták strukturált bekérése és átadása.",
+          "example": "A cégvezető 2 kattintással feltölti a havi számlákat, a könyvelő pedig azonnal látja és jóváhagyja.",
+          "roi": "Havi több órás email-keresgélés megszüntetése"
+        },
+        {
+          "title": "Ügyvédi & Adótanácsadó Irodák",
+          "description": "Bizalmas szerződések, cégkivonatok és peranyagok védett adattárolása (Data Room).",
+          "example": "Ügyfél-specifikus jelszavas vagy kétfaktoros hozzáférés a legérzékenyebb iratokhoz.",
+          "roi": "Ügyvédi titoktartás technológiai garantálása"
+        },
+        {
+          "title": "Építész, Tervező & Mérnökirodák",
+          "description": "Nagy méretű CAD tervek, látványtervek és költségvetések verziózott megosztása.",
+          "example": "Az építtető bármikor eléri a legfrissebb alaprajzot anélkül, hogy lejárna a letöltő link.",
+          "roi": "Soha többé téves, régi tervrajzból dolgozó kivitelező"
+        },
+        {
+          "title": "Marketing & IT Ügynökségek",
+          "description": "Havi riportok, számlák, grafikai anyagok és projekt mérföldkövek egy helyen.",
+          "example": "Az ügyfél belépve azonnal látja a havi eredményeket és a jóváhagyandó feladatokat.",
+          "roi": "Prémium ügynökségi megjelenés, kevesebb megbeszélés"
+        }
+      ],
+      "pricing_title": "White-Label Ügyfélportál Csomagok",
+      "pricing_desc": "Kulcsrakész, egyedi domainre kötött céges portálok. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Portal Start",
+          "desc": "Saját arculatos dokumentumtár kisebb irodáknak.",
+          "price": "120000",
+          "priceFrom": "true",
+          "sub": "bevezetés (+ 29.000 Ft/hó / 100 GB tárhely)",
+          "features": [
+            "Saját aldomain (portal.ceged.hu) + céges logó és színek",
+            "100 GB titkosított EU Azure Blob Storage",
+            "Akár 25 elkülönített ügyfélfiók és jogosultság",
+            "Automatikus értesítők fájlfeltöltéskor",
+            "Letöltési és megtekintési előzmények naplózása"
+          ],
+          "duration_label": "Ajánlott: egyéni ügyvédeknek, kisebb könyvelőknek."
+        },
+        "detailed": {
+          "name": "Portal Pro Business",
+          "desc": "Korlátlan ügyfél, státuszkövetés és hibajegy modul.",
+          "price": "190000",
+          "priceFrom": "true",
+          "sub": "bevezetés (+ 49.000 Ft/hó / 500 GB tárhely)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Korlátlan ügyfél- és munkatársi fiók",
+            "500 GB titkosított, naponta mentett Azure tárhely",
+            "Beépített projekt státusz + kérdés/válasz üzenőfal",
+            "2FA (kétfaktoros) belépési opció ügyfeleknek",
+            "Egyedi havi emlékeztető pl. „töltsd fel a havi bizonylatokat!”"
+          ],
+          "duration_label": "Ajánlott: könyvelőirodáknak, mérnököknek, ügynökségeknek."
+        },
+        "complex": {
+          "name": "Enterprise Client Hub",
+          "desc": "2 TB tárhely, CRM/Számlázó szinkron és egyedi modulok.",
+          "price": "390000",
+          "priceFrom": "true",
+          "sub": "bevezetés (+ 89.000 Ft/hó / 2 TB tárhely)",
+          "features": [
+            "2 TB dedikált, replikált Azure tároló",
+            "Automatikus számla szinkron (Számlázz.hu / Billingo / Stripe)",
+            "CRM webhook összeköttetés (új ügyfél ➔ automata portálfiók)",
+            "Jogi audit napló + egyedi dokumentum-jóváhagyási gomb",
+            "Dedikált fejlesztői támogatás egyedi bővítésekhez"
+          ],
+          "duration_label": "Ajánlott: nagyobb tanácsadó és pénzügyi cégeknek."
+        }
+      },
+      "how_we_work_title": "Hogyan kapod meg a portálodat?",
+      "how_we_work_desc": "Pár nap alatt testreszabjuk a céged arculatára és átadjuk a kulcsokat.",
+      "how_we_work_steps": [
+        {
+          "title": "Arculat & Domain",
+          "description": "Bekötjük a logódat, színeidet és a `portal.ceged.hu` aldomaint."
+        },
+        {
+          "title": "Mappaszerkezet",
+          "description": "Kialakítjuk az alapértelmezett ügyfél-mappákat (pl. Számlák, Szerződések)."
+        },
+        {
+          "title": "Felhő Telepítés",
+          "description": "Élesítjük a titkosított Azure tárhelyet és e-mail értesítéseket."
+        },
+        {
+          "title": "Ügyfelek Meghívása",
+          "description": "Betanítjuk a csapatodat a portál napi 2 perces használatára."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Minden a saját márkás ügyfélportálról",
+      "faq_items": [
+        {
+          "question": "Látszik bárhol, hogy a BacklineIT fejlesztette?",
+          "answer": "Nem! A felület, a böngészőfül címe és a kiküldött értesítő levelek is a te saját céges neveden és logóddal jelennek meg."
+        },
+        {
+          "question": "Mekkora fájlokat lehet rajta küldeni (pl. CAD vagy videó)?",
+          "answer": "Nincs a 25 MB-os e-mail limit: több gigabájtos fájlokat is könnyedén kezel nagy sebességgel."
+        },
+        {
+          "question": "Mennyire biztonságosak az adatok a WeTransferhez képest?",
+          "answer": "Minden fájl titkosítva (AES-256) pihen az Európai Unió Azure szerverein, és csak bejelentkezett, jogosult felhasználó töltheti le."
+        }
+      ],
+      "cta_title": "Indítsd el a saját ügyfélkapudat"
+    },
+    "CookielessAnalytics": {
+      "title": "GDPR-Kompatibilis, Cookie-Mentes Webanalitika",
+      "description": "Google Analytics 4 alternatíva EU-s Azure szerveren: pontos látogatottsági és konverziómérés idegesítő süti-felugró ablakok nélkül — 100%-os adatszuverenitással és élő látogatói térképpel.",
+      "keywords": "gdpr webanalitika, cookie mentes analitika, google analytics alternatíva, eu szerver analitika, konverziómérés sütik nélkül",
+      "hero_features": [
+        "Nulla süti (Cookie-free) — nincs szükség zavaró GDPR süti-bannerre a méréshez",
+        "100% EU-s Azure szerver & Redis: adat nem megy az USA-ba",
+        "Állandó adblocker-álló mérés (< 2 KB script, villámgyors oldal)",
+        "Valós idejű 3D/városi látogatói térkép és aktív munkamenetek",
+        "Ajánlatkérési, gombnyomás- és vásárlási konverziók követése",
+        "Letisztult magyar nyelvű vezetői dashboard bonyolult GA4 menük nélkül"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Akár +40% Több Mérhető Adat",
+          "description": "A sütibanneren elutasított vagy adblockerezett látogatók helyett végre látod a valódi teljes forgalmadat."
+        },
+        {
+          "title": "Gyorsabb Oldal & Jobb UX",
+          "description": "A hatalmas külső tracking scriptek helyett egy pillekönnyű (< 2 KB) saját mérés fut, ami javítja a PageSpeed pontszámot."
+        },
+        {
+          "title": "Átlátható 1-Oldalas Riport",
+          "description": "Nem kell Google Analytics tanfolyam hozzá: 3 másodperc alatt látod, melyik hirdetésből jön az ügyfél."
+        }
+      ],
+      "use_cases_title": "Mikor érdemes lecserélni vagy kiegészíteni a GA4-et?",
+      "use_cases_desc": "Tiszta, jogszerű és könnyen érthető számok azoknak, akik döntéseket akarnak hozni",
+      "use_cases_items": [
+        {
+          "title": "Süti-Elutasítások Miatt „Vak” Weboldalak",
+          "description": "Sok cégnél a látogatók 35–50%-a elutasítja a sütiket, így a GA4 hamis, hiányos számokat mutat.",
+          "example": "Személyes adatot és sütit nem tároló mérésünkkel jogszerűen látod a 100%-os látogatószámot.",
+          "roi": "Pontos döntéshozatal valós forgalom alapján"
+        },
+        {
+          "title": "Core Web Vitals & SEO Gyorsítás",
+          "description": "Nehéz marketing scriptek kiváltása pehelysúlyú saját szerveroldali/edge méréssel.",
+          "example": "A mobil PageSpeed pontszám javulása a fő szál tehermentesítésével.",
+          "roi": "Jobb Google helyezés és alacsonyabb visszafordulás"
+        },
+        {
+          "title": "Üzleti Konverzió & CTA Követés",
+          "description": "Telefonszám-kattintások, űrlapküldések és PDF letöltések automatikus mérése.",
+          "example": "Heti egyértelmű e-mail összefoglaló: hány ajánlatkérés jött Google-ből vs. LinkedInről.",
+          "roi": "Okosabb marketing költségvetés-elosztás"
+        },
+        {
+          "title": "Adatérzékeny Szektorok (Egészségügy, Pénzügy, Jog)",
+          "description": "Ahol szigorú belső szabályzat tiltja az amerikai felhőszolgáltatók nyomkövető sütijeit.",
+          "example": "100%-ban az Európai Unióban kezelt, anonimizált agregált mutatók.",
+          "roi": "Teljes hatósági és NAIH/GDPR megfelelés"
+        }
+      ],
+      "pricing_title": "GDPR Analitika Csomagok",
+      "pricing_desc": "Havidíjas SaaS csomagok több weboldalhoz is. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Analytics Start",
+          "desc": "Tiszta, sütimentes mérés 1 weboldalhoz.",
+          "price": "14900",
+          "priceFrom": "true",
+          "sub": "Ft / hó (max. 50.000 oldalletöltés/hó)",
+          "features": [
+            "1 domain teljes körű, cookie-mentes mérése",
+            "Valós idejű látogató-számláló & forrás/UTM elemzés",
+            "Legnépszerűbb oldalak és visszafordulási mutatók",
+            "Napi/heti PDF vagy e-mail összefoglaló riport",
+            "100% EU Azure adatközponti tárolás"
+          ],
+          "duration_label": "Ajánlott: céges weboldalaknak, blogoknak, rendelőnek."
+        },
+        "detailed": {
+          "name": "Growth Analytics Pro",
+          "desc": "Konverziós célok, élő térkép és több domain kezelése.",
+          "price": "29900",
+          "priceFrom": "true",
+          "sub": "Ft / hó (max. 250.000 oldalletöltés/hó)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Akár 5 weboldal központi kezelése",
+            "Egyedi konverziós események (CTA, telefon, űrlap, kosár)",
+            "Élő városi szintű látogatói térkép (Cloudflare Geo)",
+            "Saját aldomain (stats.ceged.hu) az adblocker védelemhez",
+            "Korlátlan csapattagi megtekintői hozzáférés"
+          ],
+          "duration_label": "Ajánlott: aktív B2B cégeknek és növekvő webshopoknak."
+        },
+        "complex": {
+          "name": "Agency / Enterprise Suite",
+          "desc": "Korlátlan weboldalak, nagy forgalom és egyedi riporting.",
+          "price": "69000",
+          "priceFrom": "true",
+          "sub": "Ft / hó (1.000.000+ oldalletöltés/hó)",
+          "features": [
+            "Korlátlan ügyfél-weboldal egyetlen ügynökségi fiókban",
+            "White-label ügyfél-dashboardok és havi automata PDF riport",
+            "Nyers adat export API (Power BI / Looker Studio felé)",
+            "Szerveroldali konverzió-követés támogatása",
+            "Dedikált fejlesztői segítség az események bekötéséhez"
+          ],
+          "duration_label": "Ajánlott: marketing ügynökségeknek és nagy portáloknak."
+        }
+      },
+      "how_we_work_title": "5 perces beüzemelés",
+      "how_we_work_desc": "Egyetlen apró script beillesztésével azonnal indul az adatgyűjtés.",
+      "how_we_work_steps": [
+        {
+          "title": "Fiók & Domain",
+          "description": "Felveszünk a rendszerbe és opcionálisan beállítjuk a saját mérő-aldomaint."
+        },
+        {
+          "title": "Szkript Bekötés",
+          "description": "Beillesztjük a < 2 KB kódot GTM-be vagy a weboldal fejlécébe."
+        },
+        {
+          "title": "Célok Beállítása",
+          "description": "Bekötjük az ajánlatkérő gombokat és kulcs konverziókat."
+        },
+        {
+          "title": "Élő Mérés",
+          "description": "Azonnal láthatóak a valós látogatók süti-figyelmeztetés nélkül."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "GDPR jogszerűség és technikai működés",
+      "faq_items": [
+        {
+          "question": "Tényleg nem kell süti-banner (Cookie Banner) ehhez a méréshez?",
+          "answer": "Ha a weboldaladon csak ez az analitika fut és nincs más marketing/remarketing pixel, a rendszerünk semmilyen sütit nem tesz a látogató böngészőjébe és nem tárol személyazonosításra alkalmas adatot — így a GDPR szerint sem szükséges hozzájárulási ablak a látogatottsági méréshez."
+        },
+        {
+          "question": "Futtatható a Google Analytics 4 mellett párhuzamosan is?",
+          "answer": "Igen! Sok partnerünk meghagyja a GA4-et a Google Ads miatt, miközben a mi felületünkön ellenőrzi a valódi, adblockerektől nem csonkított látogatószámot."
+        },
+        {
+          "question": "Lassítja az oldalt a mérőkód?",
+          "answer": "A szkript mérete kevesebb mint 2 KB és aszinkron töltődik be, gyakorlatilag mérhetetlen (0 ms blokkoló) hatása van."
+        }
+      ],
+      "cta_title": "Válts tiszta, EU-s analitikára"
+    },
+    "TaxIdValidationAPI": {
+      "title": "Magyar Adószám & Céginformáció Validáló API",
+      "description": "B2B webshop pénztárba és CRM-be köthető gyorsítótárazott mikroszolgáltatás: az adószám beírásával automatikusan kitölti a pontos cégnevet, székhelyet és figyeli a felszámolási/NAV kockázatokat.",
+      "keywords": "adószám lekérdezés api, céginformáció automata kitöltés webshop, nav adószám ellenőrző, b2b pénztár bővítmény",
+      "hero_features": [
+        "Adószám beírására azonnali hivatalos cégnév és székhely kitöltés",
+        "EU-s közösségi adószám (VIES) érvényességi ellenőrzés",
+        "Felszámolás, csőd és kényszertörlés figyelmeztetés CRM-be",
+        "Villámgyors Azure Redis gyorsítótár (< 30 ms válaszidő)",
+        "Kész WooCommerce / Shopify pénztár modul + tiszta REST API",
+        "Hibás számlázási adatok és sztornó-számlák 95%-os visszaszorítása"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Kevesebb Sztornó Számla",
+          "description": "A vevők nem írják el többé a saját Kft.-jük nevét vagy címét — a pénztárod mindig a NAV/cégjegyzék szerinti adatot használja."
+        },
+        {
+          "title": "Gyorsabb B2B Vásárlás",
+          "description": "Egy 8-11 jegyű adószám megadásával 4–5 mező magától kitöltődik, ami érezhetően javítja a B2B pénztár konverziót."
+        },
+        {
+          "title": "Hitelkockázati Védelem",
+          "description": "Átutalásos vevőknél előre jelez a rendszer, ha a partner ellen kényszertörlés vagy végrehajtás indult."
+        }
+      ],
+      "use_cases_title": "Hol térül meg az első hónapban?",
+      "use_cases_desc": "Tiszta partner-adatbázis manuális keresgélés nélkül",
+      "use_cases_items": [
+        {
+          "title": "B2B Webshop Pénztár Gyorsítás",
+          "description": "Céges vásárlók azonnali kiszolgálása elgépelésmentes számlázási adatokkal.",
+          "example": "A vevő beüti az adószámot -> azonnal kitöltődik az irányítószám, város, utca, cégnév.",
+          "roi": "Magasabb pénztár-befejezési arány"
+        },
+        {
+          "title": "CRM Partner-adatbázis Tisztítás",
+          "description": "Meglévő több ezer ügyfél adószámának és székhelyének éjszakai automatikus frissítése.",
+          "example": "Jelzi az ügyfélkezelőnek, ha egy régi VIP partner székhelyet váltott vagy adószámát felfüggesztették.",
+          "roi": "Mindig naprakész CRM és pontos szerződések"
+        },
+        {
+          "title": "Átutalásos / Halasztott Fizetés Kockázatszűrése",
+          "description": "Automatikus vörös zászló, mielőtt több milliós árut adnál ki utalásos fizetéssel.",
+          "example": "A rendelés jóváhagyásánál piros jelzés figyelmeztet a partner negatív cégkockázatára.",
+          "roi": "Behajthatatlan kintlévőségek megelőzése"
+        },
+        {
+          "title": "Ügyfélregisztrációs Űrlapok Dúsítása",
+          "description": "Ajánlatkérők és partnerek cégméretének és fő tevékenységi körének (TEÁOR) lekérése.",
+          "example": "Az értékesítő az első hívás előtt látja a leendő ügyfél árbevételi sávját és cégadatát.",
+          "roi": "Felkészültebb B2B értékesítési hívások"
+        }
+      ],
+      "pricing_title": "Adószám & Cégadat API Csomagok",
+      "pricing_desc": "Gyorsítótárazott mikroszolgáltatás webshopokba és vállalati rendszerekbe. Az árak ÁFA-mentesek.",
+      "plans": {
+        "base": {
+          "name": "Checkout Autocomplete",
+          "desc": "Webshop pénztár adószám-kitöltő bővítmény + API.",
+          "price": "89000",
+          "priceFrom": "true",
+          "sub": "bevezetés (+ 14.900 Ft/hó / 2.000 lekérdezés)",
+          "features": [
+            "WooCommerce / egyedi weboldal pénztár integráció",
+            "Hivatalos cégnév, adószám, EU VAT és székhely kitöltés",
+            "Azure Redis villám-gyorsítótárazás",
+            "Havi max. 2 000 valós idejű lekérdezés",
+            "Automatikus számlázó-kompatibilis adatformátum"
+          ],
+          "duration_label": "Ajánlott: B2B megrendeléseket fogadó webshopoknak."
+        },
+        "detailed": {
+          "name": "CRM & Risk Shield",
+          "desc": "Webshop + CRM szinkron és felszámolási kockázatjelző.",
+          "price": "169000",
+          "priceFrom": "true",
+          "sub": "bevezetés (+ 29.900 Ft/hó / 10.000 lekérdezés)",
+          "badge": "Legnépszerűbb",
+          "popular": true,
+          "features": [
+            "Magyar adószám + EU VIES valós idejű ellenőrzés",
+            "Felszámolás, csőd és kényszertörlés státusz riasztás",
+            "MiniCRM / HubSpot / egyedi ERP webhook integráció",
+            "TEÁOR, főtevékenység és cégméret dúsítás",
+            "Havi 10 000 gyorsítótárazott lekérdezés"
+          ],
+          "duration_label": "Ajánlott: B2B kereskedőknek és nagykereskedéseknek."
+        },
+        "complex": {
+          "name": "Enterprise Data Cleanse",
+          "desc": "Korlátlan ERP szinkron & havi teljes partnerállomány-audit.",
+          "price": "340000",
+          "priceFrom": "true",
+          "sub": "bevezetés (+ 59.000 Ft/hó nagy volumenhez)",
+          "features": [
+            "Korlátlan belső API lekérdezés dedikált Azure csomóponton",
+            "Teljes meglévő ERP/SAP partner-törzs éjszakai tisztítása",
+            "Egyedi hitelkeret-jóváhagyási szabályrendszer",
+            "99.95% API rendelkezésreállási garancia",
+            "Dedikált fejlesztői támogatás"
+          ],
+          "duration_label": "Ajánlott: nagykereskedelmi és pénzügyi vállalatoknak."
+        }
+      },
+      "how_we_work_title": "Hogyan kötjük be?",
+      "how_we_work_desc": "Akár 1–2 nap alatt beépítjük a webshopod vagy CRM rendszered pénztárába.",
+      "how_we_work_steps": [
+        {
+          "title": "API Kulcs & Teszt",
+          "description": "Biztosítjuk a dedikált végpontot és dokumentációt."
+        },
+        {
+          "title": "Pénztár / CRM Bekötés",
+          "description": "Telepítjük a bővítményt vagy bekötjük az űrlap mezőkhöz."
+        },
+        {
+          "title": "Validációs Szabályok",
+          "description": "Beállítjuk a magyar és EU adószám-formátum ellenőrzéseket."
+        },
+        {
+          "title": "Éles Használat",
+          "description": "Az ügyfelek 2 másodperc alatt hibátlanul kitöltik az adataikat."
+        }
+      ],
+      "faq_title": "Gyakori Kérdések",
+      "faq_desc": "Tudnivalók a cégadat-validáló API-ról",
+      "faq_items": [
+        {
+          "question": "Működik az EU-s közösségi adószámok (VIES) ellenőrzése is?",
+          "answer": "Igen! Magyar adószám mellett automatikusan ellenőrzi az EU-s ÁFA számok érvényességét is határon átnyúló számlázáshoz."
+        },
+        {
+          "question": "Lelassítja a pénztár oldalt a külső lekérdezés?",
+          "answer": "Nem: a gyakori adatok az Azure Managed Redis gyorsítótárunkból érkeznek < 30 milliszekundum alatt, így észrevehetetlenül gyors."
+        },
+        {
+          "question": "Meg tudja tisztítani a már meglévő, hibás CRM partnerlistánkat is?",
+          "answer": "Igen, az Enterprise csomaggal a meglévő ügyféltábládat is végigfutjuk és javítjuk az elavult címeket, adószámokat."
+        }
+      ],
+      "cta_title": "Automatizáld a cégadat-kitöltést"
     }
   },
   "ProductDetailPage": {

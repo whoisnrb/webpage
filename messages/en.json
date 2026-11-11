@@ -2063,7 +2063,9 @@
       "core": "Core IT Services",
       "core_desc": "Managed support, cloud, Microsoft 365 and secure daily operations.",
       "infrastructure": "Infrastructure & Development",
-      "infrastructure_desc": "Web development, servers, networks, integrations and custom solutions."
+      "infrastructure_desc": "Web development, servers, networks, integrations and custom solutions.",
+      "security_cloud": "Cybersecurity & Cloud Resilience",
+      "security_cloud_desc": "24/7 NIS2 monitoring, WAF shield, DRaaS, phishing drills & VDI."
     },
     "services": "Services",
     "products": "Solutions",
@@ -2107,7 +2109,35 @@
       "dashboards": "Business Dashboards",
       "dashboards_desc": "Power BI, Looker Studio and automated reports",
       "remote_helpdesk": "Remote Helpdesk",
-      "remote_helpdesk_desc": "Remote IT support and ticketing"
+      "remote_helpdesk_desc": "Remote IT support and ticketing",
+      "sec_monitoring": "24/7 Security Monitoring & NIS2",
+      "sec_monitoring_desc": "Continuous attack-surface monitoring & monthly executive PDFs",
+      "phishing_sim": "Phishing Simulation & Training",
+      "phishing_sim_desc": "Realistic test campaigns & automated awareness courses",
+      "managed_waf": "Enterprise WAF Shield",
+      "managed_waf_desc": "Azure Front Door firewall, DDoS & malicious bot filtering",
+      "enterprise_rag": "Private Enterprise AI (RAG)",
+      "enterprise_rag_desc": "GDPR-safe internal ChatGPT over company documents",
+      "doc_ocr": "AI Document & Invoice OCR",
+      "doc_ocr_desc": "Extract invoices, delivery notes & contracts straight to ERP",
+      "voice_ai": "AI Call & Meeting Analyzer",
+      "voice_ai_desc": "Speech transcription, action items & CRM synchronization",
+      "tender_monitor": "Tender & Procurement AI Monitor",
+      "tender_monitor_desc": "Daily portal scanning & GPT-4o eligibility matching",
+      "draas": "Ransomware-Proof DRaaS",
+      "draas_desc": "Immutable WORM vault & 30-min cloud server failover",
+      "synthetic_mon": "Synthetic Shop & Checkout Monitor",
+      "synthetic_mon_desc": "Automated buyer bots testing cart & checkout flows 24/7",
+      "load_testing": "Load Testing & Stress Audit",
+      "load_testing_desc": "Simulate up to 15k users before Black Friday & launches",
+      "vdi_desktop": "Cloud Workstations (VDI)",
+      "vdi_desktop_desc": "Secure Windows 11 remote workspaces hosted in Azure",
+      "client_portal_wl": "White-Label Client Portal",
+      "client_portal_wl_desc": "Branded encrypted file room & status hub on your domain",
+      "gdpr_analytics": "Cookieless GDPR Analytics",
+      "gdpr_analytics_desc": "EU GA4 alternative without cookie banners or data loss",
+      "tax_api": "Tax ID & Registry Data API",
+      "tax_api_desc": "Instant checkout company autocomplete & risk checks"
     },
     "need_help_title": "Don't know what you need?",
     "need_help_desc": "Request a quick IT assessment, and we'll help you find the right solution.",
@@ -4640,6 +4670,2021 @@
         }
       ],
       "cta_title": "Request a quote for this service"
+    },
+    "SecurityMonitoringNIS2": {
+      "title": "24/7 Security Monitoring & NIS2",
+      "description": "Continuous automated cybersecurity monitoring for businesses: SSL, DNS/DMARC and port scanning, NIS2 readiness checks, real-time alerts and monthly executive PDF audit reports.",
+      "keywords": "nis2 compliance, cybersecurity monitoring, continuous vulnerability scanning, ssl monitoring, dmarc audit",
+      "hero_features": [
+        "Daily SSL, DNS, SPF/DMARC and open port checks",
+        "Real-time alerts when databases or admin ports expose",
+        "NIS2 compliance controls & audit-ready logging",
+        "Blacklist, domain reputation & credential leak checks",
+        "Automated monthly executive PDF audit reports",
+        "Zero-footprint cloud engine hosted in EU Azure"
+      ],
+      "hero_benefits": [
+        {
+          "title": "NIS2 Audit Readiness",
+          "description": "Provide management and auditors with consistent, dated proof of external risk monitoring."
+        },
+        {
+          "title": "Instant Early Warnings",
+          "description": "Detect expired SSL certs, broken DMARC policies, or accidental firewall openings within minutes."
+        },
+        {
+          "title": "Executive PDF Reports",
+          "description": "Receive clear monthly boardroom-ready PDF summaries instead of raw technical logs."
+        }
+      ],
+      "use_cases_title": "Where Does Continuous Monitoring Help?",
+      "use_cases_desc": "Attackers probe your perimeter every day — your security monitoring should run every day too",
+      "use_cases_items": [
+        {
+          "title": "NIS2 Preparation & Governance",
+          "description": "The EU NIS2 directive mandates ongoing vulnerability assessment and risk visibility.",
+          "example": "Receive an automated branded PDF report every month verifying all external controls.",
+          "roi": "Audit-ready compliance artifacts"
+        },
+        {
+          "title": "Catching Firewall Misconfigurations",
+          "description": "Server updates often leave sensitive ports like 3306 or 3389 inadvertently reachable.",
+          "example": "Instant alert dispatched before automated ransomware bots discover the exposed port.",
+          "roi": "Prevent breaches before exploitation"
+        },
+        {
+          "title": "Email Deliverability & Spoofing Guard",
+          "description": "Monitor SPF, DKIM and DMARC records so spoofers cannot impersonate your company.",
+          "example": "Immediate notification if a third-party DNS change breaks your DMARC enforcement.",
+          "roi": "Higher inbox placement & brand trust"
+        },
+        {
+          "title": "Credential Exposure Detection",
+          "description": "Watch corporate email domains against public breach compilations.",
+          "example": "Prompt affected staff to reset passwords immediately after third-party breaches.",
+          "roi": "Stop credential stuffing attacks"
+        }
+      ],
+      "pricing_title": "Security Monitoring Packages",
+      "pricing_desc": "Transparent monthly plans powered by our EU Azure cloud engine. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Domain Guard Start",
+          "desc": "Essential attack-surface monitoring for 1 primary domain.",
+          "price": "29000",
+          "priceFrom": "true",
+          "sub": "HUF / month (VAT-free)",
+          "features": [
+            "1 primary domain + up to 3 subdomains",
+            "Daily SSL certificate & DNS/DMARC health checks",
+            "Continuous critical port exposure scanning",
+            "Monthly executive PDF audit report",
+            "Instant email alerts on critical changes"
+          ],
+          "duration_label": "Best for small businesses, agencies and webshops."
+        },
+        "detailed": {
+          "name": "NIS2 Shield Business",
+          "desc": "Comprehensive monitoring & NIS2 compliance reporting.",
+          "price": "59000",
+          "priceFrom": "true",
+          "sub": "HUF / month (VAT-free)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Up to 5 domains & 20 subdomains / IPs monitored",
+            "Domain blacklist & credential leak monitoring",
+            "HTTP security header & CMS surface checks",
+            "Automated executive PDF + AI action plan every month",
+            "Priority remediation support recommendations"
+          ],
+          "duration_label": "Best for growing SMBs & NIS2-regulated firms."
+        },
+        "complex": {
+          "name": "Enterprise SecOps",
+          "desc": "Dedicated multi-site monitoring with SIEM & chat integrations.",
+          "price": "119000",
+          "priceFrom": "true",
+          "sub": "HUF / month (VAT-free)",
+          "features": [
+            "Unlimited corporate domains, IPs & cloud endpoints",
+            "Microsoft Teams / Slack / Ticketing alert webhooks",
+            "Microsoft Sentinel & Defender event integration",
+            "Quarterly security review call with leadership",
+            "Priority incident response SLA (< 2 hours)"
+          ],
+          "duration_label": "Best for manufacturing, fintech & multi-site groups."
+        }
+      },
+      "how_we_work_title": "How We Deploy",
+      "how_we_work_desc": "Zero downtime onboarding completed within 24 hours.",
+      "how_we_work_steps": [
+        {
+          "title": "Asset Inventory",
+          "description": "We map your corporate domains, mail servers, and public IPs."
+        },
+        {
+          "title": "Baseline Audit",
+          "description": "We run an initial deep scan to establish your security baseline."
+        },
+        {
+          "title": "Alert Routing",
+          "description": "Configure instant alert channels to IT or management."
+        },
+        {
+          "title": "24/7 Cloud Watch",
+          "description": "Our Azure engine executes continuous automated checks."
+        },
+        {
+          "title": "Monthly PDF Briefing",
+          "description": "Receive executive reports ready for NIS2 compliance files."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Everything you need to know about continuous monitoring",
+      "faq_items": [
+        {
+          "question": "Will automated scans slow down our production website?",
+          "answer": "No. Checks perform lightweight handshake and DNS inspections without generating high request volume."
+        },
+        {
+          "question": "Does this cover NIS2 compliance requirements?",
+          "answer": "It fulfills external perimeter vulnerability monitoring and produces documented monthly evidence."
+        },
+        {
+          "question": "What happens when an exposure is detected?",
+          "answer": "You receive an instant alert with exact remediation steps, and our engineers can fix it upon request."
+        },
+        {
+          "question": "Do we need to install agents on our servers?",
+          "answer": "No software installation is needed for Start and Business tiers — all checks operate externally."
+        }
+      ],
+      "cta_title": "Start 24/7 Security Monitoring"
+    },
+    "PhishingSimulation": {
+      "title": "Phishing Simulation & Security Training",
+      "description": "Realistic AI-powered phishing campaigns and automated employee security awareness training tailored for Hungarian and international teams — strengthening the human firewall.",
+      "keywords": "phishing simulation, security awareness training, employee cybersecurity test, nis2 awareness training",
+      "hero_features": [
+        "Realistic localized business, IT, banking & delivery lures",
+        "Zero credential storage — strictly click & submit telemetry",
+        "Instant interactive micro-training upon failure",
+        "NIS2 & ISO 27001 compliant training records & audit logs",
+        "Targeted scenarios for Finance, HR and Executives",
+        "Hands-off managed execution by our security team"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Human Firewall",
+          "description": "Over 80% of breaches begin with human interaction — regular simulations sharpen employee vigilance."
+        },
+        {
+          "title": "Zero Password Capture",
+          "description": "Test landing pages strictly discard typed passwords and record only safe behavioral metrics."
+        },
+        {
+          "title": "Audit Documentation",
+          "description": "Export comprehensive completion certificates and risk reduction metrics for NIS2 audits."
+        }
+      ],
+      "use_cases_title": "Why Test Your Team?",
+      "use_cases_desc": "Firewalls cannot stop a staff member from voluntarily typing credentials into a convincing clone",
+      "use_cases_items": [
+        {
+          "title": "Cloud Login Impersonation",
+          "description": "Safe Microsoft 365 and Google Workspace login lures without storing sensitive strings.",
+          "example": "Clicking opens a friendly 2-minute interactive visual breakdown showing the red flags.",
+          "roi": "Up to 75% fewer clicks within 6 months"
+        },
+        {
+          "title": "CEO Fraud & Invoice Defense",
+          "description": "Train finance staff to spot urgent wire-transfer or vendor IBAN change spoofs.",
+          "example": "Simulated executive request reinforcing out-of-band phone verification habits.",
+          "roi": "Prevent costly wire fraud losses"
+        },
+        {
+          "title": "Automated NIS2 Training",
+          "description": "Quarterly compliance education tracked automatically per employee.",
+          "example": "Quiz completion triggers downloadable compliance certificates.",
+          "roi": "Effortless audit governance"
+        },
+        {
+          "title": "New-Hire Onboarding Track",
+          "description": "Ensure every new colleague masters password hygiene before handling company data.",
+          "example": "Automated week-one module on MFA, phishing red flags, and safe sharing.",
+          "roi": "Consistent company-wide security posture"
+        }
+      ],
+      "pricing_title": "Phishing Simulation Packages",
+      "pricing_desc": "Scalable programs for teams of every size. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Awareness Check (One-Off)",
+          "desc": "Single baseline phishing test campaign up to 25 staff.",
+          "price": "45000",
+          "priceFrom": "true",
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Up to 25 employee mailboxes tested",
+            "2 realistic business phishing scenarios",
+            "Executive click-rate & vulnerability summary report",
+            "Policy recommendations for IT & leadership"
+          ],
+          "duration_label": "Best for a baseline risk snapshot."
+        },
+        "detailed": {
+          "name": "PhishGuard Pro",
+          "desc": "Ongoing quarterly simulations & automated micro-training.",
+          "price": "89000",
+          "priceFrom": "true",
+          "sub": "HUF / month (VAT-free)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Up to 100 employees continuously trained",
+            "Rotating AI-personalized simulation scenarios",
+            "Instant teachable-moment pages & short quizzes",
+            "NIS2 compliant training attendance certificates",
+            "Department-specific risk heatmaps"
+          ],
+          "duration_label": "Best for SMBs (20–100 staff) & NIS2 compliance."
+        },
+        "complex": {
+          "name": "Enterprise Cyber Culture",
+          "desc": "Unlimited seats, custom training portal & Entra ID sync.",
+          "price": "179000",
+          "priceFrom": "true",
+          "sub": "HUF / month (VAT-free)",
+          "features": [
+            "Unlimited staff across multiple subsidiaries",
+            "Automatic Microsoft Entra ID user directory sync",
+            "Custom internal app/ERP themed simulation lures",
+            "Executive leadership security briefings",
+            "Dedicated security awareness advisor"
+          ],
+          "duration_label": "Best for enterprise groups & regulated industries."
+        }
+      },
+      "how_we_work_title": "How Campaigns Work",
+      "how_we_work_desc": "Launched discreetly without disrupting normal business operations.",
+      "how_we_work_steps": [
+        {
+          "title": "Scenario Design",
+          "description": "We choose realistic department-appropriate themes."
+        },
+        {
+          "title": "Mail Allowlisting",
+          "description": "Configure M365/Google so simulations bypass spam filters."
+        },
+        {
+          "title": "Staggered Delivery",
+          "description": "Messages trickle out over days for realistic results."
+        },
+        {
+          "title": "Instant Coaching",
+          "description": "Users receive supportive visual coaching immediately on clicks."
+        },
+        {
+          "title": "Executive Debrief",
+          "description": "Full vulnerability metrics and quarterly comparison delivered."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Details about employee security testing",
+      "faq_items": [
+        {
+          "question": "Do you capture actual employee passwords during tests?",
+          "answer": "Never. Form inputs are stripped client-side so zero password characters are ever transmitted or logged."
+        },
+        {
+          "question": "Is it compatible with Microsoft 365 and Google Workspace?",
+          "answer": "Yes, both platforms are seamlessly supported via safe delivery allowlists."
+        },
+        {
+          "question": "Can we prove training completion to NIS2 auditors?",
+          "answer": "Yes, every quarterly cycle generates timestamped participation and pass-rate reports."
+        }
+      ],
+      "cta_title": "Strengthen Your Human Firewall"
+    },
+    "ManagedWAF": {
+      "title": "Managed Enterprise WAF & Web Shield",
+      "description": "Enterprise web application firewall powered by Azure Front Door WAF — stopping DDoS, malicious scrapers, SQL injection, and XSS attacks before they ever reach your servers.",
+      "keywords": "managed waf, azure front door waf, ddos protection, bot protection ecommerce, owasp security shield",
+      "hero_features": [
+        "OWASP Top 10 (SQLi, XSS, command injection) mitigation",
+        "Aggressive scraper, credential stuffing & brute-force blocking",
+        "Virtual patching for legacy apps that cannot be refactored quickly",
+        "Global Edge caching and TLS offloading for faster speed",
+        "Geo-blocking and strict IP rules for admin endpoints",
+        "24/7 managed tuning to prevent false positives"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Protect Legacy Systems",
+          "description": "Shield older PHP/WordPress or proprietary apps at the network edge without modifying source code."
+        },
+        {
+          "title": "Stop Scraping Bots",
+          "description": "Keep competitors and automated bots from exhausting your origin database resources."
+        },
+        {
+          "title": "Edge Acceleration",
+          "description": "Serve static assets from Azure global POPs close to your customers."
+        }
+      ],
+      "use_cases_title": "When Do You Need Managed WAF?",
+      "use_cases_desc": "Your resilient perimeter line between the public internet and your origin servers",
+      "use_cases_items": [
+        {
+          "title": "Legacy App Virtual Patching",
+          "description": "Mitigate known CVEs at the edge while planning long-term application upgrades.",
+          "example": "Custom WAF rules neutralize exploits targeting legacy admin frameworks.",
+          "roi": "Immediate protection without code freezes"
+        },
+        {
+          "title": "Ecommerce Bot & Scraper Shield",
+          "description": "Prevent unauthorized catalog scraping and checkout card-testing attacks.",
+          "example": "Rate-limiting locks out abusive bot subnets while keeping shoppers flying.",
+          "roi": "Lower compute bills & safer checkouts"
+        },
+        {
+          "title": "Admin Endpoint Lockdown",
+          "description": "Restrict sensitive dashboards to corporate VPNs or specific countries.",
+          "example": "Zero unauthorized logins reaching `/admin` from foreign bots.",
+          "roi": "99% reduction in login attack noise"
+        },
+        {
+          "title": "Always-On DDoS Absorption",
+          "description": "Keep your webshop online during traffic spikes or malicious volumetric floods.",
+          "example": "Microsoft edge infrastructure absorbs floods seamlessly before origin impact.",
+          "roi": "Sustained uptime during peak sales"
+        }
+      ],
+      "pricing_title": "Enterprise WAF Packages",
+      "pricing_desc": "Fully managed perimeter defense on Azure Front Door. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Edge Shield Start",
+          "desc": "Managed OWASP WAF & DDoS shield for 1 domain.",
+          "price": "39000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (+ 49k setup)",
+          "features": [
+            "1 primary domain / web app protected",
+            "Managed OWASP Top 10 rule sets",
+            "Always-on L3/L4/L7 DDoS mitigation & SSL",
+            "Country-level Geo-blocking policies",
+            "Monthly blocked threat report"
+          ],
+          "duration_label": "Best for corporate websites & small webshops."
+        },
+        "detailed": {
+          "name": "Pro Bot & Shop Shield",
+          "desc": "Advanced bot protection & custom endpoint rules.",
+          "price": "79000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (+ 69k setup)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Up to 3 domains / APIs protected",
+            "Bot manager & checkout rate-limiting",
+            "Admin route Geo/IP locking",
+            "Continuous tuning with zero false positives",
+            "Global Edge CDN acceleration"
+          ],
+          "duration_label": "Best for high-traffic webshops & SaaS portals."
+        },
+        "complex": {
+          "name": "Enterprise Zero-Trust Edge",
+          "desc": "Multi-origin Private Link WAF with strict SLA.",
+          "price": "159000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (custom setup)",
+          "features": [
+            "Multi-domain & microservice WAF stack",
+            "Azure Private Link origin isolation",
+            "Emergency virtual patching for zero-day flaws",
+            "Real-time SIEM / log streaming export",
+            "99.99% edge availability SLA"
+          ],
+          "duration_label": "Best for fintech, healthcare & enterprise platforms."
+        }
+      },
+      "how_we_work_title": "Deployment Steps",
+      "how_we_work_desc": "Zero-downtime activation via safe DNS cutover.",
+      "how_we_work_steps": [
+        {
+          "title": "Traffic Profiling",
+          "description": "Audit your endpoints, APIs and trusted integrations."
+        },
+        {
+          "title": "Detection Mode",
+          "description": "Launch WAF in log-only mode to baseline legitimate traffic."
+        },
+        {
+          "title": "Rule Calibration",
+          "description": "Whitelist trusted payment/ERP webhooks cleanly."
+        },
+        {
+          "title": "Prevention Mode",
+          "description": "Flip on active edge blocking with full observability."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Technical details on our Managed WAF",
+      "faq_items": [
+        {
+          "question": "Is downtime required to put our site behind WAF?",
+          "answer": "No. DNS cutover transitions traffic smoothly with zero downtime."
+        },
+        {
+          "question": "Will legitimate Google bots or payment webhooks be blocked?",
+          "answer": "No, we verify all critical partners in detection mode first before enabling blocking."
+        },
+        {
+          "question": "Does WAF also improve load speed?",
+          "answer": "Yes, Edge TLS termination and static caching noticeably accelerate response times."
+        }
+      ],
+      "cta_title": "Shield Your Web Infrastructure"
+    },
+    "EnterpriseRAG": {
+      "title": "Private Enterprise AI Knowledge Base (RAG)",
+      "description": "Closed, GDPR-compliant corporate ChatGPT powered by Azure OpenAI & Vector Search — query internal PDFs, SharePoint, contracts and manuals securely in EU data centers.",
+      "keywords": "enterprise rag system, private company chatgpt, azure openai knowledge base, internal ai search gdpr",
+      "hero_features": [
+        "100% isolated EU Azure OpenAI — zero public model training",
+        "Indexes SharePoint, Google Drive, OneDrive & PDFs",
+        "Verifiable page & document citations in every answer",
+        "Role-based access control via Microsoft Entra ID",
+        "Instant answers in Hungarian & English across thousands of pages",
+        "Branded corporate web portal & Microsoft Teams bot"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Zero Data Leakage",
+          "description": "Unlike public AI tools, proprietary contracts stay strictly within isolated EU Azure storage."
+        },
+        {
+          "title": "Faster Onboarding",
+          "description": "New employees get instant accurate procedures without interrupting senior specialists."
+        },
+        {
+          "title": "Zero Hallucination Guesswork",
+          "description": "Every response cites clickable source files and exact passages for verification."
+        }
+      ],
+      "use_cases_title": "High-Impact Use Cases",
+      "use_cases_desc": "Turn years of trapped organizational documents into instant answers",
+      "use_cases_items": [
+        {
+          "title": "Law & Advisory Firms",
+          "description": "Search precedents, historic contracts and legal templates instantaneously.",
+          "example": "“Find penalty clauses negotiated in our logistics agreements from last year.”",
+          "roi": "Save 1–2 hours per consultant daily"
+        },
+        {
+          "title": "Manufacturing & Engineering",
+          "description": "Query technical manuals, ISO specs and field troubleshooting SOPs from anywhere.",
+          "example": "Field technicians query error-code procedures right from their mobile device.",
+          "roi": "Faster repairs & lower downtime"
+        },
+        {
+          "title": "Sales & Support Teams",
+          "description": "Look up product specifications, SLA limits and pricing tiers mid-call.",
+          "example": "“Which package supports bidirectional ERP sync and what is lead time?”",
+          "roi": "Faster quotes & higher win rates"
+        },
+        {
+          "title": "HR & Onboarding SOPs",
+          "description": "Empower staff to look up PTO, tooling, and internal policy answers 24/7.",
+          "example": "Self-service onboarding guide without flooding HR mailboxes.",
+          "roi": "Streamlined people operations"
+        }
+      ],
+      "pricing_title": "Enterprise AI RAG Packages",
+      "pricing_desc": "Turnkey private AI deployments in EU Azure regions. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Team AI Vault",
+          "desc": "Private corporate AI assistant for core documents.",
+          "price": "290000",
+          "priceFrom": "true",
+          "sub": "+ 49k HUF/mo hosting (VAT-free)",
+          "features": [
+            "Up to 1,000 PDF/DOCX/TXT documents indexed",
+            "Isolated EU Azure OpenAI + Vector search DB",
+            "Source document & excerpt citations on answers",
+            "Protected corporate web app (up to 15 users)",
+            "Monthly automated re-indexing cycle"
+          ],
+          "duration_label": "Best for agencies, legal teams & small offices."
+        },
+        "detailed": {
+          "name": "Enterprise RAG Pro",
+          "desc": "Live SharePoint/Drive sync with Entra ID permissions.",
+          "price": "590000",
+          "priceFrom": "true",
+          "sub": "+ 89k HUF/mo hosting (VAT-free)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "10,000+ docs & continuous cloud drive syncing",
+            "Microsoft Entra ID SSO & document-level permissions",
+            "Teams / Slack integration & feedback analytics",
+            "Custom corporate branding & prompt tuning",
+            "Monthly optimization & connector updates"
+          ],
+          "duration_label": "Best for SMBs (15–100 staff) & multi-team firms."
+        },
+        "complex": {
+          "name": "Corporate AI Core",
+          "desc": "Multi-department RAG plus live ERP/CRM data connectors.",
+          "price": "1190000",
+          "priceFrom": "true",
+          "sub": "+ 149k HUF/mo hosting (VAT-free)",
+          "features": [
+            "Unlimited docs + structured SQL/Excel retrieval",
+            "Live read integrations with CRM/ERP systems",
+            "VNet private networking & custom security audit",
+            "Separate scoped workspaces (HR, Legal, Tech)",
+            "Hands-on staff training & dedicated AI engineer"
+          ],
+          "duration_label": "Best for enterprise organizations with strict governance."
+        }
+      },
+      "how_we_work_title": "Delivery Process",
+      "how_we_work_desc": "From raw file folders to production private AI within 2–4 weeks.",
+      "how_we_work_steps": [
+        {
+          "title": "Data Discovery",
+          "description": "Audit your repositories, formats, and folder structure."
+        },
+        {
+          "title": "Security Mapping",
+          "description": "Design Entra ID permissions so sensitive files remain private."
+        },
+        {
+          "title": "RAG Pipeline Build",
+          "description": "Deploy Azure AI Search vector embeddings and GPT-4o."
+        },
+        {
+          "title": "Accuracy Validation",
+          "description": "Test real team queries and fine-tune retrieval chunking."
+        },
+        {
+          "title": "Launch & Training",
+          "description": "Roll out across web/Teams with user prompt workshops."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Data privacy and technical design",
+      "faq_items": [
+        {
+          "question": "Does OpenAI train models on our private documents?",
+          "answer": "No. Azure OpenAI Enterprise contractually guarantees zero model training and strict EU data residency."
+        },
+        {
+          "question": "Can junior staff see executive financial documents?",
+          "answer": "No. Permission trimming respects your Entra ID / folder ACLs on every query."
+        },
+        {
+          "question": "Which file types are supported?",
+          "answer": "PDF, DOCX, XLSX, PPTX, TXT, Markdown, SharePoint and Google Docs are all supported."
+        }
+      ],
+      "cta_title": "Launch Your Private Company AI"
+    },
+    "DocumentOCR": {
+      "title": "AI Document, Invoice & Contract OCR",
+      "description": "Automated document extraction powered by Azure AI Document Intelligence & GPT-4o: parse incoming invoices, delivery notes and contracts directly into your ERP or accounting stack.",
+      "keywords": "ai invoice processing, document ocr automation, intelligent document processing azure, automated data entry",
+      "hero_features": [
+        "Line-item precision on PDF and photographed invoices",
+        "Delivery notes, waybills & field worksheet digitization",
+        "Direct push into ERP, accounting, CRM, or spreadsheets",
+        "Automated VAT & totals cross-validation checks",
+        "Contract risk, deadline & obligation summaries via GPT-4o",
+        "Auto-watches shared email inboxes and cloud folders"
+      ],
+      "hero_benefits": [
+        {
+          "title": "90% Less Data Entry",
+          "description": "Eliminate manual copy-pasting from incoming PDFs into accounting or operations software."
+        },
+        {
+          "title": "Zero Typing Errors",
+          "description": "Automated checksum logic verifies line totals, VAT math and tax IDs before export."
+        },
+        {
+          "title": "Structured Searchability",
+          "description": "Every paper scan turns into clean, queryable structured business records."
+        }
+      ],
+      "use_cases_title": "What Can We Automate?",
+      "use_cases_desc": "Replace repetitive document handling with intelligent cloud pipelines",
+      "use_cases_items": [
+        {
+          "title": "Accounts Payable Automation",
+          "description": "Parse incoming PDF invoices down to line items and cost-center codes.",
+          "example": "Extract vendor, due date, VAT tiers and push cleanly into approval workflows.",
+          "roi": "Save dozens of finance hours monthly"
+        },
+        {
+          "title": "Logistics Delivery Notes & PODs",
+          "description": "Check quantities, SKUs and signatures from scanned or mobile-snapped paper slips.",
+          "example": "Warehouse staff snap a delivery note and mismatches flag instantly against POs.",
+          "roi": "Faster receiving & instant discrepancy detection"
+        },
+        {
+          "title": "Contract Clause & Renewal Extraction",
+          "description": "Extract notice periods, SLA penalties and indexation clauses from 40-page PDFs.",
+          "example": "Upload vendor agreements and get a structured 1-page risk sheet in seconds.",
+          "roi": "Avoid missed renewals & hidden penalties"
+        },
+        {
+          "title": "HR Resume & Onboarding Screening",
+          "description": "Normalize candidate CVs and onboarding paperwork into structured profiles.",
+          "example": "Rank and compare 200 applicant PDFs in an exported skills matrix.",
+          "roi": "5x faster recruitment screening"
+        }
+      ],
+      "pricing_title": "AI OCR Packages",
+      "pricing_desc": "Scalable tiers tailored to monthly document volume. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "OCR Start",
+          "desc": "Automated invoice or form extractor for 1 workflow.",
+          "price": "190000",
+          "priceFrom": "true",
+          "sub": "+ 39k HUF/mo (up to 1,000 pages/mo)",
+          "features": [
+            "Shared inbox or Drive/OneDrive folder watcher",
+            "Key header & total extraction on PDFs/photos",
+            "Automated math & VAT validation checks",
+            "Clean export to Excel, Sheets or Webhook",
+            "Azure Document Intelligence + GPT-4o engine"
+          ],
+          "duration_label": "Best for accounting firms & small distributors."
+        },
+        "detailed": {
+          "name": "DocFlow Business",
+          "desc": "Full line-item extraction with bidirectional ERP integration.",
+          "price": "440000",
+          "priceFrom": "true",
+          "sub": "+ 79k HUF/mo (up to 5,000 pages/mo)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Complex multi-page table & line-item recognition",
+            "Bidirectional API push to ERP / CRM / Billing apps",
+            "Human-in-the-loop review queue for low confidence",
+            "AI cost-center & GL account code suggestions",
+            "Monthly maintenance & new vendor tuning"
+          ],
+          "duration_label": "Best for logistics, manufacturing & growing SMBs."
+        },
+        "complex": {
+          "name": "Enterprise IDP Core",
+          "desc": "Custom contract analyzer, handwriting & enterprise ERP sync.",
+          "price": "890000",
+          "priceFrom": "true",
+          "sub": "+ 149k HUF/mo (high volume)",
+          "features": [
+            "Multi-document pipeline (contracts, CMR, invoices)",
+            "GPT-4o legal & financial risk extraction",
+            "Direct SAP / Microsoft Business Central / Odoo API",
+            "Full audit trail & 5-year encrypted archive",
+            "Dedicated engineering SLA"
+          ],
+          "duration_label": "Best for enterprises handling high document throughput."
+        }
+      },
+      "how_we_work_title": "Implementation Steps",
+      "how_we_work_desc": "Trained and calibrated on your actual business documents.",
+      "how_we_work_steps": [
+        {
+          "title": "Sample Review",
+          "description": "We analyze 15–20 real invoices or contracts from your operations."
+        },
+        {
+          "title": "Schema Mapping",
+          "description": "Define exact target fields required by your ERP or finance software."
+        },
+        {
+          "title": "Cloud Pipeline",
+          "description": "Connect Azure OCR, GPT-4o validation rules, and destination APIs."
+        },
+        {
+          "title": "Accuracy QA",
+          "description": "Tune confidence thresholds until 99%+ validation reliability is met."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Details about AI document intelligence",
+      "faq_items": [
+        {
+          "question": "Does it handle skewed mobile photos or stamped scans?",
+          "answer": "Yes, Azure Document Intelligence excels at noisy scans, rotations and complex tables."
+        },
+        {
+          "question": "How do you prevent incorrect numbers from entering our accounting?",
+          "answer": "Built-in checksum validation verifies totals; any low-confidence item flags for quick human review."
+        },
+        {
+          "question": "Can it integrate with our existing ERP?",
+          "answer": "Yes, we push clean JSON/XML via REST API, webhooks, SFTP, or direct database connectors."
+        }
+      ],
+      "cta_title": "Automate Your Document Flow"
+    },
+    "MeetingVoiceAI": {
+      "title": "AI Call & Meeting Intelligence",
+      "description": "High-accuracy multilingual speech transcription and AI sales/support analytics powered by Azure Speech & GPT-4o: automated minutes, action items, sentiment tracking and CRM sync.",
+      "keywords": "ai meeting assistant, call analytics ai, azure speech transcription, sales call intelligence, crm call logging",
+      "hero_features": [
+        "High-accuracy Hungarian & English transcription with speaker diarization",
+        "Structured executive summaries and dated action-item checklists",
+        "Customer sentiment scoring & recurring objection detection",
+        "Automatic push of notes and follow-ups into HubSpot / CRM",
+        "Follow-up email draft generated seconds after each call",
+        "Isolated EU Azure processing with configurable audio auto-purge"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Zero Dropped Follow-Ups",
+          "description": "Every commitment made verbally on a call gets captured cleanly with owners and deadlines."
+        },
+        {
+          "title": "Sharper Sales Coaching",
+          "description": "Managers uncover winning talk tracks and recurring buyer objections across the team."
+        },
+        {
+          "title": "100% Focus on Customers",
+          "description": "Reps stay engaged in the conversation while AI handles detailed note-taking and CRM entry."
+        }
+      ],
+      "use_cases_title": "Where Voice AI Pays Off",
+      "use_cases_desc": "Turn lost spoken conversations into searchable revenue intelligence",
+      "use_cases_items": [
+        {
+          "title": "Discovery & Sales Calls",
+          "description": "Summarize buyer pain points, budgets and next steps automatically after calls.",
+          "example": "Minutes after a call ends, key requirements and a proposal draft wait in CRM.",
+          "roi": "2x faster proposal turnaround"
+        },
+        {
+          "title": "Support Quality Assurance",
+          "description": "Monitor 100% of support calls for compliance and early dissatisfaction signals.",
+          "example": "Real-time escalation flags trigger whenever negative customer sentiment spikes.",
+          "roi": "Prevent silent customer churn"
+        },
+        {
+          "title": "Internal Project Syncs",
+          "description": "Extract clear Jira/Trello action tickets from weekly engineering meetings.",
+          "example": "Eliminate manual note-taker rotations across product teams.",
+          "roi": "Save hundreds of team hours yearly"
+        },
+        {
+          "title": "Instant Recap Emails",
+          "description": "Draft polished client summary emails grounded verbatim in the call.",
+          "example": "Ready-to-send summary listing every agreed milestone.",
+          "roi": "Elevated client professionalism"
+        }
+      ],
+      "pricing_title": "AI Voice & Meeting Packages",
+      "pricing_desc": "Flexible monthly plans scaled to processed audio hours. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Meeting Assistant",
+          "desc": "Automated transcription & structured meeting minutes.",
+          "price": "240000",
+          "priceFrom": "true",
+          "sub": "+ 45k HUF/mo (20 audio hours/mo)",
+          "features": [
+            "Upload MP3/WAV/MP4 or sync shared meeting folders",
+            "Hungarian + English speaker diarized transcripts",
+            "Structured summary, decisions & action item export",
+            "Auto-generated client recap email drafts",
+            "Secure EU Azure audio processing"
+          ],
+          "duration_label": "Best for founders, consultants & small sales pods."
+        },
+        "detailed": {
+          "name": "Sales Call Intelligence",
+          "desc": "CRM integration, VoIP/Meet sync & sales KPI scoring.",
+          "price": "490000",
+          "priceFrom": "true",
+          "sub": "+ 89k HUF/mo (80 audio hours/mo)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Automated VoIP / Google Meet / Teams ingestion",
+            "Bidirectional CRM note & task logging",
+            "Sentiment analysis & objection trend detection",
+            "Searchable internal call library & keyword alerts",
+            "Custom scoring rubrics for sales leaders"
+          ],
+          "duration_label": "Best for B2B sales teams & service agencies."
+        },
+        "complex": {
+          "name": "Contact Center Enterprise",
+          "desc": "100% support QA automation & PII redaction.",
+          "price": "980000",
+          "priceFrom": "true",
+          "sub": "+ 169k HUF/mo (custom volume)",
+          "features": [
+            "High-volume support queue auditing across all agents",
+            "Instant supervisor escalation on risk phrases",
+            "Automated PII scrubbing inside stored transcripts",
+            "Power BI / executive QA trend dashboards",
+            "Dedicated solutions engineer"
+          ],
+          "duration_label": "Best for call centers & multi-tier support orgs."
+        }
+      },
+      "how_we_work_title": "Integration Process",
+      "how_we_work_desc": "Plugs cleanly into your existing phone PBX or video conferencing stack.",
+      "how_we_work_steps": [
+        {
+          "title": "Source Connection",
+          "description": "Integrate with VoIP PBX webhooks, Teams, or cloud drives."
+        },
+        {
+          "title": "Domain Glossary",
+          "description": "Boost accuracy on your product names & industry jargon."
+        },
+        {
+          "title": "CRM Field Mapping",
+          "description": "Define exact summary templates pushed to your CRM."
+        },
+        {
+          "title": "Rollout & Tuning",
+          "description": "Activate live scoring and train sales managers on insights."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Details about Voice AI & compliance",
+      "faq_items": [
+        {
+          "question": "How accurate is transcription for noisy phone calls?",
+          "answer": "Azure Speech coupled with GPT-4o contextual correction delivers high accuracy even over telephony codecs."
+        },
+        {
+          "question": "Can raw recordings be deleted automatically for GDPR?",
+          "answer": "Yes, we configure automated retention rules to delete raw audio immediately once summaries are generated."
+        },
+        {
+          "question": "Does it support VoIP systems like 3CX or Asterisk?",
+          "answer": "Yes, any PBX supporting webhook, API, or SFTP recording exports integrates seamlessly."
+        }
+      ],
+      "cta_title": "Turn Conversations Into Insights"
+    },
+    "TenderMonitor": {
+      "title": "Automated Tender & Procurement AI Monitor",
+      "description": "Continuous Hungarian and EU tender & procurement tracking with GPT-4o pre-qualification: our Azure bot scans new calls daily and alerts you only on bids matching your company profile.",
+      "keywords": "tender monitoring ai, public procurement alert, automated rfp scanner, eu grant monitoring",
+      "hero_features": [
+        "Scans EU TED, national grants & public procurement portals",
+        "GPT-4o eligibility scoring based on revenue & headcount",
+        "100-page tender PDFs distilled into 5 clear bullet points",
+        "Real-time alerts via Email, Teams or CRM pipeline",
+        "Automated deadline & required attachment checklists",
+        "Never miss high-value public contracts or grants"
+      ],
+      "hero_benefits": [
+        {
+          "title": "First-Mover Advantage",
+          "description": "Spot opportunities on publication day rather than hearing days before deadline."
+        },
+        {
+          "title": "Zero PDF Fatigue",
+          "description": "AI filters out irrelevant calls and surfaces only tenders you qualify to win."
+        },
+        {
+          "title": "Actionable Checklists",
+          "description": "Get estimated grant percentages, caps, and compliance traps extracted automatically."
+        }
+      ],
+      "use_cases_title": "Who Benefits Most?",
+      "use_cases_desc": "A single won bid pays back years of automated intelligence",
+      "use_cases_items": [
+        {
+          "title": "Public Procurement Bidders",
+          "description": "Track daily CPV codes and sector tenders with eligibility filtering.",
+          "example": "Receive alerts showing minimum reference values before dedicating bid writers.",
+          "roi": "Higher bid volume with less research waste"
+        },
+        {
+          "title": "Growth-Oriented SMBs",
+          "description": "Monitor EU and national digitalization, R&D and green transition grants.",
+          "example": "Automatically filters programs aligned with your company size and region.",
+          "roi": "Capture non-refundable capital grants"
+        },
+        {
+          "title": "Consulting & Grant Agencies",
+          "description": "Track dozens of client profiles simultaneously with branded alerts.",
+          "example": "Every morning consultants see exactly which clients qualify for new funds.",
+          "roi": "Proactive upsell & higher success fees"
+        },
+        {
+          "title": "Competitor Award Tracking",
+          "description": "Follow awarded contracts, winning vendors and benchmark pricing.",
+          "example": "Monthly intelligence digest showing sector award patterns.",
+          "roi": "Sharper competitive bid pricing"
+        }
+      ],
+      "pricing_title": "Tender Monitor Packages",
+      "pricing_desc": "Monthly automated tracking & AI pre-screening tiers. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Monitor Start",
+          "desc": "Weekly AI tender summaries for 1 company profile.",
+          "price": "29000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (VAT-free)",
+          "features": [
+            "1 company profile (up to 10 keywords / CPV codes)",
+            "Weekly AI-curated digest with 5-point briefs",
+            "Highlighted deadlines & minimum criteria",
+            "Email notifications on relevant calls"
+          ],
+          "duration_label": "Best for SMBs exploring grants & bids."
+        },
+        "detailed": {
+          "name": "Tender Radar Pro",
+          "desc": "Daily scanning, PDF analysis & GPT-4o Match Score.",
+          "price": "59000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (VAT-free)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Daily national & EU TED portal scanning",
+            "Deep AI analysis of full PDF tender documentation",
+            "0–100% custom Match Score against your profile",
+            "Direct push into CRM / Microsoft Teams",
+            "Automated submission readiness checklist"
+          ],
+          "duration_label": "Best for active B2B suppliers & service bidders."
+        },
+        "complex": {
+          "name": "Agency Multi-Monitor",
+          "desc": "Multi-client tracking & competitive market analytics.",
+          "price": "119000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (VAT-free)",
+          "features": [
+            "Up to 25 distinct client profiles monitored",
+            "White-label alert workflows for consulting firms",
+            "Competitor award & benchmark pricing reports",
+            "AI proposal outline & compliance draft prep",
+            "Custom webhook & API data output"
+          ],
+          "duration_label": "Best for grant writers & enterprise groups."
+        }
+      },
+      "how_we_work_title": "Getting Started",
+      "how_we_work_desc": "Configured cleanly around your capabilities within days.",
+      "how_we_work_steps": [
+        {
+          "title": "Profile Setup",
+          "description": "Capture company metrics, licenses & past references."
+        },
+        {
+          "title": "Source Linking",
+          "description": "Hook up national and EU procurement feeds."
+        },
+        {
+          "title": "AI Match Rules",
+          "description": "Calibrate GPT-4o scoring weights for relevance."
+        },
+        {
+          "title": "Daily Intelligence",
+          "description": "Receive structured briefings straight in your inbox or CRM."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Details about automated tender monitoring",
+      "faq_items": [
+        {
+          "question": "Which tender portals are monitored?",
+          "answer": "EU TED, Hungarian EKR public procurement and national grant portals are all covered."
+        },
+        {
+          "question": "Can AI verify if we meet financial turnover minimums?",
+          "answer": "Yes, it reads eligibility PDFs and matches turnover and reference criteria against your profile."
+        },
+        {
+          "question": "Does the output integrate into our CRM?",
+          "answer": "Yes, matches can automatically generate deals or tasks in your CRM or Teams."
+        }
+      ],
+      "cta_title": "Capture Your Next Tender"
+    },
+    "DisasterRecoveryDRaaS": {
+      "title": "Ransomware-Proof Disaster Recovery (DRaaS)",
+      "description": "More than backup — true business continuity powered by Azure Site Recovery & Immutable WORM Storage: spin up cloned production servers in Azure within 30 minutes of ransomware or hardware failure.",
+      "keywords": "draas azure, ransomware immutable backup, disaster recovery as a service, azure site recovery",
+      "hero_features": [
+        "Immutable (WORM) cloud vault — undeletable even with stolen admin keys",
+        "Continuous server & VM replication to EU Azure",
+        "Under 30-minute server boot time in the cloud upon outage",
+        "Pre-wired encrypted Site-to-Site VPN for instant staff reconnection",
+        "Quarterly isolated failover drills with dated compliance reports",
+        "Bulletproof recovery from ransomware, fire, or hardware failure"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Ransomware Immunity",
+          "description": "Attackers target backups first — WORM-locked storage prevents tampering or premature deletion."
+        },
+        {
+          "title": "Hours Saved, Not Weeks",
+          "description": "Never wait days for replacement hardware: spin up exact cloud replicas of your ERP instantly."
+        },
+        {
+          "title": "Verified Recovery",
+          "description": "Quarterly sandbox failover drills prove recovery timelines before disaster strikes."
+        }
+      ],
+      "use_cases_title": "Why DRaaS Beats Basic Backup",
+      "use_cases_desc": "Backups store cold files — DRaaS keeps a ready-to-run cloud standby of your company",
+      "use_cases_items": [
+        {
+          "title": "Clean-Room Ransomware Recovery",
+          "description": "Boot servers from immutable snapshots taken minutes prior to encryption.",
+          "example": "Restore clean ERP state into an isolated cloud subnet with zero ransom paid.",
+          "roi": "Zero ransom exposure & survived outages"
+        },
+        {
+          "title": "On-Prem Server & ERP Failover",
+          "description": "Continuous replication for local Hyper-V, VMware, or bare-metal servers.",
+          "example": "Staff reconnect seamlessly via VPN to Azure replicas during office outages.",
+          "roi": "Protect daily operational revenue"
+        },
+        {
+          "title": "ISO / NIS2 BCP Testing Proof",
+          "description": "Satisfy strict auditor requirements for verified recovery drills.",
+          "example": "Isolated cloud test produces signed RTO/RPO audit evidence.",
+          "roi": "Instant audit compliance"
+        },
+        {
+          "title": "Seamless Failback",
+          "description": "Sync new transactions cleanly back once local hardware is rebuilt.",
+          "example": "Zero invoices or bookings lost during recovery periods.",
+          "roi": "End-to-end data integrity"
+        }
+      ],
+      "pricing_title": "DRaaS & Immutable Vault Tiers",
+      "pricing_desc": "Enterprise business continuity hosted in EU Azure regions. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Immutable WORM Vault",
+          "desc": "Undeletable ransomware-proof cloud storage vault.",
+          "price": "49000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (1 TB Immutable Azure Storage)",
+          "features": [
+            "1 TB WORM-locked Azure cloud vault",
+            "Daily encrypted snapshots (servers & databases)",
+            "Hardware-enforced deletion/tampering locks",
+            "Daily automated health & integrity monitoring",
+            "Monthly backup readiness summary report"
+          ],
+          "duration_label": "Best for small offices & NAS/server protection."
+        },
+        "detailed": {
+          "name": "Rapid Cloud Failover (DRaaS)",
+          "desc": "Live VM replication & <30 min Azure failover readiness.",
+          "price": "129000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (up to 2 critical servers)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Live Azure replication for up to 2 core servers",
+            "Under 30-min Recovery Time Objective (RTO)",
+            "Built-in Immutable WORM retention layer",
+            "Pre-built Azure VNet & VPN emergency routing",
+            "Quarterly isolated failover test with PDF report"
+          ],
+          "duration_label": "Best for SMBs running critical ERP or file servers."
+        },
+        "complex": {
+          "name": "Enterprise Zero-Loss Cluster",
+          "desc": "Multi-VM orchestration with <15 min RPO/RTO SLA.",
+          "price": "249000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (custom server scale)",
+          "features": [
+            "Multi-server & SQL database synchronized recovery plans",
+            "Under 15-min RPO/RTO orchestration & sequenced boot",
+            "Dedicated isolated recovery enclave & firewall",
+            "24/7 engineering mobilization upon outage",
+            "Full NIS2 / ISO 27001 BCP compliance documentation"
+          ],
+          "duration_label": "Best for manufacturing, logistics & multi-site orgs."
+        }
+      },
+      "how_we_work_title": "How We Deploy DRaaS",
+      "how_we_work_desc": "Implemented smoothly alongside your running infrastructure.",
+      "how_we_work_steps": [
+        {
+          "title": "Dependency Audit",
+          "description": "Map core servers, databases, and network routes."
+        },
+        {
+          "title": "Vault & Replication",
+          "description": "Deploy WORM storage locks and encrypted Azure syncing."
+        },
+        {
+          "title": "Emergency VNet",
+          "description": "Wire encrypted VPN gateways for seamless user access."
+        },
+        {
+          "title": "Initial DR Drill",
+          "description": "Perform a clean sandbox boot and document RTO speeds."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Everything about immutable backups and cloud failover",
+      "faq_items": [
+        {
+          "question": "How is this safer than NAS or regular cloud storage?",
+          "answer": "Ransomware encrypts mapped network drives too. Immutable WORM storage cannot be wiped even with admin credentials, and DRaaS spins up live compute immediately."
+        },
+        {
+          "question": "Does it support Hyper-V, VMware and physical boxes?",
+          "answer": "Yes, both major hypervisors and physical Windows/Linux hosts are supported."
+        },
+        {
+          "question": "Do we pay full Azure VM compute fees all month?",
+          "answer": "No. Compute VMs remain deallocated until an actual failover or quarterly test runs."
+        }
+      ],
+      "cta_title": "Future-Proof Your Operations"
+    },
+    "SyntheticMonitoring": {
+      "title": "24/7 Synthetic Webshop & Checkout Monitoring",
+      "description": "More than ping checks: headless Playwright bots click through your product pages, add items to cart, and verify checkout, payment gateways & billing APIs every 5 minutes with AI diagnostics.",
+      "keywords": "synthetic monitoring playwright, ecommerce checkout monitoring, uptime alerting, broken checkout detection",
+      "hero_features": [
+        "Real browser (Playwright) add-to-cart & checkout verification",
+        "Payment & shipping API latency monitoring",
+        "Instant SMS, Telegram, Slack & Teams incident alerts",
+        "Exact failure screenshots & console error captures",
+        "GPT-4o root-cause diagnostics on downtime events",
+        "Monthly SLA uptime & Core Web Vitals reports"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Know Before Customers Do",
+          "description": "Catch a broken Sunday-night checkout button in 5 minutes instead of losing Monday orders."
+        },
+        {
+          "title": "Beyond Simple Uptime Pings",
+          "description": "Sites often return HTTP 200 even when JavaScript breaks the Pay Now button — our bot clicks it."
+        },
+        {
+          "title": "Safe Ad Spend",
+          "description": "Stop burning paid Facebook and Google Ads clicks onto silently broken landing forms."
+        }
+      ],
+      "use_cases_title": "Hidden Outages Caught Early",
+      "use_cases_desc": "Most ecommerce revenue loss stems from broken user flows, not full server crashes",
+      "use_cases_items": [
+        {
+          "title": "Post-Update Checkout Breakage",
+          "description": "Detect when overnight CMS plugin updates break cart calculations.",
+          "example": "Bot fails to locate the checkout submit button and pages engineering with screenshots.",
+          "roi": "Protect ad budgets & checkout revenue"
+        },
+        {
+          "title": "Payment & Carrier API Failures",
+          "description": "Verify Stripe, local banks, and courier parcel-locker pickers continually.",
+          "example": "Alert instantly when third-party shipping map widgets time out.",
+          "roi": "Zero abandoned checkouts from broken pickers"
+        },
+        {
+          "title": "SaaS Login & App Health",
+          "description": "Monitor full user login and portal dashboard render times.",
+          "example": "Alerts trigger when authenticated page loads degrade past 3 seconds.",
+          "roi": "Higher user retention"
+        },
+        {
+          "title": "Early Latency Creep Warning",
+          "description": "Track TTFB and DB query sluggishness before timeouts strike.",
+          "example": "Detect gradual CPU or memory exhaustion prior to peak hours.",
+          "roi": "Preventive scaling before crashes"
+        }
+      ],
+      "pricing_title": "Synthetic Monitoring Packages",
+      "pricing_desc": "24/7 monitoring running on EU Azure runners. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Uptime Pulse",
+          "desc": "1-minute URL, API & SSL endpoint availability checks.",
+          "price": "19900",
+          "priceFrom": "true",
+          "sub": "HUF / mo (VAT-free)",
+          "features": [
+            "Up to 5 URLs / API endpoints checked every 60s",
+            "Instant email, Slack & Telegram notifications",
+            "SSL expiry & DNS drift monitoring",
+            "Response-time threshold alerts",
+            "Monthly SLA percentage report"
+          ],
+          "duration_label": "Best for corporate websites & portfolios."
+        },
+        "detailed": {
+          "name": "Checkout Guard Robot",
+          "desc": "Full browser buyer-flow test & AI failure diagnostics.",
+          "price": "39900",
+          "priceFrom": "true",
+          "sub": "HUF / mo (VAT-free)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "5-minute Playwright add-to-cart & checkout flow",
+            "Instant failure screenshot & browser log snapshot",
+            "AI plain-language root-cause summary",
+            "Critical SMS / phone escalation alerts",
+            "Payment gateway & invoicing endpoint checks"
+          ],
+          "duration_label": "Best for WooCommerce, Shopify & custom webshops."
+        },
+        "complex": {
+          "name": "Multi-Flow Enterprise QA",
+          "desc": "Multi-region testing, authenticated user journeys & SLA.",
+          "price": "89000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (VAT-free)",
+          "features": [
+            "Up to 10 multi-step login / purchase journeys",
+            "Regional verification across EU and global nodes",
+            "Continuous Core Web Vitals trend tracking",
+            "Automated engineering ticket creation",
+            "Monthly performance consulting session"
+          ],
+          "duration_label": "Best for high-traffic SaaS apps & enterprise stores."
+        }
+      },
+      "how_we_work_title": "How It Runs",
+      "how_we_work_desc": "Tests full customer journeys cleanly without charging real cards or polluting orders.",
+      "how_we_work_steps": [
+        {
+          "title": "Journey Mapping",
+          "description": "Select critical revenue flows (cart, checkout, auth)."
+        },
+        {
+          "title": "Playwright Scripting",
+          "description": "Author resilient headless checks using safe test items."
+        },
+        {
+          "title": "Alert Escalation",
+          "description": "Wire Telegram, Slack, Teams, SMS & email routing."
+        },
+        {
+          "title": "24/7 Overwatch",
+          "description": "Continuous monitoring with instant forensic screenshots."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Details on synthetic transaction monitoring",
+      "faq_items": [
+        {
+          "question": "Will test bots clutter our orders or Google Analytics?",
+          "answer": "No. Flows halt right before live payment submission and tag requests cleanly so analytics filters them out."
+        },
+        {
+          "question": "What evidence do we get when an alert fires?",
+          "answer": "Exact error screenshots, HTTP waterfall failures, JS console logs and AI diagnostics."
+        },
+        {
+          "question": "How fast can this go live?",
+          "answer": "Custom checkout tests are typically scripted and live within 24–48 hours."
+        }
+      ],
+      "cta_title": "Safeguard Your Checkout Revenue"
+    },
+    "LoadTesting": {
+      "title": "Campaign Load Testing & Performance Audit",
+      "description": "Simulate 1,000 to 15,000+ concurrent virtual shoppers via Azure Load Testing before Black Friday, TV spots or product launches — pinpoint bottlenecks and eliminate crashes.",
+      "keywords": "load testing service, stress test webshop, azure load testing, black friday performance readiness",
+      "hero_features": [
+        "Simulate thousands of concurrent users globally from Azure",
+        "Realistic checkout, search & API user flows",
+        "Identify CPU, DB connection pool & external API limits",
+        "Executive PDF capacity report with concrete bottlenecks",
+        "Actionable caching, Redis & DB indexing recommendations",
+        "Safe off-peak or staging execution with instant kill-switch"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Zero Peak-Hour Crashes",
+          "description": "Discover database connection limits before the first minute of your biggest sale."
+        },
+        {
+          "title": "Know Your Exact Ceiling",
+          "description": "See objectively how many simultaneous buyers your infrastructure sustains cleanly."
+        },
+        {
+          "title": "Verified Speed Gains",
+          "description": "Re-test after optimizations to confirm 3–10x higher throughput capacity."
+        }
+      ],
+      "use_cases_title": "When Load Testing Is Essential",
+      "use_cases_desc": "A crashed store wastes paid ad traffic and loses high-intent shoppers forever",
+      "use_cases_items": [
+        {
+          "title": "Black Friday & Peak Campaigns",
+          "description": "Validate store elasticity for 5x–20x baseline traffic surges.",
+          "example": "Replay newsletter blast traffic spikes with 3,000 parallel shoppers.",
+          "roi": "Protect peak-season revenue"
+        },
+        {
+          "title": "Pre-Launch Platform Validation",
+          "description": "Verify newly engineered SaaS portals & APIs before public release.",
+          "example": "Catch N+1 SQL bottlenecks and connection leaks prior to day one.",
+          "roi": "Confident production launches"
+        },
+        {
+          "title": "Broadcast / Shark Tank Spikes",
+          "description": "Prepare for instant traffic floods triggered by national media spots.",
+          "example": "Tune Cloudflare edge caching + stress verify zero 502 errors.",
+          "roi": "Convert media visibility into revenue"
+        },
+        {
+          "title": "Ticketing & Booking Drops",
+          "description": "Validate race conditions and database locks during synchronized openings.",
+          "example": "Verify seat-reservation locks under thousands of simultaneous hits.",
+          "roi": "Crash-free high-demand bookings"
+        }
+      ],
+      "pricing_title": "Load Testing Packages",
+      "pricing_desc": "Fixed-scope performance stress tests & tuning. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Stress Check Start",
+          "desc": "Targeted stress test up to 1,000 concurrent virtual users.",
+          "price": "149000",
+          "priceFrom": "true",
+          "sub": "one-time fee (VAT-free)",
+          "features": [
+            "Up to 1,000 concurrent virtual users from Azure",
+            "Core landing page & critical API stress tests",
+            "Latency, error-rate & throughput telemetry graphs",
+            "Executive PDF bottleneck summary report"
+          ],
+          "duration_label": "Best for smaller sites & launch validation."
+        },
+        "detailed": {
+          "name": "Campaign Ready Audit",
+          "desc": "Full buyer journey load test with 5,000 virtual users.",
+          "price": "290000",
+          "priceFrom": "true",
+          "sub": "one-time fee (VAT-free)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Up to 5,000 concurrent virtual users",
+            "Full add-to-cart, search & checkout API stress script",
+            "Server CPU, memory & DB query bottleneck profiling",
+            "Tailored Redis / CDN / DB optimization roadmap",
+            "1 verification re-test after initial fixes"
+          ],
+          "duration_label": "Best for established ecommerce stores & B2B apps."
+        },
+        "complex": {
+          "name": "Enterprise Scale & Tuning",
+          "desc": "15,000+ user stress tests plus hands-on engineering fixes.",
+          "price": "590000",
+          "priceFrom": "true",
+          "sub": "one-time project fee (VAT-free)",
+          "features": [
+            "15,000+ concurrent users across multi-region Azure nodes",
+            "Hands-on remediation of discovered bottlenecks",
+            "Auto-scaling, CDN & Redis caching implementation",
+            "Final verified benchmark proving target capacity",
+            "Optional live campaign standby monitoring"
+          ],
+          "duration_label": "Best for TV campaigns & high-volume enterprise stores."
+        }
+      },
+      "how_we_work_title": "Controlled Execution",
+      "how_we_work_desc": "Gradual ramp-up testing with full safety controls.",
+      "how_we_work_steps": [
+        {
+          "title": "Scenario Design",
+          "description": "Define realistic visitor paths & target peak volume."
+        },
+        {
+          "title": "Script Authoring",
+          "description": "Build parameterized load scripts for staging or off-peak runs."
+        },
+        {
+          "title": "Ramped Execution",
+          "description": "Step up load gradually while watching telemetry."
+        },
+        {
+          "title": "Bottleneck Report",
+          "description": "Deliver clear graphs and an actionable tuning guide."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Answers on performance & load testing",
+      "faq_items": [
+        {
+          "question": "Could testing crash our live storefront?",
+          "answer": "We run against staging environments or off-peak windows using progressive ramp-ups and instant abort triggers."
+        },
+        {
+          "question": "Will we know which plugin or DB query is slowing us down?",
+          "answer": "Yes, we correlate load bursts with backend telemetry to isolate exact slow components."
+        },
+        {
+          "question": "Can BacklineIT also implement the speed optimizations?",
+          "answer": "Yes — our Enterprise tier includes full remediation and re-testing."
+        }
+      ],
+      "cta_title": "Stress-Test Your Platform"
+    },
+    "VirtualDesktop": {
+      "title": "Cloud Virtual Workstations (Azure VDI)",
+      "description": "Centrally managed Windows 11 cloud desktops (Azure Virtual Desktop) for remote teams, accountants and contractors — keeping 100% of sensitive data safely inside EU data centers.",
+      "keywords": "azure virtual desktop vdi, remote cloud workstation, secure byod workspace, virtual windows 11 desktop",
+      "hero_features": [
+        "Full Windows 11 desktops accessible via browser or client",
+        "Strict DLP rules: lock USB ports, clipboard & local downloads",
+        "Gigabit data-center speed to cloud ERP & accounting DBs",
+        "Microsoft Entra ID + mandatory Multi-Factor Auth (MFA)",
+        "Optional NVIDIA GPU nodes for CAD, 3D and video teams",
+        "Onboard new contractors in 5 minutes without shipping hardware"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Data Never Leaves Cloud",
+          "description": "Staff can work from personal laptops — zero proprietary customer files touch local drives."
+        },
+        {
+          "title": "Zero Hardware Logistics",
+          "description": "Skip buying, shipping, and wiping expensive laptops for external staff or seasonal peaks."
+        },
+        {
+          "title": "Consistent Performance",
+          "description": "Central patching, daily backups, and low-latency links to shared business databases."
+        }
+      ],
+      "use_cases_title": "Where VDI Shines",
+      "use_cases_desc": "Total freedom for remote talent, total security control for leadership",
+      "use_cases_items": [
+        {
+          "title": "Remote Finance & Accounting",
+          "description": "Access sensitive payroll and billing tools cleanly from any location.",
+          "example": "Accountants sign in with MFA without exporting raw spreadsheets to home PCs.",
+          "roi": "Full GDPR protection across remote teams"
+        },
+        {
+          "title": "External Contractors & Freelancers",
+          "description": "Provision secure environments day one and revoke instantly upon exit.",
+          "example": "Revoke access at contract end while retaining 100% of source code and drawings.",
+          "roi": "Eliminate contractor IP leakage"
+        },
+        {
+          "title": "Multi-Office Standardization",
+          "description": "Eliminate fragile office servers across regional branches.",
+          "example": "Central OS updates and automated nightly snapshots across all desktops.",
+          "roi": "Slashed on-site IT support visits"
+        },
+        {
+          "title": "Engineering & CAD Teams",
+          "description": "Run heavy 3D design software seamlessly on thin laptops.",
+          "example": "Pay for high-memory GPU instances strictly during active work hours.",
+          "roi": "Avoid expensive workstation cap-ex"
+        }
+      ],
+      "pricing_title": "Cloud Workstation Packages",
+      "pricing_desc": "Turnkey Azure Virtual Desktop setup & managed care. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "VDI Team (1–5 Users)",
+          "desc": "Fast, secure cloud desktops for boutique teams.",
+          "price": "69000",
+          "priceFrom": "true",
+          "sub": "setup (+ 24.9k HUF/user/mo managed)",
+          "features": [
+            "1–5 Windows 11 cloud desktop profiles",
+            "Entra ID authentication & enforced MFA",
+            "Shared company file share (FSLogix profiles)",
+            "Optional clipboard, USB & local download locks",
+            "Automated nightly backups & OS updates"
+          ],
+          "duration_label": "Best for accounting firms, legal teams & small offices."
+        },
+        "detailed": {
+          "name": "VDI Business (6–25 Users)",
+          "desc": "Autoscaling multi-session host pools with work-hour scheduling.",
+          "price": "149000",
+          "priceFrom": "true",
+          "sub": "setup (+ 19.9k HUF/user/mo managed)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "6–25 staff supported on smart autoscaling pools",
+            "Automated start/stop schedules (up to 50% infra savings)",
+            "Pre-packaged internal ERP & finance software",
+            "Strict DLP policies (no local save / screenshot block)",
+            "Business-hours remote helpdesk support"
+          ],
+          "duration_label": "Best for growing SMBs & distributed remote teams."
+        },
+        "complex": {
+          "name": "Enterprise & GPU Workstation",
+          "desc": "Dedicated NVIDIA GPU stations & Site-to-Site office VPN.",
+          "price": "290000",
+          "priceFrom": "true",
+          "sub": "setup (custom per-seat monthly)",
+          "features": [
+            "GPU-accelerated virtual engineering workstations",
+            "Encrypted Site-to-Site VPN back to office LAN",
+            "Conditional Access & Zero-Trust device policies",
+            "Automated golden-image lifecycle pipeline",
+            "Dedicated cloud infrastructure architect"
+          ],
+          "duration_label": "Best for engineering firms & enterprise IT."
+        }
+      },
+      "how_we_work_title": "Rollout Process",
+      "how_we_work_desc": "Move your core workspace applications to Azure within one week.",
+      "how_we_work_steps": [
+        {
+          "title": "App Assessment",
+          "description": "Inventory legacy desktop apps, ERP clients, and file shares."
+        },
+        {
+          "title": "Golden Image Build",
+          "description": "Create a fast, pre-loaded Windows 11 template."
+        },
+        {
+          "title": "Zero-Trust Policies",
+          "description": "Lock down MFA, network boundaries, and DLP rules."
+        },
+        {
+          "title": "Go-Live",
+          "description": "Distribute login URLs and support staff onboarding."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Details about Azure Virtual Desktop",
+      "faq_items": [
+        {
+          "question": "Does staff need powerful laptops on their desk?",
+          "answer": "No. Processing runs in Azure, so any basic laptop, Mac, Chromebook or browser works smoothly."
+        },
+        {
+          "question": "Will our legacy desktop accounting software work?",
+          "answer": "Yes — it runs native Windows 11, supporting virtually any Windows desktop application."
+        },
+        {
+          "question": "Can Mac or Linux users connect?",
+          "answer": "Yes, via the official Windows App client or directly through modern HTML5 browsers."
+        }
+      ],
+      "cta_title": "Deploy Secure Cloud Workspaces"
+    },
+    "WhiteLabelPortal": {
+      "title": "White-Label Encrypted Client Portal",
+      "description": "Your own branded client portal (portal.yourcompany.com) for accountants, law firms and agencies — replace expiring WeTransfer links and messy Gmail attachments with encrypted EU cloud storage.",
+      "keywords": "white label client portal, encrypted file sharing business, gdpr document portal, accounting client portal",
+      "hero_features": [
+        "Custom domain (portal.yourcompany.com) & 100% your branding",
+        "Encrypted EU Azure file storage with zero link expirations",
+        "Structured per-client folders & drag-and-drop bulk uploads",
+        "Instant email alerts when clients upload or request files",
+        "Full audit log tracking exact view & download timestamps",
+        "Integrated milestone tracker & client messaging thread"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Elevated Brand Experience",
+          "description": "Greet clients with a sleek custom portal under your brand instead of generic file links."
+        },
+        {
+          "title": "Bulletproof GDPR Storage",
+          "description": "Keep sensitive contracts, IDs and payroll inside encrypted EU cloud vaults — never plain email."
+        },
+        {
+          "title": "Zero Lost Attachments",
+          "description": "Every uploaded receipt and signed contract stays organized permanently by client and year."
+        }
+      ],
+      "use_cases_title": "Who Loves White-Label Portals?",
+      "use_cases_desc": "Replace fragmented email chains with one secure, organized client workspace",
+      "use_cases_items": [
+        {
+          "title": "Accounting & Payroll Practices",
+          "description": "Streamline monthly invoice collection and payslip delivery.",
+          "example": "Clients drop receipts into designated folders while your team gets instant alerts.",
+          "roi": "Eliminate hours of email chasing every month"
+        },
+        {
+          "title": "Law & Tax Advisory Firms",
+          "description": "Secure Data Room for M&A, litigation and sensitive agreements.",
+          "example": "Audit exactly who downloaded a contract draft down to the second.",
+          "roi": "Technological proof of client confidentiality"
+        },
+        {
+          "title": "Architecture & Engineering",
+          "description": "Share multi-gigabyte CAD blueprints and revision logs safely.",
+          "example": "Contractors always pull the latest approved drawing with zero broken links.",
+          "roi": "Eliminate costly outdated-blueprint errors"
+        },
+        {
+          "title": "Agencies & Consultancies",
+          "description": "Centralize monthly reports, creative assets and approvals.",
+          "example": "Clients review deliverables, approve milestones and grab invoices in one spot.",
+          "roi": "Premium agency polish & fewer status calls"
+        }
+      ],
+      "pricing_title": "White-Label Portal Packages",
+      "pricing_desc": "Turnkey portals launched on your custom subdomain. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Portal Start",
+          "desc": "Branded encrypted document room for boutique firms.",
+          "price": "120000",
+          "priceFrom": "true",
+          "sub": "setup (+ 29k HUF/mo / 100 GB storage)",
+          "features": [
+            "Custom subdomain + your brand colors & logo",
+            "100 GB encrypted EU Azure Blob Storage",
+            "Up to 25 isolated client accounts",
+            "Automated upload & download notifications",
+            "Full download timestamp audit logs"
+          ],
+          "duration_label": "Best for solo advisors, boutique lawyers & CPAs."
+        },
+        "detailed": {
+          "name": "Portal Pro Business",
+          "desc": "Unlimited clients, project milestones & two-way messaging.",
+          "price": "190000",
+          "priceFrom": "true",
+          "sub": "setup (+ 49k HUF/mo / 500 GB storage)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Unlimited client & staff accounts",
+            "500 GB daily-backed-up encrypted EU vault",
+            "Integrated project status & client ticket threads",
+            "Optional 2FA security for external clients",
+            "Automated monthly document request reminders"
+          ],
+          "duration_label": "Best for accounting firms, engineers & agencies."
+        },
+        "complex": {
+          "name": "Enterprise Client Hub",
+          "desc": "2 TB storage, CRM/Billing sync & custom approval workflows.",
+          "price": "390000",
+          "priceFrom": "true",
+          "sub": "setup (+ 89k HUF/mo / 2 TB storage)",
+          "features": [
+            "2 TB geo-replicated Azure enterprise vault",
+            "Invoice auto-sync (Stripe / billing APIs)",
+            "CRM webhooks (auto-create portal on new client deal)",
+            "Formal document approval sign-off stamps",
+            "Dedicated developer support for custom modules"
+          ],
+          "duration_label": "Best for mid-size consulting & financial groups."
+        }
+      },
+      "how_we_work_title": "Launch Timeline",
+      "how_we_work_desc": "Customized around your brand and ready within days.",
+      "how_we_work_steps": [
+        {
+          "title": "Branding & DNS",
+          "description": "Apply your logo, palette, and custom subdomain."
+        },
+        {
+          "title": "Folder Templates",
+          "description": "Pre-build standard per-client document structures."
+        },
+        {
+          "title": "Cloud Deployment",
+          "description": "Provision encrypted Azure storage & notifications."
+        },
+        {
+          "title": "Client Rollout",
+          "description": "Train your staff and invite your first clients."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Details about your custom portal",
+      "faq_items": [
+        {
+          "question": "Will BacklineIT branding appear anywhere?",
+          "answer": "No — domain, portal interface and system emails carry strictly your brand name."
+        },
+        {
+          "question": "Is there an attachment size limit like Gmail?",
+          "answer": "No 25 MB limit; easily share multi-gigabyte archives, CAD sets and videos."
+        },
+        {
+          "question": "Where are our files physically stored?",
+          "answer": "At rest with AES-256 encryption inside European Union Azure data centers."
+        }
+      ],
+      "cta_title": "Launch Your Branded Portal"
+    },
+    "CookielessAnalytics": {
+      "title": "GDPR-Compliant Cookieless Web Analytics",
+      "description": "Privacy-first Google Analytics 4 alternative hosted in EU Azure centers: accurate traffic & conversion insights without annoying cookie banners or US data transfers.",
+      "keywords": "gdpr cookieless analytics, google analytics 4 alternative eu, privacy web analytics saas, real time traffic tracker",
+      "hero_features": [
+        "100% cookie-free — requires zero intrusive consent popups for traffic stats",
+        "Strict EU Azure hosting — zero personal data sent overseas",
+        "Ultra-light (< 2 KB) script resilient to ad-blockers via proxy",
+        "Real-time city map & live active browser session dashboard",
+        "Track conversions, button clicks, downloads & UTM sources cleanly",
+        "Clean single-screen executive dashboard without GA4 clutter"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Recover +40% Lost Data",
+          "description": "Measure true site volume instead of missing half your visitors who reject cookies."
+        },
+        {
+          "title": "Boost PageSpeed Scores",
+          "description": "Replace bloated tracking bundles with a sub-2KB privacy-first edge beacon."
+        },
+        {
+          "title": "Instant Clarity",
+          "description": "Understand which channels convert in 5 seconds without taking an analytics course."
+        }
+      ],
+      "use_cases_title": "Why Switch or Pair With Cookieless Analytics",
+      "use_cases_desc": "Clean, lawful, accurate numbers designed for fast business decisions",
+      "use_cases_items": [
+        {
+          "title": "Sites Blinded by Cookie Rejections",
+          "description": "When 40% of visitors decline tracking banners, standard tools lose half your funnel.",
+          "example": "Lawfully capture 100% of anonymized visit & source metrics.",
+          "roi": "Accurate attribution for marketing budgets"
+        },
+        {
+          "title": "Core Web Vitals Speedup",
+          "description": "Eliminate heavy client scripts throttling mobile SEO scores.",
+          "example": "Noticeable LCP & TBT lift on mobile product landing pages.",
+          "roi": "Improved SEO rankings & lower bounce"
+        },
+        {
+          "title": "Lead & Conversion Tracking",
+          "description": "Measure form submissions, phone taps and PDF downloads natively.",
+          "example": "Weekly crisp digest contrasting Google Search vs LinkedIn ROI.",
+          "roi": "Smarter channel allocation"
+        },
+        {
+          "title": "Regulated & Privacy-Strict Firms",
+          "description": "Healthcare, finance and legal sites banning third-party tracking pixels.",
+          "example": "Zero PII retention inside EU-hosted PostgreSQL/Redis nodes.",
+          "roi": "Effortless GDPR compliance"
+        }
+      ],
+      "pricing_title": "GDPR Analytics Packages",
+      "pricing_desc": "Simple monthly SaaS pricing per site volume. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Analytics Start",
+          "desc": "Clean cookieless traffic tracking for 1 website.",
+          "price": "14900",
+          "priceFrom": "true",
+          "sub": "HUF / mo (up to 50k pageviews/mo)",
+          "features": [
+            "1 primary domain fully tracked without cookies",
+            "Real-time visitor counter & UTM source attribution",
+            "Top pages, bounce rates & device splits",
+            "Weekly automated summary email / PDF report",
+            "100% EU Azure server storage"
+          ],
+          "duration_label": "Best for corporate websites, clinics & blogs."
+        },
+        "detailed": {
+          "name": "Growth Analytics Pro",
+          "desc": "Conversion goals, live geo map & multi-site dashboard.",
+          "price": "29900",
+          "priceFrom": "true",
+          "sub": "HUF / mo (up to 250k pageviews/mo)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "Up to 5 domains managed centrally",
+            "Custom conversion goals (forms, CTAs, cart steps)",
+            "Real-time city geo map (Cloudflare headers)",
+            "First-party proxy subdomain (stats.yourdomain.com)",
+            "Unlimited team member access"
+          ],
+          "duration_label": "Best for B2B service firms & active webshops."
+        },
+        "complex": {
+          "name": "Agency / Enterprise Suite",
+          "desc": "Unlimited client sites, white-label reports & raw API.",
+          "price": "69000",
+          "priceFrom": "true",
+          "sub": "HUF / mo (1M+ pageviews/mo)",
+          "features": [
+            "Unlimited client websites in one agency workspace",
+            "White-label client portals & monthly automated PDFs",
+            "Raw metrics API export (Power BI / Looker)",
+            "Server-side conversion event ingestion",
+            "Dedicated setup assistance"
+          ],
+          "duration_label": "Best for digital agencies & high-volume publishers."
+        }
+      },
+      "how_we_work_title": "5-Minute Setup",
+      "how_we_work_desc": "Drop in a tiny async tag and start seeing live data right away.",
+      "how_we_work_steps": [
+        {
+          "title": "Workspace Provision",
+          "description": "Create your account and first-party stats subdomain."
+        },
+        {
+          "title": "Script Placement",
+          "description": "Add our <2KB tag via site header or GTM."
+        },
+        {
+          "title": "Goal Mapping",
+          "description": "Configure lead forms, downloads, and key CTAs."
+        },
+        {
+          "title": "Live Metrics",
+          "description": "Watch accurate traffic stream in cookie-free."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Privacy compliance & technical specifics",
+      "faq_items": [
+        {
+          "question": "Does it truly require no cookie consent banner?",
+          "answer": "Yes — when no marketing cookies are placed, strictly anonymized cookieless stats do not store personal data under GDPR."
+        },
+        {
+          "question": "Can we keep GA4 running alongside it?",
+          "answer": "Absolutely. Many firms run both side by side to benchmark true un-blocked traffic volume."
+        },
+        {
+          "question": "Will it impact website performance?",
+          "answer": "At under 2 KB loaded asynchronously, it has virtually zero main-thread impact."
+        }
+      ],
+      "cta_title": "Switch to Clean EU Analytics"
+    },
+    "TaxIdValidationAPI": {
+      "title": "Company Tax ID & Registry Validation API",
+      "description": "High-speed cached microservice for B2B webshops & CRMs: typing a VAT/Tax ID auto-fills legal company name and billing address while flagging insolvency risks instantly.",
+      "keywords": "tax id autocomplete api, vies vat validation microservice, b2b checkout company lookup, crm data enrichment",
+      "hero_features": [
+        "Auto-fills official company name & street from VAT/Tax ID",
+        "Real-time EU VIES VAT validity checks for B2B invoicing",
+        "Instant liquidation, bankruptcy & suspension risk alerts",
+        "Sub-30ms response speed backed by Azure Managed Redis",
+        "Plug-and-play WooCommerce / Shopify modules & REST API",
+        "Cut invoicing typos & credit notes by up to 95%"
+      ],
+      "hero_benefits": [
+        {
+          "title": "Zero Billing Typos",
+          "description": "Stop customers from mis-typing legal suffixes or postal codes before automated invoices generate."
+        },
+        {
+          "title": "Higher B2B Checkout Conversion",
+          "description": "Typing a single tax number fills 5 form fields automatically, saving buyers friction."
+        },
+        {
+          "title": "Credit Risk Protection",
+          "description": "Catch distressed or liquidated buyers before approving net-30 wire terms."
+        }
+      ],
+      "use_cases_title": "Immediate ROI Use Cases",
+      "use_cases_desc": "Clean master vendor & customer records without manual registry lookups",
+      "use_cases_items": [
+        {
+          "title": "Fast B2B Storefront Checkouts",
+          "description": "Delight business shoppers with instant error-free billing auto-fill.",
+          "example": "Shopper types tax ID -> official entity name & HQ address populate instantly.",
+          "roi": "Higher checkout completion & zero invoice re-issues"
+        },
+        {
+          "title": "Automated CRM Enrichment",
+          "description": "Keep thousands of client records synced with address & legal status changes.",
+          "example": "Alerts account managers if an active client switches HQ or enters insolvency.",
+          "roi": "Always accurate contracts & billing records"
+        },
+        {
+          "title": "Net-Terms Fraud Filtering",
+          "description": "Verify buyer solvency automatically prior to shipping deferred orders.",
+          "example": "Checkout API flags negative status before warehouse fulfillment begins.",
+          "roi": "Prevent bad debt & uncollectible receivables"
+        },
+        {
+          "title": "Lead Form Intelligence",
+          "description": "Enrich inbound B2B leads with revenue tier & industry sector codes.",
+          "example": "Sales reps enter discovery calls knowing company size and entity details.",
+          "roi": "Sharper B2B sales qualification"
+        }
+      ],
+      "pricing_title": "Tax ID & Enrichment API Packages",
+      "pricing_desc": "Fast cached API bundles for shops and CRMs. Prices exclude VAT.",
+      "plans": {
+        "base": {
+          "name": "Checkout Autocomplete",
+          "desc": "Shop checkout tax lookup plugin & REST endpoint.",
+          "price": "89000",
+          "priceFrom": "true",
+          "sub": "setup (+ 14.9k HUF/mo / 2k calls)",
+          "features": [
+            "WooCommerce or custom checkout form integration",
+            "Instant legal name, address & EU VAT validation",
+            "Azure Managed Redis edge caching",
+            "Up to 2,000 monthly lookups included",
+            "Invoice-ready clean formatting"
+          ],
+          "duration_label": "Best for ecommerce stores selling to B2B clients."
+        },
+        "detailed": {
+          "name": "CRM & Risk Shield",
+          "desc": "Full B2B validation, VIES check & liquidation risk alerts.",
+          "price": "169000",
+          "priceFrom": "true",
+          "sub": "setup (+ 29.9k HUF/mo / 10k calls)",
+          "badge": "Most popular",
+          "popular": true,
+          "features": [
+            "National registry + live EU VIES validation",
+            "Insolvency, suspension & liquidation status flags",
+            "HubSpot / MiniCRM / custom ERP webhook integration",
+            "Industry classification & company size enrichment",
+            "10,000 cached monthly API lookups"
+          ],
+          "duration_label": "Best for wholesale distributors & B2B operators."
+        },
+        "complex": {
+          "name": "Enterprise Data Cleanse",
+          "desc": "High-volume ERP syncing & nightly master-table hygiene.",
+          "price": "340000",
+          "priceFrom": "true",
+          "sub": "setup (+ 59k HUF/mo enterprise scale)",
+          "features": [
+            "Unlimited internal API volume on dedicated node",
+            "Automated nightly cleanup of existing ERP partner tables",
+            "Custom credit-approval risk scoring rules",
+            "99.95% endpoint uptime SLA",
+            "Dedicated integration support"
+          ],
+          "duration_label": "Best for enterprise finance & wholesale networks."
+        }
+      },
+      "how_we_work_title": "Integration Steps",
+      "how_we_work_desc": "Installed into your checkout or CRM within 1–2 days.",
+      "how_we_work_steps": [
+        {
+          "title": "API Provision",
+          "description": "Issue isolated keys and endpoint documentation."
+        },
+        {
+          "title": "Form / CRM Hook",
+          "description": "Connect lookup triggers cleanly to your form fields."
+        },
+        {
+          "title": "Cache & Rules",
+          "description": "Configure national & EU VIES validation policies."
+        },
+        {
+          "title": "Go-Live",
+          "description": "Customers auto-complete company details in 2 seconds."
+        }
+      ],
+      "faq_title": "Frequently Asked Questions",
+      "faq_desc": "Technical specifics of company validation",
+      "faq_items": [
+        {
+          "question": "Does it support EU cross-border VAT (VIES) verification?",
+          "answer": "Yes, it automatically verifies cross-border EU VAT numbers alongside domestic registries."
+        },
+        {
+          "question": "Does lookup latency slow down our checkout page?",
+          "answer": "No — cached lookups serve straight from Azure Redis in under 30 milliseconds."
+        },
+        {
+          "question": "Can you clean our existing messy CRM contact database?",
+          "answer": "Yes, our Enterprise tier runs batch validation to update legacy client addresses and tax IDs."
+        }
+      ],
+      "cta_title": "Automate Company Data Entry"
     }
   },
   "ProductDetailPage": {

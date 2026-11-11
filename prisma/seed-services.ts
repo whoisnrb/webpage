@@ -1,6 +1,41 @@
 import { PrismaClient } from '@prisma/client'
+import { NEW_AZURE_SERVICES } from './azure-services-data'
+import { NEW_AZURE_SERVICES_PART2 } from './azure-services-data-part2'
 
 const prisma = new PrismaClient()
+
+const azureDbServices = [...NEW_AZURE_SERVICES, ...NEW_AZURE_SERVICES_PART2].map((svc) => ({
+    name: svc.hu.title,
+    nameEn: svc.en.title,
+    slug: svc.slug,
+    description: svc.hu.description,
+    descriptionEn: svc.en.description,
+    price: svc.basePrice,
+    icon: svc.icon,
+    href: `/szolgaltatasok/${svc.slug}`,
+    features: JSON.stringify(svc.hu.hero_features.slice(0, 4)),
+    featuresEn: JSON.stringify(svc.en.hero_features.slice(0, 4)),
+    packages: JSON.stringify(
+        (["base", "detailed", "complex"] as const).map((tier) => ({
+            name: svc.hu.plans[tier].name,
+            nameEn: svc.en.plans[tier].name,
+            desc: svc.hu.plans[tier].desc,
+            descEn: svc.en.plans[tier].desc,
+            price: svc.hu.plans[tier].price,
+            sub: svc.hu.plans[tier].sub,
+            subEn: svc.en.plans[tier].sub,
+            badge: svc.hu.plans[tier].badge || "",
+            badgeEn: svc.en.plans[tier].badge || "",
+            popular: Boolean(svc.hu.plans[tier].popular),
+            features: svc.hu.plans[tier].features,
+            featuresEn: svc.en.plans[tier].features,
+            duration_label: svc.hu.plans[tier].duration_label,
+            duration_labelEn: svc.en.plans[tier].duration_label,
+        }))
+    ),
+    active: true,
+    sortOrder: svc.sortOrder,
+}))
 
 const services = [
     {
@@ -438,9 +473,10 @@ const services = [
 ]
 
 async function main() {
+    const allServices = [...services, ...azureDbServices]
     console.log('Seeding services...')
 
-    for (const service of services) {
+    for (const service of allServices) {
         await prisma.service.upsert({
             where: { slug: service.slug },
             update: service,
@@ -449,7 +485,7 @@ async function main() {
         console.log(`  ✓ ${service.name}`)
     }
 
-    console.log('Done! Seeded', services.length, 'services.')
+    console.log('Done! Seeded', allServices.length, 'services.')
 }
 
 main()

@@ -17,7 +17,20 @@ import {
     Puzzle,
     Activity,
     Layout,
-    Headphones
+    Headphones,
+    Radar,
+    MailCheck,
+    Shield,
+    Bot,
+    FileText,
+    Mic,
+    Search,
+    Database,
+    Gauge,
+    Monitor,
+    FolderLock,
+    BarChart3,
+    Building2,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
@@ -28,7 +41,7 @@ import { formatPrice } from "@/lib/currency"
 import type { ServicePackage } from "@/app/actions/service"
 
 interface GenericServiceContentProps {
-    serviceKey: "CloudMigration" | "AICustomerSupport" | "CRMAutomation" | "EcommerceTracking" | "BusinessDashboards" | "RemoteHelpdesk"
+    serviceKey: string
     dbPackages?: ServicePackage[] | null
 }
 
@@ -39,6 +52,20 @@ const SERVICE_ICONS: Record<string, LucideIcon> = {
     EcommerceTracking: Activity,
     BusinessDashboards: Layout,
     RemoteHelpdesk: Headphones,
+    SecurityMonitoringNIS2: Radar,
+    PhishingSimulation: MailCheck,
+    ManagedWAF: Shield,
+    EnterpriseRAG: Bot,
+    DocumentOCR: FileText,
+    MeetingVoiceAI: Mic,
+    TenderMonitor: Search,
+    DisasterRecoveryDRaaS: Database,
+    SyntheticMonitoring: Activity,
+    LoadTesting: Gauge,
+    VirtualDesktop: Monitor,
+    WhiteLabelPortal: FolderLock,
+    CookielessAnalytics: BarChart3,
+    TaxIdValidationAPI: Building2,
 }
 
 export function GenericServiceContent({ serviceKey, dbPackages }: GenericServiceContentProps) {
@@ -172,7 +199,7 @@ export function GenericServiceContent({ serviceKey, dbPackages }: GenericService
                                     <Sparkles className="h-3 w-3 group-hover:rotate-12 transition-transform" />
                                     {tCommon("premium_service")}
                                 </div>
-                                <h1 className="text-4xl sm:text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-8 text-white leading-[0.85]">
+                                <h1 className={`${title.length > 26 ? "text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.95]" : "text-4xl sm:text-5xl md:text-8xl lg:text-9xl leading-[0.85]"} font-black tracking-tighter mb-8 text-white`}>
                                     {title.split(' ').map((word, i) => (
                                         <span key={i} className={i === title.split(' ').length - 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-primary to-purple-500 animate-gradient-x bg-[length:200%_auto] block lg:inline" : ""}>
                                             {word}{' '}
