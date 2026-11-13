@@ -22,7 +22,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { createSalesMeeting, updateSalesMeeting, deleteSalesMeeting } from "@/app/actions/sales-meetings"
+// Direct API route communication for 100% reliability on file uploads
 import { 
     Plus, 
     Edit, 
@@ -69,13 +69,16 @@ export function MeetingManager({ meeting }: MeetingManagerProps) {
 
         try {
             const formData = new FormData(e.currentTarget)
-            
-            let result
             if (isEditing) {
-                result = await updateSalesMeeting(meeting.id, formData)
-            } else {
-                result = await createSalesMeeting(formData)
+                formData.append("id", meeting.id)
             }
+            
+            const res = await fetch("/api/admin/sales-meetings", {
+                method: isEditing ? "PUT" : "POST",
+                body: formData,
+            })
+            
+            const result = await res.json()
 
             if (result.success) {
                 setIsOpen(false)
@@ -96,7 +99,10 @@ export function MeetingManager({ meeting }: MeetingManagerProps) {
         
         setIsDeleting(true)
         try {
-            const result = await deleteSalesMeeting(meeting.id)
+            const res = await fetch(`/api/admin/sales-meetings?id=${meeting.id}`, {
+                method: "DELETE"
+            })
+            const result = await res.json()
             if (result.success) {
                 setIsOpen(false)
                 router.refresh()
