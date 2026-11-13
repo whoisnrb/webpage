@@ -75,25 +75,35 @@ export function SpeedClient() {
             const t2 = setTimeout(() => setScanStep("Core Web Vitals (FCP, LCP, CLS) elemzése..."), 1800)
             const t3 = setTimeout(() => setScanStep("Azure OpenAI GPT-4o konverzióvesztés kalkuláció..."), 2800)
 
-            const res = await runSpeedScan(domain)
+            try {
+                const res = await runSpeedScan(domain)
 
-            clearTimeout(t1)
-            clearTimeout(t2)
-            clearTimeout(t3)
-            toast.dismiss("speed-scan")
+                clearTimeout(t1)
+                clearTimeout(t2)
+                clearTimeout(t3)
+                toast.dismiss("speed-scan")
 
-            if (res.success && res.data) {
-                setReport(res.data)
+                if (res.success && res.data) {
+                    setReport(res.data)
+                    setScanStep("")
+                    setLeadCompanyName(res.data.domain)
+                    setLeadContactEmail(`info@${res.data.domain}`)
+                    setLeadContactName("")
+                    setCustomMessage(generateSpeedOutreachCopy(res.data, "ceo", `info@${res.data.domain}`, "", res.data.domain))
+                    setIsOutboundOpen(false)
+                    toast.success(`⚡ ${domain} sebesség vizsgálata sikeresen lefutott!`)
+                } else {
+                    setScanStep("")
+                    toast.error(res.error || "Nem sikerült lefolytatni a sebesség vizsgálatot.")
+                }
+            } catch (err: any) {
+                clearTimeout(t1)
+                clearTimeout(t2)
+                clearTimeout(t3)
+                toast.dismiss("speed-scan")
                 setScanStep("")
-                setLeadCompanyName(res.data.domain)
-                setLeadContactEmail(`info@${res.data.domain}`)
-                setLeadContactName("")
-                setCustomMessage(generateSpeedOutreachCopy(res.data, "ceo", `info@${res.data.domain}`, "", res.data.domain))
-                setIsOutboundOpen(false)
-                toast.success(`⚡ ${domain} sebesség vizsgálata sikeresen lefutott!`)
-            } else {
-                setScanStep("")
-                toast.error(res.error || "Nem sikerült lefolytatni a sebesség vizsgálatot.")
+                console.error("Speed scan client error:", err)
+                toast.error(err?.message || "Váratlan hiba történt a vizsgálat során.")
             }
         })
     }
@@ -713,7 +723,7 @@ ${report.actionPlan.map((a) => `${a.priority}. ${a.task} -> ${a.impact}`).join("
                                                 <div className="flex items-center justify-between">
                                                     <span className="text-xs font-bold text-white">{b.title}</span>
                                                     <Badge className="bg-orange-500/20 text-orange-300 border-orange-500/30 text-[10px]">
-                                                        {b.severity.toUpperCase()}
+                                                        {(b.severity || "warning").toUpperCase()}
                                                     </Badge>
                                                 </div>
                                                 <p className="text-xs text-slate-300">{b.description}</p>
