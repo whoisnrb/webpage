@@ -81,11 +81,11 @@ export function MeetingManager({ meeting }: MeetingManagerProps) {
                 setIsOpen(false)
                 router.refresh()
             } else {
-                alert("Hiba történt a mentés során: " + result.error)
+                alert("Hiba történt a mentés során: " + (result.error || "Ismeretlen hiba"))
             }
-        } catch (error) {
-            console.error(error)
-            alert("Váratlan hiba történt.")
+        } catch (error: any) {
+            console.error("Meeting save error:", error)
+            alert("Hiba történt a mentés során: " + (error?.message || "Hálózati vagy szerverhiba"))
         } finally {
             setIsLoading(false)
         }
@@ -101,11 +101,11 @@ export function MeetingManager({ meeting }: MeetingManagerProps) {
                 setIsOpen(false)
                 router.refresh()
             } else {
-                alert("Hiba történt a törlés során")
+                alert("Hiba történt a törlés során: " + (result.error || "Ismeretlen hiba"))
             }
-        } catch (error) {
-            console.error(error)
-            alert("Váratlan hiba történt.")
+        } catch (error: any) {
+            console.error("Meeting delete error:", error)
+            alert("Hiba történt a törlés során: " + (error?.message || "Ismeretlen hiba"))
         } finally {
             setIsDeleting(false)
         }

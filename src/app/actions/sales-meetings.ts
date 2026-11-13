@@ -63,24 +63,28 @@ export async function createSalesMeeting(formData: FormData) {
         })
         
         // E-mail értesítés küldése a kiválasztott sales-es kollégának
-        const recipientEmail = notifyRecipient || "roha.levente@backlineit.hu"
-        await sendSalesMeetingNotification(recipientEmail, {
-            clientName,
-            clientEmail,
-            clientPhone,
-            meetingTime,
-            platform,
-            meetingLink,
-            status,
-            notes,
-            hasDocument: !!documentData.documentFile
-        });
+        try {
+            const recipientEmail = notifyRecipient || "roha.levente@backlineit.hu"
+            await sendSalesMeetingNotification(recipientEmail, {
+                clientName,
+                clientEmail,
+                clientPhone,
+                meetingTime,
+                platform,
+                meetingLink,
+                status,
+                notes,
+                hasDocument: !!documentData.documentFile
+            });
+        } catch (emailErr) {
+            console.error("Warning: Failed to send email notification, but meeting was created:", emailErr)
+        }
         
         revalidatePath("/admin/sales-meetings")
         return { success: true }
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error creating meeting:", error)
-        return { success: false, error: "Failed to create meeting" }
+        return { success: false, error: error?.message || "Failed to create meeting" }
     }
 }
 
@@ -130,9 +134,9 @@ export async function updateSalesMeeting(id: string, formData: FormData) {
         
         revalidatePath("/admin/sales-meetings")
         return { success: true }
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error updating meeting:", error)
-        return { success: false, error: "Failed to update meeting" }
+        return { success: false, error: error?.message || "Failed to update meeting" }
     }
 }
 

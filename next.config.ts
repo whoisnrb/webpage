@@ -11,11 +11,11 @@ const nextConfig: NextConfig = {
   experimental: {
     serverActions: {
       allowedOrigins: [
-        "https://backlineit.hu", 
-        "https://www.backlineit.hu", 
-        "http://backlineit.hu", 
-        "http://www.backlineit.hu", 
-        "http://localhost:3000"
+        "backlineit.hu",
+        "*.backlineit.hu",
+        "backlineit-web.prouddune-402fd7f7.spaincentral.azurecontainerapps.io",
+        "*.azurecontainerapps.io",
+        "localhost:3000"
       ],
       bodySizeLimit: "100mb",
     },
