@@ -81,6 +81,7 @@ export async function createSalesMeeting(formData: FormData) {
         }
         
         revalidatePath("/admin/sales-meetings")
+        revalidatePath("/[locale]/admin/sales-meetings", "page")
         return { success: true }
     } catch (error: any) {
         console.error("Error creating meeting:", error)
@@ -133,6 +134,7 @@ export async function updateSalesMeeting(id: string, formData: FormData) {
         })
         
         revalidatePath("/admin/sales-meetings")
+        revalidatePath("/[locale]/admin/sales-meetings", "page")
         return { success: true }
     } catch (error: any) {
         console.error("Error updating meeting:", error)
@@ -146,6 +148,7 @@ export async function deleteSalesMeeting(id: string) {
             where: { id }
         })
         revalidatePath("/admin/sales-meetings")
+        revalidatePath("/[locale]/admin/sales-meetings", "page")
         return { success: true }
     } catch (error) {
         console.error("Error deleting meeting:", error)

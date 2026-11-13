@@ -7,6 +7,11 @@ const intlMiddleware = createMiddleware(routing);
 export default function middleware(req: NextRequest) {
     const { pathname, search } = req.nextUrl;
 
+    // 0. Next.js Server Action POST kérések azonnali átengedése (megelőzi a middleware-rewrite okozta 'unexpected response' hibát)
+    if (req.headers.has('next-action') || req.headers.has('Next-Action')) {
+        return NextResponse.next();
+    }
+
     // 1. API útvonalak azonnali átengedése (auth végpontok és webhookok)
     if (pathname.startsWith('/api/')) {
         return NextResponse.next();
