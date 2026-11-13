@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio, Globe } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio, Globe, Zap, MailCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -195,6 +195,20 @@ export default async function AdminLayout({
                             <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-cyan-500/15 via-blue-500/10 to-transparent hover:from-cyan-500/25 hover:to-blue-500/20 border border-cyan-500/30 hover:border-cyan-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.15)] group">
                                 <ShieldCheck className="h-4 w-4 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
                                 <span className="text-sm font-medium">IT Biztonsági Audit Robot</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/speed-audit" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-transparent hover:from-amber-500/25 hover:to-orange-500/20 border border-amber-500/30 hover:border-amber-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(245,158,11,0.15)] group">
+                                <Zap className="h-4 w-4 text-amber-400 group-hover:text-amber-300 transition-colors" />
+                                <span className="text-sm font-medium">Sebesség & Konverzió Robot</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/email-deliverability" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-transparent hover:from-emerald-500/25 hover:to-teal-500/20 border border-emerald-500/30 hover:border-emerald-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.15)] group">
+                                <MailCheck className="h-4 w-4 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
+                                <span className="text-sm font-medium">Email Kézbesíthetőség Teszt</span>
                             </Button>
                         </Link>
                     </div>

@@ -464,3 +464,67 @@ ${JSON.stringify(technicalDetails, null, 2)}`
         }
     }
 }
+
+export async function saveAuditLead(data: {
+    domain: string
+    companyName?: string
+    contactEmail?: string
+    contactName?: string
+    score: number
+    riskLevel: string
+    notes?: string
+    outreachTemplate?: string
+}): Promise<{ success: boolean; error?: string; leadId?: string }> {
+    try {
+        const session = await auth()
+        const role = session?.user?.role || ""
+        if (!session?.user || !["ADMIN", "SUPER_ADMIN", "DEVELOPER", "SALES"].includes(role)) {
+            return { success: false, error: "Nincs jogosultságod a művelethez." }
+        }
+
+        const domain = sanitizeDomain(data.domain)
+        const email = data.contactEmail?.trim() || `info@${domain}`
+        const companyName = data.companyName?.trim() || domain
+
+        const fullNotes = [
+            `[KIBERBIZTONSÁGI AUDIT] Pontszám: ${data.score}/100 (${data.riskLevel})`,
+            data.notes ? `Megjegyzés: ${data.notes}` : "",
+            data.outreachTemplate ? `\n--- GENERÁLT MEGKERESÉS ---\n${data.outreachTemplate}` : "",
+        ].filter(Boolean).join("\n")
+
+        const existingLead = await prisma.lead.findUnique({
+            where: { email },
+        })
+
+        let lead
+        if (existingLead) {
+            lead = await prisma.lead.update({
+                where: { id: existingLead.id },
+                data: {
+                    companyName: companyName || existingLead.companyName,
+                    name: data.contactName?.trim() || existingLead.name,
+                    notes: `${existingLead.notes ? existingLead.notes + "\n\n" : ""}${fullNotes}`,
+                    status: "AUDITED",
+                    lastContactedAt: new Date(),
+                },
+            })
+        } else {
+            lead = await prisma.lead.create({
+                data: {
+                    email,
+                    name: data.contactName?.trim() || "Döntéshozó",
+                    companyName,
+                    source: "security-audit-robot",
+                    status: "AUDITED",
+                    notes: fullNotes,
+                    lastContactedAt: new Date(),
+                },
+            })
+        }
+
+        return { success: true, leadId: lead.id }
+    } catch (err: any) {
+        console.error("Save audit lead error:", err)
+        return { success: false, error: err.message || "Nem sikerült a lead mentése." }
+    }
+}

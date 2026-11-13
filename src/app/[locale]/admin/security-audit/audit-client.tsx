@@ -4,11 +4,13 @@ import { useState, useTransition } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { toast } from "sonner"
 import {
     runSecurityScan,
+    saveAuditLead,
     AuditReport,
 } from "@/app/actions/security-audit"
 import {
@@ -32,6 +34,14 @@ import {
     Zap,
     Bot,
     ExternalLink,
+    Send,
+    UserCheck,
+    Building2,
+    MailCheck,
+    MessageSquare,
+    Share2,
+    Sparkles,
+    CheckCheck,
 } from "lucide-react"
 
 const PRESET_DOMAINS = [
@@ -41,6 +51,86 @@ const PRESET_DOMAINS = [
     { label: "OTP Bank (Pénzintézet)", domain: "otpbank.hu" },
 ]
 
+function getSubjectOptions(domain: string, score: number) {
+    return [
+        `Sürgős biztonsági észrevétel a ${domain} infrastruktúrájával kapcsolatban [Audit riport]`,
+        `Kiberbiztonsági helyzetkép a ${domain} rendszereiről [Vezetői jelentés mellékelve]`,
+        `Biztonsági figyelmeztetés a ${domain} levelezési és hálózati védelméről (${score}/100 pont)`,
+    ]
+}
+
+function generateOutreachCopy(
+    report: AuditReport,
+    persona: "ceo" | "it" | "finance",
+    targetEmail?: string,
+    targetName?: string,
+    companyName?: string
+) {
+    const domain = report.domain
+    const score = report.score
+    const openPorts = report.technicalDetails.ports.filter(
+        (p) => p.status === "open" && p.port !== 80 && p.port !== 443
+    )
+    const hasDmarcIssue =
+        !report.technicalDetails.dns.hasDmarc ||
+        report.technicalDetails.dns.dmarcRecord?.toLowerCase().includes("p=none")
+
+    let greeting = "Tisztelt Cégvezetés! / Tisztelt Döntéshozó!"
+    if (targetName && targetName.trim()) {
+        greeting = `Tisztelt ${targetName.trim()}!`
+    } else if (persona === "ceo") {
+        greeting = `Tisztelt ${companyName || domain} Vezetőség! / Tisztelt Ügyvezető Igazgató Úr/Asszony!`
+    } else if (persona === "it") {
+        greeting = `Tisztelt IT Vezető / Rendszergazda Kolléga!`
+    } else if (persona === "finance") {
+        greeting = `Tisztelt Gazdasági Igazgató / Pénzügyi Döntéshozó!`
+    }
+
+    let points = ""
+    if (openPorts.length > 0) {
+        points += `1. Nyitott kritikus szerverkapuk (${openPorts.map((p) => `${p.port} - ${p.service}`).join(", ")}):\nA kiszolgálón a távoli hozzáférési vagy adatbázis portok tűzfalvédelem nélkül elérhetők a nyílt internet felől, ami közvetlen célpontot nyújt automatizált behatolási kísérleteknek és zsarolóvírusoknak.\n\n`
+    }
+    if (hasDmarcIssue) {
+        points += `2. Védtelen email tartomány (DMARC hiány vagy passzív felügyelet):\nA domain nem rendelkezik aktív DMARC elutasítási szabállyal, így illetéktelenek a cég nevében (@${domain}) küldhetnek hamis ajánlatokat vagy csaló számlákat a partnereknek, és a hivatalos leveleik is a Spam mappában köthetnek ki.\n\n`
+    }
+    if (!report.technicalDetails.headers.hsts || !report.technicalDetails.headers.csp) {
+        points += `3. Hiányzó böngészővédelmi HTTP fejlécek (HSTS / CSP):\nA weboldal nem kényszeríti a kötelező titkosított csatornát és nem védi a látogatókat a kattintáseltérítéses vagy kódbeágyazásos támadásoktól.\n\n`
+    }
+    if (!points) {
+        points = `1. Digitális biztonsági index: ${score}/100 pont.\n2. Rendszerkonfigurációs hiányosságok a szerver válaszfejléceiben.\n\n`
+    }
+
+    const personaAngle =
+        persona === "ceo"
+            ? "Vezetőként az üzletmenet-folytonosság, a jóhírnév és a vevői adatok védelme a legfontosabb."
+            : persona === "it"
+            ? "Műszaki szakemberként Ön is pontosan tudja, hogy a nyitott portok és a passzív DNS rekordok milyen támadási felületet adnak."
+            : "Pénzügyi döntéshozóként a megelőzés költsége töredéke egy zsarolóvírusos vagy számlacsalásos incidens kárának."
+
+    return `${greeting}
+
+Török Norbert vagyok a BacklineIT alapítója. Cégünk vállalati kiberbiztonsággal és felhőinfrastruktúrák védelmével foglalkozik — a Microsoft által hivatalosan elismert és technológiailag támogatott hazai startupként.
+
+${personaAngle} Automatizált biztonsági robotunk a mai napon technikai felmérést végzett a ${domain} nyilvánosan elérhető kiszolgálóján. Az audit (${score}/100-as biztonsági mutató mellett) az alábbi beavatkozást igénylő pontokat azonosította:
+
+${points.trim()}
+
+A jó hír, hogy ezek a sérülékenységek minimális beavatkozással, üzemszünet nélkül lezárhatók.
+
+A részletes, Azure OpenAI motorunk által validált vezetői technikai jelentést csatoltam ehhez a levélhez (BacklineIT-Biztonsagi-Audit-${domain}.pdf).
+
+Microsoft for Startups partnerként a legfrissebb felhősztenderdekkel dolgozunk, ráadásul ÁFA-mentesen számlázunk (AAM), így a megerősítés költsége azonnali 27%-os pénzügyi előnyt jelent Önöknek.
+
+Amennyiben az Önök belső vagy szerződött IT csapata számára segítségre van szükség a biztonsági rések lezárásában, szívesen állunk rendelkezésre egy rövid, 15 perces szakmai egyeztetésre.
+
+Üdvözlettel,
+Török Norbert
+Alapító & Rendszermérnök | BacklineIT
+Web: https://backlineit.hu
+Telefon: +36 [...]
+E-mail: info@backlineit.hu`
+}
+
 export function AuditClient() {
     const [domain, setDomain] = useState("backlineit.hu")
     const [isScanning, startScan] = useTransition()
@@ -48,6 +138,17 @@ export function AuditClient() {
     const [scanStep, setScanStep] = useState<string>("")
     const [copied, setCopied] = useState(false)
     const [isGeneratingPdf, setIsGeneratingPdf] = useState(false)
+
+    // Outbound Lead Hub State
+    const [isOutboundOpen, setIsOutboundOpen] = useState(false)
+    const [outreachPersona, setOutreachPersona] = useState<"ceo" | "it" | "finance">("ceo")
+    const [selectedSubjectIdx, setSelectedSubjectIdx] = useState(0)
+    const [leadContactName, setLeadContactName] = useState("")
+    const [leadContactEmail, setLeadContactEmail] = useState("")
+    const [leadCompanyName, setLeadCompanyName] = useState("")
+    const [customMessage, setCustomMessage] = useState("")
+    const [isSavingLead, setIsSavingLead] = useState(false)
+    const [outreachCopied, setOutreachCopied] = useState(false)
 
     const handleRunScan = () => {
         if (!domain.trim()) {
@@ -75,12 +176,80 @@ export function AuditClient() {
             if (res.success && res.data) {
                 setReport(res.data)
                 setScanStep("")
+                setLeadCompanyName(res.data.domain)
+                setLeadContactEmail(`info@${res.data.domain}`)
+                setLeadContactName("")
+                setCustomMessage(
+                    generateOutreachCopy(res.data, outreachPersona, `info@${res.data.domain}`, "", res.data.domain)
+                )
+                setIsOutboundOpen(false)
                 toast.success(`✨ ${domain} biztonsági vizsgálata sikeresen lefutott!`)
             } else {
                 setScanStep("")
                 toast.error(res.error || "Nem sikerült lefolytatni a vizsgálatot.")
             }
         })
+    }
+
+    const handleSwitchPersona = (p: "ceo" | "it" | "finance") => {
+        setOutreachPersona(p)
+        if (report) {
+            setCustomMessage(
+                generateOutreachCopy(report, p, leadContactEmail, leadContactName, leadCompanyName || report.domain)
+            )
+        }
+    }
+
+    const handleSaveLeadToCrm = async () => {
+        if (!report) return
+        setIsSavingLead(true)
+        try {
+            const subjects = getSubjectOptions(report.domain, report.score)
+            const subject = subjects[selectedSubjectIdx] || subjects[0]
+            const fullOutreach = `TÁRGY: ${subject}\n\n${customMessage}`
+            const res = await saveAuditLead({
+                domain: report.domain,
+                companyName: leadCompanyName || report.domain,
+                contactEmail: leadContactEmail || `info@${report.domain}`,
+                contactName: leadContactName || undefined,
+                score: report.score,
+                riskLevel: report.riskLevel,
+                outreachTemplate: fullOutreach,
+            })
+            if (res.success) {
+                toast.success(`🎉 ${report.domain} sikeresen elmentve a CRM Lead adatbázisba!`)
+            } else {
+                toast.error(res.error || "Nem sikerült menteni a leadet.")
+            }
+        } catch (e: any) {
+            toast.error(e.message || "Hiba történt a mentés során.")
+        } finally {
+            setIsSavingLead(false)
+        }
+    }
+
+    const handleOpenMailto = () => {
+        if (!report) return
+        const subjects = getSubjectOptions(report.domain, report.score)
+        const subject = encodeURIComponent(subjects[selectedSubjectIdx] || subjects[0])
+        const body = encodeURIComponent(customMessage)
+        const email = encodeURIComponent(leadContactEmail || `info@${report.domain}`)
+        window.open(`mailto:${email}?subject=${subject}&body=${body}`, "_blank")
+    }
+
+    const copyOutreachText = async () => {
+        if (!report) return
+        const subjects = getSubjectOptions(report.domain, report.score)
+        const subject = subjects[selectedSubjectIdx] || subjects[0]
+        const full = `TÁRGY: ${subject}\n\n${customMessage}`
+        try {
+            await navigator.clipboard.writeText(full)
+            setOutreachCopied(true)
+            setTimeout(() => setOutreachCopied(false), 2000)
+            toast.success("Teljes megkeresés (tárggyal együtt) vágólapra másolva!")
+        } catch {
+            toast.error("Nem sikerült másolni a vágólapra.")
+        }
     }
 
     const copyReportSummary = async () => {
@@ -433,10 +602,243 @@ ${report.backlineProposal.pitch}
                                         </>
                                     )}
                                 </Button>
+
+                                <Button
+                                    type="button"
+                                    onClick={() => {
+                                        if (!customMessage && report) {
+                                            setCustomMessage(
+                                                generateOutreachCopy(
+                                                    report,
+                                                    outreachPersona,
+                                                    leadContactEmail,
+                                                    leadContactName,
+                                                    leadCompanyName || report.domain
+                                                )
+                                            )
+                                        }
+                                        setIsOutboundOpen((prev) => !prev)
+                                    }}
+                                    className="bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 hover:from-purple-500 hover:to-rose-500 text-white text-xs font-bold rounded-xl border border-purple-400/40 shadow-lg shadow-purple-500/25 flex items-center gap-1.5 cursor-pointer transition-all duration-300"
+                                >
+                                    <Send className="h-3.5 w-3.5 text-pink-200" />
+                                    {isOutboundOpen ? "Megkereső Elrejtése" : "🚀 Hideg Megkeresés & Lead Hub"}
+                                </Button>
                             </div>
                         </CardHeader>
 
                         <CardContent className="p-6 md:p-8 space-y-6">
+                            {/* Outbound Lead Hub Interactive Panel */}
+                            {isOutboundOpen && (
+                                <div className="bg-gradient-to-br from-[#120726] via-[#090d16] to-[#160a26] border-2 border-purple-500/30 rounded-3xl p-6 sm:p-8 space-y-6 shadow-[0_0_40px_rgba(168,85,247,0.15)] animate-in fade-in slide-in-from-top-4 duration-300">
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-purple-500/20">
+                                        <div>
+                                            <div className="flex items-center gap-2 text-xs font-extrabold text-pink-400 uppercase tracking-widest">
+                                                <Sparkles className="h-4 w-4" />
+                                                BacklineIT Outbound Lead Hunter & Pitch Generator
+                                            </div>
+                                            <h3 className="text-xl font-black text-white mt-1">
+                                                Hideg Megkeresés Előkészítése: {leadCompanyName || report.domain}
+                                            </h3>
+                                            <p className="text-xs text-slate-400">
+                                                Személyre szabott B2B megkeresés a valós audit pontszám ({report.score}/100) és sebezhetőségek alapján.
+                                            </p>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 px-3 py-1 text-xs">
+                                                Microsoft Startup & ÁFA-mentes (AAM) Fókusz
+                                            </Badge>
+                                        </div>
+                                    </div>
+
+                                    {/* Persona Selector */}
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                                            <UserCheck className="h-4 w-4 text-purple-400" />
+                                            Célzott Döntéshozói Szerepkör
+                                        </label>
+                                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                                            <button
+                                                type="button"
+                                                onClick={() => handleSwitchPersona("ceo")}
+                                                className={`p-3 rounded-2xl border text-left transition-all ${
+                                                    outreachPersona === "ceo"
+                                                        ? "bg-purple-600/20 border-purple-500 text-white shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                                                        : "bg-white/5 border-white/5 text-slate-400 hover:text-white hover:bg-white/10"
+                                                }`}
+                                            >
+                                                <div className="text-xs font-bold text-white flex items-center gap-1.5">
+                                                    <Building2 className="h-3.5 w-3.5 text-pink-400" />
+                                                    Ügyvezető / Cégvezető
+                                                </div>
+                                                <p className="text-[11px] text-slate-400 mt-0.5">Zsarolóvírus, vevőbizalom, jóhírnév és GDPR</p>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleSwitchPersona("it")}
+                                                className={`p-3 rounded-2xl border text-left transition-all ${
+                                                    outreachPersona === "it"
+                                                        ? "bg-purple-600/20 border-purple-500 text-white shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                                                        : "bg-white/5 border-white/5 text-slate-400 hover:text-white hover:bg-white/10"
+                                                }`}
+                                            >
+                                                <div className="text-xs font-bold text-white flex items-center gap-1.5">
+                                                    <Server className="h-3.5 w-3.5 text-cyan-400" />
+                                                    IT Vezető / Rendszergazda
+                                                </div>
+                                                <p className="text-[11px] text-slate-400 mt-0.5">Nyitott portok, HSTS/CSP, DNS konfiguráció</p>
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => handleSwitchPersona("finance")}
+                                                className={`p-3 rounded-2xl border text-left transition-all ${
+                                                    outreachPersona === "finance"
+                                                        ? "bg-purple-600/20 border-purple-500 text-white shadow-[0_0_15px_rgba(168,85,247,0.25)]"
+                                                        : "bg-white/5 border-white/5 text-slate-400 hover:text-white hover:bg-white/10"
+                                                }`}
+                                            >
+                                                <div className="text-xs font-bold text-white flex items-center gap-1.5">
+                                                    <Lock className="h-3.5 w-3.5 text-amber-400" />
+                                                    Gazdasági / Pénzügyi Vezető
+                                                </div>
+                                                <p className="text-[11px] text-slate-400 mt-0.5">Csaló számlák elkerülése, 27% ÁFA megtakarítás</p>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    {/* Subject Line Picker */}
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                                            <MailCheck className="h-4 w-4 text-pink-400" />
+                                            Választható Tárgymezők (Kattints a kiválasztáshoz)
+                                        </label>
+                                        <div className="space-y-2">
+                                            {getSubjectOptions(report.domain, report.score).map((subj, idx) => (
+                                                <button
+                                                    key={idx}
+                                                    type="button"
+                                                    onClick={() => setSelectedSubjectIdx(idx)}
+                                                    className={`w-full p-2.5 px-3.5 rounded-xl border text-left text-xs font-medium flex items-center justify-between transition-all ${
+                                                        selectedSubjectIdx === idx
+                                                            ? "bg-pink-500/20 border-pink-500 text-white font-bold"
+                                                            : "bg-white/5 border-white/5 text-slate-400 hover:text-white"
+                                                    }`}
+                                                >
+                                                    <span>{subj}</span>
+                                                    {selectedSubjectIdx === idx && (
+                                                        <Badge className="bg-pink-500 text-white text-[10px] h-5">Kiválasztva</Badge>
+                                                    )}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Lead Target Information Inputs */}
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                        <div>
+                                            <label className="text-[11px] font-semibold text-slate-400">Kapcsolattartó Neve (opcionális)</label>
+                                            <Input
+                                                placeholder="pl.: Dr. Kovács Péter"
+                                                value={leadContactName}
+                                                onChange={(e) => {
+                                                    setLeadContactName(e.target.value)
+                                                    setCustomMessage(
+                                                        generateOutreachCopy(
+                                                            report,
+                                                            outreachPersona,
+                                                            leadContactEmail,
+                                                            e.target.value,
+                                                            leadCompanyName
+                                                        )
+                                                    )
+                                                }}
+                                                className="mt-1 bg-white/5 border-white/10 text-white rounded-xl text-xs h-9"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-[11px] font-semibold text-slate-400">Cég Neve</label>
+                                            <Input
+                                                placeholder="pl.: Auto Palace Kft."
+                                                value={leadCompanyName}
+                                                onChange={(e) => {
+                                                    setLeadCompanyName(e.target.value)
+                                                    setCustomMessage(
+                                                        generateOutreachCopy(
+                                                            report,
+                                                            outreachPersona,
+                                                            leadContactEmail,
+                                                            leadContactName,
+                                                            e.target.value
+                                                        )
+                                                    )
+                                                }}
+                                                className="mt-1 bg-white/5 border-white/10 text-white rounded-xl text-xs h-9"
+                                            />
+                                        </div>
+                                        <div>
+                                            <label className="text-[11px] font-semibold text-slate-400">Célzott E-mail Cím</label>
+                                            <Input
+                                                placeholder="pl.: ugyvezeto@cegnev.hu"
+                                                value={leadContactEmail}
+                                                onChange={(e) => setLeadContactEmail(e.target.value)}
+                                                className="mt-1 bg-white/5 border-white/10 text-white rounded-xl text-xs h-9"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Message Editor */}
+                                    <div className="space-y-2">
+                                        <div className="flex items-center justify-between">
+                                            <label className="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                                                <MessageSquare className="h-4 w-4 text-purple-400" />
+                                                Generált Hideg Megkereső Szöveg (Szerkeszthető)
+                                            </label>
+                                            <span className="text-[11px] text-slate-400">
+                                                💡 Tipp: Csatold a letöltött PDF auditot az e-mailhez!
+                                            </span>
+                                        </div>
+                                        <Textarea
+                                            rows={14}
+                                            value={customMessage}
+                                            onChange={(e) => setCustomMessage(e.target.value)}
+                                            className="bg-[#0b101c] border-white/10 text-slate-200 font-sans text-xs leading-relaxed rounded-2xl p-4 focus-visible:ring-purple-500"
+                                        />
+                                    </div>
+
+                                    {/* Actions Bar */}
+                                    <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+                                        <div className="flex flex-wrap items-center gap-2">
+                                            <Button
+                                                type="button"
+                                                onClick={copyOutreachText}
+                                                className="bg-white/10 hover:bg-white/20 text-white border border-white/10 rounded-xl text-xs font-bold flex items-center gap-1.5 cursor-pointer"
+                                            >
+                                                {outreachCopied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4 text-slate-300" />}
+                                                {outreachCopied ? "Levél Másolva!" : "📋 Levél Másolása (Vágólapra)"}
+                                            </Button>
+
+                                            <Button
+                                                type="button"
+                                                onClick={handleOpenMailto}
+                                                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 border border-blue-400/30 cursor-pointer"
+                                            >
+                                                <Mail className="h-4 w-4" />
+                                                📧 Megnyitás Levelezőben (mailto:)
+                                            </Button>
+                                        </div>
+
+                                        <Button
+                                            type="button"
+                                            onClick={handleSaveLeadToCrm}
+                                            disabled={isSavingLead}
+                                            className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 border border-emerald-400/40 shadow-lg shadow-emerald-500/20 cursor-pointer"
+                                        >
+                                            {isSavingLead ? <RefreshCw className="h-4 w-4 animate-spin" /> : <CheckCheck className="h-4 w-4 text-emerald-200" />}
+                                            💾 Mentés a CRM-be Leadként
+                                        </Button>
+                                    </div>
+                                </div>
+                            )}
                             {/* Summary Text */}
                             <div className="bg-[#0b101c] border border-white/5 rounded-2xl p-6 space-y-3">
                                 <h4 className="text-xs font-bold uppercase tracking-wider text-cyan-400">
