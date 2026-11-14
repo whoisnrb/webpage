@@ -101,9 +101,16 @@ export async function redisDel(...keys: string[]): Promise<boolean> {
   if (!client || keys.length === 0) return false;
 
   try {
-    await client.del(...keys);
+    if (keys.length === 1) {
+      await client.del(keys[0]);
+    } else {
+      const pipeline = client.pipeline();
+      keys.forEach((key) => pipeline.del(key));
+      await pipeline.exec();
+    }
     return true;
-  } catch {
+  } catch (err) {
+    console.error("[Azure Redis] redisDel error:", err);
     return false;
   }
 }
@@ -118,10 +125,13 @@ export async function redisDelPattern(pattern: string): Promise<boolean> {
   try {
     const keys = await client.keys(pattern);
     if (keys.length > 0) {
-      await client.del(...keys);
+      const pipeline = client.pipeline();
+      keys.forEach((key) => pipeline.del(key));
+      await pipeline.exec();
     }
     return true;
-  } catch {
+  } catch (err) {
+    console.error("[Azure Redis] redisDelPattern error:", err);
     return false;
   }
 }
@@ -136,14 +146,18 @@ export async function redisGetPattern<T>(pattern: string): Promise<T[]> {
   try {
     const keys = await client.keys(pattern);
     if (keys.length === 0) return [];
-    const values = await client.mget(...keys);
+    const pipeline = client.pipeline();
+    keys.forEach((key) => pipeline.get(key));
+    const results = await pipeline.exec();
     const parsed: T[] = [];
-    for (const val of values) {
-      if (val) {
-        try {
-          parsed.push(JSON.parse(val) as T);
-        } catch {
-          // skip invalid JSON
+    if (results) {
+      for (const [err, val] of results) {
+        if (!err && val) {
+          try {
+            parsed.push(JSON.parse(val as string) as T);
+          } catch {
+            // skip invalid JSON
+          }
         }
       }
     }

@@ -202,9 +202,12 @@ export async function createReference(data: Omit<ReferenceDTO, 'id' | 'updatedAt
             }
         })
         await redisDelPattern("references:*")
-        revalidateTag('references', 'default')
         revalidatePath('/referenciak')
+        revalidatePath('/hu/referenciak')
+        revalidatePath('/en/references')
+        revalidatePath('/[locale]/referenciak', 'page')
         revalidatePath('/admin/references')
+        revalidatePath('/[locale]/admin/references', 'page')
     } catch (error) {
         console.error("CREATE REFERENCE ERROR:", error)
         throw error
@@ -228,9 +231,12 @@ export async function updateReference(id: string, data: Partial<ReferenceDTO>) {
             }
         })
         await redisDelPattern("references:*")
-        revalidateTag('references', 'default')
         revalidatePath('/referenciak')
+        revalidatePath('/hu/referenciak')
+        revalidatePath('/en/references')
+        revalidatePath('/[locale]/referenciak', 'page')
         revalidatePath('/admin/references')
+        revalidatePath('/[locale]/admin/references', 'page')
     } catch (error) {
         console.error("UPDATE REFERENCE ERROR:", error)
         throw error
@@ -242,7 +248,10 @@ export async function deleteReference(id: string) {
         where: { id }
     })
     await redisDelPattern("references:*")
-    revalidateTag('references', 'default')
     revalidatePath('/referenciak')
+    revalidatePath('/hu/referenciak')
+    revalidatePath('/en/references')
+    revalidatePath('/[locale]/referenciak', 'page')
     revalidatePath('/admin/references')
+    revalidatePath('/[locale]/admin/references', 'page')
 }
