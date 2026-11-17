@@ -41,9 +41,49 @@ export async function GET(
             return NextResponse.redirect(rawSource, { status: 307 })
         }
 
-        // If it's already a relative static path
+        // If it's already a relative static path (e.g. /images/references/patient-system.png)
         if (rawSource.startsWith("/") && !rawSource.startsWith("/api/")) {
-            return NextResponse.redirect(new URL(rawSource, request.url), { status: 307 })
+            try {
+                const fs = await import("fs/promises")
+                const path = await import("path")
+                const cleanRelPath = rawSource.replace(/^\/+/, "")
+                const filePath = path.join(process.cwd(), "public", cleanRelPath)
+                const fileBytes = await fs.readFile(filePath)
+                const ext = path.extname(filePath).toLowerCase()
+                const mimeMap: Record<string, string> = {
+                    ".png": "image/png",
+                    ".jpg": "image/jpeg",
+                    ".jpeg": "image/jpeg",
+                    ".webp": "image/webp",
+                    ".svg": "image/svg+xml",
+                    ".ico": "image/x-icon",
+                }
+                const mimeType = mimeMap[ext] || "application/octet-stream"
+
+                const etag = `"${slug}-${asset}-${ref.updatedAt ? new Date(ref.updatedAt).getTime() : 1}"`
+                const ifNoneMatch = request.headers.get("if-none-match")
+                if (ifNoneMatch === etag) {
+                    return new NextResponse(null, { status: 304 })
+                }
+
+                return new NextResponse(fileBytes, {
+                    status: 200,
+                    headers: {
+                        "Content-Type": mimeType,
+                        "Content-Length": fileBytes.length.toString(),
+                        "Cache-Control": "public, max-age=31536000, stale-while-revalidate=86400",
+                        "ETag": etag,
+                    }
+                })
+            } catch (fsErr) {
+                console.warn(`Could not read static file directly for ${rawSource}, redirecting to public URL:`, fsErr)
+                const forwardedHost = request.headers.get("x-forwarded-host") || request.headers.get("host")
+                const forwardedProto = request.headers.get("x-forwarded-proto") || "https"
+                const baseUrl = (forwardedHost && !forwardedHost.includes("0.0.0.0") && !forwardedHost.includes("127.0.0.1") && !forwardedHost.includes("localhost"))
+                    ? `${forwardedProto}://${forwardedHost}`
+                    : (process.env.NEXT_PUBLIC_APP_URL || "https://backlineit.hu")
+                return NextResponse.redirect(new URL(rawSource, baseUrl), { status: 307 })
+            }
         }
 
         // If it's a data URI: data:[mime];base64,[data]
