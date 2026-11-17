@@ -90,6 +90,8 @@ export function ReferenceFilterGrid({ studies, locale }: ReferenceFilterGridProp
                                         <img
                                             src={study.image}
                                             alt={study.title}
+                                            loading="lazy"
+                                            decoding="async"
                                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                         />
                                     ) : (
@@ -128,7 +130,7 @@ export function ReferenceFilterGrid({ studies, locale }: ReferenceFilterGridProp
                                     <CardDescription className="font-medium text-foreground/80 flex items-center gap-2">
                                         {study.clientLogo && (
                                             <span className="inline-flex items-center bg-white rounded-md p-1 border border-border/50 shadow-sm shrink-0">
-                                                <img src={study.clientLogo} alt={study.client} className="h-5 w-auto max-w-[80px] object-contain" />
+                                                <img src={study.clientLogo} alt={study.client} loading="lazy" decoding="async" className="h-5 w-auto max-w-[80px] object-contain" />
                                             </span>
                                         )}
                                         {study.client}

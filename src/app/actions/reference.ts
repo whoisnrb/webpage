@@ -66,8 +66,19 @@ export type LocalizedReferenceDTO = {
 }
 
 function mapReference(r: any): ReferenceDTO {
+    const slug = r.slug
+    const isImageBase64 = r.image === undefined || (typeof r.image === 'string' && r.image.startsWith('data:image'))
+    const isLogoBase64 = typeof r.clientLogo === 'string' && r.clientLogo.startsWith('data:image')
+    const gallery = Array.isArray(r.galleryImages) ? r.galleryImages : []
+    const mappedGallery = gallery.map((g: string, i: number) => {
+        return (typeof g === 'string' && g.startsWith('data:image')) ? `/api/references/${slug}/gallery-${i}` : g
+    })
+
     return {
         ...r,
+        image: isImageBase64 ? `/api/references/${slug}/image` : r.image,
+        clientLogo: isLogoBase64 ? `/api/references/${slug}/logo` : (r.clientLogo !== undefined ? r.clientLogo : null),
+        galleryImages: mappedGallery,
         updatedAt: r.updatedAt ? new Date(r.updatedAt) : new Date(),
         content: r.content !== undefined ? r.content : null,
         contentEn: r.contentEn !== undefined ? r.contentEn : null,
@@ -77,12 +88,10 @@ function mapReference(r: any): ReferenceDTO {
         solutionEn: r.solutionEn !== undefined ? r.solutionEn : null,
         result: r.result !== undefined ? r.result : '',
         resultEn: r.resultEn !== undefined ? r.resultEn : null,
-        galleryImages: r.galleryImages !== undefined ? r.galleryImages : [],
         metrics: r.metrics ? (typeof r.metrics === 'string' ? JSON.parse(r.metrics) : r.metrics) : null,
         documentationFile: r.documentationFile !== undefined ? r.documentationFile : null,
         showDocumentation: r.showDocumentation !== undefined ? r.showDocumentation : false,
         websiteUrl: r.websiteUrl !== undefined ? r.websiteUrl : null,
-        clientLogo: r.clientLogo !== undefined ? r.clientLogo : null,
     }
 }
 
@@ -117,8 +126,8 @@ function localizeReference(ref: ReferenceDTO, locale: string): LocalizedReferenc
 
 export async function getReferences(): Promise<ReferenceDTO[]> {
     try {
-        const raw = await cached("references:all", 3600, async () => {
-            return await (prisma as any).reference.findMany({
+        const refs = await cached("references:all:v2", 3600, async () => {
+            const raw = await (prisma as any).reference.findMany({
                 orderBy: { createdAt: 'desc' },
                 select: {
                     id: true,
@@ -131,7 +140,6 @@ export async function getReferences(): Promise<ReferenceDTO[]> {
                     categoryEn: true,
                     description: true,
                     descriptionEn: true,
-                    image: true,
                     type: true,
                     tags: true,
                     active: true,
@@ -140,8 +148,9 @@ export async function getReferences(): Promise<ReferenceDTO[]> {
                     createdAt: true
                 }
             })
+            return raw.map(mapReference)
         })
-        return raw.map(mapReference)
+        return refs
     } catch (error) {
         console.error("Error fetching references:", error)
         return []
@@ -171,13 +180,13 @@ export async function getLocalizedReferences(locale: string = 'hu'): Promise<Loc
 
 export async function getReferenceBySlug(slug: string) {
     try {
-        const raw = await cached(`references:slug:${slug}`, 3600, async () => {
-            return await (prisma as any).reference.findUnique({
+        const raw = await cached(`references:slug:v2:${slug}`, 3600, async () => {
+            const item = await (prisma as any).reference.findUnique({
                 where: { slug }
             })
+            return item ? mapReference(item) : null
         })
-        if (!raw) return null
-        return mapReference(raw)
+        return raw
     } catch (error) {
         console.error("Error fetching reference by slug:", error)
         return null

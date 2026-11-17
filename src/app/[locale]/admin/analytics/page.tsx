@@ -4,7 +4,8 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { BarChart3, Users, MousePointer2 } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
-export default async function AnalyticsPage({ params: { locale } }: { params: { locale: string } }) {
+export default async function AnalyticsPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params
     const t = await getTranslations('AdminAnalytics')
 
     const events = await prisma.analyticsEvent.findMany({

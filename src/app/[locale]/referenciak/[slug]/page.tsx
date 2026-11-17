@@ -85,7 +85,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                         <p className="text-xl text-muted-foreground mb-4 font-medium flex items-center gap-3">
                             {study.clientLogo && (
                                 <span className="inline-flex items-center bg-white rounded-lg p-2 border border-border/50 shadow-sm shrink-0">
-                                    <img src={study.clientLogo} alt={study.client} className="h-8 w-auto max-w-[120px] object-contain" />
+                                    <img src={study.clientLogo} alt={study.client} decoding="async" className="h-8 w-auto max-w-[120px] object-contain" />
                                 </span>
                             )}
                             {study.client}
@@ -114,7 +114,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     </div>
                     <div className={`aspect-video rounded-2xl ${isImageUrl ? '' : study.image} flex items-center justify-center shadow-2xl skew-y-1 transform transition-all overflow-hidden relative`}>
                         {isImageUrl ? (
-                            <img src={study.image} alt={study.title} className="w-full h-full object-cover" />
+                            <img src={study.image} alt={study.title} decoding="async" className="w-full h-full object-cover" />
                         ) : (
                             <div className="absolute inset-0 bg-black/5" />
                         )}
