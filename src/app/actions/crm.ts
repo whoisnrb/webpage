@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/db";
 import { revalidatePath } from "next/cache";
+import { isPlaceholderEmail } from "@/lib/utils";
 
 export async function getLeads() {
     try {
@@ -23,14 +24,44 @@ export async function updateLead(id: string, data: {
     lastContactedAt?: Date;
 }) {
     try {
+        const updateData: any = { ...data };
+
+        if (data.email !== undefined) {
+            let cleanEmail = data.email.trim().toLowerCase();
+            if (!cleanEmail || isPlaceholderEmail(cleanEmail)) {
+                const current = await prisma.lead.findUnique({ where: { id } });
+                if (current && isPlaceholderEmail(current.email)) {
+                    delete updateData.email;
+                } else {
+                    const randomSuffix = Math.random().toString(36).substring(2, 8);
+                    updateData.email = `nincsmeg-${Date.now()}-${randomSuffix}@crm.internal`;
+                }
+            } else {
+                const existing = await prisma.lead.findUnique({
+                    where: { email: cleanEmail },
+                });
+                if (existing && existing.id !== id) {
+                    const partnerName = existing.companyName || existing.name || "Névtelen partner";
+                    return {
+                        success: false,
+                        error: `Ezzel az e-mail címmel (${cleanEmail}) már létezik egy másik partner (${partnerName})!`,
+                    };
+                }
+                updateData.email = cleanEmail;
+            }
+        }
+
         const updatedLead = await prisma.lead.update({
             where: { id },
-            data,
+            data: updateData,
         });
         revalidatePath("/[locale]/admin/crm", "page");
         return { success: true, lead: updatedLead };
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error updating lead:", error);
+        if (error?.code === "P2002") {
+            return { success: false, error: "Ez az e-mail cím már foglalt egy másik partnernél!" };
+        }
         return { success: false, error: "Nem sikerült a frissítés" };
     }
 }
@@ -51,19 +82,52 @@ export async function deleteLead(id: string) {
 export async function createLead(data: {
     name?: string;
     companyName?: string;
-    email: string;
-    source: string;
+    email?: string;
+    source?: string;
     status?: string;
     notes?: string;
 }) {
     try {
+        let cleanEmail = data.email?.trim().toLowerCase() || "";
+
+        // Ha nincs megadva e-mail cím vagy helykitöltő cím (pl. nincsmeg@teszt.hu, nincsmeg...)
+        if (!cleanEmail || isPlaceholderEmail(cleanEmail)) {
+            const randomSuffix = Math.random().toString(36).substring(2, 8);
+            cleanEmail = `nincsmeg-${Date.now()}-${randomSuffix}@crm.internal`;
+        } else {
+            // Valós e-mailnél ellenőrizzük, hogy létezik-e már a rendszerben
+            const existing = await prisma.lead.findUnique({
+                where: { email: cleanEmail },
+            });
+            if (existing) {
+                const partnerName = existing.companyName || existing.name || "Névtelen partner";
+                return {
+                    success: false,
+                    error: `Ezzel az e-mail címmel (${cleanEmail}) már létezik egy partner a CRM-ben: "${partnerName}"!`,
+                };
+            }
+        }
+
         const lead = await prisma.lead.create({
-            data,
+            data: {
+                name: data.name?.trim() || undefined,
+                companyName: data.companyName?.trim() || undefined,
+                email: cleanEmail,
+                source: data.source || "Kézi felvitel",
+                status: data.status || "LEAD",
+                notes: data.notes?.trim() || undefined,
+            },
         });
         revalidatePath("/[locale]/admin/crm", "page");
         return { success: true, lead };
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error creating lead:", error);
+        if (error?.code === "P2002") {
+            return {
+                success: false,
+                error: "Ezzel az e-mail címmel már létezik partner a rendszerben!",
+            };
+        }
         return { success: false, error: "Nem sikerült a létrehozás" };
     }
 }
@@ -77,6 +141,13 @@ export async function sendOutreachEmailAction(leadId: string, customIntro?: stri
 
         if (!lead || !lead.email) {
             return { success: false, error: 'Ügyfél nem található vagy hiányzik az e-mail cím' };
+        }
+
+        if (isPlaceholderEmail(lead.email)) {
+            return {
+                success: false,
+                error: 'Ehhez a partnerhez nincs valós e-mail cím megadva (helyettesítő cím), így nem küldhető ki e-mail.'
+            };
         }
 
         const { sendAbelOutreachEmail } = await import('@/lib/mail');
@@ -338,7 +409,12 @@ export async function importHuntedLeadAction(data: {
     notes?: string;
 }) {
     try {
-        const cleanEmail = data.email.trim().toLowerCase();
+        let cleanEmail = data.email.trim().toLowerCase();
+        if (isPlaceholderEmail(cleanEmail)) {
+            const randomSuffix = Math.random().toString(36).substring(2, 8);
+            cleanEmail = `nincsmeg-${Date.now()}-${randomSuffix}@crm.internal`;
+        }
+
         const existing = await prisma.lead.findUnique({
             where: { email: cleanEmail },
         });

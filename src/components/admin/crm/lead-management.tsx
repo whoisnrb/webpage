@@ -37,6 +37,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { updateLead, deleteLead, createLead, sendOutreachEmailAction, generateAiLeadPitchAction, searchLiveLeadsAction, importHuntedLeadAction, analyzeFacebookLeadAction, type HuntedLead } from "@/app/actions/crm";
+import { isPlaceholderEmail } from "@/lib/utils";
 import { toast } from "sonner";
 import {
     Users,
@@ -66,6 +67,7 @@ import {
     Globe,
     Building,
     Phone,
+    AlertCircle,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { EmptyState } from "@/components/ui/empty-state";
@@ -258,33 +260,34 @@ export function LeadManagement({ initialLeads }: { initialLeads: Lead[] }) {
         const result = await updateLead(editingLead.id, {
             name: editingLead.name || undefined,
             companyName: editingLead.companyName || undefined,
+            email: editingLead.email || undefined,
             status: editingLead.status,
             notes: editingLead.notes || undefined,
             lastContactedAt: editingLead.lastContactedAt ? new Date(editingLead.lastContactedAt) : undefined,
         });
 
-        if (result.success) {
+        if (result.success && result.lead) {
             toast.success(t("save_success"));
             setIsDialogOpen(false);
-            setLeads((prev) => prev.map((l) => (l.id === editingLead.id ? editingLead : l)));
+            setLeads((prev) => prev.map((l) => (l.id === editingLead.id ? (result.lead as Lead) : l)));
         } else {
-            toast.error(t("save_error"));
+            toast.error(result.error || t("save_error"));
         }
     };
 
     const handleCreate = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!newLead.email) {
-            toast.error("Az e-mail cím megadása kötelező!");
+        if (!newLead.companyName?.trim() && !newLead.name?.trim() && !newLead.email?.trim()) {
+            toast.error("Legalább a cég nevét, a kapcsolattartó nevét vagy egy e-mail címet adj meg!");
             return;
         }
 
         const result = await createLead({
-            name: newLead.name || undefined,
-            companyName: newLead.companyName || undefined,
-            email: newLead.email,
+            name: newLead.name?.trim() || undefined,
+            companyName: newLead.companyName?.trim() || undefined,
+            email: newLead.email?.trim() || undefined,
             status: newLead.status,
-            notes: newLead.notes || undefined,
+            notes: newLead.notes?.trim() || undefined,
             source: "Kézi felvitel",
         });
 
@@ -778,17 +781,24 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
 
                                             {/* Email */}
                                             <TableCell className="py-4">
-                                                <div className="flex items-center gap-1.5 group/email">
-                                                    <span className="text-sm text-slate-300 font-mono truncate max-w-[200px]">
-                                                        {lead.email}
+                                                {isPlaceholderEmail(lead.email) ? (
+                                                    <span className="inline-flex items-center gap-1 text-[11px] text-amber-400/90 font-medium bg-amber-500/10 px-2 py-0.5 rounded-md border border-amber-500/20">
+                                                        Nincs e-mail
                                                     </span>
-                                                    <button
-                                                        onClick={() => copyEmail(lead.email)}
-                                                        className="opacity-0 group-hover/email:opacity-100 h-6 w-6 rounded-md flex items-center justify-center hover:bg-white/[0.08] transition-all duration-200"
-                                                    >
-                                                        <Copy className="h-3 w-3 text-slate-500" />
-                                                    </button>
-                                                </div>
+                                                ) : (
+                                                    <div className="flex items-center gap-1.5 group/email">
+                                                        <span className="text-sm text-slate-300 font-mono truncate max-w-[200px]">
+                                                            {lead.email}
+                                                        </span>
+                                                        <button
+                                                            onClick={() => copyEmail(lead.email)}
+                                                            className="opacity-0 group-hover/email:opacity-100 h-6 w-6 rounded-md flex items-center justify-center hover:bg-white/[0.08] transition-all duration-200"
+                                                            title="E-mail másolása"
+                                                        >
+                                                            <Copy className="h-3 w-3 text-slate-500" />
+                                                        </button>
+                                                    </div>
+                                                )}
                                             </TableCell>
 
                                             {/* Status */}
@@ -943,14 +953,16 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                             </div>
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                                <Mail className="h-3.5 w-3.5" />
-                                E-mail cím *
+                            <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                                <span className="flex items-center gap-1.5">
+                                    <Mail className="h-3.5 w-3.5" />
+                                    E-mail cím
+                                </span>
+                                <span className="text-[11px] text-slate-500 font-normal lowercase">opcionális</span>
                             </label>
                             <Input
-                                type="email"
-                                required
-                                placeholder="Pl. info@cegnev.hu"
+                                type="text"
+                                placeholder="Pl. info@cegnev.hu (üresen hagyható, ha még nincs)"
                                 value={newLead.email}
                                 onChange={(e) => setNewLead({ ...newLead, email: e.target.value })}
                                 className="bg-white/[0.03] border-white/[0.08] text-white placeholder:text-slate-600 focus:border-cyan-500/40 rounded-xl"
@@ -1067,6 +1079,24 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                                 </div>
                             </div>
                             <div className="space-y-2">
+                                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+                                    <span className="flex items-center gap-1.5">
+                                        <Mail className="h-3.5 w-3.5" />
+                                        E-mail cím
+                                    </span>
+                                    {isPlaceholderEmail(editingLead.email) && (
+                                        <span className="text-[11px] text-amber-400/80 font-normal">még nincs valós e-mail</span>
+                                    )}
+                                </label>
+                                <Input
+                                    type="text"
+                                    placeholder="Pl. info@cegnev.hu"
+                                    value={isPlaceholderEmail(editingLead.email) ? "" : editingLead.email}
+                                    onChange={(e) => setEditingLead({ ...editingLead, email: e.target.value })}
+                                    className="bg-white/[0.03] border-white/[0.08] text-white focus:border-violet-500/40 rounded-xl"
+                                />
+                            </div>
+                            <div className="space-y-2">
                                 <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{t("status")}</label>
                                 <Select
                                     value={editingLead.status}
@@ -1164,7 +1194,7 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                                     </Badge>
                                 </div>
                                 <p className="text-xs text-slate-400 truncate">
-                                    Címzett: <span className="text-slate-200 font-semibold">{outreachLead?.companyName || outreachLead?.name || outreachLead?.email}</span> ({outreachLead?.email}) • Forrás: {outreachLead?.source || "Nincs adat"}
+                                    Címzett: <span className="text-slate-200 font-semibold">{outreachLead?.companyName || outreachLead?.name || outreachLead?.email}</span> ({isPlaceholderEmail(outreachLead?.email) ? "Nincs valós e-mail cím" : outreachLead?.email}) • Forrás: {outreachLead?.source || "Nincs adat"}
                                 </p>
                             </div>
                         </div>
@@ -1232,6 +1262,12 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
 
                         {/* Direct Email Outreach Section */}
                         <div className="space-y-4 pt-2 border-t border-white/[0.06]">
+                            {isPlaceholderEmail(outreachLead?.email) && (
+                                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs">
+                                    <AlertCircle className="h-4 w-4 shrink-0 text-amber-400" />
+                                    <span>Ehhez a partnerhez nincs valós e-mail cím megadva. Használd a fenti LinkedIn/Facebook sablonokat, vagy szerkeszd az adatlapot az e-mail cím megadásához.</span>
+                                </div>
+                            )}
                             <div className="flex items-center justify-between flex-wrap gap-2">
                                 <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
                                     <Mail className="h-3.5 w-3.5 text-cyan-400" />
@@ -1322,9 +1358,12 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                             </Button>
                             <Button
                                 type="button"
-                                disabled={isSendingEmail}
+                                disabled={isSendingEmail || isPlaceholderEmail(outreachLead?.email)}
+                                title={isPlaceholderEmail(outreachLead?.email) ? "Ehhez a partnerhez nincs e-mail cím megadva" : undefined}
                                 onClick={handleSendOutreachEmail}
-                                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/20 rounded-xl px-6 gap-2"
+                                className={`bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/20 rounded-xl px-6 gap-2 ${
+                                    isPlaceholderEmail(outreachLead?.email) ? "opacity-50 cursor-not-allowed" : ""
+                                }`}
                             >
                                 {isSendingEmail ? (
                                     <>
