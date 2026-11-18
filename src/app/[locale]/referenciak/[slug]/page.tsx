@@ -15,6 +15,7 @@ import { KnowledgeHubDemo } from "@/components/demo/knowledge-hub-demo"
 // Force dynamic rendering — Prisma nem érhető el build-time-on (Vercel)
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
+export const revalidate = 0
 
 import { getSeoMetadata } from "@/lib/seo"
 import { BreadcrumbJsonLd } from "@/components/seo/breadcrumb-jsonld"
