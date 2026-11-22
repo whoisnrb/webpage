@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
                         serviceType: serviceName,
                         description: 'Automatikus Stripe fizetés',
                         status: 'PAID',
-                        budget: session.amount_total ? `${session.amount_total / 100} Ft` : 'N/A',
+                        budget: session.amount_total ? `${session.amount_total / 100} ${session.currency?.toUpperCase() || 'HUF'}` : 'N/A',
                         company: session.customer_details.address?.line1 || null,
                         phone: session.customer_details.phone || null
                     }

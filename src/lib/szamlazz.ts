@@ -50,10 +50,14 @@ export async function createInvoice(session: Stripe.Checkout.Session) {
         bank: '' // An empty seller object is often enough to create the <elado> block
     })
 
+    const isEur = session.currency?.toUpperCase() === 'EUR'
+    const invoiceCurrency = isEur ? szamlazz.Currencies.EUR : szamlazz.Currencies.Ft
+    const invoiceLanguage = isEur ? szamlazz.Languages.English : szamlazz.Languages.Hungarian
+
     const invoice = new szamlazz.Invoice({
         paymentMethod: szamlazz.PaymentMethod.Stripe,
-        currency: szamlazz.Currency.Ft,
-        language: szamlazz.Language.Hungarian,
+        currency: invoiceCurrency,
+        language: invoiceLanguage,
         paid: true, // Since they paid via Stripe
         seller: seller,
         buyer: buyer,
