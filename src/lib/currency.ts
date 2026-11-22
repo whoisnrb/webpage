@@ -23,10 +23,11 @@ export function convertPrice(amount: number, from: CurrencyCode, to: CurrencyCod
 }
 
 export function formatPrice(amount: number, currencyCode: CurrencyCode, locale: string = 'hu-HU'): string {
+    const rounded = Math.ceil(amount);
     return new Intl.NumberFormat(locale, {
         style: 'currency',
         currency: currencyCode,
-        minimumFractionDigits: currencyCode === 'HUF' ? 0 : 2,
-        maximumFractionDigits: currencyCode === 'HUF' ? 0 : 2,
-    }).format(amount);
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    }).format(rounded);
 }

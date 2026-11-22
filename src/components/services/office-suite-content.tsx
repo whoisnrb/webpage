@@ -169,7 +169,7 @@ export function OfficeSuiteContent() {
                                                     )}
                                                 </div>
                                             </div>
-                                            <p className="text-white/20 font-black uppercase tracking-widest text-[10px] mt-4">{plan.sub}</p>
+                                            <p className="text-white/20 font-black uppercase tracking-widest text-[10px] mt-4">{plan.sub ? plan.sub.replace(/\bHUF\b/gi, currency) : ""}</p>
                                         </div>
 
                                         <div className="flex-1 space-y-4 mb-12">
