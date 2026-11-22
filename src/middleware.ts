@@ -16,16 +16,32 @@ export default function middleware(req: NextRequest) {
     // Google ne indexelje a ?service=..., ?serviceInterest=..., ?subject=... variánsokat
     const isQuoteRequest = pathname === '/ajanlatkeres' || pathname === '/hu/ajanlatkeres' 
         || pathname === '/en/request-a-quote';
+    
+    let response: NextResponse;
     if (isQuoteRequest && search && search.length > 1) {
-        const response = intlMiddleware(req);
+        response = intlMiddleware(req);
         response.headers.set('X-Robots-Tag', 'noindex, follow');
-        return response;
+    } else {
+        response = intlMiddleware(req);
     }
 
-    // 3. Tiszta intl middleware routing
-    // A védett oldalakat (dashboard, admin) a Server Component Layoutok és Page-ek ellenőrzik
-    // közvetlenül a Node.js runtime-ban, megszüntetve a middleware redirect-loop (ERR_TOO_MANY_REDIRECTS) hibát.
-    return intlMiddleware(req);
+    // 3. Biztosítjuk, hogy a belső konténer port (:3000) soha ne szivárogjon ki a Location átirányítási fejlécekbe
+    const location = response.headers.get('location');
+    if (location) {
+        try {
+            const url = new URL(location);
+            if (url.port === '3000' || url.port === '8080') {
+                url.port = '';
+                response.headers.set('location', url.toString());
+            }
+        } catch {
+            if (location.includes(':3000')) {
+                response.headers.set('location', location.replace(':3000', ''));
+            }
+        }
+    }
+
+    return response;
 }
 
 export const config = {
