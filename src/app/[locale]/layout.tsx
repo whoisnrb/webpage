@@ -83,7 +83,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       },
     },
     verification: {
-      google: "w5GusFwWrjuwRjB6Et93XNbdps97gw7pOuMeX4a5pbY",
+      google: [
+        "w5GusFwWrjuwRjB6Et93XNbdps97gw7pOuMeX4a5pbY",
+        "qCXv1jj1JVOsCO3vogM93r5TSXPxxnDb-6ShRoKdBog",
+      ],
     },
     appleWebApp: {
       title: "BacklineIT",
