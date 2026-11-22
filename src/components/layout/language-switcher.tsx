@@ -1,7 +1,7 @@
 "use client"
 
 import { useLocale, useTranslations } from "next-intl"
-import { usePathname, useRouter } from "@/i18n/routing"
+import { usePathname, useRouter, getPathname } from "@/i18n/routing"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
@@ -21,6 +21,26 @@ export function LanguageSwitcher() {
         if (typeof document !== "undefined") {
             document.cookie = `NEXT_LOCALE=${newLocale}; path=/; max-age=31536000; SameSite=lax`;
         }
+
+        if (typeof window !== "undefined") {
+            const host = window.location.hostname;
+            let targetPath = pathname;
+            try {
+                targetPath = (getPathname as any)({ href: pathname, locale: newLocale });
+            } catch {
+                targetPath = pathname;
+            }
+
+            if (newLocale === "en" && host.endsWith("backlineit.hu")) {
+                window.location.href = `https://backlineit.com${targetPath}`;
+                return;
+            }
+            if (newLocale === "hu" && host.endsWith("backlineit.com")) {
+                window.location.href = `https://backlineit.hu${targetPath}`;
+                return;
+            }
+        }
+
         router.replace(pathname as any, { locale: newLocale })
     }
 
