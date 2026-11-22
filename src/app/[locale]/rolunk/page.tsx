@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         openGraph: {
             title: `${title} | BacklineIT`,
             description,
-            url: locale === 'en' ? 'https://backlineit.hu/en/about-us' : 'https://backlineit.hu/rolunk',
+            url: locale === 'en' ? 'https://backlineit.com/about-us' : 'https://backlineit.hu/rolunk',
             siteName: 'BacklineIT',
             locale: locale === 'hu' ? 'hu_HU' : 'en_US',
             type: 'website',

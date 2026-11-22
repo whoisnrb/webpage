@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         openGraph: {
             title: `${title} | BacklineIT`,
             description,
-            url: locale === 'en' ? 'https://backlineit.hu/en/blog' : 'https://backlineit.hu/blog',
+            url: locale === 'en' ? 'https://backlineit.com/blog' : 'https://backlineit.hu/blog',
             siteName: 'BacklineIT',
             locale: locale === 'hu' ? 'hu_HU' : 'en_US',
             type: 'website',

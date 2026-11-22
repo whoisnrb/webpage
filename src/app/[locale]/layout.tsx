@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       type: "website",
       locale: locale === 'hu' ? 'hu_HU' : 'en_US',
-      url: "https://backlineit.hu",
+      url: locale === 'en' ? "https://backlineit.com" : "https://backlineit.hu",
       title: t('title'),
       description: t('description'),
       siteName: "BacklineIT",
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t('description'),
       creator: "@backlineit",
     },
-    metadataBase: new URL("https://backlineit.hu"),
+    metadataBase: new URL(locale === 'en' ? "https://backlineit.com" : "https://backlineit.hu"),
     robots: {
       index: true,
       follow: true,

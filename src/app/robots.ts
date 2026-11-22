@@ -28,6 +28,9 @@ export default function robots(): MetadataRoute.Robots {
                 disallow: '/',
             },
         ],
-        sitemap: 'https://backlineit.hu/sitemap.xml',
+        sitemap: [
+            'https://backlineit.hu/sitemap.xml',
+            'https://backlineit.com/sitemap.xml',
+        ],
     }
 }

@@ -83,8 +83,11 @@ export function getSeoMetadata(
   const enPath = resolvePath('en');
 
   // Absolute URLs ensure standard-compliant canonical and hreflang across search engines
-  const huUrl = huPath === '/' ? BASE_URL : `${BASE_URL}${huPath}`;
-  const enUrl = `${BASE_URL}/en${enPath === '/' ? '' : enPath}`;
+  const huDomain = 'https://backlineit.hu';
+  const enDomain = 'https://backlineit.com';
+
+  const huUrl = huPath === '/' ? huDomain : `${huDomain}${huPath}`;
+  const enUrl = enPath === '/' ? enDomain : `${enDomain}${enPath}`;
   const canonical = locale === 'hu' ? huUrl : enUrl;
 
   return {

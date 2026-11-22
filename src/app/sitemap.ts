@@ -8,7 +8,10 @@ import { caseStudies as staticCaseStudies } from '@/lib/case-studies-data'
 export const revalidate = 3600
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://backlineit.hu'
+    const domainMap: Record<'hu' | 'en', string> = {
+        hu: 'https://backlineit.hu',
+        en: 'https://backlineit.com',
+    }
     const locales = routing.locales as readonly ('hu' | 'en')[]
 
     let products: Awaited<ReturnType<typeof getProducts>> = []
@@ -128,20 +131,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         const languages: Record<string, string> = {}
         for (const locale of locales) {
             const path = resolvePathname(locale, href)
-            languages[locale] = `${baseUrl}${path}`
+            languages[locale] = `${domainMap[locale]}${path}`
         }
         // Set Hungarian as default locale for international search engines
         const defaultPath = resolvePathname('hu', href)
-        languages['x-default'] = `${baseUrl}${defaultPath}`
+        languages['x-default'] = `${domainMap.hu}${defaultPath}`
         return { languages }
     }
 
     // Static routes for each locale
     for (const locale of locales) {
+        const domain = domainMap[locale]
         for (const route of staticRoutes) {
             const path = resolvePathname(locale, route.path)
             routes.push({
-                url: `${baseUrl}${path}`,
+                url: `${domain}${path}`,
                 lastModified: new Date(),
                 changeFrequency: route.changeFrequency,
                 priority: route.priority,
@@ -152,11 +156,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Blog posts
     for (const locale of locales) {
+        const domain = domainMap[locale]
         for (const post of posts.filter(p => p.published)) {
             const hrefObj = { pathname: '/blog/[slug]', params: { slug: post.slug } }
             const path = resolvePathname(locale, hrefObj)
             routes.push({
-                url: `${baseUrl}${path}`,
+                url: `${domain}${path}`,
                 lastModified: post.updatedAt ? new Date(post.updatedAt) : new Date(post.createdAt),
                 changeFrequency: 'monthly',
                 priority: 0.6,
@@ -167,11 +172,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Blog series
     for (const locale of locales) {
+        const domain = domainMap[locale]
         for (const s of series) {
             const hrefObj = { pathname: '/blog/series/[slug]', params: { slug: s.slug } }
             const path = resolvePathname(locale, hrefObj)
             routes.push({
-                url: `${baseUrl}${path}`,
+                url: `${domain}${path}`,
                 lastModified: new Date(),
                 changeFrequency: 'monthly',
                 priority: 0.5,
@@ -182,11 +188,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     // Products (solutions)
     for (const locale of locales) {
+        const domain = domainMap[locale]
         for (const product of products) {
             const hrefObj = { pathname: '/megoldasok/[slug]', params: { slug: product.slug } }
             const path = resolvePathname(locale, hrefObj)
             routes.push({
-                url: `${baseUrl}${path}`,
+                url: `${domain}${path}`,
                 lastModified: product.updatedAt ? new Date(product.updatedAt) : new Date(),
                 changeFrequency: 'weekly',
                 priority: 0.9,
@@ -202,11 +209,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ]
 
     for (const locale of locales) {
+        const domain = domainMap[locale]
         for (const study of allReferences) {
             const hrefObj = { pathname: '/referenciak/[slug]', params: { slug: study.slug } }
             const path = resolvePathname(locale, hrefObj)
             routes.push({
-                url: `${baseUrl}${path}`,
+                url: `${domain}${path}`,
                 lastModified: study.updatedAt,
                 changeFrequency: 'monthly',
                 priority: 0.6,
