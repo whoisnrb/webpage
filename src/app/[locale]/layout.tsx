@@ -178,7 +178,7 @@ export default async function RootLayout({
             <NeuralBackground />
             <ScrollProgress />
             <RecaptchaProvider>
-              <CurrencyProvider>
+              <CurrencyProvider initialCurrency={locale === 'en' ? 'EUR' : 'HUF'}>
                   <CartProvider>
 
                   <Header />

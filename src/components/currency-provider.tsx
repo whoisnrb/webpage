@@ -20,14 +20,14 @@ const FALLBACK_RATES: Record<CurrencyCode, number> = {
     GBP: 0.0021,
 };
 
-export function CurrencyProvider({ children }: { children: React.ReactNode }) {
+export function CurrencyProvider({ children, initialCurrency }: { children: React.ReactNode, initialCurrency?: CurrencyCode }) {
     const [currency, setCurrencyState] = React.useState<CurrencyCode>(() => {
         if (typeof window !== "undefined") {
             const saved = localStorage.getItem("user-currency") as CurrencyCode;
             if (saved && CURRENCIES[saved]) return saved;
             if (window.location.hostname.endsWith("backlineit.com")) return "EUR";
         }
-        return "HUF";
+        return initialCurrency || "HUF";
     });
     const [rates, setRates] = React.useState<Record<CurrencyCode, number>>(FALLBACK_RATES);
     const [isLoading, setIsLoading] = React.useState(true);
