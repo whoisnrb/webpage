@@ -13,6 +13,19 @@ export const routing = defineRouting({
     // Prevent automatic browser-language redirects from hijacking Hungarian pages
     localeDetection: false,
 
+    domains: [
+        {
+            domain: 'backlineit.hu',
+            defaultLocale: 'hu',
+            locales: ['hu']
+        },
+        {
+            domain: 'backlineit.com',
+            defaultLocale: 'en',
+            locales: ['en']
+        }
+    ],
+
     pathnames: {
         '/': '/',
         '/rolunk': {

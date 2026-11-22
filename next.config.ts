@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
       allowedOrigins: [
         "backlineit.hu",
         "*.backlineit.hu",
+        "backlineit.com",
+        "*.backlineit.com",
         "backlineit-web.prouddune-402fd7f7.spaincentral.azurecontainerapps.io",
         "*.azurecontainerapps.io",
         "localhost:3000"
