@@ -11,8 +11,10 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { toast } from "sonner"
 import { CheckCircle2, Loader2 } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { useRouter } from "@/i18n/routing"
+import { useCurrency } from "@/components/currency-provider"
+import { formatPrice } from "@/lib/currency"
 
 interface ConsultationFormProps {
     products: LocalizedProductDTO[]
@@ -22,6 +24,8 @@ export function ConsultationFormClient({ products }: ConsultationFormProps) {
     const { items, clearCart } = useCart()
     const t = useTranslations('QuoteRequest') // Használjuk a meglévő QuoteRequest szekciót, vagy bővítjük
     const router = useRouter()
+    const locale = useLocale()
+    const { currency, rates } = useCurrency()
 
     // Initial selection from cart
     const cartItem = items[0]
@@ -169,11 +173,14 @@ export function ConsultationFormClient({ products }: ConsultationFormProps) {
                                 <SelectValue placeholder={availablePackages.length === 0 ? t('form.no_packages') : t('form.package_placeholder')} />
                             </SelectTrigger>
                             <SelectContent>
-                                {availablePackages.map((pkg, idx) => (
-                                    <SelectItem key={idx} value={pkg.name}>
-                                        {pkg.name} ({new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(pkg.price)})
-                                    </SelectItem>
-                                ))}
+                                {availablePackages.map((pkg, idx) => {
+                                    const pkgPrice = (pkg.price / (rates['HUF'] || 1)) * (rates[currency] || 1)
+                                    return (
+                                        <SelectItem key={idx} value={pkg.name}>
+                                            {pkg.name} ({formatPrice(pkgPrice, currency)})
+                                        </SelectItem>
+                                    )
+                                })}
                             </SelectContent>
                         </Select>
                     </div>

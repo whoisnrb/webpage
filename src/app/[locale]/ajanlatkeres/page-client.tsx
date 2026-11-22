@@ -131,11 +131,11 @@ function QuoteRequestContent() {
     ]
 
     const BUDGET_TIERS = [
-        { id: "tier1", label: locale === 'hu' ? "300.000 Ft alatt" : "Under 300k HUF", sub: locale === 'hu' ? "Gyors feladatok, scriptek" : "Quick fixes & scripts" },
-        { id: "tier2", label: locale === 'hu' ? "300.000 - 750.000 Ft" : "300k - 750k HUF", sub: locale === 'hu' ? "Landing page, kisebb automatizáció" : "Landing page, small automation" },
-        { id: "tier3", label: locale === 'hu' ? "750.000 - 1.500.000 Ft" : "750k - 1.5M HUF", sub: locale === 'hu' ? "Komplett weboldal vagy összetett n8n" : "Full website or complex n8n" },
-        { id: "tier4", label: locale === 'hu' ? "1.500.000 - 3.000.000 Ft" : "1.5M - 3M HUF", sub: locale === 'hu' ? "Webáruház, portál vagy CRM rendszer" : "Webshop, portal or CRM stack" },
-        { id: "tier5", label: locale === 'hu' ? "3.000.000 Ft felett" : "Over 3M HUF", sub: locale === 'hu' ? "Vállalati infrastruktúra, egyedi SaaS" : "Enterprise infra, custom SaaS" },
+        { id: "tier1", label: locale === 'hu' ? "300.000 Ft alatt" : "Under €750", sub: locale === 'hu' ? "Gyors feladatok, scriptek" : "Quick fixes & scripts" },
+        { id: "tier2", label: locale === 'hu' ? "300.000 - 750.000 Ft" : "€750 – €2,000", sub: locale === 'hu' ? "Landing page, kisebb automatizáció" : "Landing page, small automation" },
+        { id: "tier3", label: locale === 'hu' ? "750.000 - 1.500.000 Ft" : "€2,000 – €4,000", sub: locale === 'hu' ? "Komplett weboldal vagy összetett n8n" : "Full website or complex n8n" },
+        { id: "tier4", label: locale === 'hu' ? "1.500.000 - 3.000.000 Ft" : "€4,000 – €8,000", sub: locale === 'hu' ? "Webáruház, portál vagy CRM rendszer" : "Webshop, portal or CRM stack" },
+        { id: "tier5", label: locale === 'hu' ? "3.000.000 Ft felett" : "Over €8,000", sub: locale === 'hu' ? "Vállalati infrastruktúra, egyedi SaaS" : "Enterprise infra, custom SaaS" },
         { id: "flexible", label: locale === 'hu' ? "Még nem meghatározott" : "Not yet decided", sub: locale === 'hu' ? "Konzultáció során átbeszéljük" : "Let's discuss on a call" }
     ]
 

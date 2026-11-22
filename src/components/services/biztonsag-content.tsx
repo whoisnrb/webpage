@@ -211,7 +211,7 @@ export function BiztonsagContent() {
                                                 <CheckoutButton 
                                                     serviceName={`Kiberbiztonság - ${plan.name}`}
                                                     price={plan.price}
-                                                    currency="HUF"
+                                                    currency={currency}
                                                     className={`w-full h-16 rounded-2xl text-lg font-black uppercase tracking-tight transition-all duration-500 ${plan.popular ? 'bg-primary hover:bg-primary/90 text-white shadow-[0_20px_40px_-10px_rgba(6,182,212,0.4)]' : 'bg-white/[0.05] hover:bg-white/[0.1] text-white border border-white/10'}`}
                                                 >
                                                     {tServices("cta_buy_now")}

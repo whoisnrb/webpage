@@ -1,5 +1,6 @@
 import { PricingTable } from "@/components/sections/pricing-table"
 import { PricingFAQ } from "@/components/sections/pricing-faq"
+import { PriceDisplay } from "@/components/price-display"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Check, Globe, Zap, Shield, Cloud, Database, Activity, Sparkles } from "lucide-react"
 import { Link } from "@/i18n/routing"
@@ -46,32 +47,45 @@ export default function ArakPage() {
         {
             key: 'web',
             icon: Globe,
-            items: ['wordpress', 'webshop']
+            items: [
+                { key: 'wordpress', basePrice: 15000, isMonthly: true },
+                { key: 'webshop', basePrice: 120000, isMonthly: false }
+            ]
         },
         {
             key: 'automation',
             icon: Zap,
-            items: ['ai']
+            items: [
+                { key: 'ai', basePrice: 150000, isMonthly: false }
+            ]
         },
         {
             key: 'ops',
             icon: Shield,
-            items: ['audit']
+            items: [
+                { key: 'audit', basePrice: 75000, isMonthly: false }
+            ]
         },
         {
             key: 'cloud',
             icon: Cloud,
-            items: ['office']
+            items: [
+                { key: 'office', basePrice: 85000, isMonthly: false }
+            ]
         },
         {
             key: 'backup',
             icon: Database,
-            items: ['backup']
+            items: [
+                { key: 'backup', basePrice: 10000, isMonthly: true }
+            ]
         },
         {
             key: 'managed_it',
             icon: Activity,
-            items: ['managed']
+            items: [
+                { key: 'managed', basePrice: 39000, isMonthly: true }
+            ]
         }
     ] as const;
 
@@ -160,21 +174,23 @@ export default function ArakPage() {
 
                                         <div className="flex-1 space-y-8">
                                             {category.items.map((item) => (
-                                                <div key={item} className="space-y-3 pt-6 border-t border-white/5 first:border-0 first:pt-0">
+                                                <div key={item.key} className="space-y-3 pt-6 border-t border-white/5 first:border-0 first:pt-0">
                                                     <div className="flex items-start justify-between gap-4">
                                                         <h4 className="font-bold text-white text-base leading-snug">
-                                                            {t(`categories.${category.key}.items.${item}.name`)}
+                                                            {t(`categories.${category.key}.items.${item.key}.name`)}
                                                         </h4>
-                                                        <span className="text-sm font-black text-cyan-400 whitespace-nowrap bg-cyan-500/10 px-3 py-1 rounded-lg border border-cyan-500/20">
-                                                            {t(`categories.${category.key}.items.${item}.price`)}
+                                                        <span className="text-sm font-black text-cyan-400 whitespace-nowrap bg-cyan-500/10 px-3 py-1 rounded-lg border border-cyan-500/20 inline-flex items-center gap-1">
+                                                            {locale === 'en' ? 'From ' : ''}
+                                                            <PriceDisplay amount={item.basePrice} className="text-cyan-400 font-black" />
+                                                            {locale === 'hu' ? (item.isMonthly ? ' / hó-tól' : '-tól') : (item.isMonthly ? ' / mo' : '')}
                                                         </span>
                                                     </div>
                                                     <p className="text-sm text-white/50 leading-relaxed font-medium">
-                                                        {t(`categories.${category.key}.items.${item}.desc`)}
+                                                        {t(`categories.${category.key}.items.${item.key}.desc`)}
                                                     </p>
                                                     <div className="pt-2">
                                                         {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                                                        <Link href={t(`categories.${category.key}.items.${item}.link`) as any}>
+                                                        <Link href={t(`categories.${category.key}.items.${item.key}.link`) as any}>
                                                             <Button
                                                                 variant="ghost"
                                                                 size="sm"

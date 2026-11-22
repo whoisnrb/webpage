@@ -7,12 +7,15 @@ import { Link } from "@/i18n/routing"
 import { useTranslations, useLocale } from "next-intl"
 import { PriceDisplay } from "@/components/price-display"
 import { CheckoutButton } from "@/components/checkout-button"
+import { useCurrency } from "@/components/currency-provider"
+import { formatPrice } from "@/lib/currency"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
 export function PricingTable() {
     const t = useTranslations('PricingPage.PricingTable')
     const locale = useLocale()
+    const { currency, rates } = useCurrency()
     const [isAnnual, setIsAnnual] = useState(true)
 
     // Base prices (one-time or monthly equivalent)
@@ -22,6 +25,11 @@ export function PricingTable() {
     // 20% discount on annual payment
     const starterPrice = isAnnual ? Math.round(starterBase * 0.8) : starterBase
     const proPrice = isAnnual ? Math.round(proBase * 0.8) : proBase
+
+    // Dynamic support price for Pro package (15,000 HUF baseline)
+    const proSupportHuf = 15000
+    const proSupportConverted = (proSupportHuf / (rates['HUF'] || 1)) * (rates[currency] || 1)
+    const proSupportFormatted = formatPrice(proSupportConverted, currency)
 
     const packages = [
         {
@@ -55,7 +63,9 @@ export function PricingTable() {
             description: t('packages.pro.description'),
             price: proPrice,
             originalPrice: isAnnual ? proBase : undefined,
-            priceNote: isAnnual ? (locale === 'hu' ? "éves számlázással (-20%)" : "billed annually (-20%)") : t('packages.pro.price_note'),
+            priceNote: isAnnual
+                ? (locale === 'hu' ? "éves számlázással (-20%)" : "billed annually (-20%)")
+                : (locale === 'hu' ? "egyszeri díj + 15.000 Ft/hó support" : `one-time fee + ${proSupportFormatted}/mo support`),
             icon: Zap,
             popular: true,
             badge: t('popular_tag'),
@@ -224,9 +234,7 @@ export function PricingTable() {
                                                 <div className="flex items-baseline gap-3">
                                                     <PriceDisplay amount={pkg.price} className="text-3xl md:text-4xl font-black text-white" />
                                                     {pkg.originalPrice && (
-                                                        <span className="text-sm line-through text-white/30">
-                                                            {new Intl.NumberFormat(locale === 'hu' ? 'hu-HU' : 'en-US').format(pkg.originalPrice)} Ft
-                                                        </span>
+                                                        <PriceDisplay amount={pkg.originalPrice} className="text-sm line-through text-white/30" />
                                                     )}
                                                 </div>
                                             ) : (
@@ -270,7 +278,7 @@ export function PricingTable() {
                                             <CheckoutButton
                                                 serviceName={`BacklineIT - ${pkg.name}`}
                                                 price={pkg.price}
-                                                currency="HUF"
+                                                currency={currency}
                                                 className={cn(
                                                     "w-full h-12 rounded-xl text-xs font-black uppercase tracking-wider transition-all duration-300 shadow-md",
                                                     pkg.popular

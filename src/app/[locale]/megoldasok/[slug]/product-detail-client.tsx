@@ -6,7 +6,7 @@ import { ShoppingCart, PlayCircle, ShieldCheck, Download } from "lucide-react"
 import { useCart } from "@/components/ecommerce/cart-provider"
 import { LocalizedProductDTO, Variant } from "@/app/actions/product"
 import { useTranslations } from 'next-intl'
-
+import { PriceDisplay } from "@/components/price-display"
 import { useRouter } from "@/i18n/routing"
 
 interface ProductDetailClientProps {
@@ -88,7 +88,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                                             <div className="text-xs text-muted-foreground">{variant.description}</div>
                                         )}
                                     </div>
-                                    <div className="font-bold">{new Intl.NumberFormat('hu-HU', { style: 'currency', currency: 'HUF', maximumFractionDigits: 0 }).format(variant.price)}</div>
+                                    <PriceDisplay amount={variant.price} className="font-bold" />
                                 </div>
                             ))
                         ) : (

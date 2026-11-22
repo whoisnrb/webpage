@@ -22,9 +22,10 @@ export function convertPrice(amount: number, from: CurrencyCode, to: CurrencyCod
     return amountInHuf * CURRENCIES[to].rate;
 }
 
-export function formatPrice(amount: number, currencyCode: CurrencyCode, locale: string = 'hu-HU'): string {
+export function formatPrice(amount: number, currencyCode: CurrencyCode, locale?: string): string {
     const rounded = Math.ceil(amount);
-    return new Intl.NumberFormat(locale, {
+    const resolvedLocale = locale || (currencyCode === 'HUF' ? 'hu-HU' : (currencyCode === 'GBP' ? 'en-GB' : 'en-US'));
+    return new Intl.NumberFormat(resolvedLocale, {
         style: 'currency',
         currency: currencyCode,
         minimumFractionDigits: 0,

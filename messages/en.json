@@ -864,16 +864,16 @@
         "other": "Other Custom Request"
       },
       "budgets": {
-        "tier1": "Under 300.000 HUF",
-        "tier2": "300.000 HUF - 750.000 HUF",
-        "tier3": "750.000 HUF - 1.500.000 HUF",
-        "tier4": "1.500.000 HUF - 3.000.000 HUF",
-        "tier5": "Over 3.000.000 HUF",
+        "tier1": "Under €750",
+        "tier2": "€750 – €2,000",
+        "tier3": "€2,000 – €4,000",
+        "tier4": "€4,000 – €8,000",
+        "tier5": "Over €8,000",
         "flexible": "Not yet determined / Need advice",
-        "small": "Under 500.000 HUF",
-        "medium": "500.000 HUF - 1.500.000 HUF",
-        "large": "1.500.000 HUF - 5.000.000 HUF",
-        "enterprise": "Over 5.000.000 HUF"
+        "small": "Under €1,250",
+        "medium": "€1,250 – €3,800",
+        "large": "€3,800 – €12,500",
+        "enterprise": "Over €12,500"
       },
       "deadlines": {
         "urgent": "Immediately / within 2 weeks",
@@ -1577,13 +1577,13 @@
         "items": {
           "wordpress": {
             "name": "WordPress / WooCommerce Maintenance",
-            "price": "From 15 000 HUF / mo",
+            "price": "From €38 / mo",
             "desc": "Continuous updates, backups, security monitoring, and troubleshooting.",
             "link": "/szolgaltatasok/wordpress-woocommerce-karbantartas"
           },
           "webshop": {
             "name": "Webshop Automation",
-            "price": "From 120 000 HUF",
+            "price": "From €300",
             "desc": "Integration of order processing, automated billing, and shipping.",
             "link": "/szolgaltatasok/webshop-automatizacio"
           }
@@ -1595,7 +1595,7 @@
         "items": {
           "ai": {
             "name": "AI Assistants",
-            "price": "From 150 000 HUF",
+            "price": "From €375",
             "desc": "Custom AI chatbots, document analyzers, and n8n workflow automations.",
             "link": "/szolgaltatasok/ai-asszisztensek"
           }
@@ -1607,7 +1607,7 @@
         "items": {
           "audit": {
             "name": "SMB IT Audit & Assessment",
-            "price": "From 75 000 HUF",
+            "price": "From €188",
             "desc": "Comprehensive security, network, and software audits with a clear development roadmap.",
             "link": "/szolgaltatasok/kkv-it-audit"
           }
@@ -1619,7 +1619,7 @@
         "items": {
           "office": {
             "name": "Microsoft 365 / Google Workspace",
-            "price": "From 85 000 HUF",
+            "price": "From €213",
             "desc": "Secure email setups, file sharing, and data migration for teams.",
             "link": "/szolgaltatasok/microsoft-365-google-workspace"
           }
@@ -1631,7 +1631,7 @@
         "items": {
           "backup": {
             "name": "Backup & Data Recovery",
-            "price": "From 10 000 HUF / mo",
+            "price": "From €25 / mo",
             "desc": "Implementation of the 3-2-1 backup rule and automated recovery processes.",
             "link": "/szolgaltatasok/backup-adatmentes"
           }
@@ -1643,7 +1643,7 @@
         "items": {
           "managed": {
             "name": "Managed IT Services",
-            "price": "From 39 000 HUF / mo",
+            "price": "From €98 / mo",
             "desc": "Proactive server monitoring, workstation maintenance, and 24/7 helpdesk.",
             "link": "/szolgaltatasok/havidijas-rendszergazda"
           }
@@ -1717,7 +1717,7 @@
         "pro": {
           "name": "Professional",
           "description": "For growing businesses with complex needs",
-          "price_note": "one-time fee + 15,000 HUF/mo support",
+          "price_note": "one-time fee + €38/mo support",
           "features": [
             "Everything in Starter package",
             "Webshop (WooCommerce/Shopify)",
@@ -3965,7 +3965,7 @@
           "desc": "Basic AI chatbot for website FAQ handling.",
           "price": "390000",
           "priceFrom": "true",
-          "sub": "+ 49,000 HUF/month support (VAT-free)",
+          "sub": "+ €125/month support (VAT-free)",
           "features": [
             "Implementation and configuration on 1 website",
             "Up to 50 custom trained Q&A pairs",
@@ -3982,7 +3982,7 @@
           "desc": "Knowledgebase-trained AI assistant with lead qualification.",
           "price": "890000",
           "priceFrom": "true",
-          "sub": "+ 99,000 HUF/month support (VAT-free)",
+          "sub": "+ €250/month support (VAT-free)",
           "features": [
             "Trained on custom PDFs, documents, and site URLs",
             "Interactive lead forms and qualification steps",
@@ -3997,7 +3997,7 @@
           "desc": "Comprehensive AI support agent with CRM and database integrations.",
           "price": "1790000",
           "priceFrom": "true",
-          "sub": "+ 199,000 HUF/month support (VAT-free)",
+          "sub": "+ €500/month support (VAT-free)",
           "features": [
             "Integration with CRMs and ticketing systems via API",
             "Automated lead categorization and CRM tags",
@@ -4305,7 +4305,7 @@
           "desc": "Tracking, reporting, and continuous conversion rate optimization (CRO) reviews.",
           "price": "790000",
           "priceFrom": "true",
-          "sub": "+ 99,000 HUF/month support (VAT-free)",
+          "sub": "+ €250/month support (VAT-free)",
           "features": [
             "All features in the Ecommerce Business plan",
             "Complete tracking audit & bug resolution",
@@ -4459,7 +4459,7 @@
           "desc": "Complex enterprise-grade BI pipelines with monthly support.",
           "price": "1200000",
           "priceFrom": "true",
-          "sub": "+ 150,000 HUF/month support (VAT-free)",
+          "sub": "+ €375/month support (VAT-free)",
           "features": [
             "Unlimited data sources and intricate relationships",
             "Advanced DAX modeling and proprietary metrics",
@@ -4733,7 +4733,7 @@
           "desc": "Essential attack-surface monitoring for 1 primary domain.",
           "price": "29000",
           "priceFrom": "true",
-          "sub": "HUF / month (VAT-free)",
+          "sub": "/ month (VAT-free)",
           "features": [
             "1 primary domain + up to 3 subdomains",
             "Daily SSL certificate & DNS/DMARC health checks",
@@ -4748,7 +4748,7 @@
           "desc": "Comprehensive monitoring & NIS2 compliance reporting.",
           "price": "59000",
           "priceFrom": "true",
-          "sub": "HUF / month (VAT-free)",
+          "sub": "/ month (VAT-free)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -4765,7 +4765,7 @@
           "desc": "Dedicated multi-site monitoring with SIEM & chat integrations.",
           "price": "119000",
           "priceFrom": "true",
-          "sub": "HUF / month (VAT-free)",
+          "sub": "/ month (VAT-free)",
           "features": [
             "Unlimited corporate domains, IPs & cloud endpoints",
             "Microsoft Teams / Slack / Ticketing alert webhooks",
@@ -4898,7 +4898,7 @@
           "desc": "Ongoing quarterly simulations & automated micro-training.",
           "price": "89000",
           "priceFrom": "true",
-          "sub": "HUF / month (VAT-free)",
+          "sub": "/ month (VAT-free)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -4915,7 +4915,7 @@
           "desc": "Unlimited seats, custom training portal & Entra ID sync.",
           "price": "179000",
           "priceFrom": "true",
-          "sub": "HUF / month (VAT-free)",
+          "sub": "/ month (VAT-free)",
           "features": [
             "Unlimited staff across multiple subsidiaries",
             "Automatic Microsoft Entra ID user directory sync",
@@ -5030,7 +5030,7 @@
           "desc": "Managed OWASP WAF & DDoS shield for 1 domain.",
           "price": "39000",
           "priceFrom": "true",
-          "sub": "HUF / mo (+ 49k setup)",
+          "sub": "/ mo (+ €125 setup)",
           "features": [
             "1 primary domain / web app protected",
             "Managed OWASP Top 10 rule sets",
@@ -5045,7 +5045,7 @@
           "desc": "Advanced bot protection & custom endpoint rules.",
           "price": "79000",
           "priceFrom": "true",
-          "sub": "HUF / mo (+ 69k setup)",
+          "sub": "/ mo (+ €175 setup)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -5062,7 +5062,7 @@
           "desc": "Multi-origin Private Link WAF with strict SLA.",
           "price": "159000",
           "priceFrom": "true",
-          "sub": "HUF / mo (custom setup)",
+          "sub": "/ mo (custom setup)",
           "features": [
             "Multi-domain & microservice WAF stack",
             "Azure Private Link origin isolation",
@@ -5173,7 +5173,7 @@
           "desc": "Private corporate AI assistant for core documents.",
           "price": "290000",
           "priceFrom": "true",
-          "sub": "+ 49k HUF/mo hosting (VAT-free)",
+          "sub": "+ €125/mo hosting (VAT-free)",
           "features": [
             "Up to 1,000 PDF/DOCX/TXT documents indexed",
             "Isolated EU Azure OpenAI + Vector search DB",
@@ -5188,7 +5188,7 @@
           "desc": "Live SharePoint/Drive sync with Entra ID permissions.",
           "price": "590000",
           "priceFrom": "true",
-          "sub": "+ 89k HUF/mo hosting (VAT-free)",
+          "sub": "+ €225/mo hosting (VAT-free)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -5205,7 +5205,7 @@
           "desc": "Multi-department RAG plus live ERP/CRM data connectors.",
           "price": "1190000",
           "priceFrom": "true",
-          "sub": "+ 149k HUF/mo hosting (VAT-free)",
+          "sub": "+ €375/mo hosting (VAT-free)",
           "features": [
             "Unlimited docs + structured SQL/Excel retrieval",
             "Live read integrations with CRM/ERP systems",
@@ -5320,7 +5320,7 @@
           "desc": "Automated invoice or form extractor for 1 workflow.",
           "price": "190000",
           "priceFrom": "true",
-          "sub": "+ 39k HUF/mo (up to 1,000 pages/mo)",
+          "sub": "+ €98/mo (up to 1,000 pages/mo)",
           "features": [
             "Shared inbox or Drive/OneDrive folder watcher",
             "Key header & total extraction on PDFs/photos",
@@ -5335,7 +5335,7 @@
           "desc": "Full line-item extraction with bidirectional ERP integration.",
           "price": "440000",
           "priceFrom": "true",
-          "sub": "+ 79k HUF/mo (up to 5,000 pages/mo)",
+          "sub": "+ €198/mo (up to 5,000 pages/mo)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -5352,7 +5352,7 @@
           "desc": "Custom contract analyzer, handwriting & enterprise ERP sync.",
           "price": "890000",
           "priceFrom": "true",
-          "sub": "+ 149k HUF/mo (high volume)",
+          "sub": "+ €375/mo (high volume)",
           "features": [
             "Multi-document pipeline (contracts, CMR, invoices)",
             "GPT-4o legal & financial risk extraction",
@@ -5463,7 +5463,7 @@
           "desc": "Automated transcription & structured meeting minutes.",
           "price": "240000",
           "priceFrom": "true",
-          "sub": "+ 45k HUF/mo (20 audio hours/mo)",
+          "sub": "+ €115/mo (20 audio hours/mo)",
           "features": [
             "Upload MP3/WAV/MP4 or sync shared meeting folders",
             "Hungarian + English speaker diarized transcripts",
@@ -5478,7 +5478,7 @@
           "desc": "CRM integration, VoIP/Meet sync & sales KPI scoring.",
           "price": "490000",
           "priceFrom": "true",
-          "sub": "+ 89k HUF/mo (80 audio hours/mo)",
+          "sub": "+ €225/mo (80 audio hours/mo)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -5495,7 +5495,7 @@
           "desc": "100% support QA automation & PII redaction.",
           "price": "980000",
           "priceFrom": "true",
-          "sub": "+ 169k HUF/mo (custom volume)",
+          "sub": "+ €425/mo (custom volume)",
           "features": [
             "High-volume support queue auditing across all agents",
             "Instant supervisor escalation on risk phrases",
@@ -5606,7 +5606,7 @@
           "desc": "Weekly AI tender summaries for 1 company profile.",
           "price": "29000",
           "priceFrom": "true",
-          "sub": "HUF / mo (VAT-free)",
+          "sub": "/ mo (VAT-free)",
           "features": [
             "1 company profile (up to 10 keywords / CPV codes)",
             "Weekly AI-curated digest with 5-point briefs",
@@ -5620,7 +5620,7 @@
           "desc": "Daily scanning, PDF analysis & GPT-4o Match Score.",
           "price": "59000",
           "priceFrom": "true",
-          "sub": "HUF / mo (VAT-free)",
+          "sub": "/ mo (VAT-free)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -5637,7 +5637,7 @@
           "desc": "Multi-client tracking & competitive market analytics.",
           "price": "119000",
           "priceFrom": "true",
-          "sub": "HUF / mo (VAT-free)",
+          "sub": "/ mo (VAT-free)",
           "features": [
             "Up to 25 distinct client profiles monitored",
             "White-label alert workflows for consulting firms",
@@ -5748,7 +5748,7 @@
           "desc": "Undeletable ransomware-proof cloud storage vault.",
           "price": "49000",
           "priceFrom": "true",
-          "sub": "HUF / mo (1 TB Immutable Azure Storage)",
+          "sub": "/ mo (1 TB Immutable Azure Storage)",
           "features": [
             "1 TB WORM-locked Azure cloud vault",
             "Daily encrypted snapshots (servers & databases)",
@@ -5763,7 +5763,7 @@
           "desc": "Live VM replication & <30 min Azure failover readiness.",
           "price": "129000",
           "priceFrom": "true",
-          "sub": "HUF / mo (up to 2 critical servers)",
+          "sub": "/ mo (up to 2 critical servers)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -5780,7 +5780,7 @@
           "desc": "Multi-VM orchestration with <15 min RPO/RTO SLA.",
           "price": "249000",
           "priceFrom": "true",
-          "sub": "HUF / mo (custom server scale)",
+          "sub": "/ mo (custom server scale)",
           "features": [
             "Multi-server & SQL database synchronized recovery plans",
             "Under 15-min RPO/RTO orchestration & sequenced boot",
@@ -5891,7 +5891,7 @@
           "desc": "1-minute URL, API & SSL endpoint availability checks.",
           "price": "19900",
           "priceFrom": "true",
-          "sub": "HUF / mo (VAT-free)",
+          "sub": "/ mo (VAT-free)",
           "features": [
             "Up to 5 URLs / API endpoints checked every 60s",
             "Instant email, Slack & Telegram notifications",
@@ -5906,7 +5906,7 @@
           "desc": "Full browser buyer-flow test & AI failure diagnostics.",
           "price": "39900",
           "priceFrom": "true",
-          "sub": "HUF / mo (VAT-free)",
+          "sub": "/ mo (VAT-free)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -5923,7 +5923,7 @@
           "desc": "Multi-region testing, authenticated user journeys & SLA.",
           "price": "89000",
           "priceFrom": "true",
-          "sub": "HUF / mo (VAT-free)",
+          "sub": "/ mo (VAT-free)",
           "features": [
             "Up to 10 multi-step login / purchase journeys",
             "Regional verification across EU and global nodes",
@@ -6176,7 +6176,7 @@
           "desc": "Fast, secure cloud desktops for boutique teams.",
           "price": "69000",
           "priceFrom": "true",
-          "sub": "setup (+ 24.9k HUF/user/mo managed)",
+          "sub": "setup (+ €65/user/mo managed)",
           "features": [
             "1–5 Windows 11 cloud desktop profiles",
             "Entra ID authentication & enforced MFA",
@@ -6191,7 +6191,7 @@
           "desc": "Autoscaling multi-session host pools with work-hour scheduling.",
           "price": "149000",
           "priceFrom": "true",
-          "sub": "setup (+ 19.9k HUF/user/mo managed)",
+          "sub": "setup (+ €50/user/mo managed)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -6319,7 +6319,7 @@
           "desc": "Branded encrypted document room for boutique firms.",
           "price": "120000",
           "priceFrom": "true",
-          "sub": "setup (+ 29k HUF/mo / 100 GB storage)",
+          "sub": "setup (+ €75/mo / 100 GB storage)",
           "features": [
             "Custom subdomain + your brand colors & logo",
             "100 GB encrypted EU Azure Blob Storage",
@@ -6334,7 +6334,7 @@
           "desc": "Unlimited clients, project milestones & two-way messaging.",
           "price": "190000",
           "priceFrom": "true",
-          "sub": "setup (+ 49k HUF/mo / 500 GB storage)",
+          "sub": "setup (+ €125/mo / 500 GB storage)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -6351,7 +6351,7 @@
           "desc": "2 TB storage, CRM/Billing sync & custom approval workflows.",
           "price": "390000",
           "priceFrom": "true",
-          "sub": "setup (+ 89k HUF/mo / 2 TB storage)",
+          "sub": "setup (+ €225/mo / 2 TB storage)",
           "features": [
             "2 TB geo-replicated Azure enterprise vault",
             "Invoice auto-sync (Stripe / billing APIs)",
@@ -6462,7 +6462,7 @@
           "desc": "Clean cookieless traffic tracking for 1 website.",
           "price": "14900",
           "priceFrom": "true",
-          "sub": "HUF / mo (up to 50k pageviews/mo)",
+          "sub": "/ mo (up to 50k pageviews/mo)",
           "features": [
             "1 primary domain fully tracked without cookies",
             "Real-time visitor counter & UTM source attribution",
@@ -6477,7 +6477,7 @@
           "desc": "Conversion goals, live geo map & multi-site dashboard.",
           "price": "29900",
           "priceFrom": "true",
-          "sub": "HUF / mo (up to 250k pageviews/mo)",
+          "sub": "/ mo (up to 250k pageviews/mo)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -6494,7 +6494,7 @@
           "desc": "Unlimited client sites, white-label reports & raw API.",
           "price": "69000",
           "priceFrom": "true",
-          "sub": "HUF / mo (1M+ pageviews/mo)",
+          "sub": "/ mo (1M+ pageviews/mo)",
           "features": [
             "Unlimited client websites in one agency workspace",
             "White-label client portals & monthly automated PDFs",
@@ -6605,7 +6605,7 @@
           "desc": "Shop checkout tax lookup plugin & REST endpoint.",
           "price": "89000",
           "priceFrom": "true",
-          "sub": "setup (+ 14.9k HUF/mo / 2k calls)",
+          "sub": "setup (+ €38/mo / 2k calls)",
           "features": [
             "WooCommerce or custom checkout form integration",
             "Instant legal name, address & EU VAT validation",
@@ -6620,7 +6620,7 @@
           "desc": "Full B2B validation, VIES check & liquidation risk alerts.",
           "price": "169000",
           "priceFrom": "true",
-          "sub": "setup (+ 29.9k HUF/mo / 10k calls)",
+          "sub": "setup (+ €75/mo / 10k calls)",
           "badge": "Most popular",
           "popular": true,
           "features": [
@@ -6637,7 +6637,7 @@
           "desc": "High-volume ERP syncing & nightly master-table hygiene.",
           "price": "340000",
           "priceFrom": "true",
-          "sub": "setup (+ 59k HUF/mo enterprise scale)",
+          "sub": "setup (+ €150/mo enterprise scale)",
           "features": [
             "Unlimited internal API volume on dedicated node",
             "Automated nightly cleanup of existing ERP partner tables",
