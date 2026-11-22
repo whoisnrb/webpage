@@ -12,6 +12,7 @@ export type VisitorSession = {
     lat: number
     lng: number
     page: string
+    domain: string
     device: string
     referrer: string
     timeOnSite: string
@@ -22,6 +23,7 @@ export type VisitorSession = {
 export type RecentVisitEntry = {
     id: string
     page: string
+    domain?: string
     eventType: string
     location: string
     device: string
@@ -31,6 +33,7 @@ export type RecentVisitEntry = {
 
 export type LiveTrafficData = {
     totalActiveVisitors: number
+    domainBreakdown: { hu: number; com: number }
     peakToday: number
     totalEventsToday: number
     avgDurationSec: number
@@ -90,6 +93,7 @@ export async function getLiveTrafficData(): Promise<LiveTrafficData> {
             lat: rec.lat,
             lng: rec.lng,
             page: rec.page,
+            domain: rec.domain || "backlineit.hu",
             device: rec.device,
             referrer: rec.referrer,
             timeOnSite: formatLiveDuration(diffMs),
@@ -161,6 +165,7 @@ export async function getLiveTrafficData(): Promise<LiveTrafficData> {
         return {
             id: evt.id,
             page: resolvePageFromEvent(evt),
+            domain: props.domain ? String(props.domain) : undefined,
             eventType: evt.name,
             location: loc,
             device: props.device ? String(props.device) : "Böngésző",
@@ -178,8 +183,15 @@ export async function getLiveTrafficData(): Promise<LiveTrafficData> {
             ? Math.round(visitors.reduce((sum, v) => sum + v.durationSec, 0) / visitors.length)
             : 0
 
+    const huVisitors = visitors.filter((v) => v.domain.includes(".hu")).length
+    const comVisitors = visitors.filter((v) => v.domain.includes(".com")).length
+
     return {
         totalActiveVisitors: visitors.length,
+        domainBreakdown: {
+            hu: huVisitors,
+            com: comVisitors,
+        },
         peakToday,
         totalEventsToday,
         avgDurationSec,

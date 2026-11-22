@@ -9,6 +9,7 @@ export interface LiveVisitorRecord {
     lat: number
     lng: number
     page: string
+    domain?: string
     device: string
     referrer: string
     startedAt: number

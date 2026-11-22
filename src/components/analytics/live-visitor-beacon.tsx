@@ -46,6 +46,7 @@ export function LiveVisitorBeacon() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     visitorId: state.visitorId,
+                    domain: window.location.hostname,
                     page: pathname,
                     referrer: state.referrer,
                     startedAt: state.startedAt,

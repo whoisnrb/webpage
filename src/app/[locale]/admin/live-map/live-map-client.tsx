@@ -171,32 +171,41 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
 
     const handleSimulateVisitor = () => {
         const newCities = [
-            { city: 'Székesfehérvár', lat: 47.1899, lng: 18.4107, page: '/szolgaltatasok', device: 'Desktop' },
-            { city: 'Miskolc', lat: 48.1035, lng: 20.7784, page: '/megoldasok', device: 'Mobile' },
-            { city: 'Kecskemét', lat: 46.9074, lng: 19.6917, page: '/kapcsolat', device: 'Desktop' },
-            { city: 'Berlin', lat: 52.5200, lng: 13.4050, page: '/en', device: 'Desktop' },
+            { city: 'Székesfehérvár', country: 'Magyarország', code: 'HU', flag: '🇭🇺', lat: 47.1899, lng: 18.4107, page: '/szolgaltatasok', domain: 'backlineit.hu', device: 'Desktop' },
+            { city: 'Miskolc', country: 'Magyarország', code: 'HU', flag: '🇭🇺', lat: 48.1035, lng: 20.7784, page: '/megoldasok', domain: 'backlineit.hu', device: 'Mobile' },
+            { city: 'London', country: 'Egyesült Királyság', code: 'GB', flag: '🇬🇧', lat: 51.5074, lng: -0.1278, page: '/services', domain: 'backlineit.com', device: 'Desktop' },
+            { city: 'New York', country: 'Egyesült Államok', code: 'US', flag: '🇺🇸', lat: 40.7128, lng: -74.0060, page: '/pricing', domain: 'backlineit.com', device: 'Desktop' },
+            { city: 'Frankfurt', country: 'Németország', code: 'DE', flag: '🇩🇪', lat: 50.1109, lng: 8.6821, page: '/contact', domain: 'backlineit.com', device: 'Desktop' },
         ]
         const randomCity = newCities[Math.floor(Math.random() * newCities.length)]
         const newV: VisitorSession = {
             id: 'v-' + Date.now(),
             city: randomCity.city,
-            country: 'Magyarország',
-            countryCode: 'HU',
-            flag: '🇭🇺',
+            country: randomCity.country,
+            countryCode: randomCity.code,
+            flag: randomCity.flag,
             lat: randomCity.lat,
             lng: randomCity.lng,
             page: randomCity.page,
+            domain: randomCity.domain,
             device: randomCity.device,
             referrer: 'Szimulált Teszt',
             timeOnSite: '10mp',
             durationSec: 10,
             status: 'ACTIVE'
         }
-        setData(prev => ({
-            ...prev,
-            totalActiveVisitors: prev.totalActiveVisitors + 1,
-            visitors: [newV, ...prev.visitors]
-        }))
+        setData(prev => {
+            const nextVisitors = [newV, ...prev.visitors]
+            return {
+                ...prev,
+                totalActiveVisitors: prev.totalActiveVisitors + 1,
+                domainBreakdown: {
+                    hu: nextVisitors.filter(v => v.domain.includes(".hu")).length,
+                    com: nextVisitors.filter(v => v.domain.includes(".com")).length,
+                },
+                visitors: nextVisitors
+            }
+        })
         setSelectedVisitor(newV)
     }
 
@@ -272,9 +281,19 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                     <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
                         Jelenlegi Aktív Látogatók
                     </span>
-                    <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-black font-mono text-cyan-400">{data.totalActiveVisitors}</span>
-                        <span className="text-xs font-mono text-emerald-400 animate-pulse">● ÉLŐBEN</span>
+                    <div className="flex items-baseline justify-between gap-2">
+                        <div className="flex items-baseline gap-2">
+                            <span className="text-3xl font-black font-mono text-cyan-400">{data.totalActiveVisitors}</span>
+                            <span className="text-xs font-mono text-emerald-400 animate-pulse">● ÉLŐBEN</span>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-[10px] font-mono">
+                            <span className="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                                🇭🇺 {data.domainBreakdown?.hu ?? 0} HU
+                            </span>
+                            <span className="px-1.5 py-0.5 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                                🌐 {data.domainBreakdown?.com ?? 0} COM
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -400,6 +419,17 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                             </div>
 
                             <div className="space-y-2.5 font-mono text-xs">
+                                <div className="flex justify-between items-center p-2 rounded-lg bg-slate-900/60 border border-white/5">
+                                    <span className="text-slate-400">Domain:</span>
+                                    <span className={cn(
+                                        "px-2 py-0.5 rounded text-[11px] font-mono font-bold border",
+                                        selectedVisitor.domain?.includes(".com")
+                                            ? "bg-blue-500/20 text-blue-300 border-blue-500/30"
+                                            : "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+                                    )}>
+                                        🌐 {selectedVisitor.domain || "backlineit.hu"}
+                                    </span>
+                                </div>
                                 <div className="flex justify-between p-2 rounded-lg bg-slate-900/60 border border-white/5">
                                     <span className="text-slate-400">Jelenlegi Oldal:</span>
                                     <span className="text-cyan-300 font-bold truncate max-w-[200px]">
@@ -484,6 +514,7 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                             <thead className="bg-[#0b101e] border-b border-white/5 text-[11px] font-mono uppercase tracking-wider text-slate-400">
                                 <tr>
                                     <th className="p-3.5">Helyszín</th>
+                                    <th className="p-3.5">Domain</th>
                                     <th className="p-3.5">Jelenlegi Oldal</th>
                                     <th className="p-3.5">Eszköz</th>
                                     <th className="p-3.5">Forrás</th>
@@ -503,6 +534,16 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                                             <span className="text-base">{v.flag}</span>
                                             <span className="font-bold text-white">{v.city}</span>
                                             <span className="text-slate-500">({v.countryCode})</span>
+                                        </td>
+                                        <td className="p-3.5">
+                                            <span className={cn(
+                                                "px-2 py-0.5 rounded text-[10px] font-mono font-bold border",
+                                                v.domain?.includes(".com")
+                                                    ? "bg-blue-500/20 text-blue-300 border-blue-500/30"
+                                                    : "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+                                            )}>
+                                                {v.domain || "backlineit.hu"}
+                                            </span>
                                         </td>
                                         <td className="p-3.5 text-cyan-300 font-semibold">{v.page}</td>
                                         <td className="p-3.5 text-slate-400">{v.device}</td>
@@ -545,7 +586,21 @@ export function LiveMapClient({ initialData }: { initialData: LiveTrafficData })
                             {data.recentVisits.map((rv) => (
                                 <tr key={rv.id} className="hover:bg-white/[0.02]">
                                     <td className="p-3.5 text-white font-bold">{rv.timeStr}</td>
-                                    <td className="p-3.5 text-cyan-300">{rv.page}</td>
+                                    <td className="p-3.5 text-cyan-300">
+                                        <div className="flex items-center gap-1.5">
+                                            {rv.domain && (
+                                                <span className={cn(
+                                                    "px-1.5 py-0.5 rounded text-[9px] font-mono font-bold border",
+                                                    rv.domain.includes(".com")
+                                                        ? "bg-blue-500/20 text-blue-300 border-blue-500/30"
+                                                        : "bg-emerald-500/20 text-emerald-300 border-emerald-500/30"
+                                                )}>
+                                                    {rv.domain.includes(".com") ? "COM" : "HU"}
+                                                </span>
+                                            )}
+                                            <span>{rv.page}</span>
+                                        </div>
+                                    </td>
                                     <td className="p-3.5 text-slate-400">{rv.eventType}</td>
                                     <td className="p-3.5 text-slate-400">{rv.location}</td>
                                     <td className="p-3.5 text-right text-slate-400">{rv.timeAgo}</td>

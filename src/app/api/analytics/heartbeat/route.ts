@@ -13,7 +13,7 @@ export const runtime = "nodejs"
 function formatReferrerLabel(rawReferrer: string): string {
     if (!rawReferrer) return "Közvetlen (Direct)"
     const lower = rawReferrer.toLowerCase()
-    if (lower.includes("backlineit.hu") || lower.includes("localhost")) {
+    if (lower.includes("backlineit.hu") || lower.includes("backlineit.com") || lower.includes("localhost")) {
         return "Közvetlen (Direct)"
     }
     if (lower.includes("google.")) return "Google Keresés"
@@ -64,6 +64,11 @@ export async function POST(req: NextRequest) {
         const geo = resolveGeoFromHeaders(req.headers)
         const device = parseDeviceFromUA(ua)
         const referrer = formatReferrerLabel(typeof body.referrer === "string" ? body.referrer : "")
+        const rawHost = req.headers.get("x-forwarded-host") || req.headers.get("host") || ""
+        const domain = (typeof body.domain === "string" && body.domain
+            ? body.domain
+            : rawHost.replace(/:\d+$/, "") || "backlineit.hu"
+        ).toLowerCase()
 
         await upsertLiveVisitor({
             id: visitorId,
@@ -74,6 +79,7 @@ export async function POST(req: NextRequest) {
             lat: geo.lat,
             lng: geo.lng,
             page: rawPage,
+            domain,
             device,
             referrer,
             startedAt,
@@ -87,6 +93,7 @@ export async function POST(req: NextRequest) {
                         name: "page_view",
                         category: "navigation",
                         properties: {
+                            domain,
                             page: rawPage,
                             country: geo.countryCode,
                             city: geo.city,
