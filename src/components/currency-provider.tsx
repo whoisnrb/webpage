@@ -21,7 +21,14 @@ const FALLBACK_RATES: Record<CurrencyCode, number> = {
 };
 
 export function CurrencyProvider({ children }: { children: React.ReactNode }) {
-    const [currency, setCurrencyState] = React.useState<CurrencyCode>('HUF');
+    const [currency, setCurrencyState] = React.useState<CurrencyCode>(() => {
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem("user-currency") as CurrencyCode;
+            if (saved && CURRENCIES[saved]) return saved;
+            if (window.location.hostname.endsWith("backlineit.com")) return "EUR";
+        }
+        return "HUF";
+    });
     const [rates, setRates] = React.useState<Record<CurrencyCode, number>>(FALLBACK_RATES);
     const [isLoading, setIsLoading] = React.useState(true);
 
@@ -58,11 +65,13 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
         return () => clearInterval(interval);
     }, []);
 
-    // Load saved currency from localStorage on mount
+    // Load saved currency from localStorage on mount, or pick default based on domain
     React.useEffect(() => {
         const saved = localStorage.getItem('user-currency') as CurrencyCode;
         if (saved && CURRENCIES[saved]) {
             setCurrencyState(saved);
+        } else if (typeof window !== "undefined" && window.location.hostname.endsWith("backlineit.com")) {
+            setCurrencyState("EUR");
         }
     }, []);
 
