@@ -40,6 +40,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth(async (req) => {
 
     return {
         ...authConfig,
+        trustHost: true,
         adapter: PrismaAdapter(prisma),
         session: { strategy: "jwt" },
         providers: [
