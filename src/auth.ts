@@ -31,12 +31,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth(async (req) => {
     const isCom = host.includes("backlineit.com");
 
     const githubId = isCom
-        ? (process.env.GITHUB_CLIENT_ID_COM || "Ov23li4MYbpDwP4Bfndq")
-        : (process.env.GITHUB_CLIENT_ID || "Ov23lioM22xhK1IZeyKm");
+        ? (process.env.GITHUB_CLIENT_ID_COM || process.env.GITHUB_CLIENT_ID)
+        : process.env.GITHUB_CLIENT_ID;
 
     const githubSecret = isCom
-        ? (process.env.GITHUB_CLIENT_SECRET_COM || "befbb19a2636f282a49e4ed543c2d1aaf6940011")
-        : (process.env.GITHUB_CLIENT_SECRET || "30d209abf1d1b1b0b4f50f9e583512d6d6906b9e");
+        ? (process.env.GITHUB_CLIENT_SECRET_COM || process.env.GITHUB_CLIENT_SECRET)
+        : process.env.GITHUB_CLIENT_SECRET;
 
     return {
         ...authConfig,
