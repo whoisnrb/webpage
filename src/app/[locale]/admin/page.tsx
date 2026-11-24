@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { MessageSquare, Clock, FileText, Briefcase, Banknote, Activity, Sparkles, ArrowRight, ShieldCheck, Radio } from "lucide-react"
+import { MessageSquare, Clock, FileText, Briefcase, Banknote, Activity, Sparkles, ArrowRight, ShieldCheck, Radio, TrendingUp, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { prisma } from "@/lib/db"
 import { DashboardCharts } from "@/components/admin/dashboard-charts"
@@ -183,18 +183,29 @@ export default async function AdminPage() {
                             Generálj egyetlen kattintással SEO-optimalizált szakmai blogcikkeket, azonnal másolható LinkedIn posztokat és DALL-E képi koncepciókat a BacklineIT brandjéhez igazítva.
                         </p>
                     </div>
-                    <div className="flex flex-wrap items-center gap-3 shrink-0">
+                    <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+                        <Link href={"/admin/growth-audit" as any}>
+                            <Button className="bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold shadow-lg shadow-emerald-500/25 border border-emerald-400/40 rounded-xl px-3.5 py-2 flex items-center gap-2 transition-all duration-300 cursor-pointer text-xs">
+                                <TrendingUp className="h-4 w-4" />
+                                Növekedési Audit (PDF)
+                            </Button>
+                        </Link>
+                        <Link href={"/admin/seo-tracker" as any}>
+                            <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-blue-500/25 border border-blue-400/40 rounded-xl px-3.5 py-2 flex items-center gap-2 transition-all duration-300 cursor-pointer text-xs">
+                                <Search className="h-4 w-4" />
+                                SEO & Kulcsszó Tracker
+                            </Button>
+                        </Link>
                         <Link href={"/admin/marketing" as any}>
-                            <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-purple-500/25 border border-purple-400/40 rounded-xl px-4 py-2.5 flex items-center gap-2 transition-all duration-300 cursor-pointer text-xs">
+                            <Button className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold shadow-lg shadow-purple-500/25 border border-purple-400/40 rounded-xl px-3.5 py-2 flex items-center gap-2 transition-all duration-300 cursor-pointer text-xs">
                                 <Sparkles className="h-4 w-4" />
                                 Marketing Autopilot
                             </Button>
                         </Link>
                         <Link href={"/admin/security-audit" as any}>
-                            <Button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/25 border border-cyan-400/40 rounded-xl px-4 py-2.5 flex items-center gap-2 transition-all duration-300 cursor-pointer text-xs">
+                            <Button className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold shadow-lg shadow-cyan-500/25 border border-cyan-400/40 rounded-xl px-3.5 py-2 flex items-center gap-2 transition-all duration-300 cursor-pointer text-xs">
                                 <ShieldCheck className="h-4 w-4" />
                                 Biztonsági Audit Robot
-                                <ArrowRight className="h-4 w-4" />
                             </Button>
                         </Link>
                     </div>

@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio, Globe, Zap, MailCheck } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio, Globe, Zap, MailCheck, TrendingUp, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -205,9 +205,23 @@ export default async function AdminLayout({
                             </Button>
                         </Link>
 
-                        <Link href={"/admin/email-deliverability" as any}>
+                        <Link href={"/admin/growth-audit" as any}>
                             <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-transparent hover:from-emerald-500/25 hover:to-teal-500/20 border border-emerald-500/30 hover:border-emerald-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.15)] group">
-                                <MailCheck className="h-4 w-4 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
+                                <TrendingUp className="h-4 w-4 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
+                                <span className="text-sm font-medium">Növekedési Audit Robot (PDF)</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/seo-tracker" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-blue-500/15 via-indigo-500/10 to-transparent hover:from-blue-500/25 hover:to-indigo-500/20 border border-blue-500/30 hover:border-blue-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(59,130,246,0.15)] group">
+                                <Search className="h-4 w-4 text-blue-400 group-hover:text-blue-300 transition-colors" />
+                                <span className="text-sm font-medium">SEO & Kulcsszó Tracker</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/email-deliverability" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-teal-500/15 via-cyan-500/10 to-transparent hover:from-teal-500/25 hover:to-cyan-500/20 border border-teal-500/30 hover:border-teal-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(20,184,166,0.15)] group">
+                                <MailCheck className="h-4 w-4 text-teal-400 group-hover:text-teal-300 transition-colors" />
                                 <span className="text-sm font-medium">Email Kézbesíthetőség Teszt</span>
                             </Button>
                         </Link>

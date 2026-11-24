@@ -409,4 +409,41 @@ model NewsletterCampaign {
   updatedAt      DateTime  @updatedAt
 }
 
+model SeoKeyword {
+  id           String   @id @default(cuid())
+  domain       String   @default("backlineit.hu") // "backlineit.hu" or "backlineit.com"
+  keyword      String
+  category     String   @default("Fejlesztés")
+  targetUrl    String?
+  currentRank  Int      @default(0) // 0 means unranked or >100
+  previousRank Int      @default(0)
+  searchVolume Int      @default(0)
+  difficulty   Int      @default(0) // 0-100 (KD)
+  change       Int      @default(0) // previousRank - currentRank (positive is improvement)
+  lastChecked  DateTime @default(now())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([domain])
+  @@index([category])
+}
+
+model GrowthAudit {
+  id            String   @id @default(cuid())
+  domain        String
+  businessName  String?
+  score         Int      @default(0)
+  speedScore    Int      @default(0)
+  securityScore Int      @default(0)
+  seoScore      Int      @default(0)
+  croScore      Int      @default(0)
+  summary       String?  @db.Text
+  data          Json?
+  pdfGenerated  Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([domain])
+}
+
 
