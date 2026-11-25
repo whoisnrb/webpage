@@ -495,7 +495,8 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
             });
 
             if (res.success && res.lead) {
-                setImportedLeadEmails((prev) => new Set(prev).add(item.email.toLowerCase()));
+                const trackKey = (item.email || item.website || item.companyName).toLowerCase();
+                setImportedLeadEmails((prev) => new Set(prev).add(trackKey));
                 setLeads((prev) => {
                     if (prev.some((l) => l.id === res.lead.id)) return prev;
                     return [res.lead as Lead, ...prev];
@@ -503,6 +504,10 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                 toast.success(res.alreadyExisted ? "Ügyfél már szerepel a CRM-ben!" : "Lead sikeresen beimportálva a CRM-be!");
 
                 if (openOutreachImmediately) {
+                    if (!item.email) {
+                        toast.warning("Ehhez a céghez nem volt publikus e-mail a weboldalán, így a CRM-be került a telefonszámmal / URL-lel.");
+                        return;
+                    }
                     setIsHunterOpen(false);
                     openOutreach(res.lead as Lead);
                 }
@@ -1537,7 +1542,8 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
 
                                         <div className="space-y-3">
                                             {huntedLeads.map((item, idx) => {
-                                                const isImported = importedLeadEmails.has(item.email.toLowerCase());
+                                                const trackKey = (item.email || item.website || item.companyName).toLowerCase();
+                                                const isImported = importedLeadEmails.has(trackKey);
                                                 return (
                                                     <div
                                                         key={idx}
@@ -1545,8 +1551,13 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                                                     >
                                                         <div className="flex items-start justify-between gap-3">
                                                             <div>
-                                                                <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                                                                    {item.companyName}
+                                                                <h4 className="text-sm font-bold text-white flex items-center gap-2 flex-wrap">
+                                                                    <span>{item.companyName}</span>
+                                                                    {item.verified && (
+                                                                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-mono font-semibold">
+                                                                            ✓ Élő oldal ({item.loadTimeMs ?? "?"} ms)
+                                                                        </span>
+                                                                    )}
                                                                     {item.name && (
                                                                         <span className="text-xs font-normal text-slate-400">
                                                                             ({item.name})
@@ -1554,7 +1565,11 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                                                                     )}
                                                                 </h4>
                                                                 <div className="flex items-center gap-3 text-xs text-slate-400 mt-1 flex-wrap">
-                                                                    <span className="font-mono text-cyan-300">{item.email}</span>
+                                                                    {item.email ? (
+                                                                        <span className="font-mono text-cyan-300">{item.email}</span>
+                                                                    ) : (
+                                                                        <span className="text-slate-500 italic">Nincs publikus email az oldalon</span>
+                                                                    )}
                                                                     {item.phone && (
                                                                         <span className="text-slate-300 flex items-center gap-1">
                                                                             <Phone className="h-3 w-3 text-slate-500" />
@@ -1563,7 +1578,7 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                                                                     )}
                                                                     {item.website && (
                                                                         <a
-                                                                            href={`https://${item.website.replace(/^https?:\/\//, '')}`}
+                                                                            href={`${item.hasSsl === false ? 'http' : 'https'}://${item.website.replace(/^https?:\/\//, '')}`}
                                                                             target="_blank"
                                                                             rel="noreferrer"
                                                                             className="text-blue-400 hover:underline flex items-center gap-1"
@@ -1602,12 +1617,23 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                                                             </div>
                                                         </div>
 
-                                                        {item.painPoint && (
+                                                        {item.verifiedIssues && item.verifiedIssues.length > 0 ? (
+                                                            <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs space-y-1">
+                                                                <div className="font-semibold flex items-center gap-1.5 text-amber-200">
+                                                                    <span>🔍 Mért valós hiányosságok ({item.verifiedIssues.length} db):</span>
+                                                                </div>
+                                                                <ul className="space-y-0.5 text-[11px] text-amber-300/90 pl-4 list-disc">
+                                                                    {item.verifiedIssues.slice(0, 3).map((iss, i) => (
+                                                                        <li key={i}>{iss}</li>
+                                                                    ))}
+                                                                </ul>
+                                                            </div>
+                                                        ) : item.painPoint ? (
                                                             <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs flex items-center gap-2">
                                                                 <span className="font-semibold shrink-0">💡 Lehetőség:</span>
                                                                 <span>{item.painPoint}</span>
                                                             </div>
-                                                        )}
+                                                        ) : null}
                                                     </div>
                                                 );
                                             })}

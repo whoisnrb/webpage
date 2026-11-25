@@ -250,151 +250,191 @@ export interface HuntedLead {
     phone?: string | null;
     website?: string | null;
     painPoint?: string | null;
+    verifiedIssues?: string[];
+    loadTimeMs?: number;
+    hasSsl?: boolean;
+    verified?: boolean;
     source: string;
+}
+
+function getGeminiApiKey(): string | undefined {
+    return process.env.GEMINI_API_KEY;
 }
 
 export async function searchLiveLeadsAction(city: string, category: string) {
     try {
-        const { azureKey, azureUrl } = getAzureOpenAiConfig();
+        const cleanCity = city.trim();
+        const cleanCat = category.trim();
+        if (!cleanCity || !cleanCat) {
+            return { success: false, error: "Add meg a várost és az iparágat is!" };
+        }
 
-        // 1. Elsődleges: Élő Azure OpenAI GPT-4o B2B cégkutatás a megadott városra és iparágra
-        try {
-            const prompt = `Te egy professzionális magyar B2B cégkutató és cégadatbázis szakértő vagy a Backline IT-nál.
-Keress és állíts össze 6-8 valós, releváns vagy működő magyar KKV vállalkozást az alábbi keresési feltételekkel:
-Város: ${city}
-Iparág / Kategória: ${category}
+        const { inspectAndAuditLiveWebsite, isBlockedOrDirectoryHost } = await import("@/lib/lead-verifier");
 
-Minden céghez adj meg:
-- companyName: Pontos cégnév (Kft., Bt. vagy orvos/iroda név)
-- name: Vezető / döntéshozó / tulajdonos neve (ha van)
-- email: Hivatalos e-mail cím (pl. info@domain.hu, iroda@domain.hu, vagy a cég nevéből képzett)
-- phone: Telefonszám (+36 formátumban)
-- website: Weboldal címe (pl. domain.hu)
-- painPoint: 1 konkrét, eladható digitális hiányosság (pl. 'Nem mobilbarát weboldal, hiányzó online időpontfoglaló vagy ajánlatkérő rendszer')
+        type CandidateCompany = { companyName: string; website: string; name?: string | null };
+        const candidates: CandidateCompany[] = [];
+        const seenHosts = new Set<string>();
 
-Válaszolj KIZÁRÓLAG egy érvényes JSON tömbként:
+        const addCandidate = (companyName: string, rawWebsite: string, contactName?: string | null) => {
+            if (!rawWebsite) return;
+            const host = rawWebsite.trim().toLowerCase().replace(/^https?:\/\//, "").split("/")[0].replace(/^www\./, "");
+            if (!host || !host.includes(".") || isBlockedOrDirectoryHost(host) || seenHosts.has(host)) {
+                return;
+            }
+            seenHosts.add(host);
+            candidates.push({
+                companyName: companyName.trim() || host,
+                website: rawWebsite.trim(),
+                name: contactName || null,
+            });
+        };
+
+        // 1. Elsődleges: Valós Google Keresés Gemini 2.5 Flash Search Grounding segítségével
+        const geminiKey = getGeminiApiKey();
+        if (geminiKey) {
+            try {
+                const prompt = `Használd a Google keresőt! Keress 10 VALÓDI, jelenleg működő vállalkozást ebben a városban és szakterületen:
+Város / Régió: ${cleanCity}
+Iparág / Tevékenység: ${cleanCat}
+
+SZIGORÚ SZABÁLYOK:
+- KIZÁRÓLAG olyan cégeket adj meg, amelyeket ténylegesen megtaláltál a Google keresésben és saját, önálló weboldaluk van!
+- TILOS cégkatalógusokat vagy gyűjtőoldalakat megadni (tilos: aranyoldalak, ceginformacio, opten, joszaki, szaki, facebook, instagram, profession, startlap, wikipedia, cylex).
+- TILOS kitalálni cégnevet vagy URL-t!
+
+Válaszolj KIZÁRÓLAG egy érvényes JSON tömbként (egyéb szöveg nélkül):
 [
   {
-    "companyName": "Cégnév",
-    "name": "Vezető neve",
-    "email": "info@domain.hu",
-    "phone": "+36...",
-    "website": "domain.hu",
-    "painPoint": "Digitális hiányosság"
+    "companyName": "A cég valódi neve a Google találatból",
+    "website": "https://valodi-weboldal.hu",
+    "name": "Kapcsolattartó neve ha látszik a találatban, egyébként null"
   }
 ]`;
 
-            const aiRes = await fetch(azureUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'api-key': azureKey,
-                },
-                body: JSON.stringify({
-                    messages: [{ role: 'user', content: prompt }],
-                    temperature: 0.6,
-                }),
-            });
+                const gemRes = await fetch(
+                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(geminiKey)}`,
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            contents: [{ parts: [{ text: prompt }] }],
+                            tools: [{ google_search: {} }],
+                            generationConfig: { temperature: 0.1 },
+                        }),
+                    }
+                );
 
-            if (aiRes.ok) {
-                const aiData = await aiRes.json();
-                let aiText = aiData.choices[0]?.message?.content?.trim() || '';
-                if (aiText.startsWith('```json')) {
-                    aiText = aiText.replace(/^```json/, '').replace(/```$/, '').trim();
-                } else if (aiText.startsWith('```')) {
-                    aiText = aiText.replace(/^```/, '').replace(/```$/, '').trim();
+                if (gemRes.ok) {
+                    const gemData = await gemRes.json();
+                    let rawText = gemData.candidates?.[0]?.content?.parts?.[0]?.text || "";
+                    const jsonMatch = rawText.match(/\[[\s\S]*\]/);
+                    if (jsonMatch) {
+                        const parsed = JSON.parse(jsonMatch[0]);
+                        if (Array.isArray(parsed)) {
+                            for (const item of parsed) {
+                                if (item?.website) {
+                                    addCandidate(item.companyName || cleanCat, String(item.website), item.name || null);
+                                }
+                            }
+                        }
+                    }
+
+                    // Grounding chunksból kinyerhető esetleges valódi URL-ek (ha redirect nélkül elérhető domainek)
+                    const chunks = gemData.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
+                    for (const ch of chunks) {
+                        const uri = ch?.web?.uri;
+                        const title = ch?.web?.title;
+                        if (uri && title && !uri.includes("vertexaisearch.cloud.google.com")) {
+                            addCandidate(String(title).split("-")[0].trim(), String(uri), null);
+                        }
+                    }
                 }
-                const parsed = JSON.parse(aiText);
-                if (Array.isArray(parsed) && parsed.length > 0) {
-                    return {
-                        success: true,
-                        leads: parsed.map((item: any) => ({
-                            companyName: item.companyName || `${category} - ${city}`,
-                            name: item.name || null,
-                            email: item.email || `info@${(item.website || 'ceg.hu').replace(/^https?:\/\//, '').split('/')[0]}`,
-                            phone: item.phone || null,
-                            website: item.website || null,
-                            painPoint: item.painPoint || "Potenciális weboldal modernizáció és digitális automatizáció.",
-                            source: "Google Maps Vadász",
-                        })) as HuntedLead[],
-                    };
-                }
+            } catch (gemErr) {
+                console.error("Gemini Google Search lead discovery error:", gemErr);
             }
-        } catch (aiErr) {
-            console.error("AI live lead search error:", aiErr);
         }
 
-        // 2. Másodlagos tartalék: OpenStreetMap Nominatim élő cégkeresés
-        try {
-            const nomRes = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(`${category} ${city}`)}&format=json&addressdetails=1`, {
-                headers: { 'User-Agent': 'BacklineIT-LeadHunter/1.0' },
-            });
-            if (nomRes.ok) {
-                const nomData = await nomRes.json();
-                if (Array.isArray(nomData) && nomData.length > 0) {
-                    const mapped = nomData.slice(0, 6).map((item: any, i: number) => {
-                        const name = item.name || `${category} #${i + 1}`;
-                        const cleanSlug = name.toLowerCase().replace(/[^a-z0-9]/g, '');
-                        return {
-                            companyName: name,
-                            name: null,
-                            email: `info@${cleanSlug}.hu`,
-                            phone: "+36 30 123 4567",
-                            website: `${cleanSlug}.hu`,
-                            painPoint: "A cég weboldala nem rendelkezik modern online ajánlatkérő vagy időpontfoglaló funkcióval.",
-                            source: "Google Maps Vadász",
-                        };
-                    });
-                    return { success: true, leads: mapped };
+        // 2. Másodlagos valódi forrás (csak ha a keresőből kevés találat jött): OpenStreetMap Overpass API (valós website tag-ekkel!)
+        if (candidates.length < 4) {
+            try {
+                const overpassQuery = `[out:json][timeout:10];
+area["name"="${cleanCity}"]->.searchArea;
+(
+  node(area.searchArea)["website"];
+  way(area.searchArea)["website"];
+  node(area.searchArea)["contact:website"];
+  way(area.searchArea)["contact:website"];
+);
+out tags 40;`;
+                const ovRes = await fetch("https://overpass-api.de/api/interpreter", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded", "User-Agent": "BacklineIT-LeadHunter/2.0" },
+                    body: `data=${encodeURIComponent(overpassQuery)}`,
+                    signal: AbortSignal.timeout(9000),
+                });
+                if (ovRes.ok) {
+                    const ovData = await ovRes.json();
+                    const catLower = cleanCat.toLowerCase();
+                    for (const el of ovData.elements || []) {
+                        const tags = el.tags || {};
+                        const site = tags.website || tags["contact:website"];
+                        const elName = tags.name || tags["name:hu"] || "";
+                        const tagDump = JSON.stringify(tags).toLowerCase();
+                        if (site && elName && tagDump.includes(catLower.slice(0, Math.max(4, catLower.length - 2)))) {
+                            addCandidate(elName, site, null);
+                        }
+                    }
                 }
+            } catch (ovErr) {
+                console.error("Overpass fallback error:", ovErr);
             }
-        } catch (nomErr) {
-            console.error("Nominatim error:", nomErr);
         }
 
-        // 3. Harmadlagos garantált tartalék: Reális magyar KKV vállalkozások az adott városra
-        const cleanCity = city.trim();
-        const cleanCat = category.trim();
-        const fallbackLeads: HuntedLead[] = [
-            {
-                companyName: `${cleanCity} ${cleanCat} Központ Kft.`,
-                name: "Vezető Tanácsadó",
-                email: `info@${cleanCity.toLowerCase()}-${cleanCat.toLowerCase()}kozpont.hu`,
-                phone: "+36 30 555 1234",
-                website: `${cleanCity.toLowerCase()}-${cleanCat.toLowerCase()}kozpont.hu`,
-                painPoint: "Elavult dizájn, hiányzó mobilbarát nézet és lassú betöltési sebesség.",
-                source: "Google Maps Vadász",
-            },
-            {
-                companyName: `Profi ${cleanCat} ${cleanCity} Bt.`,
-                name: "Ügyvezető",
-                email: `kapcsolat@profi-${cleanCat.toLowerCase()}.hu`,
-                phone: "+36 20 444 5678",
-                website: `profi-${cleanCat.toLowerCase()}.hu`,
-                painPoint: "Nincs beépített online ajánlatkérő és CRM integráció.",
-                source: "Google Maps Vadász",
-            },
-            {
-                companyName: `Prémium ${cleanCat} Iroda`,
-                name: "Cégvezető",
-                email: `iroda@premium-${cleanCity.toLowerCase()}.hu`,
-                phone: "+36 70 333 9876",
-                website: `premium-${cleanCity.toLowerCase()}.hu`,
-                painPoint: "Hiányzó konverzió-optimalizált felépítés és keresőoptimalizálás.",
-                source: "Google Maps Vadász",
-            },
-            {
-                companyName: `${cleanCity}i ${cleanCat} Partner Kft.`,
-                name: "Kapcsolattartó",
-                email: `ugyfelszolgalat@${cleanCity.toLowerCase()}-${cleanCat.toLowerCase()}.hu`,
-                phone: "+36 22 888 999",
-                website: `${cleanCity.toLowerCase()}-${cleanCat.toLowerCase()}.hu`,
-                painPoint: "Nem rendelkezik automatizált online számlázással és ügyfélkapuval.",
-                source: "Google Maps Vadász",
-            },
-        ];
+        if (candidates.length === 0) {
+            return {
+                success: false,
+                error: `Nem található élő, saját weboldallal rendelkező vállalkozás a(z) "${cleanCity} - ${cleanCat}" keresésre. Próbálj másik szakterületet vagy várost.`,
+            };
+        }
 
-        return { success: true, leads: fallbackLeads };
+        // 3. KÖTELEZŐ ÉLŐ ELLENŐRZÉS: Minden egyes weboldalt letöltünk, kiszűrjük a halott/parkolt oldalakat,
+        // kinyerjük a VALÓDI emailt/telefont, és valódi technikai hibadiagnosztikát futtatunk!
+        const inspectionResults = await Promise.allSettled(
+            candidates.slice(0, 12).map(async (cand) => {
+                const audited = await inspectAndAuditLiveWebsite(cand.website);
+                if (!audited) return null;
+
+                return {
+                    companyName: cand.companyName,
+                    name: cand.name || null,
+                    email: audited.email || "",
+                    phone: audited.phone || null,
+                    website: audited.hostname,
+                    painPoint: audited.primaryPainPoint,
+                    verifiedIssues: audited.verifiedIssues,
+                    loadTimeMs: audited.loadTimeMs,
+                    hasSsl: audited.hasSsl,
+                    verified: true,
+                    source: "Google Élő Keresés",
+                } as HuntedLead;
+            })
+        );
+
+        const verifiedLeads: HuntedLead[] = [];
+        for (const r of inspectionResults) {
+            if (r.status === "fulfilled" && r.value !== null) {
+                verifiedLeads.push(r.value);
+            }
+        }
+
+        if (verifiedLeads.length === 0) {
+            return {
+                success: false,
+                error: `A talált jelölt weboldalak közül egyik sem volt elérhető vagy aktív (parkolt/hibás domainek kiszűrve). Próbálj másik keresési kulcsszót!`,
+            };
+        }
+
+        return { success: true, leads: verifiedLeads };
     } catch (error: any) {
         console.error("Error searching live leads:", error);
         return { success: false, error: error.message || "Nem sikerült a leadek keresése" };
@@ -409,8 +449,8 @@ export async function importHuntedLeadAction(data: {
     notes?: string;
 }) {
     try {
-        let cleanEmail = data.email.trim().toLowerCase();
-        if (isPlaceholderEmail(cleanEmail)) {
+        let cleanEmail = (data.email || "").trim().toLowerCase();
+        if (!cleanEmail || isPlaceholderEmail(cleanEmail)) {
             const randomSuffix = Math.random().toString(36).substring(2, 8);
             cleanEmail = `nincsmeg-${Date.now()}-${randomSuffix}@crm.internal`;
         }
