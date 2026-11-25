@@ -1,8 +1,10 @@
 import { prisma } from "@/lib/db"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
-import { BarChart3, Users, MousePointer2 } from "lucide-react"
+import { BarChart3, Users, MousePointer2, Filter, ArrowRight } from "lucide-react"
 import { getTranslations } from "next-intl/server"
+import { Link } from "@/i18n/routing"
+import { Button } from "@/components/ui/button"
 
 export default async function AnalyticsPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params
@@ -33,6 +35,26 @@ export default async function AnalyticsPage({ params }: { params: Promise<{ loca
                     <CardContent>
                         <div className="text-2xl font-bold">{totalEvents}</div>
                         <p className="text-xs text-muted-foreground">{t('recorded_interactions')}</p>
+                    </CardContent>
+                </Card>
+
+                <Card className="md:col-span-2 bg-gradient-to-r from-cyan-950/30 to-indigo-950/20 border-cyan-500/20">
+                    <CardHeader className="pb-2">
+                        <CardTitle className="text-sm font-medium flex items-center gap-2 text-cyan-300">
+                            <Filter className="h-4 w-4" />
+                            Konverziós Tölcsér & Űrlap-lemorzsolódás
+                        </CardTitle>
+                        <CardDescription>
+                            Nézd meg lépésről lépésre, hol veszítjük el a látogatókat a .hu és .com oldalakon.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Link href={"/admin/funnel-analytics" as any}>
+                            <Button size="sm" className="bg-cyan-600 hover:bg-cyan-500 text-white gap-2">
+                                Konverziós Tölcsér Megnyitása
+                                <ArrowRight className="h-4 w-4" />
+                            </Button>
+                        </Link>
                     </CardContent>
                 </Card>
             </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useCart } from "@/components/ecommerce/cart-provider"
 import { LocalizedProductDTO } from "@/app/actions/product"
 import { submitConsultation } from "@/app/actions/consultation"
@@ -15,6 +15,7 @@ import { useTranslations, useLocale } from "next-intl"
 import { useRouter } from "@/i18n/routing"
 import { useCurrency } from "@/components/currency-provider"
 import { formatPrice } from "@/lib/currency"
+import { trackFunnelStep, trackFormAbandonment } from "@/lib/funnel-client"
 
 interface ConsultationFormProps {
     products: LocalizedProductDTO[]
@@ -32,6 +33,27 @@ export function ConsultationFormClient({ products }: ConsultationFormProps) {
 
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
+    const hasInteractedRef = useRef(false)
+    const lastFieldRef = useRef("name")
+    const submittedRef = useRef(false)
+
+    useEffect(() => {
+        trackFunnelStep({ funnel: "consultation", step: "step_1_view", stepNumber: 1 })
+        const onUnload = () => {
+            if (hasInteractedRef.current && !submittedRef.current) {
+                trackFormAbandonment({
+                    funnel: "consultation",
+                    stepNumber: 1,
+                    lastField: lastFieldRef.current,
+                })
+            }
+        }
+        window.addEventListener("pagehide", onUnload)
+        return () => {
+            window.removeEventListener("pagehide", onUnload)
+            onUnload()
+        }
+    }, [])
 
     const [formData, setFormData] = useState({
         name: "",
@@ -42,6 +64,18 @@ export function ConsultationFormClient({ products }: ConsultationFormProps) {
         productId: cartItem?.id || "",
         packageName: cartItem?.license || "" // CartItem 'license' field holds the variant name
     })
+
+    useEffect(() => {
+        if (formData.name || formData.email || formData.company || formData.phone || formData.description) {
+            hasInteractedRef.current = true
+            if (formData.description) lastFieldRef.current = "description"
+            else if (formData.phone) lastFieldRef.current = "phone"
+            else if (formData.company) lastFieldRef.current = "company"
+            else if (formData.email) lastFieldRef.current = "email"
+            else if (formData.name) lastFieldRef.current = "name"
+            trackFunnelStep({ funnel: "consultation", step: "step_1_interact", stepNumber: 1, lastField: lastFieldRef.current })
+        }
+    }, [formData])
 
     // Update productId if cart changes (though unlikely once mounted)
     useEffect(() => {
@@ -62,6 +96,8 @@ export function ConsultationFormClient({ products }: ConsultationFormProps) {
             const result = await submitConsultation(formData)
 
             if (result.success) {
+                submittedRef.current = true
+                trackFunnelStep({ funnel: "consultation", step: "submitted", stepNumber: 2 })
                 setSuccess(true)
                 clearCart()
                 toast.success(t('success_toast'))

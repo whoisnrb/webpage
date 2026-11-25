@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -28,6 +28,7 @@ import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 import { useRecaptcha } from "@/components/recaptcha-provider"
 import { useTranslations, useLocale } from "next-intl"
+import { trackFunnelStep, trackFormAbandonment } from "@/lib/funnel-client"
 
 const TOPICS = [
     { value: "consultation", icon: MessageSquare, gradient: "from-cyan-500/20 to-blue-500/20", border: "border-cyan-500/30", iconColor: "text-cyan-400" },
@@ -59,6 +60,45 @@ export function BookingForm() {
         message: "",
     })
 
+    const hasInteractedRef = useRef(false)
+    const lastFieldRef = useRef("name")
+    const stepIdxRef = useRef(0)
+    const submittedRef = useRef(false)
+
+    useEffect(() => {
+        stepIdxRef.current = STEPS.indexOf(currentStep) + 1
+    }, [currentStep])
+
+    useEffect(() => {
+        if (formData.name || formData.email || formData.topic || formData.time || formData.message) {
+            hasInteractedRef.current = true
+            trackFunnelStep({ funnel: "booking", step: "step_1_interact", stepNumber: stepIdxRef.current || 1, lastField: lastFieldRef.current })
+        }
+        if (formData.message) lastFieldRef.current = "message"
+        else if (formData.time) lastFieldRef.current = "time"
+        else if (formData.topic) lastFieldRef.current = "topic"
+        else if (formData.email) lastFieldRef.current = "email"
+        else if (formData.name) lastFieldRef.current = "name"
+    }, [formData])
+
+    useEffect(() => {
+        trackFunnelStep({ funnel: "booking", step: "step_1_details", stepNumber: 1 })
+        const onUnload = () => {
+            if (hasInteractedRef.current && !submittedRef.current) {
+                trackFormAbandonment({
+                    funnel: "booking",
+                    stepNumber: stepIdxRef.current || 1,
+                    lastField: lastFieldRef.current,
+                })
+            }
+        }
+        window.addEventListener("pagehide", onUnload)
+        return () => {
+            window.removeEventListener("pagehide", onUnload)
+            onUnload()
+        }
+    }, [])
+
     const currentStepIndex = STEPS.indexOf(currentStep)
 
     const canProceed = useMemo(() => {
@@ -79,7 +119,10 @@ export function BookingForm() {
     const goNext = () => {
         const idx = STEPS.indexOf(currentStep)
         if (idx < STEPS.length - 1) {
-            setCurrentStep(STEPS[idx + 1])
+            const nextStep = STEPS[idx + 1]
+            hasInteractedRef.current = true
+            trackFunnelStep({ funnel: "booking", step: `step_${idx + 2}_${nextStep}`, stepNumber: idx + 2 })
+            setCurrentStep(nextStep)
             setErrorMessage("")
         }
     }
@@ -121,6 +164,8 @@ export function BookingForm() {
                 throw new Error(data.error || "Failed to book")
             }
 
+            submittedRef.current = true
+            trackFunnelStep({ funnel: "booking", step: "submitted", stepNumber: 5 })
             setStatus("success")
             try {
                 if (typeof window !== "undefined" && (window as any).ttq) {

@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useEffect, useState } from "react"
+import { Suspense, useEffect, useRef, useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -36,6 +36,7 @@ import { useTranslations, useLocale } from "next-intl"
 import { submitInquiry } from "@/app/actions/inquiry"
 import { Link } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
+import { trackFunnelStep, trackFormAbandonment } from "@/lib/funnel-client"
 
 export default function QuoteRequestPage() {
     return (
@@ -59,6 +60,36 @@ function QuoteRequestContent() {
     const [submitted, setSubmitted] = useState(false)
     const [loading, setLoading] = useState(false)
     const [agreedToTerms, setAgreedToTerms] = useState(true)
+    const hasInteractedRef = useRef(false)
+    const lastFieldRef = useRef("projectType")
+    const stepRef = useRef(1)
+    const submittedRef = useRef(false)
+
+    useEffect(() => {
+        stepRef.current = step
+    }, [step])
+
+    useEffect(() => {
+        submittedRef.current = submitted
+    }, [submitted])
+
+    useEffect(() => {
+        trackFunnelStep({ funnel: "quote", step: "step_1_view", stepNumber: 1 })
+        const onUnload = () => {
+            if (hasInteractedRef.current && !submittedRef.current) {
+                trackFormAbandonment({
+                    funnel: "quote",
+                    stepNumber: stepRef.current,
+                    lastField: lastFieldRef.current,
+                })
+            }
+        }
+        window.addEventListener("pagehide", onUnload)
+        return () => {
+            window.removeEventListener("pagehide", onUnload)
+            onUnload()
+        }
+    }, [])
 
     const [formData, setFormData] = useState({
         name: "",
@@ -199,18 +230,28 @@ function QuoteRequestContent() {
     }, [subject, searchParams, locale])
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        hasInteractedRef.current = true
+        lastFieldRef.current = e.target.name
+        trackFunnelStep({ funnel: "quote", step: "step_1_interact", stepNumber: step, lastField: e.target.name })
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
     const selectProjectType = (id: string) => {
+        hasInteractedRef.current = true
+        lastFieldRef.current = "projectType"
+        trackFunnelStep({ funnel: "quote", step: "step_1_interact", stepNumber: 1, lastField: "projectType" })
         setFormData(prev => ({ ...prev, projectType: id }))
     }
 
     const selectBudget = (id: string) => {
+        hasInteractedRef.current = true
+        lastFieldRef.current = "budget"
         setFormData(prev => ({ ...prev, budget: id }))
     }
 
     const selectDeadline = (id: string) => {
+        hasInteractedRef.current = true
+        lastFieldRef.current = "deadline"
         setFormData(prev => ({ ...prev, deadline: id }))
     }
 
@@ -249,6 +290,8 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
             })
 
             if (result.success) {
+                submittedRef.current = true
+                trackFunnelStep({ funnel: "quote", step: "submitted", stepNumber: 4 })
                 try {
                     if (typeof window !== "undefined" && (window as any).ttq) {
                         (window as any).ttq.track('CompleteRegistration')
@@ -273,7 +316,13 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
 
     const nextStep = () => {
         window.scrollTo({ top: 150, behavior: "smooth" })
-        setStep(prev => prev + 1)
+        hasInteractedRef.current = true
+        setStep(prev => {
+            const next = prev + 1
+            if (next === 2) trackFunnelStep({ funnel: "quote", step: "step_2_budget", stepNumber: 2 })
+            if (next === 3) trackFunnelStep({ funnel: "quote", step: "step_3_contact", stepNumber: 3 })
+            return next
+        })
     }
 
     const prevStep = () => {

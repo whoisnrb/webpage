@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio, Globe, Zap, MailCheck, TrendingUp, Search } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio, Globe, Zap, MailCheck, TrendingUp, Search, Filter } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default async function AdminLayout({
@@ -289,6 +289,13 @@ export default async function AdminLayout({
                             <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5 rounded-xl transition-all duration-300">
                                 <BarChart3 className="h-4 w-4 text-cyan-400" />
                                 <span className="text-sm font-medium">Analytics</span>
+                            </Button>
+                        </Link>
+
+                        <Link href={"/admin/funnel-analytics" as any}>
+                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-300 hover:text-white hover:bg-cyan-500/10 border border-transparent hover:border-cyan-500/20 rounded-xl transition-all duration-300">
+                                <Filter className="h-4 w-4 text-cyan-400" />
+                                <span className="text-sm font-medium">Konverziós Tölcsér</span>
                             </Button>
                         </Link>
 

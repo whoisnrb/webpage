@@ -93,6 +93,7 @@ export async function POST(req: NextRequest) {
                         name: "page_view",
                         category: "navigation",
                         properties: {
+                            visitorId,
                             domain,
                             page: rawPage,
                             country: geo.countryCode,
