@@ -2,8 +2,9 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import { Link } from "@/i18n/routing"
-import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Sparkles, ShieldCheck, Radio, Globe, Zap, MailCheck, TrendingUp, Search, Filter } from "lucide-react"
+import { LayoutDashboard, Users, Settings, LogOut, Package, Ticket, Activity, Clock, ToggleLeft, BarChart3, Briefcase, Banknote, FileText, MessageSquare, Folder, PhoneCall, Mail, Radio, Globe, Filter } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { AdminAiNav } from "@/components/admin/admin-ai-nav"
 
 export default async function AdminLayout({
     children,
@@ -27,7 +28,7 @@ export default async function AdminLayout({
     return (
         <div className="flex min-h-screen bg-[#030712] text-slate-100 font-sans">
             {/* Sidebar */}
-            <aside className="w-64 bg-[#090d16] border-r border-white/5 hidden md:flex flex-col shrink-0 shadow-[4px_0_24px_rgba(0,0,0,0.4)]">
+            <aside className="w-[268px] bg-[#090d16] border-r border-white/5 hidden md:flex flex-col shrink-0 shadow-[4px_0_24px_rgba(0,0,0,0.4)]">
                 {/* Header */}
                 <div className="p-6 border-b border-white/5 bg-[#0b101c]/40 backdrop-blur-md flex flex-col gap-1">
                     <div className="flex items-center justify-between">
@@ -173,59 +174,7 @@ export default async function AdminLayout({
                     </div>
 
                     {/* AI & Intelligens Eszközök */}
-                    <div className="space-y-1.5">
-                        <div className="flex items-center justify-between px-3">
-                            <p className="text-[10px] font-bold uppercase tracking-wider text-purple-400 flex items-center gap-1.5">
-                                <Sparkles className="h-3 w-3 text-purple-400 animate-pulse" />
-                                AI & Automatizáció
-                            </p>
-                            <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-semibold border border-purple-500/30">
-                                GPT-4o
-                            </span>
-                        </div>
-                        
-                        <Link href={"/admin/marketing" as any}>
-                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-purple-500/15 via-pink-500/10 to-transparent hover:from-purple-500/25 hover:to-pink-500/20 border border-purple-500/30 hover:border-purple-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.15)] group">
-                                <Sparkles className="h-4 w-4 text-purple-400 group-hover:text-purple-300 transition-colors" />
-                                <span className="text-sm font-medium">Marketing Autopilot</span>
-                            </Button>
-                        </Link>
-
-                        <Link href={"/admin/security-audit" as any}>
-                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-cyan-500/15 via-blue-500/10 to-transparent hover:from-cyan-500/25 hover:to-blue-500/20 border border-cyan-500/30 hover:border-cyan-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(6,182,212,0.15)] group">
-                                <ShieldCheck className="h-4 w-4 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
-                                <span className="text-sm font-medium">IT Biztonsági Audit Robot</span>
-                            </Button>
-                        </Link>
-
-                        <Link href={"/admin/speed-audit" as any}>
-                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-transparent hover:from-amber-500/25 hover:to-orange-500/20 border border-amber-500/30 hover:border-amber-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(245,158,11,0.15)] group">
-                                <Zap className="h-4 w-4 text-amber-400 group-hover:text-amber-300 transition-colors" />
-                                <span className="text-sm font-medium">Sebesség & Konverzió Robot</span>
-                            </Button>
-                        </Link>
-
-                        <Link href={"/admin/growth-audit" as any}>
-                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-emerald-500/15 via-teal-500/10 to-transparent hover:from-emerald-500/25 hover:to-teal-500/20 border border-emerald-500/30 hover:border-emerald-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.15)] group">
-                                <TrendingUp className="h-4 w-4 text-emerald-400 group-hover:text-emerald-300 transition-colors" />
-                                <span className="text-sm font-medium">Növekedési Audit Robot (PDF)</span>
-                            </Button>
-                        </Link>
-
-                        <Link href={"/admin/seo-tracker" as any}>
-                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-blue-500/15 via-indigo-500/10 to-transparent hover:from-blue-500/25 hover:to-indigo-500/20 border border-blue-500/30 hover:border-blue-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(59,130,246,0.15)] group">
-                                <Search className="h-4 w-4 text-blue-400 group-hover:text-blue-300 transition-colors" />
-                                <span className="text-sm font-medium">SEO & Kulcsszó Tracker</span>
-                            </Button>
-                        </Link>
-
-                        <Link href={"/admin/email-deliverability" as any}>
-                            <Button variant="ghost" className="w-full justify-start gap-3 text-slate-200 hover:text-white bg-gradient-to-r from-teal-500/15 via-cyan-500/10 to-transparent hover:from-teal-500/25 hover:to-cyan-500/20 border border-teal-500/30 hover:border-teal-500/50 rounded-xl transition-all duration-300 shadow-[0_0_15px_rgba(20,184,166,0.15)] group">
-                                <MailCheck className="h-4 w-4 text-teal-400 group-hover:text-teal-300 transition-colors" />
-                                <span className="text-sm font-medium">Email Kézbesíthetőség Teszt</span>
-                            </Button>
-                        </Link>
-                    </div>
+                    <AdminAiNav />
 
                     {/* Tartalomkezelés */}
                     <div className="space-y-1.5">
