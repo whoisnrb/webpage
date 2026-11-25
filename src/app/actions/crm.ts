@@ -289,17 +289,24 @@ export async function searchLiveLeadsAction(city: string, category: string) {
             });
         };
 
-        // 1. Elsődleges: Valós Google Keresés Gemini 2.5 Flash Search Grounding segítségével
-        const geminiKey = getGeminiApiKey();
-        if (geminiKey) {
-            try {
-                const prompt = `Használd a Google keresőt! Keress 10 VALÓDI, jelenleg működő vállalkozást ebben a városban és szakterületen:
-Város / Régió: ${cleanCity}
+        const isCountryWide = ["magyarország", "magyarorszag", "hungary", "országos", "orszagos"].includes(cleanCity.toLowerCase());
+
+        // 1. & 2. Párhuzamos élő webkeresés: Gemini Google Search Grounding + Bing élő webkeresés
+        const runGeminiDiscovery = async () => {
+            const geminiKey = getGeminiApiKey();
+            if (!geminiKey) return;
+
+            const regionHint = isCountryWide
+                ? "Magyarország (különböző magyar városokban, pl. Budapest, Győr, Debrecen, Szeged, Pécs, Székesfehérvár)"
+                : cleanCity;
+
+            const prompt = `Használd a Google keresőt! Keress 10 VALÓDI, jelenleg működő vállalkozást ebben a régióban és szakterületen:
+Régió / Város: ${regionHint}
 Iparág / Tevékenység: ${cleanCat}
 
 SZIGORÚ SZABÁLYOK:
 - KIZÁRÓLAG olyan cégeket adj meg, amelyeket ténylegesen megtaláltál a Google keresésben és saját, önálló weboldaluk van!
-- TILOS cégkatalógusokat vagy gyűjtőoldalakat megadni (tilos: aranyoldalak, ceginformacio, opten, joszaki, szaki, facebook, instagram, profession, startlap, wikipedia, cylex).
+- TILOS cégkatalógusokat, webshop-árösszehasonlítókat vagy állami/gyűjtőoldalakat megadni (tilos: aranyoldalak, ceginformacio, opten, joszaki, szaki, facebook, instagram, profession, startlap, wikipedia, cylex, magyarorszag.hu, arukereso).
 - TILOS kitalálni cégnevet vagy URL-t!
 
 Válaszolj KIZÁRÓLAG egy érvényes JSON tömbként (egyéb szöveg nélkül):
@@ -311,76 +318,136 @@ Válaszolj KIZÁRÓLAG egy érvényes JSON tömbként (egyéb szöveg nélkül):
   }
 ]`;
 
-                const gemRes = await fetch(
-                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(geminiKey)}`,
-                    {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            contents: [{ parts: [{ text: prompt }] }],
-                            tools: [{ google_search: {} }],
-                            generationConfig: { temperature: 0.1 },
-                        }),
-                    }
-                );
+            const geminiModels = ["gemini-2.5-flash", "gemini-3-flash-preview"];
+            for (let attempt = 0; attempt < geminiModels.length; attempt++) {
+                const model = geminiModels[attempt];
+                try {
+                    const gemRes = await fetch(
+                        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(geminiKey)}`,
+                        {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            signal: AbortSignal.timeout(10000),
+                            body: JSON.stringify({
+                                contents: [{ parts: [{ text: prompt }] }],
+                                tools: [{ google_search: {} }],
+                                generationConfig: { temperature: 0.1 },
+                            }),
+                        }
+                    );
 
-                if (gemRes.ok) {
-                    const gemData = await gemRes.json();
-                    let rawText = gemData.candidates?.[0]?.content?.parts?.[0]?.text || "";
-                    const jsonMatch = rawText.match(/\[[\s\S]*\]/);
-                    if (jsonMatch) {
-                        const parsed = JSON.parse(jsonMatch[0]);
-                        if (Array.isArray(parsed)) {
-                            for (const item of parsed) {
-                                if (item?.website) {
-                                    addCandidate(item.companyName || cleanCat, String(item.website), item.name || null);
+                    if (gemRes.status === 503 || gemRes.status === 429) {
+                        await new Promise((r) => setTimeout(r, 500));
+                        continue;
+                    }
+
+                    if (gemRes.ok) {
+                        const gemData = await gemRes.json();
+                        const parts = gemData.candidates?.[0]?.content?.parts || [];
+                        const rawText = parts.map((p: any) => p?.text || "").join("\n");
+                        const jsonMatch = rawText.match(/\[[\s\S]*\]/);
+                        if (jsonMatch) {
+                            try {
+                                const parsed = JSON.parse(jsonMatch[0]);
+                                if (Array.isArray(parsed)) {
+                                    for (const item of parsed) {
+                                        if (item?.website) {
+                                            addCandidate(item.companyName || cleanCat, String(item.website), item.name || null);
+                                        }
+                                    }
                                 }
+                            } catch {
+                                // Ignore malformed JSON snippet and try extracting grounding URLs
                             }
                         }
-                    }
 
-                    // Grounding chunksból kinyerhető esetleges valódi URL-ek (ha redirect nélkül elérhető domainek)
-                    const chunks = gemData.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
-                    for (const ch of chunks) {
-                        const uri = ch?.web?.uri;
-                        const title = ch?.web?.title;
-                        if (uri && title && !uri.includes("vertexaisearch.cloud.google.com")) {
-                            addCandidate(String(title).split("-")[0].trim(), String(uri), null);
+                        const chunks = gemData.candidates?.[0]?.groundingMetadata?.groundingChunks || [];
+                        for (const ch of chunks) {
+                            const uri = ch?.web?.uri;
+                            const title = ch?.web?.title;
+                            if (uri && title && !uri.includes("vertexaisearch.cloud.google.com")) {
+                                addCandidate(String(title).split("-")[0].split("|")[0].trim(), String(uri), null);
+                            }
                         }
+                        break;
+                    }
+                } catch (gemErr) {
+                    console.error(`Gemini Search (${model}) error:`, gemErr);
+                }
+            }
+        };
+
+        const runBingDiscovery = async () => {
+            try {
+                const bingQuery = isCountryWide
+                    ? `${cleanCat} kapcsolat elérhetőség site:.hu`
+                    : `${cleanCat} ${cleanCity} kapcsolat weboldal`;
+                const bingRes = await fetch(
+                    `https://www.bing.com/search?q=${encodeURIComponent(bingQuery)}&setlang=hu&cc=HU&count=25`,
+                    {
+                        signal: AbortSignal.timeout(7000),
+                        headers: {
+                            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+                            "Accept-Language": "hu-HU,hu;q=0.9",
+                        },
+                    }
+                );
+                if (bingRes.ok) {
+                    const bingHtml = await bingRes.text();
+                    const algoMatches = Array.from(bingHtml.matchAll(/<li class="b_algo"[\s\S]*?<h2><a[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g));
+                    for (const m of algoMatches) {
+                        let rawHref = m[1].replace(/&amp;/g, "&");
+                        const uMatch = rawHref.match(/[?&]u=a1([^&]+)/);
+                        if (uMatch) {
+                            try {
+                                rawHref = Buffer.from(uMatch[1], "base64url").toString("utf8");
+                            } catch {
+                                continue;
+                            }
+                        }
+                        if (!rawHref.startsWith("http") || rawHref.includes("bing.com") || rawHref.includes("microsoft.com")) {
+                            continue;
+                        }
+                        const rawTitle = m[2].replace(/<[^>]+>/g, "").replace(/&#(\d+);/g, (_, d) => String.fromCharCode(Number(d))).trim();
+                        const cleanTitle = rawTitle.split(" - ")[0].split(" | ")[0].trim();
+                        addCandidate(cleanTitle || cleanCat, rawHref, null);
                     }
                 }
-            } catch (gemErr) {
-                console.error("Gemini Google Search lead discovery error:", gemErr);
+            } catch (bingErr) {
+                console.error("Bing search fallback error:", bingErr);
             }
-        }
+        };
 
-        // 2. Másodlagos valódi forrás (csak ha a keresőből kevés találat jött): OpenStreetMap Overpass API (valós website tag-ekkel!)
+        await Promise.allSettled([runGeminiDiscovery(), runBingDiscovery()]);
+
+        // 3. Harmadlagos valódi forrás: OpenStreetMap Overpass API (csak ha nagyon kevés jelölt jött össze)
         if (candidates.length < 4) {
             try {
-                const overpassQuery = `[out:json][timeout:10];
-area["name"="${cleanCity}"]->.searchArea;
+                const overpassCity = isCountryWide ? "Budapest" : cleanCity;
+                const overpassQuery = `[out:json][timeout:8];
+area["name"="${overpassCity}"]["admin_level"~"^(6|8|9)$"]->.searchArea;
 (
   node(area.searchArea)["website"];
   way(area.searchArea)["website"];
   node(area.searchArea)["contact:website"];
   way(area.searchArea)["contact:website"];
 );
-out tags 40;`;
+out tags 60;`;
                 const ovRes = await fetch("https://overpass-api.de/api/interpreter", {
                     method: "POST",
                     headers: { "Content-Type": "application/x-www-form-urlencoded", "User-Agent": "BacklineIT-LeadHunter/2.0" },
                     body: `data=${encodeURIComponent(overpassQuery)}`,
-                    signal: AbortSignal.timeout(9000),
+                    signal: AbortSignal.timeout(8500),
                 });
                 if (ovRes.ok) {
                     const ovData = await ovRes.json();
-                    const catLower = cleanCat.toLowerCase();
+                    const catTokens = cleanCat.toLowerCase().split(/\s+/).filter((t) => t.length >= 3);
                     for (const el of ovData.elements || []) {
                         const tags = el.tags || {};
                         const site = tags.website || tags["contact:website"];
                         const elName = tags.name || tags["name:hu"] || "";
                         const tagDump = JSON.stringify(tags).toLowerCase();
-                        if (site && elName && tagDump.includes(catLower.slice(0, Math.max(4, catLower.length - 2)))) {
+                        if (site && elName && catTokens.some((tok) => tagDump.includes(tok.slice(0, Math.max(4, tok.length - 2))))) {
                             addCandidate(elName, site, null);
                         }
                     }
@@ -397,10 +464,10 @@ out tags 40;`;
             };
         }
 
-        // 3. KÖTELEZŐ ÉLŐ ELLENŐRZÉS: Minden egyes weboldalt letöltünk, kiszűrjük a halott/parkolt oldalakat,
+        // 4. KÖTELEZŐ ÉLŐ ELLENŐRZÉS: Minden egyes weboldalt letöltünk, kiszűrjük a halott/parkolt oldalakat,
         // kinyerjük a VALÓDI emailt/telefont, és valódi technikai hibadiagnosztikát futtatunk!
         const inspectionResults = await Promise.allSettled(
-            candidates.slice(0, 12).map(async (cand) => {
+            candidates.slice(0, 14).map(async (cand) => {
                 const audited = await inspectAndAuditLiveWebsite(cand.website);
                 if (!audited) return null;
 
@@ -415,7 +482,7 @@ out tags 40;`;
                     loadTimeMs: audited.loadTimeMs,
                     hasSsl: audited.hasSsl,
                     verified: true,
-                    source: "Google Élő Keresés",
+                    source: "Google & Web Élő Keresés",
                 } as HuntedLead;
             })
         );

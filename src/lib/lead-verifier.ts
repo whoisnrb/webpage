@@ -45,6 +45,20 @@ const BLOCKED_DOMAINS = [
     "europages",
     "dnb.com",
     "vertexaisearch.cloud.google.com",
+    "magyarorszag.hu",
+    "kormany.hu",
+    "nav.gov.hu",
+    "reddit.com",
+    "pinterest.",
+    "booking.com",
+    "tripadvisor.",
+    "szallas.hu",
+    "wikipedia.",
+    "szerelvenybolt",
+    "arukereso.hu",
+    "argep.hu",
+    "emag.hu",
+    "alza.hu",
 ]
 
 const PARKED_SIGNATURES = [

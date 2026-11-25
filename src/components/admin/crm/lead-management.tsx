@@ -1461,7 +1461,7 @@ Ha gondolod, írj egy privát üzenetet itt, vagy beszéljünk egy díjmentes 30
                                     <div className="space-y-1.5">
                                         <label className="text-xs font-semibold text-slate-300">Város / Régió kiválasztása</label>
                                         <div className="flex flex-wrap gap-1.5 mb-2">
-                                            {["Budapest", "Debrecen", "Szeged", "Győr", "Pécs", "Székesfehérvár", "Miskolc", "Kecskemét"].map((c) => (
+                                            {["Magyarország", "Budapest", "Debrecen", "Szeged", "Győr", "Pécs", "Székesfehérvár", "Miskolc", "Kecskemét"].map((c) => (
                                                 <button
                                                     key={c}
                                                     type="button"
