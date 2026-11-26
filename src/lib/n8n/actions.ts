@@ -247,13 +247,15 @@ export async function processChat(body: WebhookBody) {
 }
 
 export async function processConsultation(body: WebhookBody) {
-    const { name, email, company, phone, description, productName, packageName } = body;
+    const { name, email, company, phone, description, productName, packageName, locale = 'hu' } = body;
+    const isEn = locale === 'en';
+    const contactEmail = isEn ? 'hello@backlineit.com' : 'hello@backlineit.hu';
 
     // 1. Save to Sheet (using BOOKING sheet as fallback for now)
     const topic = `Konzultáció: ${productName || 'Általános'} ${packageName ? `(${packageName})` : ''}`;
     const date = new Date().toLocaleDateString('hu-HU');
     const time = new Date().toLocaleTimeString('hu-HU', { hour: '2-digit', minute: '2-digit' });
-    const fullMessage = `Cég: ${company || '-'}, Tel: ${phone || '-'}\n\nLeírás:\n${description}`;
+    const fullMessage = `Cég: ${company || '-'}, Tel: ${phone || '-'}\n\nLeírás:\n${description || '-'}`;
 
     await appendToSheet(GOOGLE_SHEET_IDS.BOOKING, [name || '', email || '', date, time, topic, fullMessage]);
 
@@ -262,33 +264,37 @@ export async function processConsultation(body: WebhookBody) {
     // 2. Notify Admin (Konzultációk)
     const adminEmail = process.env.ADMIN_EMAIL || 'whoisnrb@gmail.com';
     const adminHtml = getAdminConsultationEmailHtml({
-        name: name || 'Anonymous',
-        email: email || 'no-email@backlineit.hu',
-        company: company || 'Nincs megadva',
-        phone: phone || 'Nincs megadva',
-        productName: productName || 'Általános megoldás',
-        packageName: packageName || 'Nincs kiválasztva',
-        formattedDateTime: formattedDT,
-        description: description || ''
+        name: escapeHtmlN8n(name || 'Anonymous'),
+        email: escapeHtmlN8n(email || 'no-email@backlineit.hu'),
+        company: escapeHtmlN8n(company || 'Nincs megadva'),
+        phone: escapeHtmlN8n(phone || 'Nincs megadva'),
+        productName: escapeHtmlN8n(productName || 'Általános megoldás'),
+        packageName: escapeHtmlN8n(packageName || 'Nincs kiválasztva'),
+        formattedDateTime: escapeHtmlN8n(formattedDT),
+        description: escapeHtmlN8n(description || '')
     });
     await sendEmail(
         adminEmail,
         `[Konzultációk] Új megoldás konzultációs igény: ${name || 'Anonymous'} (${productName || 'Általános'})`,
-        adminHtml
+        adminHtml,
+        email
     );
 
-    // 3. Confirm to User
+    // 3. Confirm to User (localized HU / EN)
     if (email) {
         const clientHtml = getClientConfirmationEmailHtml(
-            name || 'Ügyfelünk',
-            formattedDT,
-            productName || 'Automatizációs megoldások',
-            true
+            escapeHtmlN8n(name || (isEn ? 'Valued Client' : 'Ügyfelünk')),
+            escapeHtmlN8n(formattedDT),
+            escapeHtmlN8n(productName || (isEn ? 'Automation & IT Solutions' : 'Automatizációs megoldások')),
+            true,
+            locale,
+            false
         );
         await sendEmail(
             email,
-            'Konzultációs igényét fogadtuk - BacklineIT',
-            clientHtml
+            isEn ? 'Consultation Request Received - BacklineIT' : 'Konzultációs igényét fogadtuk - BacklineIT',
+            clientHtml,
+            contactEmail
         );
     }
 

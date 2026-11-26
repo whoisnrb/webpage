@@ -7,20 +7,30 @@ import { createAuditLog } from "@/lib/audit"
 import { revalidatePath } from "next/cache"
 
 const consultationSchema = z.object({
-    name: z.string().min(1, "Név kötelező"),
-    email: z.string().email("Érvénytelen email cím"),
+    name: z.string().min(1, "Név megadása kötelező"),
+    email: z.string().email("Érvénytelen e-mail cím"),
     company: z.string().optional(),
     phone: z.string().optional(),
-    description: z.string().min(10, "Kérlek írj legalább pár mondatot az elképzelésedről"),
+    description: z.string().optional().default(""),
     productId: z.string().optional(),
-    packageName: z.string().optional()
+    packageName: z.string().optional(),
+    locale: z.enum(["hu", "en"]).optional()
 })
 
 export type ConsultationInput = z.infer<typeof consultationSchema>
 
 export async function submitConsultation(data: ConsultationInput) {
     try {
-        const validated = consultationSchema.parse(data)
+        const parsed = consultationSchema.safeParse(data)
+        if (!parsed.success) {
+            return {
+                success: false,
+                error: parsed.error.issues[0]?.message || "Érvénytelen adatok."
+            }
+        }
+
+        const validated = parsed.data
+        const cleanDescription = validated.description?.trim() || "Nincs külön leírás megadva."
 
         const consultation = await prisma.consultation.create({
             data: {
@@ -28,7 +38,7 @@ export async function submitConsultation(data: ConsultationInput) {
                 email: validated.email,
                 company: validated.company,
                 phone: validated.phone,
-                description: validated.description,
+                description: cleanDescription,
                 product: validated.productId ? { connect: { id: validated.productId } } : undefined,
                 packageName: validated.packageName
             },
@@ -48,6 +58,7 @@ export async function submitConsultation(data: ConsultationInput) {
                 description: consultation.description,
                 productName: consultation.product?.name,
                 packageName: consultation.packageName || undefined,
+                locale: validated.locale || 'hu',
                 type: 'CONSULTATION_REQUEST'
             })
         } catch (notificationError) {
