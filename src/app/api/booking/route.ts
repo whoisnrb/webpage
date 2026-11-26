@@ -20,6 +20,32 @@ export async function POST(request: Request) {
 
         const body = await request.json()
         const { recaptchaToken, ...bookingData } = body
+        const mode = bookingData.mode === "message" ? "message" : "meeting"
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+        if (!bookingData.name?.trim() || !emailRegex.test(bookingData.email?.trim() || "")) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: bookingData.locale === "en"
+                        ? "Please provide a valid name and email address."
+                        : "Kérjük, adj meg érvényes nevet és e-mail címet."
+                },
+                { status: 400 }
+            )
+        }
+
+        if (mode === "meeting" && (!bookingData.date || !bookingData.time)) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    error: bookingData.locale === "en"
+                        ? "Please select a date and time slot."
+                        : "Kérjük, válassz dátumot és időpontot."
+                },
+                { status: 400 }
+            )
+        }
 
         // Verify reCAPTCHA
         if (recaptchaToken) {

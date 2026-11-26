@@ -141,10 +141,13 @@ export async function processNewsletter(body: WebhookBody) {
 }
 
 export async function processBooking(body: WebhookBody) {
-    const { name, email, date, topic, time, message } = body;
+    const { name, email, date, topic, time, message, mode, locale = 'hu' } = body;
+    const isMessageOnly = mode === 'message' || (!date && !time);
+    const isEn = locale === 'en';
+    const contactEmail = isEn ? 'hello@backlineit.com' : 'hello@backlineit.hu';
 
     // 1. Save to Sheet
-    await appendToSheet(GOOGLE_SHEET_IDS.BOOKING, [name || '', email || '', date || '', time || '', topic || '', message || '']);
+    await appendToSheet(GOOGLE_SHEET_IDS.BOOKING, [name || '', email || '', date || (isMessageOnly ? 'Quick message' : ''), time || '', topic || '', message || '']);
 
     // 2. Save to Database
     try {
@@ -153,8 +156,12 @@ export async function processBooking(body: WebhookBody) {
                 name: name || 'Anonymous',
                 email: email || 'no-email@backlineit.hu',
                 phone: null,
-                subject: topic ? `Időpontfoglalás: ${topic}` : 'Kapcsolatfelvétel',
-                message: `Időpontfoglalási kérés:\nDátum: ${date || '-'}\nIdő: ${time || '-'}\n\nÜzenet:\n${message || '-'}`
+                subject: isMessageOnly
+                    ? (topic ? `Üzenet: ${topic}` : 'Kapcsolatfelvételi üzenet')
+                    : (topic ? `Időpontfoglalás: ${topic}` : 'Kapcsolatfelvétel'),
+                message: isMessageOnly
+                    ? (message || '-')
+                    : `Időpontfoglalási kérés:\nDátum: ${date || '-'}\nIdő: ${time || '-'}\n\nÜzenet:\n${message || '-'}`
             }
         });
         console.log(`[processBooking] Saved to database as ContactMessage`);
@@ -162,36 +169,45 @@ export async function processBooking(body: WebhookBody) {
         console.error(`[processBooking] Error saving to database:`, dbError);
     }
 
-    const formattedDT = formatDateTime(date, time);
-    const bookingTopic = topic || 'Kapcsolatfelvétel';
+    const formattedDT = isMessageOnly
+        ? (isEn ? 'Quick message (no call requested)' : 'Gyors üzenet (nem kért hívást)')
+        : formatDateTime(date, time);
+    const bookingTopic = topic || (isEn ? 'General Inquiry' : 'Kapcsolatfelvétel');
 
     // 3. Notify Admin (Kapcsolat üzenetek)
     const adminEmail = process.env.ADMIN_EMAIL || 'whoisnrb@gmail.com';
     const adminHtml = getAdminContactBookingEmailHtml({
-        name: name || 'Anonymous',
-        email: email || 'no-email@backlineit.hu',
-        formattedDateTime: formattedDT,
-        topic: bookingTopic,
-        message: message || ''
+        name: escapeHtmlN8n(name || 'Anonymous'),
+        email: escapeHtmlN8n(email || 'no-email@backlineit.hu'),
+        formattedDateTime: escapeHtmlN8n(formattedDT),
+        topic: escapeHtmlN8n(bookingTopic),
+        message: escapeHtmlN8n(message || '')
     });
     await sendEmail(
         adminEmail,
-        `[Kapcsolat üzenetek] Új üzenet / időpontfoglalás: ${name || 'Anonymous'} (${bookingTopic})`,
-        adminHtml
+        `[Kapcsolat üzenetek] Új ${isMessageOnly ? 'üzenet' : 'időpontfoglalás'}: ${name || 'Anonymous'} (${bookingTopic})`,
+        adminHtml,
+        email
     );
 
-    // 4. Confirm to User
+    // 4. Confirm to User (localized HU / EN)
     if (email) {
         const clientHtml = getClientConfirmationEmailHtml(
-            name || 'Ügyfelünk',
-            formattedDT,
-            bookingTopic,
-            false
+            escapeHtmlN8n(name || (isEn ? 'Valued Client' : 'Ügyfelünk')),
+            escapeHtmlN8n(formattedDT),
+            escapeHtmlN8n(bookingTopic),
+            false,
+            locale,
+            isMessageOnly
         );
+        const clientSubject = isEn
+            ? (isMessageOnly ? 'We received your message - BacklineIT' : 'Booking Confirmation - BacklineIT')
+            : (isMessageOnly ? 'Üzenetét megkaptuk - BacklineIT' : 'Időpontfoglalás Visszaigazolása - BacklineIT');
         await sendEmail(
             email,
-            'Időpontfoglalás Visszaigazolása - BacklineIT',
-            clientHtml
+            clientSubject,
+            clientHtml,
+            contactEmail
         );
     }
 
@@ -305,18 +321,88 @@ function formatDateTime(dateStr?: string, timeStr?: string): string {
     }
 }
 
-function getClientConfirmationEmailHtml(name: string, formattedDateTime: string, topic: string, isConsultation: boolean = false): string {
-    const title = isConsultation ? 'Konzultációs Igény Regisztrálva' : 'Időpontfoglalás Visszaigazolása';
-    const mainMessage = isConsultation
-        ? `Köszönjük érdeklődését! Megkaptuk konzultációs igényét a következővel kapcsolatban: <strong>${topic}</strong>.`
-        : `Köszönjük megkeresését! Örömmel értesítjük, hogy időpontfoglalási igényét sikeresen regisztráltuk a rendszerünkben.`;
-    
-    const detailsLabel = isConsultation ? 'Konzultáció részletei' : 'Foglalás adatai';
-    const timeLabel = isConsultation ? 'Igénylés időpontja' : 'Kért időpont';
+function escapeHtmlN8n(str: string): string {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function getClientConfirmationEmailHtml(
+    name: string,
+    formattedDateTime: string,
+    topic: string,
+    isConsultation: boolean = false,
+    locale: string = 'hu',
+    isMessageOnly: boolean = false
+): string {
+    const isEn = locale === 'en';
+    const domain = isEn ? 'backlineit.com' : 'backlineit.hu';
+    const contactEmail = isEn ? 'hello@backlineit.com' : 'hello@backlineit.hu';
+
+    const title = isEn
+        ? (isConsultation ? 'Consultation Request Registered' : isMessageOnly ? 'Message Received' : 'Booking Confirmation')
+        : (isConsultation ? 'Konzultációs Igény Regisztrálva' : isMessageOnly ? 'Üzenetét Megkaptuk' : 'Időpontfoglalás Visszaigazolása');
+
+    const badgeText = isEn ? 'Request Received' : 'Igény fogadva';
+    const greeting = isEn ? `Dear ${name},` : `Kedves ${name}!`;
+
+    const mainMessage = isEn
+        ? isConsultation
+            ? `Thank you for your interest! We have received your consultation request regarding: <strong>${topic}</strong>.`
+            : isMessageOnly
+                ? `Thank you for reaching out! We have received your message regarding <strong>${topic}</strong> and a specialist will reply shortly.`
+                : `Thank you for reaching out! We are pleased to confirm that we have logged your appointment request in our system.`
+        : isConsultation
+            ? `Köszönjük érdeklődését! Megkaptuk konzultációs igényét a következővel kapcsolatban: <strong>${topic}</strong>.`
+            : isMessageOnly
+                ? `Köszönjük megkeresését! Megkaptuk üzenetét a következő témában: <strong>${topic}</strong>. Munkatársunk hamarosan válaszol.`
+                : `Köszönjük megkeresését! Örömmel értesítjük, hogy időpontfoglalási igényét sikeresen regisztráltuk a rendszerünkben.`;
+
+    const detailsLabel = isEn
+        ? (isConsultation ? 'Consultation Details' : isMessageOnly ? 'Inquiry Summary' : 'Booking Details')
+        : (isConsultation ? 'Konzultáció részletei' : isMessageOnly ? 'Megkeresés adatai' : 'Foglalás adatai');
+    const timeLabel = isEn
+        ? (isConsultation ? 'Requested At' : isMessageOnly ? 'Type' : 'Requested Slot')
+        : (isConsultation ? 'Igénylés időpontja' : isMessageOnly ? 'Típus' : 'Kért időpont');
+    const topicLabel = isEn ? 'Topic / Solution' : 'Téma / Megoldás';
+
+    const nextHeading = isEn ? 'What happens next?' : 'Mi történik most?';
+    const step1Title = isEn ? 'Request Received' : 'Igény beérkezése';
+    const step1Desc = isEn
+        ? 'Your details have been logged in our system (Completed).'
+        : 'Igényét sikeresen rögzítettük rendszerünkben (Ez a lépés sikeresen lezárult).';
+    const step2Title = isEn
+        ? (isMessageOnly ? 'Expert Review & Reply' : 'Confirmation & Details')
+        : (isMessageOnly ? 'Szakértői áttekintés & válasz' : 'Visszaigazolás & Pontosítás');
+    const step2Desc = isEn
+        ? 'Our colleague will get back to you within 24 hours (within 2 hours during business hours).'
+        : 'Kollégánk munkanapokon jellemzően 2 órán belül (legfeljebb 24 órán belül) felveszi Önnel a kapcsolatot.';
+    const step3Title = isEn
+        ? (isMessageOnly ? 'Next Steps / Call (if needed)' : 'Discovery Call')
+        : (isMessageOnly ? 'Következő lépések' : 'Szakértői egyeztetés');
+    const step3Desc = isEn
+        ? (isMessageOnly
+            ? 'You receive a tailored answer, estimate, or optional call invite.'
+            : 'At the confirmed time, we hold a free online session to discuss your requirements in detail.')
+        : (isMessageOnly
+            ? 'Pontos választ, becslést vagy igény szerint egyeztetési lehetőséget küldünk e-mailben.'
+            : 'A véglegesített időpontban megtartjuk a díjmentes online egyeztetést, ahol részletesen átbeszéljük a felmerült igényeket.');
+
+    const replyNote = isEn
+        ? 'If you have any questions or would like to update your details, simply reply directly to this email.'
+        : 'Ha bármilyen kérdése lenne, vagy módosítani szeretné a megadott adatokat, kérjük, válaszoljon közvetlenül erre az e-mailre.';
+    const regards = isEn ? 'Best regards,' : 'Üdvözlettel,';
+    const teamName = isEn ? 'BacklineIT Team' : 'BacklineIT Csapata';
+    const footerNote = isEn
+        ? `You received this email because you submitted a contact or booking request on ${domain}.<br>&copy; 2026 BacklineIT. All rights reserved.`
+        : `Ezt az e-mailt azért kapta, mert kapcsolatfelvételi vagy konzultációs igényt küldött el a ${domain} weboldalon.<br>&copy; 2026 BacklineIT. Minden jog fenntartva.`;
 
     return `
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="${isEn ? 'en' : 'hu'}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -344,7 +430,7 @@ function getClientConfirmationEmailHtml(name: string, formattedDateTime: string,
                                     </td>
                                     <td style="text-align: right;">
                                         <span style="display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #06B6D4; background-color: #ECFDF5; border: 1px solid #A7F3D0; padding: 4px 10px; border-radius: 9999px;">
-                                            Igény fogadva
+                                            ${badgeText}
                                         </span>
                                     </td>
                                 </tr>
@@ -355,7 +441,7 @@ function getClientConfirmationEmailHtml(name: string, formattedDateTime: string,
                     <!-- Main Body Content -->
                     <tr>
                         <td style="padding: 40px 40px 32px 40px;">
-                            <h1 style="font-size: 20px; font-weight: 700; color: #0F172A; margin: 0 0 16px 0; line-height: 1.3;">Kedves ${name}!</h1>
+                            <h1 style="font-size: 20px; font-weight: 700; color: #0F172A; margin: 0 0 16px 0; line-height: 1.3;">${greeting}</h1>
                             <p style="font-size: 15px; color: #475569; margin: 0 0 24px 0; line-height: 1.6;">
                                 ${mainMessage}
                             </p>
@@ -374,7 +460,7 @@ function getClientConfirmationEmailHtml(name: string, formattedDateTime: string,
                                             </tr>
                                             <!-- Topic -->
                                             <tr>
-                                                <td style="padding: 8px 0; font-size: 14px; color: #64748B;" width="40%">Téma / Megoldás</td>
+                                                <td style="padding: 8px 0; font-size: 14px; color: #64748B;" width="40%">${topicLabel}</td>
                                                 <td style="padding: 8px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${topic}</td>
                                             </tr>
                                         </table>
@@ -383,7 +469,7 @@ function getClientConfirmationEmailHtml(name: string, formattedDateTime: string,
                             </table>
                             
                             <!-- Steps / Process Visual -->
-                            <h2 style="font-size: 14px; font-weight: 700; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 16px 0;">Mi történik most?</h2>
+                            <h2 style="font-size: 14px; font-weight: 700; color: #0F172A; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 16px 0;">${nextHeading}</h2>
                             
                             <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 32px;">
                                 <tr>
@@ -391,8 +477,8 @@ function getClientConfirmationEmailHtml(name: string, formattedDateTime: string,
                                         <div style="width: 28px; height: 28px; border-radius: 50%; background-color: #ECFDF5; border: 1px solid #A7F3D0; color: #059669; font-weight: 700; font-size: 13px; text-align: center; line-height: 26px;">1</div>
                                     </td>
                                     <td style="padding-bottom: 20px;">
-                                        <div style="font-size: 14px; font-weight: 600; color: #0F172A; margin-bottom: 2px;">Igény beérkezése</div>
-                                        <div style="font-size: 13px; color: #64748B; line-height: 1.4;">Igényét sikeresen rögzítettük rendszerünkben (Ez a lépés sikeresen lezárult).</div>
+                                        <div style="font-size: 14px; font-weight: 600; color: #0F172A; margin-bottom: 2px;">${step1Title}</div>
+                                        <div style="font-size: 13px; color: #64748B; line-height: 1.4;">${step1Desc}</div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -400,8 +486,8 @@ function getClientConfirmationEmailHtml(name: string, formattedDateTime: string,
                                         <div style="width: 28px; height: 28px; border-radius: 50%; background-color: #EFF6FF; border: 1px solid #BFDBFE; color: #2563EB; font-weight: 700; font-size: 13px; text-align: center; line-height: 26px;">2</div>
                                     </td>
                                     <td style="padding-bottom: 20px;">
-                                        <div style="font-size: 14px; font-weight: 600; color: #0F172A; margin-bottom: 2px;">Visszaigazolás & Pontosítás</div>
-                                        <div style="font-size: 13px; color: #64748B; line-height: 1.4;">Kollégánk 24 órán belül felveszi Önnel a kapcsolatot a megadott elérhetőségeken a részletek véglegesítése érdekében.</div>
+                                        <div style="font-size: 14px; font-weight: 600; color: #0F172A; margin-bottom: 2px;">${step2Title}</div>
+                                        <div style="font-size: 13px; color: #64748B; line-height: 1.4;">${step2Desc}</div>
                                     </td>
                                 </tr>
                                 <tr>
@@ -409,23 +495,23 @@ function getClientConfirmationEmailHtml(name: string, formattedDateTime: string,
                                         <div style="width: 28px; height: 28px; border-radius: 50%; background-color: #F8FAFC; border: 1px solid #E2E8F0; color: #64748B; font-weight: 700; font-size: 13px; text-align: center; line-height: 26px;">3</div>
                                     </td>
                                     <td>
-                                        <div style="font-size: 14px; font-weight: 600; color: #64748B; margin-bottom: 2px;">Szakértői egyeztetés</div>
-                                        <div style="font-size: 13px; color: #64748B; line-height: 1.4;">A véglegesített időpontban megtartjuk a díjmentes online egyeztetést, ahol részletesen átbeszéljük a felmerült igényeket.</div>
+                                        <div style="font-size: 14px; font-weight: 600; color: #64748B; margin-bottom: 2px;">${step3Title}</div>
+                                        <div style="font-size: 13px; color: #64748B; line-height: 1.4;">${step3Desc}</div>
                                     </td>
                                 </tr>
                             </table>
                             
                             <p style="font-size: 14px; color: #64748B; margin: 0 0 32px 0; line-height: 1.5; border-top: 1px solid #F1F5F9; padding-top: 24px;">
-                                Ha bármilyen kérdése lenne, vagy módosítani szeretné a megadott adatokat, kérjük, válaszoljon közvetlenül erre az e-mailre.
+                                ${replyNote}
                             </p>
                             
                             <!-- Signature -->
                             <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td>
-                                        <div style="font-size: 14px; color: #475569;">Üdvözlettel,</div>
-                                        <div style="font-size: 16px; font-weight: 700; color: #06B6D4; margin-top: 4px;">BacklineIT Csapata</div>
-                                        <div style="font-size: 12px; color: #94A3B8; margin-top: 2px;">hello@backlineit.hu | www.backlineit.hu</div>
+                                        <div style="font-size: 14px; color: #475569;">${regards}</div>
+                                        <div style="font-size: 16px; font-weight: 700; color: #06B6D4; margin-top: 4px;">${teamName}</div>
+                                        <div style="font-size: 12px; color: #94A3B8; margin-top: 2px;">${contactEmail} | www.${domain}</div>
                                     </td>
                                 </tr>
                             </table>
@@ -435,8 +521,7 @@ function getClientConfirmationEmailHtml(name: string, formattedDateTime: string,
                     <!-- Footer Section -->
                     <tr>
                         <td style="padding: 24px 40px; background-color: #F8FAFC; border-top: 1px solid #E2E8F0; text-align: center; font-size: 11px; color: #94A3B8; line-height: 1.4;">
-                            Ezt az e-mailt azért kapta, mert kapcsolatfelvételi vagy konzultációs igényt küldött el a backlineit.hu weboldalon.<br>
-                            &copy; 2026 BacklineIT. Minden jog fenntartva.
+                            ${footerNote}
                         </td>
                     </tr>
                 </table>

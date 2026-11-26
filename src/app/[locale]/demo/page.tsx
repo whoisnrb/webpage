@@ -60,7 +60,7 @@ export default function DemoPage() {
     return (
         <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
-            <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5 py-20 md:py-32">
+            <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-background to-secondary/5 pt-24 md:pt-28 pb-16">
                 <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-800/50" />
                 <div className="container relative mx-auto px-4 text-center">
                     <div className="inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium text-primary mb-6 bg-primary/10 backdrop-blur-sm border-primary/20">
@@ -147,7 +147,7 @@ export default function DemoPage() {
                                         {t('booking.form_desc')}
                                     </p>
                                 </div>
-                                <BookingForm />
+                                <BookingForm defaultMode="meeting" />
                             </Card>
                         </div>
                     </div>

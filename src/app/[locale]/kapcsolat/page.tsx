@@ -97,7 +97,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                 ]}
             />
             {/* Hero Section */}
-            <section className="relative py-20 md:py-28 overflow-hidden">
+            <section className="relative pt-24 md:pt-28 pb-10 md:pb-12 overflow-hidden">
                 {/* Background Effects */}
                 <div className="absolute inset-0 pointer-events-none">
                     <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px]" />
@@ -106,14 +106,14 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
                 <div className="container mx-auto px-4 text-center relative z-10">
                     <FadeIn>
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm text-cyan-400 mb-6">
-                            <Headphones className="h-4 w-4" />
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-cyan-400 mb-4">
+                            <Headphones className="h-3.5 w-3.5" />
                             {t('info_desc').split('.')[0]}
                         </div>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
+                        <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-3 bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
                             {t('title')}
                         </h1>
-                        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                             {t('subtitle')}
                         </p>
                     </FadeIn>
@@ -121,7 +121,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             </section>
 
             {/* Main Content */}
-            <section className="pb-20 md:pb-32">
+            <section className="pb-16 md:pb-24">
                 <div className="container mx-auto px-4">
                     <div className="grid lg:grid-cols-5 gap-10 max-w-6xl mx-auto">
 
@@ -159,7 +159,13 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                                         </div>
                                         <div className="min-w-0">
                                             <h3 className="font-semibold mb-1.5 text-sm">{t('phone_label')}</h3>
-                                            <p className="text-muted-foreground text-sm">{t('phone_soon')}</p>
+                                            <a
+                                                href="tel:+36501034140"
+                                                className="text-muted-foreground hover:text-cyan-400 transition-colors text-sm inline-flex items-center gap-1 group/link"
+                                            >
+                                                {t('phone_soon')}
+                                                <ArrowUpRight className="h-3 w-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                                            </a>
                                             <div className="flex items-center gap-1.5 mt-1.5">
                                                 <Clock className="h-3 w-3 text-white/30" />
                                                 <p className="text-xs text-white/30">{t('phone_hours')}</p>
@@ -231,11 +237,12 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                                                 {t('booking_title')}
                                             </h2>
                                             <p className="text-sm text-muted-foreground mt-1">
-                                                {/* Quick, easy, free */}
-                                                {t('subtitle') || ''}
+                                                {isEn
+                                                    ? 'Book a 30-min discovery call or switch to a quick written message.'
+                                                    : 'Foglalj 30 perces videóhívást, vagy válts gyors írásos üzenetre.'}
                                             </p>
                                         </div>
-                                        <BookingForm />
+                                        <BookingForm defaultMode="meeting" />
                                     </div>
                                 </div>
                             </div>

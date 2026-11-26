@@ -76,11 +76,12 @@ const getTransporter = () => {
     });
 };
 
-export async function sendEmail(to: string, subject: string, html: string) {
+export async function sendEmail(to: string, subject: string, html: string, replyTo?: string) {
     try {
         const transporter = getTransporter();
         await transporter.sendMail({
             from: `"BacklineIT" <${process.env.EMAIL_FROM || "noreply@backlineit.hu"}>`,
+            ...(replyTo ? { replyTo } : {}),
             to,
             subject,
             html,
