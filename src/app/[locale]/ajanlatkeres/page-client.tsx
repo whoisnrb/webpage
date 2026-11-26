@@ -430,50 +430,51 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
     const currentDeadline = DEADLINES.find(d => d.id === formData.deadline)
 
     return (
-        <div className="min-h-screen bg-[#030712] text-white pt-28 pb-20 px-4 relative overflow-hidden">
+        <div className="min-h-screen bg-[#030712] text-white pt-20 md:pt-24 pb-16 px-4 relative overflow-hidden">
             {/* Ambient Background Lights */}
             <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none" />
             <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none" />
 
             <div className="container mx-auto max-w-5xl relative z-10">
-                {/* Header Section */}
-                <div className="text-center mb-12">
+                {/* Compact Header Section */}
+                <div className="text-center mb-6 md:mb-8">
                     <motion.div
-                        initial={{ opacity: 0, y: 15 }}
+                        initial={{ opacity: 0, y: 12 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-xs font-black tracking-widest uppercase mb-4"
+                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-[11px] font-black tracking-widest uppercase mb-3"
                     >
                         <Sparkles className="h-3.5 w-3.5" />
                         {locale === 'hu' ? "Egyedi Projekt & IT Ajánlat" : "Custom Project & IT Proposal"}
                     </motion.div>
 
                     <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-3xl md:text-6xl font-black mb-4 tracking-tight"
+                        transition={{ delay: 0.05 }}
+                        className="text-2xl sm:text-4xl md:text-5xl font-black mb-2 tracking-tight"
                     >
                         {t("title")}
                     </motion.h1>
 
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-base md:text-xl text-white/50 max-w-2xl mx-auto"
+                        transition={{ delay: 0.1 }}
+                        className="text-sm md:text-base text-white/55 max-w-xl mx-auto"
                     >
                         {t("subtitle")}
                     </motion.p>
                 </div>
 
                 {/* Step Indicator */}
-                <div className="max-w-2xl mx-auto mb-12">
-                    <div className="flex items-center justify-between relative">
-                        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-white/10 -translate-y-1/2 z-0" />
-                        <div
-                            className="absolute top-1/2 left-0 h-0.5 bg-gradient-to-r from-cyan-500 to-blue-500 -translate-y-1/2 z-0 transition-all duration-500"
-                            style={{ width: step === 1 ? "0%" : step === 2 ? "50%" : "100%" }}
-                        />
+                <div className="max-w-xl mx-auto mb-7 md:mb-9">
+                    <div className="flex items-start justify-between relative">
+                        <div className="absolute top-5 left-12 right-12 h-0.5 bg-white/10 -translate-y-1/2 z-0">
+                            <div
+                                className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 transition-all duration-500"
+                                style={{ width: step === 1 ? "0%" : step === 2 ? "50%" : "100%" }}
+                            />
+                        </div>
 
                         {[
                             { num: 1, label: t("sidebar.step_1"), icon: Sparkles },
@@ -490,20 +491,20 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                                         if (isDone) setStep(s.num)
                                     }}
                                     disabled={!isDone && !isCurrent}
-                                    className="relative z-10 flex flex-col items-center gap-2 group cursor-pointer disabled:cursor-default"
+                                    className="relative z-10 w-24 flex flex-col items-center gap-1.5 group cursor-pointer disabled:cursor-default"
                                 >
                                     <div className={cn(
-                                        "h-12 w-12 rounded-2xl flex items-center justify-center font-black text-sm transition-all duration-300 border",
+                                        "h-10 w-10 rounded-xl flex items-center justify-center font-black text-sm transition-all duration-300 border",
                                         isDone
-                                            ? "bg-emerald-500 border-emerald-400 text-slate-950 shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+                                            ? "bg-emerald-500 border-emerald-400 text-slate-950 shadow-[0_0_18px_rgba(16,185,129,0.4)]"
                                             : isCurrent
-                                                ? "bg-cyan-500 border-cyan-400 text-slate-950 shadow-[0_0_25px_rgba(6,182,212,0.45)] scale-110"
+                                                ? "bg-cyan-500 border-cyan-400 text-slate-950 shadow-[0_0_22px_rgba(6,182,212,0.45)] scale-105"
                                                 : "bg-[#071322] border-white/10 text-white/40"
                                     )}>
-                                        {isDone ? <Check className="h-5 w-5 stroke-[3]" /> : s.num}
+                                        {isDone ? <Check className="h-4 w-4 stroke-[3]" /> : s.num}
                                     </div>
                                     <span className={cn(
-                                        "text-xs font-bold transition-colors whitespace-nowrap",
+                                        "text-[11px] font-bold transition-colors whitespace-nowrap",
                                         isCurrent ? "text-cyan-400" : isDone ? "text-emerald-400" : "text-white/40"
                                     )}>
                                         {s.label}
@@ -515,15 +516,15 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                 </div>
 
                 {/* Main Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
                     
                     {/* Left Form Panel */}
                     <div ref={formPanelRef} className="lg:col-span-8 scroll-mt-24">
-                        <div className="rounded-3xl border border-white/10 bg-[#06101c]/80 backdrop-blur-2xl p-6 md:p-10 shadow-[0_0_50px_-15px_rgba(6,182,212,0.15)] relative overflow-hidden">
+                        <div className="rounded-3xl border border-white/10 bg-[#06101c]/80 backdrop-blur-2xl p-5 md:p-7 shadow-[0_0_50px_-15px_rgba(6,182,212,0.15)] relative overflow-hidden">
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-transparent" />
 
-                            <div className="mb-8">
-                                <h2 className="text-xl md:text-2xl font-black text-white mb-2">
+                            <div className="mb-5">
+                                <h2 className="text-xl md:text-2xl font-black text-white mb-1">
                                     {step === 1 && t("steps.1_title")}
                                     {step === 2 && t("steps.2_title")}
                                     {step === 3 && t("steps.3_title")}
@@ -544,76 +545,77 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                                             initial={{ opacity: 0, x: 20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             exit={{ opacity: 0, x: -20 }}
-                                            transition={{ duration: 0.3 }}
-                                            className="space-y-6"
+                                            transition={{ duration: 0.25 }}
+                                            className="space-y-5"
                                         >
-                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                                                {PROJECT_TYPES.map((pt) => {
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                                {PROJECT_TYPES.map((pt, idx) => {
                                                     const Icon = pt.icon
                                                     const isSelected = formData.projectType === pt.id
+                                                    const isLastOdd = PROJECT_TYPES.length % 2 === 1 && idx === PROJECT_TYPES.length - 1
                                                     return (
-                                                        <div
+                                                        <button
                                                             key={pt.id}
+                                                            type="button"
                                                             onClick={() => selectProjectType(pt.id)}
                                                             className={cn(
-                                                                "p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between group/card relative",
+                                                                "p-3.5 rounded-2xl border text-left transition-all duration-200 cursor-pointer flex items-start gap-3.5 group/card relative",
+                                                                isLastOdd && "sm:col-span-2",
                                                                 isSelected
-                                                                    ? "bg-gradient-to-br from-cyan-500/15 via-blue-500/10 to-transparent border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.25)] ring-1 ring-cyan-400/50"
-                                                                    : "bg-white/[0.02] border-white/5 hover:border-white/20 hover:bg-white/[0.04]"
+                                                                    ? "bg-gradient-to-br from-cyan-500/15 via-blue-500/10 to-transparent border-cyan-400 shadow-[0_0_22px_rgba(6,182,212,0.22)] ring-1 ring-cyan-400/50"
+                                                                    : "bg-white/[0.02] border-white/10 hover:border-white/25 hover:bg-white/[0.04]"
                                                             )}
                                                         >
-                                                            {pt.badge && (
-                                                                <span className={cn(
-                                                                    "absolute top-3 right-3 text-[9px] font-black uppercase px-2 py-0.5 rounded-full",
-                                                                    isSelected ? "bg-cyan-400 text-slate-950" : "bg-white/10 text-white/60"
-                                                                )}>
-                                                                    {pt.badge}
-                                                                </span>
-                                                            )}
-                                                            <div>
-                                                                <div className={cn(
-                                                                    "h-10 w-10 rounded-xl flex items-center justify-center mb-3 transition-colors",
-                                                                    isSelected
-                                                                        ? "bg-cyan-500 text-slate-950"
-                                                                        : "bg-white/5 text-white/60 group-hover/card:text-cyan-400 group-hover/card:bg-white/10"
-                                                                )}>
-                                                                    <Icon className="h-5 w-5" />
+                                                            <div className={cn(
+                                                                "h-10 w-10 rounded-xl flex items-center justify-center shrink-0 transition-colors mt-0.5",
+                                                                isSelected
+                                                                    ? "bg-cyan-500 text-slate-950"
+                                                                    : "bg-white/5 text-white/60 group-hover/card:text-cyan-400 group-hover/card:bg-white/10"
+                                                            )}>
+                                                                <Icon className="h-5 w-5" />
+                                                            </div>
+
+                                                            <div className="flex-1 min-w-0 pr-6">
+                                                                <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                                                                    <h3 className={cn(
+                                                                        "text-sm font-black transition-colors",
+                                                                        isSelected ? "text-cyan-300" : "text-white"
+                                                                    )}>
+                                                                        {pt.title}
+                                                                    </h3>
+                                                                    {pt.badge && (
+                                                                        <span className={cn(
+                                                                            "text-[9px] font-black uppercase px-1.5 py-0.5 rounded-full leading-none",
+                                                                            isSelected ? "bg-cyan-400 text-slate-950" : "bg-white/10 text-white/60"
+                                                                        )}>
+                                                                            {pt.badge}
+                                                                        </span>
+                                                                    )}
                                                                 </div>
-                                                                <h3 className={cn(
-                                                                    "text-sm font-black transition-colors mb-1",
-                                                                    isSelected ? "text-cyan-300" : "text-white"
-                                                                )}>
-                                                                    {pt.title}
-                                                                </h3>
-                                                                <p className="text-xs text-white/50 leading-relaxed">
+                                                                <p className="text-xs text-white/50 leading-snug line-clamp-2">
                                                                     {pt.desc}
                                                                 </p>
                                                             </div>
 
-                                                            <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between">
-                                                                <span className={cn(
-                                                                    "text-[11px] font-bold",
-                                                                    isSelected ? "text-cyan-400" : "text-white/30"
-                                                                )}>
-                                                                    {isSelected ? (locale === 'hu' ? "Kiválasztva" : "Selected") : (locale === 'hu' ? "Kiválasztás" : "Select")}
-                                                                </span>
-                                                                <div className={cn(
-                                                                    "h-5 w-5 rounded-full flex items-center justify-center border transition-all",
-                                                                    isSelected ? "bg-cyan-400 border-cyan-400 text-slate-950" : "border-white/20 text-transparent"
-                                                                )}>
-                                                                    <Check className="h-3 w-3 stroke-[3]" />
-                                                                </div>
+                                                            <div className={cn(
+                                                                "h-5 w-5 rounded-full flex items-center justify-center border shrink-0 transition-all absolute top-3.5 right-3.5",
+                                                                isSelected ? "bg-cyan-400 border-cyan-400 text-slate-950" : "border-white/20 text-transparent"
+                                                            )}>
+                                                                <Check className="h-3 w-3 stroke-[3]" />
                                                             </div>
-                                                        </div>
+                                                        </button>
                                                     )
                                                 })}
                                             </div>
 
-                                            <div className="pt-4 flex justify-end">
+                                            <div className="pt-3 border-t border-white/5 flex items-center justify-between gap-4">
+                                                <span className="text-xs text-white/40 hidden sm:inline">
+                                                    {locale === 'hu' ? "1 / 3 lépés • Kb. 45 másodperc" : "Step 1 of 3 • ~45 seconds"}
+                                                </span>
                                                 <Button
                                                     type="button"
                                                     onClick={nextStep}
-                                                    className="h-12 px-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-wide shadow-[0_0_25px_rgba(6,182,212,0.35)] transition-all"
+                                                    className="ml-auto h-11 px-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-wide shadow-[0_0_25px_rgba(6,182,212,0.35)] transition-all"
                                                 >
                                                     {t("form.next")} <ArrowRight className="ml-2 h-4 w-4" />
                                                 </Button>
@@ -734,19 +736,19 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                                                 />
                                             </div>
 
-                                            <div className="pt-4 flex justify-between items-center">
+                                            <div className="pt-4 border-t border-white/5 flex justify-between items-center">
                                                 <Button
                                                     type="button"
                                                     variant="outline"
                                                     onClick={prevStep}
-                                                    className="h-12 px-6 rounded-xl border-white/10 hover:bg-white/5 text-white/70"
+                                                    className="h-11 px-6 rounded-xl border-white/10 hover:bg-white/5 text-white/70"
                                                 >
                                                     <ArrowLeft className="mr-2 h-4 w-4" /> {t("form.back")}
                                                 </Button>
                                                 <Button
                                                     type="button"
                                                     onClick={nextStep}
-                                                    className="h-12 px-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-wide shadow-[0_0_25px_rgba(6,182,212,0.35)] transition-all"
+                                                    className="h-11 px-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-wide shadow-[0_0_25px_rgba(6,182,212,0.35)] transition-all"
                                                 >
                                                     {t("form.next")} <ArrowRight className="ml-2 h-4 w-4" />
                                                 </Button>
@@ -764,20 +766,32 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                                             transition={{ duration: 0.3 }}
                                             className="space-y-6"
                                         >
-                                            {/* Summary Recap pill */}
-                                            <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                                                <div>
+                                            {/* Summary Recap pill (click to jump back and adjust) */}
+                                            <div className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => { scrollToFormTop(); setStep(1) }}
+                                                    className="text-left hover:bg-white/[0.03] rounded-lg p-1 -m-1 transition-colors"
+                                                >
                                                     <span className="text-white/40 block mb-0.5">{locale === 'hu' ? "Kiválasztott fókusz:" : "Selected Focus:"}</span>
                                                     <span className="font-bold text-cyan-400">{currentType?.title}</span>
-                                                </div>
-                                                <div>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => { scrollToFormTop(); setStep(2) }}
+                                                    className="text-left hover:bg-white/[0.03] rounded-lg p-1 -m-1 transition-colors"
+                                                >
                                                     <span className="text-white/40 block mb-0.5">{locale === 'hu' ? "Költségkeret:" : "Budget:"}</span>
                                                     <span className="font-bold text-white">{currentBudget?.label}</span>
-                                                </div>
-                                                <div>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => { scrollToFormTop(); setStep(2) }}
+                                                    className="text-left hover:bg-white/[0.03] rounded-lg p-1 -m-1 transition-colors"
+                                                >
                                                     <span className="text-white/40 block mb-0.5">{locale === 'hu' ? "Tervezett idő:" : "Timeline:"}</span>
                                                     <span className="font-bold text-white">{currentDeadline?.label}</span>
-                                                </div>
+                                                </button>
                                             </div>
 
                                             {/* Inputs */}
@@ -922,15 +936,15 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                     </div>
 
                     {/* Right Info / Trust Sidebar */}
-                    <div className="lg:col-span-4 space-y-4">
+                    <div className="lg:col-span-4 space-y-4 lg:sticky lg:top-24">
                         {/* Why Us Card */}
-                        <div className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-2xl p-6 md:p-8 space-y-6">
+                        <div className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] backdrop-blur-2xl p-5 md:p-6 space-y-4">
                             <div className="flex items-center gap-2 text-cyan-400 text-xs font-black uppercase tracking-wider">
                                 <Sparkles className="h-4 w-4" />
                                 <span>{t("sidebar.title")}</span>
                             </div>
 
-                            <div className="space-y-4">
+                            <div className="space-y-3.5">
                                 <div className="flex items-start gap-3.5">
                                     <div className="h-8 w-8 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
                                         <Rocket className="h-4 w-4" />
