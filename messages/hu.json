@@ -1941,7 +1941,7 @@
       "keywords": "ingyenes konzultáció, demó időpont, BacklineIT konzultáció, IT tanácsadás"
     },
     "hero": {
-      "badge": "Ingyenes és Nem Kötelez Semmiről",
+      "badge": "100% Ingyenes • Kötelezettségmentes",
       "title_1": "Foglalj Ingyenes",
       "title_2": "30 Perces Konzultációt",
       "description": "Beszéljük át projektjeidet szakértőinkkel. Technikai tanácsokat adunk, megoldási javaslatokat kapsz és segítünk megtalálni a legjobb utat a digitális átalakulásodhoz."
@@ -1973,8 +1973,8 @@
       "desc": "A konzultáció során nem csak válaszokat kapsz, hanem konkrét, cselekvésre kész javaslatokat is a vállalkozásod fejlesztéséhez.",
       "confidential_title": "100% Bizalmas",
       "confidential_desc": "Minden információt amit megosztasz velünk szigorúan bizalmasan kezelünk. Nem adjuk tovább harmadik félnek és csak a konzultáció céljára használjuk.",
-      "form_title": "Válassz Időpontot",
-      "form_desc": "Töltsd ki az alábbi űrlapot és mi felvesszük veled a kapcsolatot."
+      "form_title": "Foglalj konzultációt vagy írj nekünk",
+      "form_desc": "Válassz témát és időpontot, vagy válts gyors írásos üzenetre."
     },
     "faq": {
       "title": "Gyakran Ismételt Kérdések",

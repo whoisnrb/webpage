@@ -1958,7 +1958,7 @@
       "keywords": "free consultation, demo appointment, BacklineIT consultation, IT consulting"
     },
     "hero": {
-      "badge": "Free and No Obligation",
+      "badge": "100% Free • No Obligation",
       "title_1": "Book a Free",
       "title_2": "30 Minute Consultation",
       "description": "Let's discuss your projects with our experts. We'll provide technical advice, solution recommendations, and help you find the best path for your digital transformation."
@@ -1990,8 +1990,8 @@
       "desc": "During the consultation, you get not only answers but also concrete, actionable suggestions for developing your business.",
       "confidential_title": "100% Confidential",
       "confidential_desc": "All information you share with us is treated as strictly confidential. We do not pass it on to third parties and use it only for the purpose of the consultation.",
-      "form_title": "Choose an Appointment",
-      "form_desc": "Fill out the form below and we will contact you."
+      "form_title": "Book a Call or Send a Message",
+      "form_desc": "Pick a topic and time slot, or switch to a quick written message."
     },
     "faq": {
       "title": "Frequently Asked Questions",
