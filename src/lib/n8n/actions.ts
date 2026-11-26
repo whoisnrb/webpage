@@ -18,11 +18,14 @@ Ha nem tudod a választ, javasold a "Kapcsolat" menüpontot.`
 import { prisma } from "@/lib/db";
 
 export async function processFeedback(body: WebhookBody) {
-    const { email, name, feedback, locale = 'hu' } = body;
+    const { email, name, feedback, locale = 'hu', rating: explicitRating } = body;
     if (!email || !feedback) throw new Error('Missing email or feedback');
 
     const sentiment = await analyzeSentiment(feedback);
-    console.log(`[Feedback] Sentiment determined: ${sentiment}`);
+    const hasExplicitRating = typeof explicitRating === 'number' && explicitRating >= 1 && explicitRating <= 5;
+    const finalRating = hasExplicitRating ? explicitRating : (sentiment === 'Positive' ? 5 : 3);
+    const isPositive = hasExplicitRating ? explicitRating >= 4 : sentiment === 'Positive';
+    console.log(`[Feedback] Sentiment determined: ${sentiment}, rating: ${finalRating}`);
 
     // Save to Database
     try {
@@ -31,7 +34,7 @@ export async function processFeedback(body: WebhookBody) {
                 name: name || 'Anonymous',
                 email: email,
                 content: feedback,
-                rating: sentiment === 'Positive' ? 5 : 3,
+                rating: finalRating,
                 locale: locale,
                 approved: false // Require manual approval
             }
@@ -41,7 +44,7 @@ export async function processFeedback(body: WebhookBody) {
         console.error(`[Feedback] Error saving to database:`, dbError);
     }
 
-    if (sentiment === 'Positive') {
+    if (isPositive) {
         // 1. Add to Sheet
         await appendToSheet(GOOGLE_SHEET_IDS.POSITIVE_FEEDBACK, [name || '', email, feedback]);
 
