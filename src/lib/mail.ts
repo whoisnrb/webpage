@@ -245,9 +245,11 @@ export const sendClientInquiryConfirmationEmail = async (inquiry: {
         ? `Quote request received: ${inquiry.serviceType} – BacklineIT`
         : `Ajánlatkérését megkaptuk: ${inquiry.serviceType} – BacklineIT`;
 
+    const contactEmail = isEn ? "hello@backlineit.com" : "hello@backlineit.hu";
+
     const mailOptions = {
         from: `"BacklineIT" <${defaultSenderEmail}>`,
-        replyTo: "hello@backlineit.hu",
+        replyTo: contactEmail,
         to: inquiry.email,
         subject,
         html: `
@@ -314,14 +316,14 @@ export const sendClientInquiryConfirmationEmail = async (inquiry: {
 
                             <p style="font-size: 13px; color: #64748B; text-align: center; margin: 0;">
                                 ${isEn
-                                    ? `Need to add anything? Just reply to this email or write to <a href="mailto:hello@backlineit.hu" style="color: #0284C7;">hello@backlineit.hu</a>.`
+                                    ? `Need to add anything? Just reply to this email or write to <a href="mailto:hello@backlineit.com" style="color: #0284C7;">hello@backlineit.com</a>.`
                                     : `Kiegészítené az igényét? Egyszerűen válaszoljon erre az e-mailre, vagy írjon a <a href="mailto:hello@backlineit.hu" style="color: #0284C7;">hello@backlineit.hu</a> címre.`}
                             </p>
                         </td>
                     </tr>
                     <tr>
                         <td style="padding: 18px 36px; background-color: #F8FAFC; border-top: 1px solid #E2E8F0; text-align: center; font-size: 11px; color: #94A3B8;">
-                            BacklineIT &bull; hello@backlineit.hu &bull; +36 50 103 4140
+                            BacklineIT &bull; ${contactEmail} &bull; +36 50 103 4140
                         </td>
                     </tr>
                 </table>

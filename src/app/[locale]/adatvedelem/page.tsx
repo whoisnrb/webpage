@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function AdatvedelemPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
+    const contactEmail = locale === 'en' ? 'hello@backlineit.com' : 'hello@backlineit.hu';
     const t = await getTranslations({ locale, namespace: "Legal.Privacy" });
 
     return (
@@ -113,7 +114,7 @@ export default async function AdatvedelemPage({ params }: { params: Promise<{ lo
                 <li><strong>{t("rights_list.objection").split(':')[0]}:</strong>{t("rights_list.objection").split(':')[1]}</li>
             </ul>
             <p>
-                Please contact us at <a href="mailto:hello@backlineit.hu">hello@backlineit.hu</a>.
+                Please contact us at <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
             </p>
 
             <h2>{t("remedy_title")}</h2>

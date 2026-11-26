@@ -533,8 +533,8 @@
     "phone_hours": "Monday - Friday: 09:00 - 17:00",
     "address_label": "Headquarters",
     "address": "2141 Csömör, Vörösmarty utca 11.",
-    "email_hello": "hello@backlineit.hu",
-    "email_support": "support@backlineit.hu",
+    "email_hello": "hello@backlineit.com",
+    "email_support": "hello@backlineit.com",
     "booking_title": "Booking & Message",
     "response_time": "Response Time",
     "satisfaction": "Satisfaction",
@@ -940,7 +940,7 @@
       "title": "Privacy Policy",
       "lead": "BacklineIT Kft. is committed to protecting your personal data. This notice aims to provide clear and transparent information on how we handle your data in accordance with GDPR regulations.",
       "controller_title": "1. The Data Controller",
-      "controller_desc": "The controller of the data is BacklineIT (Headquarters: 2141 Csömör, Vörösmarty utca 11., email: hello@backlineit.hu). Our company is responsible for the lawful, fair, and transparent processing of the personal data you provide.",
+      "controller_desc": "The controller of the data is BacklineIT (Headquarters: 2141 Csömör, Vörösmarty utca 11., email: hello@backlineit.com). Our company is responsible for the lawful, fair, and transparent processing of the personal data you provide.",
       "collected_title": "2. What data do we collect?",
       "collected_desc": "We may process the following data when using our services:",
       "collected_list": {
@@ -1024,7 +1024,7 @@
       "liability_title": "9. Limitation of Liability",
       "liability_desc": "The Provider does its best for the smooth operation of the website but is not liable for damages resulting from internet network errors, technical outages, or force majeure events.",
       "complaints_title": "10. Complaint Handling",
-      "complaints_desc": "The Client can report complaints regarding the service at hello@backlineit.hu.",
+      "complaints_desc": "The Client can report complaints regarding the service at hello@backlineit.com.",
       "closing_title": "11. Closing Provisions",
       "closing_desc": "Issues not regulated in these GTC are governed by Hungarian laws."
     }

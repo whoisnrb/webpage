@@ -2,7 +2,7 @@ import { BookingForm } from "@/components/booking-form"
 import { Mail, MapPin, Phone, Clock, ArrowUpRight, Zap, Shield, Headphones } from "lucide-react"
 import { FadeIn, SlideUp } from "@/components/ui/motion-wrapper"
 import { TrustSignals } from "@/components/ui/trust-signals"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { routing } from '@/i18n/routing'
 
 import { getSeoMetadata } from "@/lib/seo"
@@ -71,19 +71,29 @@ const contactJsonLd = {
     ]
 };
 
-export default function ContactPage() {
-    const t = useTranslations('Contact')
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const isEn = locale === 'en';
+    const contactEmail = isEn ? 'hello@backlineit.com' : 'hello@backlineit.hu';
+    const baseUrl = isEn ? 'https://backlineit.com' : 'https://backlineit.hu';
+    const t = await getTranslations({ locale, namespace: 'Contact' });
+    const jsonLd = {
+        ...contactJsonLd,
+        "@id": `${baseUrl}/#organization`,
+        "url": baseUrl,
+        "email": contactEmail,
+    };
 
     return (
         <div className="min-h-screen flex flex-col">
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(contactJsonLd) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
             <BreadcrumbJsonLd
                 items={[
-                    { name: 'Kezdőlap', href: '/' },
-                    { name: 'Kapcsolat', href: '/kapcsolat' },
+                    { name: isEn ? 'Home' : 'Kezdőlap', href: '/' },
+                    { name: isEn ? 'Contact' : 'Kapcsolat', href: '/kapcsolat' },
                 ]}
             />
             {/* Hero Section */}
@@ -127,14 +137,16 @@ export default function ContactPage() {
                                         </div>
                                         <div className="min-w-0">
                                             <h3 className="font-semibold mb-1.5 text-sm">Email</h3>
-                                            <a href="mailto:hello@backlineit.hu" className="text-muted-foreground hover:text-cyan-400 transition-colors text-sm flex items-center gap-1 group/link">
+                                            <a href={`mailto:${contactEmail}`} className="text-muted-foreground hover:text-cyan-400 transition-colors text-sm flex items-center gap-1 group/link">
                                                 {t('email_hello')}
                                                 <ArrowUpRight className="h-3 w-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
                                             </a>
-                                            <a href="mailto:support@backlineit.hu" className="text-muted-foreground hover:text-cyan-400 transition-colors text-sm flex items-center gap-1 group/link">
-                                                {t('email_support')}
-                                                <ArrowUpRight className="h-3 w-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
-                                            </a>
+                                            {!isEn && (
+                                                <a href="mailto:support@backlineit.hu" className="text-muted-foreground hover:text-cyan-400 transition-colors text-sm flex items-center gap-1 group/link">
+                                                    {t('email_support')}
+                                                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

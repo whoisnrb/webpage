@@ -2,10 +2,12 @@
 
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 
 export function PricingFAQ() {
     const t = useTranslations('PricingPage.FAQ')
+    const locale = useLocale()
+    const contactEmail = locale === 'en' ? 'hello@backlineit.com' : 'hello@backlineit.hu'
     const [openIndex, setOpenIndex] = useState<number | null>(null)
 
     const faqs = [
@@ -88,7 +90,7 @@ export function PricingFAQ() {
                         {t('bottom_text')}
                     </p>
                     <a
-                        href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@backlineit.hu"
+                        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${contactEmail}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center px-6 py-2 border-2 border-primary/50 rounded-lg text-primary hover:bg-primary/10 transition-colors font-semibold group"

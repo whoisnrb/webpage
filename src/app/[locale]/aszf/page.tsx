@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function AszfPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
+    const contactEmail = locale === 'en' ? 'hello@backlineit.com' : 'hello@backlineit.hu';
     const t = await getTranslations({ locale, namespace: "Legal.Terms" });
     const tImprint = await getTranslations({ locale, namespace: "Legal.Imprint" });
 
@@ -47,7 +48,7 @@ export default async function AszfPage({ params }: { params: Promise<{ locale: s
                     </div>
                     <div className="flex justify-between md:block">
                         <dt className="text-muted-foreground inline md:block">{tImprint("email")}:</dt>
-                        <dd className="font-medium inline md:block ml-2 md:ml-0">hello@backlineit.hu</dd>
+                        <dd className="font-medium inline md:block ml-2 md:ml-0">{contactEmail}</dd>
                     </div>
                 </dl>
             </div>

@@ -430,7 +430,7 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
     const currentDeadline = DEADLINES.find(d => d.id === formData.deadline)
 
     return (
-        <div className="min-h-screen bg-[#030712] text-white pt-20 md:pt-24 pb-16 px-4 relative overflow-hidden">
+        <div className="min-h-screen bg-[#030712] text-white pt-24 md:pt-28 pb-16 px-4 relative overflow-hidden">
             {/* Ambient Background Lights */}
             <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none" />
             <div className="absolute top-1/2 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none" />
@@ -992,11 +992,11 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                             </p>
                             <div className="space-y-2 pt-1 text-xs">
                                 <a
-                                    href="mailto:hello@backlineit.hu"
+                                    href={`mailto:${locale === 'en' ? 'hello@backlineit.com' : 'hello@backlineit.hu'}`}
                                     className="flex items-center gap-2 text-cyan-300 hover:text-cyan-200 transition-colors font-medium"
                                 >
                                     <Mail className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
-                                    <span>hello@backlineit.hu</span>
+                                    <span>{locale === 'en' ? 'hello@backlineit.com' : 'hello@backlineit.hu'}</span>
                                 </a>
                                 <a
                                     href="tel:+36501034140"

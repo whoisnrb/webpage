@@ -36,7 +36,7 @@ COMPANY INFORMATION:
 Name: BacklineIT
 Slogan: "The backend that moves you forward."
 Address: 2141 Csömör, Vörösmarty utca 11.
-Email: hello@backlineit.hu (general), support@backlineit.hu (support)
+Email: hello@backlineit.com (general & support)
 Opening Hours: Monday - Friday: 09:00 - 17:00
 
 SERVICES AND PRICING:
@@ -47,7 +47,7 @@ SERVICES AND PRICING:
 
 WORKFLOW: Consultation (Free) -> Proposal -> Development -> Handover & Support
 
-If you don't know the answer or for complex custom requests, suggest the "Contact" or "Pricing" pages, or hello@backlineit.hu. Do not invent fictitious information.
+If you don't know the answer or for complex custom requests, suggest the "Contact" or "Pricing" pages, or hello@backlineit.com. Do not invent fictitious information.
 `;
 
 export const ALVIN_CONTEXT = ALVIN_CONTEXT_HU; // Fallback

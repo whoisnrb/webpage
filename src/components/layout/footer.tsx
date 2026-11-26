@@ -1,7 +1,7 @@
 "use client"
 
 import { Link, usePathname } from "@/i18n/routing"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 import { Code2, ShieldCheck, Lock, Award, Mail, Phone, MapPin, Sparkles } from "lucide-react"
 import { NewsletterForm } from "@/components/newsletter-form"
 
@@ -9,7 +9,9 @@ export function Footer() {
     const tStats = useTranslations("Footer")
     const tNav = useTranslations("Navigation")
     const tMega = useTranslations("MegaMenu")
+    const locale = useLocale()
     const pathname = usePathname()
+    const contactEmail = locale === "en" ? "hello@backlineit.com" : "hello@backlineit.hu"
 
     if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
         return null;
@@ -47,13 +49,13 @@ export function Footer() {
                         {/* Quick Contact links */}
                         <div className="space-y-2.5 pt-1 text-xs text-white/60">
                             <a
-                                href="mailto:hello@backlineit.hu"
+                                href={`mailto:${contactEmail}`}
                                 className="flex items-center gap-2.5 hover:text-cyan-400 transition-colors group"
                             >
                                 <div className="h-6 w-6 rounded-md bg-white/5 flex items-center justify-center text-white/40 group-hover:text-cyan-400">
                                     <Mail className="h-3.5 w-3.5" />
                                 </div>
-                                <span>hello@backlineit.hu</span>
+                                <span>{contactEmail}</span>
                             </a>
                             <a
                                 href="tel:+36501034140"

@@ -21,6 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ImpresszumPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
+    const isEn = locale === 'en';
+    const contactEmail = isEn ? 'hello@backlineit.com' : 'hello@backlineit.hu';
     const t = await getTranslations({ locale, namespace: "Legal.Imprint" });
 
     return (
@@ -70,7 +72,7 @@ export default async function ImpresszumPage({ params }: { params: Promise<{ loc
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("email")}</dt>
                             <dd className="font-medium text-base">
-                                <a href="mailto:hello@backlineit.hu" className="text-primary hover:underline">hello@backlineit.hu</a>
+                                <a href={`mailto:${contactEmail}`} className="text-primary hover:underline">{contactEmail}</a>
                             </dd>
                         </div>
                         <div>
@@ -79,7 +81,7 @@ export default async function ImpresszumPage({ params }: { params: Promise<{ loc
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("website")}</dt>
-                            <dd className="font-medium">www.backlineit.hu</dd>
+                            <dd className="font-medium">{isEn ? 'www.backlineit.com' : 'www.backlineit.hu'}</dd>
                         </div>
                         <div>
                             <dt className="text-muted-foreground mb-1">{t("availability")}</dt>
