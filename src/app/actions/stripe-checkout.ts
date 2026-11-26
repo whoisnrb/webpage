@@ -22,6 +22,8 @@ export async function createCheckoutSession(params: {
     try {
         const headersList = await headers()
         const origin = headersList.get("origin") || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+        const host = headersList.get("host") || ""
+        const isCom = origin.includes("backlineit.com") || host.includes("backlineit.com") || params.currency.toLowerCase() === "eur"
 
         // Helper to handle zero-decimal currencies
         const zeroDecimalCurrencies = ['bif', 'clp', 'djf', 'gnf', 'jpy', 'kmf', 'krw', 'mga', 'pyg', 'rwf', 'ugx', 'vnd', 'vuv', 'xaf', 'xof', 'xpf']
@@ -49,6 +51,7 @@ export async function createCheckoutSession(params: {
             cancel_url: params.cancelUrl ? `${origin}${params.cancelUrl}` : `${origin}/megoldasok?canceled=true`,
             metadata: {
                 serviceName: params.serviceName,
+                locale: isCom ? "en" : "hu",
             }
         })
 

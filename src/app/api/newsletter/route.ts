@@ -4,10 +4,15 @@ import { processNewsletter } from "@/lib/n8n/actions"
 export async function POST(request: Request) {
     try {
         const body = await request.json()
-        const { email } = body
-        console.log(`[Newsletter API] Attempting subscription for: ${email}`)
+        const { email, locale: bodyLocale } = body
+        const host = request.headers.get("host") || ""
+        const referer = request.headers.get("referer") || ""
+        const locale = bodyLocale === "en" || host.includes("backlineit.com") || referer.includes("backlineit.com")
+            ? "en"
+            : "hu"
+        console.log(`[Newsletter API] Attempting subscription for: ${email} (${locale})`)
 
-        const result = await processNewsletter({ email, action: 'newsletter' })
+        const result = await processNewsletter({ email, locale, action: 'newsletter' })
         console.log(`[Newsletter API] Success:`, result)
 
         return NextResponse.json(result)

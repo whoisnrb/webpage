@@ -107,12 +107,20 @@ export async function updateInquiryPaymentLink(id: string, paymentLink: string) 
         // This will be handled in the Admin UI or here
         // The user wants "auto-feedback", so let's trigger it if the link is not empty
         if (paymentLink) {
+            const isEn =
+                inquiry.description?.includes("Nyelv: en") ||
+                inquiry.description?.includes("Language: en") ||
+                inquiry.description?.includes("I am interested") ||
+                inquiry.budget?.includes("€") ||
+                inquiry.serviceType?.includes("Website") ||
+                inquiry.serviceType?.includes("Managed IT")
             const { sendPaymentLinkEmail } = await import("@/lib/mail")
             await sendPaymentLinkEmail(
                 inquiry.email, 
                 inquiry.name, 
                 inquiry.serviceType, 
-                paymentLink
+                paymentLink,
+                isEn ? "en" : "hu"
             )
         }
 

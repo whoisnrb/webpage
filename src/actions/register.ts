@@ -7,12 +7,16 @@ import { prisma } from "@/lib/db";
 import { getUserByEmail } from "@/data/user";
 import { generateVerificationToken } from "@/lib/tokens";
 import { sendVerificationEmail } from "@/lib/mail";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { trackEvent } from "@/lib/analytics";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
     console.log("Register action called with:", values);
+    const headerList = await headers();
+    const host = headerList.get("host") || "";
+    const detectedLocale = await getLocale();
+    const locale = host.includes("backlineit.com") || detectedLocale === "en" ? "en" : "hu";
     const t = await getTranslations("Auth.Server");
     const validatedFields = RegisterSchema.safeParse(values);
 
@@ -39,7 +43,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         });
 
         const verificationToken = await generateVerificationToken(email);
-        await sendVerificationEmail(verificationToken.identifier, verificationToken.token);
+        await sendVerificationEmail(verificationToken.identifier, verificationToken.token, locale);
 
         // If user opted in to newsletter, subscribe them automatically!
         if (newsletter) {
@@ -48,6 +52,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
                 await processNewsletter({
                     email,
                     name,
+                    locale,
                     action: "newsletter",
                 });
             } catch (nlError) {

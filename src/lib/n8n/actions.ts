@@ -4,10 +4,10 @@ import { appendToSheet, sendEmail, generateAIResponse, analyzeSentiment } from '
 const SYSTEM_PROMPTS = {
     POSITIVE_RESPONSE: (locale: string) => locale === 'hu' ?
         `Te egy ügyfélszolgálati munkatárs vagy a BacklineIT-nál, ami egy rendszerüzemeltetéssel és MI automatizációval foglalkozó ügynökség. Írj egy barátságos választ az alábbi visszajelzésre magyarul. Formázd HTML e-mailként, és írd alá úgy, hogy "BacklineIT csapata", feltüntetve a weboldalt (backlineit.hu) és emailt (hello@backlineit.hu). KÉRLEK, CSAK A NYERS HTML KÓDOT ADD VISSZA, markdown formázás (pl. \`\`\`html) NÉLKÜL!` :
-        `You are a customer support representative for BacklineIT, an agency specialized in System Administration, DevOps and AI Automation. Write a friendly response to the customer feedback below. Format as an HTML email and sign it from "BacklineIT csapata" (BacklineIT Team), including the website (backlineit.hu) and email (hello@backlineit.hu). PLEASE RETURN ONLY THE RAW HTML CODE WITHOUT ANY MARKDOWN BLOCKS (e.g. no \`\`\`html).`,
+        `You are a customer support representative for BacklineIT, an agency specialized in System Administration, DevOps and AI Automation. Write a friendly response to the customer feedback below in English. Format as an HTML email and sign it from "BacklineIT Team", including the website (backlineit.com) and email (hello@backlineit.com). PLEASE RETURN ONLY THE RAW HTML CODE WITHOUT ANY MARKDOWN BLOCKS (e.g. no \`\`\`html).`,
     APOLOGY_RESPONSE: (locale: string) => locale === 'hu' ?
         `Te egy ügyfélszolgálati munkatárs vagy a BacklineIT-nál. Írj egy barátságos és rövid választ az alábbi visszajelzésre magyarul. Az e-mailben köszönd meg a visszajelzést, ismerd el a problémát, és tájékoztasd az ügyfelet, hogy továbbítottuk a vezetőségnek. Ajánld fel, hogy egy extra integrációval vagy konzultációval kompenzáljuk őket. Formázd HTML e-mailként, és írd alá úgy, hogy "BacklineIT csapata", feltüntetve a weboldalt (backlineit.hu) és emailt (hello@backlineit.hu). KÉRLEK, CSAK A NYERS HTML KÓDOT ADD VISSZA, markdown formázás (pl. \`\`\`html) NÉLKÜL!` :
-        `You are a customer support representative for BacklineIT. Write a friendly and concise response to the following customer feedback. The email should thank the client for their feedback, acknowledge their concerns, and inform that this has been escalated to our management. Offer to compensate them with an extra integration or free consultation. Format as an HTML email and sign it from "BacklineIT csapata" (BacklineIT Team), including the website (backlineit.hu) and email (hello@backlineit.hu). PLEASE RETURN ONLY THE RAW HTML CODE WITHOUT ANY MARKDOWN BLOCKS (e.g. no \`\`\`html).`,
+        `You are a customer support representative for BacklineIT. Write a friendly and concise response to the following customer feedback in English. The email should thank the client for their feedback, acknowledge their concerns, and inform them that this has been escalated to our management. Offer to compensate them with an extra integration or free consultation. Format as an HTML email and sign it from "BacklineIT Team", including the website (backlineit.com) and email (hello@backlineit.com). PLEASE RETURN ONLY THE RAW HTML CODE WITHOUT ANY MARKDOWN BLOCKS (e.g. no \`\`\`html).`,
     SUGGEST_IMPROVEMENTS: `You are a customer support representative for BacklineIT. A client just submitted feedback about our services. Please provide a concise suggestion on what BacklineIT can do to address their concerns and improve client satisfaction in the future.`,
     CHAT_ALVIN: `Te Alvin vagy, a BacklineIT automatizációs és rendszerüzemeltetési szakértő AI asszisztense.
 Célod: Segíteni a látogatóknak eligazodni a szolgáltatások között, és megválaszolni a technikai vagy üzleti kérdéseiket.
@@ -53,7 +53,8 @@ export async function processFeedback(body: WebhookBody) {
         );
 
         // 3. Send Email
-        await sendEmail(email, subject, aiResponse);
+        const feedbackReplyTo = locale === 'en' ? 'hello@backlineit.com' : 'hello@backlineit.hu';
+        await sendEmail(email, subject, aiResponse, feedbackReplyTo);
 
     } else {
         // ... (remaining negative logic stays same)
@@ -75,16 +76,19 @@ export async function processFeedback(body: WebhookBody) {
         );
 
         // 4. Send Email
-        await sendEmail(email, apologySubject, apologyEmail);
+        const feedbackReplyTo = locale === 'en' ? 'hello@backlineit.com' : 'hello@backlineit.hu';
+        await sendEmail(email, apologySubject, apologyEmail, feedbackReplyTo);
     }
 
     return { success: true, sentiment };
 }
 
 export async function processNewsletter(body: WebhookBody) {
-    const { email, name } = body;
+    const { email, name, locale = 'hu' } = body;
     if (!email) throw new Error('Missing email');
     const normalizedEmail = email.trim().toLowerCase();
+    const isEn = locale === 'en';
+    const contactEmail = isEn ? 'hello@backlineit.com' : 'hello@backlineit.hu';
 
     // 1. Save to Database (NewsletterSubscriber & Lead)
     try {
@@ -128,10 +132,15 @@ export async function processNewsletter(body: WebhookBody) {
 
     // 3. Send Welcome Email
     try {
+        const subject = isEn ? 'Welcome to BacklineIT! 🚀' : 'Sikeres feliratkozás! 🚀';
+        const html = isEn
+            ? `Dear Subscriber,<br><br>Thank you for subscribing to our newsletter. We'll soon share our latest IT, cloud, and automation insights with you.<br><br>Best regards,<br>BacklineIT Team<br>${contactEmail} | https://backlineit.com`
+            : `Kedves Feliratkozó!<br><br>Köszönjük, hogy feliratkoztál hírlevelünkre. Hamarosan küldjük a legfrissebb IT tippeket.<br><br>Üdvözlettel,<br>BacklineIT Csapata<br>${contactEmail} | https://backlineit.hu`;
         await sendEmail(
             normalizedEmail,
-            'Sikeres feliratkozás! 🚀',
-            `Kedves Feliratkozó!<br><br>Köszönjük, hogy feliratkoztál hírlevelünkre. Hamarosan küldjük a legfrissebb IT tippeket.<br><br>Üdvözlettel,<br>BacklineIT Csapata`
+            subject,
+            html,
+            contactEmail
         );
     } catch (emailError) {
         console.error('[Newsletter] Email send error:', emailError);

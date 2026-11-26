@@ -103,7 +103,8 @@ export async function POST(req: NextRequest) {
                     console.log(`Created project for user ${email}`);
 
                     if (isNewUser) {
-                        await sendAccountCreatedEmail(email, name, generatedPassword, serviceName);
+                        const locale = session.metadata?.locale === "en" || session.currency?.toLowerCase() === "eur" ? "en" : "hu";
+                        await sendAccountCreatedEmail(email, name, generatedPassword, serviceName, locale);
                     }
                 }
             }

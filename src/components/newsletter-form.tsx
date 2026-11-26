@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Loader2, Mail, CheckCircle2 } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useTranslations } from "next-intl"
+import { useTranslations, useLocale } from "next-intl"
 
 export function NewsletterForm() {
     const [email, setEmail] = useState("")
     const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
     const t = useTranslations("Newsletter")
+    const locale = useLocale()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -22,7 +23,7 @@ export function NewsletterForm() {
             const response = await fetch("/api/newsletter", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email })
+                body: JSON.stringify({ email, locale })
             })
 
             if (!response.ok) {
