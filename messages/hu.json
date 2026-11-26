@@ -832,6 +832,7 @@
       "description_hint": "Kérjük, írja le röviden, hogyan szeretné használni a megoldást, vagy milyen egyedi igényei vannak.",
       "description_placeholder": "Szeretnék egy olyan rendszert, ami...",
       "submit": "Konzultációs igény küldése",
+      "submit_quote": "Ajánlatkérés küldése",
       "sending": "Küldés folyamatban...",
       "processing": "Küldés folyamatban...",
       "terms": "Az űrlap elküldésével elfogadja az Adatkezelési Tájékoztatóban foglaltakat.",

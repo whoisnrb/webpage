@@ -167,17 +167,6 @@ export function BookingForm() {
             submittedRef.current = true
             trackFunnelStep({ funnel: "booking", step: "submitted", stepNumber: 5 })
             setStatus("success")
-            try {
-                if (typeof window !== "undefined" && (window as any).ttq) {
-                    (window as any).ttq.track('CompleteRegistration')
-                    (window as any).ttq.track('Schedule')
-                    (window as any).ttq.track('ClickButton')
-                    (window as any).ttq.track('Contact')
-                    (window as any).ttq.track('SubmitForm')
-                }
-            } catch (ttqErr) {
-                console.warn("TikTok tracking error:", ttqErr)
-            }
             setFormData({ name: "", email: "", topic: "", time: "", message: "" })
             setDate(undefined)
         } catch (error) {

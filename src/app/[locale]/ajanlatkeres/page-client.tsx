@@ -37,6 +37,7 @@ import { submitInquiry } from "@/app/actions/inquiry"
 import { Link } from "@/i18n/routing"
 import { cn } from "@/lib/utils"
 import { trackFunnelStep, trackFormAbandonment } from "@/lib/funnel-client"
+import { toast } from "sonner"
 
 export default function QuoteRequestPage() {
     return (
@@ -64,6 +65,7 @@ function QuoteRequestContent() {
     const lastFieldRef = useRef("projectType")
     const stepRef = useRef(1)
     const submittedRef = useRef(false)
+    const formPanelRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         stepRef.current = step
@@ -97,7 +99,7 @@ function QuoteRequestContent() {
         company: "",
         phone: "",
         projectType: "web",
-        budget: "tier3",
+        budget: "flexible",
         deadline: "month",
         description: "",
         serviceInterest: "",
@@ -255,10 +257,37 @@ function QuoteRequestContent() {
         setFormData(prev => ({ ...prev, deadline: id }))
     }
 
+    const SCOPE_CHIPS = locale === 'hu' ? [
+        "Weboldal + Időpontfoglaló",
+        "Automatizált számlázás & CRM",
+        "AI ügyfélszolgálati chatbot",
+        "Havidíjas IT üzemeltetés",
+        "Meglévő rendszer fejlesztése"
+    ] : [
+        "Website + Booking System",
+        "Automated Billing & CRM",
+        "AI Customer Support Bot",
+        "Managed IT Operations",
+        "Upgrade Existing System"
+    ]
+
+    const toggleScopeChip = (chip: string) => {
+        hasInteractedRef.current = true
+        lastFieldRef.current = "description"
+        setFormData(prev => {
+            const current = prev.description.trim()
+            if (current.includes(chip)) {
+                return prev
+            }
+            const nextDesc = current ? `${current}\n• ${chip}` : `• ${chip}`
+            return { ...prev, description: nextDesc }
+        })
+    }
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         if (!agreedToTerms) {
-            alert(locale === 'hu' ? "Kérjük, fogadd el az adatvédelmi tájékoztatót!" : "Please accept the privacy policy!")
+            toast.error(locale === 'hu' ? "Kérjük, fogadd el az adatvédelmi tájékoztatót!" : "Please accept the privacy policy!")
             return
         }
 
@@ -286,36 +315,31 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                 company: formData.company,
                 serviceType: selectedTypeObj?.title || formData.projectType || "egyéb",
                 budget: selectedBudgetObj?.label || formData.budget,
-                description: formData.description + metaInfo
+                description: (formData.description + metaInfo).trim(),
+                locale: locale === "en" ? "en" : "hu"
             })
 
             if (result.success) {
                 submittedRef.current = true
                 trackFunnelStep({ funnel: "quote", step: "submitted", stepNumber: 4 })
-                try {
-                    if (typeof window !== "undefined" && (window as any).ttq) {
-                        (window as any).ttq.track('CompleteRegistration')
-                        (window as any).ttq.track('ClickButton')
-                        (window as any).ttq.track('SubmitForm')
-                        (window as any).ttq.track('Contact')
-                    }
-                } catch (ttqError) {
-                    console.warn("Tracking error:", ttqError)
-                }
                 setSubmitted(true)
             } else {
-                alert(result.error || (locale === 'hu' ? "Hiba történt a beküldés során." : "Failed to submit."))
+                toast.error(result.error || (locale === 'hu' ? "Hiba történt a beküldés során." : "Failed to submit."))
             }
         } catch (error) {
             console.error("Submission error:", error)
-            alert(locale === 'hu' ? "Váratlan hiba történt." : "An unexpected error occurred.")
+            toast.error(locale === 'hu' ? "Váratlan hiba történt." : "An unexpected error occurred.")
         } finally {
             setLoading(false)
         }
     }
 
+    const scrollToFormTop = () => {
+        formPanelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+
     const nextStep = () => {
-        window.scrollTo({ top: 150, behavior: "smooth" })
+        scrollToFormTop()
         hasInteractedRef.current = true
         setStep(prev => {
             const next = prev + 1
@@ -326,7 +350,7 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
     }
 
     const prevStep = () => {
-        window.scrollTo({ top: 150, behavior: "smooth" })
+        scrollToFormTop()
         setStep(prev => prev - 1)
     }
 
@@ -494,7 +518,7 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     
                     {/* Left Form Panel */}
-                    <div className="lg:col-span-8">
+                    <div ref={formPanelRef} className="lg:col-span-8 scroll-mt-24">
                         <div className="rounded-3xl border border-white/10 bg-[#06101c]/80 backdrop-blur-2xl p-6 md:p-10 shadow-[0_0_50px_-15px_rgba(6,182,212,0.15)] relative overflow-hidden">
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-transparent" />
 
@@ -669,24 +693,44 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                                             </div>
 
                                             {/* Description Textarea */}
-                                            <div className="space-y-2 pt-2">
-                                                <Label htmlFor="description" className="text-sm font-bold text-white flex items-center justify-between">
+                                            <div className="space-y-3 pt-2">
+                                                <Label htmlFor="description" className="text-sm font-bold text-white flex items-center justify-between gap-2 flex-wrap">
                                                     <span className="flex items-center gap-2">
                                                         <FileText className="h-4 w-4 text-cyan-400" />
-                                                        {t("form.description_label")}
+                                                        {locale === 'hu' ? "Projekt leírása (opcionális)" : "Project Description (optional)"}
                                                     </span>
                                                     <span className="text-[11px] font-normal text-white/40">
-                                                        {locale === 'hu' ? "Minél részletesebb, annál pontosabb ajánlatot adunk" : "More details = more accurate quote"}
+                                                        {locale === 'hu' ? "Elég pár szó is — a részleteket átbeszéljük" : "A few words is enough — we'll clarify details"}
                                                     </span>
                                                 </Label>
+                                                <div className="flex flex-wrap gap-1.5">
+                                                    {SCOPE_CHIPS.map((chip) => {
+                                                        const active = formData.description.includes(chip)
+                                                        return (
+                                                            <button
+                                                                key={chip}
+                                                                type="button"
+                                                                onClick={() => toggleScopeChip(chip)}
+                                                                className={cn(
+                                                                    "px-2.5 py-1 rounded-full text-[11px] font-semibold border transition-all",
+                                                                    active
+                                                                        ? "bg-cyan-500/20 border-cyan-400 text-cyan-300"
+                                                                        : "bg-white/[0.03] border-white/10 text-white/60 hover:border-white/25 hover:text-white"
+                                                                )}
+                                                            >
+                                                                {active ? "✓ " : "+ "}
+                                                                {chip}
+                                                            </button>
+                                                        )
+                                                    })}
+                                                </div>
                                                 <Textarea
                                                     id="description"
                                                     name="description"
                                                     value={formData.description}
                                                     onChange={handleInputChange}
                                                     placeholder={t("form.description_placeholder")}
-                                                    className="min-h-[140px] bg-white/[0.03] border-white/10 focus:border-cyan-400 rounded-xl text-white placeholder:text-white/30 text-sm leading-relaxed"
-                                                    required
+                                                    className="min-h-[120px] bg-white/[0.03] border-white/10 focus:border-cyan-400 rounded-xl text-white placeholder:text-white/30 text-sm leading-relaxed"
                                                 />
                                             </div>
 
@@ -702,8 +746,7 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                                                 <Button
                                                     type="button"
                                                     onClick={nextStep}
-                                                    disabled={!formData.description.trim()}
-                                                    className="h-12 px-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-wide shadow-[0_0_25px_rgba(6,182,212,0.35)] transition-all disabled:opacity-40"
+                                                    className="h-12 px-8 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-wide shadow-[0_0_25px_rgba(6,182,212,0.35)] transition-all"
                                                 >
                                                     {t("form.next")} <ArrowRight className="ml-2 h-4 w-4" />
                                                 </Button>
@@ -850,11 +893,26 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                                                         </div>
                                                     ) : (
                                                         <div className="flex items-center gap-2">
-                                                            <span>{t("form.submit")}</span>
+                                                            <span>{t("form.submit_quote")}</span>
                                                             <Send className="h-4 w-4" />
                                                         </div>
                                                     )}
                                                 </Button>
+                                            </div>
+
+                                            <div className="pt-3 border-t border-white/5 flex flex-wrap items-center justify-center sm:justify-between gap-3 text-[11px] text-white/50">
+                                                <span className="flex items-center gap-1.5">
+                                                    <Clock className="h-3.5 w-3.5 text-cyan-400" />
+                                                    {locale === 'hu' ? "Válaszidő max. 24 óra" : "Response within 24h"}
+                                                </span>
+                                                <span className="flex items-center gap-1.5">
+                                                    <Shield className="h-3.5 w-3.5 text-emerald-400" />
+                                                    {locale === 'hu' ? "100% kötelezettségmentes" : "100% no-obligation"}
+                                                </span>
+                                                <span className="flex items-center gap-1.5">
+                                                    <CheckCircle2 className="h-3.5 w-3.5 text-blue-400" />
+                                                    {locale === 'hu' ? "0% ÁFA (AAM) / Nettó EU számla" : "VAT-exempt / EU reverse charge"}
+                                                </span>
                                             </div>
                                         </motion.div>
                                     )}
@@ -915,9 +973,25 @@ Forrás oldal: ${formData.sourcePage || "Közvetlen"}`
                             </h4>
                             <p className="text-xs text-white/60 leading-relaxed">
                                 {locale === 'hu'
-                                    ? "Ha nem szeretnél gépelni, foglalj azonnal szabad idősávot a naptárunkban."
-                                    : "If you prefer talking, pick a convenient time directly in our calendar."}
+                                    ? "Ha nem szeretnél gépelni, foglalj azonnal szabad idősávot, vagy keress közvetlenül e-mailben / telefonon."
+                                    : "If you prefer talking, pick a time in our calendar or reach out directly by email or phone."}
                             </p>
+                            <div className="space-y-2 pt-1 text-xs">
+                                <a
+                                    href="mailto:hello@backlineit.hu"
+                                    className="flex items-center gap-2 text-cyan-300 hover:text-cyan-200 transition-colors font-medium"
+                                >
+                                    <Mail className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+                                    <span>hello@backlineit.hu</span>
+                                </a>
+                                <a
+                                    href="tel:+36501034140"
+                                    className="flex items-center gap-2 text-cyan-300 hover:text-cyan-200 transition-colors font-medium"
+                                >
+                                    <Phone className="h-3.5 w-3.5 text-cyan-400 shrink-0" />
+                                    <span>+36 50 103 4140</span>
+                                </a>
+                            </div>
                             <Button
                                 className="w-full mt-2 h-10 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/10"
                                 asChild

@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/db"
 import { z } from "zod"
-import { sendAdminInquiryNotification } from "@/lib/mail"
+import { sendAdminInquiryNotification, sendClientInquiryConfirmationEmail } from "@/lib/mail"
 import { revalidatePath } from "next/cache"
 import { createAuditLog } from "@/lib/audit"
 
@@ -13,24 +13,48 @@ const inquirySchema = z.object({
     company: z.string().optional(),
     serviceType: z.string().min(1, "Szolgáltatás kiválasztása kötelező"),
     budget: z.string().optional(),
-    description: z.string().min(1, "Leírás kötelező")
+    description: z.string().optional().default(""),
+    locale: z.enum(["hu", "en"]).optional(),
 })
 
 export type InquiryInput = z.infer<typeof inquirySchema>
 
 export async function submitInquiry(data: InquiryInput) {
     try {
-        const validated = inquirySchema.parse(data)
+        const parsed = inquirySchema.safeParse(data)
+        if (!parsed.success) {
+            return {
+                success: false,
+                error: parsed.error.issues[0]?.message || "Érvénytelen adatok.",
+            }
+        }
 
+        const { locale, description, ...rest } = parsed.data
         const inquiry = await prisma.serviceInquiry.create({
-            data: validated
+            data: {
+                ...rest,
+                description: description?.trim() || "Nincs külön leírás megadva.",
+            },
         })
 
-        // Notify Admin
-        try {
-            await sendAdminInquiryNotification(inquiry)
-        } catch (error) {
-            console.error("Failed to send admin notification:", error)
+        // Notify Admin and send confirmation email to the lead
+        const [adminResult, clientResult] = await Promise.allSettled([
+            sendAdminInquiryNotification(inquiry),
+            sendClientInquiryConfirmationEmail({
+                name: inquiry.name,
+                email: inquiry.email,
+                serviceType: inquiry.serviceType,
+                budget: inquiry.budget,
+                description: inquiry.description,
+                locale,
+            }),
+        ])
+
+        if (adminResult.status === "rejected") {
+            console.error("Failed to send admin notification:", adminResult.reason)
+        }
+        if (clientResult.status === "rejected") {
+            console.error("Failed to send client confirmation:", clientResult.reason)
         }
 
         revalidatePath("/admin/inquiries")

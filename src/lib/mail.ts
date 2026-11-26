@@ -10,6 +10,14 @@ const transporter = nodemailer.createTransport({
 
 const defaultSenderEmail = process.env.EMAIL_FROM || "noreply@backlineit.hu";
 
+const escapeHtml = (str: string) =>
+    str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+
 export const sendVerificationEmail = async (email: string, token: string) => {
     console.log(`[MAIL] Attempting to send verification email to: ${email}`);
 
@@ -206,6 +214,130 @@ export const sendAdminInquiryNotification = async (inquiry: any) => {
         console.log(`[MAIL] Admin notification sent for inquiry from ${inquiry.email}`);
     } catch (error) {
         console.error("[MAIL] Error sending admin notification:", error);
+    }
+};
+
+/**
+ * Sends a confirmation email to the lead after submitting the quote request form.
+ */
+export const sendClientInquiryConfirmationEmail = async (inquiry: {
+    name: string;
+    email: string;
+    serviceType: string;
+    budget?: string | null;
+    description: string;
+    locale?: string;
+}) => {
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+        console.warn("[MAIL] GMAIL credentials missing. Client confirmation email skipped.");
+        return;
+    }
+
+    const isEn = inquiry.locale === "en";
+    const safeName = escapeHtml(inquiry.name);
+    const safeServiceType = escapeHtml(inquiry.serviceType);
+    const safeBudget = inquiry.budget ? escapeHtml(inquiry.budget) : (isEn ? "To be discussed" : "Egyeztetés alatt");
+    const safeDescription = inquiry.description.trim()
+        ? escapeHtml(inquiry.description.trim())
+        : (isEn ? "No additional notes provided." : "Nem került megadásra külön leírás.");
+
+    const subject = isEn
+        ? `Quote request received: ${inquiry.serviceType} – BacklineIT`
+        : `Ajánlatkérését megkaptuk: ${inquiry.serviceType} – BacklineIT`;
+
+    const mailOptions = {
+        from: `"BacklineIT" <${defaultSenderEmail}>`,
+        replyTo: "hello@backlineit.hu",
+        to: inquiry.email,
+        subject,
+        html: `
+<!DOCTYPE html>
+<html lang="${isEn ? "en" : "hu"}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; background-color: #F4F7FA; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1E293B;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F4F7FA; padding: 36px 16px;">
+        <tr>
+            <td align="center">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width: 600px; background-color: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06); border: 1px solid #E2E8F0;">
+                    <tr>
+                        <td style="background-color: #0F172A; padding: 30px 36px; text-align: left; border-bottom: 4px solid #06B6D4;">
+                            <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #38BDF8; margin-bottom: 6px;">BacklineIT</div>
+                            <h1 style="margin: 0; font-size: 21px; font-weight: 700; color: #FFFFFF;">
+                                ${isEn ? "We received your quote request!" : "Sikeresen megkaptuk az ajánlatkérését!"}
+                            </h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 32px 36px;">
+                            <p style="font-size: 15px; line-height: 1.6; color: #334155; margin: 0 0 18px 0;">
+                                ${isEn
+                                    ? `Dear <strong>${safeName}</strong>,<br><br>Thank you for reaching out to BacklineIT! We have logged your quote request and a specialist will review your details and reply within <strong>24 business hours</strong>.`
+                                    : `Kedves <strong>${safeName}</strong>!<br><br>Köszönjük, hogy megkereste a BacklineIT csapatát! Ajánlatkérését rögzítettük, szakértőnk hamarosan átnézi az igényeit, és <strong>24 órán belül</strong> jelentkezik a részletekkel.`}
+                            </p>
+
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; margin-bottom: 24px;">
+                                <tr>
+                                    <td style="padding: 18px 20px;">
+                                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B; width: 150px;">${isEn ? "Service type" : "Szolgáltatás"}</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${safeServiceType}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; font-size: 13px; color: #64748B;">${isEn ? "Budget range" : "Tervezett keret"}</td>
+                                                <td style="padding: 6px 0; font-size: 14px; font-weight: 600; color: #0F172A;">${safeBudget}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #64748B; margin-bottom: 8px;">${isEn ? "Your notes" : "Megadott leírás / részletek"}</div>
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color: #EFF6FF; border-left: 4px solid #06B6D4; border-radius: 0 8px 8px 0; margin-bottom: 28px;">
+                                <tr>
+                                    <td style="padding: 14px 18px; font-size: 14px; line-height: 1.5; color: #1E3A8A; white-space: pre-wrap;">${safeDescription}</td>
+                                </tr>
+                            </table>
+
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="margin-bottom: 20px;">
+                                <tr>
+                                    <td align="center">
+                                        <a href="${isEn ? "https://backlineit.com/en/demo" : "https://backlineit.hu/hu/demo"}" style="display: inline-block; background-color: #06B6D4; color: #0F172A; font-weight: 700; font-size: 14px; text-decoration: none; padding: 13px 26px; border-radius: 8px;">
+                                            ${isEn ? "Book a 30-min call directly" : "Időpontfoglalás 30 perces egyeztetésre"}
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <p style="font-size: 13px; color: #64748B; text-align: center; margin: 0;">
+                                ${isEn
+                                    ? `Need to add anything? Just reply to this email or write to <a href="mailto:hello@backlineit.hu" style="color: #0284C7;">hello@backlineit.hu</a>.`
+                                    : `Kiegészítené az igényét? Egyszerűen válaszoljon erre az e-mailre, vagy írjon a <a href="mailto:hello@backlineit.hu" style="color: #0284C7;">hello@backlineit.hu</a> címre.`}
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 18px 36px; background-color: #F8FAFC; border-top: 1px solid #E2E8F0; text-align: center; font-size: 11px; color: #94A3B8;">
+                            BacklineIT &bull; hello@backlineit.hu &bull; +36 50 103 4140
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+        `,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log(`[MAIL] Client confirmation sent to ${inquiry.email}`);
+    } catch (error) {
+        console.error("[MAIL] Error sending client confirmation:", error);
     }
 };
 
