@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Users, Target, Heart, Rocket, Code, Database, Layout, TrendingUp, Linkedin, Megaphone, Cpu, ShieldCheck, Sparkles, CheckCircle2 } from "lucide-react"
 import { Link } from "@/i18n/routing"
 import { FadeIn, SlideUp, ScaleIn } from "@/components/ui/motion-wrapper"
-import { useTranslations } from "next-intl"
+import { getTranslations } from "next-intl/server"
 import { routing } from '@/i18n/routing'
 
 import { getSeoMetadata } from "@/lib/seo"
@@ -84,8 +84,24 @@ const aboutJsonLd = {
     }
 };
 
-export default function RolunkPage() {
-    const t = useTranslations('AboutPage')
+export default async function RolunkPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const isEn = locale === 'en';
+    const baseUrl = isEn ? 'https://backlineit.com' : 'https://backlineit.hu';
+    const t = await getTranslations({ locale, namespace: 'AboutPage' });
+    const tHome = await getTranslations({ locale, namespace: 'HomePage' });
+    const tST = await getTranslations({ locale, namespace: 'ServiceTemplate' });
+    const localizedJsonLd = {
+        ...aboutJsonLd,
+        "name": isEn ? "About Us | BacklineIT" : "Rólunk | BacklineIT",
+        "description": isEn
+            ? "Learn more about the BacklineIT team, our values, and our mission."
+            : aboutJsonLd.description,
+        "mainEntity": {
+            ...aboutJsonLd.mainEntity,
+            "@id": `${baseUrl}/#organization`,
+        },
+    };
 
     const team = [
         {
@@ -132,12 +148,12 @@ export default function RolunkPage() {
         <div className="min-h-screen flex flex-col relative overflow-hidden">
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(localizedJsonLd) }}
             />
             <BreadcrumbJsonLd
                 items={[
-                    { name: 'Kezdőlap', href: '/' },
-                    { name: 'Rólunk', href: '/rolunk' },
+                    { name: isEn ? 'Home' : 'Kezdőlap', href: isEn ? '/en' : '/' },
+                    { name: isEn ? 'About Us' : 'Rólunk', href: isEn ? '/en/about-us' : '/rolunk' },
                 ]}
             />
             {/* Background elements removed for global background uniformity */}
@@ -368,11 +384,17 @@ export default function RolunkPage() {
                                                 <member.icon className="h-12 w-12" />
                                             </div>
                                         )}
-                                        <div className="flex items-center gap-2 mb-1">
-                                            <h3 className="font-bold text-lg">{member.name}</h3>
+                                        <div className="flex items-center justify-center gap-2 mb-1">
+                                            <h3 className="font-bold text-lg text-white">{member.name}</h3>
                                             {member.linkedin && (
-                                                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-muted-foreground/50 hover:text-primary transition-colors" aria-label={`${member.name} LinkedIn`}>
-                                                    <Linkedin className="h-4 w-4" />
+                                                <a
+                                                    href={member.linkedin}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex h-6 w-6 items-center justify-center rounded-md bg-white/[0.06] border border-white/10 text-cyan-400/80 hover:text-cyan-300 hover:bg-cyan-500/15 hover:border-cyan-400/50 transition-all"
+                                                    aria-label={`${member.name} LinkedIn`}
+                                                >
+                                                    <Linkedin className="h-3.5 w-3.5" />
                                                 </a>
                                             )}
                                         </div>
@@ -422,48 +444,39 @@ export default function RolunkPage() {
                                     </p>
 
                                     {/* CTA Buttons */}
-                                    <div className="flex flex-col sm:flex-row gap-5 justify-center mb-12">
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                                         <Link href="/kapcsolat">
-                                            <Button size="lg" className="group relative h-16 px-12 text-lg font-bold overflow-hidden border-0 w-full sm:w-auto">
-                                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-violet-500 animate-gradient-x bg-[length:200%_auto]" />
-                                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-violet-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-gradient-x bg-[length:200%_auto]" />
-                                                <div className="absolute inset-0 shadow-[0_0_40px_rgba(139,92,246,0.4)] group-hover:shadow-[0_0_60px_rgba(139,92,246,0.6)] transition-shadow duration-300" />
-                                                <span className="relative flex items-center text-white font-bold">
-                                                    {t('cta_contact')}
-                                                    <svg className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                                    </svg>
-                                                </span>
+                                            <Button size="lg" className="h-14 px-10 text-base font-black rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 shadow-[0_0_30px_rgba(6,182,212,0.35)] transition-all w-full sm:w-auto">
+                                                <span>{t('cta_contact')}</span>
+                                                <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                                </svg>
                                             </Button>
                                         </Link>
                                         <Link href="/ajanlatkeres">
-                                            <Button size="lg" className="group relative h-16 px-12 text-lg font-bold bg-transparent overflow-hidden w-full sm:w-auto">
-                                                <div className="absolute inset-0 rounded-md border-2 border-slate-600 group-hover:border-violet-500/50 transition-colors duration-300" />
-                                                <div className="absolute inset-0 bg-white/5 group-hover:bg-violet-500/10 transition-colors duration-300" />
-                                                <span className="relative text-white">
-                                                    {t('cta_quote')}
-                                                </span>
+                                            <Button size="lg" variant="outline" className="h-14 px-10 text-base font-bold rounded-xl border-white/15 bg-white/5 hover:bg-white/10 text-white transition-all w-full sm:w-auto">
+                                                <span>{t('cta_quote')}</span>
                                             </Button>
                                         </Link>
                                     </div>
 
                                     {/* Stats */}
-                                    <div className="grid grid-cols-4 gap-6 pt-10 border-t border-slate-800">
+                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-10 border-t border-slate-800">
                                         <div className="text-center">
-                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 mb-1">4+</div>
-                                            <div className="text-xs text-slate-500">{useTranslations('HomePage')('stats_exp_title')}</div>
+                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-1">4+</div>
+                                            <div className="text-xs text-slate-400">{tHome('stats_exp_title')}</div>
                                         </div>
                                         <div className="text-center">
-                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 mb-1">50+</div>
-                                            <div className="text-xs text-slate-500">{useTranslations('HomePage')('stats_projects_title')}</div>
+                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-1">50+</div>
+                                            <div className="text-xs text-slate-400">{tHome('stats_projects_title')}</div>
                                         </div>
                                         <div className="text-center">
-                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-400 mb-1">100%</div>
-                                            <div className="text-xs text-slate-500">{useTranslations('HomePage')('stats_satisfaction_title')}</div>
+                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 mb-1">100%</div>
+                                            <div className="text-xs text-slate-400">{tHome('stats_satisfaction_title')}</div>
                                         </div>
                                         <div className="text-center">
-                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 mb-1">24h</div>
-                                            <div className="text-xs text-slate-500">{useTranslations('ServiceTemplate')('fast_response')}</div>
+                                            <div className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-1">24h</div>
+                                            <div className="text-xs text-slate-400">{tST('fast_response')}</div>
                                         </div>
                                     </div>
                                 </div>

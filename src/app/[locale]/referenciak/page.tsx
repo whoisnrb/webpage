@@ -45,12 +45,11 @@ export default async function ReferenciakPage({ params }: { params: Promise<{ lo
                     { name: locale === 'en' ? 'References' : 'Referenciák', href: locale === 'en' ? '/en/references' : '/referenciak' },
                 ]}
             />
-            <section className="pt-16 md:pt-24 pb-6 md:pb-8 relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-slate-200 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))] dark:bg-grid-slate-800/50" />
+            <section className="pt-24 md:pt-28 pb-6 relative overflow-hidden">
                 <div className="container relative mx-auto px-4 text-center">
-                    <Badge className="mb-4" variant="outline">{t('badge')}</Badge>
-                    <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">{t('title')}</h1>
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+                    <Badge className="mb-3 border-cyan-500/25 bg-cyan-500/10 text-cyan-400" variant="outline">{t('badge')}</Badge>
+                    <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-4 text-white">{t('title')}</h1>
+                    <p className="text-base md:text-lg text-white/60 max-w-2xl mx-auto">
                         {t('description')}
                     </p>
                 </div>
@@ -106,25 +105,16 @@ export default async function ReferenciakPage({ params }: { params: Promise<{ lo
                                     </p>
 
                                     {/* CTA Buttons */}
-                                    <div className="flex flex-col sm:flex-row gap-5 justify-center mb-12">
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                                         <Link href="/ajanlatkeres">
-                                            <Button size="lg" className="group relative h-16 px-12 text-lg font-bold overflow-hidden border-0 w-full sm:w-auto">
-                                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-emerald-500 to-cyan-500 animate-gradient-x bg-[length:200%_auto]" />
-                                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 via-emerald-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-gradient-x bg-[length:200%_auto]" />
-                                                <div className="absolute inset-0 shadow-[0_0_40px_rgba(6,182,212,0.4)] group-hover:shadow-[0_0_60px_rgba(6,182,212,0.6)] transition-shadow duration-300" />
-                                                <span className="relative flex items-center text-slate-900 font-bold">
-                                                    {t('cta.button_quote')}
-                                                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
-                                                </span>
+                                            <Button size="lg" className="h-14 px-10 text-base font-black rounded-xl bg-gradient-to-r from-cyan-400 via-cyan-500 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 shadow-[0_0_30px_rgba(6,182,212,0.35)] transition-all w-full sm:w-auto">
+                                                <span>{t('cta.button_quote')}</span>
+                                                <ArrowRight className="ml-2 h-5 w-5" />
                                             </Button>
                                         </Link>
                                         <Link href="/kapcsolat">
-                                            <Button size="lg" className="group relative h-16 px-12 text-lg font-bold bg-transparent overflow-hidden w-full sm:w-auto">
-                                                <div className="absolute inset-0 rounded-md border-2 border-slate-600 group-hover:border-cyan-500/50 transition-colors duration-300" />
-                                                <div className="absolute inset-0 bg-white/5 group-hover:bg-cyan-500/10 transition-colors duration-300" />
-                                                <span className="relative flex items-center text-white">
-                                                    {t('cta.button_contact')}
-                                                </span>
+                                            <Button size="lg" variant="outline" className="h-14 px-10 text-base font-bold rounded-xl border-white/15 bg-white/5 hover:bg-white/10 text-white transition-all w-full sm:w-auto">
+                                                <span>{t('cta.button_contact')}</span>
                                             </Button>
                                         </Link>
                                     </div>
