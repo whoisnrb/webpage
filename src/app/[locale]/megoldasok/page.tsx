@@ -54,43 +54,36 @@ export default async function ProductsPage({ params }: PageProps) {
                     { name: locale === 'en' ? 'Solutions' : 'Megoldások', href: locale === 'en' ? '/en/solutions' : '/megoldasok' },
                 ]}
             />
-            <section className="relative overflow-hidden py-20 border-b border-border/40">
+            <section className="relative overflow-hidden bg-[#030712] pt-24 md:pt-28 pb-8 border-b border-white/5">
                 {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 pointer-events-none" />
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none" />
+                <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
 
                 <div className="container mx-auto px-4 text-center relative z-10">
                     <FadeIn>
                         {/* Badge */}
-                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-sm font-medium mb-6">
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-cyan-500/25 bg-cyan-500/10 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-3">
                             <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
                             </span>
                             {t('badge')}
                         </div>
 
                         {/* Title */}
-                        <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-6">
-                            <span className="bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">
+                        <h1 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight mb-3">
+                            <span className="text-white">
                                 {t('title_1')}{" "}
                             </span>
-                            <span className="bg-gradient-to-r from-primary via-cyan-400 to-primary/70 bg-clip-text text-transparent">
+                            <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
                                 {t('title_2')}
                             </span>
                         </h1>
 
                         {/* Subtitle */}
-                        <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-sm md:text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
                             {t('subtitle')}
                         </p>
-
-                        {/* Decorative line */}
-                        <div className="mt-8 flex items-center justify-center gap-3">
-                            <div className="h-px w-16 bg-gradient-to-r from-transparent to-primary/50" />
-                            <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                            <div className="h-px w-16 bg-gradient-to-l from-transparent to-primary/50" />
-                        </div>
                     </FadeIn>
                 </div>
             </section>

@@ -94,7 +94,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <section className="bg-muted/30 py-12 border-b">
+            <section className="bg-[#030712] pt-24 md:pt-28 pb-12 border-b border-white/10">
                 <div className="container mx-auto px-4">
                     <ProductDetailClient product={product} />
                 </div>

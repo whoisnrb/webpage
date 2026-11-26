@@ -3,7 +3,6 @@
 import { Link } from "@/i18n/routing"
 import { ArrowRight, Eye } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
@@ -20,86 +19,100 @@ interface ProductCardProps {
     onQuickView?: () => void
 }
 
-export function ProductCard({ id, title, description, price, category, slug, image, onQuickView }: ProductCardProps) {
+export function ProductCard({ title, description, price, category, slug, image, onQuickView }: ProductCardProps) {
     const t = useTranslations()
 
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            whileHover={{ y: -5 }}
-            transition={{ duration: 0.3 }}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.25 }}
             className="h-full"
         >
-            <Card className="flex flex-col overflow-hidden h-full hover:shadow-xl transition-all duration-300 border-muted-foreground/10">
-                <div className="aspect-video bg-muted/50 relative group overflow-hidden">
-                    {image ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                            src={image}
-                            alt={title}
-                            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
-                            onError={(e) => {
-                                // Fallback if image fails to load
-                                e.currentTarget.style.display = 'none'
-                                e.currentTarget.nextElementSibling?.classList.remove('hidden')
-                            }}
-                        />
-                    ) : null}
+            <div className="flex flex-col overflow-hidden h-full rounded-2xl border border-white/10 bg-[#06101c]/80 backdrop-blur-xl hover:border-cyan-500/40 hover:shadow-[0_0_30px_-10px_rgba(6,182,212,0.3)] transition-all duration-300 group">
+                {/* Clickable Visual Header */}
+                <div className="aspect-video bg-slate-900/70 relative overflow-hidden">
+                    <Link href={`/megoldasok/${slug}` as any} className="block w-full h-full">
+                        {image ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                                src={image}
+                                alt={title}
+                                className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                                onError={(e) => {
+                                    e.currentTarget.style.display = 'none'
+                                    e.currentTarget.nextElementSibling?.classList.remove('hidden')
+                                }}
+                            />
+                        ) : null}
 
-                    {/* Fallback / Placeholder */}
-                    <div className={`absolute inset-0 flex items-center justify-center text-muted-foreground/30 font-medium bg-gradient-to-br ${category === 'WordPress Plugin' ? 'from-blue-500/20 to-purple-500/20' :
-                        category === 'Automatizáció' ? 'from-orange-500/20 to-red-500/20' :
+                        {/* Fallback / Placeholder */}
+                        <div className={`absolute inset-0 flex items-center justify-center text-white/30 font-medium bg-gradient-to-br ${
+                            category === 'WordPress Plugin' ? 'from-blue-500/20 to-purple-500/20' :
+                            category === 'Automatizáció' ? 'from-orange-500/20 to-red-500/20' :
                             category === 'Script' ? 'from-green-500/20 to-emerald-500/20' :
-                                category === 'E-book' ? 'from-yellow-500/20 to-amber-500/20' :
-                                    'from-gray-500/20 to-slate-500/20'
+                            category === 'E-book' ? 'from-yellow-500/20 to-amber-500/20' :
+                            'from-cyan-500/20 to-slate-800/40'
                         } ${image ? 'hidden' : ''}`}>
-                        {category}
+                            {category}
+                        </div>
+                    </Link>
+
+                    {/* Top-left Category Badge */}
+                    <div className="absolute top-3 left-3 pointer-events-none">
+                        <Badge variant="outline" className="bg-slate-950/80 backdrop-blur-md border-white/15 text-cyan-300 text-[11px] font-semibold">
+                            {category}
+                        </Badge>
                     </div>
 
-                    {/* Overlay Actions */}
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 backdrop-blur-[2px]">
-                        <Button
-                            size="sm"
-                            variant="secondary"
+                    {/* Top-right Quick View Button (always accessible on mobile & desktop) */}
+                    {onQuickView && (
+                        <button
+                            type="button"
                             onClick={(e) => {
                                 e.preventDefault()
-                                onQuickView?.()
+                                e.stopPropagation()
+                                onQuickView()
                             }}
-                            className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+                            title={t('QuickView.quick_view')}
+                            aria-label={t('QuickView.quick_view')}
+                            className="absolute top-3 right-3 h-8 w-8 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/15 text-white/80 hover:text-cyan-300 hover:border-cyan-400/50 flex items-center justify-center transition-colors cursor-pointer"
                         >
-                            <Eye className="mr-2 h-4 w-4" /> {t('QuickView.quick_view')}
-                        </Button>
-                        <Button size="sm" variant="outline" asChild className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75 border-white text-white hover:bg-white/20">
+                            <Eye className="h-4 w-4" />
+                        </button>
+                    )}
+                </div>
+
+                {/* Body */}
+                <div className="p-5 flex-1 flex flex-col justify-between gap-4">
+                    <div className="space-y-2">
+                        <Link href={`/megoldasok/${slug}` as any} className="block">
+                            <h3 className="text-base md:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug line-clamp-2 min-h-[2.75rem]">
+                                {title}
+                            </h3>
+                        </Link>
+                        <p className="text-xs sm:text-sm text-white/55 line-clamp-2 leading-relaxed">
+                            {description}
+                        </p>
+                    </div>
+
+                    <div className="space-y-3 pt-2 border-t border-white/5">
+                        <PriceDisplay amount={price} className="text-xl md:text-2xl font-black text-white block" />
+
+                        <Button
+                            className="w-full h-10 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-bold shadow-md shadow-cyan-500/15 transition-all group/btn"
+                            asChild
+                        >
                             <Link href={`/megoldasok/${slug}` as any}>
                                 {t('QuickView.details')}
+                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                             </Link>
                         </Button>
                     </div>
                 </div>
-
-                <CardHeader>
-                    <div className="flex justify-between items-start mb-2">
-                        <Badge variant="outline" className="bg-background/50 backdrop-blur">{category}</Badge>
-                    </div>
-                    <CardTitle className="line-clamp-1">{title}</CardTitle>
-                    <CardDescription className="line-clamp-2">{description}</CardDescription>
-                </CardHeader>
-
-                <CardContent className="flex-1">
-                    <PriceDisplay amount={price} className="text-2xl" />
-                </CardContent>
-
-                <CardFooter>
-                    <Button className="w-full bg-accent hover:bg-accent/90 text-white group" asChild>
-                        <Link href={`/megoldasok/${slug}` as any}>
-                            {t('QuickView.details')}
-                            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </Link>
-                    </Button>
-                </CardFooter>
-            </Card>
+            </div>
         </motion.div>
     )
 }
