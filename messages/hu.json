@@ -172,6 +172,14 @@
         "security": {
           "title": "Kiberbiztonság",
           "description": "Védd meg adataidat és rendszereidet! Biztonsági audit és GDPR megfelelés biztosítása."
+        },
+        "webshop": {
+          "title": "Webshop Automatizáció",
+          "description": "UNAS, WooCommerce és ERP szinkronizáció: számlázás, készletkezelés és tömeges termékfeldolgozás."
+        },
+        "ai": {
+          "title": "Vállalati AI Asszisztensek",
+          "description": "Egyedi GPT-4o chatbotok, dokumentum OCR és belső tudásbázis megoldások cégeknek."
         }
       }
     },

@@ -56,7 +56,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         notFound();
     }
 
-    // Determine upsell tags based on study tags + category
+    const baseUrl = locale === 'en' ? 'https://backlineit.com' : 'https://backlineit.hu';
     const upsellTags = [...study.tags, study.category];
 
     const isImageUrl = study.image.startsWith('/') || study.image.startsWith('data:image') || study.image.startsWith('http');
@@ -113,7 +113,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                             ))}
                         </div>
                     </div>
-                    <div className={`aspect-video rounded-2xl ${isImageUrl ? '' : study.image} flex items-center justify-center shadow-2xl skew-y-1 transform transition-all overflow-hidden relative`}>
+                    <div className={`aspect-video rounded-2xl border border-white/10 shadow-[0_0_40px_-15px_rgba(6,182,212,0.2)] ${isImageUrl ? 'bg-slate-950' : study.image} flex items-center justify-center overflow-hidden relative`}>
                         {isImageUrl ? (
                             <img src={study.image} alt={study.title} decoding="async" className="w-full h-full object-cover" />
                         ) : (
@@ -188,78 +188,75 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                 )}
 
                 {/* Details Grid */}
-                <div className="grid md:grid-cols-3 gap-8 mb-16">
-                    <div className="bg-card border rounded-xl p-8 shadow-sm">
-                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                            <span className="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 p-2 rounded-lg">⚠️</span>
+                <div className="grid md:grid-cols-3 gap-6 mb-12">
+                    <div className="rounded-2xl border border-white/10 bg-[#06101c]/80 backdrop-blur-xl p-6 md:p-7">
+                        <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2.5">
+                            <span className="bg-red-500/15 border border-red-500/30 text-red-400 p-2 rounded-lg text-sm">⚠️</span>
                             {t('challenge')}
                         </h3>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-white/65 text-sm leading-relaxed">
                             {study.challenge}
                         </p>
                     </div>
-                    <div className="bg-card border rounded-xl p-8 shadow-sm">
-                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                            <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 p-2 rounded-lg">🛠️</span>
+                    <div className="rounded-2xl border border-white/10 bg-[#06101c]/80 backdrop-blur-xl p-6 md:p-7">
+                        <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2.5">
+                            <span className="bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 p-2 rounded-lg text-sm">🛠️</span>
                             {t('solution')}
                         </h3>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-white/65 text-sm leading-relaxed">
                             {study.solution}
                         </p>
                     </div>
-                    <div className="bg-card border rounded-xl p-8 shadow-sm">
-                        <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                            <span className="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 p-2 rounded-lg">🚀</span>
+                    <div className="rounded-2xl border border-white/10 bg-[#06101c]/80 backdrop-blur-xl p-6 md:p-7">
+                        <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2.5">
+                            <span className="bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 p-2 rounded-lg text-sm">🚀</span>
                             {t('result')}
                         </h3>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-white/65 text-sm leading-relaxed">
                             {study.result}
                         </p>
                     </div>
                 </div>
 
                 {(study.content && study.content.trim() !== '') && (
-                    <div className="mb-16 bg-card border rounded-xl p-8 shadow-sm">
-                        <div className="text-muted-foreground leading-relaxed whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: study.content }} />
+                    <div className="mb-12 rounded-2xl border border-white/10 bg-[#06101c]/80 backdrop-blur-xl p-6 md:p-8">
+                        <div className="text-white/75 leading-relaxed whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: study.content }} />
                     </div>
                 )}
 
                 {(study.galleryImages && study.galleryImages.length > 0) && (
-                    <div className="mb-16">
-                        <h2 className="text-2xl font-bold mb-8">{t('gallery') || 'Galéria'}</h2>
+                    <div className="mb-12">
+                        <h2 className="text-2xl font-bold text-white mb-6">{t('gallery') || 'Galéria'}</h2>
                         <ClientGallery images={study.galleryImages} title={study.title} />
                     </div>
                 )}
 
                 {(study.metrics && study.metrics.length > 0) && (
-                    <div className="bg-primary/5 rounded-2xl p-8 md:p-12 mb-16 text-center border border-primary/10 relative overflow-hidden group">
-                        {/* Decorative background element for Documentation link area if present */}
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
-                        
+                    <div className="rounded-3xl border border-white/10 bg-[#06101c]/80 backdrop-blur-xl p-6 md:p-10 mb-12 relative overflow-hidden">
                         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-                            <div className="flex-1">
-                                <h2 className="text-2xl font-bold mb-8 text-left">{t('key_results')}</h2>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                            <div className="flex-1 w-full">
+                                <h2 className="text-xl md:text-2xl font-black text-white mb-6 text-left">{t('key_results')}</h2>
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                                     {study.metrics.map((metric, i) => (
-                                        <div key={i} className="text-left">
-                                            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{metric.value}</div>
-                                            <div className="text-sm text-muted-foreground font-medium">{metric.label}</div>
+                                        <div key={i} className="text-left p-4 rounded-2xl bg-white/[0.03] border border-white/5">
+                                            <div className="text-2xl md:text-3xl font-black text-cyan-400 mb-1">{metric.value}</div>
+                                            <div className="text-xs text-white/55 font-medium">{metric.label}</div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                             
                             {(study.showDocumentation && study.documentationFile) && (
-                                <div className="w-full md:w-auto md:border-l border-primary/20 md:pl-12 flex flex-col items-center md:items-start text-center md:text-left pt-8 md:pt-0">
-                                    <h3 className="text-xl font-bold mb-4">{t('documentation')}</h3>
-                                    <p className="text-muted-foreground text-sm mb-6 max-w-xs">{t('documentation_desc')}</p>
+                                <div className="w-full md:w-auto md:border-l border-white/10 md:pl-10 flex flex-col items-center md:items-start text-center md:text-left pt-6 md:pt-0">
+                                    <h3 className="text-lg font-bold text-white mb-2">{t('documentation')}</h3>
+                                    <p className="text-white/55 text-xs mb-5 max-w-xs">{t('documentation_desc')}</p>
                                     <a 
                                         href={study.documentationFile} 
                                         download={`BacklineIT-${study.slug}-dokumentacio.pdf`}
                                         className="w-full"
                                     >
-                                        <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold shadow-lg shadow-primary/20 group/btn">
-                                            <Download className="mr-2 h-5 w-5 group-hover/btn:translate-y-0.5 transition-transform" />
+                                        <Button className="w-full h-11 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-600 hover:from-cyan-300 hover:to-blue-500 text-slate-950 font-black">
+                                            <Download className="mr-2 h-4 w-4" />
                                             {t('download_case_study')}
                                         </Button>
                                     </a>
@@ -280,11 +277,11 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                             "image": study.image,
                             "publisher": {
                                 "@type": "Organization",
-                                "@id": "https://backlineit.hu/#organization",
+                                "@id": `${baseUrl}/#organization`,
                                 "name": "BacklineIT",
                                 "logo": {
                                     "@type": "ImageObject",
-                                    "url": "https://backlineit.hu/logo.png"
+                                    "url": `${baseUrl}/logo.png`
                                 }
                             }
                         })

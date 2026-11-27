@@ -172,6 +172,14 @@
         "security": {
           "title": "Cybersecurity",
           "description": "Protect your data and systems! Providing security audits and GDPR compliance."
+        },
+        "webshop": {
+          "title": "Webshop Automation",
+          "description": "E-commerce & ERP synchronization: automated invoicing, inventory sync, and bulk product processing."
+        },
+        "ai": {
+          "title": "Enterprise AI Assistants",
+          "description": "Custom GPT-4o chatbots, document OCR pipelines, and private company knowledge bases."
         }
       }
     },
